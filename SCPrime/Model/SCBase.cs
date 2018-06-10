@@ -486,12 +486,27 @@ namespace SCPrime.Model
     }
     public class SCContractType
     {
-        public int OID;
-        public string Name;
-        public bool isInvoice;
-        public bool isActive;
-        public bool isCollective;
-        public bool isMarkDeleted = false;
+        public int OID { get; set; }
+        public string Name { get; set; }
+        public bool isInvoice { get; set; }
+        public bool isActive { get; set; }
+        public bool isCollective { get; set; }
+        public bool isMarkDeleted { get; set; }
+
+        public SCContractType()
+        {
+           
+        }
+
+        public SCContractType(int oid)
+        {
+            this.OID = oid;
+            this.Name = "Name";
+            this.isInvoice = true;
+            this.isActive = true;
+            this.isCollective = true;
+            this.isMarkDeleted = false;
+        }
     }
     public class ContractStatus
     {
@@ -503,6 +518,7 @@ namespace SCPrime.Model
         public const string OnControl = "H";
         public const string Closed = "C";
         public const string Deactivated = "D";
+
         public const string ModelText = "Model";
         public const string OfferText = "Offer";
         public const string NewText = "New";

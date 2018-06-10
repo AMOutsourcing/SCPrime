@@ -60,5 +60,19 @@ namespace SCPrime
                 Application.Exit();
             }
         }
+
+        private void contractTypeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form1 f1 = new Form1();
+            f1.instance.Show();
+            f1.instance.Focus();
+            f1.instance.BringToFront();
+        }
+
+        private void optionListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SCOptionList f2 = new SCOptionList();
+            f2.Show();
+        }
     }
 }
