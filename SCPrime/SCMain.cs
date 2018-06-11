@@ -43,6 +43,7 @@ namespace SCPrime
                 _log.Info("Version = " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString() + ", Title = " + this.Text);
                 
                 this.Visible = true;
+                this.WindowState = FormWindowState.Maximized;
 
                 //testing
                 /*
@@ -73,6 +74,22 @@ namespace SCPrime
         {
             SCOptionList f2 = new SCOptionList();
             f2.Show();
+        }
+
+        private void contractTypeToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Form1 f1 = new Form1();
+            f1.instance.Show();
+            f1.instance.Focus();
+            f1.instance.BringToFront();
+        }
+
+        private void optionListToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            SCOptionList f1 = new SCOptionList();
+            f1.instance.Show();
+            f1.instance.Focus();
+            f1.instance.BringToFront();
         }
     }
 }

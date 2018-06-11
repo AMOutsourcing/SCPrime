@@ -12,7 +12,7 @@ namespace SCPrime.Model
 {
     public class SCOptionCategory : SCOptionBase
     {
-        public int InvoiceFlag;
+        public int InvoiceFlag { get; set; }
         public List<SCOption> Options = new List<SCOption>();
 
         public static List<SCOptionCategory> getContractOptionCategoryPriceList(int ContractTypeOID)
@@ -467,20 +467,20 @@ namespace SCPrime.Model
     }
     public class SCOptionBase
     {
-        public int OID;
-        public string Name="";
-        public string ItemNo="";
-        public string ItemSuplNo="";
-        public string ItemName="";
-        public string WrksId="";
-        public string WrksName="";
-        public decimal BaseSelPr=0;
-        public decimal BuyPr=0;
-        public decimal SelPr=0;
-        public string Info="";
-        public int Quantity=0;
-        public int isAvailable=0;
-        public bool isMarkDeleted = false;
+        public int OID { get; set; }
+        public string Name { get; set; } = "";
+        public string ItemNo { get; set; } = "";
+        public string ItemSuplNo { get; set; } = "";
+        public string ItemName { get; set; } = "";
+        public string WrksId { get; set; } = "";
+        public string WrksName { get; set; } = "";
+        public decimal BaseSelPr { get; set; } = 0;
+        public decimal BuyPr { get; set; } = 0;
+        public decimal SelPr { get; set; } = 0;
+        public string Info { get; set; } = "";
+        public int Quantity { get; set; } = 0;
+        public int isAvailable { get; set; } = 0;
+        public bool isMarkDeleted { get; set; } = false;
         protected static readonly ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
     }

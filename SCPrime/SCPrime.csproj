@@ -94,7 +94,13 @@
     <EmbeddedResource Include="SCOptionList.resx">
       <DependentUpon>SCOptionList.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\SCPrime.Model.ContractStatus.datasource" />
+    <None Include="Properties\DataSources\SCPrime.Model.SCBase.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.SCContractType.datasource" />
+    <None Include="Properties\DataSources\SCPrime.Model.SCOption.datasource" />
+    <None Include="Properties\DataSources\SCPrime.Model.SCOptionBase.datasource" />
+    <None Include="Properties\DataSources\SCPrime.Model.SCOptionCategory.datasource" />
+    <None Include="Properties\DataSources\SCPrime.Model.SCOptionDetail.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
