@@ -1,5 +1,4 @@
-﻿using log4net;
-using SCPrime.Model;
+﻿using SCPrime.Model;
 using SCPrime.Utils;
 using System;
 using System.Collections.Generic;
@@ -15,13 +14,13 @@ namespace SCPrime
 {
     public partial class Form1 : nsBaseClass.clsBaseDialog
     {
-        static readonly ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        //static readonly ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         System.Globalization.CultureInfo oldCI = System.Threading.Thread.CurrentThread.CurrentCulture;
         List<SCContractType> sCContractTypes = null;
         List<SCContractType> datasource = null;
         DataTable dt = new DataTable();
-        int selectedID = -1;
+        //int selectedID = -1;
         int newOid = -1;
 
         private static Form1 _instance;
