@@ -36,13 +36,13 @@
             this.saveBtn = new System.Windows.Forms.Button();
             this.closeBtn = new System.Windows.Forms.Button();
             this.contractTypeList = new System.Windows.Forms.DataGridView();
+            this.OID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ContractTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isInvoice = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.isActive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.isCollective = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.isMarkDeleted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.sCContractTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.oIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isInvoiceDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.isActiveDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.isCollectiveDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.isMarkDeletedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.contractTypeList)).BeginInit();
@@ -125,12 +125,12 @@
             this.contractTypeList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.contractTypeList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.contractTypeList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.oIDDataGridViewTextBoxColumn,
-            this.nameDataGridViewTextBoxColumn,
-            this.isInvoiceDataGridViewCheckBoxColumn,
-            this.isActiveDataGridViewCheckBoxColumn,
-            this.isCollectiveDataGridViewCheckBoxColumn,
-            this.isMarkDeletedDataGridViewCheckBoxColumn});
+            this.OID,
+            this.ContractTypeName,
+            this.isInvoice,
+            this.isActive,
+            this.isCollective,
+            this.isMarkDeleted});
             this.contractTypeList.DataSource = this.sCContractTypeBindingSource;
             this.contractTypeList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.contractTypeList.Location = new System.Drawing.Point(0, 0);
@@ -139,58 +139,63 @@
             this.contractTypeList.TabIndex = 0;
             this.contractTypeList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.contractTypeList_CellClick);
             this.contractTypeList.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.contractTypeList_CellEndEdit);
+            this.contractTypeList.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.contractTypeList_RowEnter);
+            this.contractTypeList.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.contractTypeList_RowHeaderMouseClick);
+            this.contractTypeList.RowLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.contractTypeList_RowLeave);
+            // 
+            // OID
+            // 
+            this.OID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.OID.DataPropertyName = "OID";
+            this.OID.FillWeight = 171.4286F;
+            this.OID.HeaderText = "OID";
+            this.OID.Name = "OID";
+            this.OID.ReadOnly = true;
+            this.OID.Width = 51;
+            // 
+            // ContractTypeName
+            // 
+            this.ContractTypeName.DataPropertyName = "Name";
+            this.ContractTypeName.HeaderText = "Name";
+            this.ContractTypeName.Name = "ContractTypeName";
+            // 
+            // isInvoice
+            // 
+            this.isInvoice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.isInvoice.DataPropertyName = "isInvoice";
+            this.isInvoice.FillWeight = 28.57143F;
+            this.isInvoice.HeaderText = "Invoice";
+            this.isInvoice.Name = "isInvoice";
+            this.isInvoice.Width = 48;
+            // 
+            // isActive
+            // 
+            this.isActive.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.isActive.DataPropertyName = "isActive";
+            this.isActive.HeaderText = "Active";
+            this.isActive.Name = "isActive";
+            this.isActive.Width = 43;
+            // 
+            // isCollective
+            // 
+            this.isCollective.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.isCollective.DataPropertyName = "isCollective";
+            this.isCollective.HeaderText = "Collective";
+            this.isCollective.Name = "isCollective";
+            this.isCollective.Width = 59;
+            // 
+            // isMarkDeleted
+            // 
+            this.isMarkDeleted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.isMarkDeleted.DataPropertyName = "isMarkDeleted";
+            this.isMarkDeleted.HeaderText = "isMarkDeleted";
+            this.isMarkDeleted.Name = "isMarkDeleted";
+            this.isMarkDeleted.ReadOnly = true;
+            this.isMarkDeleted.Width = 81;
             // 
             // sCContractTypeBindingSource
             // 
             this.sCContractTypeBindingSource.DataSource = typeof(SCPrime.Model.SCContractType);
-            // 
-            // oIDDataGridViewTextBoxColumn
-            // 
-            this.oIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.oIDDataGridViewTextBoxColumn.DataPropertyName = "OID";
-            this.oIDDataGridViewTextBoxColumn.FillWeight = 171.4286F;
-            this.oIDDataGridViewTextBoxColumn.HeaderText = "OID";
-            this.oIDDataGridViewTextBoxColumn.Name = "oIDDataGridViewTextBoxColumn";
-            this.oIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.oIDDataGridViewTextBoxColumn.Width = 51;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            // 
-            // isInvoiceDataGridViewCheckBoxColumn
-            // 
-            this.isInvoiceDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.isInvoiceDataGridViewCheckBoxColumn.DataPropertyName = "isInvoice";
-            this.isInvoiceDataGridViewCheckBoxColumn.FillWeight = 28.57143F;
-            this.isInvoiceDataGridViewCheckBoxColumn.HeaderText = "Invoice";
-            this.isInvoiceDataGridViewCheckBoxColumn.Name = "isInvoiceDataGridViewCheckBoxColumn";
-            this.isInvoiceDataGridViewCheckBoxColumn.Width = 48;
-            // 
-            // isActiveDataGridViewCheckBoxColumn
-            // 
-            this.isActiveDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.isActiveDataGridViewCheckBoxColumn.DataPropertyName = "isActive";
-            this.isActiveDataGridViewCheckBoxColumn.HeaderText = "Active";
-            this.isActiveDataGridViewCheckBoxColumn.Name = "isActiveDataGridViewCheckBoxColumn";
-            this.isActiveDataGridViewCheckBoxColumn.Width = 43;
-            // 
-            // isCollectiveDataGridViewCheckBoxColumn
-            // 
-            this.isCollectiveDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.isCollectiveDataGridViewCheckBoxColumn.DataPropertyName = "isCollective";
-            this.isCollectiveDataGridViewCheckBoxColumn.HeaderText = "Collective";
-            this.isCollectiveDataGridViewCheckBoxColumn.Name = "isCollectiveDataGridViewCheckBoxColumn";
-            this.isCollectiveDataGridViewCheckBoxColumn.Width = 59;
-            // 
-            // isMarkDeletedDataGridViewCheckBoxColumn
-            // 
-            this.isMarkDeletedDataGridViewCheckBoxColumn.DataPropertyName = "isMarkDeleted";
-            this.isMarkDeletedDataGridViewCheckBoxColumn.HeaderText = "isMarkDeleted";
-            this.isMarkDeletedDataGridViewCheckBoxColumn.Name = "isMarkDeletedDataGridViewCheckBoxColumn";
-            this.isMarkDeletedDataGridViewCheckBoxColumn.Visible = false;
             // 
             // Form1
             // 
@@ -225,11 +230,12 @@
         private System.Windows.Forms.Button saveBtn;
         private System.Windows.Forms.Button closeBtn;
         private System.Windows.Forms.DataGridView contractTypeList;
-        private System.Windows.Forms.DataGridViewTextBoxColumn oIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn isInvoiceDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn isActiveDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn isCollectiveDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn isMarkDeletedDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ContractName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ContractTypeName;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn isInvoice;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn isActive;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn isCollective;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn isMarkDeleted;
     }
 }

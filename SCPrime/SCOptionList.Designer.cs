@@ -46,18 +46,6 @@
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.panel5 = new System.Windows.Forms.Panel();
             this.dgvOptions = new System.Windows.Forms.DataGridView();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.NewOptBtn = new System.Windows.Forms.Button();
-            this.DelOptBtn = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.dataGridViewCategory = new System.Windows.Forms.DataGridView();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.NewCatBtn = new System.Windows.Forms.Button();
-            this.DelCatBtn = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.OptionOID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.itemNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -73,6 +61,13 @@
             this.isAvailableDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isMarkDeletedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.sCOptionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.NewOptBtn = new System.Windows.Forms.Button();
+            this.DelOptBtn = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.dataGridViewCategory = new System.Windows.Forms.DataGridView();
             this.OID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ItemNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -88,6 +83,11 @@
             this.isAvailable = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isMarkDeleted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.sCOptionCategoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.NewCatBtn = new System.Windows.Forms.Button();
+            this.DelCatBtn = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.sCOptionBaseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sCOptionDetailBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
@@ -99,14 +99,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOptions)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sCOptionBindingSource)).BeginInit();
             this.panel8.SuspendLayout();
             this.panel11.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCategory)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sCOptionCategoryBindingSource)).BeginInit();
             this.panel7.SuspendLayout();
             this.panel10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sCOptionBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sCOptionCategoryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sCOptionBaseBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sCOptionDetailBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -250,6 +250,7 @@
             // 
             // dataGridView3
             // 
+            this.dataGridView3.AllowUserToAddRows = false;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView3.Location = new System.Drawing.Point(0, 0);
@@ -269,6 +270,7 @@
             // 
             // dgvOptions
             // 
+            this.dgvOptions.AllowUserToAddRows = false;
             this.dgvOptions.AutoGenerateColumns = false;
             this.dgvOptions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvOptions.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -292,6 +294,94 @@
             this.dgvOptions.Name = "dgvOptions";
             this.dgvOptions.Size = new System.Drawing.Size(742, 341);
             this.dgvOptions.TabIndex = 1;
+            // 
+            // OptionOID
+            // 
+            this.OptionOID.DataPropertyName = "OID";
+            this.OptionOID.HeaderText = "OID";
+            this.OptionOID.Name = "OptionOID";
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            // 
+            // itemNoDataGridViewTextBoxColumn
+            // 
+            this.itemNoDataGridViewTextBoxColumn.DataPropertyName = "ItemNo";
+            this.itemNoDataGridViewTextBoxColumn.HeaderText = "ItemNo";
+            this.itemNoDataGridViewTextBoxColumn.Name = "itemNoDataGridViewTextBoxColumn";
+            // 
+            // itemSuplNoDataGridViewTextBoxColumn
+            // 
+            this.itemSuplNoDataGridViewTextBoxColumn.DataPropertyName = "ItemSuplNo";
+            this.itemSuplNoDataGridViewTextBoxColumn.HeaderText = "ItemSuplNo";
+            this.itemSuplNoDataGridViewTextBoxColumn.Name = "itemSuplNoDataGridViewTextBoxColumn";
+            // 
+            // itemNameDataGridViewTextBoxColumn
+            // 
+            this.itemNameDataGridViewTextBoxColumn.DataPropertyName = "ItemName";
+            this.itemNameDataGridViewTextBoxColumn.HeaderText = "ItemName";
+            this.itemNameDataGridViewTextBoxColumn.Name = "itemNameDataGridViewTextBoxColumn";
+            // 
+            // wrksIdDataGridViewTextBoxColumn
+            // 
+            this.wrksIdDataGridViewTextBoxColumn.DataPropertyName = "WrksId";
+            this.wrksIdDataGridViewTextBoxColumn.HeaderText = "WrksId";
+            this.wrksIdDataGridViewTextBoxColumn.Name = "wrksIdDataGridViewTextBoxColumn";
+            // 
+            // wrksNameDataGridViewTextBoxColumn
+            // 
+            this.wrksNameDataGridViewTextBoxColumn.DataPropertyName = "WrksName";
+            this.wrksNameDataGridViewTextBoxColumn.HeaderText = "WrksName";
+            this.wrksNameDataGridViewTextBoxColumn.Name = "wrksNameDataGridViewTextBoxColumn";
+            // 
+            // baseSelPrDataGridViewTextBoxColumn
+            // 
+            this.baseSelPrDataGridViewTextBoxColumn.DataPropertyName = "BaseSelPr";
+            this.baseSelPrDataGridViewTextBoxColumn.HeaderText = "BaseSelPr";
+            this.baseSelPrDataGridViewTextBoxColumn.Name = "baseSelPrDataGridViewTextBoxColumn";
+            // 
+            // buyPrDataGridViewTextBoxColumn
+            // 
+            this.buyPrDataGridViewTextBoxColumn.DataPropertyName = "BuyPr";
+            this.buyPrDataGridViewTextBoxColumn.HeaderText = "BuyPr";
+            this.buyPrDataGridViewTextBoxColumn.Name = "buyPrDataGridViewTextBoxColumn";
+            // 
+            // selPrDataGridViewTextBoxColumn
+            // 
+            this.selPrDataGridViewTextBoxColumn.DataPropertyName = "SelPr";
+            this.selPrDataGridViewTextBoxColumn.HeaderText = "SelPr";
+            this.selPrDataGridViewTextBoxColumn.Name = "selPrDataGridViewTextBoxColumn";
+            // 
+            // infoDataGridViewTextBoxColumn
+            // 
+            this.infoDataGridViewTextBoxColumn.DataPropertyName = "Info";
+            this.infoDataGridViewTextBoxColumn.HeaderText = "Info";
+            this.infoDataGridViewTextBoxColumn.Name = "infoDataGridViewTextBoxColumn";
+            // 
+            // quantityDataGridViewTextBoxColumn
+            // 
+            this.quantityDataGridViewTextBoxColumn.DataPropertyName = "Quantity";
+            this.quantityDataGridViewTextBoxColumn.HeaderText = "Quantity";
+            this.quantityDataGridViewTextBoxColumn.Name = "quantityDataGridViewTextBoxColumn";
+            // 
+            // isAvailableDataGridViewTextBoxColumn
+            // 
+            this.isAvailableDataGridViewTextBoxColumn.DataPropertyName = "isAvailable";
+            this.isAvailableDataGridViewTextBoxColumn.HeaderText = "isAvailable";
+            this.isAvailableDataGridViewTextBoxColumn.Name = "isAvailableDataGridViewTextBoxColumn";
+            // 
+            // isMarkDeletedDataGridViewCheckBoxColumn
+            // 
+            this.isMarkDeletedDataGridViewCheckBoxColumn.DataPropertyName = "isMarkDeleted";
+            this.isMarkDeletedDataGridViewCheckBoxColumn.HeaderText = "isMarkDeleted";
+            this.isMarkDeletedDataGridViewCheckBoxColumn.Name = "isMarkDeletedDataGridViewCheckBoxColumn";
+            // 
+            // sCOptionBindingSource
+            // 
+            this.sCOptionBindingSource.DataSource = typeof(SCPrime.Model.SCOption);
             // 
             // panel8
             // 
@@ -382,143 +472,6 @@
             this.dataGridViewCategory.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCategory_RowEnter);
             this.dataGridViewCategory.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.dataGridViewCategory_RowStateChanged);
             this.dataGridViewCategory.SelectionChanged += new System.EventHandler(this.dataGridViewCategory_SelectionChanged);
-            // 
-            // panel7
-            // 
-            this.panel7.Controls.Add(this.panel10);
-            this.panel7.Controls.Add(this.label1);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel7.Location = new System.Drawing.Point(0, 0);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(742, 32);
-            this.panel7.TabIndex = 0;
-            // 
-            // panel10
-            // 
-            this.panel10.Controls.Add(this.NewCatBtn);
-            this.panel10.Controls.Add(this.DelCatBtn);
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel10.Location = new System.Drawing.Point(547, 0);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(195, 32);
-            this.panel10.TabIndex = 3;
-            // 
-            // NewCatBtn
-            // 
-            this.NewCatBtn.Location = new System.Drawing.Point(22, 3);
-            this.NewCatBtn.Name = "NewCatBtn";
-            this.NewCatBtn.Size = new System.Drawing.Size(75, 23);
-            this.NewCatBtn.TabIndex = 1;
-            this.NewCatBtn.Text = "New";
-            this.NewCatBtn.UseVisualStyleBackColor = true;
-            this.NewCatBtn.Click += new System.EventHandler(this.NewCatBtn_Click);
-            // 
-            // DelCatBtn
-            // 
-            this.DelCatBtn.Location = new System.Drawing.Point(113, 3);
-            this.DelCatBtn.Name = "DelCatBtn";
-            this.DelCatBtn.Size = new System.Drawing.Size(75, 23);
-            this.DelCatBtn.TabIndex = 2;
-            this.DelCatBtn.Text = "Delete";
-            this.DelCatBtn.UseVisualStyleBackColor = true;
-            this.DelCatBtn.Click += new System.EventHandler(this.DelCatBtn_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Category";
-            // 
-            // OptionOID
-            // 
-            this.OptionOID.DataPropertyName = "OID";
-            this.OptionOID.HeaderText = "OID";
-            this.OptionOID.Name = "OptionOID";
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            // 
-            // itemNoDataGridViewTextBoxColumn
-            // 
-            this.itemNoDataGridViewTextBoxColumn.DataPropertyName = "ItemNo";
-            this.itemNoDataGridViewTextBoxColumn.HeaderText = "ItemNo";
-            this.itemNoDataGridViewTextBoxColumn.Name = "itemNoDataGridViewTextBoxColumn";
-            // 
-            // itemSuplNoDataGridViewTextBoxColumn
-            // 
-            this.itemSuplNoDataGridViewTextBoxColumn.DataPropertyName = "ItemSuplNo";
-            this.itemSuplNoDataGridViewTextBoxColumn.HeaderText = "ItemSuplNo";
-            this.itemSuplNoDataGridViewTextBoxColumn.Name = "itemSuplNoDataGridViewTextBoxColumn";
-            // 
-            // itemNameDataGridViewTextBoxColumn
-            // 
-            this.itemNameDataGridViewTextBoxColumn.DataPropertyName = "ItemName";
-            this.itemNameDataGridViewTextBoxColumn.HeaderText = "ItemName";
-            this.itemNameDataGridViewTextBoxColumn.Name = "itemNameDataGridViewTextBoxColumn";
-            // 
-            // wrksIdDataGridViewTextBoxColumn
-            // 
-            this.wrksIdDataGridViewTextBoxColumn.DataPropertyName = "WrksId";
-            this.wrksIdDataGridViewTextBoxColumn.HeaderText = "WrksId";
-            this.wrksIdDataGridViewTextBoxColumn.Name = "wrksIdDataGridViewTextBoxColumn";
-            // 
-            // wrksNameDataGridViewTextBoxColumn
-            // 
-            this.wrksNameDataGridViewTextBoxColumn.DataPropertyName = "WrksName";
-            this.wrksNameDataGridViewTextBoxColumn.HeaderText = "WrksName";
-            this.wrksNameDataGridViewTextBoxColumn.Name = "wrksNameDataGridViewTextBoxColumn";
-            // 
-            // baseSelPrDataGridViewTextBoxColumn
-            // 
-            this.baseSelPrDataGridViewTextBoxColumn.DataPropertyName = "BaseSelPr";
-            this.baseSelPrDataGridViewTextBoxColumn.HeaderText = "BaseSelPr";
-            this.baseSelPrDataGridViewTextBoxColumn.Name = "baseSelPrDataGridViewTextBoxColumn";
-            // 
-            // buyPrDataGridViewTextBoxColumn
-            // 
-            this.buyPrDataGridViewTextBoxColumn.DataPropertyName = "BuyPr";
-            this.buyPrDataGridViewTextBoxColumn.HeaderText = "BuyPr";
-            this.buyPrDataGridViewTextBoxColumn.Name = "buyPrDataGridViewTextBoxColumn";
-            // 
-            // selPrDataGridViewTextBoxColumn
-            // 
-            this.selPrDataGridViewTextBoxColumn.DataPropertyName = "SelPr";
-            this.selPrDataGridViewTextBoxColumn.HeaderText = "SelPr";
-            this.selPrDataGridViewTextBoxColumn.Name = "selPrDataGridViewTextBoxColumn";
-            // 
-            // infoDataGridViewTextBoxColumn
-            // 
-            this.infoDataGridViewTextBoxColumn.DataPropertyName = "Info";
-            this.infoDataGridViewTextBoxColumn.HeaderText = "Info";
-            this.infoDataGridViewTextBoxColumn.Name = "infoDataGridViewTextBoxColumn";
-            // 
-            // quantityDataGridViewTextBoxColumn
-            // 
-            this.quantityDataGridViewTextBoxColumn.DataPropertyName = "Quantity";
-            this.quantityDataGridViewTextBoxColumn.HeaderText = "Quantity";
-            this.quantityDataGridViewTextBoxColumn.Name = "quantityDataGridViewTextBoxColumn";
-            // 
-            // isAvailableDataGridViewTextBoxColumn
-            // 
-            this.isAvailableDataGridViewTextBoxColumn.DataPropertyName = "isAvailable";
-            this.isAvailableDataGridViewTextBoxColumn.HeaderText = "isAvailable";
-            this.isAvailableDataGridViewTextBoxColumn.Name = "isAvailableDataGridViewTextBoxColumn";
-            // 
-            // isMarkDeletedDataGridViewCheckBoxColumn
-            // 
-            this.isMarkDeletedDataGridViewCheckBoxColumn.DataPropertyName = "isMarkDeleted";
-            this.isMarkDeletedDataGridViewCheckBoxColumn.HeaderText = "isMarkDeleted";
-            this.isMarkDeletedDataGridViewCheckBoxColumn.Name = "isMarkDeletedDataGridViewCheckBoxColumn";
-            // 
-            // sCOptionBindingSource
-            // 
-            this.sCOptionBindingSource.DataSource = typeof(SCPrime.Model.SCOption);
             // 
             // OID
             // 
@@ -615,6 +568,55 @@
             // 
             this.sCOptionCategoryBindingSource.DataSource = typeof(SCPrime.Model.SCOptionCategory);
             // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.panel10);
+            this.panel7.Controls.Add(this.label1);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel7.Location = new System.Drawing.Point(0, 0);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(742, 32);
+            this.panel7.TabIndex = 0;
+            // 
+            // panel10
+            // 
+            this.panel10.Controls.Add(this.NewCatBtn);
+            this.panel10.Controls.Add(this.DelCatBtn);
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel10.Location = new System.Drawing.Point(547, 0);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(195, 32);
+            this.panel10.TabIndex = 3;
+            // 
+            // NewCatBtn
+            // 
+            this.NewCatBtn.Location = new System.Drawing.Point(22, 3);
+            this.NewCatBtn.Name = "NewCatBtn";
+            this.NewCatBtn.Size = new System.Drawing.Size(75, 23);
+            this.NewCatBtn.TabIndex = 1;
+            this.NewCatBtn.Text = "New";
+            this.NewCatBtn.UseVisualStyleBackColor = true;
+            this.NewCatBtn.Click += new System.EventHandler(this.NewCatBtn_Click);
+            // 
+            // DelCatBtn
+            // 
+            this.DelCatBtn.Location = new System.Drawing.Point(113, 3);
+            this.DelCatBtn.Name = "DelCatBtn";
+            this.DelCatBtn.Size = new System.Drawing.Size(75, 23);
+            this.DelCatBtn.TabIndex = 2;
+            this.DelCatBtn.Text = "Delete";
+            this.DelCatBtn.UseVisualStyleBackColor = true;
+            this.DelCatBtn.Click += new System.EventHandler(this.DelCatBtn_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(49, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Category";
+            // 
             // sCOptionBaseBindingSource
             // 
             this.sCOptionBaseBindingSource.DataSource = typeof(SCPrime.Model.SCOptionBase);
@@ -644,16 +646,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvOptions)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sCOptionBindingSource)).EndInit();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
             this.panel11.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCategory)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sCOptionCategoryBindingSource)).EndInit();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             this.panel10.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.sCOptionBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sCOptionCategoryBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sCOptionBaseBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sCOptionDetailBindingSource)).EndInit();
             this.ResumeLayout(false);

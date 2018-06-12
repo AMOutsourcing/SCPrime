@@ -104,7 +104,17 @@ namespace SCPrime
                                 this.sCContractTypes.Add(sc);
 
                             }
-                            row.Delete();
+                            //row.Delete();
+                            if (row["isMarkDeleted"].ToString() == "True")
+                            {
+                                row["isMarkDeleted"] = 0;
+                                this.sCContractTypes.Remove(sc);
+                            }
+                            else
+                            {
+                                row["isMarkDeleted"] = 1;
+                            }
+                            //MessageBox.Show(row["isMarkDeleted"].ToString());
                         }
                     }
                 }
@@ -219,6 +229,25 @@ namespace SCPrime
         private void contractTypeList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+       
+
+      
+
+        private void contractTypeList_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+           
+        }
+
+        private void contractTypeList_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+           // this.delBtn.Enabled = true;
+        }
+
+        private void contractTypeList_RowLeave(object sender, DataGridViewCellEventArgs e)
+        {
+         //   this.delBtn.Enabled = false;
         }
     }
 }
