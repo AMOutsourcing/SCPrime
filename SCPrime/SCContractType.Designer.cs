@@ -36,13 +36,13 @@
             this.saveBtn = new System.Windows.Forms.Button();
             this.closeBtn = new System.Windows.Forms.Button();
             this.contractTypeList = new System.Windows.Forms.DataGridView();
+            this.sCContractTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.OID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ContractTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isInvoice = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.isActive = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.isCollective = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.isMarkDeleted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.sCContractTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.contractTypeList)).BeginInit();
@@ -121,6 +121,7 @@
             // 
             // contractTypeList
             // 
+            this.contractTypeList.AllowUserToAddRows = false;
             this.contractTypeList.AutoGenerateColumns = false;
             this.contractTypeList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.contractTypeList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -143,6 +144,10 @@
             this.contractTypeList.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.contractTypeList_RowHeaderMouseClick);
             this.contractTypeList.RowLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.contractTypeList_RowLeave);
             // 
+            // sCContractTypeBindingSource
+            // 
+            this.sCContractTypeBindingSource.DataSource = typeof(SCPrime.Model.SCContractType);
+            // 
             // OID
             // 
             this.OID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
@@ -151,6 +156,7 @@
             this.OID.HeaderText = "OID";
             this.OID.Name = "OID";
             this.OID.ReadOnly = true;
+            this.OID.Visible = false;
             this.OID.Width = 51;
             // 
             // ContractTypeName
@@ -190,12 +196,8 @@
             this.isMarkDeleted.DataPropertyName = "isMarkDeleted";
             this.isMarkDeleted.HeaderText = "isMarkDeleted";
             this.isMarkDeleted.Name = "isMarkDeleted";
-            this.isMarkDeleted.ReadOnly = true;
+            this.isMarkDeleted.Visible = false;
             this.isMarkDeleted.Width = 81;
-            // 
-            // sCContractTypeBindingSource
-            // 
-            this.sCContractTypeBindingSource.DataSource = typeof(SCPrime.Model.SCContractType);
             // 
             // Form1
             // 

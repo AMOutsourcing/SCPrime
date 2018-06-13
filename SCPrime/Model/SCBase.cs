@@ -206,18 +206,21 @@ namespace SCPrime.Model
                     }
                     else
                     {
-                        //insert
-                        bRet = hSql.NewCommand("insert into ZSC_OptionCategory (Name,ItemNo,ItemSuplNo,WrksId,SelPr,InvoiceFlag,Modified,Created) values (?,?,?,?,?,?,getdate(),getdate()) ");
-                        hSql.Com.Parameters.AddWithValue("Name", objCategory.Name);
-                        hSql.Com.Parameters.AddWithValue("ItemNo", objCategory.ItemNo);
-                        hSql.Com.Parameters.AddWithValue("ItemSuplNo", objCategory.ItemSuplNo);
-                        hSql.Com.Parameters.AddWithValue("WrksId", objCategory.WrksId);
-                        hSql.Com.Parameters.AddWithValue("SelPr", objCategory.SelPr);
-                        hSql.Com.Parameters.AddWithValue("InvoiceFlag", objCategory.InvoiceFlag);
-                        bRet = bRet && hSql.ExecuteNonQuery();
-                        bRet = hSql.NewCommand("select max(OID) from  ZSC_OptionCategory ");
-                        bRet = bRet && hSql.ExecuteReader() && hSql.Read();
-                        objCategory.OID = hSql.Reader.GetInt32(0);
+                        if (objCategory.isMarkDeleted == false) //longdq Case: New Object => Delete Object => Save object
+                        {
+                            //insert
+                            bRet = hSql.NewCommand("insert into ZSC_OptionCategory (Name,ItemNo,ItemSuplNo,WrksId,SelPr,InvoiceFlag,Modified,Created) values (?,?,?,?,?,?,getdate(),getdate()) ");
+                            hSql.Com.Parameters.AddWithValue("Name", objCategory.Name);
+                            hSql.Com.Parameters.AddWithValue("ItemNo", objCategory.ItemNo);
+                            hSql.Com.Parameters.AddWithValue("ItemSuplNo", objCategory.ItemSuplNo);
+                            hSql.Com.Parameters.AddWithValue("WrksId", objCategory.WrksId);
+                            hSql.Com.Parameters.AddWithValue("SelPr", objCategory.SelPr);
+                            hSql.Com.Parameters.AddWithValue("InvoiceFlag", objCategory.InvoiceFlag);
+                            bRet = bRet && hSql.ExecuteNonQuery();
+                            bRet = hSql.NewCommand("select max(OID) from  ZSC_OptionCategory ");
+                            bRet = bRet && hSql.ExecuteReader() && hSql.Read();
+                            objCategory.OID = hSql.Reader.GetInt32(0);
+                        }
                     }
                     if (objCategory.isMarkDeleted == false) bRet = objCategory.saveOptions(hSql);
                 }
