@@ -91,5 +91,13 @@ namespace SCPrime
             f1.instance.Focus();
             f1.instance.BringToFront();
         }
+
+        private void optionPriceListToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            SCOptionPriceFrm optionPrice = SCOptionPriceFrm.getInstance;
+            optionPrice.Show();
+            optionPrice.Focus();
+            optionPrice.BringToFront();
+        }
     }
 }

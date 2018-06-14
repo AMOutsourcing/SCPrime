@@ -92,7 +92,19 @@
     <Compile Include="SCOptionList.Designer.cs">
       <DependentUpon>SCOptionList.cs</DependentUpon>
     </Compile>
+    <Compile Include="SCOptionPrice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SCOptionPrice.Designer.cs">
+      <DependentUpon>SCOptionPrice.cs</DependentUpon>
+    </Compile>
     <Compile Include="Settings.cs" />
+    <Compile Include="SCOptionPriceList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SCOptionPriceList.Designer.cs">
+      <DependentUpon>SCOptionPriceList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utils\ObjectUtils.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -113,9 +125,16 @@
       <DependentUpon>SCOptionList.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <EmbeddedResource Include="SCOptionPrice.resx">
+      <DependentUpon>SCOptionPrice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SCOptionPriceList.resx">
+      <DependentUpon>SCOptionPriceList.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\DataSources\SCPrime.Model.ContractStatus.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.SCBase.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.SCContractType.datasource" />
+    <None Include="Properties\DataSources\SCPrime.Model.SCOptionPrice.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.SCOption.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.SCOptionBase.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.SCOptionCategory.datasource" />

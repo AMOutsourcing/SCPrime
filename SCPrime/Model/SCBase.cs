@@ -384,9 +384,31 @@ namespace SCPrime.Model
             }
             return bRet;
         }
+
+        public SCOption()
+        {
+
+        }
+
+        public SCOption(int oid, String name)
+        {
+            this.OID = oid;
+            this.Name = name;
+        }
     }
     public class SCOptionDetail : SCOptionBase
     {
+        public SCOptionDetail()
+        {
+
+        }
+
+        public SCOptionDetail(int oid, String name)
+        {
+            this.OID = oid;
+            this.Name = name;
+        }
+
         public static List<SCOptionDetail> getContractOptionDetailPriceList(int OptionOID, int OptionCategoryOID, int ContractTypeOID)
         {
             List<SCOptionDetail> Result = new List<SCOptionDetail>();
@@ -486,6 +508,17 @@ namespace SCPrime.Model
         public bool isMarkDeleted { get; set; } = false;
         protected static readonly ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        public SCOptionBase()
+        {
+
+        }
+
+        public SCOptionBase(int oid,String name)
+        {
+            this.OID = oid;
+            this.Name = name;
+        }
+
     }
     public class SCContractType
     {
@@ -510,6 +543,52 @@ namespace SCPrime.Model
             this.isCollective = true;
             this.isMarkDeleted = false;
         }
+
+        public List<SCOptionPrice> listOptionPrice = new List<SCOptionPrice>();
+        public List<SCOptionPrice> getOptionPriceList(int contactTypeId)
+        {
+            List<SCOptionPrice> Result = new List<SCOptionPrice>();
+            clsSqlFactory hSql = new clsSqlFactory();
+            try
+            {
+
+                String strSql = " SELECT a.OID,a.ContractTypeOID,a.OptionCategoryOID,isnull(a.OptionOID,0),isnull(a.OptionDetailOID,0),a.IsAvailable,isnull(a.Info,''),a.Created,a.Modified,isnull(c.Name,''),isnull(o.Name,''),isnull(d.Name,'') " +
+                    "FROM ZSC_OptionPriceList  a " +
+                    "LEFT JOIN ZSC_OptionCategory c ON a.OptionCategoryOID = c.OID " +
+                    "LEFT JOIN ZSC_Option o ON a.OptionOID = o.OID " +
+                    "LEFT JOIN ZSC_OptionDetail d ON a.OptionDetailOID = d.OID " +
+                    "WHERE a.ContractTypeOID=? order by a.OID DESC ";
+                hSql.NewCommand(strSql);
+                hSql.Com.Parameters.AddWithValue("ContractTypeOID", contactTypeId);
+                hSql.ExecuteReader();
+                while (hSql.Read())
+                {
+                    SCOptionPrice item = new SCOptionPrice();
+                    item.OID = hSql.Reader.GetInt32(0);
+                    item.ContractTypeOID = hSql.Reader.GetInt32(1);
+                    item.OptionCategoryOID = hSql.Reader.GetInt32(2);
+                    item.OptionOID = hSql.Reader.GetInt32(3);
+                    item.OptionDetailOID = hSql.Reader.GetInt32(4);
+                    item.IsAvailable = hSql.Reader.GetInt32(5);
+                    item.Info = hSql.Reader.GetString(6);
+                    item.Created = hSql.Reader.GetDateTime(7);
+                    item.Modified = hSql.Reader.GetDateTime(8);
+                    item.CategoryName = hSql.Reader.GetString(9);
+                    item.OptionName = hSql.Reader.GetString(10);
+                    item.OptionDetailName = hSql.Reader.GetString(11);
+                    Result.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                hSql.Close();
+            }
+            return Result;
+        }
     }
     public class ContractStatus
     {
@@ -532,10 +611,139 @@ namespace SCPrime.Model
         public const string DeactivatedText = "Deactivated";
 
     }
+
+    public class SCOptionPrice
+    {
+        public int OID { get; set; }
+        public int ContractTypeOID { get; set; }
+        public int OptionCategoryOID { get; set; }
+        public int OptionOID { get; set; }
+        public int OptionDetailOID { get; set; }
+        public int IsAvailable { get; set; }
+        public String Info { get; set; }
+        public DateTime Created { get; set; }
+        public DateTime Modified { get; set; }
+
+        public bool Include
+        {
+            get
+            {
+                return IsAvailable == 2 || IsAvailable == 3;
+            }
+            set
+            {
+                IsAvailable = 2;
+            }
+        }
+        public bool Optional
+        {
+            get
+            {
+                return IsAvailable == 1;
+            }
+            set
+            {
+                IsAvailable = 1;
+            }
+        }
+
+        public bool NotAvailable
+        {
+            get
+            {
+                return IsAvailable == 0;
+            }
+            set
+            {
+                IsAvailable = 0;
+            }
+        }
+
+        public bool Exclude
+        {
+            get
+            {
+                return IsAvailable == 3;
+            }
+            set
+            {
+                IsAvailable = 3;
+            }
+        }
+
+
+        //Relaship
+        public String CategoryName { get; set; }
+        public String OptionName { get; set; }
+        public String OptionDetailName { get; set; }
+
+        public SCOptionPrice()
+        {
+
+        }
+
+        public bool save(List<SCOptionPrice> listItem)
+        {
+            bool bRet = true;
+            clsSqlFactory hSql = new clsSqlFactory();
+            try
+            {
+                foreach (SCOptionPrice obj in listItem)
+                {
+                    if (obj.OID > 0)
+                    {
+                        //if (obj.isMarkDeleted == true)
+                        //{
+                        //    //delete
+                        //    bRet = hSql.NewCommand("delete from ZSC_OptionPriceList where OID=?");
+                        //    hSql.Com.Parameters.AddWithValue("OID", objContractType.OID);
+                        //}
+                        //else
+                        //{
+                            //update
+                            bRet = hSql.NewCommand("update ZSC_OptionPriceList set IsAvailable=?,Modified=getdate() where OID=?");
+                            hSql.Com.Parameters.AddWithValue("IsAvailable", obj.IsAvailable);
+                            hSql.Com.Parameters.AddWithValue("OID", obj.OID);
+
+                        //}
+                        bRet = bRet && hSql.ExecuteNonQuery();
+                    }
+                    else
+                    {
+                        //new
+                        bRet = hSql.NewCommand("insert into ZSC_OptionPriceList(ContractTypeOID,OptionCategoryOID,OptionOID,OptionDetailOID,IsAvailable,Info,CreatedModified) values(?,?,?,?,?,?,getdate(),getdate())");
+                        hSql.Com.Parameters.AddWithValue("ContractTypeOID", obj.ContractTypeOID);
+                        hSql.Com.Parameters.AddWithValue("OptionCategoryOID", obj.OptionCategoryOID);
+                        hSql.Com.Parameters.AddWithValue("OptionOID", obj.OptionOID);
+                        hSql.Com.Parameters.AddWithValue("OptionDetailOID", obj.OptionDetailOID);
+                        hSql.Com.Parameters.AddWithValue("IsAvailable", obj.IsAvailable);
+                        hSql.Com.Parameters.AddWithValue("Info", obj.Info);
+                        bRet = bRet && hSql.ExecuteNonQuery();
+                    }
+                }
+
+                hSql.Commit();
+            }
+
+            catch (Exception ex)
+            {
+                bRet = false;
+                hSql.Rollback();
+                throw ex;
+            }
+            finally
+            {
+                hSql.Close();
+            }
+            return bRet;
+        }
+    }
+
     public class SCBase
     {
         private static List<clsBaseListItem> Sites = new List<clsBaseListItem>();
         private static List<SCContractType> ContractTypes = new List<SCContractType>();
+        private static List<SCContractType> ContractTypeActive = new List<SCContractType>();
         private static bool isInited = false;
 
         #region publicListSaver
@@ -607,6 +815,10 @@ namespace SCPrime.Model
         {
             return ContractTypes;
         }
+        public List<SCContractType> getContractTypeActive()
+        {
+            return ContractTypeActive;
+        }
 
         #endregion publicListGeter
         #region Initializations
@@ -627,6 +839,25 @@ namespace SCPrime.Model
                 ContractTypes.Add(item);
             }
         }
+
+        private void loadContractTypeActive(clsSqlFactory hSql)
+        {
+            ContractTypeActive.Clear();
+            String strSql = " select a.OID,a.Name,isnull(a.IsInvoice,0),isnull(a.IsActive,0),isnull(a.IsCollective,0) from ZSC_ContractType a  WHERE a.IsActive=1 order by a.Name ";
+            hSql.NewCommand(strSql);
+            hSql.ExecuteReader();
+            while (hSql.Read())
+            {
+                SCContractType item = new SCContractType();
+                item.OID = hSql.Reader.GetInt32(0);
+                item.Name = hSql.Reader.GetInt32(0) + " - " + hSql.Reader.GetString(1);
+                item.isInvoice = hSql.Reader.GetBoolean(2);
+                item.isActive = hSql.Reader.GetBoolean(3);
+                item.isCollective = hSql.Reader.GetBoolean(4);
+                ContractTypeActive.Add(item);
+            }
+        }
+
         private void init()
         {
             clsSqlFactory hSql = new clsSqlFactory();
@@ -646,6 +877,7 @@ namespace SCPrime.Model
                 }
                 //contract types
                 loadContractTypes(hSql);
+                loadContractTypeActive(hSql);
             }
 
             catch (Exception ex)

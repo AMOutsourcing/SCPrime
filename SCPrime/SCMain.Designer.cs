@@ -38,12 +38,6 @@
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.menuStrip3 = new System.Windows.Forms.MenuStrip();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.masterDataToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.contractTypeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.optionListToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.optionPriceListToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
@@ -57,11 +51,17 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
+            this.menuStrip3 = new System.Windows.Forms.MenuStrip();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.masterDataToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.contractTypeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.optionListToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.optionPriceListToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel2.SuspendLayout();
-            this.menuStrip3.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            this.menuStrip3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -156,53 +156,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1233, 48);
             this.panel2.TabIndex = 3;
-            // 
-            // menuStrip3
-            // 
-            this.menuStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
-            this.masterDataToolStripMenuItem1});
-            this.menuStrip3.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip3.Name = "menuStrip3";
-            this.menuStrip3.Size = new System.Drawing.Size(1233, 24);
-            this.menuStrip3.TabIndex = 1;
-            this.menuStrip3.Text = "menuStrip3";
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(105, 20);
-            this.toolStripMenuItem1.Text = "Service Contract";
-            // 
-            // masterDataToolStripMenuItem1
-            // 
-            this.masterDataToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.contractTypeToolStripMenuItem1,
-            this.optionListToolStripMenuItem1,
-            this.optionPriceListToolStripMenuItem1});
-            this.masterDataToolStripMenuItem1.Name = "masterDataToolStripMenuItem1";
-            this.masterDataToolStripMenuItem1.Size = new System.Drawing.Size(82, 20);
-            this.masterDataToolStripMenuItem1.Text = "Master Data";
-            // 
-            // contractTypeToolStripMenuItem1
-            // 
-            this.contractTypeToolStripMenuItem1.Name = "contractTypeToolStripMenuItem1";
-            this.contractTypeToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.contractTypeToolStripMenuItem1.Text = "Contract Type";
-            this.contractTypeToolStripMenuItem1.Click += new System.EventHandler(this.contractTypeToolStripMenuItem1_Click);
-            // 
-            // optionListToolStripMenuItem1
-            // 
-            this.optionListToolStripMenuItem1.Name = "optionListToolStripMenuItem1";
-            this.optionListToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.optionListToolStripMenuItem1.Text = "Option List";
-            this.optionListToolStripMenuItem1.Click += new System.EventHandler(this.optionListToolStripMenuItem1_Click);
-            // 
-            // optionPriceListToolStripMenuItem1
-            // 
-            this.optionPriceListToolStripMenuItem1.Name = "optionPriceListToolStripMenuItem1";
-            this.optionPriceListToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.optionPriceListToolStripMenuItem1.Text = "Option Price List";
             // 
             // toolStrip1
             // 
@@ -323,6 +276,54 @@
             this.toolStripButton9.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton9.Text = "toolStripButton9";
             // 
+            // menuStrip3
+            // 
+            this.menuStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.masterDataToolStripMenuItem1});
+            this.menuStrip3.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip3.Name = "menuStrip3";
+            this.menuStrip3.Size = new System.Drawing.Size(1233, 24);
+            this.menuStrip3.TabIndex = 1;
+            this.menuStrip3.Text = "menuStrip3";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(105, 20);
+            this.toolStripMenuItem1.Text = "Service Contract";
+            // 
+            // masterDataToolStripMenuItem1
+            // 
+            this.masterDataToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.contractTypeToolStripMenuItem1,
+            this.optionListToolStripMenuItem1,
+            this.optionPriceListToolStripMenuItem1});
+            this.masterDataToolStripMenuItem1.Name = "masterDataToolStripMenuItem1";
+            this.masterDataToolStripMenuItem1.Size = new System.Drawing.Size(82, 20);
+            this.masterDataToolStripMenuItem1.Text = "Master Data";
+            // 
+            // contractTypeToolStripMenuItem1
+            // 
+            this.contractTypeToolStripMenuItem1.Name = "contractTypeToolStripMenuItem1";
+            this.contractTypeToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.contractTypeToolStripMenuItem1.Text = "Contract Type";
+            this.contractTypeToolStripMenuItem1.Click += new System.EventHandler(this.contractTypeToolStripMenuItem1_Click);
+            // 
+            // optionListToolStripMenuItem1
+            // 
+            this.optionListToolStripMenuItem1.Name = "optionListToolStripMenuItem1";
+            this.optionListToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.optionListToolStripMenuItem1.Text = "Option List";
+            this.optionListToolStripMenuItem1.Click += new System.EventHandler(this.optionListToolStripMenuItem1_Click);
+            // 
+            // optionPriceListToolStripMenuItem1
+            // 
+            this.optionPriceListToolStripMenuItem1.Name = "optionPriceListToolStripMenuItem1";
+            this.optionPriceListToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.optionPriceListToolStripMenuItem1.Text = "Option Price List";
+            this.optionPriceListToolStripMenuItem1.Click += new System.EventHandler(this.optionPriceListToolStripMenuItem1_Click);
+            // 
             // SCMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -339,10 +340,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.menuStrip3.ResumeLayout(false);
-            this.menuStrip3.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.menuStrip3.ResumeLayout(false);
+            this.menuStrip3.PerformLayout();
             this.ResumeLayout(false);
 
         }
