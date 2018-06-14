@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SCPrime.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -59,7 +60,16 @@ namespace SCPrime.Utils
 
         }
 
-        
+        public static List<SCOption> ListReplace(List<SCOption> list, SCOption data)
+        {
+
+
+
+            return list;
+
+        }
+
+
 
     }
 }
