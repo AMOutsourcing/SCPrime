@@ -36,25 +36,24 @@ namespace SCPrime
 
         public SCOptionPriceFrm()
         {
-            System.Diagnostics.Debug.WriteLine("=================================SCOptionPrice=============================================: ");
             InitializeComponent();
             initData();
         }
 
         private void initData()
         {
-            System.Diagnostics.Debug.WriteLine("initData: ");
+            //Init timer
+            t = new System.Windows.Forms.Timer();
+            t.Interval = SystemInformation.DoubleClickTime - 1;
+            t.Tick += new EventHandler(t_Tick);
+
+            //
             sCBase = new Model.SCBase();
             listContacType = sCBase.getContractTypeActive();
-
-            System.Diagnostics.Debug.WriteLine("---DataSource----");
+            
             cbContactType.DataSource = listContacType;
-            System.Diagnostics.Debug.WriteLine("---DisplayMember----");
             cbContactType.DisplayMember = "Name";
-            System.Diagnostics.Debug.WriteLine("---ValueMember----");
             cbContactType.ValueMember = "OID";
-            System.Diagnostics.Debug.WriteLine("---listContacType IF----");
-            System.Diagnostics.Debug.WriteLine("listContacType: " + listContacType.Count);
 
             if (listContacType.Count > 0)
             {
@@ -100,9 +99,8 @@ namespace SCPrime
         {
             System.Diagnostics.Debug.WriteLine("--------------call loadDataGrid : " + contactId + " ------------");
             //Clear data
-            gridPrice.AutoGenerateColumns = true;
-            gridPrice.Columns.Clear();
-            gridPrice.Refresh();
+            gridPrice.DataSource = null;
+
             if (contactId > 0)
             {
                 //Load data
@@ -111,23 +109,8 @@ namespace SCPrime
                 //sCOptionPriceBindingSource.DataSource = listData;
                 DataTable dataTable = ObjectUtils.ConvertToDataTable(listData);
                 gridPrice.DataSource = dataTable;
-                //gridPrice.Refresh();
+                //gridPrice.Refresh();;
             }
-
-
-            //An column
-            /*
-            gridPrice.Columns["OID"].Visible = false;
-            gridPrice.Columns["ContractTypeOID"].Visible = false;
-            gridPrice.Columns["OptionCategoryOID"].Visible = false;
-            gridPrice.Columns["OptionOID"].Visible = false;
-            gridPrice.Columns["OptionDetailOID"].Visible = false;
-            gridPrice.Columns["IsAvailable"].Visible = false;
-            gridPrice.Columns["Info"].Visible = false;
-            gridPrice.Columns["Created"].Visible = false;
-            gridPrice.Columns["Modified"].Visible = false;
-            */
-
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -155,49 +138,71 @@ namespace SCPrime
         }
 
         bool lockClick = false;
+
+        int IncludeColumnIndex = 4;
+        int OptionalColumnIndex = 5;
+        int NotAvailableColumnIndex = 6;
+        int ExcludeColumnIndex = 7;
+
+        //stackoverflow.com/questions/13453992/cell-double-click-event-in-data-grid-view
+        System.Windows.Forms.Timer t;
+
+        void t_Tick(object sender, EventArgs e)
+        {
+            t.Stop();
+            DataGridViewCellEventArgs dgvcea = (DataGridViewCellEventArgs)t.Tag;
+            //do whatever you do in single click
+        }
+
         private void gridPrice_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            //Start Timer
+            t.Tag = e;
+            t.Start();
+
+
+            System.Diagnostics.Debug.WriteLine("--------------gridPrice_CellContentClick ------------ " + e.ColumnIndex + " lockClick: " + lockClick);
             if (lockClick)
             {
-                System.Diagnostics.Debug.WriteLine("--------------gridPrice_CellContentClick dang lock roi------------ ");
             }
             else
             {
                 lockClick = true;
-                System.Diagnostics.Debug.WriteLine("--------------gridPrice_CellContentClick ------------ " + e.ColumnIndex);
-                if (e.ColumnIndex == 9 || e.ColumnIndex == 10 || e.ColumnIndex == 11 || e.ColumnIndex == 12)//set your checkbox column index instead of 2
+
+                if (e.ColumnIndex == IncludeColumnIndex || e.ColumnIndex == OptionalColumnIndex || e.ColumnIndex == NotAvailableColumnIndex || e.ColumnIndex == ExcludeColumnIndex)//set your checkbox column index instead of 2
                 {
 
-                    Boolean Include = Convert.ToBoolean(gridPrice.Rows[e.RowIndex].Cells[9].EditedFormattedValue);
-                    Boolean Optional = Convert.ToBoolean(gridPrice.Rows[e.RowIndex].Cells[10].EditedFormattedValue);
-                    Boolean NotAvailable = Convert.ToBoolean(gridPrice.Rows[e.RowIndex].Cells[11].EditedFormattedValue);
-                    Boolean Exclude = Convert.ToBoolean(gridPrice.Rows[e.RowIndex].Cells[12].EditedFormattedValue);
+                    Boolean Include = Convert.ToBoolean(gridPrice.Rows[e.RowIndex].Cells[IncludeColumnIndex].EditedFormattedValue);
+                    Boolean Optional = Convert.ToBoolean(gridPrice.Rows[e.RowIndex].Cells[OptionalColumnIndex].EditedFormattedValue);
+                    Boolean NotAvailable = Convert.ToBoolean(gridPrice.Rows[e.RowIndex].Cells[NotAvailableColumnIndex].EditedFormattedValue);
+                    Boolean Exclude = Convert.ToBoolean(gridPrice.Rows[e.RowIndex].Cells[ExcludeColumnIndex].EditedFormattedValue);
                     changState(e.RowIndex, e.ColumnIndex, Include, Optional, NotAvailable, Exclude);
                 }
 
                 lockClick = false;
-                System.Diagnostics.Debug.WriteLine("--------------gridPrice_CellContentClick giai phong lock------------ ");
             }
+
+            
         }
 
         private void changState(int RowIndex, int ColumnIndex, Boolean Include, Boolean Optional, Boolean NotAvailable, Boolean Exclude)
         {
-            if (ColumnIndex == 9)
+            if (ColumnIndex == IncludeColumnIndex)
             {
                 //Doi trang thai Include
                 changInclude(RowIndex, Include, Optional, NotAvailable, Exclude);
             }
-            else if (ColumnIndex == 10)
+            else if (ColumnIndex == OptionalColumnIndex)
             {
                 //Doi trang thai changOptional
                 changOptional(RowIndex, Include, Optional, NotAvailable, Exclude);
             }
-            else if (ColumnIndex == 11)
+            else if (ColumnIndex == NotAvailableColumnIndex)
             {
                 //Doi trang thai changNotAvailable
                 changNotAvailable(RowIndex, Include, Optional, NotAvailable, Exclude);
             }
-            else if (ColumnIndex == 12)
+            else if (ColumnIndex == ExcludeColumnIndex)
             {
                 //Doi trang thai changExclude
                 changExclude(RowIndex, Include, Optional, NotAvailable, Exclude);
@@ -208,20 +213,20 @@ namespace SCPrime
         {
             if (Include)
             {
-                gridPrice.Rows[RowIndex].Cells[10].Value = false;
-                gridPrice.Rows[RowIndex].Cells[11].Value = false;
+                gridPrice.Rows[RowIndex].Cells[OptionalColumnIndex].Value = false;
+                gridPrice.Rows[RowIndex].Cells[NotAvailableColumnIndex].Value = false;
             }
             else
             {
                 if (Exclude)
                 {
-                    gridPrice.Rows[RowIndex].Cells[10].Value = false;
-                    gridPrice.Rows[RowIndex].Cells[11].Value = false;
+                    gridPrice.Rows[RowIndex].Cells[OptionalColumnIndex].Value = false;
+                    gridPrice.Rows[RowIndex].Cells[NotAvailableColumnIndex].Value = false;
                 }
                 else
                 {
-                    gridPrice.Rows[RowIndex].Cells[10].Value = true;
-                    gridPrice.Rows[RowIndex].Cells[11].Value = false;
+                    gridPrice.Rows[RowIndex].Cells[OptionalColumnIndex].Value = true;
+                    gridPrice.Rows[RowIndex].Cells[NotAvailableColumnIndex].Value = false;
                 }
 
             }
@@ -231,15 +236,15 @@ namespace SCPrime
         {
             if (Optional)
             {
-                gridPrice.Rows[RowIndex].Cells[9].Value = false;
-                gridPrice.Rows[RowIndex].Cells[11].Value = false;
-                gridPrice.Rows[RowIndex].Cells[12].Value = false;
+                gridPrice.Rows[RowIndex].Cells[IncludeColumnIndex].Value = false;
+                gridPrice.Rows[RowIndex].Cells[NotAvailableColumnIndex].Value = false;
+                gridPrice.Rows[RowIndex].Cells[ExcludeColumnIndex].Value = false;
             }
             else
             {
-                gridPrice.Rows[RowIndex].Cells[9].Value = false;
-                gridPrice.Rows[RowIndex].Cells[11].Value = true;
-                gridPrice.Rows[RowIndex].Cells[12].Value = false;
+                gridPrice.Rows[RowIndex].Cells[IncludeColumnIndex].Value = false;
+                gridPrice.Rows[RowIndex].Cells[NotAvailableColumnIndex].Value = true;
+                gridPrice.Rows[RowIndex].Cells[ExcludeColumnIndex].Value = false;
             }
         }
 
@@ -247,15 +252,15 @@ namespace SCPrime
         {
             if (NotAvailable)
             {
-                gridPrice.Rows[RowIndex].Cells[9].Value = false;
-                gridPrice.Rows[RowIndex].Cells[10].Value = false;
-                gridPrice.Rows[RowIndex].Cells[12].Value = false;
+                gridPrice.Rows[RowIndex].Cells[IncludeColumnIndex].Value = false;
+                gridPrice.Rows[RowIndex].Cells[OptionalColumnIndex].Value = false;
+                gridPrice.Rows[RowIndex].Cells[ExcludeColumnIndex].Value = false;
             }
             else
             {
-                gridPrice.Rows[RowIndex].Cells[9].Value = false;
-                gridPrice.Rows[RowIndex].Cells[10].Value = true;
-                gridPrice.Rows[RowIndex].Cells[12].Value = false;
+                gridPrice.Rows[RowIndex].Cells[IncludeColumnIndex].Value = false;
+                gridPrice.Rows[RowIndex].Cells[OptionalColumnIndex].Value = true;
+                gridPrice.Rows[RowIndex].Cells[ExcludeColumnIndex].Value = false;
             }
         }
 
@@ -263,21 +268,50 @@ namespace SCPrime
         {
             if (Exclude)
             {
-                gridPrice.Rows[RowIndex].Cells[10].Value = false;
-                gridPrice.Rows[RowIndex].Cells[12].Value = false;
+                gridPrice.Rows[RowIndex].Cells[OptionalColumnIndex].Value = false;
+                gridPrice.Rows[RowIndex].Cells[NotAvailableColumnIndex].Value = false;
             }
             else
             {
                 if (Include)
                 {
-                    gridPrice.Rows[RowIndex].Cells[10].Value = false;
-                    gridPrice.Rows[RowIndex].Cells[12].Value = false;
+                    gridPrice.Rows[RowIndex].Cells[OptionalColumnIndex].Value = false;
+                    gridPrice.Rows[RowIndex].Cells[NotAvailableColumnIndex].Value = false;
                 }
                 else
                 {
-                    gridPrice.Rows[RowIndex].Cells[10].Value = true;
-                    gridPrice.Rows[RowIndex].Cells[12].Value = false;
+                    gridPrice.Rows[RowIndex].Cells[OptionalColumnIndex].Value = true;
+                    gridPrice.Rows[RowIndex].Cells[NotAvailableColumnIndex].Value = false;
                 }
+            }
+        }
+
+        
+        //SAVE
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            bool result = false;
+            
+            if (scPriceListChange.Count > 0)
+            {
+                foreach(SCOptionPrice sc in scPriceListChange)
+                {
+                    System.Diagnostics.Debug.WriteLine("--------------SCOptionPrice: " + sc.OID + " - " + sc.IsAvailable);
+                }
+                result = scPriceDao.save(scPriceListChange);
+            }
+            if (result)
+            {
+                //Reload data
+                Int32 selectedValue = Int32.Parse(cbContactType.SelectedValue.ToString());
+                loadDataGrid(selectedValue);
+
+                //Clear list da dc update
+                scPriceListChange.Clear();
+            }
+            else
+            {
+                MessageBox.Show("ERROR btnSave_Click");
             }
         }
 
@@ -297,31 +331,10 @@ namespace SCPrime
             }
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            bool result = false;
-            if (scPriceListChange.Count > 0)
-            {
-                result = scPriceDao.save(scPriceListChange);
-            }
-            if (result)
-            {
-                //Reload data
-                Int32 selectedValue = Int32.Parse(cbContactType.SelectedValue.ToString());
-                loadDataGrid(selectedValue);
-
-                //Clear list da dc update
-                scPriceListChange.Clear();
-            }
-            else
-            {
-                MessageBox.Show("ERROR btnSave_Click");
-            }
-        }
-
 
         public SCOptionPrice RowToOptionPrice(DataGridViewRow row)
         {
+            System.Diagnostics.Debug.WriteLine("--------------RowToOptionPrice: " + row.Cells[0].Value.ToString());
             SCOptionPrice price = new SCOptionPrice();
             int number = -1;
             bool tmp = Int32.TryParse(row.Cells[0].Value.ToString(), out number);
@@ -329,10 +342,10 @@ namespace SCPrime
             if (tmp)
                 price.OID = number;
 
-            bool Include = (bool)row.Cells[9].Value;
-            bool Optional = (bool)row.Cells[10].Value;
-            bool NotAvailable = (bool)row.Cells[11].Value;
-            bool Exclude = (bool)row.Cells[12].Value;
+            bool Include = (bool)row.Cells[IncludeColumnIndex].Value;
+            bool Optional = (bool)row.Cells[OptionalColumnIndex].Value;
+            bool NotAvailable = (bool)row.Cells[NotAvailableColumnIndex].Value;
+            bool Exclude = (bool)row.Cells[ExcludeColumnIndex].Value;
             if (Include && Exclude)
             {
                 price.IsAvailable = 3;
@@ -354,12 +367,28 @@ namespace SCPrime
                 price.IsAvailable = -1;
             }
 
+            System.Diagnostics.Debug.WriteLine("--------------RowToOptionPrice: " + price.OID + " - " + price.IsAvailable);
+
             return price;
         }
 
         private void gridPrice_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("--------------gridPrice_CellValueChanged ------------" + e.ColumnIndex);
+            try
+            {
+                System.Diagnostics.Debug.WriteLine("--------------CellValueChanged addToListChange ------------" + e.ColumnIndex);
+                addToListChange(e.RowIndex);
+            }
+            catch(Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("-------------- CellValueChangedaddToListChange ERROR: " + ex.Message);
+            }
+        }
+        
+        private void gridPrice_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            t.Stop();
+            MessageBox.Show("Double");
         }
     }
 }

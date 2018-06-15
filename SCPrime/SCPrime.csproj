@@ -92,11 +92,11 @@
     <Compile Include="SCOptionList.Designer.cs">
       <DependentUpon>SCOptionList.cs</DependentUpon>
     </Compile>
-    <Compile Include="SCOptionPrice.cs">
+    <Compile Include="SCOptionPriceFrm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SCOptionPrice.Designer.cs">
-      <DependentUpon>SCOptionPrice.cs</DependentUpon>
+    <Compile Include="SCOptionPriceFrm.Designer.cs">
+      <DependentUpon>SCOptionPriceFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="SCOptionPriceList.cs">
@@ -125,8 +125,8 @@
       <DependentUpon>SCOptionList.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
-    <EmbeddedResource Include="SCOptionPrice.resx">
-      <DependentUpon>SCOptionPrice.cs</DependentUpon>
+    <EmbeddedResource Include="SCOptionPriceFrm.resx">
+      <DependentUpon>SCOptionPriceFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SCOptionPriceList.resx">
       <DependentUpon>SCOptionPriceList.cs</DependentUpon>

@@ -32,6 +32,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cbContactType = new System.Windows.Forms.ComboBox();
             this.gridPrice = new System.Windows.Forms.DataGridView();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.oIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.categoryNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.optionNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.optionDetailNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -39,7 +42,6 @@
             this.optionalDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.notAvailableDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.excludeDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.oIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contractTypeOIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.optionCategoryOIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.optionOIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,8 +51,6 @@
             this.createdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sCOptionPriceBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sCOptionPriceBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -81,6 +81,7 @@
             this.gridPrice.AutoGenerateColumns = false;
             this.gridPrice.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridPrice.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.oIDDataGridViewTextBoxColumn,
             this.categoryNameDataGridViewTextBoxColumn,
             this.optionNameDataGridViewTextBoxColumn,
             this.optionDetailNameDataGridViewTextBoxColumn,
@@ -88,7 +89,6 @@
             this.optionalDataGridViewCheckBoxColumn,
             this.notAvailableDataGridViewCheckBoxColumn,
             this.excludeDataGridViewCheckBoxColumn,
-            this.oIDDataGridViewTextBoxColumn,
             this.contractTypeOIDDataGridViewTextBoxColumn,
             this.optionCategoryOIDDataGridViewTextBoxColumn,
             this.optionOIDDataGridViewTextBoxColumn,
@@ -103,25 +103,56 @@
             this.gridPrice.Size = new System.Drawing.Size(756, 313);
             this.gridPrice.TabIndex = 2;
             this.gridPrice.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridPrice_CellContentClick);
+            this.gridPrice.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridPrice_CellDoubleClick);
             this.gridPrice.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridPrice_CellValueChanged);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Location = new System.Drawing.Point(696, 58);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 23);
+            this.btnClose.TabIndex = 3;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(696, 13);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 4;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // oIDDataGridViewTextBoxColumn
+            // 
+            this.oIDDataGridViewTextBoxColumn.DataPropertyName = "OID";
+            this.oIDDataGridViewTextBoxColumn.HeaderText = "OID";
+            this.oIDDataGridViewTextBoxColumn.Name = "oIDDataGridViewTextBoxColumn";
+            this.oIDDataGridViewTextBoxColumn.Visible = false;
             // 
             // categoryNameDataGridViewTextBoxColumn
             // 
             this.categoryNameDataGridViewTextBoxColumn.DataPropertyName = "CategoryName";
             this.categoryNameDataGridViewTextBoxColumn.HeaderText = "CategoryName";
             this.categoryNameDataGridViewTextBoxColumn.Name = "categoryNameDataGridViewTextBoxColumn";
+            this.categoryNameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // optionNameDataGridViewTextBoxColumn
             // 
             this.optionNameDataGridViewTextBoxColumn.DataPropertyName = "OptionName";
             this.optionNameDataGridViewTextBoxColumn.HeaderText = "OptionName";
             this.optionNameDataGridViewTextBoxColumn.Name = "optionNameDataGridViewTextBoxColumn";
+            this.optionNameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // optionDetailNameDataGridViewTextBoxColumn
             // 
             this.optionDetailNameDataGridViewTextBoxColumn.DataPropertyName = "OptionDetailName";
             this.optionDetailNameDataGridViewTextBoxColumn.HeaderText = "OptionDetailName";
             this.optionDetailNameDataGridViewTextBoxColumn.Name = "optionDetailNameDataGridViewTextBoxColumn";
+            this.optionDetailNameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // includeDataGridViewCheckBoxColumn
             // 
@@ -146,13 +177,6 @@
             this.excludeDataGridViewCheckBoxColumn.DataPropertyName = "Exclude";
             this.excludeDataGridViewCheckBoxColumn.HeaderText = "Exclude";
             this.excludeDataGridViewCheckBoxColumn.Name = "excludeDataGridViewCheckBoxColumn";
-            // 
-            // oIDDataGridViewTextBoxColumn
-            // 
-            this.oIDDataGridViewTextBoxColumn.DataPropertyName = "OID";
-            this.oIDDataGridViewTextBoxColumn.HeaderText = "OID";
-            this.oIDDataGridViewTextBoxColumn.Name = "oIDDataGridViewTextBoxColumn";
-            this.oIDDataGridViewTextBoxColumn.Visible = false;
             // 
             // contractTypeOIDDataGridViewTextBoxColumn
             // 
@@ -214,27 +238,7 @@
             // 
             this.sCOptionPriceBindingSource.DataSource = typeof(SCPrime.Model.SCOptionPrice);
             // 
-            // btnClose
-            // 
-            this.btnClose.Location = new System.Drawing.Point(696, 58);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 23);
-            this.btnClose.TabIndex = 3;
-            this.btnClose.Text = "Close";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(696, 13);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 4;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // SCOptionPrice
+            // SCOptionPriceFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -244,7 +248,7 @@
             this.Controls.Add(this.gridPrice);
             this.Controls.Add(this.cbContactType);
             this.Controls.Add(this.label1);
-            this.Name = "SCOptionPrice";
+            this.Name = "SCOptionPriceFrm";
             this.Text = "SCOptionPrice";
             ((System.ComponentModel.ISupportInitialize)(this.gridPrice)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sCOptionPriceBindingSource)).EndInit();
@@ -258,6 +262,10 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbContactType;
         private System.Windows.Forms.DataGridView gridPrice;
+        private System.Windows.Forms.BindingSource sCOptionPriceBindingSource;
+        private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.DataGridViewTextBoxColumn oIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn categoryNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn optionNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn optionDetailNameDataGridViewTextBoxColumn;
@@ -265,7 +273,6 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn optionalDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn notAvailableDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn excludeDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn oIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn contractTypeOIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn optionCategoryOIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn optionOIDDataGridViewTextBoxColumn;
@@ -274,8 +281,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn infoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn createdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource sCOptionPriceBindingSource;
-        private System.Windows.Forms.Button btnClose;
-        private System.Windows.Forms.Button btnSave;
     }
 }
