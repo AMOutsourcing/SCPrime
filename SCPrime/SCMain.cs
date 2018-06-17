@@ -99,5 +99,10 @@ namespace SCPrime
             optionPrice.instance.Focus();
             optionPrice.instance.BringToFront();
         }
+
+        private void exitApplicationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

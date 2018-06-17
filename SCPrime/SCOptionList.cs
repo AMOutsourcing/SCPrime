@@ -167,34 +167,7 @@ namespace SCPrime
 
         private void dataGridViewCategory_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            //add new
-
-            //int rowIndex = e.RowIndex;
-            //int colIndex = e.ColumnIndex;
-            //// MessageBox.Show(colIndex.ToString());
-
-            //DataGridViewRow row = dataGridViewCategory.Rows[rowIndex];
-            //SCOptionCategory sc = new SCOptionCategory();
-            //sc = RowToCategory(row);
-            ////MessageBox.Show(sc.isActive.ToString());
-
-            //var item = this.saveCategories.Single(x => x.OID == sc.OID);
-            //var index = saveCategories.IndexOf(item);
-
-
-
-            //if (item != null)
-            //{
-            //    sc.Options = item.Options;
-            //    //tem = sc;
-            //    if (index != -1)
-            //        this.saveCategories[index] = sc;
-            //}
-            //else
-            //{
-            //    this.saveCategories.Add(sc);
-            //}
-
+            
 
         }
 
@@ -222,14 +195,12 @@ namespace SCPrime
                         if (row[Constant.isMarkDeleted].ToString().ToUpper() == "TRUE")
                         {
                             row[Constant.isMarkDeleted] = 0;
-                            //  this.saveCategories.Remove(sc);
                             item.isMarkDeleted = false;
                         }
                         else if (row[Constant.isMarkDeleted].ToString().ToUpper() == "FALSE")
                         {
                             row[Constant.isMarkDeleted] = 1;
                             item.isMarkDeleted = true;
-                            // this.DeleteCategoryList(item);
                         }
                         var index = saveCategories.IndexOf(item);
                         if (index != -1)
@@ -347,17 +318,11 @@ namespace SCPrime
             {
                 SCOptionCategory sc = new SCOptionCategory();
                 sc = RowToCategory(row);
-                //MessageBox.Show(sc.isActive.ToString());
-
                 var item = this.saveCategories.Single(x => x.OID == sc.OID);
                 var index = saveCategories.IndexOf(item);
-
-
-
                 if (item != null)
                 {
                     sc.Options = item.Options;
-                    //tem = sc;
                     if (index != -1)
                         this.saveCategories[index] = sc;
                 }
@@ -366,6 +331,8 @@ namespace SCPrime
                     this.saveCategories.Add(sc);
                 }
             }
+            // change color
+            ViewUtils.changeColor(row, Constant.isMarkDeleted);
         }
 
         private void dgvDetails_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -794,6 +761,7 @@ namespace SCPrime
                 this.categorySelected.Options.Add(sc);
             }
             this.UpdateCategoryList(this.categorySelected);
+            
         }
 
         private void dgvOptions_CellLeave(object sender, DataGridViewCellEventArgs e)
@@ -858,7 +826,10 @@ namespace SCPrime
         }
         private void dgvOptions_RowValidated(object sender, DataGridViewCellEventArgs e)
         {
-
+            int rowIndex = e.RowIndex;
+            DataGridViewRow row = dgvOptions.Rows[rowIndex];
+            // change color
+            ViewUtils.changeColor(row, Constant.OptionisMarkDeleted);
         }
         private void dgvOptions_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
@@ -1266,6 +1237,12 @@ namespace SCPrime
             }
         }
 
-        
+        private void dgvDetails_CellValidated(object sender, DataGridViewCellEventArgs e)
+        {
+            int rowIndex = e.RowIndex;
+            DataGridViewRow row = dgvDetails.Rows[rowIndex];
+            // change color
+            ViewUtils.changeColor(row, Constant.DetailisMarkDeleted);
+        }
     }
 }

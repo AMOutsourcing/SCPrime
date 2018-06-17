@@ -41,10 +41,12 @@ namespace SCPrime.Utils
         public const string OptionPurcharPrice = "OptionBuyPr";
         public const string OptionSalePrice = "OptionSelPr";
         public const string OptionName = "OptionName";
+        public const string OptionisMarkDeleted = "OptionisMarkDeleted";
 
         //detail column name
         public const string DetailPurcharPrice ="DetailBuyPr";
         public const string DetailSalePrice ="DetailSelPr";
         public const string DetailName = "DetailName";
+        public const string DetailisMarkDeleted = "DetailisMarkDeleted";
     }
 }

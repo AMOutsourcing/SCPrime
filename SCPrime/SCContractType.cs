@@ -261,5 +261,13 @@ namespace SCPrime
         {
             //   this.delBtn.Enabled = false;
         }
+
+        private void contractTypeList_RowValidated(object sender, DataGridViewCellEventArgs e)
+        {
+            int rowIndex = e.RowIndex;
+            DataGridViewRow row = contractTypeList.Rows[rowIndex];
+            // change color
+            ViewUtils.changeColor(row, Constant.isMarkDeleted);
+        }
     }
 }

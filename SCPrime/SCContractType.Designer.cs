@@ -145,6 +145,7 @@
             this.contractTypeList.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.contractTypeList_RowEnter);
             this.contractTypeList.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.contractTypeList_RowHeaderMouseClick);
             this.contractTypeList.RowLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.contractTypeList_RowLeave);
+            this.contractTypeList.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.contractTypeList_RowValidated);
             // 
             // OID
             // 
@@ -155,7 +156,6 @@
             this.OID.Name = "OID";
             this.OID.ReadOnly = true;
             this.OID.Visible = false;
-            this.OID.Width = 51;
             // 
             // ContractTypeName
             // 
@@ -195,7 +195,6 @@
             this.isMarkDeleted.HeaderText = "isMarkDeleted";
             this.isMarkDeleted.Name = "isMarkDeleted";
             this.isMarkDeleted.Visible = false;
-            this.isMarkDeleted.Width = 81;
             // 
             // sCContractTypeBindingSource
             // 
