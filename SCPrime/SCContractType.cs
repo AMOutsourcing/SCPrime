@@ -124,8 +124,15 @@ namespace SCPrime
 
         private void newBtn_Click(object sender, EventArgs e)
         {
-           // MessageBox.Show(datasource.Count.ToString());
+            // MessageBox.Show(datasource.Count.ToString());
             SCContractType sc = new SCContractType(newOid);
+
+
+            sc.Name = "ContractType";
+            sc.isInvoice = true;
+            sc.isActive = true;
+            sc.isCollective = true;
+            sc.isMarkDeleted = false;
 
 
             DataTable dataTable = (DataTable)contractTypeList.DataSource;
@@ -140,14 +147,19 @@ namespace SCPrime
 
             dataTable.Rows.InsertAt(drToAdd, 0);
             dataTable.AcceptChanges();
+            this.contractTypeList.Refresh();
 
             newOid = newOid - 1;
 
+
+            this.sCContractTypes.Add(sc);
+
         }
+
 
         private void closeBtn_Click(object sender, EventArgs e)
         {
-            if(Form1._instance != null)
+            if (Form1._instance != null)
             {
                 Form1._instance.Close();
             }
@@ -231,23 +243,23 @@ namespace SCPrime
 
         }
 
-       
 
-      
+
+
 
         private void contractTypeList_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-           
+
         }
 
         private void contractTypeList_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-           // this.delBtn.Enabled = true;
+            // this.delBtn.Enabled = true;
         }
 
         private void contractTypeList_RowLeave(object sender, DataGridViewCellEventArgs e)
         {
-         //   this.delBtn.Enabled = false;
+            //   this.delBtn.Enabled = false;
         }
     }
 }

@@ -62,9 +62,6 @@ namespace SCPrime.Utils
 
         public static List<SCOption> ListReplace(List<SCOption> list, SCOption data)
         {
-
-
-
             return list;
 
         }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ using System.Windows.Forms;
 
 namespace SCPrime
 {
-    public partial class SCOptionList : Form
+    public partial class SCOptionList : nsBaseClass.clsBaseForm
     {
         static readonly ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private static SCOptionList _instance;
@@ -37,6 +38,10 @@ namespace SCPrime
         private int newOid = -1;
         private int newOptionOid = -1;
         private int newDetailOid = -1;
+
+        System.Globalization.CultureInfo usCultureInfo = new System.Globalization.CultureInfo("en-US");
+
+
         public SCOptionList()
         {
             InitializeComponent();
@@ -45,9 +50,10 @@ namespace SCPrime
             this.optionSelected = new SCOption();
 
             this.bindingList = new List<KeyValue>();
-            this.bindingList.Add(new KeyValue(0, "Empty"));
-            this.bindingList.Add(new KeyValue(1, "First Invoice"));
-            this.bindingList.Add(new KeyValue(2, "Last Invoice"));
+            this.bindingList.Add(new KeyValue(0, Constant.Empty));
+            this.bindingList.Add(new KeyValue(1, Constant.FirstInvoice));
+            this.bindingList.Add(new KeyValue(2, Constant.LastInvoice));
+            usCultureInfo.NumberFormat.NumberDecimalSeparator = ".";
 
 
         }
@@ -67,43 +73,37 @@ namespace SCPrime
         private void SCOptionList_Load(object sender, EventArgs e)
         {
             loadCategoryData();
-            loadTree();
-            for (var i = 0; i < this.dataGridViewCategory.ColumnCount; i++)
-            {
-                var name = dataGridViewCategory.Columns[i].HeaderText;
-                log.Debug(name);
+            // loadTree();
 
-            }
-            log.Debug("OK");
         }
 
         private void dataGridViewCategory_CellLeave(object sender, DataGridViewCellEventArgs e)
         {
 
-            int rowIndex = e.RowIndex;
-            int colIndex = e.ColumnIndex;
-            // MessageBox.Show(colIndex.ToString());
+            //int rowIndex = e.RowIndex;
+            //int colIndex = e.ColumnIndex;
+            //// MessageBox.Show(colIndex.ToString());
 
-            DataGridViewRow row = dataGridViewCategory.Rows[rowIndex];
-            SCOptionCategory sc = new SCOptionCategory();
-            sc = RowToCategory(row);
-            //MessageBox.Show(sc.isActive.ToString());
+            //DataGridViewRow row = dataGridViewCategory.Rows[rowIndex];
+            //SCOptionCategory sc = new SCOptionCategory();
+            //sc = RowToCategory(row);
+            ////MessageBox.Show(sc.isActive.ToString());
 
-            var item = this.saveCategories.SingleOrDefault(x => x.OID == sc.OID);
-            var index = saveCategories.IndexOf(item);
+            //var item = this.saveCategories.SingleOrDefault(x => x.OID == sc.OID);
+            //var index = saveCategories.IndexOf(item);
 
 
 
-            if (item != null)
-            {
-                sc.Options = item.Options;
-                if (index != -1)
-                    this.saveCategories[index] = sc;
-            }
-            else
-            {
-                this.saveCategories.Add(sc);
-            }
+            //if (item != null)
+            //{
+            //    sc.Options = item.Options;
+            //    if (index != -1)
+            //        this.saveCategories[index] = sc;
+            //}
+            //else
+            //{
+            //    this.saveCategories.Add(sc);
+            //}
 
 
         }
@@ -115,7 +115,7 @@ namespace SCPrime
             {
                 DataGridViewRow row = dataGridViewCategory.SelectedRows[0];
                 int index = -1;
-                var tmp = Int32.TryParse(row.Cells["OID"].Value.ToString(), out index);
+                var tmp = Int32.TryParse(row.Cells[Constant.OID].Value.ToString(), out index);
                 this.CategoryOidSelected = index;
                 if (this.saveCategories.Count > 0)
                 {
@@ -139,36 +139,27 @@ namespace SCPrime
 
         private void dataGridViewCategory_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //int rowIndex = e.RowIndex;
-            //int colIndex = e.ColumnIndex;
-            //if (rowIndex >= 0)
-            //{
-            //    DataGridViewRow row = dataGridViewCategory.Rows[rowIndex];
-            //    int index = -1;
-            //    var tmp = Int32.TryParse(row.Cells["OID"].Value.ToString(), out index);
-            //    this.CategoryOidSelected = index;
-            //    this.categorySelected = this.saveCategories.Find(x => x.OID == this.CategoryOidSelected);
-            //    if (this.categorySelected.Options == null)
-            //    {
-            //        this.categorySelected.Options = new List<SCOption>();
-
-            //    }
-            //    this.loadOptionList(index);
-            //}
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //  SCOptionCategory oc = new SCOptionCategory();
+
             if (this.saveCategories.Count > 0)
             {
                 var result = SCOptionCategory.saveOptionCategoryList(this.saveCategories);
                 MessageBox.Show(result.ToString());
+                if (result)
+                {
+                    this.dataGridViewCategory.DataSource = null;
+                }
             }
 
+
+
+
             loadCategoryData();
-            loadTree();
+            // loadTree();
 
         }
 
@@ -176,31 +167,31 @@ namespace SCPrime
         {
             //add new
 
-            int rowIndex = e.RowIndex;
-            int colIndex = e.ColumnIndex;
-            // MessageBox.Show(colIndex.ToString());
+            //int rowIndex = e.RowIndex;
+            //int colIndex = e.ColumnIndex;
+            //// MessageBox.Show(colIndex.ToString());
 
-            DataGridViewRow row = dataGridViewCategory.Rows[rowIndex];
-            SCOptionCategory sc = new SCOptionCategory();
-            sc = RowToCategory(row);
-            //MessageBox.Show(sc.isActive.ToString());
+            //DataGridViewRow row = dataGridViewCategory.Rows[rowIndex];
+            //SCOptionCategory sc = new SCOptionCategory();
+            //sc = RowToCategory(row);
+            ////MessageBox.Show(sc.isActive.ToString());
 
-            var item = this.saveCategories.Single(x => x.OID == sc.OID);
-            var index = saveCategories.IndexOf(item);
+            //var item = this.saveCategories.Single(x => x.OID == sc.OID);
+            //var index = saveCategories.IndexOf(item);
 
 
 
-            if (item != null)
-            {
-                sc.Options = item.Options;
-                //tem = sc;
-                if (index != -1)
-                    this.saveCategories[index] = sc;
-            }
-            else
-            {
-                this.saveCategories.Add(sc);
-            }
+            //if (item != null)
+            //{
+            //    sc.Options = item.Options;
+            //    //tem = sc;
+            //    if (index != -1)
+            //        this.saveCategories[index] = sc;
+            //}
+            //else
+            //{
+            //    this.saveCategories.Add(sc);
+            //}
 
 
         }
@@ -215,7 +206,7 @@ namespace SCPrime
                 foreach (DataGridViewRow r in dataGridViewCategory.SelectedRows)
                 {
                     var myOid = r.Cells[0].Value;
-                    string search = "OID = " + myOid.ToString();
+                    string search = Constant.OID + " = " + myOid.ToString();
                     DataRow[] rows = this.categoryDataTable.Select(search);
                     foreach (DataRow row in rows)
                     {
@@ -226,15 +217,15 @@ namespace SCPrime
 
 
 
-                        if (row["isMarkDeleted"].ToString().ToUpper() == "TRUE")
+                        if (row[Constant.isMarkDeleted].ToString().ToUpper() == "TRUE")
                         {
-                            row["isMarkDeleted"] = 0;
+                            row[Constant.isMarkDeleted] = 0;
                             //  this.saveCategories.Remove(sc);
                             item.isMarkDeleted = false;
                         }
-                        else if (row["isMarkDeleted"].ToString().ToUpper() == "FALSE")
+                        else if (row[Constant.isMarkDeleted].ToString().ToUpper() == "FALSE")
                         {
-                            row["isMarkDeleted"] = 1;
+                            row[Constant.isMarkDeleted] = 1;
                             item.isMarkDeleted = true;
                             // this.DeleteCategoryList(item);
                         }
@@ -247,8 +238,8 @@ namespace SCPrime
 
                     }
                 }
-                this.categoryDataTable.AcceptChanges();
-                dataGridViewCategory.Refresh();
+                //this.categoryDataTable.AcceptChanges();
+                //dataGridViewCategory.Refresh();
             }
         }
         private void button2_Click(object sender, EventArgs e)
@@ -266,28 +257,36 @@ namespace SCPrime
 
         private void NewCatBtn_Click(object sender, EventArgs e)
         {
-            DataTable dataTable = (DataTable)dataGridViewCategory.DataSource;
-            DataRow drToAdd = dataTable.NewRow();
+            this.categoryDataTable = null;
+            this.categoryDataTable = (DataTable)dataGridViewCategory.DataSource;
+            if (categoryDataTable == null)
+            {
+                SCOptionCategory sc = new SCOptionCategory();
+                categoryDataTable = ObjectUtils.ConvertToDataTable(new List<SCOptionCategory> { sc });
+            }
+            DataRow drToAdd = categoryDataTable.NewRow();
 
-            drToAdd["OID"] = newOid;
-            drToAdd["Name"] = "NewCategory";
-            drToAdd["InvoiceFlag"] = 0;
-            drToAdd["isMarkDeleted"] = false;
-            drToAdd["isAvailable"] = 1;
+            drToAdd[Constant.OID] = newOid;
+            drToAdd[Constant.Name] = "NewCategory";
+            drToAdd[Constant.InvoiceFlag] = 0;
+            drToAdd[Constant.isMarkDeleted] = false;
+            drToAdd[Constant.isAvailable] = 1;
 
-            dataTable.Rows.InsertAt(drToAdd, 0);
-            dataTable.AcceptChanges();
+            categoryDataTable.Rows.InsertAt(drToAdd, 0);
+            // categoryDataTable.AcceptChanges();
+            dataGridViewCategory.Refresh();
 
 
             foreach (DataGridViewRow r in dataGridViewCategory.Rows)
             {
                 SCOptionCategory sc = null;
-                if ((int)r.Cells["OID"].Value < 0)// object mới
+                if ((int)r.Cells[Constant.OID].Value < 0)// object mới
                 {
                     SCOptionCategory so = null;
-                    so = this.saveCategories.Find(x => x.OID == (int)r.Cells["OID"].Value);
+                    so = this.saveCategories.Find(x => x.OID == (int)r.Cells[Constant.OID].Value);
                     if (so == null)
                     {
+                        so = this.RowToCategory(r);
                         this.saveCategories.Add(so);
                     }
 
@@ -296,6 +295,83 @@ namespace SCPrime
             }
 
             newOid = newOid - 1;
+
+        }
+
+        private void dataGridViewCategory_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (dataGridViewCategory.Columns[e.ColumnIndex].Name == Constant.PurcharPrice || dataGridViewCategory.Columns[e.ColumnIndex].Name == Constant.SalePrice)
+            {
+                double i;
+
+                if (!double.TryParse(Convert.ToString(e.FormattedValue), out i))
+                {
+                    e.Cancel = true;
+                    MessageBox.Show("Please enter numeric");
+                }
+                else
+                {
+
+                }
+            }
+        }
+
+        private void dataGridViewCategory_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dataGridViewCategory_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dataGridViewCategory_CellValidated(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dataGridViewCategory_RowValidated(object sender, DataGridViewCellEventArgs e)
+        {
+            int rowIndex = e.RowIndex;
+            int colIndex = e.ColumnIndex;
+            // MessageBox.Show(colIndex.ToString());
+
+            DataGridViewRow row = dataGridViewCategory.Rows[rowIndex];
+            //find object in list 
+            var item2 = this.saveCategories.Single(x => x.OID == (int)dataGridViewCategory.Rows[rowIndex].Cells["OID"].Value);
+            if (item2 != null)
+            {
+                SCOptionCategory sc = new SCOptionCategory();
+                sc = RowToCategory(row);
+                //MessageBox.Show(sc.isActive.ToString());
+
+                var item = this.saveCategories.Single(x => x.OID == sc.OID);
+                var index = saveCategories.IndexOf(item);
+
+
+
+                if (item != null)
+                {
+                    sc.Options = item.Options;
+                    //tem = sc;
+                    if (index != -1)
+                        this.saveCategories[index] = sc;
+                }
+                else
+                {
+                    this.saveCategories.Add(sc);
+                }
+            }
+        }
+
+        private void dgvDetails_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dgvOptions_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
         }
 
@@ -313,7 +389,7 @@ namespace SCPrime
             bool flag = false;
             foreach (DataGridViewColumn dc in dataGridViewCategory.Columns)
             {
-                if (dc.Name == "InvoiceFlag")
+                if (dc.Name == Constant.InvoiceFlag)
                 {
                     flag = true;
                     break;
@@ -355,13 +431,14 @@ namespace SCPrime
                 else
                     dataGridViewCategory.CurrentCell = dataGridViewCategory.Rows[0].Cells[0];
             }
+
         }
 
         private int GetIndexOfRowCategory(DataGridView dataGrid, int id)
         {
             for (int i = 0; i < dataGrid.Rows.Count; i += 1)
             {
-                
+
                 SCOptionCategory row = new SCOptionCategory(); // or.DataBoundItem;
                 row = this.RowToCategory(dataGrid.Rows[i]);
                 if (row.OID == id)
@@ -448,16 +525,23 @@ namespace SCPrime
             var temp = (decimal)0;
             bool rs = Decimal.TryParse(row.Cells["BaseSelPr"].Value.ToString(), out temp);
             if (rs)
-                sc.BaseSelPr = temp;
+                sc.BaseSelPr = Math.Round(temp, 2);
             else
                 sc.BaseSelPr = (decimal)0;
 
             temp = (decimal)0;
             bool rs2 = Decimal.TryParse(row.Cells["BuyPr"].Value.ToString(), out temp);
-            if (rs)
-                sc.BuyPr = temp;
+            if (rs2)
+                sc.BuyPr = Math.Round(temp, 2);
             else
                 sc.BuyPr = (decimal)0;
+
+            temp = (decimal)0;
+            bool rs3 = Decimal.TryParse(row.Cells["SelPr"].Value.ToString(), out temp);
+            if (rs3)
+                sc.SelPr = Math.Round(temp, 2);
+            else
+                sc.SelPr = (decimal)0;
 
             return sc;
         }
@@ -531,6 +615,7 @@ namespace SCPrime
             {
                 clearDetailView();
             }
+            
         }
 
 
@@ -635,16 +720,16 @@ namespace SCPrime
                     {
                         SCOption sc = null;
                         sc = RowToOption(r);
-                        sc.isMarkDeleted = true;
+                        sc.isMarkDeleted = !sc.isMarkDeleted;
 
                         if (sc != null)
                         {
                             var item = this.categorySelected.Options.Find(x => x.OID == sc.OID);
-                            if (item == null && sc.OID > 0)
+                            if (item == null && sc.OID > 0)// khong co trong list
                             {
                                 this.categorySelected.Options.Add(sc);
                             }
-                            else if (item == null && sc.OID < 0)
+                            else if (item == null && sc.OID < 0) // khong co trong list va co OID nho hon khong
                             {
                                 //this.sCContractTypes.Remove(item);
                             }
@@ -654,14 +739,16 @@ namespace SCPrime
                             }
                             else if (item != null && sc.OID > 0)
                             {
-                                this.categorySelected.Options.Remove(item);
-                                this.categorySelected.Options.Add(sc);
+                                this.categorySelected.Options.Where(w => w.OID == item.OID).ToList().ForEach(s => s.isMarkDeleted = !s.isMarkDeleted);
+                                //item.isMarkDeleted = !item.isMarkDeleted;
+                                //this.categorySelected.Options.Remove(item);
+                                //this.categorySelected.Options.Add(sc);
 
                             }
                             if (row["isMarkDeleted"].ToString() == "True")
                             {
                                 row["isMarkDeleted"] = 0;
-                                this.categorySelected.Options.Remove(sc);
+                                //this.categorySelected.Options.Remove(sc);
                             }
                             else
                             {
@@ -670,8 +757,10 @@ namespace SCPrime
                         }
                     }
                 }
-                dgvOptions.Refresh();
+                this.optionTable.AcceptChanges();
                 this.UpdateCategoryList(this.categorySelected);
+                dgvOptions.Refresh();
+
             }
         }
 
@@ -704,10 +793,6 @@ namespace SCPrime
             this.UpdateCategoryList(this.categorySelected);
         }
 
-
-
-
-
         private void dgvOptions_CellLeave(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -715,11 +800,27 @@ namespace SCPrime
 
         private void dgvOptions_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //int rowIndex = e.RowIndex;
-            //int colIndex = e.ColumnIndex;
-            //if (rowIndex >= 0)
+            if (dgvOptions.SelectedRows.Count > 0)
+            {
+                DataGridViewRow row = dgvOptions.SelectedRows[0];
+                int index = -1;
+                var tmp = Int32.TryParse(row.Cells["OptionOID"].Value.ToString(), out index);
+                this.OptionOidSelected = index;
+                if (this.categorySelected.Options != null)
+                {
+                    this.optionSelected = this.categorySelected.Options.Find(x => x.OID == this.OptionOidSelected);
+                }
+
+                //this.loadOptionDetail(OptionOidSelected);
+            }
+        }
+        private void dgvOptions_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
+        {
+            //if (e.StateChanged != DataGridViewElementStates.Selected)
+            //return;
+            //if (dgvOptions.SelectedRows.Count > 0)
             //{
-            //    DataGridViewRow row = dgvOptions.Rows[rowIndex];
+            //    DataGridViewRow row = dgvOptions.SelectedRows[0];
             //    int index = -1;
             //    var tmp = Int32.TryParse(row.Cells["OptionOID"].Value.ToString(), out index);
             //    this.OptionOidSelected = index;
@@ -728,13 +829,37 @@ namespace SCPrime
             //        this.optionSelected = this.categorySelected.Options.Find(x => x.OID == this.OptionOidSelected);
             //    }
 
-            //    this.loadOptionDetail(optionSelected.OID);
+            //    this.loadOptionDetail(OptionOidSelected);
             //}
+
+
         }
-        private void dgvOptions_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
+
+        private void dgvOptions_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            if (e.StateChanged != DataGridViewElementStates.Selected)
-                return;
+            if (dgvOptions.Columns[e.ColumnIndex].Name == Constant.OptionPurcharPrice
+                || dgvOptions.Columns[e.ColumnIndex].Name == Constant.OptionSalePrice)
+            {
+                double i;
+
+                if (!double.TryParse(Convert.ToString(e.FormattedValue), out i))
+                {
+                    e.Cancel = true;
+                    MessageBox.Show("Please enter numeric");
+                }
+                else
+                {
+
+                }
+            }
+        }
+        private void dgvOptions_RowValidated(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+        private void dgvOptions_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            this.dgvOptions.Rows[e.RowIndex].Selected = true;
             if (dgvOptions.SelectedRows.Count > 0)
             {
                 DataGridViewRow row = dgvOptions.SelectedRows[0];
@@ -748,8 +873,6 @@ namespace SCPrime
 
                 this.loadOptionDetail(OptionOidSelected);
             }
-
-
         }
 
         //-----------------------------------------OPTION GRID USER FUNCTION----------------------------
@@ -776,16 +899,23 @@ namespace SCPrime
             var temp = (decimal)0;
             bool rs = Decimal.TryParse(row.Cells["OptionBaseSelPr"].Value.ToString(), out temp);
             if (rs)
-                sop.BaseSelPr = temp;
+                sop.BaseSelPr = Math.Round(temp, 2);
             else
                 sop.BaseSelPr = (decimal)0;
 
             temp = (decimal)0;
             bool rs2 = Decimal.TryParse(row.Cells["OptionBuyPr"].Value.ToString(), out temp);
             if (rs)
-                sop.BuyPr = temp;
+                sop.BuyPr = Math.Round(temp, 2);
             else
                 sop.BuyPr = (decimal)0;
+
+            temp = (decimal)0;
+            bool rs3 = Decimal.TryParse(row.Cells["OptionSelPr"].Value.ToString(), out temp);
+            if (rs3)
+                sop.SelPr = Math.Round(temp, 2);
+            else
+                sop.SelPr = (decimal)0;
 
             return sop;
 
@@ -798,9 +928,12 @@ namespace SCPrime
                 SCOptionCategory tmpCat = this.saveCategories.Find(x => x.OID == cat.OID);
                 if (tmpCat != null)
                 {
-                    cat.Options = tmpCat.Options;
-                    this.saveCategories.Remove(tmpCat);
-                    this.saveCategories.Add(cat);
+                    //cat.Options = tmpCat.Options;
+                    //this.saveCategories.Remove(tmpCat);
+                    //this.saveCategories.Add(cat);
+                    var index = this.saveCategories.IndexOf(tmpCat);
+                    if (index != -1)
+                        this.saveCategories[index] = cat;
                 }
             }
             else
@@ -874,42 +1007,43 @@ namespace SCPrime
         private void NewDetailBtn_Click(object sender, EventArgs e)
         {
 
-            DataTable dataTable = new DataTable();
+            // DataTable dataTable = new DataTable();
             if (dgvDetails.RowCount > 0)
             {
-                dataTable = (DataTable)dgvDetails.DataSource;
+                this.detailTable = (DataTable)dgvDetails.DataSource;
             }
             else
             {
                 List<SCOptionDetail> scs = new List<SCOptionDetail>();
-                dataTable = ObjectUtils.ConvertToDataTable(scs);
+                //dataTable = ObjectUtils.ConvertToDataTable(scs);
+                this.detailTable = ObjectUtils.ConvertToDataTable(scs);
 
             }
 
 
 
-            DataRow myRow = dataTable.NewRow();
+            DataRow myRow = this.detailTable.NewRow();
 
             myRow["OID"] = newDetailOid;
             myRow["Name"] = "New Detail";
-            //myRow["ItemNo"] = "ItemNo";
-            //myRow["ItemSuplNo"] = "ItemSuplNo";
-            //myRow["ItemName"] = "ItemName";
-            //myRow["WrksId"] = "WrksId";
-            //myRow["WrksName"] = "WrksName";
-            //myRow["BaseSelPr"] = 0m;
-            //myRow["BuyPr"] = 0m;
-            //myRow["SelPr"] = 0m;
-            //myRow["Info"] = "Info";
-            //myRow["Quantity"] = 0;
-            //myRow["isAvailable"] = 1;
-            //myRow["isAvailable"] = 1;
+            myRow["ItemNo"] = "ItemNo";
+            myRow["ItemSuplNo"] = "ItemSuplNo";
+            myRow["ItemName"] = "ItemName";
+            myRow["WrksId"] = "WrksId";
+            myRow["WrksName"] = "WrksName";
+            myRow["BaseSelPr"] = 0m;
+            myRow["BuyPr"] = 0m;
+            myRow["SelPr"] = 0m;
+            myRow["Info"] = "Info";
+            myRow["Quantity"] = 0;
+            myRow["isAvailable"] = 1;
+            myRow["isAvailable"] = 1;
 
             myRow["isMarkDeleted"] = 0;
 
-            dataTable.Rows.Add(myRow);
-            dataTable.AcceptChanges();
-            this.dgvDetails.DataSource = dataTable;
+            this.detailTable.Rows.Add(myRow);
+            this.detailTable.AcceptChanges();
+            this.dgvDetails.DataSource = this.detailTable;
             this.dgvDetails.Refresh();
 
             foreach (DataGridViewRow r in dgvDetails.Rows)
@@ -968,16 +1102,23 @@ namespace SCPrime
             var temp = (decimal)0;
             bool rs = Decimal.TryParse(row.Cells["DetailBaseSelPr"].Value.ToString(), out temp);
             if (rs)
-                sod.BaseSelPr = temp;
+                sod.BaseSelPr = Math.Round(temp, 2);
             else
                 sod.BaseSelPr = (decimal)0;
 
             temp = (decimal)0;
             bool rs2 = Decimal.TryParse(row.Cells["DetailBuyPr"].Value.ToString(), out temp);
             if (rs)
-                sod.BuyPr = temp;
+                sod.BuyPr = Math.Round(temp, 2);
             else
                 sod.BuyPr = (decimal)0;
+
+            temp = (decimal)0;
+            bool rs3 = Decimal.TryParse(row.Cells["DetailSelPr"].Value.ToString(), out temp);
+            if (rs3)
+                sod.SelPr = Math.Round(temp, 2);
+            else
+                sod.SelPr = (decimal)0;
 
             return sod;
 
@@ -1033,7 +1174,7 @@ namespace SCPrime
                     }
                 }
                 dgvDetails.Refresh();
-               // this.UpdateOptionList(this.categorySelected);
+                // this.UpdateOptionList(this.categorySelected);
             }
         }
 
@@ -1044,7 +1185,7 @@ namespace SCPrime
             {
                 SCOptionDetail tmpCat = this.optionSelected.OptionDetails.Find(x => x.OID == opt.OID);
                 if (tmpCat != null)
-                {                    
+                {
                     this.optionSelected.OptionDetails.Remove(tmpCat);
                     this.optionSelected.OptionDetails.Add(opt);
                 }
@@ -1082,20 +1223,46 @@ namespace SCPrime
             DataGridViewRow row = dgvDetails.Rows[rowIndex];
             SCOptionDetail sc = new SCOptionDetail();
             sc = RowToDetail(row);
-            //MessageBox.Show(sc.isActive.ToString());
-
             var item = this.optionSelected.OptionDetails.Single(x => x.OID == sc.OID);
-            var index = optionSelected.OptionDetails.IndexOf(item);
-
             if (item != null)
             {
-                if (index != -1)
-                    this.optionSelected.OptionDetails[index] = sc;
-            }
-            else
-            {
-                this.optionSelected.OptionDetails.Add(sc);
+                var index = optionSelected.OptionDetails.IndexOf(item);
+
+                if (item != null)
+                {
+                    if (index != -1)
+                        this.optionSelected.OptionDetails[index] = sc;
+                }
+                else
+                {
+                    this.optionSelected.OptionDetails.Add(sc);
+                }
             }
         }
+
+
+
+
+
+        private void dgvDetails_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (dgvDetails.Columns[e.ColumnIndex].Name == Constant.DetailPurcharPrice
+               || dgvDetails.Columns[e.ColumnIndex].Name == Constant.DetailSalePrice)
+            {
+                double i;
+
+                if (!double.TryParse(Convert.ToString(e.FormattedValue), out i))
+                {
+                    e.Cancel = true;
+                    MessageBox.Show("Please enter numeric");
+                }
+                else
+                {
+
+                }
+            }
+        }
+
+        
     }
 }

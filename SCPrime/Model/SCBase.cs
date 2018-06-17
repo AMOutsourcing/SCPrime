@@ -80,7 +80,7 @@ namespace SCPrime.Model
                     item.ItemNo = hSql.Reader.GetString(2);
                     item.ItemSuplNo = hSql.Reader.GetString(3);
                     item.WrksId = hSql.Reader.GetString(4);
-                    item.BaseSelPr = hSql.Reader.GetDecimal(5);
+                    item.SelPr = hSql.Reader.GetDecimal(5);
                     item.InvoiceFlag = hSql.Reader.GetInt32(6);
                     item.ItemName = hSql.Reader.GetString(7);
                     item.BuyPr = hSql.Reader.GetDecimal(8);
@@ -306,10 +306,11 @@ namespace SCPrime.Model
                     item.ItemNo = hSql.Reader.GetString(2);
                     item.ItemSuplNo = hSql.Reader.GetString(3);
                     item.WrksId = hSql.Reader.GetString(4);
-                    item.BaseSelPr = hSql.Reader.GetDecimal(5);
+                    item.SelPr = hSql.Reader.GetDecimal(5);
                     item.ItemName = hSql.Reader.GetString(7);
                     item.BuyPr = hSql.Reader.GetDecimal(8);
                     item.WrksName = hSql.Reader.GetString(9);
+                    //item.BaseSelPr = hSql.Reader.GetDecimal(5);
                     item.OptionDetails = SCOptionDetail.getOptionDetailList(item.OID);
                     Result.Add(item);
                 }
@@ -472,10 +473,11 @@ namespace SCPrime.Model
                     item.ItemNo = hSql.Reader.GetString(2);
                     item.ItemSuplNo = hSql.Reader.GetString(3);
                     item.WrksId = hSql.Reader.GetString(4);
-                    item.BaseSelPr = hSql.Reader.GetDecimal(5);
+                    item.SelPr = hSql.Reader.GetDecimal(5);
                     item.ItemName = hSql.Reader.GetString(7);
                     item.BuyPr = hSql.Reader.GetDecimal(8);
                     item.WrksName = hSql.Reader.GetString(9);
+                    //item.BaseSelPr = hSql.Reader.GetDecimal(5);
                     Result.Add(item);
                 }
             }
