@@ -94,10 +94,10 @@ namespace SCPrime
 
         private void optionPriceListToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            SCOptionPriceFrm optionPrice = SCOptionPriceFrm.getInstance;
-            optionPrice.Show();
-            optionPrice.Focus();
-            optionPrice.BringToFront();
+            SCOptionPriceFrm optionPrice = new SCOptionPriceFrm();// SCOptionPriceFrm.getInstance;
+            optionPrice.instance.Show();
+            optionPrice.instance.Focus();
+            optionPrice.instance.BringToFront();
         }
     }
 }

@@ -29,25 +29,25 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -77,24 +77,7 @@
             this.NewCatBtn = new System.Windows.Forms.Button();
             this.DelCatBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.sCOptionDetailBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.sCOptionBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.sCOptionCategoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.sCOptionBaseBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.OID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemSuplNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.WrksId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.WrksName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BaseSelPr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BuyPr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SelPr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Info = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isAvailable = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isMarkDeleted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.panel13 = new System.Windows.Forms.Panel();
             this.OptionOID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OptionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OptionItemNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -109,6 +92,7 @@
             this.OptionQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OPptionisAvailable = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OptionisMarkDeleted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.sCOptionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.DetailOID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DetailName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DetailItemNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -123,6 +107,23 @@
             this.DetailQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DetailisAvailable = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DetailisMarkDeleted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.sCOptionDetailBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.OID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemSuplNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WrksId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.WrksName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BaseSelPr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BuyPr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SelPr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Info = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isAvailable = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isMarkDeleted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.sCOptionCategoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.sCOptionBaseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -138,8 +139,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCategory)).BeginInit();
             this.panel7.SuspendLayout();
             this.panel10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sCOptionDetailBindingSource)).BeginInit();
+            this.panel13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sCOptionBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sCOptionDetailBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sCOptionCategoryBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sCOptionBaseBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -215,8 +217,7 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.panel6);
-            this.panel2.Controls.Add(this.panel5);
+            this.panel2.Controls.Add(this.panel13);
             this.panel2.Controls.Add(this.panel4);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
@@ -229,9 +230,9 @@
             this.panel6.Controls.Add(this.dgvDetails);
             this.panel6.Controls.Add(this.panel9);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel6.Location = new System.Drawing.Point(0, 348);
+            this.panel6.Location = new System.Drawing.Point(0, 130);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(892, 226);
+            this.panel6.Size = new System.Drawing.Size(892, 247);
             this.panel6.TabIndex = 2;
             // 
             // dgvDetails
@@ -239,14 +240,14 @@
             this.dgvDetails.AllowUserToAddRows = false;
             this.dgvDetails.AutoGenerateColumns = false;
             this.dgvDetails.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.DetailOID,
@@ -264,27 +265,27 @@
             this.DetailisAvailable,
             this.DetailisMarkDeleted});
             this.dgvDetails.DataSource = this.sCOptionDetailBindingSource;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDetails.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDetails.DefaultCellStyle = dataGridViewCellStyle13;
             this.dgvDetails.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvDetails.Location = new System.Drawing.Point(0, 36);
             this.dgvDetails.Name = "dgvDetails";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetails.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDetails.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.dgvDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDetails.Size = new System.Drawing.Size(892, 190);
+            this.dgvDetails.Size = new System.Drawing.Size(892, 211);
             this.dgvDetails.TabIndex = 0;
             this.dgvDetails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetails_CellContentClick);
             this.dgvDetails.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetails_CellEndEdit);
@@ -313,11 +314,11 @@
             // 
             // DelDetailBtn
             // 
-            this.DelDetailBtn.Location = new System.Drawing.Point(113, 7);
+            this.DelDetailBtn.Location = new System.Drawing.Point(103, 7);
             this.DelDetailBtn.Name = "DelDetailBtn";
-            this.DelDetailBtn.Size = new System.Drawing.Size(75, 23);
+            this.DelDetailBtn.Size = new System.Drawing.Size(85, 23);
             this.DelDetailBtn.TabIndex = 4;
-            this.DelDetailBtn.Text = "Delete";
+            this.DelDetailBtn.Text = "Delete Detail";
             this.DelDetailBtn.UseVisualStyleBackColor = true;
             this.DelDetailBtn.Click += new System.EventHandler(this.DelDetailBtn_Click);
             // 
@@ -327,7 +328,7 @@
             this.NewDetailBtn.Name = "NewDetailBtn";
             this.NewDetailBtn.Size = new System.Drawing.Size(75, 23);
             this.NewDetailBtn.TabIndex = 3;
-            this.NewDetailBtn.Text = "New";
+            this.NewDetailBtn.Text = "New Detail";
             this.NewDetailBtn.UseVisualStyleBackColor = true;
             this.NewDetailBtn.Click += new System.EventHandler(this.NewDetailBtn_Click);
             // 
@@ -345,9 +346,9 @@
             this.panel5.Controls.Add(this.dgvOptions);
             this.panel5.Controls.Add(this.panel8);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(0, 197);
+            this.panel5.Location = new System.Drawing.Point(0, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(892, 377);
+            this.panel5.Size = new System.Drawing.Size(892, 130);
             this.panel5.TabIndex = 1;
             // 
             // dgvOptions
@@ -355,14 +356,14 @@
             this.dgvOptions.AllowUserToAddRows = false;
             this.dgvOptions.AutoGenerateColumns = false;
             this.dgvOptions.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvOptions.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvOptions.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvOptions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvOptions.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.OptionOID,
@@ -380,27 +381,27 @@
             this.OPptionisAvailable,
             this.OptionisMarkDeleted});
             this.dgvOptions.DataSource = this.sCOptionBindingSource;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvOptions.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvOptions.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvOptions.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvOptions.Location = new System.Drawing.Point(0, 36);
+            this.dgvOptions.Location = new System.Drawing.Point(0, 42);
             this.dgvOptions.Name = "dgvOptions";
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvOptions.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvOptions.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvOptions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvOptions.Size = new System.Drawing.Size(892, 341);
+            this.dgvOptions.Size = new System.Drawing.Size(892, 88);
             this.dgvOptions.TabIndex = 1;
             this.dgvOptions.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOptions_CellClick);
             this.dgvOptions.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOptions_CellContentClick);
@@ -418,7 +419,7 @@
             this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel8.Location = new System.Drawing.Point(0, 0);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(892, 36);
+            this.panel8.Size = new System.Drawing.Size(892, 42);
             this.panel8.TabIndex = 0;
             // 
             // panel11
@@ -428,7 +429,7 @@
             this.panel11.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel11.Location = new System.Drawing.Point(692, 0);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(200, 36);
+            this.panel11.Size = new System.Drawing.Size(200, 42);
             this.panel11.TabIndex = 4;
             // 
             // NewOptBtn
@@ -437,7 +438,7 @@
             this.NewOptBtn.Name = "NewOptBtn";
             this.NewOptBtn.Size = new System.Drawing.Size(75, 23);
             this.NewOptBtn.TabIndex = 2;
-            this.NewOptBtn.Text = "New";
+            this.NewOptBtn.Text = "New Option";
             this.NewOptBtn.UseVisualStyleBackColor = true;
             this.NewOptBtn.Click += new System.EventHandler(this.NewOptBtn_Click);
             // 
@@ -447,7 +448,7 @@
             this.DelOptBtn.Name = "DelOptBtn";
             this.DelOptBtn.Size = new System.Drawing.Size(75, 23);
             this.DelOptBtn.TabIndex = 3;
-            this.DelOptBtn.Text = "Delete";
+            this.DelOptBtn.Text = "Delete Option";
             this.DelOptBtn.UseVisualStyleBackColor = true;
             this.DelOptBtn.Click += new System.EventHandler(this.DelOptBtn_Click);
             // 
@@ -584,21 +585,279 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Category";
             // 
-            // sCOptionDetailBindingSource
+            // panel13
             // 
-            this.sCOptionDetailBindingSource.DataSource = typeof(SCPrime.Model.SCOptionDetail);
+            this.panel13.Controls.Add(this.panel5);
+            this.panel13.Controls.Add(this.panel6);
+            this.panel13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel13.Location = new System.Drawing.Point(0, 197);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(892, 377);
+            this.panel13.TabIndex = 5;
+            // 
+            // OptionOID
+            // 
+            this.OptionOID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.OptionOID.DataPropertyName = "OID";
+            this.OptionOID.HeaderText = "OID";
+            this.OptionOID.Name = "OptionOID";
+            this.OptionOID.Visible = false;
+            this.OptionOID.Width = 51;
+            // 
+            // OptionName
+            // 
+            this.OptionName.DataPropertyName = "Name";
+            this.OptionName.HeaderText = "Option";
+            this.OptionName.Name = "OptionName";
+            // 
+            // OptionItemNo
+            // 
+            this.OptionItemNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.OptionItemNo.DataPropertyName = "ItemNo";
+            this.OptionItemNo.HeaderText = "Part Nr";
+            this.OptionItemNo.Name = "OptionItemNo";
+            this.OptionItemNo.Width = 51;
+            // 
+            // OptionItemSuplNo
+            // 
+            this.OptionItemSuplNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.OptionItemSuplNo.DataPropertyName = "ItemSuplNo";
+            this.OptionItemSuplNo.HeaderText = "ItemSuplNo";
+            this.OptionItemSuplNo.Name = "OptionItemSuplNo";
+            this.OptionItemSuplNo.Visible = false;
+            this.OptionItemSuplNo.Width = 87;
+            // 
+            // OptionItemName
+            // 
+            this.OptionItemName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.OptionItemName.DataPropertyName = "ItemName";
+            this.OptionItemName.HeaderText = "Part Name";
+            this.OptionItemName.Name = "OptionItemName";
+            this.OptionItemName.Width = 76;
+            // 
+            // OptionWrksId
+            // 
+            this.OptionWrksId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.OptionWrksId.DataPropertyName = "WrksId";
+            this.OptionWrksId.HeaderText = "Labour code";
+            this.OptionWrksId.Name = "OptionWrksId";
+            this.OptionWrksId.Width = 85;
+            // 
+            // OptionWrksName
+            // 
+            this.OptionWrksName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.OptionWrksName.DataPropertyName = "WrksName";
+            this.OptionWrksName.HeaderText = "Labour name";
+            this.OptionWrksName.Name = "OptionWrksName";
+            this.OptionWrksName.Width = 87;
+            // 
+            // OptionBaseSelPr
+            // 
+            this.OptionBaseSelPr.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.OptionBaseSelPr.DataPropertyName = "BaseSelPr";
+            dataGridViewCellStyle2.Format = "N2";
+            dataGridViewCellStyle2.NullValue = "0";
+            this.OptionBaseSelPr.DefaultCellStyle = dataGridViewCellStyle2;
+            this.OptionBaseSelPr.HeaderText = "BaseSelPr";
+            this.OptionBaseSelPr.Name = "OptionBaseSelPr";
+            this.OptionBaseSelPr.Visible = false;
+            this.OptionBaseSelPr.Width = 81;
+            // 
+            // OptionBuyPr
+            // 
+            this.OptionBuyPr.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.OptionBuyPr.DataPropertyName = "BuyPr";
+            dataGridViewCellStyle3.Format = "N2";
+            dataGridViewCellStyle3.NullValue = "0";
+            this.OptionBuyPr.DefaultCellStyle = dataGridViewCellStyle3;
+            this.OptionBuyPr.HeaderText = "Purchase price";
+            this.OptionBuyPr.Name = "OptionBuyPr";
+            this.OptionBuyPr.Width = 95;
+            // 
+            // OptionSelPr
+            // 
+            this.OptionSelPr.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.OptionSelPr.DataPropertyName = "SelPr";
+            dataGridViewCellStyle4.Format = "N2";
+            dataGridViewCellStyle4.NullValue = "0";
+            this.OptionSelPr.DefaultCellStyle = dataGridViewCellStyle4;
+            this.OptionSelPr.HeaderText = "Sales price";
+            this.OptionSelPr.Name = "OptionSelPr";
+            this.OptionSelPr.Width = 78;
+            // 
+            // OptionInfo
+            // 
+            this.OptionInfo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.OptionInfo.DataPropertyName = "Info";
+            this.OptionInfo.HeaderText = "Info";
+            this.OptionInfo.Name = "OptionInfo";
+            this.OptionInfo.Visible = false;
+            this.OptionInfo.Width = 50;
+            // 
+            // OptionQuantity
+            // 
+            this.OptionQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.OptionQuantity.DataPropertyName = "Quantity";
+            dataGridViewCellStyle5.Format = "N0";
+            dataGridViewCellStyle5.NullValue = "0";
+            this.OptionQuantity.DefaultCellStyle = dataGridViewCellStyle5;
+            this.OptionQuantity.HeaderText = "Quantity";
+            this.OptionQuantity.Name = "OptionQuantity";
+            this.OptionQuantity.Visible = false;
+            this.OptionQuantity.Width = 71;
+            // 
+            // OPptionisAvailable
+            // 
+            this.OPptionisAvailable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.OPptionisAvailable.DataPropertyName = "isAvailable";
+            this.OPptionisAvailable.HeaderText = "isAvailable";
+            this.OPptionisAvailable.Name = "OPptionisAvailable";
+            this.OPptionisAvailable.Visible = false;
+            this.OPptionisAvailable.Width = 82;
+            // 
+            // OptionisMarkDeleted
+            // 
+            this.OptionisMarkDeleted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.OptionisMarkDeleted.DataPropertyName = "isMarkDeleted";
+            this.OptionisMarkDeleted.HeaderText = "isMarkDeleted";
+            this.OptionisMarkDeleted.Name = "OptionisMarkDeleted";
+            this.OptionisMarkDeleted.Visible = false;
+            this.OptionisMarkDeleted.Width = 81;
             // 
             // sCOptionBindingSource
             // 
             this.sCOptionBindingSource.DataSource = typeof(SCPrime.Model.SCOption);
             // 
-            // sCOptionCategoryBindingSource
+            // DetailOID
             // 
-            this.sCOptionCategoryBindingSource.DataSource = typeof(SCPrime.Model.SCOptionCategory);
+            this.DetailOID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.DetailOID.DataPropertyName = "OID";
+            this.DetailOID.HeaderText = "OID";
+            this.DetailOID.Name = "DetailOID";
+            this.DetailOID.Visible = false;
+            this.DetailOID.Width = 51;
             // 
-            // sCOptionBaseBindingSource
+            // DetailName
             // 
-            this.sCOptionBaseBindingSource.DataSource = typeof(SCPrime.Model.SCOptionBase);
+            this.DetailName.DataPropertyName = "Name";
+            this.DetailName.HeaderText = "Option Detail";
+            this.DetailName.Name = "DetailName";
+            // 
+            // DetailItemNo
+            // 
+            this.DetailItemNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.DetailItemNo.DataPropertyName = "ItemNo";
+            this.DetailItemNo.HeaderText = "Part Nr";
+            this.DetailItemNo.Name = "DetailItemNo";
+            this.DetailItemNo.Width = 51;
+            // 
+            // DetailItemSuplNo
+            // 
+            this.DetailItemSuplNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.DetailItemSuplNo.DataPropertyName = "ItemSuplNo";
+            this.DetailItemSuplNo.HeaderText = "ItemSuplNo";
+            this.DetailItemSuplNo.Name = "DetailItemSuplNo";
+            this.DetailItemSuplNo.Visible = false;
+            this.DetailItemSuplNo.Width = 87;
+            // 
+            // DetailItemName
+            // 
+            this.DetailItemName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.DetailItemName.DataPropertyName = "ItemName";
+            this.DetailItemName.HeaderText = "Part Name";
+            this.DetailItemName.Name = "DetailItemName";
+            this.DetailItemName.Width = 76;
+            // 
+            // DetailWrksId
+            // 
+            this.DetailWrksId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.DetailWrksId.DataPropertyName = "WrksId";
+            this.DetailWrksId.HeaderText = "Labour code";
+            this.DetailWrksId.Name = "DetailWrksId";
+            this.DetailWrksId.Width = 85;
+            // 
+            // DetailWrksName
+            // 
+            this.DetailWrksName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.DetailWrksName.DataPropertyName = "WrksName";
+            this.DetailWrksName.HeaderText = "Labour Name";
+            this.DetailWrksName.Name = "DetailWrksName";
+            this.DetailWrksName.Width = 88;
+            // 
+            // DetailBaseSelPr
+            // 
+            this.DetailBaseSelPr.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.DetailBaseSelPr.DataPropertyName = "BaseSelPr";
+            dataGridViewCellStyle9.Format = "N2";
+            dataGridViewCellStyle9.NullValue = "0";
+            this.DetailBaseSelPr.DefaultCellStyle = dataGridViewCellStyle9;
+            this.DetailBaseSelPr.HeaderText = "BaseSelPr";
+            this.DetailBaseSelPr.Name = "DetailBaseSelPr";
+            this.DetailBaseSelPr.Visible = false;
+            this.DetailBaseSelPr.Width = 81;
+            // 
+            // DetailBuyPr
+            // 
+            this.DetailBuyPr.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.DetailBuyPr.DataPropertyName = "BuyPr";
+            dataGridViewCellStyle10.Format = "N2";
+            dataGridViewCellStyle10.NullValue = "0";
+            this.DetailBuyPr.DefaultCellStyle = dataGridViewCellStyle10;
+            this.DetailBuyPr.HeaderText = "Purchase price";
+            this.DetailBuyPr.Name = "DetailBuyPr";
+            this.DetailBuyPr.Width = 95;
+            // 
+            // DetailSelPr
+            // 
+            this.DetailSelPr.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.DetailSelPr.DataPropertyName = "SelPr";
+            dataGridViewCellStyle11.Format = "N2";
+            dataGridViewCellStyle11.NullValue = "0";
+            this.DetailSelPr.DefaultCellStyle = dataGridViewCellStyle11;
+            this.DetailSelPr.HeaderText = "Sales price";
+            this.DetailSelPr.Name = "DetailSelPr";
+            this.DetailSelPr.Width = 78;
+            // 
+            // DetailInfo
+            // 
+            this.DetailInfo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.DetailInfo.DataPropertyName = "Info";
+            this.DetailInfo.HeaderText = "Info";
+            this.DetailInfo.Name = "DetailInfo";
+            this.DetailInfo.Visible = false;
+            this.DetailInfo.Width = 50;
+            // 
+            // DetailQuantity
+            // 
+            this.DetailQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.DetailQuantity.DataPropertyName = "Quantity";
+            dataGridViewCellStyle12.Format = "N0";
+            dataGridViewCellStyle12.NullValue = "0";
+            this.DetailQuantity.DefaultCellStyle = dataGridViewCellStyle12;
+            this.DetailQuantity.HeaderText = "Quantity";
+            this.DetailQuantity.Name = "DetailQuantity";
+            this.DetailQuantity.Visible = false;
+            this.DetailQuantity.Width = 71;
+            // 
+            // DetailisAvailable
+            // 
+            this.DetailisAvailable.DataPropertyName = "isAvailable";
+            this.DetailisAvailable.HeaderText = "isAvailable";
+            this.DetailisAvailable.Name = "DetailisAvailable";
+            this.DetailisAvailable.Visible = false;
+            // 
+            // DetailisMarkDeleted
+            // 
+            this.DetailisMarkDeleted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.DetailisMarkDeleted.DataPropertyName = "isMarkDeleted";
+            this.DetailisMarkDeleted.HeaderText = "isMarkDeleted";
+            this.DetailisMarkDeleted.Name = "DetailisMarkDeleted";
+            this.DetailisMarkDeleted.Visible = false;
+            this.DetailisMarkDeleted.Width = 81;
+            // 
+            // sCOptionDetailBindingSource
+            // 
+            this.sCOptionDetailBindingSource.DataSource = typeof(SCPrime.Model.SCOptionDetail);
             // 
             // OID
             // 
@@ -699,261 +958,13 @@
             this.isMarkDeleted.Name = "isMarkDeleted";
             this.isMarkDeleted.Visible = false;
             // 
-            // OptionOID
+            // sCOptionCategoryBindingSource
             // 
-            this.OptionOID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.OptionOID.DataPropertyName = "OID";
-            this.OptionOID.HeaderText = "OID";
-            this.OptionOID.Name = "OptionOID";
-            this.OptionOID.Visible = false;
-            this.OptionOID.Width = 51;
+            this.sCOptionCategoryBindingSource.DataSource = typeof(SCPrime.Model.SCOptionCategory);
             // 
-            // OptionName
+            // sCOptionBaseBindingSource
             // 
-            this.OptionName.DataPropertyName = "Name";
-            this.OptionName.HeaderText = "Option";
-            this.OptionName.Name = "OptionName";
-            // 
-            // OptionItemNo
-            // 
-            this.OptionItemNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.OptionItemNo.DataPropertyName = "ItemNo";
-            this.OptionItemNo.HeaderText = "Part Nr";
-            this.OptionItemNo.Name = "OptionItemNo";
-            this.OptionItemNo.Width = 65;
-            // 
-            // OptionItemSuplNo
-            // 
-            this.OptionItemSuplNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.OptionItemSuplNo.DataPropertyName = "ItemSuplNo";
-            this.OptionItemSuplNo.HeaderText = "ItemSuplNo";
-            this.OptionItemSuplNo.Name = "OptionItemSuplNo";
-            this.OptionItemSuplNo.Visible = false;
-            this.OptionItemSuplNo.Width = 87;
-            // 
-            // OptionItemName
-            // 
-            this.OptionItemName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.OptionItemName.DataPropertyName = "ItemName";
-            this.OptionItemName.HeaderText = "Part Name";
-            this.OptionItemName.Name = "OptionItemName";
-            this.OptionItemName.Width = 82;
-            // 
-            // OptionWrksId
-            // 
-            this.OptionWrksId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.OptionWrksId.DataPropertyName = "WrksId";
-            this.OptionWrksId.HeaderText = "Labour code";
-            this.OptionWrksId.Name = "OptionWrksId";
-            this.OptionWrksId.Width = 92;
-            // 
-            // OptionWrksName
-            // 
-            this.OptionWrksName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.OptionWrksName.DataPropertyName = "WrksName";
-            this.OptionWrksName.HeaderText = "Labour name";
-            this.OptionWrksName.Name = "OptionWrksName";
-            this.OptionWrksName.Width = 94;
-            // 
-            // OptionBaseSelPr
-            // 
-            this.OptionBaseSelPr.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.OptionBaseSelPr.DataPropertyName = "BaseSelPr";
-            dataGridViewCellStyle9.Format = "N2";
-            dataGridViewCellStyle9.NullValue = "0";
-            this.OptionBaseSelPr.DefaultCellStyle = dataGridViewCellStyle9;
-            this.OptionBaseSelPr.HeaderText = "BaseSelPr";
-            this.OptionBaseSelPr.Name = "OptionBaseSelPr";
-            this.OptionBaseSelPr.Visible = false;
-            this.OptionBaseSelPr.Width = 81;
-            // 
-            // OptionBuyPr
-            // 
-            this.OptionBuyPr.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.OptionBuyPr.DataPropertyName = "BuyPr";
-            dataGridViewCellStyle10.Format = "N2";
-            dataGridViewCellStyle10.NullValue = "0";
-            this.OptionBuyPr.DefaultCellStyle = dataGridViewCellStyle10;
-            this.OptionBuyPr.HeaderText = "Purchase price";
-            this.OptionBuyPr.Name = "OptionBuyPr";
-            this.OptionBuyPr.Width = 95;
-            // 
-            // OptionSelPr
-            // 
-            this.OptionSelPr.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.OptionSelPr.DataPropertyName = "SelPr";
-            dataGridViewCellStyle11.Format = "N2";
-            dataGridViewCellStyle11.NullValue = "0";
-            this.OptionSelPr.DefaultCellStyle = dataGridViewCellStyle11;
-            this.OptionSelPr.HeaderText = "Sales price";
-            this.OptionSelPr.Name = "OptionSelPr";
-            this.OptionSelPr.Width = 78;
-            // 
-            // OptionInfo
-            // 
-            this.OptionInfo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.OptionInfo.DataPropertyName = "Info";
-            this.OptionInfo.HeaderText = "Info";
-            this.OptionInfo.Name = "OptionInfo";
-            this.OptionInfo.Visible = false;
-            this.OptionInfo.Width = 50;
-            // 
-            // OptionQuantity
-            // 
-            this.OptionQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.OptionQuantity.DataPropertyName = "Quantity";
-            dataGridViewCellStyle12.Format = "N0";
-            dataGridViewCellStyle12.NullValue = "0";
-            this.OptionQuantity.DefaultCellStyle = dataGridViewCellStyle12;
-            this.OptionQuantity.HeaderText = "Quantity";
-            this.OptionQuantity.Name = "OptionQuantity";
-            this.OptionQuantity.Visible = false;
-            this.OptionQuantity.Width = 71;
-            // 
-            // OPptionisAvailable
-            // 
-            this.OPptionisAvailable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.OPptionisAvailable.DataPropertyName = "isAvailable";
-            this.OPptionisAvailable.HeaderText = "isAvailable";
-            this.OPptionisAvailable.Name = "OPptionisAvailable";
-            this.OPptionisAvailable.Visible = false;
-            this.OPptionisAvailable.Width = 82;
-            // 
-            // OptionisMarkDeleted
-            // 
-            this.OptionisMarkDeleted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.OptionisMarkDeleted.DataPropertyName = "isMarkDeleted";
-            this.OptionisMarkDeleted.HeaderText = "isMarkDeleted";
-            this.OptionisMarkDeleted.Name = "OptionisMarkDeleted";
-            this.OptionisMarkDeleted.Visible = false;
-            this.OptionisMarkDeleted.Width = 81;
-            // 
-            // DetailOID
-            // 
-            this.DetailOID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.DetailOID.DataPropertyName = "OID";
-            this.DetailOID.HeaderText = "OID";
-            this.DetailOID.Name = "DetailOID";
-            this.DetailOID.Visible = false;
-            this.DetailOID.Width = 51;
-            // 
-            // DetailName
-            // 
-            this.DetailName.DataPropertyName = "Name";
-            this.DetailName.HeaderText = "Option Detail";
-            this.DetailName.Name = "DetailName";
-            // 
-            // DetailItemNo
-            // 
-            this.DetailItemNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.DetailItemNo.DataPropertyName = "ItemNo";
-            this.DetailItemNo.HeaderText = "Part Nr";
-            this.DetailItemNo.Name = "DetailItemNo";
-            this.DetailItemNo.Width = 65;
-            // 
-            // DetailItemSuplNo
-            // 
-            this.DetailItemSuplNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.DetailItemSuplNo.DataPropertyName = "ItemSuplNo";
-            this.DetailItemSuplNo.HeaderText = "ItemSuplNo";
-            this.DetailItemSuplNo.Name = "DetailItemSuplNo";
-            this.DetailItemSuplNo.Visible = false;
-            this.DetailItemSuplNo.Width = 87;
-            // 
-            // DetailItemName
-            // 
-            this.DetailItemName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.DetailItemName.DataPropertyName = "ItemName";
-            this.DetailItemName.HeaderText = "Part Name";
-            this.DetailItemName.Name = "DetailItemName";
-            this.DetailItemName.Width = 82;
-            // 
-            // DetailWrksId
-            // 
-            this.DetailWrksId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.DetailWrksId.DataPropertyName = "WrksId";
-            this.DetailWrksId.HeaderText = "Labour code";
-            this.DetailWrksId.Name = "DetailWrksId";
-            this.DetailWrksId.Width = 92;
-            // 
-            // DetailWrksName
-            // 
-            this.DetailWrksName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.DetailWrksName.DataPropertyName = "WrksName";
-            this.DetailWrksName.HeaderText = "Labour Name";
-            this.DetailWrksName.Name = "DetailWrksName";
-            this.DetailWrksName.Width = 96;
-            // 
-            // DetailBaseSelPr
-            // 
-            this.DetailBaseSelPr.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.DetailBaseSelPr.DataPropertyName = "BaseSelPr";
-            dataGridViewCellStyle2.Format = "N2";
-            dataGridViewCellStyle2.NullValue = "0";
-            this.DetailBaseSelPr.DefaultCellStyle = dataGridViewCellStyle2;
-            this.DetailBaseSelPr.HeaderText = "BaseSelPr";
-            this.DetailBaseSelPr.Name = "DetailBaseSelPr";
-            this.DetailBaseSelPr.Visible = false;
-            this.DetailBaseSelPr.Width = 81;
-            // 
-            // DetailBuyPr
-            // 
-            this.DetailBuyPr.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.DetailBuyPr.DataPropertyName = "BuyPr";
-            dataGridViewCellStyle3.Format = "N2";
-            dataGridViewCellStyle3.NullValue = "0";
-            this.DetailBuyPr.DefaultCellStyle = dataGridViewCellStyle3;
-            this.DetailBuyPr.HeaderText = "Purchase price";
-            this.DetailBuyPr.Name = "DetailBuyPr";
-            this.DetailBuyPr.Width = 95;
-            // 
-            // DetailSelPr
-            // 
-            this.DetailSelPr.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.DetailSelPr.DataPropertyName = "SelPr";
-            dataGridViewCellStyle4.Format = "N2";
-            dataGridViewCellStyle4.NullValue = "0";
-            this.DetailSelPr.DefaultCellStyle = dataGridViewCellStyle4;
-            this.DetailSelPr.HeaderText = "Sales price";
-            this.DetailSelPr.Name = "DetailSelPr";
-            this.DetailSelPr.Width = 78;
-            // 
-            // DetailInfo
-            // 
-            this.DetailInfo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.DetailInfo.DataPropertyName = "Info";
-            this.DetailInfo.HeaderText = "Info";
-            this.DetailInfo.Name = "DetailInfo";
-            this.DetailInfo.Visible = false;
-            this.DetailInfo.Width = 50;
-            // 
-            // DetailQuantity
-            // 
-            this.DetailQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.DetailQuantity.DataPropertyName = "Quantity";
-            dataGridViewCellStyle5.Format = "N0";
-            dataGridViewCellStyle5.NullValue = "0";
-            this.DetailQuantity.DefaultCellStyle = dataGridViewCellStyle5;
-            this.DetailQuantity.HeaderText = "Quantity";
-            this.DetailQuantity.Name = "DetailQuantity";
-            this.DetailQuantity.Visible = false;
-            this.DetailQuantity.Width = 71;
-            // 
-            // DetailisAvailable
-            // 
-            this.DetailisAvailable.DataPropertyName = "isAvailable";
-            this.DetailisAvailable.HeaderText = "isAvailable";
-            this.DetailisAvailable.Name = "DetailisAvailable";
-            this.DetailisAvailable.Visible = false;
-            // 
-            // DetailisMarkDeleted
-            // 
-            this.DetailisMarkDeleted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.DetailisMarkDeleted.DataPropertyName = "isMarkDeleted";
-            this.DetailisMarkDeleted.HeaderText = "isMarkDeleted";
-            this.DetailisMarkDeleted.Name = "DetailisMarkDeleted";
-            this.DetailisMarkDeleted.Visible = false;
-            this.DetailisMarkDeleted.Width = 81;
+            this.sCOptionBaseBindingSource.DataSource = typeof(SCPrime.Model.SCOptionBase);
             // 
             // SCOptionList
             // 
@@ -985,8 +996,9 @@
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             this.panel10.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.sCOptionDetailBindingSource)).EndInit();
+            this.panel13.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.sCOptionBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sCOptionDetailBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sCOptionCategoryBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sCOptionBaseBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -1070,5 +1082,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn isAvailable;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isMarkDeleted;
+        private System.Windows.Forms.Panel panel13;
     }
 }

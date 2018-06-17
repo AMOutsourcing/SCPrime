@@ -39,8 +39,8 @@ namespace SCPrime
         private int newOptionOid = -1;
         private int newDetailOid = -1;
 
-        System.Globalization.CultureInfo usCultureInfo = new System.Globalization.CultureInfo("en-US");
-
+        // System.Globalization.CultureInfo usCultureInfo = new System.Globalization.CultureInfo("en-US");
+        System.Globalization.CultureInfo oldCI = System.Threading.Thread.CurrentThread.CurrentCulture;
 
         public SCOptionList()
         {
@@ -53,8 +53,10 @@ namespace SCPrime
             this.bindingList.Add(new KeyValue(0, Constant.Empty));
             this.bindingList.Add(new KeyValue(1, Constant.FirstInvoice));
             this.bindingList.Add(new KeyValue(2, Constant.LastInvoice));
-            usCultureInfo.NumberFormat.NumberDecimalSeparator = ".";
+            //usCultureInfo.NumberFormat.NumberDecimalSeparator = ".";
 
+            //Decimal i = 10000.20M;
+            //MessageBox.Show(i.ToString("c", oldCI));
 
         }
         public SCOptionList instance
@@ -73,7 +75,7 @@ namespace SCPrime
         private void SCOptionList_Load(object sender, EventArgs e)
         {
             loadCategoryData();
-            // loadTree();
+            loadTree();
 
         }
 
@@ -159,7 +161,7 @@ namespace SCPrime
 
 
             loadCategoryData();
-            // loadTree();
+             loadTree();
 
         }
 
@@ -300,7 +302,8 @@ namespace SCPrime
 
         private void dataGridViewCategory_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            if (dataGridViewCategory.Columns[e.ColumnIndex].Name == Constant.PurcharPrice || dataGridViewCategory.Columns[e.ColumnIndex].Name == Constant.SalePrice)
+            if (dataGridViewCategory.Columns[e.ColumnIndex].Name == Constant.PurcharPrice || 
+                dataGridViewCategory.Columns[e.ColumnIndex].Name == Constant.SalePrice)
             {
                 double i;
 
@@ -311,7 +314,7 @@ namespace SCPrime
                 }
                 else
                 {
-
+                    dataGridViewCategory.Rows[e.RowIndex].Cells[e.ColumnIndex].Value= Convert.ToDecimal(e.FormattedValue, this.oldCI);
                 }
             }
         }
@@ -423,13 +426,13 @@ namespace SCPrime
                     rowindex = GetIndexOfRowCategory(dataGridViewCategory, sco != null ? sco.OID : -1);
                     if (rowindex >= 0)
                     {
-                        dataGridViewCategory.CurrentCell = dataGridViewCategory.Rows[rowindex].Cells[0];
+                        dataGridViewCategory.CurrentCell = dataGridViewCategory.Rows[rowindex].Cells[Constant.CategoryName];
                     }
                     else
-                        dataGridViewCategory.CurrentCell = dataGridViewCategory.Rows[0].Cells[0];
+                        dataGridViewCategory.CurrentCell = dataGridViewCategory.Rows[0].Cells[Constant.CategoryName];
                 }
                 else
-                    dataGridViewCategory.CurrentCell = dataGridViewCategory.Rows[0].Cells[0];
+                    dataGridViewCategory.CurrentCell = dataGridViewCategory.Rows[0].Cells[Constant.CategoryName];
             }
 
         }
@@ -456,7 +459,7 @@ namespace SCPrime
             treeView1.Nodes.Clear();
 
             List<SCOptionCategory> myCategories = SCOptionCategory.getOptionCategoryList();
-            if (this.saveCategories.Count > 0)
+            if (myCategories.Count > 0)
             {
                 foreach (SCOptionCategory cat in myCategories)
                 {
@@ -603,13 +606,13 @@ namespace SCPrime
                     rowindex = GetIndexOfRowOption(dgvOptions, sco != null ? sco.OID : -1);
                     if (rowindex >= 0)
                     {
-                        dgvOptions.CurrentCell = dgvOptions.Rows[rowindex].Cells[0];
+                        dgvOptions.CurrentCell = dgvOptions.Rows[rowindex].Cells[Constant.OptionName];
                     }
                     else
-                        dgvOptions.CurrentCell = dgvOptions.Rows[0].Cells[0];
+                        dgvOptions.CurrentCell = dgvOptions.Rows[0].Cells[Constant.OptionName];
                 }
                 else
-                    dgvOptions.CurrentCell = dgvOptions.Rows[0].Cells[0];
+                    dgvOptions.CurrentCell = dgvOptions.Rows[0].Cells[Constant.OptionName];
             }
             if (dgvOptions.Rows.Count == 0)
             {

@@ -17,7 +17,7 @@ namespace SCPrime
 
         private static SCOptionPriceFrm _instance;
 
-        public static SCOptionPriceFrm getInstance
+        public  SCOptionPriceFrm instance
         {
             get
             {
@@ -122,8 +122,9 @@ namespace SCPrime
         {
             if (SCOptionPriceFrm._instance != null)
             {
-                SCOptionPriceFrm._instance.Close();
+                SCOptionPriceFrm._instance =null;
                 //SCOptionPrice._instance = null;
+
             }
         }
 
