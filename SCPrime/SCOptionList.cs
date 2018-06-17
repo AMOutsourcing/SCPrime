@@ -150,7 +150,7 @@ namespace SCPrime
             if (this.saveCategories.Count > 0)
             {
                 var result = SCOptionCategory.saveOptionCategoryList(this.saveCategories);
-                MessageBox.Show(result.ToString());
+                //MessageBox.Show(result.ToString());
                 if (result)
                 {
                     this.dataGridViewCategory.DataSource = null;

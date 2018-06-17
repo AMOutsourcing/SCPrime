@@ -57,6 +57,20 @@
             this.contractTypeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.optionListToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.optionPriceListToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.nEwContractToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.prinToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.customerDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vehicleDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.serviceHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eLOArchiveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mileageRegisterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.invoiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.invoiceToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.exitApplicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -289,6 +303,21 @@
             // 
             // toolStripMenuItem1
             // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.nEwContractToolStripMenuItem,
+            this.openToolStripMenuItem,
+            this.prinToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.customerDataToolStripMenuItem,
+            this.vehicleDataToolStripMenuItem,
+            this.serviceHistoryToolStripMenuItem,
+            this.eLOArchiveToolStripMenuItem,
+            this.mileageRegisterToolStripMenuItem,
+            this.invoiceToolStripMenuItem,
+            this.toolStripSeparator3,
+            this.invoiceToolStripMenuItem1,
+            this.toolStripSeparator4,
+            this.exitApplicationToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(105, 20);
             this.toolStripMenuItem1.Text = "Service Contract";
@@ -323,6 +352,87 @@
             this.optionPriceListToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.optionPriceListToolStripMenuItem1.Text = "Option Price List";
             this.optionPriceListToolStripMenuItem1.Click += new System.EventHandler(this.optionPriceListToolStripMenuItem1_Click);
+            // 
+            // nEwContractToolStripMenuItem
+            // 
+            this.nEwContractToolStripMenuItem.Name = "nEwContractToolStripMenuItem";
+            this.nEwContractToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.nEwContractToolStripMenuItem.Text = "New contract";
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openToolStripMenuItem.Text = "Open";
+            // 
+            // prinToolStripMenuItem
+            // 
+            this.prinToolStripMenuItem.Name = "prinToolStripMenuItem";
+            this.prinToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.prinToolStripMenuItem.Text = "Print contract";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            // 
+            // customerDataToolStripMenuItem
+            // 
+            this.customerDataToolStripMenuItem.Name = "customerDataToolStripMenuItem";
+            this.customerDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.customerDataToolStripMenuItem.Text = "Customer data";
+            // 
+            // vehicleDataToolStripMenuItem
+            // 
+            this.vehicleDataToolStripMenuItem.Name = "vehicleDataToolStripMenuItem";
+            this.vehicleDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.vehicleDataToolStripMenuItem.Text = "Vehicle data";
+            // 
+            // serviceHistoryToolStripMenuItem
+            // 
+            this.serviceHistoryToolStripMenuItem.Name = "serviceHistoryToolStripMenuItem";
+            this.serviceHistoryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.serviceHistoryToolStripMenuItem.Text = "Service history";
+            // 
+            // eLOArchiveToolStripMenuItem
+            // 
+            this.eLOArchiveToolStripMenuItem.Name = "eLOArchiveToolStripMenuItem";
+            this.eLOArchiveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eLOArchiveToolStripMenuItem.Text = "ELO archive";
+            // 
+            // mileageRegisterToolStripMenuItem
+            // 
+            this.mileageRegisterToolStripMenuItem.Name = "mileageRegisterToolStripMenuItem";
+            this.mileageRegisterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.mileageRegisterToolStripMenuItem.Text = "Mileage register";
+            // 
+            // invoiceToolStripMenuItem
+            // 
+            this.invoiceToolStripMenuItem.Name = "invoiceToolStripMenuItem";
+            this.invoiceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.invoiceToolStripMenuItem.Text = "Invoices";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
+            // 
+            // invoiceToolStripMenuItem1
+            // 
+            this.invoiceToolStripMenuItem1.Name = "invoiceToolStripMenuItem1";
+            this.invoiceToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.invoiceToolStripMenuItem1.Text = "Export data";
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
+            // 
+            // exitApplicationToolStripMenuItem
+            // 
+            this.exitApplicationToolStripMenuItem.Name = "exitApplicationToolStripMenuItem";
+            this.exitApplicationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitApplicationToolStripMenuItem.Text = "Exit application";
             // 
             // SCMain
             // 
@@ -377,6 +487,20 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
         private System.Windows.Forms.ToolStripButton toolStripButton9;
+        private System.Windows.Forms.ToolStripMenuItem nEwContractToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem prinToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem customerDataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem vehicleDataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem serviceHistoryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem eLOArchiveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mileageRegisterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem invoiceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem invoiceToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem exitApplicationToolStripMenuItem;
     }
 }
 
