@@ -185,9 +185,6 @@ namespace SCPrime
 
         private void btnNew_Click(object sender, EventArgs e)
         {
-            SCOptionPriceFrm sc = new SCOptionPriceFrm();
-
-
             DataTable dataTable = (DataTable)gridOptionPrice.DataSource;
             DataRow drToAdd = dataTable.NewRow();
 

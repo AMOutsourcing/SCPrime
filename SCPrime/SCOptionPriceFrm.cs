@@ -17,16 +17,13 @@ namespace SCPrime
 
         private static SCOptionPriceFrm _instance;
 
-        public  SCOptionPriceFrm instance
+        public static SCOptionPriceFrm getInstance()
         {
-            get
+            if (SCOptionPriceFrm._instance == null || SCOptionPriceFrm._instance.IsDisposed)
             {
-                if (SCOptionPriceFrm._instance == null)
-                {
-                    SCOptionPriceFrm._instance = new SCOptionPriceFrm();
-                }
-                return SCOptionPriceFrm._instance;
+                SCOptionPriceFrm._instance = new SCOptionPriceFrm();
             }
+            return SCOptionPriceFrm._instance;
         }
 
         private List<Model.SCContractType> listContacType;
@@ -34,7 +31,7 @@ namespace SCPrime
         SCOptionPrice scPriceDao;
         List<SCOptionPrice> scPriceListChange = null;
 
-        public SCOptionPriceFrm()
+        private SCOptionPriceFrm()
         {
             InitializeComponent();
             initData();
@@ -50,7 +47,7 @@ namespace SCPrime
             //
             sCBase = new Model.SCBase();
             listContacType = sCBase.getContractTypeActive();
-            
+
             cbContactType.DataSource = listContacType;
             cbContactType.DisplayMember = "Name";
             cbContactType.ValueMember = "OID";
@@ -122,7 +119,9 @@ namespace SCPrime
         {
             if (SCOptionPriceFrm._instance != null)
             {
-                SCOptionPriceFrm._instance =null;
+                SCOptionPriceFrm._instance.Close();
+                SCOptionPriceFrm._instance.Dispose();
+                SCOptionPriceFrm._instance = null;
                 //SCOptionPrice._instance = null;
 
             }
@@ -183,7 +182,7 @@ namespace SCPrime
                 lockClick = false;
             }
 
-            
+
         }
 
         private void changState(int RowIndex, int ColumnIndex, Boolean Include, Boolean Optional, Boolean NotAvailable, Boolean Exclude)
@@ -287,15 +286,15 @@ namespace SCPrime
             }
         }
 
-        
+
         //SAVE
         private void btnSave_Click(object sender, EventArgs e)
         {
             bool result = false;
-            
+
             if (scPriceListChange.Count > 0)
             {
-                foreach(SCOptionPrice sc in scPriceListChange)
+                foreach (SCOptionPrice sc in scPriceListChange)
                 {
                     System.Diagnostics.Debug.WriteLine("--------------SCOptionPrice: " + sc.OID + " - " + sc.IsAvailable);
                 }
@@ -380,12 +379,12 @@ namespace SCPrime
                 System.Diagnostics.Debug.WriteLine("--------------CellValueChanged addToListChange ------------" + e.ColumnIndex);
                 addToListChange(e.RowIndex);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine("-------------- CellValueChangedaddToListChange ERROR: " + ex.Message);
             }
         }
-        
+
         private void gridPrice_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             t.Stop();
