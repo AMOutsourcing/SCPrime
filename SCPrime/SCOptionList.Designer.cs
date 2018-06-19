@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -56,13 +56,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.saveBtn = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.dgvDetails = new System.Windows.Forms.DataGridView();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.DelDetailBtn = new System.Windows.Forms.Button();
-            this.NewDetailBtn = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
+            this.panel13 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.dgvOptions = new System.Windows.Forms.DataGridView();
             this.panel8 = new System.Windows.Forms.Panel();
@@ -70,6 +64,13 @@
             this.NewOptBtn = new System.Windows.Forms.Button();
             this.DelOptBtn = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.dgvDetails = new System.Windows.Forms.DataGridView();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.DelDetailBtn = new System.Windows.Forms.Button();
+            this.NewDetailBtn = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.dataGridViewCategory = new System.Windows.Forms.DataGridView();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -77,7 +78,6 @@
             this.NewCatBtn = new System.Windows.Forms.Button();
             this.DelCatBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.panel13 = new System.Windows.Forms.Panel();
             this.OptionOID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OptionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OptionItemNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -127,19 +127,19 @@
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDetails)).BeginInit();
-            this.panel9.SuspendLayout();
-            this.panel12.SuspendLayout();
+            this.panel13.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOptions)).BeginInit();
             this.panel8.SuspendLayout();
             this.panel11.SuspendLayout();
+            this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetails)).BeginInit();
+            this.panel9.SuspendLayout();
+            this.panel12.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCategory)).BeginInit();
             this.panel7.SuspendLayout();
             this.panel10.SuspendLayout();
-            this.panel13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sCOptionBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sCOptionDetailBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sCOptionCategoryBindingSource)).BeginInit();
@@ -154,7 +154,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(892, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(304, 574);
+            this.panel1.Size = new System.Drawing.Size(304, 709);
             this.panel1.TabIndex = 0;
             // 
             // treeView1
@@ -162,7 +162,7 @@
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.Location = new System.Drawing.Point(0, 81);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(302, 491);
+            this.treeView1.Size = new System.Drawing.Size(302, 626);
             this.treeView1.TabIndex = 1;
             // 
             // panel3
@@ -222,125 +222,18 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(892, 574);
+            this.panel2.Size = new System.Drawing.Size(892, 709);
             this.panel2.TabIndex = 1;
             // 
-            // panel6
+            // panel13
             // 
-            this.panel6.Controls.Add(this.dgvDetails);
-            this.panel6.Controls.Add(this.panel9);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel6.Location = new System.Drawing.Point(0, 130);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(892, 247);
-            this.panel6.TabIndex = 2;
-            // 
-            // dgvDetails
-            // 
-            this.dgvDetails.AllowUserToAddRows = false;
-            this.dgvDetails.AutoGenerateColumns = false;
-            this.dgvDetails.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
-            this.dgvDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.DetailOID,
-            this.DetailName,
-            this.DetailItemNo,
-            this.DetailItemSuplNo,
-            this.DetailItemName,
-            this.DetailWrksId,
-            this.DetailWrksName,
-            this.DetailBaseSelPr,
-            this.DetailBuyPr,
-            this.DetailSelPr,
-            this.DetailInfo,
-            this.DetailQuantity,
-            this.DetailisAvailable,
-            this.DetailisMarkDeleted});
-            this.dgvDetails.DataSource = this.sCOptionDetailBindingSource;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvDetails.DefaultCellStyle = dataGridViewCellStyle13;
-            this.dgvDetails.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvDetails.Location = new System.Drawing.Point(0, 36);
-            this.dgvDetails.Name = "dgvDetails";
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDetails.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
-            this.dgvDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDetails.Size = new System.Drawing.Size(892, 211);
-            this.dgvDetails.TabIndex = 0;
-            this.dgvDetails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetails_CellContentClick);
-            this.dgvDetails.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetails_CellEndEdit);
-            this.dgvDetails.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetails_CellValidated);
-            this.dgvDetails.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvDetails_CellValidating);
-            this.dgvDetails.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.dgvDetails_RowStateChanged);
-            // 
-            // panel9
-            // 
-            this.panel9.Controls.Add(this.panel12);
-            this.panel9.Controls.Add(this.label3);
-            this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel9.Location = new System.Drawing.Point(0, 0);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(892, 36);
-            this.panel9.TabIndex = 1;
-            // 
-            // panel12
-            // 
-            this.panel12.Controls.Add(this.DelDetailBtn);
-            this.panel12.Controls.Add(this.NewDetailBtn);
-            this.panel12.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel12.Location = new System.Drawing.Point(692, 0);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(200, 36);
-            this.panel12.TabIndex = 5;
-            // 
-            // DelDetailBtn
-            // 
-            this.DelDetailBtn.Location = new System.Drawing.Point(111, 7);
-            this.DelDetailBtn.Name = "DelDetailBtn";
-            this.DelDetailBtn.Size = new System.Drawing.Size(71, 23);
-            this.DelDetailBtn.TabIndex = 4;
-            this.DelDetailBtn.Text = "Delete";
-            this.DelDetailBtn.UseVisualStyleBackColor = true;
-            this.DelDetailBtn.Click += new System.EventHandler(this.DelDetailBtn_Click);
-            // 
-            // NewDetailBtn
-            // 
-            this.NewDetailBtn.Location = new System.Drawing.Point(22, 7);
-            this.NewDetailBtn.Name = "NewDetailBtn";
-            this.NewDetailBtn.Size = new System.Drawing.Size(75, 23);
-            this.NewDetailBtn.TabIndex = 3;
-            this.NewDetailBtn.Text = "New ";
-            this.NewDetailBtn.UseVisualStyleBackColor = true;
-            this.NewDetailBtn.Click += new System.EventHandler(this.NewDetailBtn_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 12);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(34, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Detail";
+            this.panel13.Controls.Add(this.panel5);
+            this.panel13.Controls.Add(this.panel6);
+            this.panel13.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel13.Location = new System.Drawing.Point(0, 197);
+            this.panel13.Name = "panel13";
+            this.panel13.Size = new System.Drawing.Size(892, 512);
+            this.panel13.TabIndex = 5;
             // 
             // panel5
             // 
@@ -349,7 +242,7 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(0, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(892, 130);
+            this.panel5.Size = new System.Drawing.Size(892, 265);
             this.panel5.TabIndex = 1;
             // 
             // dgvOptions
@@ -392,6 +285,7 @@
             this.dgvOptions.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvOptions.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvOptions.Location = new System.Drawing.Point(0, 42);
+            this.dgvOptions.MultiSelect = false;
             this.dgvOptions.Name = "dgvOptions";
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
@@ -402,11 +296,12 @@
             dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvOptions.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvOptions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvOptions.Size = new System.Drawing.Size(892, 88);
+            this.dgvOptions.Size = new System.Drawing.Size(892, 223);
             this.dgvOptions.TabIndex = 1;
             this.dgvOptions.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOptions_CellClick);
             this.dgvOptions.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOptions_CellContentClick);
             this.dgvOptions.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOptions_CellEndEdit);
+            this.dgvOptions.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvOptions_CellFormatting);
             this.dgvOptions.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOptions_CellLeave);
             this.dgvOptions.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvOptions_CellValidating);
             this.dgvOptions.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOptions_RowEnter);
@@ -461,6 +356,125 @@
             this.label2.Size = new System.Drawing.Size(38, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "Option";
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.dgvDetails);
+            this.panel6.Controls.Add(this.panel9);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel6.Location = new System.Drawing.Point(0, 265);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(892, 247);
+            this.panel6.TabIndex = 2;
+            // 
+            // dgvDetails
+            // 
+            this.dgvDetails.AllowUserToAddRows = false;
+            this.dgvDetails.AutoGenerateColumns = false;
+            this.dgvDetails.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDetails.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            this.dgvDetails.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDetails.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.DetailOID,
+            this.DetailName,
+            this.DetailItemNo,
+            this.DetailItemSuplNo,
+            this.DetailItemName,
+            this.DetailWrksId,
+            this.DetailWrksName,
+            this.DetailBaseSelPr,
+            this.DetailBuyPr,
+            this.DetailSelPr,
+            this.DetailInfo,
+            this.DetailQuantity,
+            this.DetailisAvailable,
+            this.DetailisMarkDeleted});
+            this.dgvDetails.DataSource = this.sCOptionDetailBindingSource;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvDetails.DefaultCellStyle = dataGridViewCellStyle13;
+            this.dgvDetails.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvDetails.Location = new System.Drawing.Point(0, 36);
+            this.dgvDetails.MultiSelect = false;
+            this.dgvDetails.Name = "dgvDetails";
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDetails.RowHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            this.dgvDetails.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvDetails.Size = new System.Drawing.Size(892, 211);
+            this.dgvDetails.TabIndex = 0;
+            this.dgvDetails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetails_CellContentClick);
+            this.dgvDetails.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetails_CellEndEdit);
+            this.dgvDetails.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvDetails_CellFormatting);
+            this.dgvDetails.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetails_CellValidated);
+            this.dgvDetails.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvDetails_CellValidating);
+            this.dgvDetails.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.dgvDetails_RowStateChanged);
+            // 
+            // panel9
+            // 
+            this.panel9.Controls.Add(this.panel12);
+            this.panel9.Controls.Add(this.label3);
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel9.Location = new System.Drawing.Point(0, 0);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(892, 36);
+            this.panel9.TabIndex = 1;
+            // 
+            // panel12
+            // 
+            this.panel12.Controls.Add(this.DelDetailBtn);
+            this.panel12.Controls.Add(this.NewDetailBtn);
+            this.panel12.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel12.Location = new System.Drawing.Point(692, 0);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(200, 36);
+            this.panel12.TabIndex = 5;
+            // 
+            // DelDetailBtn
+            // 
+            this.DelDetailBtn.Location = new System.Drawing.Point(111, 7);
+            this.DelDetailBtn.Name = "DelDetailBtn";
+            this.DelDetailBtn.Size = new System.Drawing.Size(71, 23);
+            this.DelDetailBtn.TabIndex = 4;
+            this.DelDetailBtn.Text = "Delete";
+            this.DelDetailBtn.UseVisualStyleBackColor = true;
+            this.DelDetailBtn.Click += new System.EventHandler(this.DelDetailBtn_Click);
+            // 
+            // NewDetailBtn
+            // 
+            this.NewDetailBtn.Location = new System.Drawing.Point(22, 7);
+            this.NewDetailBtn.Name = "NewDetailBtn";
+            this.NewDetailBtn.Size = new System.Drawing.Size(75, 23);
+            this.NewDetailBtn.TabIndex = 3;
+            this.NewDetailBtn.Text = "New ";
+            this.NewDetailBtn.UseVisualStyleBackColor = true;
+            this.NewDetailBtn.Click += new System.EventHandler(this.NewDetailBtn_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 12);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(34, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Detail";
             // 
             // panel4
             // 
@@ -528,7 +542,8 @@
             this.dataGridViewCategory.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCategory_CellClick);
             this.dataGridViewCategory.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCategory_CellContentClick);
             this.dataGridViewCategory.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCategory_CellEndEdit);
-            this.dataGridViewCategory.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCategory_CellLeave);
+            this.dataGridViewCategory.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewCategory_CellFormatting);
+            this.dataGridViewCategory.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCategory_CellValueChanged);
             this.dataGridViewCategory.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCategory_CellValidated);
             this.dataGridViewCategory.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridViewCategory_CellValidating);
             this.dataGridViewCategory.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCategory_CellValueChanged);
@@ -585,16 +600,6 @@
             this.label1.Size = new System.Drawing.Size(49, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Category";
-            // 
-            // panel13
-            // 
-            this.panel13.Controls.Add(this.panel5);
-            this.panel13.Controls.Add(this.panel6);
-            this.panel13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel13.Location = new System.Drawing.Point(0, 197);
-            this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(892, 377);
-            this.panel13.TabIndex = 5;
             // 
             // OptionOID
             // 
@@ -971,33 +976,32 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1196, 574);
+            this.ClientSize = new System.Drawing.Size(1196, 709);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "SCOptionList";
             this.Text = "Options";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SCOptionList_FormClosed);
             this.Load += new System.EventHandler(this.SCOptionList_Load);
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            this.panel6.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDetails)).EndInit();
-            this.panel9.ResumeLayout(false);
-            this.panel9.PerformLayout();
-            this.panel12.ResumeLayout(false);
+            this.panel13.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvOptions)).EndInit();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
             this.panel11.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvDetails)).EndInit();
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
+            this.panel12.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCategory)).EndInit();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             this.panel10.ResumeLayout(false);
-            this.panel13.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.sCOptionBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sCOptionDetailBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sCOptionCategoryBindingSource)).EndInit();
@@ -1055,20 +1059,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DetailQuantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn DetailisAvailable;
         private System.Windows.Forms.DataGridViewCheckBoxColumn DetailisMarkDeleted;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OptionOID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OptionName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OptionItemNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OptionItemSuplNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OptionItemName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OptionWrksId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OptionWrksName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OptionBaseSelPr;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OptionBuyPr;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OptionSelPr;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OptionInfo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OptionQuantity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OPptionisAvailable;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn OptionisMarkDeleted;
         private System.Windows.Forms.DataGridViewTextBoxColumn OID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Category;
         private System.Windows.Forms.DataGridViewTextBoxColumn ItemNo;
@@ -1084,5 +1074,19 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn isAvailable;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isMarkDeleted;
         private System.Windows.Forms.Panel panel13;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OptionOID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OptionName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OptionItemNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OptionItemSuplNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OptionItemName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OptionWrksId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OptionWrksName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OptionBaseSelPr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OptionBuyPr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OptionSelPr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OptionInfo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OptionQuantity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OPptionisAvailable;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn OptionisMarkDeleted;
     }
 }

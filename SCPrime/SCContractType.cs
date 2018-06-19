@@ -27,14 +27,15 @@ namespace SCPrime
         public Form1()
         {
             InitializeComponent();
+            this.Visible = false;
             this.sCContractTypes = new List<SCContractType>();
             this.datasource = new List<SCContractType>(); ;
         }
-        public Form1 instance
+        public static Form1 instance
         {
             get
             {
-                if (Form1._instance == null)
+                if (Form1._instance == null || Form1._instance.IsDisposed)
                 {
                     Form1._instance = new Form1();
                 }
@@ -53,6 +54,7 @@ namespace SCPrime
             datasource = sb.getContractTypes();
             this.dt = ObjectUtils.ConvertToDataTable(datasource);
             contractTypeList.DataSource = this.dt;
+            this.Visible = true;
 
         }
         private void loaddata()
@@ -109,10 +111,12 @@ namespace SCPrime
                             {
                                 row["isMarkDeleted"] = 0;
                                 this.sCContractTypes.Remove(sc);
+                                ViewUtils.remarkHeader(r,Constant.isMarkDeleted);
                             }
                             else
                             {
                                 row["isMarkDeleted"] = 1;
+                                ViewUtils.remarkHeader(r, Constant.isMarkDeleted);
                             }
                             //MessageBox.Show(row["isMarkDeleted"].ToString());
                         }
@@ -139,15 +143,20 @@ namespace SCPrime
             DataRow drToAdd = dataTable.NewRow();
 
             drToAdd["OID"] = newOid;
-            drToAdd["Name"] = "ContractType";
-            drToAdd["isInvoice"] = true;
-            drToAdd["isActive"] = true;
-            drToAdd["isCollective"] = true;
+            //drToAdd["Name"] = "";
+            drToAdd["isInvoice"] = false;
+            drToAdd["isActive"] = false;
+            drToAdd["isCollective"] = false;
             drToAdd["isMarkDeleted"] = false;
 
             dataTable.Rows.InsertAt(drToAdd, 0);
             dataTable.AcceptChanges();
             this.contractTypeList.Refresh();
+            this.contractTypeList.Rows[0].Selected = true;
+
+            DataGridViewCell cell = contractTypeList.Rows[0].Cells["ContractTypeName"];
+            contractTypeList.CurrentCell = cell;
+            this.contractTypeList.BeginEdit(true);
 
             newOid = newOid - 1;
 
@@ -264,10 +273,10 @@ namespace SCPrime
 
         private void contractTypeList_RowValidated(object sender, DataGridViewCellEventArgs e)
         {
-            int rowIndex = e.RowIndex;
-            DataGridViewRow row = contractTypeList.Rows[rowIndex];
-            // change color
-            ViewUtils.changeColor(row, Constant.isMarkDeleted);
+            //int rowIndex = e.RowIndex;
+            //DataGridViewRow row = contractTypeList.Rows[rowIndex];
+            //// change color
+            //ViewUtils.changeColor(row, Constant.isMarkDeleted);
         }
     }
 }

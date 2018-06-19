@@ -41,7 +41,7 @@ namespace SCPrime
 
                 this.Text = objGlobal.DMSFirstUserName + "@" + objAppConfig.getSiteNameOnScreen();//+ this.Text;
                 _log.Info("Version = " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString() + ", Title = " + this.Text);
-                
+
                 this.Visible = true;
                 this.WindowState = FormWindowState.Maximized;
 
@@ -64,10 +64,10 @@ namespace SCPrime
 
         private void contractTypeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form1 f1 = new Form1();
-            f1.instance.Show();
-            f1.instance.Focus();
-            f1.instance.BringToFront();
+            // Form1 f1 = new Form1();
+            Form1.instance.Show();
+            Form1.instance.Focus();
+            Form1.instance.BringToFront();
         }
 
         private void optionListToolStripMenuItem_Click(object sender, EventArgs e)
@@ -78,18 +78,13 @@ namespace SCPrime
 
         private void contractTypeToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Form1 f1 = new Form1();
-            f1.instance.Show();
-            f1.instance.Focus();
-            f1.instance.BringToFront();
+            Form1.instance.ShowDialog();
         }
 
         private void optionListToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            SCOptionList f1 = new SCOptionList();
-            f1.instance.Show();
-            f1.instance.Focus();
-            f1.instance.BringToFront();
+            SCOptionList.instance.ShowDialog();
+           
         }
 
         private void optionPriceListToolStripMenuItem1_Click(object sender, EventArgs e)

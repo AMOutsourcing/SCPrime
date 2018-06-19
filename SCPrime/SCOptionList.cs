@@ -45,6 +45,7 @@ namespace SCPrime
         public SCOptionList()
         {
             InitializeComponent();
+            this.Visible = false;
             this.saveCategories = new List<SCOptionCategory>();
             this.saveOptions = new List<SCOption>();
             this.optionSelected = new SCOption();
@@ -59,11 +60,11 @@ namespace SCPrime
             //MessageBox.Show(i.ToString("c", oldCI));
 
         }
-        public SCOptionList instance
+        public static SCOptionList instance
         {
             get
             {
-                if (SCOptionList._instance == null)
+                if (SCOptionList._instance == null || SCOptionList._instance.IsDisposed)
                 {
                     SCOptionList._instance = new SCOptionList();
                 }
@@ -76,38 +77,12 @@ namespace SCPrime
         {
             loadCategoryData();
             loadTree();
+            this.Visible = true;
 
         }
 
         private void dataGridViewCategory_CellLeave(object sender, DataGridViewCellEventArgs e)
         {
-
-            //int rowIndex = e.RowIndex;
-            //int colIndex = e.ColumnIndex;
-            //// MessageBox.Show(colIndex.ToString());
-
-            //DataGridViewRow row = dataGridViewCategory.Rows[rowIndex];
-            //SCOptionCategory sc = new SCOptionCategory();
-            //sc = RowToCategory(row);
-            ////MessageBox.Show(sc.isActive.ToString());
-
-            //var item = this.saveCategories.SingleOrDefault(x => x.OID == sc.OID);
-            //var index = saveCategories.IndexOf(item);
-
-
-
-            //if (item != null)
-            //{
-            //    sc.Options = item.Options;
-            //    if (index != -1)
-            //        this.saveCategories[index] = sc;
-            //}
-            //else
-            //{
-            //    this.saveCategories.Add(sc);
-            //}
-
-
         }
         private void dataGridViewCategory_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
         {
@@ -123,7 +98,7 @@ namespace SCPrime
                 {
                     this.categorySelected = this.saveCategories.Find(x => x.OID == this.CategoryOidSelected);
                 }
-                if (this.categorySelected.Options == null)
+                if (this.categorySelected != null && this.categorySelected.Options == null)
                 {
                     this.categorySelected.Options = new List<SCOption>();
 
@@ -161,7 +136,7 @@ namespace SCPrime
 
 
             loadCategoryData();
-             loadTree();
+            loadTree();
 
         }
 
@@ -210,6 +185,8 @@ namespace SCPrime
 
 
                     }
+                    // change color
+                    ViewUtils.remarkHeader(r, Constant.isMarkDeleted);
                 }
                 //this.categoryDataTable.AcceptChanges();
                 //dataGridViewCategory.Refresh();
@@ -240,14 +217,20 @@ namespace SCPrime
             DataRow drToAdd = categoryDataTable.NewRow();
 
             drToAdd[Constant.OID] = newOid;
-            drToAdd[Constant.Name] = "NewCategory";
+            //drToAdd[Constant.Name] = "";
             drToAdd[Constant.InvoiceFlag] = 0;
             drToAdd[Constant.isMarkDeleted] = false;
             drToAdd[Constant.isAvailable] = 1;
 
+
             categoryDataTable.Rows.InsertAt(drToAdd, 0);
-            // categoryDataTable.AcceptChanges();
+            //categoryDataTable.AcceptChanges();
             dataGridViewCategory.Refresh();
+            // dataGridViewCategory.Rows[0].Selected = true;
+
+            DataGridViewCell cell = dataGridViewCategory.Rows[0].Cells[Constant.CategoryName];
+            dataGridViewCategory.CurrentCell = cell;
+            this.dataGridViewCategory.BeginEdit(true);
 
 
             foreach (DataGridViewRow r in dataGridViewCategory.Rows)
@@ -273,7 +256,7 @@ namespace SCPrime
 
         private void dataGridViewCategory_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            if (dataGridViewCategory.Columns[e.ColumnIndex].Name == Constant.PurcharPrice || 
+            if (dataGridViewCategory.Columns[e.ColumnIndex].Name == Constant.PurcharPrice ||
                 dataGridViewCategory.Columns[e.ColumnIndex].Name == Constant.SalePrice)
             {
                 double i;
@@ -285,7 +268,7 @@ namespace SCPrime
                 }
                 else
                 {
-                    dataGridViewCategory.Rows[e.RowIndex].Cells[e.ColumnIndex].Value= Convert.ToDecimal(e.FormattedValue, this.oldCI);
+                    dataGridViewCategory.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Convert.ToDecimal(e.FormattedValue, this.oldCI);
                 }
             }
         }
@@ -313,7 +296,7 @@ namespace SCPrime
 
             DataGridViewRow row = dataGridViewCategory.Rows[rowIndex];
             //find object in list 
-            var item2 = this.saveCategories.Single(x => x.OID == (int)dataGridViewCategory.Rows[rowIndex].Cells["OID"].Value);
+            var item2 = this.saveCategories.SingleOrDefault(x => x.OID == (int)dataGridViewCategory.Rows[rowIndex].Cells["OID"].Value);
             if (item2 != null)
             {
                 SCOptionCategory sc = new SCOptionCategory();
@@ -325,14 +308,15 @@ namespace SCPrime
                     sc.Options = item.Options;
                     if (index != -1)
                         this.saveCategories[index] = sc;
+                    this.categorySelected = item;
                 }
                 else
                 {
                     this.saveCategories.Add(sc);
+                    this.categorySelected = sc;
                 }
             }
-            // change color
-            ViewUtils.changeColor(row, Constant.isMarkDeleted);
+
         }
 
         private void dgvDetails_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -483,6 +467,7 @@ namespace SCPrime
             sc.Info = row.Cells["Info"].Value.ToString();
             sc.isAvailable = (int)row.Cells["isAvailable"].Value;
             sc.isMarkDeleted = (bool)row.Cells["isMarkDeleted"].Value;
+            sc.Options = new List<SCOption>();
 
 
             var temp1 = 0;
@@ -554,7 +539,7 @@ namespace SCPrime
                 optionTable = ObjectUtils.ConvertToDataTable(myOptions);
                 this.dgvOptions.DataSource = optionTable;
             }
-            else if (CategoryOid < 0)
+            else if (this.categorySelected != null && CategoryOid < 0)
             {
                 this.categorySelected = this.saveCategories.Find(x => x.OID == CategoryOid);
                 List<SCOption> myOptions = this.categorySelected.Options;
@@ -585,7 +570,7 @@ namespace SCPrime
             {
                 clearDetailView();
             }
-            
+
         }
 
 
@@ -615,23 +600,24 @@ namespace SCPrime
             DataRow myRow = dataTable.NewRow();
 
             myRow["OID"] = newOptionOid;
-            myRow["Name"] = "NewOption";
-            myRow["ItemNo"] = "ItemNo";
-            myRow["ItemSuplNo"] = "ItemSuplNo";
-            myRow["ItemName"] = "ItemName";
-            myRow["WrksId"] = "WrksId";
-            myRow["WrksName"] = "WrksName";
-            myRow["BaseSelPr"] = 0m;
-            myRow["BuyPr"] = 0m;
-            myRow["SelPr"] = 0m;
-            myRow["Info"] = "Info";
-            myRow["Quantity"] = 0;
-            myRow["isAvailable"] = 1;
-            myRow["isAvailable"] = 1;
+            //myRow["Name"] = "NewOption";
+            //myRow["ItemNo"] = "ItemNo";
+            //myRow["ItemSuplNo"] = "ItemSuplNo";
+            //myRow["ItemName"] = "ItemName";
+            //myRow["WrksId"] = "WrksId";
+            //myRow["WrksName"] = "WrksName";
+            //myRow["BaseSelPr"] = 0m;
+            //myRow["BuyPr"] = 0m;
+            //myRow["SelPr"] = 0m;
+            //myRow["Info"] = "Info";
+            //myRow["Quantity"] = 0;
+            //myRow["isAvailable"] = 1;
+            //myRow["isAvailable"] = 1;
 
             myRow["isMarkDeleted"] = 0;
 
-            dataTable.Rows.Add(myRow);
+            dataTable.Rows.InsertAt(myRow, 0);
+
 
             //if (dataTable.Rows.Count == 0)
             //    dataTable.Rows.Add(myRow);
@@ -640,6 +626,11 @@ namespace SCPrime
 
             dataTable.AcceptChanges();
             this.dgvOptions.DataSource = dataTable;
+            // this.dgvOptions.Rows[0].Selected = true;
+
+            DataGridViewCell cell = dgvOptions.Rows[0].Cells[Constant.OptionName];
+            dgvOptions.CurrentCell = cell;
+            this.dgvOptions.BeginEdit(true);
 
             foreach (DataGridViewRow r in dgvOptions.Rows)
             {
@@ -673,6 +664,7 @@ namespace SCPrime
 
             }
             newOptionOid = newOptionOid - 1;
+            clearDetailView();
         }
 
 
@@ -725,11 +717,16 @@ namespace SCPrime
                                 row["isMarkDeleted"] = 1;
                             }
                         }
+
                     }
+                    //remark row delete
+                    ViewUtils.remarkHeader(r, Constant.OptionisMarkDeleted);
+
                 }
                 this.optionTable.AcceptChanges();
                 this.UpdateCategoryList(this.categorySelected);
                 dgvOptions.Refresh();
+
 
             }
         }
@@ -753,15 +750,18 @@ namespace SCPrime
             if (item == null)
             {
                 this.categorySelected.Options.Add(sc);
+                this.optionSelected = sc;
             }
             else
             {
                 sc.OptionDetails = item.OptionDetails;
                 this.categorySelected.Options.Remove(item);
                 this.categorySelected.Options.Add(sc);
+                this.optionSelected = item;
             }
             this.UpdateCategoryList(this.categorySelected);
-            
+          
+
         }
 
         private void dgvOptions_CellLeave(object sender, DataGridViewCellEventArgs e)
@@ -823,13 +823,11 @@ namespace SCPrime
 
                 }
             }
+
         }
         private void dgvOptions_RowValidated(object sender, DataGridViewCellEventArgs e)
         {
-            int rowIndex = e.RowIndex;
-            DataGridViewRow row = dgvOptions.Rows[rowIndex];
-            // change color
-            ViewUtils.changeColor(row, Constant.OptionisMarkDeleted);
+
         }
         private void dgvOptions_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
@@ -999,26 +997,33 @@ namespace SCPrime
             DataRow myRow = this.detailTable.NewRow();
 
             myRow["OID"] = newDetailOid;
-            myRow["Name"] = "New Detail";
-            myRow["ItemNo"] = "ItemNo";
-            myRow["ItemSuplNo"] = "ItemSuplNo";
-            myRow["ItemName"] = "ItemName";
-            myRow["WrksId"] = "WrksId";
-            myRow["WrksName"] = "WrksName";
-            myRow["BaseSelPr"] = 0m;
-            myRow["BuyPr"] = 0m;
-            myRow["SelPr"] = 0m;
-            myRow["Info"] = "Info";
-            myRow["Quantity"] = 0;
-            myRow["isAvailable"] = 1;
-            myRow["isAvailable"] = 1;
+            //myRow["Name"] = "New Detail";
+            //myRow["ItemNo"] = "ItemNo";
+            //myRow["ItemSuplNo"] = "ItemSuplNo";
+            //myRow["ItemName"] = "ItemName";
+            //myRow["WrksId"] = "WrksId";
+            //myRow["WrksName"] = "WrksName";
+            //myRow["BaseSelPr"] = 0m;
+            //myRow["BuyPr"] = 0m;
+            //myRow["SelPr"] = 0m;
+            //myRow["Info"] = "Info";
+            //myRow["Quantity"] = 0;
+            //myRow["isAvailable"] = 1;
+            //myRow["isAvailable"] = 1;
 
             myRow["isMarkDeleted"] = 0;
 
-            this.detailTable.Rows.Add(myRow);
+            this.detailTable.Rows.InsertAt(myRow, 0);
             this.detailTable.AcceptChanges();
             this.dgvDetails.DataSource = this.detailTable;
             this.dgvDetails.Refresh();
+            this.dgvDetails.Rows[0].Selected = true;
+
+            DataGridViewCell cell = dgvDetails.Rows[0].Cells[Constant.DetailName];
+            dgvDetails.CurrentCell = cell;
+            this.dgvDetails.BeginEdit(true);
+
+
 
             foreach (DataGridViewRow r in dgvDetails.Rows)
             {
@@ -1146,6 +1151,8 @@ namespace SCPrime
                             }
                         }
                     }
+                    //remark row delete
+                    ViewUtils.remarkHeader(r, Constant.DetailisMarkDeleted);
                 }
                 dgvDetails.Refresh();
                 // this.UpdateOptionList(this.categorySelected);
@@ -1239,10 +1246,38 @@ namespace SCPrime
 
         private void dgvDetails_CellValidated(object sender, DataGridViewCellEventArgs e)
         {
-            int rowIndex = e.RowIndex;
-            DataGridViewRow row = dgvDetails.Rows[rowIndex];
-            // change color
-            ViewUtils.changeColor(row, Constant.DetailisMarkDeleted);
+            //int rowIndex = e.RowIndex;
+            //DataGridViewRow row = dgvDetails.Rows[rowIndex];
+            //// change color
+            //ViewUtils.changeColor(row, Constant.DetailisMarkDeleted);
+        }
+
+
+
+        private void dgvOptions_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            //remark row delete
+            if (e.RowIndex > -1)
+            {
+                ViewUtils.remarkHeader(this.dgvOptions.Rows[e.RowIndex], Constant.OptionisMarkDeleted);
+            }
+        }
+
+        private void dataGridViewCategory_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                ViewUtils.remarkHeader(this.dataGridViewCategory.Rows[e.RowIndex], Constant.isMarkDeleted);
+            }
+        }
+
+        private void dgvDetails_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                ViewUtils.remarkHeader(this.dgvDetails.Rows[e.RowIndex], Constant.DetailisMarkDeleted);
+            }
+
         }
     }
 }
