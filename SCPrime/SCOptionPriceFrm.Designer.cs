@@ -33,34 +33,30 @@
             this.cbContactType = new System.Windows.Forms.ComboBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.gridPrice = new System.Windows.Forms.DataGridView();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.sCOptionPriceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pnRight = new System.Windows.Forms.Panel();
             this.pnTop = new System.Windows.Forms.Panel();
-            this.pnGrid = new System.Windows.Forms.Panel();
-            this.oIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.categoryNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.optionNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.optionDetailNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.includeDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.optionalDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.notAvailableDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.excludeDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.contractTypeOIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.optionCategoryOIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.optionOIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.optionDetailOIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isAvailableDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.infoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.createdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gridPrice = new System.Windows.Forms.DataGridView();
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sCOptionPriceBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.gridPrice)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.createdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.infoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isAvailableDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.optionDetailOIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.optionOIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.optionCategoryOIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contractTypeOIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.excludeDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.notAvailableDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.optionalDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.includeDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.optionDetailNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.optionNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.categoryNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.oIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.sCOptionPriceBindingSource)).BeginInit();
             this.pnRight.SuspendLayout();
             this.pnTop.SuspendLayout();
-            this.pnGrid.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sCOptionPriceBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridPrice)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -102,6 +98,30 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // sCOptionPriceBindingSource
+            // 
+            this.sCOptionPriceBindingSource.DataSource = typeof(SCPrime.Model.SCOptionPrice);
+            // 
+            // pnRight
+            // 
+            this.pnRight.Controls.Add(this.btnSave);
+            this.pnRight.Controls.Add(this.btnClose);
+            this.pnRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pnRight.Location = new System.Drawing.Point(680, 0);
+            this.pnRight.Name = "pnRight";
+            this.pnRight.Size = new System.Drawing.Size(120, 450);
+            this.pnRight.TabIndex = 6;
+            // 
+            // pnTop
+            // 
+            this.pnTop.Controls.Add(this.cbContactType);
+            this.pnTop.Controls.Add(this.label1);
+            this.pnTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnTop.Location = new System.Drawing.Point(0, 0);
+            this.pnTop.Name = "pnTop";
+            this.pnTop.Size = new System.Drawing.Size(680, 45);
+            this.pnTop.TabIndex = 7;
+            // 
             // gridPrice
             // 
             this.gridPrice.AllowUserToAddRows = false;
@@ -128,152 +148,13 @@
             this.modifiedDataGridViewTextBoxColumn});
             this.gridPrice.DataSource = this.sCOptionPriceBindingSource;
             this.gridPrice.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridPrice.Location = new System.Drawing.Point(0, 0);
+            this.gridPrice.Location = new System.Drawing.Point(0, 45);
             this.gridPrice.Name = "gridPrice";
-            this.gridPrice.Size = new System.Drawing.Size(800, 450);
+            this.gridPrice.Size = new System.Drawing.Size(680, 405);
             this.gridPrice.TabIndex = 2;
             this.gridPrice.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridPrice_CellContentClick);
             this.gridPrice.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridPrice_CellDoubleClick);
             this.gridPrice.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridPrice_CellValueChanged);
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.pnGrid);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 450);
-            this.panel1.TabIndex = 5;
-            // 
-            // pnRight
-            // 
-            this.pnRight.Controls.Add(this.btnSave);
-            this.pnRight.Controls.Add(this.btnClose);
-            this.pnRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnRight.Location = new System.Drawing.Point(680, 0);
-            this.pnRight.Name = "pnRight";
-            this.pnRight.Size = new System.Drawing.Size(120, 450);
-            this.pnRight.TabIndex = 6;
-            // 
-            // pnTop
-            // 
-            this.pnTop.Controls.Add(this.cbContactType);
-            this.pnTop.Controls.Add(this.label1);
-            this.pnTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnTop.Location = new System.Drawing.Point(0, 0);
-            this.pnTop.Name = "pnTop";
-            this.pnTop.Size = new System.Drawing.Size(680, 45);
-            this.pnTop.TabIndex = 7;
-            // 
-            // pnGrid
-            // 
-            this.pnGrid.Controls.Add(this.gridPrice);
-            this.pnGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnGrid.Location = new System.Drawing.Point(0, 0);
-            this.pnGrid.Name = "pnGrid";
-            this.pnGrid.Size = new System.Drawing.Size(800, 450);
-            this.pnGrid.TabIndex = 3;
-            // 
-            // oIDDataGridViewTextBoxColumn
-            // 
-            this.oIDDataGridViewTextBoxColumn.DataPropertyName = "OID";
-            this.oIDDataGridViewTextBoxColumn.HeaderText = "OID";
-            this.oIDDataGridViewTextBoxColumn.Name = "oIDDataGridViewTextBoxColumn";
-            this.oIDDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // categoryNameDataGridViewTextBoxColumn
-            // 
-            this.categoryNameDataGridViewTextBoxColumn.DataPropertyName = "CategoryName";
-            this.categoryNameDataGridViewTextBoxColumn.HeaderText = "CategoryName";
-            this.categoryNameDataGridViewTextBoxColumn.Name = "categoryNameDataGridViewTextBoxColumn";
-            this.categoryNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // optionNameDataGridViewTextBoxColumn
-            // 
-            this.optionNameDataGridViewTextBoxColumn.DataPropertyName = "OptionName";
-            this.optionNameDataGridViewTextBoxColumn.HeaderText = "OptionName";
-            this.optionNameDataGridViewTextBoxColumn.Name = "optionNameDataGridViewTextBoxColumn";
-            this.optionNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // optionDetailNameDataGridViewTextBoxColumn
-            // 
-            this.optionDetailNameDataGridViewTextBoxColumn.DataPropertyName = "OptionDetailName";
-            this.optionDetailNameDataGridViewTextBoxColumn.HeaderText = "OptionDetailName";
-            this.optionDetailNameDataGridViewTextBoxColumn.Name = "optionDetailNameDataGridViewTextBoxColumn";
-            this.optionDetailNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // includeDataGridViewCheckBoxColumn
-            // 
-            this.includeDataGridViewCheckBoxColumn.DataPropertyName = "Include";
-            this.includeDataGridViewCheckBoxColumn.HeaderText = "Include";
-            this.includeDataGridViewCheckBoxColumn.Name = "includeDataGridViewCheckBoxColumn";
-            // 
-            // optionalDataGridViewCheckBoxColumn
-            // 
-            this.optionalDataGridViewCheckBoxColumn.DataPropertyName = "Optional";
-            this.optionalDataGridViewCheckBoxColumn.HeaderText = "Optional";
-            this.optionalDataGridViewCheckBoxColumn.Name = "optionalDataGridViewCheckBoxColumn";
-            // 
-            // notAvailableDataGridViewCheckBoxColumn
-            // 
-            this.notAvailableDataGridViewCheckBoxColumn.DataPropertyName = "NotAvailable";
-            this.notAvailableDataGridViewCheckBoxColumn.HeaderText = "NotAvailable";
-            this.notAvailableDataGridViewCheckBoxColumn.Name = "notAvailableDataGridViewCheckBoxColumn";
-            // 
-            // excludeDataGridViewCheckBoxColumn
-            // 
-            this.excludeDataGridViewCheckBoxColumn.DataPropertyName = "Exclude";
-            this.excludeDataGridViewCheckBoxColumn.HeaderText = "Exclude";
-            this.excludeDataGridViewCheckBoxColumn.Name = "excludeDataGridViewCheckBoxColumn";
-            // 
-            // contractTypeOIDDataGridViewTextBoxColumn
-            // 
-            this.contractTypeOIDDataGridViewTextBoxColumn.DataPropertyName = "ContractTypeOID";
-            this.contractTypeOIDDataGridViewTextBoxColumn.HeaderText = "ContractTypeOID";
-            this.contractTypeOIDDataGridViewTextBoxColumn.Name = "contractTypeOIDDataGridViewTextBoxColumn";
-            this.contractTypeOIDDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // optionCategoryOIDDataGridViewTextBoxColumn
-            // 
-            this.optionCategoryOIDDataGridViewTextBoxColumn.DataPropertyName = "OptionCategoryOID";
-            this.optionCategoryOIDDataGridViewTextBoxColumn.HeaderText = "OptionCategoryOID";
-            this.optionCategoryOIDDataGridViewTextBoxColumn.Name = "optionCategoryOIDDataGridViewTextBoxColumn";
-            this.optionCategoryOIDDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // optionOIDDataGridViewTextBoxColumn
-            // 
-            this.optionOIDDataGridViewTextBoxColumn.DataPropertyName = "OptionOID";
-            this.optionOIDDataGridViewTextBoxColumn.HeaderText = "OptionOID";
-            this.optionOIDDataGridViewTextBoxColumn.Name = "optionOIDDataGridViewTextBoxColumn";
-            this.optionOIDDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // optionDetailOIDDataGridViewTextBoxColumn
-            // 
-            this.optionDetailOIDDataGridViewTextBoxColumn.DataPropertyName = "OptionDetailOID";
-            this.optionDetailOIDDataGridViewTextBoxColumn.HeaderText = "OptionDetailOID";
-            this.optionDetailOIDDataGridViewTextBoxColumn.Name = "optionDetailOIDDataGridViewTextBoxColumn";
-            this.optionDetailOIDDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // isAvailableDataGridViewTextBoxColumn
-            // 
-            this.isAvailableDataGridViewTextBoxColumn.DataPropertyName = "IsAvailable";
-            this.isAvailableDataGridViewTextBoxColumn.HeaderText = "IsAvailable";
-            this.isAvailableDataGridViewTextBoxColumn.Name = "isAvailableDataGridViewTextBoxColumn";
-            this.isAvailableDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // infoDataGridViewTextBoxColumn
-            // 
-            this.infoDataGridViewTextBoxColumn.DataPropertyName = "Info";
-            this.infoDataGridViewTextBoxColumn.HeaderText = "Info";
-            this.infoDataGridViewTextBoxColumn.Name = "infoDataGridViewTextBoxColumn";
-            this.infoDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // createdDataGridViewTextBoxColumn
-            // 
-            this.createdDataGridViewTextBoxColumn.DataPropertyName = "Created";
-            this.createdDataGridViewTextBoxColumn.HeaderText = "Created";
-            this.createdDataGridViewTextBoxColumn.Name = "createdDataGridViewTextBoxColumn";
-            this.createdDataGridViewTextBoxColumn.Visible = false;
             // 
             // modifiedDataGridViewTextBoxColumn
             // 
@@ -282,28 +163,123 @@
             this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
             this.modifiedDataGridViewTextBoxColumn.Visible = false;
             // 
-            // sCOptionPriceBindingSource
+            // createdDataGridViewTextBoxColumn
             // 
-            this.sCOptionPriceBindingSource.DataSource = typeof(SCPrime.Model.SCOptionPrice);
+            this.createdDataGridViewTextBoxColumn.DataPropertyName = "Created";
+            this.createdDataGridViewTextBoxColumn.HeaderText = "Created";
+            this.createdDataGridViewTextBoxColumn.Name = "createdDataGridViewTextBoxColumn";
+            this.createdDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // infoDataGridViewTextBoxColumn
+            // 
+            this.infoDataGridViewTextBoxColumn.DataPropertyName = "Info";
+            this.infoDataGridViewTextBoxColumn.HeaderText = "Info";
+            this.infoDataGridViewTextBoxColumn.Name = "infoDataGridViewTextBoxColumn";
+            this.infoDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // isAvailableDataGridViewTextBoxColumn
+            // 
+            this.isAvailableDataGridViewTextBoxColumn.DataPropertyName = "IsAvailable";
+            this.isAvailableDataGridViewTextBoxColumn.HeaderText = "IsAvailable";
+            this.isAvailableDataGridViewTextBoxColumn.Name = "isAvailableDataGridViewTextBoxColumn";
+            this.isAvailableDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // optionDetailOIDDataGridViewTextBoxColumn
+            // 
+            this.optionDetailOIDDataGridViewTextBoxColumn.DataPropertyName = "OptionDetailOID";
+            this.optionDetailOIDDataGridViewTextBoxColumn.HeaderText = "OptionDetailOID";
+            this.optionDetailOIDDataGridViewTextBoxColumn.Name = "optionDetailOIDDataGridViewTextBoxColumn";
+            this.optionDetailOIDDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // optionOIDDataGridViewTextBoxColumn
+            // 
+            this.optionOIDDataGridViewTextBoxColumn.DataPropertyName = "OptionOID";
+            this.optionOIDDataGridViewTextBoxColumn.HeaderText = "OptionOID";
+            this.optionOIDDataGridViewTextBoxColumn.Name = "optionOIDDataGridViewTextBoxColumn";
+            this.optionOIDDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // optionCategoryOIDDataGridViewTextBoxColumn
+            // 
+            this.optionCategoryOIDDataGridViewTextBoxColumn.DataPropertyName = "OptionCategoryOID";
+            this.optionCategoryOIDDataGridViewTextBoxColumn.HeaderText = "OptionCategoryOID";
+            this.optionCategoryOIDDataGridViewTextBoxColumn.Name = "optionCategoryOIDDataGridViewTextBoxColumn";
+            this.optionCategoryOIDDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // contractTypeOIDDataGridViewTextBoxColumn
+            // 
+            this.contractTypeOIDDataGridViewTextBoxColumn.DataPropertyName = "ContractTypeOID";
+            this.contractTypeOIDDataGridViewTextBoxColumn.HeaderText = "ContractTypeOID";
+            this.contractTypeOIDDataGridViewTextBoxColumn.Name = "contractTypeOIDDataGridViewTextBoxColumn";
+            this.contractTypeOIDDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // excludeDataGridViewCheckBoxColumn
+            // 
+            this.excludeDataGridViewCheckBoxColumn.DataPropertyName = "Exclude";
+            this.excludeDataGridViewCheckBoxColumn.HeaderText = "Exclude";
+            this.excludeDataGridViewCheckBoxColumn.Name = "excludeDataGridViewCheckBoxColumn";
+            // 
+            // notAvailableDataGridViewCheckBoxColumn
+            // 
+            this.notAvailableDataGridViewCheckBoxColumn.DataPropertyName = "NotAvailable";
+            this.notAvailableDataGridViewCheckBoxColumn.HeaderText = "NotAvailable";
+            this.notAvailableDataGridViewCheckBoxColumn.Name = "notAvailableDataGridViewCheckBoxColumn";
+            // 
+            // optionalDataGridViewCheckBoxColumn
+            // 
+            this.optionalDataGridViewCheckBoxColumn.DataPropertyName = "Optional";
+            this.optionalDataGridViewCheckBoxColumn.HeaderText = "Optional";
+            this.optionalDataGridViewCheckBoxColumn.Name = "optionalDataGridViewCheckBoxColumn";
+            // 
+            // includeDataGridViewCheckBoxColumn
+            // 
+            this.includeDataGridViewCheckBoxColumn.DataPropertyName = "Include";
+            this.includeDataGridViewCheckBoxColumn.HeaderText = "Include";
+            this.includeDataGridViewCheckBoxColumn.Name = "includeDataGridViewCheckBoxColumn";
+            // 
+            // optionDetailNameDataGridViewTextBoxColumn
+            // 
+            this.optionDetailNameDataGridViewTextBoxColumn.DataPropertyName = "OptionDetailName";
+            this.optionDetailNameDataGridViewTextBoxColumn.HeaderText = "OptionDetailName";
+            this.optionDetailNameDataGridViewTextBoxColumn.Name = "optionDetailNameDataGridViewTextBoxColumn";
+            this.optionDetailNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // optionNameDataGridViewTextBoxColumn
+            // 
+            this.optionNameDataGridViewTextBoxColumn.DataPropertyName = "OptionName";
+            this.optionNameDataGridViewTextBoxColumn.HeaderText = "OptionName";
+            this.optionNameDataGridViewTextBoxColumn.Name = "optionNameDataGridViewTextBoxColumn";
+            this.optionNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // categoryNameDataGridViewTextBoxColumn
+            // 
+            this.categoryNameDataGridViewTextBoxColumn.DataPropertyName = "CategoryName";
+            this.categoryNameDataGridViewTextBoxColumn.HeaderText = "CategoryName";
+            this.categoryNameDataGridViewTextBoxColumn.Name = "categoryNameDataGridViewTextBoxColumn";
+            this.categoryNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // oIDDataGridViewTextBoxColumn
+            // 
+            this.oIDDataGridViewTextBoxColumn.DataPropertyName = "OID";
+            this.oIDDataGridViewTextBoxColumn.HeaderText = "OID";
+            this.oIDDataGridViewTextBoxColumn.Name = "oIDDataGridViewTextBoxColumn";
+            this.oIDDataGridViewTextBoxColumn.Visible = false;
             // 
             // SCOptionPriceFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.gridPrice);
             this.Controls.Add(this.pnTop);
             this.Controls.Add(this.pnRight);
-            this.Controls.Add(this.panel1);
             this.Name = "SCOptionPriceFrm";
             this.Text = "SCOptionPrice";
             this.Load += new System.EventHandler(this.SCOptionPriceFrm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.gridPrice)).EndInit();
-            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.sCOptionPriceBindingSource)).EndInit();
             this.pnRight.ResumeLayout(false);
             this.pnTop.ResumeLayout(false);
             this.pnTop.PerformLayout();
-            this.pnGrid.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.sCOptionPriceBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridPrice)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -315,6 +291,8 @@
         private System.Windows.Forms.BindingSource sCOptionPriceBindingSource;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Panel pnRight;
+        private System.Windows.Forms.Panel pnTop;
         private System.Windows.Forms.DataGridView gridPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn oIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn categoryNameDataGridViewTextBoxColumn;
@@ -332,9 +310,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn infoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn createdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel pnRight;
-        private System.Windows.Forms.Panel pnTop;
-        private System.Windows.Forms.Panel pnGrid;
     }
 }

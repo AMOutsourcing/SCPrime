@@ -142,6 +142,7 @@
             this.contractTypeList.TabIndex = 0;
             this.contractTypeList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.contractTypeList_CellClick);
             this.contractTypeList.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.contractTypeList_CellEndEdit);
+            this.contractTypeList.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.contractTypeList_CellFormatting);
             this.contractTypeList.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.contractTypeList_RowEnter);
             this.contractTypeList.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.contractTypeList_RowHeaderMouseClick);
             this.contractTypeList.RowLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.contractTypeList_RowLeave);

@@ -132,11 +132,11 @@ namespace SCPrime
             SCContractType sc = new SCContractType(newOid);
 
 
-            sc.Name = "ContractType";
-            sc.isInvoice = true;
-            sc.isActive = true;
-            sc.isCollective = true;
-            sc.isMarkDeleted = false;
+            //sc.Name = "";
+            //sc.isInvoice = false;
+            //sc.isActive = false;
+            //sc.isCollective = false;
+            //sc.isMarkDeleted = false;
 
 
             DataTable dataTable = (DataTable)contractTypeList.DataSource;
@@ -145,7 +145,7 @@ namespace SCPrime
             drToAdd["OID"] = newOid;
             //drToAdd["Name"] = "";
             drToAdd["isInvoice"] = false;
-            drToAdd["isActive"] = false;
+            drToAdd["isActive"] = true;
             drToAdd["isCollective"] = false;
             drToAdd["isMarkDeleted"] = false;
 
@@ -277,6 +277,14 @@ namespace SCPrime
             //DataGridViewRow row = contractTypeList.Rows[rowIndex];
             //// change color
             //ViewUtils.changeColor(row, Constant.isMarkDeleted);
+        }
+
+        private void contractTypeList_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex > 0)
+            {
+                ViewUtils.remarkHeader(this.contractTypeList.Rows[e.RowIndex], Constant.isMarkDeleted);
+            }
         }
     }
 }

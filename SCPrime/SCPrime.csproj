@@ -99,12 +99,6 @@
       <DependentUpon>SCOptionPriceFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
-    <Compile Include="SCOptionPriceList.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SCOptionPriceList.Designer.cs">
-      <DependentUpon>SCOptionPriceList.cs</DependentUpon>
-    </Compile>
     <Compile Include="Utils\Constant.cs" />
     <Compile Include="Utils\ObjectUtils.cs" />
     <Compile Include="Utils\ViewUtils.cs" />
@@ -129,9 +123,6 @@
     <None Include="packages.config" />
     <EmbeddedResource Include="SCOptionPriceFrm.resx">
       <DependentUpon>SCOptionPriceFrm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SCOptionPriceList.resx">
-      <DependentUpon>SCOptionPriceList.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\DataSources\SCPrime.Model.ContractStatus.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.SCBase.datasource" />
