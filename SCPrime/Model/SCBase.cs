@@ -745,7 +745,6 @@ namespace SCPrime.Model
     {
         private static List<clsBaseListItem> Sites = new List<clsBaseListItem>();
         private static List<SCContractType> ContractTypes = new List<SCContractType>();
-        private static List<SCContractType> ContractTypeActive = new List<SCContractType>();
         private static bool isInited = false;
 
         #region publicListSaver
@@ -817,17 +816,13 @@ namespace SCPrime.Model
         {
             return ContractTypes;
         }
-        public List<SCContractType> getContractTypeActive()
-        {
-            return ContractTypeActive;
-        }
 
         #endregion publicListGeter
         #region Initializations
         private void loadContractTypes(clsSqlFactory hSql)
         {
             ContractTypes.Clear();
-            String strSql = " select a.OID,a.Name,isnull(a.IsInvoice,0),isnull(a.IsActive,0),isnull(a.IsCollective,0) from ZSC_ContractType a  order by a.Name ";
+            String strSql = " select a.OID,a.Name,isnull(a.IsInvoice,0),isnull(a.IsActive,0),isnull(a.IsCollective,0) from ZSC_ContractType a  WHERE a.IsActive=1 order by a.Name ";
             hSql.NewCommand(strSql);
             hSql.ExecuteReader();
             while (hSql.Read())
@@ -839,24 +834,6 @@ namespace SCPrime.Model
                 item.isActive = hSql.Reader.GetBoolean(3);
                 item.isCollective = hSql.Reader.GetBoolean(4);
                 ContractTypes.Add(item);
-            }
-        }
-
-        private void loadContractTypeActive(clsSqlFactory hSql)
-        {
-            ContractTypeActive.Clear();
-            String strSql = " select a.OID,a.Name,isnull(a.IsInvoice,0),isnull(a.IsActive,0),isnull(a.IsCollective,0) from ZSC_ContractType a  WHERE a.IsActive=1 order by a.Name ";
-            hSql.NewCommand(strSql);
-            hSql.ExecuteReader();
-            while (hSql.Read())
-            {
-                SCContractType item = new SCContractType();
-                item.OID = hSql.Reader.GetInt32(0);
-                item.Name = hSql.Reader.GetInt32(0) + " - " + hSql.Reader.GetString(1);
-                item.isInvoice = hSql.Reader.GetBoolean(2);
-                item.isActive = hSql.Reader.GetBoolean(3);
-                item.isCollective = hSql.Reader.GetBoolean(4);
-                ContractTypeActive.Add(item);
             }
         }
 
@@ -879,7 +856,6 @@ namespace SCPrime.Model
                 }
                 //contract types
                 loadContractTypes(hSql);
-                loadContractTypeActive(hSql);
             }
 
             catch (Exception ex)
@@ -902,5 +878,38 @@ namespace SCPrime.Model
             }
         }
         #endregion Constructor
+    }
+
+    public static class ContractStatusString
+    {
+        public const string ModelFull = "M-Model";
+        public const string OfferFull = "O-Offer";
+        public const string NewFull = "N-New";
+        public const string WaitingFull = "W-Waiting";
+        public const string ActiveFull = "A-Active";
+        public const string OnControlFull = "H-On control";
+        public const string ClosedFull = "C-Closed";
+        public const string DeactivatedFull = "D-Deactivated";
+    }
+
+
+    public class ObjTmp
+    {
+        public int id { get; set; }
+        public String text { get; set; }
+        public String value { get; set; }
+        public ObjTmp()
+        {
+        }
+        public ObjTmp(String value, String text)
+        {
+            this.text = text;
+            this.value = value;
+        }
+        public ObjTmp(int id, String text)
+        {
+            this.text = text;
+            this.value = value;
+        }
     }
 }

@@ -19,7 +19,7 @@ namespace SCPrime
 
             sCContractType = new SCContractType();
             sCBase = new SCBase();
-            listContacType = sCBase.getContractTypeActive();
+            listContacType = sCBase.getContractTypes();
             cbContactType.DataSource = listContacType;
             cbContactType.DisplayMember = "Name";
             cbContactType.ValueMember = "OID";

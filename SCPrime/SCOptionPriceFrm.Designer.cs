@@ -31,9 +31,13 @@
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.cbContactType = new System.Windows.Forms.ComboBox();
-            this.gridPrice = new System.Windows.Forms.DataGridView();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.gridPrice = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnRight = new System.Windows.Forms.Panel();
+            this.pnTop = new System.Windows.Forms.Panel();
+            this.pnGrid = new System.Windows.Forms.Panel();
             this.oIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.categoryNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.optionNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,13 +56,17 @@
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sCOptionPriceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gridPrice)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.pnRight.SuspendLayout();
+            this.pnTop.SuspendLayout();
+            this.pnGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sCOptionPriceBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(29, 13);
+            this.label1.Location = new System.Drawing.Point(3, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(67, 13);
             this.label1.TabIndex = 0;
@@ -66,19 +74,40 @@
             // 
             // cbContactType
             // 
-            this.cbContactType.FormattingEnabled = true;
-            this.cbContactType.Location = new System.Drawing.Point(147, 13);
+            this.cbContactType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbContactType.Location = new System.Drawing.Point(85, 12);
             this.cbContactType.Name = "cbContactType";
-            this.cbContactType.Size = new System.Drawing.Size(475, 21);
+            this.cbContactType.Size = new System.Drawing.Size(589, 21);
             this.cbContactType.TabIndex = 1;
             this.cbContactType.SelectedIndexChanged += new System.EventHandler(this.cbContactType_SelectedIndexChanged);
             this.cbContactType.SelectedValueChanged += new System.EventHandler(this.cbContactType_SelectedValueChanged);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Location = new System.Drawing.Point(24, 63);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 23);
+            this.btnClose.TabIndex = 3;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(24, 15);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 4;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // gridPrice
             // 
             this.gridPrice.AllowUserToAddRows = false;
             this.gridPrice.AllowUserToDeleteRows = false;
             this.gridPrice.AutoGenerateColumns = false;
+            this.gridPrice.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gridPrice.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridPrice.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.oIDDataGridViewTextBoxColumn,
@@ -98,33 +127,52 @@
             this.createdDataGridViewTextBoxColumn,
             this.modifiedDataGridViewTextBoxColumn});
             this.gridPrice.DataSource = this.sCOptionPriceBindingSource;
-            this.gridPrice.Location = new System.Drawing.Point(32, 108);
+            this.gridPrice.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridPrice.Location = new System.Drawing.Point(0, 0);
             this.gridPrice.Name = "gridPrice";
-            this.gridPrice.Size = new System.Drawing.Size(756, 313);
+            this.gridPrice.Size = new System.Drawing.Size(800, 450);
             this.gridPrice.TabIndex = 2;
             this.gridPrice.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridPrice_CellContentClick);
             this.gridPrice.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridPrice_CellDoubleClick);
             this.gridPrice.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridPrice_CellValueChanged);
             // 
-            // btnClose
+            // panel1
             // 
-            this.btnClose.Location = new System.Drawing.Point(696, 58);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 23);
-            this.btnClose.TabIndex = 3;
-            this.btnClose.Text = "Close";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.panel1.Controls.Add(this.pnGrid);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(800, 450);
+            this.panel1.TabIndex = 5;
             // 
-            // btnSave
+            // pnRight
             // 
-            this.btnSave.Location = new System.Drawing.Point(696, 13);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 4;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.pnRight.Controls.Add(this.btnSave);
+            this.pnRight.Controls.Add(this.btnClose);
+            this.pnRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pnRight.Location = new System.Drawing.Point(680, 0);
+            this.pnRight.Name = "pnRight";
+            this.pnRight.Size = new System.Drawing.Size(120, 450);
+            this.pnRight.TabIndex = 6;
+            // 
+            // pnTop
+            // 
+            this.pnTop.Controls.Add(this.cbContactType);
+            this.pnTop.Controls.Add(this.label1);
+            this.pnTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnTop.Location = new System.Drawing.Point(0, 0);
+            this.pnTop.Name = "pnTop";
+            this.pnTop.Size = new System.Drawing.Size(680, 45);
+            this.pnTop.TabIndex = 7;
+            // 
+            // pnGrid
+            // 
+            this.pnGrid.Controls.Add(this.gridPrice);
+            this.pnGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnGrid.Location = new System.Drawing.Point(0, 0);
+            this.pnGrid.Name = "pnGrid";
+            this.pnGrid.Size = new System.Drawing.Size(800, 450);
+            this.pnGrid.TabIndex = 3;
             // 
             // oIDDataGridViewTextBoxColumn
             // 
@@ -243,17 +291,20 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.gridPrice);
-            this.Controls.Add(this.cbContactType);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.pnTop);
+            this.Controls.Add(this.pnRight);
+            this.Controls.Add(this.panel1);
             this.Name = "SCOptionPriceFrm";
             this.Text = "SCOptionPrice";
+            this.Load += new System.EventHandler(this.SCOptionPriceFrm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridPrice)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.pnRight.ResumeLayout(false);
+            this.pnTop.ResumeLayout(false);
+            this.pnTop.PerformLayout();
+            this.pnGrid.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.sCOptionPriceBindingSource)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -261,10 +312,10 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbContactType;
-        private System.Windows.Forms.DataGridView gridPrice;
         private System.Windows.Forms.BindingSource sCOptionPriceBindingSource;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.DataGridView gridPrice;
         private System.Windows.Forms.DataGridViewTextBoxColumn oIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn categoryNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn optionNameDataGridViewTextBoxColumn;
@@ -281,5 +332,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn infoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn createdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnRight;
+        private System.Windows.Forms.Panel pnTop;
+        private System.Windows.Forms.Panel pnGrid;
     }
 }

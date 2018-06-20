@@ -12,6 +12,7 @@ using nsBaseClass;
 using System.Configuration;
 using System.Reflection;
 using SCPrime.Model;
+using SCPrime.Utils;
 
 namespace SCPrime
 {
@@ -55,6 +56,8 @@ namespace SCPrime
                 MessageBox.Show(objOptionCats.Count.ToString());
                 */
 
+                //ThuyetLV
+                initData();
             }
             else
             {
@@ -89,15 +92,65 @@ namespace SCPrime
 
         private void optionPriceListToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            SCOptionPriceFrm optionPrice = SCOptionPriceFrm.getInstance();
-            optionPrice.Show();
-            optionPrice.Focus();
-            optionPrice.BringToFront();
+            SCOptionPriceFrm.getInstance().ShowDialog();
         }
 
         private void exitApplicationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        //ThuyetLV
+        SCBase sCBase;
+        private void initData()
+        {
+            sCBase = new SCBase();
+
+            //Init model
+            List<string> result = typeof(ContractStatusString).GetAllPublicConstantValues<string>();
+            List<ObjTmp> lstModel = new List<ObjTmp>(result.Count);
+            string[] words;
+            string[] stringSeparators = new string[] { "-" };
+            
+            foreach (string s in result)
+            {
+                words = s.Split(stringSeparators, StringSplitOptions.RemoveEmptyEntries);
+                lstModel.Add(new ObjTmp(words[0], words[1]));
+            }
+            cblModel.DataSource = lstModel;
+            cblModel.ValueMember = "value";
+            cblModel.DisplayMember = "text";
+
+            //Set check default
+            string value;
+            for (int i = 0; i < cblModel.Items.Count; i++)
+            {
+                value = ((ObjTmp)cblModel.Items[i]).value;
+                if (value != "C" && value != "D")
+                {
+                    cblModel.SetItemChecked(i, true);
+                }
+            }
+
+
+            //Load sites
+            
+            List<clsBaseListItem> listTmp = sCBase.getAMSites();
+
+            List<ObjTmp> lstSites = new List<ObjTmp>(result.Count);
+            foreach (clsBaseListItem site in listTmp)
+            {
+                lstSites.Add(new ObjTmp(site.nValue1, site.strText));
+            }
+            cbSites.DataSource = lstSites;
+            cbSites.ValueMember = "id";
+            cbSites.DisplayMember = "text";
+
+
+            //Load contaactType
+            cblContactType.DataSource = sCBase.getContractTypes();
+            cblContactType.DisplayMember = "Name";
+            cblContactType.ValueMember = "OID";
         }
     }
 }

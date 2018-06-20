@@ -34,7 +34,7 @@ namespace SCPrime
         private SCOptionPriceFrm()
         {
             InitializeComponent();
-            initData();
+            this.Visible = false;
         }
 
         private void initData()
@@ -46,7 +46,7 @@ namespace SCPrime
 
             //
             sCBase = new Model.SCBase();
-            listContacType = sCBase.getContractTypeActive();
+            listContacType = sCBase.getContractTypes();
 
             cbContactType.DataSource = listContacType;
             cbContactType.DisplayMember = "Name";
@@ -389,6 +389,12 @@ namespace SCPrime
         {
             t.Stop();
             MessageBox.Show("Double");
+        }
+
+        private void SCOptionPriceFrm_Load(object sender, EventArgs e)
+        {
+            this.Visible = true;
+            initData();
         }
     }
 }
