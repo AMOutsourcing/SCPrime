@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using log4net;
 using nsBaseClass;
 using System.Configuration;
-
+using SCPrime.Utils;
 
 namespace SCPrime.Model
 {
@@ -24,7 +24,7 @@ namespace SCPrime.Model
             {
 
                 String strSql = " select a.OID,a.Name,isnull(a.ItemNo,''),isnull(a.ItemSuplNo,''),isnull(a.WrksId,''),isnull(a.SelPr,0),isnull(a.InvoiceFlag,0),isnull(b.NAME,''),isnull(b.BUYPR,0),isnull(c.NAME,'') " +
-                    ", isnull(d.IsAvailable,0), isnull(d.Info,'') from ZSC_OptionCategory a left join ITEM b on a.ITEMNO=b.ITEMNO and a.ITEMSUPLNO=b.SUPLNO left join WRKS c on a.WRKSID=c.WRKSID and c.WPTYPE='T' "+
+                    ", isnull(d.IsAvailable,0), isnull(d.Info,'') from ZSC_OptionCategory a left join ITEM b on a.ITEMNO=b.ITEMNO and a.ITEMSUPLNO=b.SUPLNO left join WRKS c on a.WRKSID=c.WRKSID and c.WPTYPE='T' " +
                     " left join ZSC_OptionPriceList d on a.OID = d.OptionCategoryOID and d.ContractTypeOID =? and d.OptionOID is null and d.OptionDetailOID is null " +
                     " order by a.OID ";
                 hSql.NewCommand(strSql);
@@ -61,13 +61,13 @@ namespace SCPrime.Model
         }
 
         public static List<SCOptionCategory> getOptionCategoryList()
-        { 
+        {
             //get list from master
-           List<SCOptionCategory> Result = new List<SCOptionCategory>();
-           clsSqlFactory hSql = new clsSqlFactory();
+            List<SCOptionCategory> Result = new List<SCOptionCategory>();
+            clsSqlFactory hSql = new clsSqlFactory();
             try
             {
-               
+
                 String strSql = " select a.OID,a.Name,isnull(a.ItemNo,''),isnull(a.ItemSuplNo,''),isnull(a.WrksId,''),isnull(a.SelPr,0),isnull(a.InvoiceFlag,0),isnull(b.NAME,''),isnull(b.BUYPR,0),isnull(c.NAME,'') " +
                     " from ZSC_OptionCategory a left join ITEM b on a.ITEMNO=b.ITEMNO and a.ITEMSUPLNO=b.SUPLNO left join WRKS c on a.WRKSID=c.WRKSID and c.WPTYPE='T' order by a.OID ";
                 hSql.NewCommand(strSql);
@@ -87,7 +87,7 @@ namespace SCPrime.Model
                     item.WrksName = hSql.Reader.GetString(9);
                     item.Options = SCOption.getOptionList(item.OID);
                     Result.Add(item);
-                }           
+                }
             }
             catch (Exception ex)
             {
@@ -152,7 +152,7 @@ namespace SCPrime.Model
                     }
                     if (objOption.isMarkDeleted == false) bRet = objOption.saveOptionDetails(hSql);
                 }
-                
+
 
             }
             catch (Exception ex)
@@ -372,7 +372,7 @@ namespace SCPrime.Model
                         bRet = bRet && hSql.ExecuteReader() && hSql.Read();
                         objOptionDetail.OID = hSql.Reader.GetInt32(0);
                     }
-                    
+
                 }
 
 
@@ -515,7 +515,7 @@ namespace SCPrime.Model
 
         }
 
-        public SCOptionBase(int oid,String name)
+        public SCOptionBase(int oid, String name)
         {
             this.OID = oid;
             this.Name = name;
@@ -533,7 +533,7 @@ namespace SCPrime.Model
 
         public SCContractType()
         {
-           
+
         }
 
         public SCContractType(int oid)
@@ -592,6 +592,8 @@ namespace SCPrime.Model
             return Result;
         }
     }
+
+
     public class ContractStatus
     {
         public const string Model = "M";
@@ -702,10 +704,10 @@ namespace SCPrime.Model
                         //}
                         //else
                         //{
-                            //update
-                            bRet = hSql.NewCommand("update ZSC_OptionPriceList set IsAvailable=?,Modified=getdate() where OID=?");
-                            hSql.Com.Parameters.AddWithValue("IsAvailable", obj.IsAvailable);
-                            hSql.Com.Parameters.AddWithValue("OID", obj.OID);
+                        //update
+                        bRet = hSql.NewCommand("update ZSC_OptionPriceList set IsAvailable=?,Modified=getdate() where OID=?");
+                        hSql.Com.Parameters.AddWithValue("IsAvailable", obj.IsAvailable);
+                        hSql.Com.Parameters.AddWithValue("OID", obj.OID);
 
                         //}
                         bRet = bRet && hSql.ExecuteNonQuery();
@@ -788,7 +790,7 @@ namespace SCPrime.Model
                         bRet = bRet && hSql.ExecuteNonQuery();
                     }
                 }
-                
+
                 hSql.Commit();
                 loadContractTypes(hSql);
             }
@@ -910,6 +912,58 @@ namespace SCPrime.Model
         {
             this.text = text;
             this.value = value;
+        }
+    }
+
+    public class SCViewWorks
+    {
+        public int _OID { get; set; }
+        public string LabourCode { get; set; }
+        public string Name { get; set; }
+        public string SearchKey { get; set; }
+        public static List<SCViewWorks> seach(string namephrase)
+        {
+            string strSql = "select a._OID as _OID, a.WRKSID as LabourCode, a.NAME as LabourName, a.SKEY from WRKS a  where a.WPTYPE = 'T' ";
+
+            if (namephrase != "")
+            {
+                String strFTSQL = DBUtils.getFTSearchSQL(namephrase, "ASVIEW_WRKS");
+                if (strFTSQL != "")
+                {
+                    strSql += " and exists (" + strFTSQL + " and v._OID=a._OID)";
+                }
+
+            }
+
+
+            List<SCViewWorks> Result = new List<SCViewWorks>();
+            clsSqlFactory hSql = new clsSqlFactory();
+            try
+            {
+
+               
+                hSql.NewCommand(strSql);
+                hSql.ExecuteReader();
+                while (hSql.Read())
+                {
+                    SCViewWorks item = new SCViewWorks();
+
+                    item._OID = hSql.Reader.GetInt32(0);
+                    item.LabourCode = hSql.Reader.GetString(1);
+                    item.Name = hSql.Reader.GetString(2);
+                    item.SearchKey = hSql.Reader.GetString(3);
+                    Result.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                hSql.Close();
+            }
+            return Result;
         }
     }
 }
