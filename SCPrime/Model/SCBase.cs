@@ -809,6 +809,14 @@ namespace SCPrime.Model
         }
         #endregion publicListSaver
 
+
+        public List<SCContractType> getContractTypeActive()
+        {
+            if (ContractTypes.Count > 0)
+                return ContractTypes.Where(x => x.isActive).ToList();
+            return ContractTypes;
+        }
+
         #region publicListGeter
         public List<clsBaseListItem> getAMSites()
         {
@@ -941,7 +949,7 @@ namespace SCPrime.Model
             try
             {
 
-               
+
                 hSql.NewCommand(strSql);
                 hSql.ExecuteReader();
                 while (hSql.Read())
@@ -952,6 +960,65 @@ namespace SCPrime.Model
                     item.LabourCode = hSql.Reader.GetString(1);
                     item.Name = hSql.Reader.GetString(2);
                     item.SearchKey = hSql.Reader.GetString(3);
+                    Result.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                hSql.Close();
+            }
+            return Result;
+        }
+    }
+
+    public class SCViewItems
+    {
+        public int _OID { get; set; }
+        public string PartNr { get; set; }
+        public string Name { get; set; }
+        public string Supplier { get; set; }
+        public string SearchKey { get; set; }
+        public float SalesPr { get; set; }
+        public float PurchasePr { get; set; }
+
+        public static List<SCViewItems> seach(string namephrase)
+        {
+            //string strSql = "select a._OID as _OID, isnull(a.ITEMNO,0) as PartNr, a.NAME as Name, isnull(a.SUPLNO,'0') as Supplier, isnull(a.SKEY,'') as SearchKey, isnull(a.SELPR,0) as SalesPr, isnull(a.BUYPR,0) as PurchasePr  from ITEM a  where a.ITYPE = 'T' ";
+
+            string strSql = "select a._OID as _OID, isnull(a.ITEMNO,'') as PartNr, a.NAME as Name, isnull(a.SUPLNO,'') as Supplier, isnull(a.SKEY,'') as SearchKey, isnull(a.SELPR,0) as SalesPr, isnull(a.BUYPR,0) as PurchasePr  from ITEM a  where 1=1 ";
+
+            if (namephrase != "")
+            {
+                String strFTSQL = DBUtils.getFTSearchSQL(namephrase, "ASVIEW_ITEM");
+                if (strFTSQL != "")
+                {
+                    strSql += " and exists (" + strFTSQL + " and v._OID=a._OID)";
+                }
+
+            }
+
+            List<SCViewItems> Result = new List<SCViewItems>();
+            clsSqlFactory hSql = new clsSqlFactory();
+            try
+            {
+
+
+                hSql.NewCommand(strSql);
+                hSql.ExecuteReader();
+                while (hSql.Read())
+                {
+                    SCViewItems item = new SCViewItems();
+                    item._OID = hSql.Reader.GetInt32(0);
+                    item.PartNr = hSql.Reader.GetString(1);
+                    item.Name = hSql.Reader.GetString(2);
+                    item.Supplier = hSql.Reader.GetString(3);
+                    item.SearchKey = hSql.Reader.GetString(4);
+                    item.SalesPr = hSql.Reader.GetFloat(5);
+                    item.PurchasePr = hSql.Reader.GetFloat(6);
                     Result.Add(item);
                 }
             }

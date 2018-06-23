@@ -46,7 +46,7 @@ namespace SCPrime
 
             //
             sCBase = new Model.SCBase();
-            listContacType = sCBase.getContractTypes();
+            listContacType = sCBase.getContractTypeActive();
 
             cbContactType.DataSource = listContacType;
             cbContactType.DisplayMember = "Name";

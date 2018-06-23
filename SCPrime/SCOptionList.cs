@@ -235,7 +235,6 @@ namespace SCPrime
 
             foreach (DataGridViewRow r in dataGridViewCategory.Rows)
             {
-                SCOptionCategory sc = null;
                 if ((int)r.Cells[Constant.OID].Value < 0)// object mới
                 {
                     SCOptionCategory so = null;
@@ -1288,6 +1287,8 @@ namespace SCPrime
 
         private void button3_Click(object sender, EventArgs e)
         {
+            SCSearchItemFrm pn = new SCSearchItemFrm();
+            pn.ShowDialog();
         }
     }
 }

@@ -148,7 +148,7 @@ namespace SCPrime
 
 
             //Load contaactType
-            cblContactType.DataSource = sCBase.getContractTypes();
+            cblContactType.DataSource = sCBase.getContractTypeActive();
             cblContactType.DisplayMember = "Name";
             cblContactType.ValueMember = "OID";
         }
