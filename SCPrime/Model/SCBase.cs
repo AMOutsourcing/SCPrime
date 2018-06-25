@@ -7,6 +7,7 @@ using log4net;
 using nsBaseClass;
 using System.Configuration;
 using SCPrime.Utils;
+using System.Text.RegularExpressions;
 
 namespace SCPrime.Model
 {
@@ -17,6 +18,7 @@ namespace SCPrime.Model
 
         public static List<SCOptionCategory> getContractOptionCategoryPriceList(int ContractTypeOID)
         {
+            
             //get list from master
             List<SCOptionCategory> Result = new List<SCOptionCategory>();
             clsSqlFactory hSql = new clsSqlFactory();
@@ -931,11 +933,15 @@ namespace SCPrime.Model
         public string SearchKey { get; set; }
         public static List<SCViewWorks> seach(string namephrase)
         {
-            string strSql = "select a._OID as _OID, a.WRKSID as LabourCode, a.NAME as LabourName, a.SKEY from WRKS a  where a.WPTYPE = 'T' ";
-
+            string strSql = "select top maxresult a._OID as _OID, a.WRKSID as LabourCode, a.NAME as LabourName, a.SKEY from WRKS a  where a.WPTYPE = 'T' ";
+            var tmp = MyUtils.GetMaxResult();
+            if (tmp > 0)
+                strSql = Regex.Replace(strSql, "maxresult", tmp.ToString());
+            else
+                strSql = Regex.Replace(strSql, "maxresult", "0");
             if (namephrase != "")
             {
-                String strFTSQL = DBUtils.getFTSearchSQL(namephrase, "ASVIEW_WRKS");
+                String strFTSQL = Utils.MyUtils.getFTSearchSQL(namephrase, "ASVIEW_WRKS");
                 if (strFTSQL != "")
                 {
                     strSql += " and exists (" + strFTSQL + " and v._OID=a._OID)";
@@ -987,13 +993,19 @@ namespace SCPrime.Model
 
         public static List<SCViewItems> seach(string namephrase)
         {
-            //string strSql = "select a._OID as _OID, isnull(a.ITEMNO,0) as PartNr, a.NAME as Name, isnull(a.SUPLNO,'0') as Supplier, isnull(a.SKEY,'') as SearchKey, isnull(a.SELPR,0) as SalesPr, isnull(a.BUYPR,0) as PurchasePr  from ITEM a  where a.ITYPE = 'T' ";
 
-            string strSql = "select a._OID as _OID, isnull(a.ITEMNO,'') as PartNr, a.NAME as Name, isnull(a.SUPLNO,'') as Supplier, isnull(a.SKEY,'') as SearchKey, isnull(a.SELPR,0) as SalesPr, isnull(a.BUYPR,0) as PurchasePr  from ITEM a  where 1=1 ";
+            string strSql = "select top maxresult a._OID as _OID, isnull(a.ITEMNO,'') as PartNr, a.NAME as Name, isnull(a.SUPLNO,'') as Supplier, isnull(a.SKEY,'') as SearchKey, isnull(a.SELPR,0) as SalesPr, isnull(a.BUYPR,0) as PurchasePr  from ITEM a  where 1=1 ";
+            
+            var tmp = MyUtils.GetMaxResult();
+            if (tmp > 0)
+                strSql = Regex.Replace(strSql, "maxresult",tmp.ToString() );
+            else
+                strSql = Regex.Replace(strSql, "maxresult","0");
+
 
             if (namephrase != "")
             {
-                String strFTSQL = DBUtils.getFTSearchSQL(namephrase, "ASVIEW_ITEM");
+                String strFTSQL = Utils.MyUtils.getFTSearchSQL(namephrase, "ASVIEW_ITEM");
                 if (strFTSQL != "")
                 {
                     strSql += " and exists (" + strFTSQL + " and v._OID=a._OID)";

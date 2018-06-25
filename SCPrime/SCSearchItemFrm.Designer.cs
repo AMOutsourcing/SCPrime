@@ -34,6 +34,7 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.gridItem = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
             this.oIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.partNrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,7 +43,6 @@
             this.salesPrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.purchasePrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sCViewItemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridItem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sCViewItemsBindingSource)).BeginInit();
@@ -90,6 +90,8 @@
             // 
             // gridItem
             // 
+            this.gridItem.AllowUserToAddRows = false;
+            this.gridItem.AllowUserToDeleteRows = false;
             this.gridItem.AutoGenerateColumns = false;
             this.gridItem.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gridItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -105,67 +107,9 @@
             this.gridItem.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridItem.Location = new System.Drawing.Point(0, 66);
             this.gridItem.Name = "gridItem";
+            this.gridItem.ReadOnly = true;
             this.gridItem.Size = new System.Drawing.Size(944, 426);
             this.gridItem.TabIndex = 6;
-            // 
-            // oIDDataGridViewTextBoxColumn
-            // 
-            this.oIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.oIDDataGridViewTextBoxColumn.DataPropertyName = "_OID";
-            this.oIDDataGridViewTextBoxColumn.HeaderText = "_OID";
-            this.oIDDataGridViewTextBoxColumn.Name = "oIDDataGridViewTextBoxColumn";
-            this.oIDDataGridViewTextBoxColumn.Visible = false;
-            this.oIDDataGridViewTextBoxColumn.Width = 57;
-            // 
-            // partNrDataGridViewTextBoxColumn
-            // 
-            this.partNrDataGridViewTextBoxColumn.DataPropertyName = "PartNr";
-            this.partNrDataGridViewTextBoxColumn.HeaderText = "PartNr";
-            this.partNrDataGridViewTextBoxColumn.Name = "partNrDataGridViewTextBoxColumn";
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.Width = 60;
-            // 
-            // supplierDataGridViewTextBoxColumn
-            // 
-            this.supplierDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.supplierDataGridViewTextBoxColumn.DataPropertyName = "Supplier";
-            this.supplierDataGridViewTextBoxColumn.HeaderText = "Supplier";
-            this.supplierDataGridViewTextBoxColumn.Name = "supplierDataGridViewTextBoxColumn";
-            this.supplierDataGridViewTextBoxColumn.Width = 70;
-            // 
-            // searchKeyDataGridViewTextBoxColumn
-            // 
-            this.searchKeyDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.searchKeyDataGridViewTextBoxColumn.DataPropertyName = "SearchKey";
-            this.searchKeyDataGridViewTextBoxColumn.HeaderText = "SearchKey";
-            this.searchKeyDataGridViewTextBoxColumn.Name = "searchKeyDataGridViewTextBoxColumn";
-            this.searchKeyDataGridViewTextBoxColumn.Width = 84;
-            // 
-            // salesPrDataGridViewTextBoxColumn
-            // 
-            this.salesPrDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.salesPrDataGridViewTextBoxColumn.DataPropertyName = "SalesPr";
-            this.salesPrDataGridViewTextBoxColumn.HeaderText = "SalesPr";
-            this.salesPrDataGridViewTextBoxColumn.Name = "salesPrDataGridViewTextBoxColumn";
-            this.salesPrDataGridViewTextBoxColumn.Width = 68;
-            // 
-            // purchasePrDataGridViewTextBoxColumn
-            // 
-            this.purchasePrDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.purchasePrDataGridViewTextBoxColumn.DataPropertyName = "PurchasePr";
-            this.purchasePrDataGridViewTextBoxColumn.HeaderText = "PurchasePr";
-            this.purchasePrDataGridViewTextBoxColumn.Name = "purchasePrDataGridViewTextBoxColumn";
-            this.purchasePrDataGridViewTextBoxColumn.Width = 87;
-            // 
-            // sCViewItemsBindingSource
-            // 
-            this.sCViewItemsBindingSource.DataSource = typeof(SCPrime.Model.SCViewItems);
             // 
             // label1
             // 
@@ -175,6 +119,72 @@
             this.label1.Size = new System.Drawing.Size(29, 13);
             this.label1.TabIndex = 4;
             this.label1.Text = "Filter";
+            // 
+            // oIDDataGridViewTextBoxColumn
+            // 
+            this.oIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.oIDDataGridViewTextBoxColumn.DataPropertyName = "_OID";
+            this.oIDDataGridViewTextBoxColumn.HeaderText = "_OID";
+            this.oIDDataGridViewTextBoxColumn.Name = "oIDDataGridViewTextBoxColumn";
+            this.oIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.oIDDataGridViewTextBoxColumn.Visible = false;
+            this.oIDDataGridViewTextBoxColumn.Width = 57;
+            // 
+            // partNrDataGridViewTextBoxColumn
+            // 
+            this.partNrDataGridViewTextBoxColumn.DataPropertyName = "PartNr";
+            this.partNrDataGridViewTextBoxColumn.HeaderText = "PartNr";
+            this.partNrDataGridViewTextBoxColumn.Name = "partNrDataGridViewTextBoxColumn";
+            this.partNrDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nameDataGridViewTextBoxColumn.Width = 60;
+            // 
+            // supplierDataGridViewTextBoxColumn
+            // 
+            this.supplierDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.supplierDataGridViewTextBoxColumn.DataPropertyName = "Supplier";
+            this.supplierDataGridViewTextBoxColumn.HeaderText = "Supplier";
+            this.supplierDataGridViewTextBoxColumn.Name = "supplierDataGridViewTextBoxColumn";
+            this.supplierDataGridViewTextBoxColumn.ReadOnly = true;
+            this.supplierDataGridViewTextBoxColumn.Width = 70;
+            // 
+            // searchKeyDataGridViewTextBoxColumn
+            // 
+            this.searchKeyDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.searchKeyDataGridViewTextBoxColumn.DataPropertyName = "SearchKey";
+            this.searchKeyDataGridViewTextBoxColumn.HeaderText = "SearchKey";
+            this.searchKeyDataGridViewTextBoxColumn.Name = "searchKeyDataGridViewTextBoxColumn";
+            this.searchKeyDataGridViewTextBoxColumn.ReadOnly = true;
+            this.searchKeyDataGridViewTextBoxColumn.Width = 84;
+            // 
+            // salesPrDataGridViewTextBoxColumn
+            // 
+            this.salesPrDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.salesPrDataGridViewTextBoxColumn.DataPropertyName = "SalesPr";
+            this.salesPrDataGridViewTextBoxColumn.HeaderText = "SalesPr";
+            this.salesPrDataGridViewTextBoxColumn.Name = "salesPrDataGridViewTextBoxColumn";
+            this.salesPrDataGridViewTextBoxColumn.ReadOnly = true;
+            this.salesPrDataGridViewTextBoxColumn.Width = 68;
+            // 
+            // purchasePrDataGridViewTextBoxColumn
+            // 
+            this.purchasePrDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.purchasePrDataGridViewTextBoxColumn.DataPropertyName = "PurchasePr";
+            this.purchasePrDataGridViewTextBoxColumn.HeaderText = "PurchasePr";
+            this.purchasePrDataGridViewTextBoxColumn.Name = "purchasePrDataGridViewTextBoxColumn";
+            this.purchasePrDataGridViewTextBoxColumn.ReadOnly = true;
+            this.purchasePrDataGridViewTextBoxColumn.Width = 87;
+            // 
+            // sCViewItemsBindingSource
+            // 
+            this.sCViewItemsBindingSource.DataSource = typeof(SCPrime.Model.SCViewItems);
             // 
             // SCSearchItemFrm
             // 

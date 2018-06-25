@@ -31,11 +31,9 @@ namespace SCPrime
 
         private void SCSearchItemFrm_Load(object sender, EventArgs e)
         {
-            DateTime start = DateTime.Now;
             this.txtSearch.Text = "";
             this.gridItem.DataSource = this.LoadSCViewItems("");
             this.Visible = true;
-            MessageBox.Show((DateTime.Now-start).ToString());
         }
 
         private void btnSearch_Click(object sender, EventArgs e)

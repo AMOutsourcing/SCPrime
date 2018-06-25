@@ -1,5 +1,7 @@
-﻿using System;
+﻿using SCPrime.Model;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SCPrime.Utils
 {
-    public class DBUtils
+    public class MyUtils
     {
         public static string getFTSearchSQL(string searchString, string strFTView)
         {
@@ -25,6 +27,17 @@ namespace SCPrime.Utils
                 strSql += " v.FTSEARCHKEYS like '%" + words[i] + "%'";
             }
             return strSql;
+        }
+        public static int GetMaxResult()
+        {
+            int max = 0;
+
+            var strMax = ConfigurationManager.AppSettings["MaxResult"];
+            var tmp = Int32.TryParse(strMax, out max);
+            if (tmp)
+                return max;
+            else
+                return 0;
         }
     }
 }
