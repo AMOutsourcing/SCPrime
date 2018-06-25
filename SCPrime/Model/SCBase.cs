@@ -832,7 +832,7 @@ namespace SCPrime.Model
         private void loadContractTypes(clsSqlFactory hSql)
         {
             ContractTypes.Clear();
-            String strSql = " select a.OID,a.Name,isnull(a.IsInvoice,0),isnull(a.IsActive,0),isnull(a.IsCollective,0) from ZSC_ContractType a  WHERE a.IsActive=1 order by a.Name ";
+            String strSql = " select a.OID,a.Name,isnull(a.IsInvoice,0),isnull(a.IsActive,0),isnull(a.IsCollective,0) from ZSC_ContractType a  order by a.Name ";
             hSql.NewCommand(strSql);
             hSql.ExecuteReader();
             while (hSql.Read())
