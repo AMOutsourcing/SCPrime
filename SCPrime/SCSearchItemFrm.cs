@@ -32,12 +32,14 @@ namespace SCPrime
         private void SCSearchItemFrm_Load(object sender, EventArgs e)
         {
             this.txtSearch.Text = "";
-            this.gridItem.DataSource = this.LoadSCViewItems("");
+          //  this.gridItem.DataSource = this.LoadSCViewItems("");
             this.Visible = true;
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            if (this.txtSearch.Text.Trim().Equals(""))
+                return;
             try
             {
                 this.gridItem.DataSource = null;
@@ -58,14 +60,17 @@ namespace SCPrime
         {
             if (e.KeyChar == (char)Keys.Return)
             {
-                try
+                if (!this.txtSearch.Text.Trim().Equals(""))
                 {
-                    this.gridItem.DataSource = null;
-                    this.gridItem.DataSource = this.LoadSCViewItems(this.txtSearch.Text.Trim());
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
+                    try
+                    {
+                        this.gridItem.DataSource = null;
+                        this.gridItem.DataSource = this.LoadSCViewItems(this.txtSearch.Text.Trim());
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
             }
         }

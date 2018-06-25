@@ -23,7 +23,7 @@ namespace SCPrime
         private void SCSparePartNoFrm_Load(object sender, EventArgs e)
         {
             this.txtSearch.Text = "";
-            this.dataGridView1.DataSource = this.LoadSCViewWorks("");
+           // this.dataGridView1.DataSource = this.LoadSCViewWorks("");
             this.Visible = true;
         }
         private DataTable LoadSCViewWorks(string key)
@@ -42,6 +42,8 @@ namespace SCPrime
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            if (this.txtSearch.Text.Trim().Equals(""))
+                return;
             try
             {
                 this.dataGridView1.DataSource = null;
@@ -56,14 +58,17 @@ namespace SCPrime
         {
             if (e.KeyChar == (char)Keys.Return)
             {
-                try
+                if (!this.txtSearch.Text.Trim().Equals(""))
                 {
-                    this.dataGridView1.DataSource = null;
-                    this.dataGridView1.DataSource = this.LoadSCViewWorks(this.txtSearch.Text.Trim());
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
+                    try
+                    {
+                        this.dataGridView1.DataSource = null;
+                        this.dataGridView1.DataSource = this.LoadSCViewWorks(this.txtSearch.Text.Trim());
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
                 }
             }
         }
