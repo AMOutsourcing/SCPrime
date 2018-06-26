@@ -70,6 +70,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\ContractClass.cs" />
     <Compile Include="Model\KeyValue.cs" />
     <Compile Include="SCContractType.cs">
       <SubType>Form</SubType>

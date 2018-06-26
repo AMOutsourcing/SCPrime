@@ -819,6 +819,94 @@ namespace SCPrime.Model
             return ContractTypes;
         }
 
+        public static List<Contract> searchContracts(List<SCContractType> contractTypes, List<String> sites, List<String> statuses, string namephrase)
+        {
+            List<Contract> Result = new List<Contract>();
+            String strSqlWhere = "";
+            clsSqlFactory hSql = new clsSqlFactory();
+            try
+            {
+
+                if (statuses.Count > 0)
+                {
+                    strSqlWhere += " and a.ContractStatus in ('" + statuses[0] + "'";
+                    for (int i = 1; i < statuses.Count; i++)
+                    {
+                        strSqlWhere += ",'" + statuses[i] + "'";
+                    }
+                    strSqlWhere += ")";
+                }
+                if (sites.Count > 0)
+                {
+                    strSqlWhere += " and a.SiteId in ('" + sites[0] + "'";
+                    for (int i = 1; i < sites.Count; i++)
+                    {
+                        strSqlWhere += ",'" + sites[i] + "'";
+                    }
+                    strSqlWhere += ")";
+                }
+                if (contractTypes.Count > 0)
+                {
+                    strSqlWhere += " and a.ContractTypeOID in (" + contractTypes[0].OID.ToString() + "";
+                    for (int i = 1; i < contractTypes.Count; i++)
+                    {
+                        strSqlWhere += "," + contractTypes[i].OID.ToString() + "";
+                    }
+                    strSqlWhere += ")";
+                }
+
+                String strSql = "select ";
+                strSql += "a.CapitalMonthAmount, a.CapitalStartAmount, a.CapitalStartPayer, a.CareSmanId, a.ContractCustId, a.ContractEndDate, a.ContractEndHour, a.ContractEndKm, " +
+                    "a.ContractNo, a.ContractPeriodHour, a.ContractPeriodKm, a.ContractPeriodKmHour, a.ContractPeriodMonth, a.ContractStartDate, a.ContractStartHour, " +
+                    "a.ContractStartKm, a.ContractStatus, a.ContractTypeOID, a.CostBasedOnService, a.CostBasis, a.CostCenter, a.CostKmBasis, a.CostMonthBasis, a.CostPerKm, " +
+                    "a.Created, a.ExtContractNo, a.ExtraKmAccounting, a.ExtraKmHighAmount, a.ExtraKmInvoicedAmount, a.ExtraKmInvoicePeriod, a.ExtraKmLowAmount, a.ExtraKmMaxDeviation, " +
+                    "a.InvocieStartDate, a.InvoiceCustId, a.InvoiceEndDate, a.InvoiceSiteId, a.IsBodyIncl, a.IsCoolingIncl, a.IsCraneIncl, a.IsInvoiceDetail, a.IsManualInvoice, " +
+                    "a.IsTailLiftIncl, a.LastInvoiceDate, a.Modified, a.NextInvoiceDate, a.OID, a.PaymentCollectionType, a.PaymentGroupingLevel, a.PaymentIsInBlock, " +
+                    "a.PaymentNextBlockEnd, a.PaymentNextBlockStart, a.PaymentPeriod, a.PaymentTerm, a.RespSmanId, a.RiskCustId, a.RiskLevel, a.RollingCode, a.SiteId, " +
+                    "a.TerminationType, a.ValidWorkshopCode, a.VehiId, a.VersionNo, ";
+                strSql += "s1.EXPL,";
+                strSql += "c1.LNAME";
+                strSql += " from ZSC_Contract a inner join UNIT s1 on a.SiteId = s1.UNITID ";
+                strSql += " inner join CUST c1 on a.ContractCustId = c1.CUSTID ";
+                if (strSqlWhere != "")
+                {
+                    strSql += " where " + strSqlWhere;
+                }
+                hSql.NewCommand(strSql);
+                hSql.ExecuteReader();
+                while (hSql.Read())
+                {
+                    Contract item = new Contract();
+                    int colId;
+                    item.ContractCapitalData = new ContractCapital();
+
+                    colId = hSql.Reader.GetOrdinal("CapitalMonthAmount");
+                    if (!hSql.Reader.IsDBNull(colId)) item.ContractCapitalData.CapitalMonthAmount = hSql.Reader.GetDecimal(colId);
+                    colId = hSql.Reader.GetOrdinal("CapitalStartAmount");
+                    if (!hSql.Reader.IsDBNull(colId)) item.ContractCapitalData.CapitalStartAmount = hSql.Reader.GetDecimal(colId);
+                    colId = hSql.Reader.GetOrdinal("CapitalStartPayer");
+                    if (!hSql.Reader.IsDBNull(colId)) item.ContractCapitalData.CapitalStartPayer.strValue1 = hSql.Reader.GetString(colId);
+
+                    colId = hSql.Reader.GetOrdinal("OID");
+                    item.ContractOID = hSql.Reader.GetInt32(colId);
+                    Result.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                hSql.Close();
+
+            }
+
+
+
+            return Result;
+        }
+
         #region publicListGeter
         public List<clsBaseListItem> getAMSites()
         {

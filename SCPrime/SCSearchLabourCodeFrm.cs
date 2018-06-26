@@ -43,7 +43,10 @@ namespace SCPrime
         private void btnSearch_Click(object sender, EventArgs e)
         {
             if (this.txtSearch.Text.Trim().Equals(""))
+            {
+                this.dataGridView1.DataSource = null;
                 return;
+            }
             try
             {
                 this.dataGridView1.DataSource = null;
@@ -69,6 +72,9 @@ namespace SCPrime
                     {
                         MessageBox.Show(ex.Message);
                     }
+                } else
+                {
+                    this.dataGridView1.DataSource = null;
                 }
             }
         }
