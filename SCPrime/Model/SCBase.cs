@@ -18,7 +18,7 @@ namespace SCPrime.Model
 
         public static List<SCOptionCategory> getContractOptionCategoryPriceList(int ContractTypeOID)
         {
-            
+
             //get list from master
             List<SCOptionCategory> Result = new List<SCOptionCategory>();
             clsSqlFactory hSql = new clsSqlFactory();
@@ -593,6 +593,88 @@ namespace SCPrime.Model
             }
             return Result;
         }
+
+        public List<SCOptionPrice> getOptionPriceList2(int contactTypeId)
+        {
+            List<SCOptionPrice> Result = new List<SCOptionPrice>();
+            clsSqlFactory hSql = new clsSqlFactory();
+            try
+            {
+                String strSql = "SELECT * FROM"
+                + "  (SELECT "
+                + "    isnull(p.OID,0) as OID,"
+                + "    isnull(p.ContractTypeOID,0) as ContractTypeOID,"
+                + "    c.OID AS OptionCategoryOID,"
+                + "    o.OID AS OptionOID,"
+                + "    0 AS OptionDetailOID,"
+                + "    isnull(p.IsAvailable,-1) as IsAvailable,"
+                + "    isnull(p.Info,'') as Info,"
+                + "    p.Created,"
+                + "    p.Modified,"
+                + "    c.Name AS CategoryName,"
+                + "    o.Name AS OptionName,"
+                + "    '' AS OptionDetailName "
+                + "  FROM"
+                + "    ZSC_Option o "
+                + "    LEFT JOIN ZSC_OptionCategory c "
+                + "      ON o.OptionCategoryOID = c.OID "
+                + "    LEFT JOIN ZSC_OptionPriceList p "
+                + "      ON p.OptionOID = o.OID "
+                + "  WHERE p.OptionDetailOID IS NULL "
+                + "  UNION ALL "
+                + "  SELECT "
+                + "    isnull(p.OID,0) as OID,"
+                + "    isnull(p.ContractTypeOID,0) as ContractTypeOID,"
+                + "    c.OID AS OptionCategoryOID,"
+                + "    o.OID AS OptionOID,"
+                + "    d.OID AS OptionDetailOID,"
+                + "    isnull(p.IsAvailable,-1) as IsAvailable,"
+                + "    isnull(p.Info,'') as Info,"
+                + "    p.Created,"
+                + "    p.Modified,"
+                + "    c.Name AS CategoryName,"
+                + "    o.Name AS OptionName,"
+                + "    d.Name AS OptionDetailName "
+                + "  FROM"
+                + "    ZSC_OptionDetail d "
+                + "    LEFT JOIN ZSC_Option o "
+                + "      ON d.OptionOID = o.OID "
+                + "    LEFT JOIN ZSC_OptionCategory c "
+                + "      ON o.OptionCategoryOID = c.OID "
+                + "    LEFT JOIN ZSC_OptionPriceList p "
+                + "      ON p.OptionDetailOID = d.OID) tmp";
+                hSql.NewCommand(strSql);
+                //hSql.Com.Parameters.AddWithValue("ContractTypeOID", contactTypeId);
+                hSql.ExecuteReader();
+                while (hSql.Read())
+                {
+                    SCOptionPrice item = new SCOptionPrice();
+                    item.OID = hSql.Reader.GetInt32(0);
+                    item.ContractTypeOID = hSql.Reader.GetInt32(1);
+                    item.OptionCategoryOID = hSql.Reader.GetInt32(2);
+                    item.OptionOID = hSql.Reader.GetInt32(3);
+                    item.OptionDetailOID = hSql.Reader.GetInt32(4);
+                    item.IsAvailable = hSql.Reader.GetInt32(5);
+                    item.Info = hSql.Reader.GetString(6);
+                    //item.Created = hSql.Reader.GetDateTime(7);
+                    //item.Modified = hSql.Reader.GetDateTime(8);
+                    item.CategoryName = hSql.Reader.GetString(9);
+                    item.OptionName = hSql.Reader.GetString(10);
+                    item.OptionDetailName = hSql.Reader.GetString(11);
+                    Result.Add(item);
+                }
+                System.Diagnostics.Debug.WriteLine("--------------getOptionPriceList2: " + Result.Count);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                hSql.Close();
+            }
+            return Result;
+        }
     }
 
 
@@ -717,13 +799,14 @@ namespace SCPrime.Model
                     else
                     {
                         //new
-                        bRet = hSql.NewCommand("insert into ZSC_OptionPriceList(ContractTypeOID,OptionCategoryOID,OptionOID,OptionDetailOID,IsAvailable,Info,CreatedModified) values(?,?,?,?,?,?,getdate(),getdate())");
-                        hSql.Com.Parameters.AddWithValue("ContractTypeOID", obj.ContractTypeOID);
+                        bRet = hSql.NewCommand("insert into ZSC_OptionPriceList(ContractTypeOID,OptionCategoryOID,OptionOID,OptionDetailOID,IsAvailable,Info,Created,Modified) values(?,?,?,?,?,?,getdate(),getdate())");
+                        hSql.Com.Parameters.AddWithValue("ContractTypeOID", ((object)obj.ContractTypeOID) ?? DBNull.Value);
                         hSql.Com.Parameters.AddWithValue("OptionCategoryOID", obj.OptionCategoryOID);
                         hSql.Com.Parameters.AddWithValue("OptionOID", obj.OptionOID);
-                        hSql.Com.Parameters.AddWithValue("OptionDetailOID", obj.OptionDetailOID);
+                        hSql.Com.Parameters.AddWithValue("OptionDetailOID", ((object)obj.OptionDetailOID) ?? DBNull.Value);
                         hSql.Com.Parameters.AddWithValue("IsAvailable", obj.IsAvailable);
-                        hSql.Com.Parameters.AddWithValue("Info", obj.Info);
+                        hSql.Com.Parameters.AddWithValue("Info", ((object)obj.Info) ?? DBNull.Value);
+                        //hSql.Com.Parameters.AddWithValue("Info", obj.Info);
                         bRet = bRet && hSql.ExecuteNonQuery();
                     }
                 }
@@ -1085,12 +1168,12 @@ namespace SCPrime.Model
         {
 
             string strSql = "select top maxresult a._OID as _OID, isnull(a.ITEMNO,'') as PartNr, a.NAME as Name, isnull(a.SUPLNO,'') as Supplier, isnull(a.SKEY,'') as SearchKey, isnull(a.SELPR,0) as SalesPr, isnull(a.BUYPR,0) as PurchasePr  from ITEM a  where 1=1 ";
-            
+
             var tmp = MyUtils.GetMaxResult();
             if (tmp > 0)
-                strSql = Regex.Replace(strSql, "maxresult",tmp.ToString() );
+                strSql = Regex.Replace(strSql, "maxresult", tmp.ToString());
             else
-                strSql = Regex.Replace(strSql, "maxresult","0");
+                strSql = Regex.Replace(strSql, "maxresult", "0");
 
 
             if (namephrase != "")
