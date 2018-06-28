@@ -33,12 +33,12 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.gridItem = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
+            this.gridItem = new System.Windows.Forms.DataGridView();
             this.oIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.partNrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PartNrColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.supplierDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.supplierColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.searchKeyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.salesPrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.purchasePrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -88,29 +88,6 @@
             this.panel1.Size = new System.Drawing.Size(944, 66);
             this.panel1.TabIndex = 5;
             // 
-            // gridItem
-            // 
-            this.gridItem.AllowUserToAddRows = false;
-            this.gridItem.AllowUserToDeleteRows = false;
-            this.gridItem.AutoGenerateColumns = false;
-            this.gridItem.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.gridItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridItem.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.oIDDataGridViewTextBoxColumn,
-            this.partNrDataGridViewTextBoxColumn,
-            this.nameDataGridViewTextBoxColumn,
-            this.supplierDataGridViewTextBoxColumn,
-            this.searchKeyDataGridViewTextBoxColumn,
-            this.salesPrDataGridViewTextBoxColumn,
-            this.purchasePrDataGridViewTextBoxColumn});
-            this.gridItem.DataSource = this.sCViewItemsBindingSource;
-            this.gridItem.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridItem.Location = new System.Drawing.Point(0, 66);
-            this.gridItem.Name = "gridItem";
-            this.gridItem.ReadOnly = true;
-            this.gridItem.Size = new System.Drawing.Size(944, 426);
-            this.gridItem.TabIndex = 6;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -120,6 +97,33 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Filter";
             // 
+            // gridItem
+            // 
+            this.gridItem.AllowUserToAddRows = false;
+            this.gridItem.AllowUserToDeleteRows = false;
+            this.gridItem.AutoGenerateColumns = false;
+            this.gridItem.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.gridItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridItem.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.oIDDataGridViewTextBoxColumn,
+            this.PartNrColumn,
+            this.nameDataGridViewTextBoxColumn,
+            this.supplierColumn,
+            this.searchKeyDataGridViewTextBoxColumn,
+            this.salesPrDataGridViewTextBoxColumn,
+            this.purchasePrDataGridViewTextBoxColumn});
+            this.gridItem.DataSource = this.sCViewItemsBindingSource;
+            this.gridItem.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridItem.Location = new System.Drawing.Point(0, 66);
+            this.gridItem.MultiSelect = false;
+            this.gridItem.Name = "gridItem";
+            this.gridItem.ReadOnly = true;
+            this.gridItem.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridItem.Size = new System.Drawing.Size(944, 426);
+            this.gridItem.TabIndex = 6;
+            this.gridItem.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridItem_CellContentDoubleClick);
+            this.gridItem.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridItem_CellDoubleClick);
+            // 
             // oIDDataGridViewTextBoxColumn
             // 
             this.oIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
@@ -128,14 +132,13 @@
             this.oIDDataGridViewTextBoxColumn.Name = "oIDDataGridViewTextBoxColumn";
             this.oIDDataGridViewTextBoxColumn.ReadOnly = true;
             this.oIDDataGridViewTextBoxColumn.Visible = false;
-            this.oIDDataGridViewTextBoxColumn.Width = 57;
             // 
-            // partNrDataGridViewTextBoxColumn
+            // PartNrColumn
             // 
-            this.partNrDataGridViewTextBoxColumn.DataPropertyName = "PartNr";
-            this.partNrDataGridViewTextBoxColumn.HeaderText = "PartNr";
-            this.partNrDataGridViewTextBoxColumn.Name = "partNrDataGridViewTextBoxColumn";
-            this.partNrDataGridViewTextBoxColumn.ReadOnly = true;
+            this.PartNrColumn.DataPropertyName = "PartNr";
+            this.PartNrColumn.HeaderText = "PartNr";
+            this.PartNrColumn.Name = "PartNrColumn";
+            this.PartNrColumn.ReadOnly = true;
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -146,14 +149,14 @@
             this.nameDataGridViewTextBoxColumn.ReadOnly = true;
             this.nameDataGridViewTextBoxColumn.Width = 60;
             // 
-            // supplierDataGridViewTextBoxColumn
+            // supplierColumn
             // 
-            this.supplierDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.supplierDataGridViewTextBoxColumn.DataPropertyName = "Supplier";
-            this.supplierDataGridViewTextBoxColumn.HeaderText = "Supplier";
-            this.supplierDataGridViewTextBoxColumn.Name = "supplierDataGridViewTextBoxColumn";
-            this.supplierDataGridViewTextBoxColumn.ReadOnly = true;
-            this.supplierDataGridViewTextBoxColumn.Width = 70;
+            this.supplierColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.supplierColumn.DataPropertyName = "Supplier";
+            this.supplierColumn.HeaderText = "Supplier";
+            this.supplierColumn.Name = "supplierColumn";
+            this.supplierColumn.ReadOnly = true;
+            this.supplierColumn.Width = 70;
             // 
             // searchKeyDataGridViewTextBoxColumn
             // 
@@ -211,13 +214,13 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView gridItem;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn oIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn partNrDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PartNrColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn supplierDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn supplierColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn searchKeyDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn salesPrDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn purchasePrDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Label label1;
     }
 }

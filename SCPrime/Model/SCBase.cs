@@ -1019,9 +1019,10 @@ namespace SCPrime.Model
         public string LabourCode { get; set; }
         public string Name { get; set; }
         public string SearchKey { get; set; }
+        public int SuplNo { get; set; }
         public static List<SCViewWorks> seach(string namephrase)
         {
-            string strSql = "select top maxresult a._OID as _OID, a.WRKSID as LabourCode, a.NAME as LabourName, a.SKEY from WRKS a  where a.WPTYPE = 'T' ";
+            string strSql = "select top maxresult a._OID as _OID, a.WRKSID as LabourCode, a.NAME as LabourName, a.SKEY,a.SUPLNO from WRKS a  where a.WPTYPE = 'T' ";
             var tmp = MyUtils.GetMaxResult();
             if (tmp > 0)
                 strSql = Regex.Replace(strSql, "maxresult", tmp.ToString());
@@ -1054,6 +1055,7 @@ namespace SCPrime.Model
                     item.LabourCode = hSql.Reader.GetString(1);
                     item.Name = hSql.Reader.GetString(2);
                     item.SearchKey = hSql.Reader.GetString(3);
+                    item.SuplNo = hSql.Reader.GetInt32(4);
                     Result.Add(item);
                 }
             }

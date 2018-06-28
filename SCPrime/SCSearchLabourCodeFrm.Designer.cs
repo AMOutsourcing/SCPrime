@@ -36,9 +36,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.oIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.labourCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LabourCodeColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.searchKeyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SuplNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sCViewWorksBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -103,16 +104,21 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.oIDDataGridViewTextBoxColumn,
-            this.labourCodeDataGridViewTextBoxColumn,
+            this.LabourCodeColumn,
             this.nameDataGridViewTextBoxColumn,
-            this.searchKeyDataGridViewTextBoxColumn});
+            this.searchKeyDataGridViewTextBoxColumn,
+            this.SuplNo});
             this.dataGridView1.DataSource = this.sCViewWorksBindingSource;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 59);
+            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(800, 391);
             this.dataGridView1.TabIndex = 2;
+            this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
+            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
             // oIDDataGridViewTextBoxColumn
             // 
@@ -123,12 +129,12 @@
             this.oIDDataGridViewTextBoxColumn.ReadOnly = true;
             this.oIDDataGridViewTextBoxColumn.Visible = false;
             // 
-            // labourCodeDataGridViewTextBoxColumn
+            // LabourCodeColumn
             // 
-            this.labourCodeDataGridViewTextBoxColumn.DataPropertyName = "LabourCode";
-            this.labourCodeDataGridViewTextBoxColumn.HeaderText = "LabourCode";
-            this.labourCodeDataGridViewTextBoxColumn.Name = "labourCodeDataGridViewTextBoxColumn";
-            this.labourCodeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.LabourCodeColumn.DataPropertyName = "LabourCode";
+            this.LabourCodeColumn.HeaderText = "LabourCode";
+            this.LabourCodeColumn.Name = "LabourCodeColumn";
+            this.LabourCodeColumn.ReadOnly = true;
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -147,6 +153,15 @@
             this.searchKeyDataGridViewTextBoxColumn.Name = "searchKeyDataGridViewTextBoxColumn";
             this.searchKeyDataGridViewTextBoxColumn.ReadOnly = true;
             this.searchKeyDataGridViewTextBoxColumn.Width = 84;
+            // 
+            // SuplNo
+            // 
+            this.SuplNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.SuplNo.DataPropertyName = "SuplNo";
+            this.SuplNo.HeaderText = "Supplier";
+            this.SuplNo.Name = "SuplNo";
+            this.SuplNo.ReadOnly = true;
+            this.SuplNo.Width = 70;
             // 
             // sCViewWorksBindingSource
             // 
@@ -179,8 +194,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn oIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn labourCodeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LabourCodeColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn searchKeyDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SuplNo;
     }
 }

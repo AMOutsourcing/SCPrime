@@ -83,5 +83,32 @@ namespace SCPrime
                 }
             }
         }
+
+        private void gridItem_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string tmp = getItemRetrun();
+            SCOptionList.instance.Sender2(tmp);
+            this.Close();
+        }
+        private string getItemRetrun()
+        {
+            string result = "";
+            if (this.gridItem.SelectedRows.Count > 0)
+            {
+                foreach (DataGridViewRow r in this.gridItem.SelectedRows)
+                {
+                    result = r.Cells["PartNrColumn"].Value.ToString() + ";" + r.Cells["supplierColumn"].Value.ToString();
+                }
+            }
+
+            return result;
+        }
+
+        private void gridItem_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string tmp = getItemRetrun();
+            SCOptionList.instance.Sender2(tmp);
+            this.Close();
+        }
     }
 }

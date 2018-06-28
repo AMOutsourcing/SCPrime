@@ -23,7 +23,7 @@ namespace SCPrime
         private void SCSparePartNoFrm_Load(object sender, EventArgs e)
         {
             this.txtSearch.Text = "";
-           // this.dataGridView1.DataSource = this.LoadSCViewWorks("");
+            // this.dataGridView1.DataSource = this.LoadSCViewWorks("");
             this.Visible = true;
         }
         private DataTable LoadSCViewWorks(string key)
@@ -51,7 +51,8 @@ namespace SCPrime
             {
                 this.dataGridView1.DataSource = null;
                 this.dataGridView1.DataSource = this.LoadSCViewWorks(this.txtSearch.Text.Trim());
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -72,11 +73,39 @@ namespace SCPrime
                     {
                         MessageBox.Show(ex.Message);
                     }
-                } else
+                }
+                else
                 {
                     this.dataGridView1.DataSource = null;
                 }
             }
+        }
+
+        private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string tmp = getWrksId();
+            SCOptionList.instance.Sender(tmp);
+            this.Close();
+        }
+        private string getWrksId()
+        {
+            string result = "";
+            if (this.dataGridView1.SelectedRows.Count > 0)
+            {
+                foreach (DataGridViewRow r in this.dataGridView1.SelectedRows)
+                {
+                    result = r.Cells["LabourCodeColumn"].Value.ToString();
+                }
+            }
+
+            return result;
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string tmp = getWrksId();
+            SCOptionList.instance.Sender(tmp);
+            this.Close();
         }
     }
 }

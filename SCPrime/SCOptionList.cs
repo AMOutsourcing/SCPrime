@@ -33,7 +33,7 @@ namespace SCPrime
         private int OptionOidSelected;
         private SCOption optionSelected;
 
-
+        private SCOptionDetail detailSelected;
 
         private int newOid = -1;
         private int newOptionOid = -1;
@@ -41,6 +41,13 @@ namespace SCPrime
 
         // System.Globalization.CultureInfo usCultureInfo = new System.Globalization.CultureInfo("en-US");
         System.Globalization.CultureInfo oldCI = System.Threading.Thread.CurrentThread.CurrentCulture;
+
+        //----------------------longdq add 27/06/2018---------------------------
+        public delegate void SendLabour(string Message);
+        public delegate void SendItem(string Message);
+        public SendLabour Sender;
+        public SendItem Sender2;
+        private int editFlag = -1;
 
         public SCOptionList()
         {
@@ -58,8 +65,207 @@ namespace SCPrime
 
             //Decimal i = 10000.20M;
             //MessageBox.Show(i.ToString("c", oldCI));
+            Sender = new SendLabour(GetLabour);
+            Sender2 = new SendItem(GetItem);
 
         }
+        private void GetLabour(string Message)
+        {
+
+            if (this.categorySelected != null && this.editFlag == Constant.Category)
+            {
+                this.categorySelected.WrksId = Message;
+                //update grid
+                DataTable dt = new DataTable();
+                dt = (DataTable)this.dataGridViewCategory.DataSource;
+                string search = "OID = " + this.categorySelected.OID;
+                DataRow[] rows = dt.Select(search);
+                if (rows.Count() > 0)
+                {
+                    DataRow r = rows[0];
+                    var item = this.saveCategories.Find(x => x.OID == this.categorySelected.OID);
+                    if (item != null)
+                    {
+                        item.WrksId = Message;
+                        //update category
+                        var index = this.saveCategories.FindIndex(x => x.OID == this.categorySelected.OID);
+                        if (index > -1)
+                        {
+                            this.saveCategories[index] = item;
+                            r["WrksId"] = Message;
+                        }
+                    }
+                    dt.AcceptChanges();
+                    this.dataGridViewCategory.Refresh();
+                }
+            }
+
+            if (this.optionSelected != null && this.editFlag == Constant.Option)
+            {
+                this.optionSelected.WrksId = Message;
+                //update grid
+                DataTable dt = new DataTable();
+                dt = (DataTable)this.dgvOptions.DataSource;
+                string search = "OID = " + this.optionSelected.OID;
+                DataRow[] rows = dt.Select(search);
+                if (rows.Count() > 0)
+                {
+                    DataRow r = rows[0];
+                    var item = this.categorySelected.Options.Find(x => x.OID == this.optionSelected.OID);
+                    if (item != null)
+                    {
+                        item.WrksId = Message;
+                        //update category
+                        var index = this.categorySelected.Options.FindIndex(x => x.OID == this.optionSelected.OID);
+                        if (index > -1)
+                        {
+                            this.categorySelected.Options[index] = item;
+                            r["WrksId"] = Message;
+                        }
+                    }
+                    dt.AcceptChanges();
+                    this.dgvOptions.Refresh();
+                }
+            }
+
+            //--------------Update Details-------------------
+            if (this.detailSelected != null && this.editFlag == Constant.Detail)
+            {
+                this.detailSelected.WrksId = Message;
+                //update grid
+                DataTable dt = new DataTable();
+                dt = (DataTable)this.dgvDetails.DataSource;
+                string search = "OID = " + this.detailSelected.OID;
+                DataRow[] rows = dt.Select(search);
+                if (rows.Count() > 0)
+                {
+                    DataRow r = rows[0];
+                    var item = this.optionSelected.OptionDetails.Find(x => x.OID == this.detailSelected.OID);
+                    if (item != null)
+                    {
+                        item.WrksId = Message;
+                        //update category
+                        var index = this.optionSelected.OptionDetails.FindIndex(x => x.OID == this.detailSelected.OID);
+                        if (index > -1)
+                        {
+                            this.optionSelected.OptionDetails[index] = item;
+                            r["WrksId"] = Message;
+                        }
+                    }
+                    dt.AcceptChanges();
+                    this.dgvDetails.Refresh();
+                }
+            }
+        }
+
+
+        private void GetItem(string Message)
+        {
+            string[] msgs = Message.Split(';');
+            if (msgs.Count() > 0)
+            {
+                if (this.categorySelected != null && this.editFlag == Constant.Category)
+                {
+                    this.categorySelected.ItemNo = msgs[0];
+                    this.categorySelected.ItemSuplNo = msgs[1];
+                    //update grid
+                    DataTable dt = new DataTable();
+                    dt = (DataTable)this.dataGridViewCategory.DataSource;
+                    string search = "OID = " + this.categorySelected.OID;
+                    DataRow[] rows = dt.Select(search);
+                    if (rows.Count() > 0)
+                    {
+                        DataRow r = rows[0];
+                        var item = this.saveCategories.Find(x => x.OID == this.categorySelected.OID);
+                        if (item != null)
+                        {
+                            item.ItemNo = msgs[0];
+                            item.ItemSuplNo = msgs[1];
+                            //update category
+                            var index = this.saveCategories.FindIndex(x => x.OID == this.categorySelected.OID);
+                            if (index > -1)
+                            {
+                                this.saveCategories[index] = item;
+                                r["ItemNo"] = msgs[0];
+                                r["ItemSuplNo"] = msgs[1];
+                            }
+                        }
+                        dt.AcceptChanges();
+                        this.dataGridViewCategory.Refresh();
+                    }
+                }
+
+                if (this.optionSelected != null && this.editFlag == Constant.Option)
+                {
+                    this.optionSelected.ItemNo = msgs[0];
+                    this.optionSelected.ItemSuplNo = msgs[1];
+                    //update grid
+                    DataTable dt = new DataTable();
+                    dt = (DataTable)this.dgvOptions.DataSource;
+                    string search = "OID = " + this.optionSelected.OID;
+                    DataRow[] rows = dt.Select(search);
+                    if (rows.Count() > 0)
+                    {
+                        DataRow r = rows[0];
+                        var item = this.categorySelected.Options.Find(x => x.OID == this.optionSelected.OID);
+                        if (item != null)
+                        {
+                            item.ItemNo = msgs[0];
+                            item.ItemSuplNo = msgs[1];
+                            //update category
+                            var index = this.categorySelected.Options.FindIndex(x => x.OID == this.optionSelected.OID);
+                            if (index > -1)
+                            {
+                                this.categorySelected.Options[index] = item;
+                                r["ItemNo"] = msgs[0];
+                                r["ItemSuplNo"] = msgs[1];
+                            }
+                        }
+                        dt.AcceptChanges();
+                        this.dgvOptions.Refresh();
+                    }
+                }
+
+                //--------------Update Details-------------------
+                if (this.detailSelected != null && this.editFlag == Constant.Detail)
+                {
+                    this.detailSelected.ItemNo = msgs[0];
+                    this.detailSelected.ItemSuplNo = msgs[1];
+                    //update grid
+                    DataTable dt = new DataTable();
+                    dt = (DataTable)this.dgvDetails.DataSource;
+                    string search = "OID = " + this.detailSelected.OID;
+                    DataRow[] rows = dt.Select(search);
+                    if (rows.Count() > 0)
+                    {
+                        DataRow r = rows[0];
+                        var item = this.optionSelected.OptionDetails.Find(x => x.OID == this.detailSelected.OID);
+                        if (item != null)
+                        {
+                            item.ItemNo = msgs[0];
+                            item.ItemSuplNo = msgs[1];
+                            //update category
+                            var index = this.optionSelected.OptionDetails.FindIndex(x => x.OID == this.detailSelected.OID);
+                            if (index > -1)
+                            {
+                                this.optionSelected.OptionDetails[index] = item;
+                                r["ItemNo"] = msgs[0];
+                                r["ItemSuplNo"] = msgs[1];
+                            }
+                        }
+                        dt.AcceptChanges();
+                        this.dgvDetails.Refresh();
+                    }
+                }
+            }
+        }
+
+
+
+
+
+
+        //-----------------------------------------------------------------------------
         public static SCOptionList instance
         {
             get
@@ -142,7 +348,7 @@ namespace SCPrime
 
         private void dataGridViewCategory_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            
+
 
         }
 
@@ -255,6 +461,7 @@ namespace SCPrime
 
         private void dataGridViewCategory_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
+            this.editFlag = Constant.Category;
             if (dataGridViewCategory.Columns[e.ColumnIndex].Name == Constant.PurcharPrice ||
                 dataGridViewCategory.Columns[e.ColumnIndex].Name == Constant.SalePrice)
             {
@@ -289,6 +496,7 @@ namespace SCPrime
 
         private void dataGridViewCategory_RowValidated(object sender, DataGridViewCellEventArgs e)
         {
+            this.editFlag = Constant.Category;
             int rowIndex = e.RowIndex;
             int colIndex = e.ColumnIndex;
             // MessageBox.Show(colIndex.ToString());
@@ -759,7 +967,7 @@ namespace SCPrime
                 this.optionSelected = item;
             }
             this.UpdateCategoryList(this.categorySelected);
-          
+
 
         }
 
@@ -770,6 +978,7 @@ namespace SCPrime
 
         private void dgvOptions_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            this.editFlag = Constant.Option;
             if (dgvOptions.SelectedRows.Count > 0)
             {
                 DataGridViewRow row = dgvOptions.SelectedRows[0];
@@ -807,6 +1016,7 @@ namespace SCPrime
 
         private void dgvOptions_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
+            this.editFlag = Constant.Option;
             if (dgvOptions.Columns[e.ColumnIndex].Name == Constant.OptionPurcharPrice
                 || dgvOptions.Columns[e.ColumnIndex].Name == Constant.OptionSalePrice)
             {
@@ -1178,26 +1388,12 @@ namespace SCPrime
 
         private void dgvDetails_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
         {
-            //    if (e.StateChanged != DataGridViewElementStates.Selected)
-            //        return;
-            //    if (dgvDetails.SelectedRows.Count > 0)
-            //    {
-            //        DataGridViewRow row = dgvDetails.SelectedRows[0];
-            //        int index = -1;
-            //        var tmp = Int32.TryParse(row.Cells["DetailOID"].Value.ToString(), out index);
-            //        SCOptionDetail sod = new SCOptionDetail();
-            //        //this.OptionOidSelected = index;
-            //        if (this.optionSelected.OptionDetails!= null)
-            //        {
-            //            this.optionSelected = this.categorySelected.Options.Find(x => x.OID == this.OptionOidSelected);
-            //        }
 
-            //        this.loadOptionDetail(OptionOidSelected);
-            //    }
         }
 
         private void dgvDetails_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
+            this.editFlag = Constant.Detail;
             int rowIndex = e.RowIndex;
 
             DataGridViewRow row = dgvDetails.Rows[rowIndex];
@@ -1211,11 +1407,16 @@ namespace SCPrime
                 if (item != null)
                 {
                     if (index != -1)
+                    {
                         this.optionSelected.OptionDetails[index] = sc;
+                        this.detailSelected = sc;
+                    }
+
                 }
                 else
                 {
                     this.optionSelected.OptionDetails.Add(sc);
+                    this.detailSelected = sc;
                 }
             }
         }
@@ -1226,6 +1427,7 @@ namespace SCPrime
 
         private void dgvDetails_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
+            this.editFlag = Constant.Category;
             if (dgvDetails.Columns[e.ColumnIndex].Name == Constant.DetailPurcharPrice
                || dgvDetails.Columns[e.ColumnIndex].Name == Constant.DetailSalePrice)
             {
@@ -1281,6 +1483,13 @@ namespace SCPrime
 
         private void button4_Click(object sender, EventArgs e)
         {
+            if (this.dataGridViewCategory.IsCurrentCellInEditMode)
+                editFlag = Constant.Category;
+            else if (this.dgvOptions.IsCurrentCellInEditMode)
+                editFlag = Constant.Option;
+            else if (this.dgvDetails.IsCurrentCellInEditMode)
+                editFlag = Constant.Detail;
+
             SCSearchLabourCodeFrm pn = new SCSearchLabourCodeFrm();
             pn.ShowDialog();
         }
@@ -1290,5 +1499,8 @@ namespace SCPrime
             SCSearchItemFrm pn = new SCSearchItemFrm();
             pn.ShowDialog();
         }
+
+
+
     }
 }

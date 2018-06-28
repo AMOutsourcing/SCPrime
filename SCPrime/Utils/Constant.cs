@@ -42,11 +42,17 @@ namespace SCPrime.Utils
         public const string OptionSalePrice = "OptionSelPr";
         public const string OptionName = "OptionName";
         public const string OptionisMarkDeleted = "OptionisMarkDeleted";
+        public const string OptionItemNo = "OptionItemNo";
+        public const string OptionItemSuplNo= "OptionItemSuplNo";
 
         //detail column name
         public const string DetailPurcharPrice ="DetailBuyPr";
         public const string DetailSalePrice ="DetailSelPr";
         public const string DetailName = "DetailName";
         public const string DetailisMarkDeleted = "DetailisMarkDeleted";
+
+        public const int Category = 0;
+        public const int Option = 1;
+        public const int Detail = 2;
     }
 }
