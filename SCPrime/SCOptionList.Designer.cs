@@ -165,8 +165,7 @@
             this.treeView1.Size = new System.Drawing.Size(302, 626);
             this.treeView1.TabIndex = 1;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
-            this.treeView1.Click += new System.EventHandler(this.treeView1_Click);
-            this.treeView1.DoubleClick += new System.EventHandler(this.treeView1_DoubleClick);
+            this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
             // 
             // panel3
             // 
@@ -430,6 +429,7 @@
             this.dgvDetails.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvDetails_CellFormatting);
             this.dgvDetails.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetails_CellValidated);
             this.dgvDetails.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvDetails_CellValidating);
+            this.dgvDetails.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetails_RowEnter);
             this.dgvDetails.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.dgvDetails_RowStateChanged);
             // 
             // panel9

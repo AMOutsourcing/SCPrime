@@ -48,6 +48,8 @@ namespace SCPrime
         public SendLabour Sender;
         public SendItem Sender2;
         private int editFlag = -1;
+        private TreeNode treeNodeSelected;
+        private string treeFullPath;
 
         public SCOptionList()
         {
@@ -261,7 +263,7 @@ namespace SCPrime
         }
 
 
-        private void SelectTreeNode(int OID,int flagType) 
+        private void SelectTreeNode(int OID, int flagType)
         {
 
         }
@@ -300,9 +302,9 @@ namespace SCPrime
             if (dataGridViewCategory.SelectedRows.Count > 0)
             {
                 DataGridViewRow row = dataGridViewCategory.SelectedRows[0];
-                int index = -1;
-                var tmp = Int32.TryParse(row.Cells[Constant.OID].Value.ToString(), out index);
-                this.CategoryOidSelected = index;
+                int CatOid = -1;
+                var tmp = Int32.TryParse(row.Cells[Constant.OID].Value.ToString(), out CatOid);
+                this.CategoryOidSelected = CatOid;
                 if (this.saveCategories.Count > 0)
                 {
                     this.categorySelected = this.saveCategories.Find(x => x.OID == this.CategoryOidSelected);
@@ -312,8 +314,10 @@ namespace SCPrime
                     this.categorySelected.Options = new List<SCOption>();
 
                 }
-                this.loadOptionList(index);
+                this.loadOptionList(CatOid);
             }
+
+           
 
         }
 
@@ -325,7 +329,6 @@ namespace SCPrime
 
         private void dataGridViewCategory_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -340,10 +343,6 @@ namespace SCPrime
                     this.dataGridViewCategory.DataSource = null;
                 }
             }
-
-
-
-
             loadCategoryData();
             loadTree();
 
@@ -625,6 +624,8 @@ namespace SCPrime
                 foreach (SCOptionCategory cat in myCategories)
                 {
                     TreeNode treeNode = new TreeNode(cat.Name);
+                    treeNode.Name = cat.GetType().ToString() + cat.OID.ToString();
+
                     treeView1.Nodes.Add(treeNode);
 
                     //load all Option
@@ -635,6 +636,7 @@ namespace SCPrime
                         foreach (SCOption op in myOptions)
                         {
                             TreeNode treeNodeL2 = new TreeNode(op.Name);
+                            treeNodeL2.Name = op.GetType().ToString() + op.OID.ToString();
                             treeNode.Nodes.Add(treeNodeL2);
                             //load all detail
                             List<SCOptionDetail> myOptionDetails = new List<SCOptionDetail>();
@@ -645,6 +647,7 @@ namespace SCPrime
                                 {
                                     // create childnode level3
                                     TreeNode treeNodeL3 = new TreeNode(sod.Name);
+                                    treeNodeL3.Name = sod.GetType().ToString() + sod.OID.ToString();
                                     treeNodeL2.Nodes.Add(treeNodeL3);
                                 }
                             }
@@ -652,9 +655,27 @@ namespace SCPrime
                     }
                 }
             }
+            //this.treeView1.ExpandAll();
+            if (!string.IsNullOrEmpty(this.treeFullPath))
+            {
+                this.displayTree(this.treeFullPath);
+            }
         }
 
 
+        private void displayTree(string path)
+        {
+            TreeNode[] nodes = this.treeView1.Nodes.Find(path, true);
+            if (nodes.Count() > 0)
+            {
+                foreach (TreeNode node in nodes)
+                {
+                    node.Expand();
+                    this.treeView1.SelectedNode = node;
+                    this.treeView1.Focus();
+                }
+            }
+        }
 
         public SCOptionCategory RowToCategory(DataGridViewRow row)
         {
@@ -728,7 +749,8 @@ namespace SCPrime
 
         private void dataGridViewCategory_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-
+            //SCOptionCategory sc = new SCOptionCategory();
+            //this.displayTree(sc.GetType().ToString() + this.dataGridViewCategory.Rows[e.RowIndex].Cells[0].Value);
         }
         private void loadOptionList(int CategoryOid)
         {
@@ -758,7 +780,7 @@ namespace SCPrime
                 this.dgvOptions.DataSource = optionTable;
             }
 
-            dgvOptions.Refresh();
+            //     dgvOptions.Refresh();
 
             if (dgvOptions.Rows.Count > 0)
             {
@@ -998,23 +1020,8 @@ namespace SCPrime
         }
         private void dgvOptions_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
         {
-            //if (e.StateChanged != DataGridViewElementStates.Selected)
-            //return;
-            //if (dgvOptions.SelectedRows.Count > 0)
-            //{
-            //    DataGridViewRow row = dgvOptions.SelectedRows[0];
-            //    int index = -1;
-            //    var tmp = Int32.TryParse(row.Cells["OptionOID"].Value.ToString(), out index);
-            //    this.OptionOidSelected = index;
-            //    if (this.categorySelected.Options != null)
-            //    {
-            //        this.optionSelected = this.categorySelected.Options.Find(x => x.OID == this.OptionOidSelected);
-            //    }
-
-            //    this.loadOptionDetail(OptionOidSelected);
-            //}
-
-
+            
+           
         }
 
         private void dgvOptions_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
@@ -1056,7 +1063,10 @@ namespace SCPrime
                 }
 
                 this.loadOptionDetail(OptionOidSelected);
+
             }
+            //this.displayTree(this.optionSelected.GetType().ToString() + this.dgvOptions.Rows[e.RowIndex].Cells[0].Value);
+
         }
 
         //-----------------------------------------OPTION GRID USER FUNCTION----------------------------
@@ -1439,6 +1449,7 @@ namespace SCPrime
                     this.detailSelected = sc;
                 }
             }
+            
         }
 
 
@@ -1520,27 +1531,32 @@ namespace SCPrime
             pn.ShowDialog();
         }
 
-        private void treeView1_DoubleClick(object sender, EventArgs e)
-        {
-            
-        }
+       
 
         private void treeView1_Click(object sender, EventArgs e)
         {
+
         }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if(e.Node.Level ==0)// Category
+            this.treeSelection(e);
+            //this.treeFullPath = e.Node.Name;
+        }
+        private void treeSelection(TreeViewEventArgs e)
+        {
+
+            if (e.Node.Level == 0)// Category
             {
                 var item = this.saveCategories.Find(x => x.Name == e.Node.Text);
-                if(item != null)
+                if (item != null)
                 {
                     this.categorySelected = item;
                     int idx = this.GetIndexOfRowCategory(this.dataGridViewCategory, item.OID);
-                    if(idx > -1)
+                    if (idx > -1)
                     {
                         this.dataGridViewCategory.Rows[idx].Cells[1].Selected = true;
+                        this.dataGridViewCategory.BeginEdit(true);
                     }
 
                 }
@@ -1561,6 +1577,7 @@ namespace SCPrime
                         if (idx > -1)
                         {
                             this.dataGridViewCategory.Rows[idx].Cells[1].Selected = true;
+                            this.dataGridViewCategory.BeginEdit(true);
                         }
 
                     }
@@ -1573,6 +1590,7 @@ namespace SCPrime
                         if (idx > -1)
                         {
                             this.dgvOptions.Rows[idx].Cells[1].Selected = true;
+                            this.dgvOptions.BeginEdit(true);
                         }
 
                     }
@@ -1595,6 +1613,7 @@ namespace SCPrime
                         if (idx > -1)
                         {
                             this.dataGridViewCategory.Rows[idx].Cells[1].Selected = true;
+                            this.dataGridViewCategory.BeginEdit(true);
                         }
 
                     }
@@ -1607,6 +1626,7 @@ namespace SCPrime
                         if (idx > -1)
                         {
                             this.dgvOptions.Rows[idx].Cells[1].Selected = true;
+                            this.dgvOptions.BeginEdit(true);
                         }
 
                     }
@@ -1619,13 +1639,27 @@ namespace SCPrime
                         if (idx > -1)
                         {
                             this.dgvDetails.Rows[idx].Cells[1].Selected = true;
+                            this.dgvDetails.BeginEdit(true);
                         }
 
                     }
                 }
-            }
+            }//--- end of detail
+
+            this.treeNodeSelected = e.Node;
+            this.treeFullPath = e.Node.Name;
+        }
+        
+        private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            //this.treeSelection(e);
         }
 
-        
+        private void dgvDetails_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            //SCOptionDetail sod = new SCOptionDetail();
+            //this.displayTree(sod.GetType().ToString() + this.dgvDetails.Rows[e.RowIndex].Cells[0].Value);
+            
+        }
     }
 }
