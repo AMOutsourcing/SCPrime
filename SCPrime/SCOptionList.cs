@@ -261,7 +261,10 @@ namespace SCPrime
         }
 
 
+        private void SelectTreeNode(int OID,int flagType) 
+        {
 
+        }
 
 
 
@@ -1139,7 +1142,24 @@ namespace SCPrime
             return 0;
         }
 
+
         //--------------------------------------DETAIL GRID-------------------------------------------------------------------
+        private int GetIndexOfRowDetail(DataGridView dataGrid, int id)
+        {
+            for (int i = 0; i < dataGrid.Rows.Count; i += 1)
+            {
+
+                SCOptionDetail row = new SCOptionDetail(); // or.DataBoundItem;
+                row = this.RowToDetail(dataGrid.Rows[i]);
+                if (row.OID == id)
+                {
+                    return i;
+                }
+            }
+
+            return 0;
+        }
+
         private void loadOptionDetail(int OptionOid)
         {
 
@@ -1500,7 +1520,112 @@ namespace SCPrime
             pn.ShowDialog();
         }
 
+        private void treeView1_DoubleClick(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void treeView1_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            if(e.Node.Level ==0)// Category
+            {
+                var item = this.saveCategories.Find(x => x.Name == e.Node.Text);
+                if(item != null)
+                {
+                    this.categorySelected = item;
+                    int idx = this.GetIndexOfRowCategory(this.dataGridViewCategory, item.OID);
+                    if(idx > -1)
+                    {
+                        this.dataGridViewCategory.Rows[idx].Cells[1].Selected = true;
+                    }
+
+                }
+            }
+
+            //start Options
+            if (e.Node.Level == 1)// Options
+            {
+                //get full path
+                string[] paths = e.Node.FullPath.Split('\\');
+                if (paths.Count() > 0)
+                {
+                    var cat = this.saveCategories.Find(x => x.Name == paths[0]);
+                    if (cat != null)
+                    {
+                        this.categorySelected = cat;
+                        int idx = this.GetIndexOfRowCategory(this.dataGridViewCategory, cat.OID);
+                        if (idx > -1)
+                        {
+                            this.dataGridViewCategory.Rows[idx].Cells[1].Selected = true;
+                        }
+
+                    }
+
+                    var item = this.categorySelected.Options.Find(x => x.Name == e.Node.Text);
+                    if (item != null)
+                    {
+                        this.optionSelected = item;
+                        int idx = this.GetIndexOfRowOption(this.dgvOptions, item.OID);
+                        if (idx > -1)
+                        {
+                            this.dgvOptions.Rows[idx].Cells[1].Selected = true;
+                        }
+
+                    }
+                }
+            }//-- end of Option
 
 
+            //----start Detail
+            if (e.Node.Level == 2)// Detail
+            {
+                //get full path
+                string[] paths = e.Node.FullPath.Split('\\');
+                if (paths.Count() > 0)
+                {
+                    var cat = this.saveCategories.Find(x => x.Name == paths[0]);
+                    if (cat != null)
+                    {
+                        this.categorySelected = cat;
+                        int idx = this.GetIndexOfRowCategory(this.dataGridViewCategory, cat.OID);
+                        if (idx > -1)
+                        {
+                            this.dataGridViewCategory.Rows[idx].Cells[1].Selected = true;
+                        }
+
+                    }
+
+                    var option = this.categorySelected.Options.Find(x => x.Name == paths[1]);
+                    if (option != null)
+                    {
+                        this.optionSelected = option;
+                        int idx = this.GetIndexOfRowOption(this.dgvOptions, option.OID);
+                        if (idx > -1)
+                        {
+                            this.dgvOptions.Rows[idx].Cells[1].Selected = true;
+                        }
+
+                    }
+
+                    var item = this.optionSelected.OptionDetails.Find(x => x.Name == paths[2]);
+                    if (item != null)
+                    {
+                        this.detailSelected = item;
+                        int idx = this.GetIndexOfRowDetail(this.dgvDetails, item.OID);
+                        if (idx > -1)
+                        {
+                            this.dgvDetails.Rows[idx].Cells[1].Selected = true;
+                        }
+
+                    }
+                }
+            }
+        }
+
+        
     }
 }
