@@ -101,7 +101,7 @@ namespace SCPrime
             if (contactId > 0)
             {
                 //Load data
-                List<Model.SCOptionPrice> listData = new Model.SCContractType().getOptionPriceList2(contactId);
+                List<Model.SCOptionPrice> listData = new Model.SCContractType().getOptionPriceList(contactId);
                 System.Diagnostics.Debug.WriteLine("loadDataGrid: " + listData.Count);
                 //sCOptionPriceBindingSource.DataSource = listData;
                 DataTable dataTable = ObjectUtils.ConvertToDataTable(listData);

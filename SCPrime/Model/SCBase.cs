@@ -555,14 +555,56 @@ namespace SCPrime.Model
             clsSqlFactory hSql = new clsSqlFactory();
             try
             {
-
-                String strSql = " SELECT a.OID,a.ContractTypeOID,a.OptionCategoryOID,isnull(a.OptionOID,0),isnull(a.OptionDetailOID,0),a.IsAvailable,isnull(a.Info,''),a.Created,a.Modified,isnull(c.Name,''),isnull(o.Name,''),isnull(d.Name,'') " +
-                    "FROM ZSC_OptionPriceList  a " +
-                    "LEFT JOIN ZSC_OptionCategory c ON a.OptionCategoryOID = c.OID " +
-                    "LEFT JOIN ZSC_Option o ON a.OptionOID = o.OID " +
-                    "LEFT JOIN ZSC_OptionDetail d ON a.OptionDetailOID = d.OID " +
-                    "WHERE a.ContractTypeOID=? order by a.OID DESC ";
+                String strSql = "SELECT * FROM"
+                + "  (SELECT "
+                + "    isnull(p.OID,0) as OID,"
+                + "    isnull(p.ContractTypeOID,0) as ContractTypeOID,"
+                + "    c.OID AS OptionCategoryOID,"
+                + "    o.OID AS OptionOID,"
+                + "    0 AS OptionDetailOID,"
+                + "    isnull(p.IsAvailable,-1) as IsAvailable,"
+                + "    isnull(p.Info,'') as Info,"
+                + "    p.Created,"
+                + "    p.Modified,"
+                + "    c.Name AS CategoryName,"
+                + "    o.Name AS OptionName,"
+                + "    '' AS OptionDetailName "
+                + "  FROM"
+                + "    ZSC_Option o "
+                + "    LEFT JOIN ZSC_OptionCategory c "
+                + "      ON o.OptionCategoryOID = c.OID "
+                + "    LEFT JOIN ZSC_ContractOption ct "
+                + "      ON ct.OptionOID = o.OID "
+                + "    LEFT JOIN ZSC_OptionPriceList p "
+                + "      ON p.OptionOID = o.OID "
+                + "  WHERE p.OptionDetailOID IS NULL AND ct.ContractOID = ? "
+                + "  UNION ALL "
+                + "  SELECT "
+                + "    isnull(p.OID,0) as OID,"
+                + "    isnull(p.ContractTypeOID,0) as ContractTypeOID,"
+                + "    c.OID AS OptionCategoryOID,"
+                + "    o.OID AS OptionOID,"
+                + "    d.OID AS OptionDetailOID,"
+                + "    isnull(p.IsAvailable,-1) as IsAvailable,"
+                + "    isnull(p.Info,'') as Info,"
+                + "    p.Created,"
+                + "    p.Modified,"
+                + "    c.Name AS CategoryName,"
+                + "    o.Name AS OptionName,"
+                + "    d.Name AS OptionDetailName "
+                + "  FROM"
+                + "    ZSC_OptionDetail d "
+                + "    LEFT JOIN ZSC_Option o "
+                + "      ON d.OptionOID = o.OID "
+                + "    LEFT JOIN ZSC_OptionCategory c "
+                + "      ON o.OptionCategoryOID = c.OID "
+                + "    LEFT JOIN ZSC_ContractOption ct "
+                + "      ON ct.OptionOID = d.OID "
+                + "    LEFT JOIN ZSC_OptionPriceList p "
+                + "      ON p.OptionDetailOID = d.OID "
+                + "  WHERE ct.ContractOID = ?) tmp";
                 hSql.NewCommand(strSql);
+                hSql.Com.Parameters.AddWithValue("ContractTypeOID", contactTypeId);
                 hSql.Com.Parameters.AddWithValue("ContractTypeOID", contactTypeId);
                 hSql.ExecuteReader();
                 while (hSql.Read())
@@ -575,13 +617,14 @@ namespace SCPrime.Model
                     item.OptionDetailOID = hSql.Reader.GetInt32(4);
                     item.IsAvailable = hSql.Reader.GetInt32(5);
                     item.Info = hSql.Reader.GetString(6);
-                    item.Created = hSql.Reader.GetDateTime(7);
-                    item.Modified = hSql.Reader.GetDateTime(8);
+                    //item.Created = hSql.Reader.GetDateTime(7);
+                    //item.Modified = hSql.Reader.GetDateTime(8);
                     item.CategoryName = hSql.Reader.GetString(9);
                     item.OptionName = hSql.Reader.GetString(10);
                     item.OptionDetailName = hSql.Reader.GetString(11);
                     Result.Add(item);
                 }
+                System.Diagnostics.Debug.WriteLine("--------------getOptionPriceList2: " + Result.Count);
             }
             catch (Exception ex)
             {
