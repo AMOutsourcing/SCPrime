@@ -573,11 +573,13 @@ namespace SCPrime.Model
                 + "    ZSC_Option o "
                 + "    LEFT JOIN ZSC_OptionCategory c "
                 + "      ON o.OptionCategoryOID = c.OID "
-                + "    LEFT JOIN ZSC_ContractOption ct "
-                + "      ON ct.OptionOID = o.OID "
+                + "    LEFT JOIN ZSC_ContractOption cto "
+                + "      ON cto.OptionOID = o.OID "
+                + "    LEFT JOIN ZSC_Contract ct "
+                + "      ON ct.OID = cto.ContractOID "
                 + "    LEFT JOIN ZSC_OptionPriceList p "
                 + "      ON p.OptionOID = o.OID "
-                + "  WHERE p.OptionDetailOID IS NULL AND ct.ContractOID = ? "
+                + "  WHERE p.OptionDetailOID IS NULL AND ct.ContractTypeOID = ? "
                 + "  UNION ALL "
                 + "  SELECT "
                 + "    isnull(p.OID,0) as OID,"
@@ -598,11 +600,13 @@ namespace SCPrime.Model
                 + "      ON d.OptionOID = o.OID "
                 + "    LEFT JOIN ZSC_OptionCategory c "
                 + "      ON o.OptionCategoryOID = c.OID "
-                + "    LEFT JOIN ZSC_ContractOption ct "
-                + "      ON ct.OptionOID = d.OID "
+                + "    LEFT JOIN ZSC_ContractOption cto "
+                + "      ON cto.OptionOID = d.OID "
+                + "    LEFT JOIN ZSC_Contract ct "
+                + "      ON ct.OID = cto.ContractOID "
                 + "    LEFT JOIN ZSC_OptionPriceList p "
                 + "      ON p.OptionDetailOID = d.OID "
-                + "  WHERE ct.ContractOID = ?) tmp";
+                + "  WHERE ct.ContractTypeOID = ?) tmp";
                 hSql.NewCommand(strSql);
                 hSql.Com.Parameters.AddWithValue("ContractTypeOID", contactTypeId);
                 hSql.Com.Parameters.AddWithValue("ContractTypeOID", contactTypeId);
