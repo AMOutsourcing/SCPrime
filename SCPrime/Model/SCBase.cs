@@ -718,27 +718,30 @@ namespace SCPrime.Model
                 foreach (SCOptionPrice obj in listItem)
                 {
                     //Delete
-                    bRet = hSql.NewCommand("DELETE FROM ZSC_OptionPriceList WHERE ContractTypeOID=? AND OptionCategoryOID=? AND OptionOID=? AND OptionDetailOID=?");
-                    hSql.Com.Parameters.AddWithValue("ContractTypeOID", ((object)obj.ContractTypeOID) ?? DBNull.Value);
-                    hSql.Com.Parameters.AddWithValue("OptionCategoryOID", obj.CategoryOID);
-                    if(obj.OptionOID <= 0)
-                    {
-                        hSql.Com.Parameters.AddWithValue("OptionOID", DBNull.Value);
-                    }
-                    else
-                    {
-                        hSql.Com.Parameters.AddWithValue("OptionOID", ((object)obj.OptionOID) ?? DBNull.Value);
-                    }
-
                     if (obj.OptionDetailOID <= 0)
                     {
-                        hSql.Com.Parameters.AddWithValue("OptionDetailOID", DBNull.Value);
+                        if (obj.OptionOID <= 0)
+                        {
+                            bRet = hSql.NewCommand("DELETE FROM ZSC_OptionPriceList WHERE ContractTypeOID=? AND OptionCategoryOID=? AND OptionOID is null AND OptionDetailOID is null");
+                            hSql.Com.Parameters.AddWithValue("ContractTypeOID", obj.ContractTypeOID);
+                            hSql.Com.Parameters.AddWithValue("OptionCategoryOID", obj.CategoryOID);
+                        }
+                        else
+                        {
+                            bRet = hSql.NewCommand("DELETE FROM ZSC_OptionPriceList WHERE ContractTypeOID=? AND OptionCategoryOID=? AND OptionOID=? AND OptionDetailOID is null");
+                            hSql.Com.Parameters.AddWithValue("ContractTypeOID", obj.ContractTypeOID);
+                            hSql.Com.Parameters.AddWithValue("OptionCategoryOID", obj.CategoryOID);
+                            hSql.Com.Parameters.AddWithValue("OptionOID", obj.OptionOID);
+                        }
                     }
                     else
                     {
-                        hSql.Com.Parameters.AddWithValue("OptionDetailOID", ((object)obj.OptionDetailOID) ?? DBNull.Value);
+                        bRet = hSql.NewCommand("DELETE FROM ZSC_OptionPriceList WHERE ContractTypeOID=? AND OptionCategoryOID=? AND OptionOID=? AND OptionDetailOID=?");
+                        hSql.Com.Parameters.AddWithValue("ContractTypeOID", obj.ContractTypeOID);
+                        hSql.Com.Parameters.AddWithValue("OptionCategoryOID", obj.CategoryOID);
+                        hSql.Com.Parameters.AddWithValue("OptionOID", obj.OptionOID);
+                        hSql.Com.Parameters.AddWithValue("OptionDetailOID", obj.OptionDetailOID);
                     }
-                    //hSql.Com.Parameters.AddWithValue("Info", obj.Info);
                     bRet = bRet && hSql.ExecuteNonQuery();
 
                     //Add

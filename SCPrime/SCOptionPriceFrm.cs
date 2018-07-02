@@ -75,6 +75,7 @@ namespace SCPrime
                 {
                     ComboBox cmb = (ComboBox)sender;
                     Int32 selectedValue = Int32.Parse(cmb.SelectedValue.ToString());
+                    System.Diagnostics.Debug.WriteLine("cbContactType_SelectedIndexChanged selectedValue: " + selectedValue);
                     loadDataGrid(selectedValue);
                 }
             }
@@ -87,6 +88,9 @@ namespace SCPrime
 
         private void loadDataGrid(Int32 contactId)
         {
+            //Clear list item thay doi ma chua save
+            scPriceListChange.Clear();
+
             //Clear data
             gridPrice.DataSource = null;
 
@@ -94,6 +98,7 @@ namespace SCPrime
             {
                 //Load data
                 List<Model.SCOptionPrice> listData = new Model.SCContractType().getOptionPriceList(contactId);
+                System.Diagnostics.Debug.WriteLine("loadDataGrid listData: " + listData.Count);
                 //sCOptionPriceBindingSource.DataSource = listData;
                 DataTable dataTable = ObjectUtils.ConvertToDataTable(listData);
                 gridPrice.DataSource = dataTable;
