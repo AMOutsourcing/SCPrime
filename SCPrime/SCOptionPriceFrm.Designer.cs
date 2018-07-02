@@ -36,8 +36,6 @@
             this.pnRight = new System.Windows.Forms.Panel();
             this.pnTop = new System.Windows.Forms.Panel();
             this.gridPrice = new System.Windows.Forms.DataGridView();
-            this.sCOptionPriceBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.sCOptionPriceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.oIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.categoryNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.optionNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,6 +52,8 @@
             this.infoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.createdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sCOptionPriceBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.sCOptionPriceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pnRight.SuspendLayout();
             this.pnTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridPrice)).BeginInit();
@@ -105,7 +105,7 @@
             this.pnRight.Controls.Add(this.btnSave);
             this.pnRight.Controls.Add(this.btnClose);
             this.pnRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnRight.Location = new System.Drawing.Point(680, 0);
+            this.pnRight.Location = new System.Drawing.Point(850, 0);
             this.pnRight.Name = "pnRight";
             this.pnRight.Size = new System.Drawing.Size(120, 450);
             this.pnRight.TabIndex = 6;
@@ -117,7 +117,7 @@
             this.pnTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnTop.Location = new System.Drawing.Point(0, 0);
             this.pnTop.Name = "pnTop";
-            this.pnTop.Size = new System.Drawing.Size(680, 45);
+            this.pnTop.Size = new System.Drawing.Size(850, 45);
             this.pnTop.TabIndex = 7;
             // 
             // gridPrice
@@ -148,19 +148,11 @@
             this.gridPrice.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridPrice.Location = new System.Drawing.Point(0, 45);
             this.gridPrice.Name = "gridPrice";
-            this.gridPrice.Size = new System.Drawing.Size(680, 405);
+            this.gridPrice.Size = new System.Drawing.Size(850, 405);
             this.gridPrice.TabIndex = 2;
             this.gridPrice.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridPrice_CellContentClick);
             this.gridPrice.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridPrice_CellDoubleClick);
             this.gridPrice.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridPrice_CellValueChanged);
-            // 
-            // sCOptionPriceBindingSource1
-            // 
-            this.sCOptionPriceBindingSource1.DataSource = typeof(SCPrime.Model.SCOptionPrice);
-            // 
-            // sCOptionPriceBindingSource
-            // 
-            this.sCOptionPriceBindingSource.DataSource = typeof(SCPrime.Model.SCOptionPrice);
             // 
             // oIDDataGridViewTextBoxColumn
             // 
@@ -270,11 +262,19 @@
             this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
             this.modifiedDataGridViewTextBoxColumn.Visible = false;
             // 
+            // sCOptionPriceBindingSource1
+            // 
+            this.sCOptionPriceBindingSource1.DataSource = typeof(SCPrime.Model.SCOptionPrice);
+            // 
+            // sCOptionPriceBindingSource
+            // 
+            this.sCOptionPriceBindingSource.DataSource = typeof(SCPrime.Model.SCOptionPrice);
+            // 
             // SCOptionPriceFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(970, 450);
             this.Controls.Add(this.gridPrice);
             this.Controls.Add(this.pnTop);
             this.Controls.Add(this.pnRight);
