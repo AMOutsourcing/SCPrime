@@ -54,9 +54,7 @@ namespace SCPrime
 
             if (listContacType.Count > 0)
             {
-                System.Diagnostics.Debug.WriteLine("initData listContacType[0]: " + listContacType[0].OID);
                 cbContactType.SelectedIndex = 0;
-                System.Diagnostics.Debug.WriteLine("initData SelectedIndex: " + cbContactType.SelectedIndex + " - " + cbContactType.SelectedValue);
 
                 //Call load grid
                 loadDataGrid(listContacType[0].OID);
@@ -71,17 +69,12 @@ namespace SCPrime
 
         private void cbContactType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("SelectedIndexChanged: " + cbContactType.SelectedIndex);
             try
             {
                 if (cbContactType.SelectedIndex >= 0)
                 {
-                    System.Diagnostics.Debug.WriteLine("SelectedIndex: " + cbContactType.SelectedIndex);
                     ComboBox cmb = (ComboBox)sender;
-
-
                     Int32 selectedValue = Int32.Parse(cmb.SelectedValue.ToString());
-                    System.Diagnostics.Debug.WriteLine("cbContactType_SelectedIndexChanged: " + cmb.SelectedValue);
                     loadDataGrid(selectedValue);
                 }
             }
@@ -94,7 +87,6 @@ namespace SCPrime
 
         private void loadDataGrid(Int32 contactId)
         {
-            System.Diagnostics.Debug.WriteLine("--------------call loadDataGrid : " + contactId + " ------------");
             //Clear data
             gridPrice.DataSource = null;
 
@@ -102,7 +94,6 @@ namespace SCPrime
             {
                 //Load data
                 List<Model.SCOptionPrice> listData = new Model.SCContractType().getOptionPriceList(contactId);
-                System.Diagnostics.Debug.WriteLine("loadDataGrid: " + listData.Count);
                 //sCOptionPriceBindingSource.DataSource = listData;
                 DataTable dataTable = ObjectUtils.ConvertToDataTable(listData);
                 gridPrice.DataSource = dataTable;
@@ -159,9 +150,7 @@ namespace SCPrime
             //Start Timer
             t.Tag = e;
             t.Start();
-
-
-            System.Diagnostics.Debug.WriteLine("--------------gridPrice_CellContentClick ------------ " + e.ColumnIndex + " lockClick: " + lockClick);
+            
             if (lockClick)
             {
             }
@@ -320,7 +309,7 @@ namespace SCPrime
             DataGridViewRow row = gridPrice.Rows[rowIndex];
             SCOptionPrice optionPrice = RowToOptionPrice(row);
             //scPriceListChange
-            var item = scPriceListChange.Find(x => x.OID == optionPrice.OID);
+            var item = scPriceListChange.Find(x => (x.CategoryOID == optionPrice.CategoryOID) && (x.OptionOID == optionPrice.OptionOID) && (x.OptionDetailOID == optionPrice.OptionDetailOID));
             if (item == null)
             {
                 scPriceListChange.Add(optionPrice);
@@ -334,13 +323,25 @@ namespace SCPrime
 
         public SCOptionPrice RowToOptionPrice(DataGridViewRow row)
         {
-            System.Diagnostics.Debug.WriteLine("--------------RowToOptionPrice: " + row.Cells[0].Value.ToString());
             SCOptionPrice price = new SCOptionPrice();
-            int number = -1;
-            bool tmp = Int32.TryParse(row.Cells[0].Value.ToString(), out number);
+            Int32 selectedValue = Int32.Parse(cbContactType.SelectedValue.ToString());
+            price.ContractTypeOID = selectedValue;
+
+            int number = 0;
+            bool tmp = Int32.TryParse(row.Cells[9].Value.ToString(), out number);
 
             if (tmp)
-                price.OID = number;
+                price.CategoryOID = number;
+
+            tmp = Int32.TryParse(row.Cells[10].Value.ToString(), out number);
+
+            if (tmp)
+                price.OptionOID = number;
+
+            tmp = Int32.TryParse(row.Cells[11].Value.ToString(), out number);
+
+            if (tmp)
+                price.OptionDetailOID = number;
 
             bool Include = (bool)row.Cells[IncludeColumnIndex].Value;
             bool Optional = (bool)row.Cells[OptionalColumnIndex].Value;
@@ -367,8 +368,6 @@ namespace SCPrime
                 price.IsAvailable = -1;
             }
 
-            System.Diagnostics.Debug.WriteLine("--------------RowToOptionPrice: " + price.OID + " - " + price.IsAvailable);
-
             return price;
         }
 
@@ -376,7 +375,6 @@ namespace SCPrime
         {
             try
             {
-                System.Diagnostics.Debug.WriteLine("--------------CellValueChanged addToListChange ------------" + e.ColumnIndex);
                 addToListChange(e.RowIndex);
             }
             catch (Exception ex)

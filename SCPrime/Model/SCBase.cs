@@ -549,176 +549,68 @@ namespace SCPrime.Model
         }
 
         public List<SCOptionPrice> listOptionPrice = new List<SCOptionPrice>();
+
         public List<SCOptionPrice> getOptionPriceList(int contactTypeId)
         {
             List<SCOptionPrice> Result = new List<SCOptionPrice>();
-            clsSqlFactory hSql = new clsSqlFactory();
-            try
-            {
-                String strSql = "SELECT * FROM"
-                + "  (SELECT "
-                + "    isnull(p.OID,0) as OID,"
-                + "    isnull(p.ContractTypeOID,0) as ContractTypeOID,"
-                + "    c.OID AS OptionCategoryOID,"
-                + "    o.OID AS OptionOID,"
-                + "    0 AS OptionDetailOID,"
-                + "    isnull(p.IsAvailable,-1) as IsAvailable,"
-                + "    isnull(p.Info,'') as Info,"
-                + "    p.Created,"
-                + "    p.Modified,"
-                + "    c.Name AS CategoryName,"
-                + "    o.Name AS OptionName,"
-                + "    '' AS OptionDetailName "
-                + "  FROM"
-                + "    ZSC_Option o "
-                + "    LEFT JOIN ZSC_OptionCategory c "
-                + "      ON o.OptionCategoryOID = c.OID "
-                + "    LEFT JOIN ZSC_ContractOption cto "
-                + "      ON cto.OptionOID = o.OID "
-                + "    LEFT JOIN ZSC_Contract ct "
-                + "      ON ct.OID = cto.ContractOID "
-                + "    LEFT JOIN ZSC_OptionPriceList p "
-                + "      ON p.OptionOID = o.OID "
-                + "  WHERE p.OptionDetailOID IS NULL AND ct.ContractTypeOID = ? "
-                + "  UNION ALL "
-                + "  SELECT "
-                + "    isnull(p.OID,0) as OID,"
-                + "    isnull(p.ContractTypeOID,0) as ContractTypeOID,"
-                + "    c.OID AS OptionCategoryOID,"
-                + "    o.OID AS OptionOID,"
-                + "    d.OID AS OptionDetailOID,"
-                + "    isnull(p.IsAvailable,-1) as IsAvailable,"
-                + "    isnull(p.Info,'') as Info,"
-                + "    p.Created,"
-                + "    p.Modified,"
-                + "    c.Name AS CategoryName,"
-                + "    o.Name AS OptionName,"
-                + "    d.Name AS OptionDetailName "
-                + "  FROM"
-                + "    ZSC_OptionDetail d "
-                + "    LEFT JOIN ZSC_Option o "
-                + "      ON d.OptionOID = o.OID "
-                + "    LEFT JOIN ZSC_OptionCategory c "
-                + "      ON o.OptionCategoryOID = c.OID "
-                + "    LEFT JOIN ZSC_ContractOption cto "
-                + "      ON cto.OptionOID = d.OID "
-                + "    LEFT JOIN ZSC_Contract ct "
-                + "      ON ct.OID = cto.ContractOID "
-                + "    LEFT JOIN ZSC_OptionPriceList p "
-                + "      ON p.OptionDetailOID = d.OID "
-                + "  WHERE ct.ContractTypeOID = ?) tmp";
-                hSql.NewCommand(strSql);
-                hSql.Com.Parameters.AddWithValue("ContractTypeOID", contactTypeId);
-                hSql.Com.Parameters.AddWithValue("ContractTypeOID", contactTypeId);
-                hSql.ExecuteReader();
-                while (hSql.Read())
-                {
-                    SCOptionPrice item = new SCOptionPrice();
-                    item.OID = hSql.Reader.GetInt32(0);
-                    item.ContractTypeOID = hSql.Reader.GetInt32(1);
-                    item.OptionCategoryOID = hSql.Reader.GetInt32(2);
-                    item.OptionOID = hSql.Reader.GetInt32(3);
-                    item.OptionDetailOID = hSql.Reader.GetInt32(4);
-                    item.IsAvailable = hSql.Reader.GetInt32(5);
-                    item.Info = hSql.Reader.GetString(6);
-                    //item.Created = hSql.Reader.GetDateTime(7);
-                    //item.Modified = hSql.Reader.GetDateTime(8);
-                    item.CategoryName = hSql.Reader.GetString(9);
-                    item.OptionName = hSql.Reader.GetString(10);
-                    item.OptionDetailName = hSql.Reader.GetString(11);
-                    Result.Add(item);
-                }
-                System.Diagnostics.Debug.WriteLine("--------------getOptionPriceList2: " + Result.Count);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                hSql.Close();
-            }
-            return Result;
-        }
 
-        public List<SCOptionPrice> getOptionPriceList2(int contactTypeId)
-        {
-            List<SCOptionPrice> Result = new List<SCOptionPrice>();
-            clsSqlFactory hSql = new clsSqlFactory();
-            try
+
+            List<SCOptionCategory> categoryPriceList = SCOptionCategory.getContractOptionCategoryPriceList(contactTypeId);
+            List<SCOption> Options = null;
+            List<SCOptionDetail> OptionDetails = null;
+
+            SCOptionPrice obj = null;
+            if (categoryPriceList != null && categoryPriceList.Count > 0)
             {
-                String strSql = "SELECT * FROM"
-                + "  (SELECT "
-                + "    isnull(p.OID,0) as OID,"
-                + "    isnull(p.ContractTypeOID,0) as ContractTypeOID,"
-                + "    c.OID AS OptionCategoryOID,"
-                + "    o.OID AS OptionOID,"
-                + "    0 AS OptionDetailOID,"
-                + "    isnull(p.IsAvailable,-1) as IsAvailable,"
-                + "    isnull(p.Info,'') as Info,"
-                + "    p.Created,"
-                + "    p.Modified,"
-                + "    c.Name AS CategoryName,"
-                + "    o.Name AS OptionName,"
-                + "    '' AS OptionDetailName "
-                + "  FROM"
-                + "    ZSC_Option o "
-                + "    LEFT JOIN ZSC_OptionCategory c "
-                + "      ON o.OptionCategoryOID = c.OID "
-                + "    LEFT JOIN ZSC_OptionPriceList p "
-                + "      ON p.OptionOID = o.OID "
-                + "  WHERE p.OptionDetailOID IS NULL "
-                + "  UNION ALL "
-                + "  SELECT "
-                + "    isnull(p.OID,0) as OID,"
-                + "    isnull(p.ContractTypeOID,0) as ContractTypeOID,"
-                + "    c.OID AS OptionCategoryOID,"
-                + "    o.OID AS OptionOID,"
-                + "    d.OID AS OptionDetailOID,"
-                + "    isnull(p.IsAvailable,-1) as IsAvailable,"
-                + "    isnull(p.Info,'') as Info,"
-                + "    p.Created,"
-                + "    p.Modified,"
-                + "    c.Name AS CategoryName,"
-                + "    o.Name AS OptionName,"
-                + "    d.Name AS OptionDetailName "
-                + "  FROM"
-                + "    ZSC_OptionDetail d "
-                + "    LEFT JOIN ZSC_Option o "
-                + "      ON d.OptionOID = o.OID "
-                + "    LEFT JOIN ZSC_OptionCategory c "
-                + "      ON o.OptionCategoryOID = c.OID "
-                + "    LEFT JOIN ZSC_OptionPriceList p "
-                + "      ON p.OptionDetailOID = d.OID) tmp";
-                hSql.NewCommand(strSql);
-                //hSql.Com.Parameters.AddWithValue("ContractTypeOID", contactTypeId);
-                hSql.ExecuteReader();
-                while (hSql.Read())
+                foreach (SCOptionCategory category in categoryPriceList)
                 {
-                    SCOptionPrice item = new SCOptionPrice();
-                    item.OID = hSql.Reader.GetInt32(0);
-                    item.ContractTypeOID = hSql.Reader.GetInt32(1);
-                    item.OptionCategoryOID = hSql.Reader.GetInt32(2);
-                    item.OptionOID = hSql.Reader.GetInt32(3);
-                    item.OptionDetailOID = hSql.Reader.GetInt32(4);
-                    item.IsAvailable = hSql.Reader.GetInt32(5);
-                    item.Info = hSql.Reader.GetString(6);
-                    //item.Created = hSql.Reader.GetDateTime(7);
-                    //item.Modified = hSql.Reader.GetDateTime(8);
-                    item.CategoryName = hSql.Reader.GetString(9);
-                    item.OptionName = hSql.Reader.GetString(10);
-                    item.OptionDetailName = hSql.Reader.GetString(11);
-                    Result.Add(item);
+                    //Tao 1 ban ghi SCOptionPrice voi du lieu Category
+                    obj = new SCOptionPrice();
+                    obj.CategoryOID = category.OID;
+                    obj.CategoryName = category.Name;
+                    obj.ContractTypeOID = contactTypeId;
+                    obj.IsAvailable = category.isAvailable;
+                    Result.Add(obj);
+
+                    //Duyet Option
+                    Options = category.Options;
+                    if (Options != null && Options.Count > 0)
+                    {
+                        foreach (SCOption option in Options)
+                        {
+                            //Tao ban ghi SCOptionPrice voi du lieu Options
+                            obj = new SCOptionPrice();
+                            obj.CategoryOID = category.OID;
+                            obj.CategoryName = category.Name;
+                            obj.ContractTypeOID = contactTypeId;
+                            obj.OptionOID = option.OID;
+                            obj.OptionName = option.Name;
+                            obj.IsAvailable = option.isAvailable;
+                            Result.Add(obj);
+
+                            //Duyet OptionDetails
+                            OptionDetails = option.OptionDetails;
+                            if (OptionDetails != null && OptionDetails.Count > 0)
+                            {
+                                foreach (SCOptionDetail detail in OptionDetails)
+                                {
+                                    //Tao ban ghi SCOptionPrice voi du lieu OptionDetails
+                                    obj = new SCOptionPrice();
+                                    obj.CategoryOID = category.OID;
+                                    obj.CategoryName = category.Name;
+                                    obj.OptionOID = option.OID;
+                                    obj.OptionName = option.Name;
+                                    obj.ContractTypeOID = contactTypeId;
+                                    obj.OptionDetailOID = detail.OID;
+                                    obj.OptionDetailName = detail.Name;
+                                    obj.IsAvailable = detail.isAvailable;
+                                    //System.Diagnostics.Debug.WriteLine("CategoryOID: " + obj.CategoryOID + " - OptionDetailOID: " + obj.OptionDetailOID + " - isAvailable: " + detail.isAvailable);
+                                    Result.Add(obj);
+                                }
+                            }
+                        }
+                    }
                 }
-                System.Diagnostics.Debug.WriteLine("--------------getOptionPriceList2: " + Result.Count);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                hSql.Close();
             }
             return Result;
         }
@@ -751,7 +643,7 @@ namespace SCPrime.Model
     {
         public int OID { get; set; }
         public int ContractTypeOID { get; set; }
-        public int OptionCategoryOID { get; set; }
+        public int CategoryOID { get; set; }
         public int OptionOID { get; set; }
         public int OptionDetailOID { get; set; }
         public int IsAvailable { get; set; }
@@ -825,37 +717,55 @@ namespace SCPrime.Model
             {
                 foreach (SCOptionPrice obj in listItem)
                 {
-                    if (obj.OID > 0)
+                    //Delete
+                    bRet = hSql.NewCommand("DELETE FROM ZSC_OptionPriceList WHERE ContractTypeOID=? AND OptionCategoryOID=? AND OptionOID=? AND OptionDetailOID=?");
+                    hSql.Com.Parameters.AddWithValue("ContractTypeOID", ((object)obj.ContractTypeOID) ?? DBNull.Value);
+                    hSql.Com.Parameters.AddWithValue("OptionCategoryOID", obj.CategoryOID);
+                    if(obj.OptionOID <= 0)
                     {
-                        //if (obj.isMarkDeleted == true)
-                        //{
-                        //    //delete
-                        //    bRet = hSql.NewCommand("delete from ZSC_OptionPriceList where OID=?");
-                        //    hSql.Com.Parameters.AddWithValue("OID", objContractType.OID);
-                        //}
-                        //else
-                        //{
-                        //update
-                        bRet = hSql.NewCommand("update ZSC_OptionPriceList set IsAvailable=?,Modified=getdate() where OID=?");
-                        hSql.Com.Parameters.AddWithValue("IsAvailable", obj.IsAvailable);
-                        hSql.Com.Parameters.AddWithValue("OID", obj.OID);
-
-                        //}
-                        bRet = bRet && hSql.ExecuteNonQuery();
+                        hSql.Com.Parameters.AddWithValue("OptionOID", DBNull.Value);
                     }
                     else
                     {
-                        //new
-                        bRet = hSql.NewCommand("insert into ZSC_OptionPriceList(ContractTypeOID,OptionCategoryOID,OptionOID,OptionDetailOID,IsAvailable,Info,Created,Modified) values(?,?,?,?,?,?,getdate(),getdate())");
-                        hSql.Com.Parameters.AddWithValue("ContractTypeOID", ((object)obj.ContractTypeOID) ?? DBNull.Value);
-                        hSql.Com.Parameters.AddWithValue("OptionCategoryOID", obj.OptionCategoryOID);
-                        hSql.Com.Parameters.AddWithValue("OptionOID", obj.OptionOID);
-                        hSql.Com.Parameters.AddWithValue("OptionDetailOID", ((object)obj.OptionDetailOID) ?? DBNull.Value);
-                        hSql.Com.Parameters.AddWithValue("IsAvailable", obj.IsAvailable);
-                        hSql.Com.Parameters.AddWithValue("Info", ((object)obj.Info) ?? DBNull.Value);
-                        //hSql.Com.Parameters.AddWithValue("Info", obj.Info);
-                        bRet = bRet && hSql.ExecuteNonQuery();
+                        hSql.Com.Parameters.AddWithValue("OptionOID", ((object)obj.OptionOID) ?? DBNull.Value);
                     }
+
+                    if (obj.OptionDetailOID <= 0)
+                    {
+                        hSql.Com.Parameters.AddWithValue("OptionDetailOID", DBNull.Value);
+                    }
+                    else
+                    {
+                        hSql.Com.Parameters.AddWithValue("OptionDetailOID", ((object)obj.OptionDetailOID) ?? DBNull.Value);
+                    }
+                    //hSql.Com.Parameters.AddWithValue("Info", obj.Info);
+                    bRet = bRet && hSql.ExecuteNonQuery();
+
+                    //Add
+                    bRet = hSql.NewCommand("INSERT INTO ZSC_OptionPriceList(ContractTypeOID,OptionCategoryOID,OptionOID,OptionDetailOID,IsAvailable,Info,Created,Modified) values(?,?,?,?,?,?,getdate(),getdate())");
+                    hSql.Com.Parameters.AddWithValue("ContractTypeOID", ((object)obj.ContractTypeOID) ?? DBNull.Value);
+                    hSql.Com.Parameters.AddWithValue("OptionCategoryOID", obj.CategoryOID);
+                    if (obj.OptionOID <= 0)
+                    {
+                        hSql.Com.Parameters.AddWithValue("OptionOID", DBNull.Value);
+                    }
+                    else
+                    {
+                        hSql.Com.Parameters.AddWithValue("OptionOID", ((object)obj.OptionOID) ?? DBNull.Value);
+                    }
+
+                    if (obj.OptionDetailOID <= 0)
+                    {
+                        hSql.Com.Parameters.AddWithValue("OptionDetailOID", DBNull.Value);
+                    }
+                    else
+                    {
+                        hSql.Com.Parameters.AddWithValue("OptionDetailOID", ((object)obj.OptionDetailOID) ?? DBNull.Value);
+                    }
+                    hSql.Com.Parameters.AddWithValue("IsAvailable", obj.IsAvailable);
+                    hSql.Com.Parameters.AddWithValue("Info", ((object)obj.Info) ?? DBNull.Value);
+                    //hSql.Com.Parameters.AddWithValue("Info", obj.Info);
+                    bRet = bRet && hSql.ExecuteNonQuery();
                 }
 
                 hSql.Commit();
