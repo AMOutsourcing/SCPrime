@@ -89,7 +89,11 @@ namespace SCPrime
         private void loadDataGrid(Int32 contactId)
         {
             //Clear list item thay doi ma chua save
-            scPriceListChange.Clear();
+            if(scPriceListChange != null && scPriceListChange.Count > 0)
+            {
+                scPriceListChange.Clear();
+            }
+            
 
             //Clear data
             gridPrice.DataSource = null;
