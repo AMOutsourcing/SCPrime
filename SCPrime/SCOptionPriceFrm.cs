@@ -288,28 +288,27 @@ namespace SCPrime
         //SAVE
         private void btnSave_Click(object sender, EventArgs e)
         {
-            bool result = false;
-
             if (scPriceListChange.Count > 0)
             {
+                bool result = false;
                 foreach (SCOptionPrice sc in scPriceListChange)
                 {
                     System.Diagnostics.Debug.WriteLine("--------------SCOptionPrice: " + sc.OID + " - " + sc.IsAvailable);
                 }
                 result = scPriceDao.save(scPriceListChange);
-            }
-            if (result)
-            {
-                //Reload data
-                Int32 selectedValue = Int32.Parse(cbContactType.SelectedValue.ToString());
-                loadDataGrid(selectedValue);
+                if (result)
+                {
+                    //Reload data
+                    Int32 selectedValue = Int32.Parse(cbContactType.SelectedValue.ToString());
+                    loadDataGrid(selectedValue);
 
-                //Clear list da dc update
-                scPriceListChange.Clear();
-            }
-            else
-            {
-                MessageBox.Show("ERROR btnSave_Click");
+                    //Clear list da dc update
+                    scPriceListChange.Clear();
+                }
+                else
+                {
+                    //MessageBox.Show("ERROR btnSave_Click");
+                }
             }
         }
 
@@ -395,7 +394,7 @@ namespace SCPrime
         private void gridPrice_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             t.Stop();
-            MessageBox.Show("Double");
+            //MessageBox.Show("Double");
         }
 
         private void SCOptionPriceFrm_Load(object sender, EventArgs e)
