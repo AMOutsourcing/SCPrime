@@ -26,7 +26,7 @@ namespace SCPrime.Model
             {
 
                 String strSql = " select a.OID,a.Name,isnull(a.ItemNo,''),isnull(a.ItemSuplNo,''),isnull(a.WrksId,''),isnull(a.SelPr,0),isnull(a.InvoiceFlag,0),isnull(b.NAME,''),isnull(b.BUYPR,0),isnull(c.NAME,'') " +
-                    ", isnull(d.IsAvailable,0), isnull(d.Info,'') from ZSC_OptionCategory a left join ITEM b on a.ITEMNO=b.ITEMNO and a.ITEMSUPLNO=b.SUPLNO left join WRKS c on a.WRKSID=c.WRKSID and c.WPTYPE='T' " +
+                    ", isnull(d.IsAvailable,-1), isnull(d.Info,'') from ZSC_OptionCategory a left join ITEM b on a.ITEMNO=b.ITEMNO and a.ITEMSUPLNO=b.SUPLNO left join WRKS c on a.WRKSID=c.WRKSID and c.WPTYPE='T' " +
                     " left join ZSC_OptionPriceList d on a.OID = d.OptionCategoryOID and d.ContractTypeOID =? and d.OptionOID is null and d.OptionDetailOID is null " +
                     " order by a.OID ";
                 hSql.NewCommand(strSql);
@@ -253,7 +253,7 @@ namespace SCPrime.Model
             {
 
                 String strSql = " select a.OID,a.Name,isnull(a.ItemNo,''),isnull(a.ItemSuplNo,''),isnull(a.WrksId,''),isnull(a.SelPr,0),null,isnull(b.NAME,''),isnull(b.BUYPR,0),isnull(c.NAME,'') " +
-                    ", isnull(d.IsAvailable,0), isnull(d.Info,'') from ZSC_Option a left join ITEM b on a.ITEMNO=b.ITEMNO and a.ITEMSUPLNO=b.SUPLNO left join WRKS c on a.WRKSID=c.WRKSID and c.WPTYPE='T'  " +
+                    ", isnull(d.IsAvailable,-1), isnull(d.Info,'') from ZSC_Option a left join ITEM b on a.ITEMNO=b.ITEMNO and a.ITEMSUPLNO=b.SUPLNO left join WRKS c on a.WRKSID=c.WRKSID and c.WPTYPE='T'  " +
                     " left join ZSC_OptionPriceList d on a.OptionCategoryOID = d.OptionCategoryOID and d.ContractTypeOID =? and d.OptionOID =a.OID and d.OptionDetailOID is null " +
                     " where a.OptionCategoryOID=? order by a.Name ";
                 hSql.NewCommand(strSql);
@@ -420,7 +420,7 @@ namespace SCPrime.Model
             {
 
                 String strSql = " select a.OID,a.Name,isnull(a.ItemNo,''),isnull(a.ItemSuplNo,''),isnull(a.WrksId,''),isnull(a.SelPr,0),null,isnull(b.NAME,''),isnull(b.BUYPR,0),isnull(c.NAME,'') " +
-                    ", isnull(d.IsAvailable,0), isnull(d.Info,'')  from ZSC_OptionDetail a left join ITEM b on a.ITEMNO=b.ITEMNO and a.ITEMSUPLNO=b.SUPLNO left join WRKS c on a.WRKSID=c.WRKSID and c.WPTYPE='T' " +
+                    ", isnull(d.IsAvailable,-1), isnull(d.Info,'')  from ZSC_OptionDetail a left join ITEM b on a.ITEMNO=b.ITEMNO and a.ITEMSUPLNO=b.SUPLNO left join WRKS c on a.WRKSID=c.WRKSID and c.WPTYPE='T' " +
                     " left join ZSC_OptionPriceList d on d.OptionCategoryOID = ? and d.ContractTypeOID =? and d.OptionOID =a.OptionOID and d.OptionDetailOID =a.OID " +
                     " where a.OptionOID=? order by a.Name ";
                 hSql.NewCommand(strSql);
@@ -604,7 +604,7 @@ namespace SCPrime.Model
                                     obj.OptionDetailOID = detail.OID;
                                     obj.OptionDetailName = detail.Name;
                                     obj.IsAvailable = detail.isAvailable;
-                                    //System.Diagnostics.Debug.WriteLine("CategoryOID: " + obj.CategoryOID + " - OptionDetailOID: " + obj.OptionDetailOID + " - isAvailable: " + detail.isAvailable);
+                                    System.Diagnostics.Debug.WriteLine("CategoryOID: " + obj.CategoryOID + " - OptionDetailOID: " + obj.OptionDetailOID + " - isAvailable: " + detail.isAvailable);
                                     Result.Add(obj);
                                 }
                             }
