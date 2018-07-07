@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using log4net;
 using SCPrime.Model;
 using SCPrime.Utils;
 
@@ -14,10 +15,21 @@ namespace SCPrime
 {
     public partial class SCSearchItemFrm : nsBaseClass.clsBaseForm
     {
+        static readonly ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private int objectMode = -1;
+        public delegate void SendKey(int ObjectMode);
+        public SendKey KeySender;
+
+        private void GetKey(int ObjectMode)
+        {
+            log.Debug(ObjectMode);
+            this.objectMode = ObjectMode;
+        }
         public SCSearchItemFrm()
         {
             InitializeComponent();
             this.Visible = false;
+            KeySender = new SendKey(GetKey);
         }
 
         private DataTable LoadSCViewItems(string key)
@@ -86,7 +98,7 @@ namespace SCPrime
 
         private void gridItem_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            string tmp = getItemRetrun();
+            string tmp = this.objectMode + ";" + getItemRetrun();
             SCOptionList.instance.Sender2(tmp);
             this.Close();
         }
@@ -106,9 +118,10 @@ namespace SCPrime
 
         private void gridItem_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            string tmp = getItemRetrun();
+            string tmp = this.objectMode +";"+ getItemRetrun();
             SCOptionList.instance.Sender2(tmp);
             this.Close();
+            SCOptionList.instance.Refresh();
         }
     }
 }

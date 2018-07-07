@@ -176,6 +176,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "SCSearchLabourCodeFrm";
             this.Text = "dlgSearchLabour";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SCSearchLabourCodeFrm_FormClosed);
             this.Load += new System.EventHandler(this.SCSparePartNoFrm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
