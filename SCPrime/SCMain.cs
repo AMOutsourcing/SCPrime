@@ -13,6 +13,7 @@ using System.Configuration;
 using System.Reflection;
 using SCPrime.Model;
 using SCPrime.Utils;
+using SCPrime.Contracts;
 
 namespace SCPrime
 {
@@ -151,6 +152,12 @@ namespace SCPrime
             cblContactType.DataSource = sCBase.getContractTypeActive();
             cblContactType.DisplayMember = "Name";
             cblContactType.ValueMember = "OID";
+        }
+
+        private void nEwContractToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ContractFrm cf = new ContractFrm();
+            cf.ShowDialog();
         }
     }
 }

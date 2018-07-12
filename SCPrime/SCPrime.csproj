@@ -70,6 +70,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\ContractFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Contracts\ContractFrm.Designer.cs">
+      <DependentUpon>ContractFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Contracts\HeaderControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Contracts\HeaderControl.Designer.cs">
+      <DependentUpon>HeaderControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\ContractClass.cs" />
     <Compile Include="Model\KeyValue.cs" />
     <Compile Include="SCContractType.cs">
@@ -116,6 +128,12 @@
     <Compile Include="Utils\MyUtils.cs" />
     <Compile Include="Utils\ObjectUtils.cs" />
     <Compile Include="Utils\ViewUtils.cs" />
+    <EmbeddedResource Include="Contracts\ContractFrm.resx">
+      <DependentUpon>ContractFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contracts\HeaderControl.resx">
+      <DependentUpon>HeaderControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -181,5 +199,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
