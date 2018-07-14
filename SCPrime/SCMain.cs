@@ -14,6 +14,7 @@ using System.Reflection;
 using SCPrime.Model;
 using SCPrime.Utils;
 using SCPrime.Contracts;
+using System.Collections;
 
 namespace SCPrime
 {
@@ -88,7 +89,7 @@ namespace SCPrime
         private void optionListToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             SCOptionList.instance.ShowDialog();
-           
+
         }
 
         private void optionPriceListToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -112,7 +113,7 @@ namespace SCPrime
             List<ObjTmp> lstModel = new List<ObjTmp>(result.Count);
             string[] words;
             string[] stringSeparators = new string[] { "-" };
-            
+
             foreach (string s in result)
             {
                 words = s.Split(stringSeparators, StringSplitOptions.RemoveEmptyEntries);
@@ -135,7 +136,7 @@ namespace SCPrime
 
 
             //Load sites
-            
+
             List<clsBaseListItem> listTmp = sCBase.getAMSites();
 
             List<ObjTmp> lstSites = new List<ObjTmp>(result.Count);
@@ -158,6 +159,54 @@ namespace SCPrime
         {
             ContractFrm cf = new ContractFrm();
             cf.ShowDialog();
+        }
+
+
+
+        private void cblContactType_MouseHover(object sender, EventArgs e)
+        {
+            this.displayTooltip();
+        }
+
+        private void cblContactType_MouseMove(object sender, MouseEventArgs e)
+        {
+            
+        }
+
+        private void cblContactType_MouseEnter(object sender, EventArgs e)
+        {
+
+        }
+        public void displayTooltip()
+        {
+            Point pos = cblContactType.PointToClient(MousePosition);
+            var ttIndex = cblContactType.IndexFromPoint(pos);
+            ToolTip toolTip1 = new ToolTip();
+            toolTip1.UseFading = true;
+            toolTip1.UseAnimation = true;
+            toolTip1.IsBalloon = true;
+            toolTip1.ShowAlways = true;
+            toolTip1.AutoPopDelay = 5000;
+            toolTip1.InitialDelay = 1000;
+            toolTip1.ReshowDelay = 500;
+            if (ttIndex > -1 && ttIndex < cblContactType.Items.Count)
+            {
+                // pos = PointToClient(MousePosition);
+                toolTip1.Hide(cblContactType);
+                toolTip1 = new ToolTip();
+                toolTip1.ToolTipTitle = "";
+
+                string s = cblContactType.GetItemText(cblContactType.Items[ttIndex]);
+                toolTip1.SetToolTip(cblContactType, s);
+
+
+
+            }
+        }
+
+        private void cblContactType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           // this.displayTooltip();
         }
     }
 }

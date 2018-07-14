@@ -82,6 +82,12 @@
     <Compile Include="Contracts\HeaderControl.Designer.cs">
       <DependentUpon>HeaderControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Contracts\VehicleDataTabPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Contracts\VehicleDataTabPage.Designer.cs">
+      <DependentUpon>VehicleDataTabPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\ContractClass.cs" />
     <Compile Include="Model\KeyValue.cs" />
     <Compile Include="SCContractType.cs">
@@ -134,6 +140,9 @@
     <EmbeddedResource Include="Contracts\HeaderControl.resx">
       <DependentUpon>HeaderControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Contracts\VehicleDataTabPage.resx">
+      <DependentUpon>VehicleDataTabPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -142,6 +151,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="SCContractType.resx">
       <DependentUpon>SCContractType.cs</DependentUpon>
@@ -200,5 +210,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Content Include="Img\check.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

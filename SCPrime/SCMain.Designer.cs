@@ -89,7 +89,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 48);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(221, 621);
+            this.panel1.Size = new System.Drawing.Size(190, 621);
             this.panel1.TabIndex = 1;
             // 
             // label3
@@ -104,10 +104,15 @@
             // cblContactType
             // 
             this.cblContactType.FormattingEnabled = true;
+            this.cblContactType.HorizontalScrollbar = true;
             this.cblContactType.Location = new System.Drawing.Point(3, 408);
             this.cblContactType.Name = "cblContactType";
-            this.cblContactType.Size = new System.Drawing.Size(208, 214);
+            this.cblContactType.Size = new System.Drawing.Size(176, 214);
             this.cblContactType.TabIndex = 4;
+            this.cblContactType.SelectedIndexChanged += new System.EventHandler(this.cblContactType_SelectedIndexChanged);
+            this.cblContactType.MouseEnter += new System.EventHandler(this.cblContactType_MouseEnter);
+            this.cblContactType.MouseHover += new System.EventHandler(this.cblContactType_MouseHover);
+            this.cblContactType.MouseMove += new System.Windows.Forms.MouseEventHandler(this.cblContactType_MouseMove);
             // 
             // label2
             // 
@@ -123,7 +128,7 @@
             this.cbSites.FormattingEnabled = true;
             this.cbSites.Location = new System.Drawing.Point(3, 229);
             this.cbSites.Name = "cbSites";
-            this.cbSites.Size = new System.Drawing.Size(208, 139);
+            this.cbSites.Size = new System.Drawing.Size(176, 139);
             this.cbSites.TabIndex = 2;
             // 
             // label1
@@ -140,16 +145,16 @@
             this.cblModel.FormattingEnabled = true;
             this.cblModel.Location = new System.Drawing.Point(3, 30);
             this.cblModel.Name = "cblModel";
-            this.cblModel.Size = new System.Drawing.Size(208, 169);
+            this.cblModel.Size = new System.Drawing.Size(176, 169);
             this.cblModel.TabIndex = 0;
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(221, 48);
+            this.dataGridView1.Location = new System.Drawing.Point(190, 48);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1012, 621);
+            this.dataGridView1.Size = new System.Drawing.Size(1043, 621);
             this.dataGridView1.TabIndex = 2;
             // 
             // panel2
@@ -316,83 +321,83 @@
             // nEwContractToolStripMenuItem
             // 
             this.nEwContractToolStripMenuItem.Name = "nEwContractToolStripMenuItem";
-            this.nEwContractToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.nEwContractToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.nEwContractToolStripMenuItem.Text = "New contract";
             this.nEwContractToolStripMenuItem.Click += new System.EventHandler(this.nEwContractToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.openToolStripMenuItem.Text = "Open";
             // 
             // prinToolStripMenuItem
             // 
             this.prinToolStripMenuItem.Name = "prinToolStripMenuItem";
-            this.prinToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.prinToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.prinToolStripMenuItem.Text = "Print contract";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(155, 6);
             // 
             // customerDataToolStripMenuItem
             // 
             this.customerDataToolStripMenuItem.Name = "customerDataToolStripMenuItem";
-            this.customerDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.customerDataToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.customerDataToolStripMenuItem.Text = "Customer data";
             // 
             // vehicleDataToolStripMenuItem
             // 
             this.vehicleDataToolStripMenuItem.Name = "vehicleDataToolStripMenuItem";
-            this.vehicleDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.vehicleDataToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.vehicleDataToolStripMenuItem.Text = "Vehicle data";
             // 
             // serviceHistoryToolStripMenuItem
             // 
             this.serviceHistoryToolStripMenuItem.Name = "serviceHistoryToolStripMenuItem";
-            this.serviceHistoryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.serviceHistoryToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.serviceHistoryToolStripMenuItem.Text = "Service history";
             // 
             // eLOArchiveToolStripMenuItem
             // 
             this.eLOArchiveToolStripMenuItem.Name = "eLOArchiveToolStripMenuItem";
-            this.eLOArchiveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eLOArchiveToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.eLOArchiveToolStripMenuItem.Text = "ELO archive";
             // 
             // mileageRegisterToolStripMenuItem
             // 
             this.mileageRegisterToolStripMenuItem.Name = "mileageRegisterToolStripMenuItem";
-            this.mileageRegisterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.mileageRegisterToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.mileageRegisterToolStripMenuItem.Text = "Mileage register";
             // 
             // invoiceToolStripMenuItem
             // 
             this.invoiceToolStripMenuItem.Name = "invoiceToolStripMenuItem";
-            this.invoiceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.invoiceToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.invoiceToolStripMenuItem.Text = "Invoices";
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(155, 6);
             // 
             // invoiceToolStripMenuItem1
             // 
             this.invoiceToolStripMenuItem1.Name = "invoiceToolStripMenuItem1";
-            this.invoiceToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.invoiceToolStripMenuItem1.Size = new System.Drawing.Size(158, 22);
             this.invoiceToolStripMenuItem1.Text = "Export data";
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(155, 6);
             // 
             // exitApplicationToolStripMenuItem
             // 
             this.exitApplicationToolStripMenuItem.Name = "exitApplicationToolStripMenuItem";
-            this.exitApplicationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitApplicationToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.exitApplicationToolStripMenuItem.Text = "Exit application";
             this.exitApplicationToolStripMenuItem.Click += new System.EventHandler(this.exitApplicationToolStripMenuItem_Click);
             // 
