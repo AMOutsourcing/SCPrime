@@ -86,6 +86,7 @@ namespace SCPrime.Model
         public decimal CapitalStartAmount;
         public clsBaseListItem CapitalStartPayer = new clsBaseListItem();
         public decimal CapitalMonthAmount;
+        public clsBaseListItem CapitalMonthPayer = new clsBaseListItem();
     }
     public class ContractCost
     {
@@ -223,7 +224,7 @@ namespace SCPrime.Model
                     strSql = "update ZSC_Contract set Modified=getdate(),ExtContractNo=?, CostCenter=?, ValidWorkshopCode=?, InvoiceCustId=?, RespSmanId=?, CareSmanId=?, IsBodyIncl=?, IsTailLiftIncl=?, IsCoolingIncl=?, IsCraneIncl=?,"+
                         " ContractStartKm=?, ContractStartHour=?, ContractPeriodMonth=?, ContractPeriodKm=?, ContractPeriodHour=?, ContractPeriodKmHour=?, ContractEndKm=?, ContractEndHour=?, TerminationType=?, PaymentPeriod=?, "+
                         " PaymentIsInBlock=?, PaymentNextBlockStart=?, PaymentNextBlockEnd=?, PaymentCollectionType=?, PaymentGroupingLevel=?, PaymentTerm=?, InvoiceSiteId=?, IsManualInvoice=?, CapitalStartAmount=?, CapitalStartPayer=?,"+
-                        " CapitalMonthAmount=?, CostBasedOnService=?, CostMonthBasis=?, CostKmBasis=?, CostPerKm=?, ExtraKmInvoicePeriod=?, ExtraKmAccounting=?, ExtraKmMaxDeviation=?, ExtraKmLowAmount=?, ExtraKmHighAmount=?,"+
+                        " CapitalMonthAmount=?, CapitalMonthPayer=?, CostBasedOnService=?, CostMonthBasis=?, CostKmBasis=?, CostPerKm=?, ExtraKmInvoicePeriod=?, ExtraKmAccounting=?, ExtraKmMaxDeviation=?, ExtraKmLowAmount=?, ExtraKmHighAmount=?," +
                         " RiskCustId=?, RiskLevel=?, RollingCode=?, IsInvoiceDetail=? where OID=?  ";
                     bRet = hSql.NewCommand(strSql);
                     if (ExtContractNo!=null) hSql.Com.Parameters.AddWithValue("ExtContractNo", ExtContractNo); else hSql.Com.Parameters.AddWithValue("ExtContractNo", DBNull.Value);
@@ -291,12 +292,14 @@ namespace SCPrime.Model
                         hSql.Com.Parameters.AddWithValue("CapitalStartAmount", ContractCapitalData.CapitalStartAmount);
                         hSql.Com.Parameters.AddWithValue("CapitalStartPayer", ContractCapitalData.CapitalStartPayer.strValue1);
                         hSql.Com.Parameters.AddWithValue("CapitalMonthAmount", ContractCapitalData.CapitalMonthAmount);
+                        hSql.Com.Parameters.AddWithValue("CapitalMonthPayer", ContractCapitalData.CapitalMonthPayer.strValue1);
                     }
                     else
                     {
                         hSql.Com.Parameters.AddWithValue("CapitalStartAmount", DBNull.Value);
                         hSql.Com.Parameters.AddWithValue("CapitalStartPayer", DBNull.Value);
                         hSql.Com.Parameters.AddWithValue("CapitalMonthAmount", DBNull.Value);
+                        hSql.Com.Parameters.AddWithValue("CapitalMonthPayer", DBNull.Value);
                     }
                     if (ContractCostData != null)
                     {

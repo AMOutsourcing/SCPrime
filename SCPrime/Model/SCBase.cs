@@ -24,13 +24,17 @@ namespace SCPrime.Model
             clsSqlFactory hSql = new clsSqlFactory();
             try
             {
+                clsGlobalVariable objGlobal = new clsGlobalVariable();
+                string LangId = objGlobal.CultureInfo;
 
-                String strSql = " select a.OID,a.Name,isnull(a.ItemNo,''),isnull(a.ItemSuplNo,''),isnull(a.WrksId,''),isnull(a.SelPr,0),isnull(a.InvoiceFlag,0),isnull(b.NAME,''),isnull(b.BUYPR,0),isnull(c.NAME,'') " +
+                String strSql = " select a.OID,isnull(x.Name,a.Name) as Name,isnull(a.ItemNo,''),isnull(a.ItemSuplNo,''),isnull(a.WrksId,''),isnull(a.SelPr,0),isnull(a.InvoiceFlag,0),isnull(b.NAME,''),isnull(b.BUYPR,0),isnull(c.NAME,'') " +
                     ", isnull(d.IsAvailable,-1), isnull(d.Info,'') from ZSC_OptionCategory a left join ITEM b on a.ITEMNO=b.ITEMNO and a.ITEMSUPLNO=b.SUPLNO left join WRKS c on a.WRKSID=c.WRKSID and c.WPTYPE='T' " +
                     " left join ZSC_OptionPriceList d on a.OID = d.OptionCategoryOID and d.ContractTypeOID =? and d.OptionOID is null and d.OptionDetailOID is null " +
+                    " left join ZSC_OptionForeignName x on x.ObjectType=1 and x.ObjectOID=a.OID and x.LangId=? " +
                     " order by a.OID ";
                 hSql.NewCommand(strSql);
                 hSql.Com.Parameters.AddWithValue("ContractTypeOID", ContractTypeOID);
+                hSql.Com.Parameters.AddWithValue("LangId", LangId);
                 hSql.ExecuteReader();
                 while (hSql.Read())
                 {
@@ -342,13 +346,17 @@ namespace SCPrime.Model
             clsSqlFactory hSql = new clsSqlFactory();
             try
             {
+                clsGlobalVariable objGlobal = new clsGlobalVariable();
+                string LangId = objGlobal.CultureInfo;
 
-                String strSql = " select a.OID,a.Name,isnull(a.ItemNo,''),isnull(a.ItemSuplNo,''),isnull(a.WrksId,''),isnull(a.SelPr,0),null,isnull(b.NAME,''),isnull(b.BUYPR,0),isnull(c.NAME,'') " +
+                String strSql = " select a.OID,isnull(x.Name,a.Name) as Name,isnull(a.ItemNo,''),isnull(a.ItemSuplNo,''),isnull(a.WrksId,''),isnull(a.SelPr,0),null,isnull(b.NAME,''),isnull(b.BUYPR,0),isnull(c.NAME,'') " +
                     ", isnull(d.IsAvailable,-1), isnull(d.Info,'') from ZSC_Option a left join ITEM b on a.ITEMNO=b.ITEMNO and a.ITEMSUPLNO=b.SUPLNO left join WRKS c on a.WRKSID=c.WRKSID and c.WPTYPE='T'  " +
                     " left join ZSC_OptionPriceList d on a.OptionCategoryOID = d.OptionCategoryOID and d.ContractTypeOID =? and d.OptionOID =a.OID and d.OptionDetailOID is null " +
+                    " left join ZSC_OptionForeignName x on x.ObjectType=1 and x.ObjectOID=a.OID and x.LangId=? " +
                     " where a.OptionCategoryOID=? order by a.Name ";
                 hSql.NewCommand(strSql);
                 hSql.Com.Parameters.AddWithValue("ContractTypeOID", ContractTypeOID);
+                hSql.Com.Parameters.AddWithValue("LangId", LangId);
                 hSql.Com.Parameters.AddWithValue("OptionCategoryOID", OptionCategoryOID);
                 hSql.ExecuteReader();
                 while (hSql.Read())
@@ -548,14 +556,18 @@ namespace SCPrime.Model
             clsSqlFactory hSql = new clsSqlFactory();
             try
             {
+                clsGlobalVariable objGlobal = new clsGlobalVariable();
+                string LangId = objGlobal.CultureInfo;
 
-                String strSql = " select a.OID,a.Name,isnull(a.ItemNo,''),isnull(a.ItemSuplNo,''),isnull(a.WrksId,''),isnull(a.SelPr,0),null,isnull(b.NAME,''),isnull(b.BUYPR,0),isnull(c.NAME,'') " +
+                String strSql = " select a.OID,isnull(x.Name,a.Name) as Name,isnull(a.ItemNo,''),isnull(a.ItemSuplNo,''),isnull(a.WrksId,''),isnull(a.SelPr,0),null,isnull(b.NAME,''),isnull(b.BUYPR,0),isnull(c.NAME,'') " +
                     ", isnull(d.IsAvailable,-1), isnull(d.Info,'')  from ZSC_OptionDetail a left join ITEM b on a.ITEMNO=b.ITEMNO and a.ITEMSUPLNO=b.SUPLNO left join WRKS c on a.WRKSID=c.WRKSID and c.WPTYPE='T' " +
                     " left join ZSC_OptionPriceList d on d.OptionCategoryOID = ? and d.ContractTypeOID =? and d.OptionOID =a.OptionOID and d.OptionDetailOID =a.OID " +
+                    " left join ZSC_OptionForeignName x on x.ObjectType=1 and x.ObjectOID=a.OID and x.LangId=? " +
                     " where a.OptionOID=? order by a.Name ";
                 hSql.NewCommand(strSql);
                 hSql.Com.Parameters.AddWithValue("OptionCategoryOID", OptionCategoryOID);
                 hSql.Com.Parameters.AddWithValue("ContractTypeOID", ContractTypeOID);
+                hSql.Com.Parameters.AddWithValue("LangId", LangId);
                 hSql.Com.Parameters.AddWithValue("OptionOID", OptionOID);
                 hSql.ExecuteReader();
                 while (hSql.Read())
@@ -667,6 +679,7 @@ namespace SCPrime.Model
         public bool isInvoice { get; set; }
         public bool isActive { get; set; }
         public bool isCollective { get; set; }
+        public bool isLeadExport { get; set; }
         public bool isMarkDeleted { get; set; }
 
         public SCContractType()
@@ -995,11 +1008,12 @@ namespace SCPrime.Model
                         else
                         {
                             //update
-                            bRet = hSql.NewCommand("update ZSC_ContractType set Name=?,IsInvoice=?,IsActive=?,IsCollective=?,Modified=getdate() where OID=?");
+                            bRet = hSql.NewCommand("update ZSC_ContractType set Name=?,IsInvoice=?,IsActive=?,IsCollective=?,Modified=getdate(),IsLeadExport=? where OID=?");
                             hSql.Com.Parameters.AddWithValue("Name", objContractType.Name);
                             hSql.Com.Parameters.AddWithValue("IsInvoice", objContractType.isInvoice);
                             hSql.Com.Parameters.AddWithValue("IsActive", objContractType.isActive);
                             hSql.Com.Parameters.AddWithValue("IsCollective", objContractType.isCollective);
+                            hSql.Com.Parameters.AddWithValue("IsLeadExport", objContractType.isLeadExport);
                             hSql.Com.Parameters.AddWithValue("OID", objContractType.OID);
 
                         }
@@ -1008,11 +1022,12 @@ namespace SCPrime.Model
                     else
                     {
                         //new
-                        bRet = hSql.NewCommand("insert into ZSC_ContractType(Name,IsInvoice,IsActive,IsCollective,Created,Modified) values(?,?,?,?,getdate(),getdate())");
+                        bRet = hSql.NewCommand("insert into ZSC_ContractType(Name,IsInvoice,IsActive,IsCollective,Created,Modified,?) values(?,?,?,?,getdate(),getdate(),?)");
                         hSql.Com.Parameters.AddWithValue("Name", objContractType.Name);
                         hSql.Com.Parameters.AddWithValue("IsInvoice", objContractType.isInvoice);
                         hSql.Com.Parameters.AddWithValue("IsActive", objContractType.isActive);
                         hSql.Com.Parameters.AddWithValue("IsCollective", objContractType.isCollective);
+                        hSql.Com.Parameters.AddWithValue("IsLeadExport", objContractType.isLeadExport);
                         bRet = bRet && hSql.ExecuteNonQuery();
                     }
                 }
@@ -1109,7 +1124,8 @@ namespace SCPrime.Model
                 strSql += "c3.LNAME as InvoiceCustName,c3.POSTCD as InvoiceCustPostCd,c3.PO as InvoiceCustCity,c3.WTEL as InvoiceCustPhone,c3.EMAIL as InvoiceCustEmail,c3.ADDR2 as InvoiceCustAddress,";
                 strSql += "c4.LNAME as RiskCustName,c4.POSTCD as RiskCustPostCd,c4.PO as RiskCustCity,c4.WTEL as RiskCustPhone,c4.EMAIL as RiskCustEmail,c4.ADDR2 as RiskCustAddress,";
                 strSql += "c5.C2 as RollingCodeName, c6.c2 as ValidWorkshopName, ";
-                strSql += "v.LICNO as VehicleLicenseNo, v.SERIALNO as VehicleVIN, v.MAKE as VehicleMake, v.MODEL as VehicleModel ";
+                strSql += "v.LICNO as VehicleLicenseNo, v.SERIALNO as VehicleVIN, v.MAKE as VehicleMake, v.MODEL as VehicleModel, ";
+                strSql += "a.CapitalMonthPayer, c7.C2 as CapitalMonthPayerName ";
                 strSql += " from ZSC_Contract a ";
                 strSql += " inner join CUST c1 on a.ContractCustId = c1.CUSTID ";
                 strSql += " inner join VEHI v on a.VEHIID = v.VEHIID ";
@@ -1118,6 +1134,7 @@ namespace SCPrime.Model
                 strSql += " left join CUST c4 on a.RiskCustId = c4.CUSTID ";
                 strSql += " left join ALL_CORW c5 on a.RollingCode = c5.C1 and a.SiteId = c5._UNITID and c5.CODAID='ZSCROLLING' ";
                 strSql += " left join ALL_CORW c6 on a.ValidWorkshopCode = c6.C1 and a.SiteId = c6._UNITID and c6.CODAID='ZSCVALIDWS' ";
+                strSql += " left join ALL_CORW c7 on a.CapitalMonthPayer = c7.C1 and a.SiteId = c7._UNITID and c7.CODAID='ZSCCAPPAYE' ";
                 strSql += " left join SMAN m1 on a.CareSmanId = m1.SMANID ";
                 strSql += " left join SMAN m2 on a.RespSmanId = m2.SMANID ";
                 if (strSqlWhere != "")
@@ -1132,18 +1149,28 @@ namespace SCPrime.Model
                     Contract item = new Contract();
                     int colId;
                     item.ContractCapitalData = new ContractCapital();
-
-                    colId = hSql.Reader.GetOrdinal("CapitalMonthAmount");
-                    if (!hSql.Reader.IsDBNull(colId)) item.ContractCapitalData.CapitalMonthAmount = hSql.Reader.GetDecimal(colId);
-                    colId = hSql.Reader.GetOrdinal("CapitalStartAmount");
-                    if (!hSql.Reader.IsDBNull(colId)) item.ContractCapitalData.CapitalStartAmount = hSql.Reader.GetDecimal(colId);
-                    colId = hSql.Reader.GetOrdinal("CapitalStartPayer");
-                    if (!hSql.Reader.IsDBNull(colId))
+                    if (item.ContractCapitalData != null)
                     {
-                        item.ContractCapitalData.CapitalStartPayer = new clsBaseListItem();
-                        item.ContractCapitalData.CapitalStartPayer.strValue1 = hSql.Reader.GetString(colId);
-                        colId = hSql.Reader.GetOrdinal("CapitalStartPayerName");
-                        if (!hSql.Reader.IsDBNull(colId)) item.ContractCapitalData.CapitalStartPayer.strText = hSql.Reader.GetString(colId);
+                        colId = hSql.Reader.GetOrdinal("CapitalMonthAmount");
+                        if (!hSql.Reader.IsDBNull(colId)) item.ContractCapitalData.CapitalMonthAmount = hSql.Reader.GetDecimal(colId);
+                        colId = hSql.Reader.GetOrdinal("CapitalStartAmount");
+                        if (!hSql.Reader.IsDBNull(colId)) item.ContractCapitalData.CapitalStartAmount = hSql.Reader.GetDecimal(colId);
+                        colId = hSql.Reader.GetOrdinal("CapitalStartPayer");
+                        if (!hSql.Reader.IsDBNull(colId))
+                        {
+                            item.ContractCapitalData.CapitalStartPayer = new clsBaseListItem();
+                            item.ContractCapitalData.CapitalStartPayer.strValue1 = hSql.Reader.GetString(colId);
+                            colId = hSql.Reader.GetOrdinal("CapitalStartPayerName");
+                            if (!hSql.Reader.IsDBNull(colId)) item.ContractCapitalData.CapitalStartPayer.strText = hSql.Reader.GetString(colId);
+                        }
+                        colId = hSql.Reader.GetOrdinal("CapitalMonthPayer");
+                        if (!hSql.Reader.IsDBNull(colId))
+                        {
+                            item.ContractCapitalData.CapitalMonthPayer = new clsBaseListItem();
+                            item.ContractCapitalData.CapitalMonthPayer.strValue1 = hSql.Reader.GetString(colId);
+                            colId = hSql.Reader.GetOrdinal("CapitalStartMonthName");
+                            if (!hSql.Reader.IsDBNull(colId)) item.ContractCapitalData.CapitalMonthPayer.strText = hSql.Reader.GetString(colId);
+                        }
                     }
                     colId = hSql.Reader.GetOrdinal("CareSmanId");
                     if (!hSql.Reader.IsDBNull(colId))
@@ -1405,7 +1432,9 @@ namespace SCPrime.Model
         private void loadContractTypes(clsSqlFactory hSql)
         {
             ContractTypes.Clear();
-            String strSql = " select a.OID,a.Name,isnull(a.IsInvoice,0),isnull(a.IsActive,0),isnull(a.IsCollective,0) from ZSC_ContractType a  order by a.Name ";
+            String strSql = " select a.OID,a.Name,isnull(a.IsInvoice,0),isnull(a.IsActive,0),isnull(a.IsCollective,0),isnull(a.IsLeadExport,0) from ZSC_ContractType a  order by a.Name ";
+
+            //" left join ZSC_OptionForeignName x on x.ObjectType=1 and x.ObjectOID=a.OID and x.LangId=? " +
             hSql.NewCommand(strSql);
             hSql.ExecuteReader();
             while (hSql.Read())
@@ -1416,6 +1445,7 @@ namespace SCPrime.Model
                 item.isInvoice = hSql.Reader.GetBoolean(2);
                 item.isActive = hSql.Reader.GetBoolean(3);
                 item.isCollective = hSql.Reader.GetBoolean(4);
+                item.isLeadExport = hSql.Reader.GetBoolean(5);
                 ContractTypes.Add(item);
             }
         }
