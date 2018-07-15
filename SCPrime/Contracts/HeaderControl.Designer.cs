@@ -219,6 +219,7 @@
             this.btnChangeStatus.TabIndex = 13;
             this.btnChangeStatus.Text = "Change status";
             this.btnChangeStatus.UseVisualStyleBackColor = true;
+            this.btnChangeStatus.Click += new System.EventHandler(this.btnChangeStatus_Click);
             // 
             // comboBox1
             // 
@@ -893,6 +894,7 @@
             this.Controls.Add(this.label1);
             this.Name = "HeaderControl";
             this.Size = new System.Drawing.Size(1074, 702);
+            this.Load += new System.EventHandler(this.HeaderControl_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSubcontract)).EndInit();
