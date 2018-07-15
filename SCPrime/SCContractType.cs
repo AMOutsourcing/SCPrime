@@ -148,6 +148,7 @@ namespace SCPrime
             drToAdd["isActive"] = true;
             drToAdd["isCollective"] = false;
             drToAdd["isMarkDeleted"] = false;
+            drToAdd["isLeadExport"] = false;
 
             dataTable.Rows.InsertAt(drToAdd, 0);
             dataTable.AcceptChanges();
@@ -205,7 +206,8 @@ namespace SCPrime
             sc.isActive = (bool)row.Cells[3].Value;
             sc.isCollective = (bool)row.Cells[4].Value;
             sc.isMarkDeleted = (bool)row.Cells[5].Value;
-
+            sc.isLeadExport = (bool)row.Cells[6].Value;
+            
             return sc;
         }
 

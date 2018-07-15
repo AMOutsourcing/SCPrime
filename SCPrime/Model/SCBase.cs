@@ -1022,7 +1022,7 @@ namespace SCPrime.Model
                     else
                     {
                         //new
-                        bRet = hSql.NewCommand("insert into ZSC_ContractType(Name,IsInvoice,IsActive,IsCollective,Created,Modified,?) values(?,?,?,?,getdate(),getdate(),?)");
+                        bRet = hSql.NewCommand("insert into ZSC_ContractType(Name,IsInvoice,IsActive,IsCollective,Created,Modified,IsLeadExport) values(?,?,?,?,getdate(),getdate(),?)");
                         hSql.Com.Parameters.AddWithValue("Name", objContractType.Name);
                         hSql.Com.Parameters.AddWithValue("IsInvoice", objContractType.isInvoice);
                         hSql.Com.Parameters.AddWithValue("IsActive", objContractType.isActive);
