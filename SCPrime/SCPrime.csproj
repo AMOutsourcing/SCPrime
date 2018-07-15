@@ -70,6 +70,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\ChangeStatusFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Contracts\ChangeStatusFrm.Designer.cs">
+      <DependentUpon>ChangeStatusFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Contracts\ContractFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +140,9 @@
     <Compile Include="Utils\MyUtils.cs" />
     <Compile Include="Utils\ObjectUtils.cs" />
     <Compile Include="Utils\ViewUtils.cs" />
+    <EmbeddedResource Include="Contracts\ChangeStatusFrm.resx">
+      <DependentUpon>ChangeStatusFrm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Contracts\ContractFrm.resx">
       <DependentUpon>ContractFrm.cs</DependentUpon>
     </EmbeddedResource>
