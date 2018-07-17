@@ -10,11 +10,38 @@ using System.Windows.Forms;
 
 namespace SCPrime.Contracts
 {
-    public partial class ContractFrm : nsBaseClass.clsBaseForm
+    public partial class ContractFrm : Form
     {
+        public delegate void SendStatus(string Message);
+        public static SendStatus Sender;
+        public static ContractFrm _instance;
+
+
+
         public ContractFrm()
         {
             InitializeComponent();
+            Sender = new SendStatus(GetStatus);
+        }
+
+       
+        private void GetStatus(string Message)
+        {
+            if (!this.IsHandleCreated)
+            {
+                this.CreateHandle();
+            }
+            if (this.headerControl1.txtContractStatus.InvokeRequired)
+               this.headerControl1.txtContractStatus.Invoke(new Action<string>(GetStatus), Message);
+            else
+            {
+                if (!string.IsNullOrEmpty(Message))
+                {
+                    this.headerControl1.txtContractStatus.Text = Message;
+                }
+                
+
+            }
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -24,11 +51,7 @@ namespace SCPrime.Contracts
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //if (this.tabControl1.SelectedTab == this.tabHeader)
-            //{
-            //    HeaderControl hc = new HeaderControl();
-            //    this.tabHeader.Controls.Add(hc);
-            //}
+            
         }
     }
 }

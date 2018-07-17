@@ -12,12 +12,13 @@ using System.Windows.Forms;
 
 namespace SCPrime.Contracts
 {
-    public partial class ChangeStatusFrm : nsBaseClass.clsBaseForm
+    public partial class ChangeStatusFrm : Form
     {
 
         public delegate void GetContractStatus(string Message);
         public GetContractStatus Sender;
         private string status;
+        private List<ObjTmp> statusList = new List<ObjTmp>();
 
         public ChangeStatusFrm()
         {
@@ -28,6 +29,7 @@ namespace SCPrime.Contracts
         private void GetStatus(string Message)
         {
             this.status = Message;
+          //  MessageBox.Show(this.status);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -37,14 +39,19 @@ namespace SCPrime.Contracts
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(this.status);
+            ContractFrm.Sender(cbxContractStatus.Text);
+            //ContractFrm.instance.BringToFront();
+            this.Close() ;
+
         }
 
         private void ChangeStatusFrm_Load(object sender, EventArgs e)
         {
+            statusList = new List<ObjTmp>();
+            this.cbxContractStatus.DataSource = null;
             this.loadData();
 
-            //this.cbxContractStatus.DataSource = lstModel;
+            this.cbxContractStatus.DataSource = this.statusList;
             this.cbxContractStatus.ValueMember = "value";
             this.cbxContractStatus.DisplayMember = "text";
         }
@@ -62,7 +69,7 @@ namespace SCPrime.Contracts
                 lstModel.Add(new ObjTmp(words[0], words[1]));
             }
 
-            List<ObjTmp> tmp = new List<ObjTmp>();
+            //List<ObjTmp> statusList = new List<ObjTmp>();
             ObjTmp m = new ObjTmp();
             ObjTmp o = new ObjTmp();
             ObjTmp n = new ObjTmp();
@@ -78,39 +85,40 @@ namespace SCPrime.Contracts
             a = lstModel.Find(x => x.value.Equals("A"));
             h = lstModel.Find(x => x.value.Equals("H"));
             c = lstModel.Find(x => x.value.Equals("C"));
-            d = lstModel.Find(x => x.value.Equals("d"));
+            d = lstModel.Find(x => x.value.Equals("D"));
 
             switch (this.status)
             {
                
                 case "M":
-                    tmp.Add(o);
+                    statusList.Add(o);
                     break;
                 case "O":
-                    tmp.Add(n);
-                    tmp.Add(w);
-                    tmp.Add(d);
+                    statusList.Add(n);
+                    statusList.Add(w);
+                    statusList.Add(d);
                     break;
                 case "N":
-                    tmp.Add(w);
-                    tmp.Add(d);
+                    statusList.Add(w);
+                    statusList.Add(d);
                     break;
                 case "W":
-                    tmp.Add(a);
+                    statusList.Add(a);
                     break;
                 case "A":
-                    tmp.Add(h);
-                    tmp.Add(c);
+                    statusList.Add(h);
+                    statusList.Add(c);
                     break;
                 case "H":
-                    tmp.Add(a);
-                    tmp.Add(c);
-                    tmp.Add(d);
+                    statusList.Add(a);
+                    statusList.Add(c);
+                    statusList.Add(d);
                     break;
                 case "C":
-                    tmp.Add(d);
+                    statusList.Add(d);
                     break;
             }
+            
         }
     }
 }

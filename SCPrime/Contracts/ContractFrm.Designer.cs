@@ -39,11 +39,11 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabVehicle = new System.Windows.Forms.TabPage();
-            this.headerControl1 = new SCPrime.Contracts.HeaderControl();
             this.tabOptions = new System.Windows.Forms.TabPage();
             this.tabContractData = new System.Windows.Forms.TabPage();
             this.tabInvoices = new System.Windows.Forms.TabPage();
             this.tabRemarks = new System.Windows.Forms.TabPage();
+            this.headerControl1 = new SCPrime.Contracts.HeaderControl();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabVehicle.SuspendLayout();
@@ -60,70 +60,70 @@
             this.panel1.Controls.Add(this.btnClose);
             this.panel1.Controls.Add(this.btnSave);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(1141, 0);
+            this.panel1.Location = new System.Drawing.Point(924, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(130, 738);
+            this.panel1.Size = new System.Drawing.Size(104, 738);
             this.panel1.TabIndex = 0;
             // 
             // btnCopy
             // 
-            this.btnCopy.Location = new System.Drawing.Point(21, 409);
+            this.btnCopy.Location = new System.Drawing.Point(9, 409);
             this.btnCopy.Name = "btnCopy";
-            this.btnCopy.Size = new System.Drawing.Size(92, 23);
+            this.btnCopy.Size = new System.Drawing.Size(85, 23);
             this.btnCopy.TabIndex = 7;
             this.btnCopy.Text = "Copy contract";
             this.btnCopy.UseVisualStyleBackColor = true;
             // 
             // btnNew
             // 
-            this.btnNew.Location = new System.Drawing.Point(21, 375);
+            this.btnNew.Location = new System.Drawing.Point(9, 375);
             this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(92, 23);
+            this.btnNew.Size = new System.Drawing.Size(85, 23);
             this.btnNew.TabIndex = 6;
             this.btnNew.Text = "New version";
             this.btnNew.UseVisualStyleBackColor = true;
             // 
             // btnMileageReg
             // 
-            this.btnMileageReg.Location = new System.Drawing.Point(21, 301);
+            this.btnMileageReg.Location = new System.Drawing.Point(9, 301);
             this.btnMileageReg.Name = "btnMileageReg";
-            this.btnMileageReg.Size = new System.Drawing.Size(92, 23);
+            this.btnMileageReg.Size = new System.Drawing.Size(85, 23);
             this.btnMileageReg.TabIndex = 5;
             this.btnMileageReg.Text = "Mileage reg";
             this.btnMileageReg.UseVisualStyleBackColor = true;
             // 
             // btnPrint
             // 
-            this.btnPrint.Location = new System.Drawing.Point(21, 265);
+            this.btnPrint.Location = new System.Drawing.Point(9, 265);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(92, 23);
+            this.btnPrint.Size = new System.Drawing.Size(85, 23);
             this.btnPrint.TabIndex = 4;
             this.btnPrint.Text = "Print";
             this.btnPrint.UseVisualStyleBackColor = true;
             // 
             // btnNext
             // 
-            this.btnNext.Location = new System.Drawing.Point(21, 178);
+            this.btnNext.Location = new System.Drawing.Point(9, 178);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(92, 23);
+            this.btnNext.Size = new System.Drawing.Size(85, 23);
             this.btnNext.TabIndex = 3;
             this.btnNext.Text = "Next. version";
             this.btnNext.UseVisualStyleBackColor = true;
             // 
             // btnPrev
             // 
-            this.btnPrev.Location = new System.Drawing.Point(21, 146);
+            this.btnPrev.Location = new System.Drawing.Point(9, 146);
             this.btnPrev.Name = "btnPrev";
-            this.btnPrev.Size = new System.Drawing.Size(92, 23);
+            this.btnPrev.Size = new System.Drawing.Size(85, 23);
             this.btnPrev.TabIndex = 2;
             this.btnPrev.Text = "Prev. version";
             this.btnPrev.UseVisualStyleBackColor = true;
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(21, 52);
+            this.btnClose.Location = new System.Drawing.Point(9, 52);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(92, 23);
+            this.btnClose.Size = new System.Drawing.Size(85, 23);
             this.btnClose.TabIndex = 1;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -131,9 +131,9 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(21, 23);
+            this.btnSave.Location = new System.Drawing.Point(9, 23);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(92, 23);
+            this.btnSave.Size = new System.Drawing.Size(85, 23);
             this.btnSave.TabIndex = 0;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -149,7 +149,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1141, 738);
+            this.tabControl1.Size = new System.Drawing.Size(924, 738);
             this.tabControl1.TabIndex = 1;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
@@ -159,25 +159,17 @@
             this.tabVehicle.Location = new System.Drawing.Point(4, 22);
             this.tabVehicle.Name = "tabVehicle";
             this.tabVehicle.Padding = new System.Windows.Forms.Padding(3);
-            this.tabVehicle.Size = new System.Drawing.Size(1133, 712);
+            this.tabVehicle.Size = new System.Drawing.Size(916, 712);
             this.tabVehicle.TabIndex = 1;
             this.tabVehicle.Text = "Vehicle data";
             this.tabVehicle.UseVisualStyleBackColor = true;
-            // 
-            // headerControl1
-            // 
-            this.headerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.headerControl1.Location = new System.Drawing.Point(3, 3);
-            this.headerControl1.Name = "headerControl1";
-            this.headerControl1.Size = new System.Drawing.Size(1127, 706);
-            this.headerControl1.TabIndex = 0;
             // 
             // tabOptions
             // 
             this.tabOptions.Location = new System.Drawing.Point(4, 22);
             this.tabOptions.Name = "tabOptions";
             this.tabOptions.Padding = new System.Windows.Forms.Padding(3);
-            this.tabOptions.Size = new System.Drawing.Size(1035, 526);
+            this.tabOptions.Size = new System.Drawing.Size(917, 712);
             this.tabOptions.TabIndex = 2;
             this.tabOptions.Text = "Options";
             this.tabOptions.UseVisualStyleBackColor = true;
@@ -186,7 +178,7 @@
             // 
             this.tabContractData.Location = new System.Drawing.Point(4, 22);
             this.tabContractData.Name = "tabContractData";
-            this.tabContractData.Size = new System.Drawing.Size(1035, 526);
+            this.tabContractData.Size = new System.Drawing.Size(917, 712);
             this.tabContractData.TabIndex = 3;
             this.tabContractData.Text = "Contract data";
             this.tabContractData.UseVisualStyleBackColor = true;
@@ -195,7 +187,7 @@
             // 
             this.tabInvoices.Location = new System.Drawing.Point(4, 22);
             this.tabInvoices.Name = "tabInvoices";
-            this.tabInvoices.Size = new System.Drawing.Size(1035, 526);
+            this.tabInvoices.Size = new System.Drawing.Size(917, 712);
             this.tabInvoices.TabIndex = 4;
             this.tabInvoices.Text = "Invoices";
             this.tabInvoices.UseVisualStyleBackColor = true;
@@ -204,16 +196,24 @@
             // 
             this.tabRemarks.Location = new System.Drawing.Point(4, 22);
             this.tabRemarks.Name = "tabRemarks";
-            this.tabRemarks.Size = new System.Drawing.Size(1035, 526);
+            this.tabRemarks.Size = new System.Drawing.Size(917, 712);
             this.tabRemarks.TabIndex = 5;
             this.tabRemarks.Text = "Remarks";
             this.tabRemarks.UseVisualStyleBackColor = true;
+            // 
+            // headerControl1
+            // 
+            this.headerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.headerControl1.Location = new System.Drawing.Point(3, 3);
+            this.headerControl1.Name = "headerControl1";
+            this.headerControl1.Size = new System.Drawing.Size(910, 706);
+            this.headerControl1.TabIndex = 0;
             // 
             // ContractFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1271, 738);
+            this.ClientSize = new System.Drawing.Size(1028, 738);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel1);
             this.Name = "ContractFrm";
@@ -242,6 +242,6 @@
         private System.Windows.Forms.Button btnCopy;
         private System.Windows.Forms.Button btnNew;
         private System.Windows.Forms.Button btnMileageReg;
-        private HeaderControl headerControl1;
+        public HeaderControl headerControl1;
     }
 }
