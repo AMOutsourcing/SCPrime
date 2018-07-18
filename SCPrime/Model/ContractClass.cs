@@ -190,7 +190,7 @@ namespace SCPrime.Model
                     hSql.Com.Parameters.AddWithValue("ContractCustId", ContractCustId.CustId);
                     hSql.Com.Parameters.AddWithValue("VehiId", VehiId.VehiId);
                     hSql.Com.Parameters.AddWithValue("ContractStartDate", ContractDateData.ContractStartDate);
-                    hSql.Com.Parameters.AddWithValue("InvoiceStartDate", ContractDateData.InvoiceStartDate);
+                    hSql.Com.Parameters.AddWithValue("InvoiceStartDate", ContractDateData.InvoiceStartDate != null ? ContractDateData.InvoiceStartDate : DateTime.Now  );
                     hSql.Com.Parameters.AddWithValue("ContractEndDate", ContractDateData.ContractEndDate);
                     hSql.Com.Parameters.AddWithValue("InvoiceEndDate", ContractDateData.InvoiceEndDate);
                     hSql.Com.Parameters.AddWithValue("CostBasis", ContractCostData.CostBasis.strValue1);

@@ -84,28 +84,28 @@
             this.textBox18 = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.textBox19 = new System.Windows.Forms.TextBox();
+            this.txtEmployeePhone1 = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
-            this.textBox20 = new System.Windows.Forms.TextBox();
+            this.txtEmployeeEmail1 = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
-            this.textBox22 = new System.Windows.Forms.TextBox();
+            this.txtEmployeeName1 = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
             this.btnSeachEmployee1 = new System.Windows.Forms.Button();
-            this.textBox23 = new System.Windows.Forms.TextBox();
+            this.txtEmployeeID1 = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
             this.dgvSelfContract = new System.Windows.Forms.DataGridView();
             this.label26 = new System.Windows.Forms.Label();
             this.btnDelSelfContract = new System.Windows.Forms.Button();
             this.btnNewSelfContract = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.textBox21 = new System.Windows.Forms.TextBox();
+            this.txtEmployeePhone2 = new System.Windows.Forms.TextBox();
             this.label29 = new System.Windows.Forms.Label();
-            this.textBox24 = new System.Windows.Forms.TextBox();
+            this.txtEmployeeEmail2 = new System.Windows.Forms.TextBox();
             this.label30 = new System.Windows.Forms.Label();
-            this.textBox25 = new System.Windows.Forms.TextBox();
+            this.txtEmployeeName2 = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
             this.btnSeachEmployee2 = new System.Windows.Forms.Button();
-            this.textBox26 = new System.Windows.Forms.TextBox();
+            this.txtEmployeeID2 = new System.Windows.Forms.TextBox();
             this.label32 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
@@ -596,6 +596,7 @@
             this.btnSearchCustomer2.TabIndex = 32;
             this.btnSearchCustomer2.Text = "...";
             this.btnSearchCustomer2.UseVisualStyleBackColor = true;
+            this.btnSearchCustomer2.Click += new System.EventHandler(this.btnSearchCustomer2_Click);
             // 
             // textBox18
             // 
@@ -616,14 +617,14 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.textBox19);
+            this.groupBox3.Controls.Add(this.txtEmployeePhone1);
             this.groupBox3.Controls.Add(this.label24);
-            this.groupBox3.Controls.Add(this.textBox20);
+            this.groupBox3.Controls.Add(this.txtEmployeeEmail1);
             this.groupBox3.Controls.Add(this.label25);
-            this.groupBox3.Controls.Add(this.textBox22);
+            this.groupBox3.Controls.Add(this.txtEmployeeName1);
             this.groupBox3.Controls.Add(this.label27);
             this.groupBox3.Controls.Add(this.btnSeachEmployee1);
-            this.groupBox3.Controls.Add(this.textBox23);
+            this.groupBox3.Controls.Add(this.txtEmployeeID1);
             this.groupBox3.Controls.Add(this.label28);
             this.groupBox3.Location = new System.Drawing.Point(471, 159);
             this.groupBox3.Name = "groupBox3";
@@ -632,13 +633,13 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Contract responsible person";
             // 
-            // textBox19
+            // txtEmployeePhone1
             // 
-            this.textBox19.Location = new System.Drawing.Point(283, 66);
-            this.textBox19.Name = "textBox19";
-            this.textBox19.ReadOnly = true;
-            this.textBox19.Size = new System.Drawing.Size(137, 20);
-            this.textBox19.TabIndex = 40;
+            this.txtEmployeePhone1.Location = new System.Drawing.Point(283, 66);
+            this.txtEmployeePhone1.Name = "txtEmployeePhone1";
+            this.txtEmployeePhone1.ReadOnly = true;
+            this.txtEmployeePhone1.Size = new System.Drawing.Size(137, 20);
+            this.txtEmployeePhone1.TabIndex = 40;
             // 
             // label24
             // 
@@ -649,13 +650,13 @@
             this.label24.TabIndex = 39;
             this.label24.Text = "Phone";
             // 
-            // textBox20
+            // txtEmployeeEmail1
             // 
-            this.textBox20.Location = new System.Drawing.Point(90, 66);
-            this.textBox20.Name = "textBox20";
-            this.textBox20.ReadOnly = true;
-            this.textBox20.Size = new System.Drawing.Size(137, 20);
-            this.textBox20.TabIndex = 38;
+            this.txtEmployeeEmail1.Location = new System.Drawing.Point(90, 66);
+            this.txtEmployeeEmail1.Name = "txtEmployeeEmail1";
+            this.txtEmployeeEmail1.ReadOnly = true;
+            this.txtEmployeeEmail1.Size = new System.Drawing.Size(137, 20);
+            this.txtEmployeeEmail1.TabIndex = 38;
             // 
             // label25
             // 
@@ -666,13 +667,13 @@
             this.label25.TabIndex = 37;
             this.label25.Text = "Email";
             // 
-            // textBox22
+            // txtEmployeeName1
             // 
-            this.textBox22.Location = new System.Drawing.Point(283, 32);
-            this.textBox22.Name = "textBox22";
-            this.textBox22.ReadOnly = true;
-            this.textBox22.Size = new System.Drawing.Size(137, 20);
-            this.textBox22.TabIndex = 34;
+            this.txtEmployeeName1.Location = new System.Drawing.Point(283, 32);
+            this.txtEmployeeName1.Name = "txtEmployeeName1";
+            this.txtEmployeeName1.ReadOnly = true;
+            this.txtEmployeeName1.Size = new System.Drawing.Size(137, 20);
+            this.txtEmployeeName1.TabIndex = 34;
             // 
             // label27
             // 
@@ -691,14 +692,15 @@
             this.btnSeachEmployee1.TabIndex = 32;
             this.btnSeachEmployee1.Text = "...";
             this.btnSeachEmployee1.UseVisualStyleBackColor = true;
+            this.btnSeachEmployee1.Click += new System.EventHandler(this.btnSeachEmployee1_Click);
             // 
-            // textBox23
+            // txtEmployeeID1
             // 
-            this.textBox23.Location = new System.Drawing.Point(90, 32);
-            this.textBox23.Name = "textBox23";
-            this.textBox23.ReadOnly = true;
-            this.textBox23.Size = new System.Drawing.Size(102, 20);
-            this.textBox23.TabIndex = 31;
+            this.txtEmployeeID1.Location = new System.Drawing.Point(90, 32);
+            this.txtEmployeeID1.Name = "txtEmployeeID1";
+            this.txtEmployeeID1.ReadOnly = true;
+            this.txtEmployeeID1.Size = new System.Drawing.Size(102, 20);
+            this.txtEmployeeID1.TabIndex = 31;
             // 
             // label28
             // 
@@ -746,14 +748,14 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.textBox21);
+            this.groupBox4.Controls.Add(this.txtEmployeePhone2);
             this.groupBox4.Controls.Add(this.label29);
-            this.groupBox4.Controls.Add(this.textBox24);
+            this.groupBox4.Controls.Add(this.txtEmployeeEmail2);
             this.groupBox4.Controls.Add(this.label30);
-            this.groupBox4.Controls.Add(this.textBox25);
+            this.groupBox4.Controls.Add(this.txtEmployeeName2);
             this.groupBox4.Controls.Add(this.label31);
             this.groupBox4.Controls.Add(this.btnSeachEmployee2);
-            this.groupBox4.Controls.Add(this.textBox26);
+            this.groupBox4.Controls.Add(this.txtEmployeeID2);
             this.groupBox4.Controls.Add(this.label32);
             this.groupBox4.Location = new System.Drawing.Point(471, 291);
             this.groupBox4.Name = "groupBox4";
@@ -762,13 +764,13 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Contract care taking person";
             // 
-            // textBox21
+            // txtEmployeePhone2
             // 
-            this.textBox21.Location = new System.Drawing.Point(283, 66);
-            this.textBox21.Name = "textBox21";
-            this.textBox21.ReadOnly = true;
-            this.textBox21.Size = new System.Drawing.Size(137, 20);
-            this.textBox21.TabIndex = 40;
+            this.txtEmployeePhone2.Location = new System.Drawing.Point(283, 66);
+            this.txtEmployeePhone2.Name = "txtEmployeePhone2";
+            this.txtEmployeePhone2.ReadOnly = true;
+            this.txtEmployeePhone2.Size = new System.Drawing.Size(137, 20);
+            this.txtEmployeePhone2.TabIndex = 40;
             // 
             // label29
             // 
@@ -779,13 +781,13 @@
             this.label29.TabIndex = 39;
             this.label29.Text = "Phone";
             // 
-            // textBox24
+            // txtEmployeeEmail2
             // 
-            this.textBox24.Location = new System.Drawing.Point(90, 66);
-            this.textBox24.Name = "textBox24";
-            this.textBox24.ReadOnly = true;
-            this.textBox24.Size = new System.Drawing.Size(137, 20);
-            this.textBox24.TabIndex = 38;
+            this.txtEmployeeEmail2.Location = new System.Drawing.Point(90, 66);
+            this.txtEmployeeEmail2.Name = "txtEmployeeEmail2";
+            this.txtEmployeeEmail2.ReadOnly = true;
+            this.txtEmployeeEmail2.Size = new System.Drawing.Size(137, 20);
+            this.txtEmployeeEmail2.TabIndex = 38;
             // 
             // label30
             // 
@@ -796,12 +798,12 @@
             this.label30.TabIndex = 37;
             this.label30.Text = "Email";
             // 
-            // textBox25
+            // txtEmployeeName2
             // 
-            this.textBox25.Location = new System.Drawing.Point(283, 32);
-            this.textBox25.Name = "textBox25";
-            this.textBox25.Size = new System.Drawing.Size(137, 20);
-            this.textBox25.TabIndex = 34;
+            this.txtEmployeeName2.Location = new System.Drawing.Point(283, 32);
+            this.txtEmployeeName2.Name = "txtEmployeeName2";
+            this.txtEmployeeName2.Size = new System.Drawing.Size(137, 20);
+            this.txtEmployeeName2.TabIndex = 34;
             // 
             // label31
             // 
@@ -820,14 +822,15 @@
             this.btnSeachEmployee2.TabIndex = 32;
             this.btnSeachEmployee2.Text = "...";
             this.btnSeachEmployee2.UseVisualStyleBackColor = true;
+            this.btnSeachEmployee2.Click += new System.EventHandler(this.btnSeachEmployee2_Click);
             // 
-            // textBox26
+            // txtEmployeeID2
             // 
-            this.textBox26.Location = new System.Drawing.Point(90, 32);
-            this.textBox26.Name = "textBox26";
-            this.textBox26.ReadOnly = true;
-            this.textBox26.Size = new System.Drawing.Size(102, 20);
-            this.textBox26.TabIndex = 31;
+            this.txtEmployeeID2.Location = new System.Drawing.Point(90, 32);
+            this.txtEmployeeID2.Name = "txtEmployeeID2";
+            this.txtEmployeeID2.ReadOnly = true;
+            this.txtEmployeeID2.Size = new System.Drawing.Size(102, 20);
+            this.txtEmployeeID2.TabIndex = 31;
             // 
             // label32
             // 
@@ -969,28 +972,28 @@
         public System.Windows.Forms.TextBox textBox18;
         public System.Windows.Forms.Label label23;
         public System.Windows.Forms.GroupBox groupBox3;
-        public System.Windows.Forms.TextBox textBox19;
+        public System.Windows.Forms.TextBox txtEmployeePhone1;
         public System.Windows.Forms.Label label24;
-        public System.Windows.Forms.TextBox textBox20;
+        public System.Windows.Forms.TextBox txtEmployeeEmail1;
         public System.Windows.Forms.Label label25;
-        public System.Windows.Forms.TextBox textBox22;
+        public System.Windows.Forms.TextBox txtEmployeeName1;
         public System.Windows.Forms.Label label27;
         public System.Windows.Forms.Button btnSeachEmployee1;
-        public System.Windows.Forms.TextBox textBox23;
+        public System.Windows.Forms.TextBox txtEmployeeID1;
         public System.Windows.Forms.Label label28;
         public System.Windows.Forms.DataGridView dgvSelfContract;
         public System.Windows.Forms.Label label26;
         public System.Windows.Forms.Button btnDelSelfContract;
         public System.Windows.Forms.Button btnNewSelfContract;
         public System.Windows.Forms.GroupBox groupBox4;
-        public System.Windows.Forms.TextBox textBox21;
+        public System.Windows.Forms.TextBox txtEmployeePhone2;
         public System.Windows.Forms.Label label29;
-        public System.Windows.Forms.TextBox textBox24;
+        public System.Windows.Forms.TextBox txtEmployeeEmail2;
         public System.Windows.Forms.Label label30;
-        public System.Windows.Forms.TextBox textBox25;
+        public System.Windows.Forms.TextBox txtEmployeeName2;
         public System.Windows.Forms.Label label31;
         public System.Windows.Forms.Button btnSeachEmployee2;
-        public System.Windows.Forms.TextBox textBox26;
+        public System.Windows.Forms.TextBox txtEmployeeID2;
         public System.Windows.Forms.Label label32;
         public System.Windows.Forms.PictureBox pictureBox1;
     }

@@ -1,4 +1,5 @@
 ﻿using log4net;
+using SCPrime.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace SCPrime
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new SCMain());
+            //Application.Run(new tmp());
         }
     }
 }

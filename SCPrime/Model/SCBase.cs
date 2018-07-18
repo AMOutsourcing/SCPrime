@@ -1713,4 +1713,67 @@ namespace SCPrime.Model
             return Result;
         }
     }
+    public class SCViewEmployee
+    {
+        public int _OID { get; set; }
+        public string SmanId { get; set; }
+      //  public string SearchKey { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+       
+
+        public static List<SCViewEmployee> seach(string namephrase)
+        {
+
+            string strSql = "select top maxresult a._OID as _OID, a.SMANID , a.NAME as Name, isnull(a.PHONE,'') as Phone, isnull(a.Email,'') as Email from SMAN a  where 1=1";
+
+            var tmp = MyUtils.GetMaxResult();
+            if (tmp > 0)
+                strSql = Regex.Replace(strSql, "maxresult", tmp.ToString());
+            else
+                strSql = Regex.Replace(strSql, "maxresult", "0");
+
+
+            if (namephrase != "")
+            {
+                String strFTSQL = Utils.MyUtils.getFTSearchSQL(namephrase, "ASVIEW_SMAN");
+                if (strFTSQL != "")
+                {
+                    strSql += " and exists (" + strFTSQL + " and v._OID=a._OID)";
+                }
+
+            }
+
+            List<SCViewEmployee> Result = new List<SCViewEmployee>();
+            clsSqlFactory hSql = new clsSqlFactory();
+            try
+            {
+
+
+                hSql.NewCommand(strSql);
+                hSql.ExecuteReader();
+                while (hSql.Read())
+                {
+                    SCViewEmployee item = new SCViewEmployee();
+                    item._OID = hSql.Reader.GetInt32(0);
+                    item.SmanId = hSql.Reader.GetString(1);
+                    //item.SearchKey = hSql.Reader.GetString(2);
+                    item.Name = hSql.Reader.GetString(2);
+                    item.Phone = hSql.Reader.GetString(3);
+                    item.Email = hSql.Reader.GetString(4);
+                    Result.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                hSql.Close();
+            }
+            return Result;
+        }
+    }
 }

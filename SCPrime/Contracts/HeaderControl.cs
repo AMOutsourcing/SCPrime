@@ -1,4 +1,6 @@
-﻿using SCPrime.Model;
+﻿using CashRegPrime;
+using log4net;
+using SCPrime.Model;
 using SCPrime.Utils;
 using System;
 using System.Collections.Generic;
@@ -15,6 +17,7 @@ namespace SCPrime.Contracts
     public partial class HeaderControl : UserControl
     {
         public delegate void SendStatus(string Message);
+        static readonly ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         //public SendStatus StatusSender;
         //public static HeaderControl _instance;
         //public string status;
@@ -43,8 +46,6 @@ namespace SCPrime.Contracts
 
         private void btnChangeStatus_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(this.txtContractStatus.Text);
-
             List<string> tmp = new List<string>();
             tmp.Add("M");
             tmp.Add("O");
@@ -96,5 +97,27 @@ namespace SCPrime.Contracts
 
         }
 
+        private void btnSearchCustomer2_Click(object sender, EventArgs e)
+        {
+            log.Debug("hello");
+            dlgSearchCustomer searhCustomer = new dlgSearchCustomer();
+            searhCustomer.Owner = this.ParentForm;
+            searhCustomer.ShowDialog();
+            
+        }
+
+        private void btnSeachEmployee1_Click(object sender, EventArgs e)
+        {
+            EmployeeSearchFrm esf = new EmployeeSearchFrm();
+            EmployeeSearchFrm.updateFlag(1);
+            esf.ShowDialog();
+        }
+
+        private void btnSeachEmployee2_Click(object sender, EventArgs e)
+        {
+            EmployeeSearchFrm esf = new EmployeeSearchFrm();
+            EmployeeSearchFrm.updateFlag(2);
+            esf.ShowDialog();
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SCPrime.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,6 +15,10 @@ namespace SCPrime.Contracts
     {
         public delegate void SendStatus(string Message);
         public static SendStatus Sender;
+
+        public delegate void SearchEmployee(SCViewEmployee epl, int flag);
+        public static SearchEmployee updateEmployee;
+
         public static ContractFrm _instance;
 
 
@@ -22,9 +27,29 @@ namespace SCPrime.Contracts
         {
             InitializeComponent();
             Sender = new SendStatus(GetStatus);
+            updateEmployee = new SearchEmployee(UpdateEmployee);
+
         }
 
-       
+        private void UpdateEmployee(SCViewEmployee epl, int flag)
+        {
+            if(flag == 1)//Contract responsible person
+            {
+                this.headerControl1.txtEmployeeID1.Text = epl._OID.ToString();
+                this.headerControl1.txtEmployeeName1.Text = epl.Name;
+                this.headerControl1.txtEmployeePhone1.Text = epl.Phone;
+                this.headerControl1.txtEmployeeEmail1.Text = epl.Email;
+            }
+            if (flag == 2)//Contract care taking person
+            {
+                this.headerControl1.txtEmployeeID2.Text = epl._OID.ToString();
+                this.headerControl1.txtEmployeeName2.Text = epl.Name;
+                this.headerControl1.txtEmployeePhone2.Text = epl.Phone;
+                this.headerControl1.txtEmployeeEmail2.Text = epl.Email;
+            }
+        }
+
+
         private void GetStatus(string Message)
         {
             if (!this.IsHandleCreated)
@@ -52,6 +77,11 @@ namespace SCPrime.Contracts
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
             
+        }
+
+        private void headerControl1_Load(object sender, EventArgs e)
+        {
+           
         }
     }
 }

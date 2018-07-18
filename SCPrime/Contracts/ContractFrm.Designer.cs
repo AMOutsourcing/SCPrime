@@ -208,6 +208,7 @@
             this.headerControl1.Name = "headerControl1";
             this.headerControl1.Size = new System.Drawing.Size(910, 706);
             this.headerControl1.TabIndex = 0;
+            this.headerControl1.Load += new System.EventHandler(this.headerControl1_Load);
             // 
             // ContractFrm
             // 

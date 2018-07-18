@@ -208,5 +208,11 @@ namespace SCPrime
         {
            // this.displayTooltip();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            tmp t = new tmp();
+            t.ShowDialog();
+        }
     }
 }
