@@ -28,7 +28,7 @@ namespace SCPrime.Contracts
         private void setFlagValue(int flag)
         {
             this.flag = flag;
-            MessageBox.Show(this.flag.ToString());
+           // MessageBox.Show(this.flag.ToString());
         }
 
         private void button2_Click(object sender, EventArgs e)

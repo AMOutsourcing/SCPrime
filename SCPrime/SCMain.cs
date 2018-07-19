@@ -214,5 +214,11 @@ namespace SCPrime
             tmp t = new tmp();
             t.ShowDialog();
         }
+
+        private void testToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tmp t = new tmp();
+            t.ShowDialog();
+        }
     }
 }

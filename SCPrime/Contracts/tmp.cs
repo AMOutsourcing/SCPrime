@@ -23,13 +23,29 @@ namespace SCPrime.Contracts
         private void button1_Click(object sender, EventArgs e)
         {
             Contract objContact = new Contract();
-            objContact.ContractCustId.CustId = 1017121; //take a CUSTID from CUST.CUSTID
-            objContact.VehiId.VehiId = 98007993; //take a VEHIID from VEHI.VEHIID
+            objContact.ContractCustId.CustId = 100979; //take a CUSTID from CUST.CUSTID
+            objContact.VehiId.VehiId = 311; //take a VEHIID from VEHI.VEHIID
             SCBase sc = new SCBase();
-            objContact.ContractTypeOID = sc.getContractTypeActive()[5]; //randomly choose a contract type
-
+            objContact.ContractTypeOID = sc.getContractTypeActive()[0]; //randomly choose a contract type
+            objContact.ContractStatus = "O";
             objContact.saveContract();
-           
+            MessageBox.Show("Insert OK");
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            List<string> allsites = new List<string>();
+            allsites.Add("S01");
+            List<string> allstatus = new List<string>();
+            allstatus.Add("O");
+            SCBase sc = new SCBase();
+            List<Contract> cts = SCBase.searchContracts(sc.getContractTypeActive(), allsites, allstatus, "");
+            if(cts != null && cts.Count > 0)
+            {
+                MessageBox.Show(cts.Count.ToString());
+
+            }
         }
     }
 }

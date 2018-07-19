@@ -99,7 +99,6 @@ namespace SCPrime.Contracts
 
         private void btnSearchCustomer2_Click(object sender, EventArgs e)
         {
-            log.Debug("hello");
             dlgSearchCustomer searhCustomer = new dlgSearchCustomer();
             searhCustomer.Owner = this.ParentForm;
             searhCustomer.ShowDialog();
