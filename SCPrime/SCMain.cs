@@ -142,17 +142,32 @@ namespace SCPrime
             List<ObjTmp> lstSites = new List<ObjTmp>(result.Count);
             foreach (clsBaseListItem site in listTmp)
             {
-                lstSites.Add(new ObjTmp(site.nValue1, site.strText));
+                lstSites.Add(new ObjTmp(site.strValue1, site.strText));
             }
             cbSites.DataSource = lstSites;
             cbSites.ValueMember = "id";
             cbSites.DisplayMember = "text";
 
+            //Set check default
+            for (int i = 0; i < cbSites.Items.Count; i++)
+            {
+                cbSites.SetItemChecked(i, true);
+            }
 
             //Load contaactType
             cblContactType.DataSource = sCBase.getContractTypeActive();
             cblContactType.DisplayMember = "Name";
             cblContactType.ValueMember = "OID";
+
+            //Set check All contracttype
+            for (int i = 0; i < cblContactType.Items.Count; i++)
+            {
+                cblContactType.SetItemChecked(i, true);
+            }
+
+
+            //View searchContract
+            searchContract();
         }
 
         private void nEwContractToolStripMenuItem_Click(object sender, EventArgs e)
@@ -209,16 +224,190 @@ namespace SCPrime
            // this.displayTooltip();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void toolStripButton9_Click(object sender, EventArgs e)
         {
-            tmp t = new tmp();
-            t.ShowDialog();
+            searchContract();
         }
 
-        private void testToolStripMenuItem_Click(object sender, EventArgs e)
+        private void searchContract()
         {
-            tmp t = new tmp();
-            t.ShowDialog();
+            List<SCContractType> listContractType = new List<SCContractType>();
+            foreach (SCContractType itemChecked in cblContactType.CheckedItems)
+            {
+                listContractType.Add(itemChecked);
+            }
+
+            List<String> listSite = new List<String>();
+            foreach (ObjTmp itemChecked in cbSites.CheckedItems)
+            {
+                listSite.Add(itemChecked.value);
+            }
+
+            List<String> listStatus = new List<String>();
+            foreach (ObjTmp itemChecked in cblModel.CheckedItems)
+            {
+                listStatus.Add(itemChecked.value);
+            }
+
+            System.Diagnostics.Debug.WriteLine("toolStripButton9_Click Text: " + toolStripTextBox1.Text);
+
+            List<Contract> listContract = SCBase.searchContracts(listContractType, listSite, listStatus, toolStripTextBox1.Text);
+
+            buildGridView(listContract);
+
+            System.Diagnostics.Debug.WriteLine("toolStripButton9_Click listContract: " + listContract.Count);
+        }
+
+        private void buildGridView(List<Contract> listContract)
+        {
+            //gridContract.AutoGenerateColumns = false;
+            //gridContract.AllowUserToAddRows = false;
+            gridContract.DataSource = listContract;
+
+            ////Generate column
+            int i = 0;
+            DataGridViewTextBoxColumn colStatus = new DataGridViewTextBoxColumn();
+            colStatus.Name = "Status";
+            colStatus.HeaderText = "Status";
+            colStatus.DataPropertyName = "Status";
+            gridContract.Columns.Insert(i, colStatus);
+
+            i = 9;
+            DataGridViewTextBoxColumn colSite = new DataGridViewTextBoxColumn();
+            colSite.Name = "ResponsibleSite";
+            colSite.HeaderText = "Responsible Site";
+            colSite.DataPropertyName = "ResponsibleSite";
+            gridContract.Columns.Insert(i++, colSite);
+
+            DataGridViewTextBoxColumn colContractType = new DataGridViewTextBoxColumn();
+            colContractType.Name = "ContractType";
+            colContractType.HeaderText = "Contract Type";
+            colContractType.DataPropertyName = "ContractTypeName";
+            gridContract.Columns.Insert(i++, colContractType);
+
+            DataGridViewTextBoxColumn colCusNo = new DataGridViewTextBoxColumn();
+            colCusNo.Name = "CustNo";
+            colCusNo.HeaderText = "Cust No";
+            colCusNo.DataPropertyName = "CustNo";
+            gridContract.Columns.Insert(i++, colCusNo);
+
+            DataGridViewTextBoxColumn colCusName = new DataGridViewTextBoxColumn();
+            colCusName.Name = "CustName";
+            colCusName.HeaderText = "Cust Name";
+            colCusName.DataPropertyName = "CustName";
+            gridContract.Columns.Insert(i++, colCusName);
+
+            DataGridViewTextBoxColumn colInvCusNo = new DataGridViewTextBoxColumn();
+            colInvCusNo.Name = "InvCustNo";
+            colInvCusNo.HeaderText = "INV Cust No";
+            colInvCusNo.DataPropertyName = "InvCustNo";
+            gridContract.Columns.Insert(i++, colInvCusNo);
+
+            DataGridViewTextBoxColumn InvCustName = new DataGridViewTextBoxColumn();
+            InvCustName.Name = "InvCustName";
+            InvCustName.HeaderText = "INV Cust Name";
+            InvCustName.DataPropertyName = "InvCustName";
+            gridContract.Columns.Insert(i++, InvCustName);
+
+            DataGridViewTextBoxColumn colVehiLic = new DataGridViewTextBoxColumn();
+            colVehiLic.Name = "VehiLicNo";
+            colVehiLic.HeaderText = "Lic. No";
+            colVehiLic.DataPropertyName = "VehiLicNo";
+            gridContract.Columns.Insert(i++, colVehiLic);
+
+            DataGridViewTextBoxColumn colVIN = new DataGridViewTextBoxColumn();
+            colVIN.Name = "VIN";
+            colVIN.HeaderText = "VIN";
+            colVIN.DataPropertyName = "VIN";
+            gridContract.Columns.Insert(i++, colVIN);
+
+            //ContractDAte
+            DataGridViewTextBoxColumn colStartDate = new DataGridViewTextBoxColumn();
+            colStartDate.Name = "ContractStartDate";
+            colStartDate.HeaderText = "StartDate";
+            colStartDate.DataPropertyName = "Start Date";
+            gridContract.Columns.Insert(i++, colStartDate);
+
+            DataGridViewTextBoxColumn colEndDate = new DataGridViewTextBoxColumn();
+            colEndDate.Name = "ContractEndDate";
+            colEndDate.HeaderText = "End Date";
+            colEndDate.DataPropertyName = "ContractEndDate";
+            gridContract.Columns.Insert(i++, colEndDate);
+
+            DataGridViewTextBoxColumn colPeriodkm = new DataGridViewTextBoxColumn();
+            colPeriodkm.Name = "ContractPeriodKm";
+            colPeriodkm.HeaderText = "Period km";
+            colPeriodkm.DataPropertyName = "ContractPeriodKm";
+            gridContract.Columns.Insert(i++, colPeriodkm);
+
+            DataGridViewTextBoxColumn colPeriodHr = new DataGridViewTextBoxColumn();
+            colPeriodHr.Name = "ContractPeriodHr";
+            colPeriodHr.HeaderText = "Period km";
+            colPeriodHr.DataPropertyName = "ContractPeriodHr";
+            gridContract.Columns.Insert(i++, colPeriodHr);
+
+            DataGridViewTextBoxColumn colKmOrHr = new DataGridViewTextBoxColumn();
+            colKmOrHr.Name = "KmOrHr";
+            colKmOrHr.HeaderText = "Km/Hour";
+            colKmOrHr.DataPropertyName = "KmOrHr";
+            gridContract.Columns.Insert(i++, colKmOrHr);
+
+            DataGridViewTextBoxColumn colTerminationType = new DataGridViewTextBoxColumn();
+            colTerminationType.Name = "getTerminationType";
+            colTerminationType.HeaderText = "Termination type";
+            colTerminationType.DataPropertyName = "getTerminationType";
+            gridContract.Columns.Insert(i++, colTerminationType);
+
+            //Payment 
+            DataGridViewTextBoxColumn colPayPeriod = new DataGridViewTextBoxColumn();
+            colPayPeriod.Name = "PaymentPeriod";
+            colPayPeriod.HeaderText = "Payment period";
+            colPayPeriod.DataPropertyName = "PaymentPeriod";
+            gridContract.Columns.Insert(i++, colPayPeriod);
+
+            DataGridViewTextBoxColumn colPayBlock = new DataGridViewTextBoxColumn();
+            colPayBlock.Name = "PaymentInBlock";
+            colPayBlock.HeaderText = "Payment in block";
+            colPayBlock.DataPropertyName = "PaymentInBlock";
+            gridContract.Columns.Insert(i++, colPayBlock);
+
+            DataGridViewTextBoxColumn colPayNextStart = new DataGridViewTextBoxColumn();
+            colPayNextStart.Name = "PaymentNextBlockStart";
+            colPayNextStart.HeaderText = "Next block start";
+            colPayNextStart.DataPropertyName = "PaymentNextBlockStart";
+            gridContract.Columns.Insert(i++, colPayNextStart);
+
+            DataGridViewTextBoxColumn colPayNextEnd = new DataGridViewTextBoxColumn();
+            colPayNextEnd.Name = "PaymentNextBlockEnd";
+            colPayNextEnd.HeaderText = "Next block end";
+            colPayNextEnd.DataPropertyName = "PaymentNextBlockEnd";
+            gridContract.Columns.Insert(i++, colPayNextEnd);
+
+            DataGridViewTextBoxColumn colPayCollectType = new DataGridViewTextBoxColumn();
+            colPayCollectType.Name = "PaymentCollecType";
+            colPayCollectType.HeaderText = "Payment collection type";
+            colPayCollectType.DataPropertyName = "PaymentCollecType";
+            gridContract.Columns.Insert(i++, colPayCollectType);
+
+
+            DataGridViewTextBoxColumn colInvSites = new DataGridViewTextBoxColumn();
+            colInvSites.Name = "InvSites";
+            colInvSites.HeaderText = "Invoice site";
+            colInvSites.DataPropertyName = "InvSites";
+            gridContract.Columns.Insert(i++, colInvSites);
+
+            i = 30;
+            DataGridViewTextBoxColumn LastMileDate = new DataGridViewTextBoxColumn();
+            LastMileDate.Name = "LastMileDate";
+            LastMileDate.HeaderText = "Last mileage date";
+            LastMileDate.DataPropertyName = "LastMileDate";
+            gridContract.Columns.Insert(i++, LastMileDate);
+
+            DataGridViewTextBoxColumn LastMile = new DataGridViewTextBoxColumn();
+            LastMile.Name = "LastMile";
+            LastMile.HeaderText = "Last mileage";
+            LastMile.DataPropertyName = "LastMile";
+            gridContract.Columns.Insert(i++, LastMile);
         }
     }
 }

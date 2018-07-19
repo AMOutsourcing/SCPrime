@@ -16,6 +16,15 @@ namespace SCPrime.Model
         public string PostCode;
         public string City;
         public string Address;
+
+        public override string ToString()
+        {
+            return Name;
+        }
+        public string getPhone()
+        {
+            return Phone;
+        }
     }
     public class ContractEmployee
     {
@@ -117,40 +126,40 @@ namespace SCPrime.Model
     }
     public  class Contract
     {
-        public int ContractOID;
+        public int ContractOID { get; set; }
         public string ContractStatus = SCPrime.Model.ContractStatus.Model;
-        public int ContractNo;
-        public int VersionNo;
-        public string ExtContractNo;
-        public DateTime Created;
-        public DateTime Modified;
-        public DateTime LastInvoiceDate;
-        public DateTime NextInvoiceDate;
+        public int ContractNo { get; set; }
+        public int VersionNo { get; set; }
+        public string ExtContractNo { get; set; }
+        public DateTime Created { get; set; }
+        public DateTime Modified { get; set; }
+        public DateTime LastInvoiceDate { get; set; }
+        public DateTime NextInvoiceDate { get; set; }
         public clsBaseListItem SiteId = new clsBaseListItem();
         public clsBaseListItem CostCenter = new clsBaseListItem();
         public clsBaseListItem ValidWorkshopCode = new clsBaseListItem();
         public SCContractType ContractTypeOID = new SCContractType();
         public ContractCustomer ContractCustId = new ContractCustomer();
-        public ContractCustomer InvoiceCustId;
-        public ContractEmployee RespSmanId;
-        public ContractEmployee CareSmanId;
+        public ContractCustomer InvoiceCustId { get; set; }
+        public ContractEmployee RespSmanId { get; set; }
+        public ContractEmployee CareSmanId { get; set; }
         public ContractVehicle VehiId = new ContractVehicle();
-        public bool IsBodyIncl;
-        public bool IsTailLiftIncl;
-        public bool IsCoolingIncl;
-        public bool IsCraneIncl;
+        public bool IsBodyIncl { get; set; }
+        public bool IsTailLiftIncl { get; set; }
+        public bool IsCoolingIncl { get; set; }
+        public bool IsCraneIncl { get; set; }
         public ContractDate ContractDateData = new ContractDate();
         public clsBaseListItem TerminationType = new clsBaseListItem();
         public ContractPayment ContractPaymentData = new ContractPayment();
         public clsBaseListItem InvoiceSiteId;
-        public bool IsManualInvoice;
+        public bool IsManualInvoice { get; set; }
         public ContractCapital ContractCapitalData;
         public ContractCost ContractCostData = new ContractCost();
         public ContractExtraKm ContractExtraKmData = new ContractExtraKm();
         public ContractCustomer RiskCustId;
-        public Decimal RiskLevel;
+        public Decimal RiskLevel { get; set; }
         public clsBaseListItem RollingCode = new clsBaseListItem();
-        public bool IsInvoiceDetail;
+        public bool IsInvoiceDetail { get; set; }
 
         public Contract()
         {
@@ -353,6 +362,430 @@ namespace SCPrime.Model
                 hSql.Close();
             }
             return bRet;
+        }
+
+        //ThuyetLV Add
+        public String Status
+        {
+            get
+            {
+                if (ContractStatus != null)
+                {
+                    switch (ContractStatus)
+                    {
+                        case SCPrime.Model.ContractStatus.Model: return SCPrime.Model.ContractStatus.ModelText;
+                        case SCPrime.Model.ContractStatus.Offer: return SCPrime.Model.ContractStatus.OfferText;
+                        case SCPrime.Model.ContractStatus.New: return SCPrime.Model.ContractStatus.NewText;
+                        case SCPrime.Model.ContractStatus.Waiting: return SCPrime.Model.ContractStatus.WaitingText;
+                        case SCPrime.Model.ContractStatus.Active: return SCPrime.Model.ContractStatus.ActiveText;
+                        case SCPrime.Model.ContractStatus.OnControl: return SCPrime.Model.ContractStatus.OnControlText; 
+                        case SCPrime.Model.ContractStatus.Closed: return SCPrime.Model.ContractStatus.ClosedText; 
+                        case SCPrime.Model.ContractStatus.Deactivated: return SCPrime.Model.ContractStatus.DeactivatedText;
+                    }
+                }
+                return "";
+            }
+
+            set
+            {
+                ContractStatus = null;
+            }
+        }
+
+        //
+        public String ResponsibleSite
+        {
+            get
+            {
+                if (SiteId != null)
+                {
+                    return SiteId.strValue1;
+                }
+                return "";
+            }
+
+            set
+            {
+                SiteId = null;
+            }
+        }
+
+        public String ContractTypeName
+        {
+            get
+            {
+                if (ContractTypeOID != null)
+                {
+                    return ContractTypeOID.Name;
+                }
+                return "";
+            }
+
+            set
+            {
+                ContractTypeOID = null;
+            }
+        }
+
+        public int InvCustNo
+        {
+            get
+            {
+                if (InvoiceCustId != null)
+                {
+                    return InvoiceCustId.CustId;
+                }
+                return -1;
+            }
+
+            set
+            {
+                InvoiceCustId = null;
+            }
+        }
+
+        public String InvCustPhone
+        {
+            get
+            {
+                if (InvoiceCustId != null)
+                {
+                    return InvoiceCustId.Phone;
+                }
+                return "";
+            }
+
+            set
+            {
+                InvoiceCustId = null;
+            }
+        }
+
+        public int CustNo
+        {
+            get
+            {
+                if (ContractCustId != null)
+                {
+                    return ContractCustId.CustId;
+                }
+                return -1;
+            }
+
+            set
+            {
+                ContractCustId = null;
+            }
+        }
+        public string CustName
+        {
+            get
+            {
+                if (ContractCustId != null)
+                {
+                    return ContractCustId.Name;
+                }
+                return "";
+            }
+
+            set
+            {
+                ContractCustId = null;
+            }
+        }
+        public String CustPhone
+        {
+            get
+            {
+                if (ContractCustId != null)
+                {
+                    return ContractCustId.Phone;
+                }
+                return "";
+            }
+
+            set
+            {
+                ContractCustId = null;
+            }
+        }
+
+        public String InvCustName
+        {
+            get
+            {
+                if (InvoiceCustId != null)
+                {
+                    return InvoiceCustId.Name;
+                }
+                return "";
+            }
+
+            set
+            {
+                InvoiceCustId = null;
+            }
+        }
+
+
+        //
+        public string VehiLicNo
+        {
+            get
+            {
+                if (VehiId != null)
+                {
+                    return VehiId.LicenseNo;
+                }
+                return "";
+            }
+
+            set
+            {
+                VehiId = null;
+            }
+        }
+        public string VIN
+        {
+            get
+            {
+                if (VehiId != null)
+                {
+                    return VehiId.VIN;
+                }
+                return "";
+            }
+
+            set
+            {
+                VehiId = null;
+            }
+        }
+        //ContractDate
+        public DateTime ContractStartDate
+        {
+            get
+            {
+                if (ContractDateData != null)
+                {
+                    return ContractDateData.ContractStartDate;
+                }
+                return DateTime.Now;
+            }
+
+            set
+            {
+                ContractDateData = null;
+            }
+        }
+
+        public DateTime ContractEndDate
+        {
+            get
+            {
+                if (ContractDateData != null)
+                {
+                    return ContractDateData.ContractStartDate;
+                }
+                return DateTime.Now;
+            }
+
+            set
+            {
+                ContractDateData = null;
+            }
+        }
+
+        public int ContractPeriodKm
+        {
+            get
+            {
+                if (ContractDateData != null)
+                {
+                    return ContractDateData.ContractPeriodKm;
+                }
+                return -1;
+            }
+
+            set
+            {
+                ContractDateData = null;
+            }
+        }
+
+        public int ContractPeriodHr
+        {
+            get
+            {
+                if (ContractDateData != null)
+                {
+                    return ContractDateData.ContractPeriodHour;
+                }
+                return -1;
+            }
+
+            set
+            {
+                ContractDateData = null;
+            }
+        }
+
+        //
+        public string KmOrHr
+        {
+            get
+            {
+                return "km";
+            }
+
+            set
+            {
+                ContractDateData = null;
+            }
+        }
+        //
+        public string getTerminationType
+        {
+            get
+            {
+                if (TerminationType != null)
+                {
+                    return TerminationType.strValue1;
+                }
+                return "";
+            }
+
+            set
+            {
+                TerminationType = null;
+            }
+        }
+
+        //ContractPaymentData
+        public string PaymentPeriod
+        {
+            get
+            {
+                if (ContractPaymentData != null)
+                {
+                    return ContractPaymentData.PaymentPeriod.strValue1;
+                }
+                return "";
+            }
+
+            set
+            {
+                ContractPaymentData = null;
+            }
+        }
+
+        public bool PaymentInBlock
+        {
+            get
+            {
+                if (ContractPaymentData != null)
+                {
+                    return ContractPaymentData.PaymentIsInBlock;
+                }
+                return false;
+            }
+
+            set
+            {
+                ContractPaymentData = null;
+            }
+        }
+
+        public DateTime PaymentNextBlockStart
+        {
+            get
+            {
+                if (ContractPaymentData != null)
+                {
+                    return ContractPaymentData.PaymentNextBlockStart;
+                }
+                return DateTime.Now;
+            }
+
+            set
+            {
+                ContractPaymentData = null;
+            }
+        }
+        public DateTime PaymentNextBlockEnd
+        {
+            get
+            {
+                if (ContractPaymentData != null)
+                {
+                    return ContractPaymentData.PaymentNextBlockEnd;
+                }
+                return DateTime.Now;
+            }
+
+            set
+            {
+                ContractPaymentData = null;
+            }
+        }
+        public string PaymentCollecType
+        {
+            get
+            {
+                if (ContractPaymentData != null)
+                {
+                    return ContractPaymentData.PaymentCollectionType;
+                }
+                return "";
+            }
+
+            set
+            {
+                ContractPaymentData = null;
+            }
+        }
+
+        //Inv
+        public string InvSites
+        {
+            get
+            {
+                if (InvoiceSiteId != null)
+                {
+                    return InvoiceSiteId.strValue1;
+                }
+                return "";
+            }
+
+            set
+            {
+                ContractPaymentData = null;
+            }
+        }
+        //MileageReg
+        public string LastMileDate
+        {
+            get
+            {
+                return "";
+            }
+
+            set
+            {
+                ContractPaymentData = null;
+            }
+        }
+        public string LastMile
+        {
+            get
+            {
+                return "";
+            }
+
+            set
+            {
+                ContractPaymentData = null;
+            }
         }
     }
 }
