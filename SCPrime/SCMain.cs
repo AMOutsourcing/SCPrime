@@ -123,20 +123,8 @@ namespace SCPrime
             cblModel.ValueMember = "value";
             cblModel.DisplayMember = "text";
 
-            //Set check default
-            string value;
-            for (int i = 0; i < cblModel.Items.Count; i++)
-            {
-                value = ((ObjTmp)cblModel.Items[i]).value;
-                if (value != "C" && value != "D")
-                {
-                    cblModel.SetItemChecked(i, true);
-                }
-            }
-
 
             //Load sites
-
             List<clsBaseListItem> listTmp = sCBase.getAMSites();
 
             List<ObjTmp> lstSites = new List<ObjTmp>(result.Count);
@@ -147,17 +135,34 @@ namespace SCPrime
             cbSites.DataSource = lstSites;
             cbSites.ValueMember = "id";
             cbSites.DisplayMember = "text";
-
-            //Set check default
-            for (int i = 0; i < cbSites.Items.Count; i++)
-            {
-                cbSites.SetItemChecked(i, true);
-            }
+            
 
             //Load contaactType
             cblContactType.DataSource = sCBase.getContractTypeActive();
             cblContactType.DisplayMember = "Name";
             cblContactType.ValueMember = "OID";
+
+
+            //Set check default
+            setCheckDefault();
+
+
+            //View searchContract
+            searchContract();
+        }
+
+        private void setCheckDefault()
+        {
+            //check defaut staus
+            string value;
+            for (int i = 0; i < cblModel.Items.Count; i++)
+            {
+                value = ((ObjTmp)cblModel.Items[i]).value;
+                if (value != "C" && value != "D")
+                {
+                    cblModel.SetItemChecked(i, true);
+                }
+            }
 
             //Set check All contracttype
             for (int i = 0; i < cblContactType.Items.Count; i++)
@@ -165,9 +170,11 @@ namespace SCPrime
                 cblContactType.SetItemChecked(i, true);
             }
 
-
-            //View searchContract
-            searchContract();
+            //Default site
+            for (int i = 0; i < cbSites.Items.Count; i++)
+            {
+                cbSites.SetItemChecked(i, true);
+            }
         }
 
         private void nEwContractToolStripMenuItem_Click(object sender, EventArgs e)
