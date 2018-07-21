@@ -108,6 +108,7 @@ namespace SCPrime.Contracts
             if (this.headerControl1.cbxContractType.SelectedValue != null)
             {
                 SCContractType ct = (SCContractType)this.headerControl1.cbxContractType.SelectedItem;
+
                 //MessageBox.Show(this.headerControl1.cbxContractType.SelectedItem.GetType().ToString());
                 //if (ct.isInvoice)
                 //    this.headerControl1.chkInvoiceToCus.Checked = true;
