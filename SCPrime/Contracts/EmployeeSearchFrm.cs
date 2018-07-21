@@ -115,6 +115,7 @@ namespace SCPrime.Contracts
         {
             SCViewEmployee epl = new SCViewEmployee();
             epl._OID = (int)r["_OID"];
+            epl.SmanId = r["SmanId"].ToString();
             epl.Name = r["Name"].ToString();
             epl.Phone = r["Phone"].ToString();
             epl.Email = r["Email"].ToString();

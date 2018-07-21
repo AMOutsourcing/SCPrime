@@ -39,11 +39,11 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabVehicle = new System.Windows.Forms.TabPage();
+            this.headerControl1 = new SCPrime.Contracts.HeaderControl();
             this.tabOptions = new System.Windows.Forms.TabPage();
             this.tabContractData = new System.Windows.Forms.TabPage();
             this.tabInvoices = new System.Windows.Forms.TabPage();
             this.tabRemarks = new System.Windows.Forms.TabPage();
-            this.headerControl1 = new SCPrime.Contracts.HeaderControl();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabVehicle.SuspendLayout();
@@ -164,12 +164,22 @@
             this.tabVehicle.Text = "Vehicle data";
             this.tabVehicle.UseVisualStyleBackColor = true;
             // 
+            // headerControl1
+            // 
+            this.headerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.headerControl1.Location = new System.Drawing.Point(3, 3);
+            this.headerControl1.Name = "headerControl1";
+            this.headerControl1.Size = new System.Drawing.Size(910, 706);
+            this.headerControl1.TabIndex = 0;
+            //this.headerControl1.Load += new System.EventHandler(this.headerControl1_Load);
+            this.headerControl1.cbxContractType.SelectedIndexChanged += new System.EventHandler(this.headerControl1_cbxContractType_SelectedIndexChanged);
+            // 
             // tabOptions
             // 
             this.tabOptions.Location = new System.Drawing.Point(4, 22);
             this.tabOptions.Name = "tabOptions";
             this.tabOptions.Padding = new System.Windows.Forms.Padding(3);
-            this.tabOptions.Size = new System.Drawing.Size(917, 712);
+            this.tabOptions.Size = new System.Drawing.Size(916, 712);
             this.tabOptions.TabIndex = 2;
             this.tabOptions.Text = "Options";
             this.tabOptions.UseVisualStyleBackColor = true;
@@ -178,7 +188,7 @@
             // 
             this.tabContractData.Location = new System.Drawing.Point(4, 22);
             this.tabContractData.Name = "tabContractData";
-            this.tabContractData.Size = new System.Drawing.Size(917, 712);
+            this.tabContractData.Size = new System.Drawing.Size(916, 712);
             this.tabContractData.TabIndex = 3;
             this.tabContractData.Text = "Contract data";
             this.tabContractData.UseVisualStyleBackColor = true;
@@ -187,7 +197,7 @@
             // 
             this.tabInvoices.Location = new System.Drawing.Point(4, 22);
             this.tabInvoices.Name = "tabInvoices";
-            this.tabInvoices.Size = new System.Drawing.Size(917, 712);
+            this.tabInvoices.Size = new System.Drawing.Size(916, 712);
             this.tabInvoices.TabIndex = 4;
             this.tabInvoices.Text = "Invoices";
             this.tabInvoices.UseVisualStyleBackColor = true;
@@ -196,19 +206,10 @@
             // 
             this.tabRemarks.Location = new System.Drawing.Point(4, 22);
             this.tabRemarks.Name = "tabRemarks";
-            this.tabRemarks.Size = new System.Drawing.Size(917, 712);
+            this.tabRemarks.Size = new System.Drawing.Size(916, 712);
             this.tabRemarks.TabIndex = 5;
             this.tabRemarks.Text = "Remarks";
             this.tabRemarks.UseVisualStyleBackColor = true;
-            // 
-            // headerControl1
-            // 
-            this.headerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.headerControl1.Location = new System.Drawing.Point(3, 3);
-            this.headerControl1.Name = "headerControl1";
-            this.headerControl1.Size = new System.Drawing.Size(910, 706);
-            this.headerControl1.TabIndex = 0;
-            this.headerControl1.Load += new System.EventHandler(this.headerControl1_Load);
             // 
             // ContractFrm
             // 
@@ -219,6 +220,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "ContractFrm";
             this.Text = "Contracts";
+            this.Load += new System.EventHandler(this.ContractFrm_Load);
             this.panel1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabVehicle.ResumeLayout(false);

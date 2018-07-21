@@ -34,54 +34,54 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtContracNr = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtCreated = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtLastInvoice = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.btnChangeStatus = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.cbxResponsibleSite = new System.Windows.Forms.ComboBox();
+            this.txtExtContractNr = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.txtVersionNr = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.txtChanged = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.chkContractVariant = new System.Windows.Forms.CheckBox();
+            this.cbxCostcenter = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.cbxValidWorkshop = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.cbxContractType = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.chkInvoiceToCus = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox13 = new System.Windows.Forms.TextBox();
+            this.txtInvoiceCusPhone = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.txtInvoiceCusEmail = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
-            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.txtInvoiceCusAdd = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.txtInvoiceCusName = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.btnSearchCustomer1 = new System.Windows.Forms.Button();
-            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.txtInvoiceCusNr = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.dgvSubcontract = new System.Windows.Forms.DataGridView();
             this.label18 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBox14 = new System.Windows.Forms.TextBox();
+            this.txtContractCusPhone = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.textBox15 = new System.Windows.Forms.TextBox();
+            this.txtContractCusEmail = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
-            this.textBox16 = new System.Windows.Forms.TextBox();
+            this.txtContractCusAdd = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
-            this.textBox17 = new System.Windows.Forms.TextBox();
+            this.txtContractCusName = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.btnSearchCustomer2 = new System.Windows.Forms.Button();
-            this.textBox18 = new System.Windows.Forms.TextBox();
+            this.txtContractCusNr = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtEmployeePhone1 = new System.Windows.Forms.TextBox();
@@ -168,13 +168,13 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Contract Nr";
             // 
-            // textBox4
+            // txtCreated
             // 
-            this.textBox4.Location = new System.Drawing.Point(103, 106);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(102, 20);
-            this.textBox4.TabIndex = 8;
+            this.txtCreated.Location = new System.Drawing.Point(103, 106);
+            this.txtCreated.Name = "txtCreated";
+            this.txtCreated.ReadOnly = true;
+            this.txtCreated.Size = new System.Drawing.Size(102, 20);
+            this.txtCreated.TabIndex = 8;
             // 
             // label4
             // 
@@ -185,13 +185,13 @@
             this.label4.TabIndex = 7;
             this.label4.Text = "Created";
             // 
-            // textBox5
+            // txtLastInvoice
             // 
-            this.textBox5.Location = new System.Drawing.Point(103, 139);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(102, 20);
-            this.textBox5.TabIndex = 10;
+            this.txtLastInvoice.Location = new System.Drawing.Point(103, 139);
+            this.txtLastInvoice.Name = "txtLastInvoice";
+            this.txtLastInvoice.ReadOnly = true;
+            this.txtLastInvoice.Size = new System.Drawing.Size(102, 20);
+            this.txtLastInvoice.TabIndex = 10;
             // 
             // label5
             // 
@@ -221,20 +221,20 @@
             this.btnChangeStatus.UseVisualStyleBackColor = true;
             this.btnChangeStatus.Click += new System.EventHandler(this.btnChangeStatus_Click);
             // 
-            // comboBox1
+            // cbxResponsibleSite
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(103, 177);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(142, 21);
-            this.comboBox1.TabIndex = 14;
+            this.cbxResponsibleSite.FormattingEnabled = true;
+            this.cbxResponsibleSite.Location = new System.Drawing.Point(103, 177);
+            this.cbxResponsibleSite.Name = "cbxResponsibleSite";
+            this.cbxResponsibleSite.Size = new System.Drawing.Size(142, 21);
+            this.cbxResponsibleSite.TabIndex = 14;
             // 
-            // textBox6
+            // txtExtContractNr
             // 
-            this.textBox6.Location = new System.Drawing.Point(350, 39);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(102, 20);
-            this.textBox6.TabIndex = 16;
+            this.txtExtContractNr.Location = new System.Drawing.Point(350, 39);
+            this.txtExtContractNr.Name = "txtExtContractNr";
+            this.txtExtContractNr.Size = new System.Drawing.Size(102, 20);
+            this.txtExtContractNr.TabIndex = 16;
             // 
             // label7
             // 
@@ -245,13 +245,13 @@
             this.label7.TabIndex = 15;
             this.label7.Text = "Ext. contract Nr";
             // 
-            // textBox7
+            // txtVersionNr
             // 
-            this.textBox7.Location = new System.Drawing.Point(350, 73);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.ReadOnly = true;
-            this.textBox7.Size = new System.Drawing.Size(102, 20);
-            this.textBox7.TabIndex = 18;
+            this.txtVersionNr.Location = new System.Drawing.Point(350, 73);
+            this.txtVersionNr.Name = "txtVersionNr";
+            this.txtVersionNr.ReadOnly = true;
+            this.txtVersionNr.Size = new System.Drawing.Size(102, 20);
+            this.txtVersionNr.TabIndex = 18;
             // 
             // label8
             // 
@@ -262,13 +262,13 @@
             this.label8.TabIndex = 17;
             this.label8.Text = "Version Nr";
             // 
-            // textBox8
+            // txtChanged
             // 
-            this.textBox8.Location = new System.Drawing.Point(350, 106);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.ReadOnly = true;
-            this.textBox8.Size = new System.Drawing.Size(102, 20);
-            this.textBox8.TabIndex = 20;
+            this.txtChanged.Location = new System.Drawing.Point(350, 106);
+            this.txtChanged.Name = "txtChanged";
+            this.txtChanged.ReadOnly = true;
+            this.txtChanged.Size = new System.Drawing.Size(102, 20);
+            this.txtChanged.TabIndex = 20;
             // 
             // label9
             // 
@@ -279,23 +279,23 @@
             this.label9.TabIndex = 19;
             this.label9.Text = "Changed";
             // 
-            // checkBox1
+            // chkContractVariant
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(263, 143);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(134, 17);
-            this.checkBox1.TabIndex = 21;
-            this.checkBox1.Text = "Contract variant – New";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.chkContractVariant.AutoSize = true;
+            this.chkContractVariant.Location = new System.Drawing.Point(263, 143);
+            this.chkContractVariant.Name = "chkContractVariant";
+            this.chkContractVariant.Size = new System.Drawing.Size(134, 17);
+            this.chkContractVariant.TabIndex = 21;
+            this.chkContractVariant.Text = "Contract variant – New";
+            this.chkContractVariant.UseVisualStyleBackColor = true;
             // 
-            // comboBox2
+            // cbxCostcenter
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(350, 177);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(102, 21);
-            this.comboBox2.TabIndex = 23;
+            this.cbxCostcenter.FormattingEnabled = true;
+            this.cbxCostcenter.Location = new System.Drawing.Point(350, 177);
+            this.cbxCostcenter.Name = "cbxCostcenter";
+            this.cbxCostcenter.Size = new System.Drawing.Size(102, 21);
+            this.cbxCostcenter.TabIndex = 23;
             // 
             // label10
             // 
@@ -306,13 +306,13 @@
             this.label10.TabIndex = 22;
             this.label10.Text = "Cost center";
             // 
-            // comboBox3
+            // cbxValidWorkshop
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(103, 212);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(349, 21);
-            this.comboBox3.TabIndex = 25;
+            this.cbxValidWorkshop.FormattingEnabled = true;
+            this.cbxValidWorkshop.Location = new System.Drawing.Point(103, 212);
+            this.cbxValidWorkshop.Name = "cbxValidWorkshop";
+            this.cbxValidWorkshop.Size = new System.Drawing.Size(349, 21);
+            this.cbxValidWorkshop.TabIndex = 25;
             // 
             // label11
             // 
@@ -323,13 +323,14 @@
             this.label11.TabIndex = 24;
             this.label11.Text = "Valid workshop";
             // 
-            // comboBox4
+            // cbxContractType
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(103, 248);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(349, 21);
-            this.comboBox4.TabIndex = 27;
+            this.cbxContractType.FormattingEnabled = true;
+            this.cbxContractType.Location = new System.Drawing.Point(103, 248);
+            this.cbxContractType.Name = "cbxContractType";
+            this.cbxContractType.Size = new System.Drawing.Size(349, 21);
+            this.cbxContractType.TabIndex = 27;
+            this.cbxContractType.SelectedIndexChanged += new System.EventHandler(this.cbxContractType_SelectedIndexChanged);
             // 
             // label12
             // 
@@ -340,28 +341,29 @@
             this.label12.TabIndex = 26;
             this.label12.Text = "Contract type";
             // 
-            // checkBox2
+            // chkInvoiceToCus
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(103, 287);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(119, 17);
-            this.checkBox2.TabIndex = 28;
-            this.checkBox2.Text = "Invoice to customer";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.chkInvoiceToCus.AutoSize = true;
+            this.chkInvoiceToCus.Enabled = false;
+            this.chkInvoiceToCus.Location = new System.Drawing.Point(103, 287);
+            this.chkInvoiceToCus.Name = "chkInvoiceToCus";
+            this.chkInvoiceToCus.Size = new System.Drawing.Size(119, 17);
+            this.chkInvoiceToCus.TabIndex = 28;
+            this.chkInvoiceToCus.Text = "Invoice to customer";
+            this.chkInvoiceToCus.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox13);
+            this.groupBox1.Controls.Add(this.txtInvoiceCusPhone);
             this.groupBox1.Controls.Add(this.label17);
-            this.groupBox1.Controls.Add(this.textBox12);
+            this.groupBox1.Controls.Add(this.txtInvoiceCusEmail);
             this.groupBox1.Controls.Add(this.label16);
-            this.groupBox1.Controls.Add(this.textBox11);
+            this.groupBox1.Controls.Add(this.txtInvoiceCusAdd);
             this.groupBox1.Controls.Add(this.label15);
-            this.groupBox1.Controls.Add(this.textBox10);
+            this.groupBox1.Controls.Add(this.txtInvoiceCusName);
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.btnSearchCustomer1);
-            this.groupBox1.Controls.Add(this.textBox9);
+            this.groupBox1.Controls.Add(this.txtInvoiceCusNr);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Location = new System.Drawing.Point(3, 310);
             this.groupBox1.Name = "groupBox1";
@@ -370,13 +372,13 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Invoice address";
             // 
-            // textBox13
+            // txtInvoiceCusPhone
             // 
-            this.textBox13.Location = new System.Drawing.Point(291, 86);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.ReadOnly = true;
-            this.textBox13.Size = new System.Drawing.Size(157, 20);
-            this.textBox13.TabIndex = 40;
+            this.txtInvoiceCusPhone.Location = new System.Drawing.Point(291, 86);
+            this.txtInvoiceCusPhone.Name = "txtInvoiceCusPhone";
+            this.txtInvoiceCusPhone.ReadOnly = true;
+            this.txtInvoiceCusPhone.Size = new System.Drawing.Size(157, 20);
+            this.txtInvoiceCusPhone.TabIndex = 40;
             // 
             // label17
             // 
@@ -387,13 +389,13 @@
             this.label17.TabIndex = 39;
             this.label17.Text = "Phone";
             // 
-            // textBox12
+            // txtInvoiceCusEmail
             // 
-            this.textBox12.Location = new System.Drawing.Point(90, 86);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.ReadOnly = true;
-            this.textBox12.Size = new System.Drawing.Size(157, 20);
-            this.textBox12.TabIndex = 38;
+            this.txtInvoiceCusEmail.Location = new System.Drawing.Point(90, 86);
+            this.txtInvoiceCusEmail.Name = "txtInvoiceCusEmail";
+            this.txtInvoiceCusEmail.ReadOnly = true;
+            this.txtInvoiceCusEmail.Size = new System.Drawing.Size(157, 20);
+            this.txtInvoiceCusEmail.TabIndex = 38;
             // 
             // label16
             // 
@@ -404,13 +406,13 @@
             this.label16.TabIndex = 37;
             this.label16.Text = "Email";
             // 
-            // textBox11
+            // txtInvoiceCusAdd
             // 
-            this.textBox11.Location = new System.Drawing.Point(90, 60);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.ReadOnly = true;
-            this.textBox11.Size = new System.Drawing.Size(358, 20);
-            this.textBox11.TabIndex = 36;
+            this.txtInvoiceCusAdd.Location = new System.Drawing.Point(90, 60);
+            this.txtInvoiceCusAdd.Name = "txtInvoiceCusAdd";
+            this.txtInvoiceCusAdd.ReadOnly = true;
+            this.txtInvoiceCusAdd.Size = new System.Drawing.Size(358, 20);
+            this.txtInvoiceCusAdd.TabIndex = 36;
             // 
             // label15
             // 
@@ -421,13 +423,13 @@
             this.label15.TabIndex = 35;
             this.label15.Text = "Address";
             // 
-            // textBox10
+            // txtInvoiceCusName
             // 
-            this.textBox10.Location = new System.Drawing.Point(291, 32);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.ReadOnly = true;
-            this.textBox10.Size = new System.Drawing.Size(157, 20);
-            this.textBox10.TabIndex = 34;
+            this.txtInvoiceCusName.Location = new System.Drawing.Point(291, 32);
+            this.txtInvoiceCusName.Name = "txtInvoiceCusName";
+            this.txtInvoiceCusName.ReadOnly = true;
+            this.txtInvoiceCusName.Size = new System.Drawing.Size(157, 20);
+            this.txtInvoiceCusName.TabIndex = 34;
             // 
             // label14
             // 
@@ -448,13 +450,13 @@
             this.btnSearchCustomer1.UseVisualStyleBackColor = true;
             this.btnSearchCustomer1.Click += new System.EventHandler(this.btnSearchCustomer1_Click);
             // 
-            // textBox9
+            // txtInvoiceCusNr
             // 
-            this.textBox9.Location = new System.Drawing.Point(90, 32);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.ReadOnly = true;
-            this.textBox9.Size = new System.Drawing.Size(102, 20);
-            this.textBox9.TabIndex = 31;
+            this.txtInvoiceCusNr.Location = new System.Drawing.Point(90, 32);
+            this.txtInvoiceCusNr.Name = "txtInvoiceCusNr";
+            this.txtInvoiceCusNr.ReadOnly = true;
+            this.txtInvoiceCusNr.Size = new System.Drawing.Size(102, 20);
+            this.txtInvoiceCusNr.TabIndex = 31;
             // 
             // label13
             // 
@@ -502,16 +504,16 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.textBox14);
+            this.groupBox2.Controls.Add(this.txtContractCusPhone);
             this.groupBox2.Controls.Add(this.label19);
-            this.groupBox2.Controls.Add(this.textBox15);
+            this.groupBox2.Controls.Add(this.txtContractCusEmail);
             this.groupBox2.Controls.Add(this.label20);
-            this.groupBox2.Controls.Add(this.textBox16);
+            this.groupBox2.Controls.Add(this.txtContractCusAdd);
             this.groupBox2.Controls.Add(this.label21);
-            this.groupBox2.Controls.Add(this.textBox17);
+            this.groupBox2.Controls.Add(this.txtContractCusName);
             this.groupBox2.Controls.Add(this.label22);
             this.groupBox2.Controls.Add(this.btnSearchCustomer2);
-            this.groupBox2.Controls.Add(this.textBox18);
+            this.groupBox2.Controls.Add(this.txtContractCusNr);
             this.groupBox2.Controls.Add(this.label23);
             this.groupBox2.Location = new System.Drawing.Point(471, 5);
             this.groupBox2.Name = "groupBox2";
@@ -520,13 +522,13 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Contract customer";
             // 
-            // textBox14
+            // txtContractCusPhone
             // 
-            this.textBox14.Location = new System.Drawing.Point(283, 86);
-            this.textBox14.Name = "textBox14";
-            this.textBox14.ReadOnly = true;
-            this.textBox14.Size = new System.Drawing.Size(137, 20);
-            this.textBox14.TabIndex = 40;
+            this.txtContractCusPhone.Location = new System.Drawing.Point(283, 86);
+            this.txtContractCusPhone.Name = "txtContractCusPhone";
+            this.txtContractCusPhone.ReadOnly = true;
+            this.txtContractCusPhone.Size = new System.Drawing.Size(137, 20);
+            this.txtContractCusPhone.TabIndex = 40;
             // 
             // label19
             // 
@@ -537,13 +539,13 @@
             this.label19.TabIndex = 39;
             this.label19.Text = "Phone";
             // 
-            // textBox15
+            // txtContractCusEmail
             // 
-            this.textBox15.Location = new System.Drawing.Point(90, 86);
-            this.textBox15.Name = "textBox15";
-            this.textBox15.ReadOnly = true;
-            this.textBox15.Size = new System.Drawing.Size(137, 20);
-            this.textBox15.TabIndex = 38;
+            this.txtContractCusEmail.Location = new System.Drawing.Point(90, 86);
+            this.txtContractCusEmail.Name = "txtContractCusEmail";
+            this.txtContractCusEmail.ReadOnly = true;
+            this.txtContractCusEmail.Size = new System.Drawing.Size(137, 20);
+            this.txtContractCusEmail.TabIndex = 38;
             // 
             // label20
             // 
@@ -554,13 +556,13 @@
             this.label20.TabIndex = 37;
             this.label20.Text = "Email";
             // 
-            // textBox16
+            // txtContractCusAdd
             // 
-            this.textBox16.Location = new System.Drawing.Point(90, 60);
-            this.textBox16.Name = "textBox16";
-            this.textBox16.ReadOnly = true;
-            this.textBox16.Size = new System.Drawing.Size(330, 20);
-            this.textBox16.TabIndex = 36;
+            this.txtContractCusAdd.Location = new System.Drawing.Point(90, 60);
+            this.txtContractCusAdd.Name = "txtContractCusAdd";
+            this.txtContractCusAdd.ReadOnly = true;
+            this.txtContractCusAdd.Size = new System.Drawing.Size(330, 20);
+            this.txtContractCusAdd.TabIndex = 36;
             // 
             // label21
             // 
@@ -571,13 +573,13 @@
             this.label21.TabIndex = 35;
             this.label21.Text = "Address";
             // 
-            // textBox17
+            // txtContractCusName
             // 
-            this.textBox17.Location = new System.Drawing.Point(283, 32);
-            this.textBox17.Name = "textBox17";
-            this.textBox17.ReadOnly = true;
-            this.textBox17.Size = new System.Drawing.Size(137, 20);
-            this.textBox17.TabIndex = 34;
+            this.txtContractCusName.Location = new System.Drawing.Point(283, 32);
+            this.txtContractCusName.Name = "txtContractCusName";
+            this.txtContractCusName.ReadOnly = true;
+            this.txtContractCusName.Size = new System.Drawing.Size(137, 20);
+            this.txtContractCusName.TabIndex = 34;
             // 
             // label22
             // 
@@ -598,13 +600,13 @@
             this.btnSearchCustomer2.UseVisualStyleBackColor = true;
             this.btnSearchCustomer2.Click += new System.EventHandler(this.btnSearchCustomer2_Click);
             // 
-            // textBox18
+            // txtContractCusNr
             // 
-            this.textBox18.Location = new System.Drawing.Point(90, 32);
-            this.textBox18.Name = "textBox18";
-            this.textBox18.ReadOnly = true;
-            this.textBox18.Size = new System.Drawing.Size(102, 20);
-            this.textBox18.TabIndex = 31;
+            this.txtContractCusNr.Location = new System.Drawing.Point(90, 32);
+            this.txtContractCusNr.Name = "txtContractCusNr";
+            this.txtContractCusNr.ReadOnly = true;
+            this.txtContractCusNr.Size = new System.Drawing.Size(102, 20);
+            this.txtContractCusNr.TabIndex = 31;
             // 
             // label23
             // 
@@ -802,6 +804,7 @@
             // 
             this.txtEmployeeName2.Location = new System.Drawing.Point(283, 32);
             this.txtEmployeeName2.Name = "txtEmployeeName2";
+            this.txtEmployeeName2.ReadOnly = true;
             this.txtEmployeeName2.Size = new System.Drawing.Size(137, 20);
             this.txtEmployeeName2.TabIndex = 34;
             // 
@@ -868,26 +871,26 @@
             this.Controls.Add(this.label18);
             this.Controls.Add(this.dgvSubcontract);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.checkBox2);
-            this.Controls.Add(this.comboBox4);
+            this.Controls.Add(this.chkInvoiceToCus);
+            this.Controls.Add(this.cbxContractType);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.comboBox3);
+            this.Controls.Add(this.cbxValidWorkshop);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.cbxCostcenter);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.textBox8);
+            this.Controls.Add(this.chkContractVariant);
+            this.Controls.Add(this.txtChanged);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.textBox7);
+            this.Controls.Add(this.txtVersionNr);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.textBox6);
+            this.Controls.Add(this.txtExtContractNr);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cbxResponsibleSite);
             this.Controls.Add(this.btnChangeStatus);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.txtLastInvoice);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.txtCreated);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtContracNr);
             this.Controls.Add(this.label3);
@@ -922,54 +925,54 @@
         public System.Windows.Forms.Label label2;
         public System.Windows.Forms.TextBox txtContracNr;
         public System.Windows.Forms.Label label3;
-        public System.Windows.Forms.TextBox textBox4;
+        public System.Windows.Forms.TextBox txtCreated;
         public System.Windows.Forms.Label label4;
-        public System.Windows.Forms.TextBox textBox5;
+        public System.Windows.Forms.TextBox txtLastInvoice;
         public System.Windows.Forms.Label label5;
         public System.Windows.Forms.Label label6;
         public System.Windows.Forms.Button btnChangeStatus;
-        public System.Windows.Forms.ComboBox comboBox1;
-        public System.Windows.Forms.TextBox textBox6;
+        public System.Windows.Forms.ComboBox cbxResponsibleSite;
+        public System.Windows.Forms.TextBox txtExtContractNr;
         public System.Windows.Forms.Label label7;
-        public System.Windows.Forms.TextBox textBox7;
+        public System.Windows.Forms.TextBox txtVersionNr;
         public System.Windows.Forms.Label label8;
-        public System.Windows.Forms.TextBox textBox8;
+        public System.Windows.Forms.TextBox txtChanged;
         public System.Windows.Forms.Label label9;
-        public System.Windows.Forms.CheckBox checkBox1;
-        public System.Windows.Forms.ComboBox comboBox2;
+        public System.Windows.Forms.CheckBox chkContractVariant;
+        public System.Windows.Forms.ComboBox cbxCostcenter;
         public System.Windows.Forms.Label label10;
-        public System.Windows.Forms.ComboBox comboBox3;
+        public System.Windows.Forms.ComboBox cbxValidWorkshop;
         public System.Windows.Forms.Label label11;
-        public System.Windows.Forms.ComboBox comboBox4;
+        public System.Windows.Forms.ComboBox cbxContractType;
         public System.Windows.Forms.Label label12;
-        public System.Windows.Forms.CheckBox checkBox2;
+        public System.Windows.Forms.CheckBox chkInvoiceToCus;
         public System.Windows.Forms.GroupBox groupBox1;
-        public System.Windows.Forms.TextBox textBox11;
+        public System.Windows.Forms.TextBox txtInvoiceCusAdd;
         public System.Windows.Forms.Label label15;
-        public System.Windows.Forms.TextBox textBox10;
+        public System.Windows.Forms.TextBox txtInvoiceCusName;
         public System.Windows.Forms.Label label14;
         public System.Windows.Forms.Button btnSearchCustomer1;
-        public System.Windows.Forms.TextBox textBox9;
+        public System.Windows.Forms.TextBox txtInvoiceCusNr;
         public System.Windows.Forms.Label label13;
-        public System.Windows.Forms.TextBox textBox13;
+        public System.Windows.Forms.TextBox txtInvoiceCusPhone;
         public System.Windows.Forms.Label label17;
-        public System.Windows.Forms.TextBox textBox12;
+        public System.Windows.Forms.TextBox txtInvoiceCusEmail;
         public System.Windows.Forms.Label label16;
         public System.Windows.Forms.DataGridView dgvSubcontract;
         public System.Windows.Forms.Label label18;
         public System.Windows.Forms.Button button2;
         public System.Windows.Forms.Button button3;
         public System.Windows.Forms.GroupBox groupBox2;
-        public System.Windows.Forms.TextBox textBox14;
+        public System.Windows.Forms.TextBox txtContractCusPhone;
         public System.Windows.Forms.Label label19;
-        public System.Windows.Forms.TextBox textBox15;
+        public System.Windows.Forms.TextBox txtContractCusEmail;
         public System.Windows.Forms.Label label20;
-        public System.Windows.Forms.TextBox textBox16;
+        public System.Windows.Forms.TextBox txtContractCusAdd;
         public System.Windows.Forms.Label label21;
-        public System.Windows.Forms.TextBox textBox17;
+        public System.Windows.Forms.TextBox txtContractCusName;
         public System.Windows.Forms.Label label22;
         public System.Windows.Forms.Button btnSearchCustomer2;
-        public System.Windows.Forms.TextBox textBox18;
+        public System.Windows.Forms.TextBox txtContractCusNr;
         public System.Windows.Forms.Label label23;
         public System.Windows.Forms.GroupBox groupBox3;
         public System.Windows.Forms.TextBox txtEmployeePhone1;

@@ -139,7 +139,7 @@ namespace SCPrime
 
             List<clsBaseListItem> listTmp = sCBase.getAMSites();
 
-            List<ObjTmp> lstSites = new List<ObjTmp>(result.Count);
+            List<ObjTmp> lstSites = new List<ObjTmp>(listTmp.Count);
             foreach (clsBaseListItem site in listTmp)
             {
                 lstSites.Add(new ObjTmp(site.strValue1, site.strText));
@@ -173,6 +173,7 @@ namespace SCPrime
         private void nEwContractToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ContractFrm cf = new ContractFrm();
+            
             cf.ShowDialog();
         }
 
@@ -408,6 +409,12 @@ namespace SCPrime
             LastMile.HeaderText = "Last mileage";
             LastMile.DataPropertyName = "LastMile";
             gridContract.Columns.Insert(i++, LastMile);
+        }
+
+        private void testToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tmp fr = new tmp();
+            fr.ShowDialog();
         }
     }
 }

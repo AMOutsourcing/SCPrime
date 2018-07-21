@@ -25,5 +25,19 @@ namespace SCPrime.Utils
                 r.HeaderCell.Value = "";
             }
         }
+
+        public static IEnumerable<Control> GetAllControl(Control control, Type type)
+        {
+            var controls = control.Controls.Cast<Control>();
+            if (type != null)
+            {
+
+                return controls.SelectMany(ctrl => GetAllControl(ctrl, type))
+                                          .Concat(controls)
+                                          .Where(c => c.GetType() == type);
+            }
+            else
+                return controls;
+        }
     }
 }

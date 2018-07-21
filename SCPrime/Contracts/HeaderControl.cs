@@ -1,5 +1,6 @@
 ﻿using CashRegPrime;
 using log4net;
+using nsBaseClass;
 using SCPrime.Model;
 using SCPrime.Utils;
 using System;
@@ -26,75 +27,84 @@ namespace SCPrime.Contracts
         {
             InitializeComponent();
             //StatusSender = new SendStatus(setStatus);
+
         }
-        //public static HeaderControl instance
-        //{
-        //    get
-        //    {
-        //        if (HeaderControl._instance == null || HeaderControl._instance.IsDisposed)
-        //        {
-        //            HeaderControl._instance = new HeaderControl();
-        //        }
-        //        return HeaderControl._instance;
-        //    }
-        //}
-        //public void updateStatus(string s)
-        //{
-        //    this.txtContractStatus.Text = s;
-        //}
+       
 
 
         private void btnChangeStatus_Click(object sender, EventArgs e)
         {
-            List<string> tmp = new List<string>();
-            tmp.Add("M");
-            tmp.Add("O");
-            tmp.Add("N");
-            tmp.Add("W");
-            tmp.Add("A");
-            tmp.Add("H");
-            tmp.Add("C");
-            tmp.Add("D");
+            string currName = "";
+            if (string.IsNullOrEmpty(this.txtContractStatus.Text.Trim()))
+            {
+                List<string> tmp = new List<string>();
+                tmp.Add("M");
+                tmp.Add("O");
+                tmp.Add("N");
+                tmp.Add("W");
+                tmp.Add("A");
+                tmp.Add("H");
+                tmp.Add("C");
+                tmp.Add("D");
 
-            Random randNum = new Random();
-            int aRandomPos = randNum.Next(tmp.Count);//Returns a nonnegative random number less than the specified maximum (firstNames.Count).
+                Random randNum = new Random();
+                int aRandomPos = randNum.Next(tmp.Count);//Returns a nonnegative random number less than the specified maximum (firstNames.Count).
 
-            string currName = tmp[aRandomPos];
-            // this.txtContractStatus.Text = currName;
+                currName = tmp[aRandomPos];
+            }
+            else
+            {
+                SCBase sc = new SCBase();
+
+                switch (this.txtContractStatus.Text.Trim())
+                {
+                    case ContractStatus.ModelText:
+                        currName = ContractStatus.Model;
+                        break;
+                    case ContractStatus.OfferText:
+                        currName = ContractStatus.Offer;
+                        break;
+                    case ContractStatus.NewText:
+                        currName = ContractStatus.New;
+                        break;
+                    case ContractStatus.WaitingText:
+                        currName = ContractStatus.Waiting;
+                        break;
+                    case ContractStatus.ActiveText:
+                        currName = ContractStatus.Active;
+                        break;
+                    case ContractStatus.OnControlText:
+                        currName = ContractStatus.OnControl;
+                        break;
+                    case ContractStatus.DeactivatedText:
+                        currName = ContractStatus.Deactivated;
+                        break;
+
+                }
+            }
 
             ChangeStatusFrm sf = new ChangeStatusFrm();
             sf.Sender(currName);
             sf.ShowDialog();
         }
-        //private void setStatus(string Message)
-        //{
-        //    if (InvokeRequired)
-        //        Invoke(new Action<string>(setStatus), Message);
-        //    else
-        //    {
-        //        if (!string.IsNullOrEmpty(Message))
-        //        {
-        //            this.txtContractStatus.Text = Message;
-        //            this.txtInternalID.Text = Message;
-        //            this.textBox6.Text = Message;
-        //            this.status = Message;
-        //            MessageBox.Show(Message);
-        //            Control[] tmp = this.Controls.Find("txtContractStatus", true);
-        //            MessageBox.Show(tmp.Count().ToString());
-        //            tmp[0].Text = Message;
-        //        }
-        //        this.Refresh();
-        //    }
-        //}
 
-        private void HeaderControl_Load(object sender, EventArgs e)
-        {
 
-        }
+
 
         private void btnSearchCustomer1_Click(object sender, EventArgs e)
         {
+            dlgSearchCustomer searhCustomer = new dlgSearchCustomer();
+            searhCustomer.Owner = this.ParentForm;
+            searhCustomer.ShowDialog();
+            if (searhCustomer.Custno != "")
+            {
+                this.txtInvoiceCusNr.Text = searhCustomer.Custno;
+                this.txtInvoiceCusName.Text = searhCustomer.CustName;
+                this.txtInvoiceCusAdd.Text = searhCustomer.CustAddress;
+                this.txtInvoiceCusEmail.Text = searhCustomer.CustEmail;
+                this.txtInvoiceCusPhone.Text = searhCustomer.CustPhone;
 
+            }
         }
 
         private void btnSearchCustomer2_Click(object sender, EventArgs e)
@@ -102,7 +112,16 @@ namespace SCPrime.Contracts
             dlgSearchCustomer searhCustomer = new dlgSearchCustomer();
             searhCustomer.Owner = this.ParentForm;
             searhCustomer.ShowDialog();
-            
+            if (searhCustomer.Custno != "")
+            {
+                this.txtContractCusNr.Text = searhCustomer.Custno;
+                this.txtContractCusName.Text = searhCustomer.CustName;
+                this.txtContractCusAdd.Text = searhCustomer.CustAddress;
+                this.txtContractCusEmail.Text = searhCustomer.CustEmail;
+                this.txtContractCusPhone.Text = searhCustomer.CustPhone;
+
+            }
+
         }
 
         private void btnSeachEmployee1_Click(object sender, EventArgs e)
@@ -117,6 +136,30 @@ namespace SCPrime.Contracts
             EmployeeSearchFrm esf = new EmployeeSearchFrm();
             EmployeeSearchFrm.updateFlag(2);
             esf.ShowDialog();
+        }
+        public void enableControlabc()
+        {
+            IEnumerable<Control> textboxControls = ViewUtils.GetAllControl(this, typeof(TextBox));
+            IEnumerable<Control> checkboxControls = ViewUtils.GetAllControl(this, typeof(CheckBox));
+            IEnumerable<Control> comboboxControls = ViewUtils.GetAllControl(this, typeof(ComboBox));
+            foreach (Control c in textboxControls)
+            {
+                ((TextBox)c).ReadOnly = false;
+
+            }
+        }
+
+        private void HeaderControl_Load(object sender, EventArgs e)
+        {
+            //MessageBox.Show("1");
+            //this.loadComboboxData();
+            //this.loadContractData();
+
+        }
+
+        public void cbxContractType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
         }
     }
 }

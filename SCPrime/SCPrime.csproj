@@ -48,9 +48,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CashRegPrime">
-      <HintPath>..\..\lib\CashRegPrime.dll</HintPath>
+      <HintPath>.\CashRegPrime.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>.\log4net.dll</HintPath>
     </Reference>
     <Reference Include="nsBaseClass, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -207,7 +208,6 @@
     <EmbeddedResource Include="SCSearchLabourCodeFrm.resx">
       <DependentUpon>SCSearchLabourCodeFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="packages.config" />
     <EmbeddedResource Include="SCOptionPriceFrm.resx">
       <DependentUpon>SCOptionPriceFrm.cs</DependentUpon>
     </EmbeddedResource>

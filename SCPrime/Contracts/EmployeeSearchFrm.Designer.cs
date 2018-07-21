@@ -36,12 +36,12 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.sCViewEmployeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.oIDcol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.smanIdCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.smanNameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.emailCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.phoneCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sCViewEmployeeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -129,6 +129,10 @@
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             // 
+            // sCViewEmployeeBindingSource
+            // 
+            this.sCViewEmployeeBindingSource.DataSource = typeof(SCPrime.Model.SCViewEmployee);
+            // 
             // oIDcol
             // 
             this.oIDcol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -136,6 +140,7 @@
             this.oIDcol.HeaderText = "_OID";
             this.oIDcol.Name = "oIDcol";
             this.oIDcol.ReadOnly = true;
+            this.oIDcol.Visible = false;
             // 
             // smanIdCol
             // 
@@ -168,10 +173,6 @@
             this.phoneCol.HeaderText = "Phone";
             this.phoneCol.Name = "phoneCol";
             this.phoneCol.ReadOnly = true;
-            // 
-            // sCViewEmployeeBindingSource
-            // 
-            this.sCViewEmployeeBindingSource.DataSource = typeof(SCPrime.Model.SCViewEmployee);
             // 
             // EmployeeSearchFrm
             // 
