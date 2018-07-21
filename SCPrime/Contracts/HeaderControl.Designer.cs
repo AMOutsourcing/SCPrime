@@ -325,6 +325,7 @@
             // 
             // cbxContractType
             // 
+            this.cbxContractType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxContractType.FormattingEnabled = true;
             this.cbxContractType.Location = new System.Drawing.Point(103, 248);
             this.cbxContractType.Name = "cbxContractType";

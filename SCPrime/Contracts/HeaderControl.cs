@@ -159,7 +159,21 @@ namespace SCPrime.Contracts
 
         public void cbxContractType_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+            if (this.cbxContractType.SelectedValue != null)
+            {
+                SCContractType ct = (SCContractType)this.cbxContractType.SelectedItem;
+                if (ct.isInvoice)
+                {
+                    this.chkInvoiceToCus.Checked = true;
+                    this.chkInvoiceToCus.ForeColor = SystemColors.ControlText;
+                }
+                else
+                {
+                    this.chkInvoiceToCus.Checked = false;
+                    this.chkInvoiceToCus.ForeColor = SystemColors.ControlText;
+                }
+
+            }
         }
     }
 }

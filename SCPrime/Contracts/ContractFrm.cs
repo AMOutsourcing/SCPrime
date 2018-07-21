@@ -95,7 +95,7 @@ namespace SCPrime.Contracts
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+          
         }
 
         //private void headerControl1_Load(object sender, EventArgs e)
@@ -105,17 +105,15 @@ namespace SCPrime.Contracts
 
         private void headerControl1_cbxContractType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.headerControl1.cbxContractType.SelectedValue != null)
-            {
-                SCContractType ct = (SCContractType)this.headerControl1.cbxContractType.SelectedItem;
+            //if (this.headerControl1.cbxContractType.SelectedValue != null)
+            //{
+            //    SCContractType ct = (SCContractType)this.headerControl1.cbxContractType.SelectedItem;
+            //    if (ct.isInvoice)
+            //        this.headerControl1.chkInvoiceToCus.Checked = true;
+            //    else
+            //        this.headerControl1.chkInvoiceToCus.Checked = false;
 
-                //MessageBox.Show(this.headerControl1.cbxContractType.SelectedItem.GetType().ToString());
-                //if (ct.isInvoice)
-                //    this.headerControl1.chkInvoiceToCus.Checked = true;
-                //else
-                //    this.headerControl1.chkInvoiceToCus.Checked = false;
-
-            }
+            //}
         }
 
         private void ContractFrm_Load(object sender, EventArgs e)
@@ -156,7 +154,7 @@ namespace SCPrime.Contracts
         public void loadContractData()
         {
 
-            this.headerControl1.txtContractStatus.Text = this.objContact.ContractStatus;
+            this.displayStatus();
             this.headerControl1.txtInternalID.Text = this.objContact.ContractOID.ToString();
             this.headerControl1.txtContracNr.Text = this.objContact.ContractNo.ToString();
             this.headerControl1.txtExtContractNr.Text = this.objContact.ExtContractNo;
@@ -169,6 +167,87 @@ namespace SCPrime.Contracts
 
 
         }
+        public void displayStatus()
+        {
+            switch (this.objContact.ContractStatus.Trim())
+            {
+                case ContractStatus.Model:
+                    this.headerControl1.txtContractStatus.Text = ContractStatus.ModelText;
+                    break;
+                case ContractStatus.Offer:
+                    this.headerControl1.txtContractStatus.Text = ContractStatus.OfferText;
+                    break;
+                case ContractStatus.New:
+                    this.headerControl1.txtContractStatus.Text = ContractStatus.NewText;
+                    break;
+                case ContractStatus.Waiting:
+                    this.headerControl1.txtContractStatus.Text = ContractStatus.WaitingText;
+                    break;
+                case ContractStatus.Active:
+                    this.headerControl1.txtContractStatus.Text = ContractStatus.ActiveText;
+                    break;
+                case ContractStatus.OnControl:
+                    this.headerControl1.txtContractStatus.Text = ContractStatus.OnControlText;
+                    break;
+                case ContractStatus.Deactivated:
+                    this.headerControl1.txtContractStatus.Text = ContractStatus.DeactivatedText;
+                    break;
 
+            }
+        }
+
+        private void loadTree()
+        {
+            //load category
+           this.contractOption1.treeView1.Nodes.Clear();
+
+            List<SCOptionCategory> myCategories = SCOptionCategory.getOptionCategoryList();
+            if (myCategories.Count > 0)
+            {
+                foreach (SCOptionCategory cat in myCategories)
+                {
+                    TreeNode treeNode = new TreeNode(cat.Name);
+                    treeNode.Name = cat.GetType().ToString() + cat.OID.ToString();
+
+                    this.contractOption1.treeView1.Nodes.Add(treeNode);
+
+                    //load all Option
+                    List<SCOption> myOptions = new List<SCOption>();
+                    myOptions = SCOption.getOptionList(cat.OID);
+                    if (myOptions.Count > 0)
+                    {
+                        foreach (SCOption op in myOptions)
+                        {
+                            TreeNode treeNodeL2 = new TreeNode(op.Name);
+                            treeNodeL2.Name = op.GetType().ToString() + op.OID.ToString();
+                            treeNode.Nodes.Add(treeNodeL2);
+                            //load all detail
+                            List<SCOptionDetail> myOptionDetails = new List<SCOptionDetail>();
+                            myOptionDetails = SCOptionDetail.getOptionDetailList(op.OID);
+                            if (myOptionDetails.Count > 0)
+                            {
+                                foreach (SCOptionDetail sod in myOptionDetails)
+                                {
+                                    // create childnode level3
+                                    TreeNode treeNodeL3 = new TreeNode(sod.Name);
+                                    treeNodeL3.Name = sod.GetType().ToString() + sod.OID.ToString();
+                                    treeNodeL2.Nodes.Add(treeNodeL3);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            //this.treeView1.ExpandAll();
+
+        }
+
+        private void tabControl1_Selected(object sender, TabControlEventArgs e)
+        {
+           if(this.tabControl1.SelectedIndex == 1)
+            {
+                this.loadTree();
+            }
+        }
     }
 }

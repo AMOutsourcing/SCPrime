@@ -364,6 +364,37 @@ namespace SCPrime.Model
             return bRet;
         }
 
+        //longdq added
+        public int countContract(int ContractCustId,int VehiId)
+        {
+            int result = -1;
+
+            clsSqlFactory hSql = new clsSqlFactory();
+            string strSql = "select COUNT(1) as count from dbo.ZSC_Contract a where a.ContractCustId = ? and a.VehiId = ?";
+            try
+            {
+
+                hSql.NewCommand(strSql);
+                hSql.Com.Parameters.AddWithValue("ContractCustId", ContractCustId);
+                hSql.Com.Parameters.AddWithValue("VehiId", VehiId);
+                hSql.ExecuteReader();
+                while (hSql.Read())
+                {
+                    result = hSql.Reader.GetInt32(6);
+
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                hSql.Close();
+            }
+            return result;
+        }
         //ThuyetLV Add
         public String Status
         {
