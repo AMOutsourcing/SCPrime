@@ -46,10 +46,12 @@
             this.tabVehicle = new System.Windows.Forms.TabPage();
             this.headerControl1 = new SCPrime.Contracts.HeaderControl();
             this.contractOption1 = new SCPrime.Contracts.ContractOption();
+            this.vehicleDataTabPage1 = new SCPrime.Contracts.VehicleDataTabPage();
             this.panel1.SuspendLayout();
             this.tabOptions.SuspendLayout();
             this.tabHeader.SuspendLayout();
             this.tabControl1.SuspendLayout();
+            this.tabVehicle.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -209,6 +211,7 @@
             // 
             // tabVehicle
             // 
+            this.tabVehicle.Controls.Add(this.vehicleDataTabPage1);
             this.tabVehicle.Location = new System.Drawing.Point(4, 22);
             this.tabVehicle.Name = "tabVehicle";
             this.tabVehicle.Padding = new System.Windows.Forms.Padding(3);
@@ -233,6 +236,13 @@
             this.contractOption1.Size = new System.Drawing.Size(910, 706);
             this.contractOption1.TabIndex = 0;
             // 
+            // vehicleDataTabPage1
+            // 
+            this.vehicleDataTabPage1.Location = new System.Drawing.Point(-1, 6);
+            this.vehicleDataTabPage1.Name = "vehicleDataTabPage1";
+            this.vehicleDataTabPage1.Size = new System.Drawing.Size(924, 594);
+            this.vehicleDataTabPage1.TabIndex = 0;
+            // 
             // ContractFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -247,6 +257,7 @@
             this.tabOptions.ResumeLayout(false);
             this.tabHeader.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
+            this.tabVehicle.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -271,5 +282,6 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabVehicle;
         private ContractOption contractOption1;
+        private VehicleDataTabPage vehicleDataTabPage1;
     }
 }

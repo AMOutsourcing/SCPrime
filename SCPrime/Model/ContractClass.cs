@@ -35,11 +35,12 @@ namespace SCPrime.Model
      }
     public class ContractVehicle
     {
-        public int VehiId;
-        public string LicenseNo;
-        public string VIN;
-        public string Make;
-        public string Model;
+        public int VehiId { get; set; }
+        public string LicenseNo { get; set; }
+        public string VIN { get; set; }
+        public string Make { get; set; }
+        public string Model { get; set; }
+        public string SubModel { get; set; }
     }
     public class ContractDate
     {
@@ -819,4 +820,15 @@ namespace SCPrime.Model
             }
         }
     }
+
+    //ThuyetLV Add
+    public class MileageReg
+    {
+        public DateTime Created { get; set; }
+        public string Mileage { get; set; }
+        public string InputType { get; set; }
+        public string Info { get; set; }
+        public string Deviation { get; set; }
+    }
 }
+
