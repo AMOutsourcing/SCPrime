@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SCPrime.Model;
 
 namespace SCPrime.Contracts
 {
@@ -33,6 +34,19 @@ namespace SCPrime.Contracts
         private void initSender()
         {
             Sender = new SendVehicle(GetMessage);
+        }
+
+        public void loadDataVehicle(ContractVehicle contractVehicle)
+        {
+            if (contractVehicle != null)
+            {
+                txtVin.Text = contractVehicle.VIN;
+            }
+            else
+            {
+                txtVin.Text = "";
+            }
+            
         }
 
 

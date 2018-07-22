@@ -244,18 +244,22 @@ namespace SCPrime.Contracts
 
         private void tabControl1_Selected(object sender, TabControlEventArgs e)
         {
+            System.Diagnostics.Debug.WriteLine("---------------------tabControl1_Selected: " + this.tabControl1.SelectedIndex);
             if (this.tabControl1.SelectedIndex == 1)
             {
-                this.loadTree();
-            }else if (this.tabControl1.SelectedIndex == 2)
-            {
+                System.Diagnostics.Debug.WriteLine("---------------------tabControl1_Selected loadVehice: ");
                 this.loadVehice();
+            }
+            else if (this.tabControl1.SelectedIndex == 2)
+            {
+                this.loadTree();
             }
         }
 
         private void loadVehice()
         {
-
+            ContractVehicle vehicleObj = objContact.VehiId;
+            vehicleDataTab.loadDataVehicle(vehicleObj);
         }
     }
 }
