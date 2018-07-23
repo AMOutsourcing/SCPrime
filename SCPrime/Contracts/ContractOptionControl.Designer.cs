@@ -1,6 +1,6 @@
 ﻿namespace SCPrime.Contracts
 {
-    partial class ContractOption
+    partial class ContractOptionControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -51,6 +51,8 @@
             this.SalesPriceCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QuantityCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.InfoCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PartialPayerCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.InvoiceFlagCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -75,6 +77,7 @@
             this.treeView1.ShowNodeToolTips = true;
             this.treeView1.Size = new System.Drawing.Size(257, 445);
             this.treeView1.TabIndex = 0;
+            this.treeView1.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterCheck);
             // 
             // panel2
             // 
@@ -146,7 +149,9 @@
             this.PurchasePriceCol,
             this.SalesPriceCol,
             this.QuantityCol,
-            this.InfoCol});
+            this.InfoCol,
+            this.PartialPayerCol,
+            this.InvoiceFlagCol});
             this.dataGridView1.DataSource = this.sCOptionBaseBindingSource;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(257, 36);
@@ -230,6 +235,16 @@
             this.InfoCol.HeaderText = "Info";
             this.InfoCol.Name = "InfoCol";
             // 
+            // PartialPayerCol
+            // 
+            this.PartialPayerCol.HeaderText = "Partial payer";
+            this.PartialPayerCol.Name = "PartialPayerCol";
+            // 
+            // InvoiceFlagCol
+            // 
+            this.InvoiceFlagCol.HeaderText = "Invoice flag";
+            this.InvoiceFlagCol.Name = "InvoiceFlagCol";
+            // 
             // ContractOption
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -260,6 +275,7 @@
         public System.Windows.Forms.Label label2;
         public System.Windows.Forms.Label label1;
         public System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.BindingSource sCOptionBaseBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn oidCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn PartNrCol;
@@ -272,6 +288,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SalesPriceCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn QuantityCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn InfoCol;
-        private System.Windows.Forms.BindingSource sCOptionBaseBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PartialPayerCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn InvoiceFlagCol;
     }
 }

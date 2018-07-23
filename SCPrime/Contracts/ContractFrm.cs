@@ -244,7 +244,7 @@ namespace SCPrime.Contracts
 
         private void tabControl1_Selected(object sender, TabControlEventArgs e)
         {
-           if(this.tabControl1.SelectedIndex == 1)
+           if(this.tabControl1.SelectedIndex == 2)
             {
                 this.loadTree();
             }

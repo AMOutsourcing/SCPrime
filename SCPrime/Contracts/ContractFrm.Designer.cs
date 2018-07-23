@@ -45,7 +45,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabVehicle = new System.Windows.Forms.TabPage();
             this.headerControl1 = new SCPrime.Contracts.HeaderControl();
-            this.contractOption1 = new SCPrime.Contracts.ContractOption();
+            this.contractOption1 = new SCPrime.Contracts.ContractOptionControl();
             this.panel1.SuspendLayout();
             this.tabOptions.SuspendLayout();
             this.tabHeader.SuspendLayout();
@@ -270,6 +270,6 @@
         public HeaderControl headerControl1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabVehicle;
-        private ContractOption contractOption1;
+        private ContractOptionControl contractOption1;
     }
 }

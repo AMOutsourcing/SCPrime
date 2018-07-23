@@ -38,6 +38,26 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cblModel = new System.Windows.Forms.CheckedListBox();
             this.gridContract = new System.Windows.Forms.DataGridView();
+            this.contractOIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contractNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.versionNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.extContractNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.createdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastInvoiceDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nextInvoiceDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isManualInvoiceDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.invoiceCustIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.respSmanIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.careSmanIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isBodyInclDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.isTailLiftInclDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.isCoolingInclDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.isCraneInclDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.riskLevelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isInvoiceDetailDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.custPhoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contractBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
@@ -73,32 +93,12 @@
             this.optionListToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.optionPriceListToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contractOIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contractNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.versionNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.extContractNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.createdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lastInvoiceDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nextInvoiceDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isManualInvoiceDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.invoiceCustIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.respSmanIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.careSmanIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isBodyInclDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.isTailLiftInclDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.isCoolingInclDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.isCraneInclDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.riskLevelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isInvoiceDetailDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.custPhoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contractBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridContract)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.contractBindingSource)).BeginInit();
             this.panel2.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.menuStrip3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.contractBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -202,292 +202,8 @@
             this.gridContract.Location = new System.Drawing.Point(190, 48);
             this.gridContract.Name = "gridContract";
             this.gridContract.ReadOnly = true;
-            this.gridContract.Size = new System.Drawing.Size(1043, 621);
+            this.gridContract.Size = new System.Drawing.Size(838, 621);
             this.gridContract.TabIndex = 2;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.toolStrip1);
-            this.panel2.Controls.Add(this.menuStrip3);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1233, 48);
-            this.panel2.TabIndex = 3;
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
-            this.toolStripButton2,
-            this.toolStripButton3,
-            this.toolStripButton4,
-            this.toolStripButton5,
-            this.toolStripButton6,
-            this.toolStripLabel1,
-            this.toolStripButton7,
-            this.toolStripButton8,
-            this.toolStripSeparator1,
-            this.toolStripTextBox1,
-            this.toolStripButton9});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 24);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1233, 25);
-            this.toolStrip1.TabIndex = 2;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "New";
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton2.Text = "Open Contract";
-            // 
-            // toolStripButton3
-            // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton3.Text = "Print";
-            // 
-            // toolStripButton4
-            // 
-            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton4.Text = "Mileage Register";
-            // 
-            // toolStripButton5
-            // 
-            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
-            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton5.Name = "toolStripButton5";
-            this.toolStripButton5.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton5.Text = "Customer Data";
-            // 
-            // toolStripButton6
-            // 
-            this.toolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
-            this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton6.Name = "toolStripButton6";
-            this.toolStripButton6.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton6.Text = "Vehicle Data";
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(26, 22);
-            this.toolStripLabel1.Text = "ELO";
-            this.toolStripLabel1.ToolTipText = "Launch ELO";
-            // 
-            // toolStripButton7
-            // 
-            this.toolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton7.Image")));
-            this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton7.Name = "toolStripButton7";
-            this.toolStripButton7.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton7.Text = "Export";
-            // 
-            // toolStripButton8
-            // 
-            this.toolStripButton8.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton8.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton8.Image")));
-            this.toolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton8.Name = "toolStripButton8";
-            this.toolStripButton8.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton8.Text = "Setting";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripTextBox1
-            // 
-            this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.Size = new System.Drawing.Size(100, 25);
-            // 
-            // toolStripButton9
-            // 
-            this.toolStripButton9.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton9.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton9.Image")));
-            this.toolStripButton9.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton9.Name = "toolStripButton9";
-            this.toolStripButton9.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton9.Text = "toolStripButton9";
-            this.toolStripButton9.Click += new System.EventHandler(this.toolStripButton9_Click);
-            // 
-            // menuStrip3
-            // 
-            this.menuStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
-            this.masterDataToolStripMenuItem1,
-            this.testToolStripMenuItem});
-            this.menuStrip3.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip3.Name = "menuStrip3";
-            this.menuStrip3.Size = new System.Drawing.Size(1233, 24);
-            this.menuStrip3.TabIndex = 1;
-            this.menuStrip3.Text = "menuStrip3";
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.nEwContractToolStripMenuItem,
-            this.openToolStripMenuItem,
-            this.prinToolStripMenuItem,
-            this.toolStripSeparator2,
-            this.customerDataToolStripMenuItem,
-            this.vehicleDataToolStripMenuItem,
-            this.serviceHistoryToolStripMenuItem,
-            this.eLOArchiveToolStripMenuItem,
-            this.mileageRegisterToolStripMenuItem,
-            this.invoiceToolStripMenuItem,
-            this.toolStripSeparator3,
-            this.invoiceToolStripMenuItem1,
-            this.toolStripSeparator4,
-            this.exitApplicationToolStripMenuItem});
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(99, 20);
-            this.toolStripMenuItem1.Text = "Service Contract";
-            // 
-            // nEwContractToolStripMenuItem
-            // 
-            this.nEwContractToolStripMenuItem.Name = "nEwContractToolStripMenuItem";
-            this.nEwContractToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.nEwContractToolStripMenuItem.Text = "New contract";
-            this.nEwContractToolStripMenuItem.Click += new System.EventHandler(this.nEwContractToolStripMenuItem_Click);
-            // 
-            // openToolStripMenuItem
-            // 
-            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.openToolStripMenuItem.Text = "Open";
-            // 
-            // prinToolStripMenuItem
-            // 
-            this.prinToolStripMenuItem.Name = "prinToolStripMenuItem";
-            this.prinToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.prinToolStripMenuItem.Text = "Print contract";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(147, 6);
-            // 
-            // customerDataToolStripMenuItem
-            // 
-            this.customerDataToolStripMenuItem.Name = "customerDataToolStripMenuItem";
-            this.customerDataToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.customerDataToolStripMenuItem.Text = "Customer data";
-            // 
-            // vehicleDataToolStripMenuItem
-            // 
-            this.vehicleDataToolStripMenuItem.Name = "vehicleDataToolStripMenuItem";
-            this.vehicleDataToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.vehicleDataToolStripMenuItem.Text = "Vehicle data";
-            // 
-            // serviceHistoryToolStripMenuItem
-            // 
-            this.serviceHistoryToolStripMenuItem.Name = "serviceHistoryToolStripMenuItem";
-            this.serviceHistoryToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.serviceHistoryToolStripMenuItem.Text = "Service history";
-            // 
-            // eLOArchiveToolStripMenuItem
-            // 
-            this.eLOArchiveToolStripMenuItem.Name = "eLOArchiveToolStripMenuItem";
-            this.eLOArchiveToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.eLOArchiveToolStripMenuItem.Text = "ELO archive";
-            // 
-            // mileageRegisterToolStripMenuItem
-            // 
-            this.mileageRegisterToolStripMenuItem.Name = "mileageRegisterToolStripMenuItem";
-            this.mileageRegisterToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.mileageRegisterToolStripMenuItem.Text = "Mileage register";
-            // 
-            // invoiceToolStripMenuItem
-            // 
-            this.invoiceToolStripMenuItem.Name = "invoiceToolStripMenuItem";
-            this.invoiceToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.invoiceToolStripMenuItem.Text = "Invoices";
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(147, 6);
-            // 
-            // invoiceToolStripMenuItem1
-            // 
-            this.invoiceToolStripMenuItem1.Name = "invoiceToolStripMenuItem1";
-            this.invoiceToolStripMenuItem1.Size = new System.Drawing.Size(150, 22);
-            this.invoiceToolStripMenuItem1.Text = "Export data";
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(147, 6);
-            // 
-            // exitApplicationToolStripMenuItem
-            // 
-            this.exitApplicationToolStripMenuItem.Name = "exitApplicationToolStripMenuItem";
-            this.exitApplicationToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
-            this.exitApplicationToolStripMenuItem.Text = "Exit application";
-            this.exitApplicationToolStripMenuItem.Click += new System.EventHandler(this.exitApplicationToolStripMenuItem_Click);
-            // 
-            // masterDataToolStripMenuItem1
-            // 
-            this.masterDataToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.contractTypeToolStripMenuItem1,
-            this.optionListToolStripMenuItem1,
-            this.optionPriceListToolStripMenuItem1});
-            this.masterDataToolStripMenuItem1.Name = "masterDataToolStripMenuItem1";
-            this.masterDataToolStripMenuItem1.Size = new System.Drawing.Size(78, 20);
-            this.masterDataToolStripMenuItem1.Text = "Master Data";
-            // 
-            // contractTypeToolStripMenuItem1
-            // 
-            this.contractTypeToolStripMenuItem1.Name = "contractTypeToolStripMenuItem1";
-            this.contractTypeToolStripMenuItem1.Size = new System.Drawing.Size(151, 22);
-            this.contractTypeToolStripMenuItem1.Text = "Contract Type";
-            this.contractTypeToolStripMenuItem1.Click += new System.EventHandler(this.contractTypeToolStripMenuItem1_Click);
-            // 
-            // optionListToolStripMenuItem1
-            // 
-            this.optionListToolStripMenuItem1.Name = "optionListToolStripMenuItem1";
-            this.optionListToolStripMenuItem1.Size = new System.Drawing.Size(151, 22);
-            this.optionListToolStripMenuItem1.Text = "Option List";
-            this.optionListToolStripMenuItem1.Click += new System.EventHandler(this.optionListToolStripMenuItem1_Click);
-            // 
-            // optionPriceListToolStripMenuItem1
-            // 
-            this.optionPriceListToolStripMenuItem1.Name = "optionPriceListToolStripMenuItem1";
-            this.optionPriceListToolStripMenuItem1.Size = new System.Drawing.Size(151, 22);
-            this.optionPriceListToolStripMenuItem1.Text = "Option Price List";
-            this.optionPriceListToolStripMenuItem1.Click += new System.EventHandler(this.optionPriceListToolStripMenuItem1_Click);
-            // 
-            // testToolStripMenuItem
-            // 
-            this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
-            this.testToolStripMenuItem.Text = "Test";
-            this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
             // 
             // contractOIDDataGridViewTextBoxColumn
             // 
@@ -636,11 +352,295 @@
             // 
             this.contractBindingSource.DataSource = typeof(SCPrime.Model.Contract);
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.toolStrip1);
+            this.panel2.Controls.Add(this.menuStrip3);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1028, 48);
+            this.panel2.TabIndex = 3;
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton1,
+            this.toolStripButton2,
+            this.toolStripButton3,
+            this.toolStripButton4,
+            this.toolStripButton5,
+            this.toolStripButton6,
+            this.toolStripLabel1,
+            this.toolStripButton7,
+            this.toolStripButton8,
+            this.toolStripSeparator1,
+            this.toolStripTextBox1,
+            this.toolStripButton9});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 24);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(1028, 25);
+            this.toolStrip1.TabIndex = 2;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Text = "New";
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton2.Text = "Open Contract";
+            // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton3.Text = "Print";
+            // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton4.Text = "Mileage Register";
+            // 
+            // toolStripButton5
+            // 
+            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
+            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton5.Name = "toolStripButton5";
+            this.toolStripButton5.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton5.Text = "Customer Data";
+            // 
+            // toolStripButton6
+            // 
+            this.toolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
+            this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton6.Name = "toolStripButton6";
+            this.toolStripButton6.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton6.Text = "Vehicle Data";
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(26, 22);
+            this.toolStripLabel1.Text = "ELO";
+            this.toolStripLabel1.ToolTipText = "Launch ELO";
+            // 
+            // toolStripButton7
+            // 
+            this.toolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton7.Image")));
+            this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton7.Name = "toolStripButton7";
+            this.toolStripButton7.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton7.Text = "Export";
+            // 
+            // toolStripButton8
+            // 
+            this.toolStripButton8.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton8.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton8.Image")));
+            this.toolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton8.Name = "toolStripButton8";
+            this.toolStripButton8.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton8.Text = "Setting";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripTextBox1
+            // 
+            this.toolStripTextBox1.Name = "toolStripTextBox1";
+            this.toolStripTextBox1.Size = new System.Drawing.Size(100, 25);
+            // 
+            // toolStripButton9
+            // 
+            this.toolStripButton9.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton9.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton9.Image")));
+            this.toolStripButton9.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton9.Name = "toolStripButton9";
+            this.toolStripButton9.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton9.Text = "toolStripButton9";
+            this.toolStripButton9.Click += new System.EventHandler(this.toolStripButton9_Click);
+            // 
+            // menuStrip3
+            // 
+            this.menuStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1,
+            this.masterDataToolStripMenuItem1,
+            this.testToolStripMenuItem});
+            this.menuStrip3.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip3.Name = "menuStrip3";
+            this.menuStrip3.Size = new System.Drawing.Size(1028, 24);
+            this.menuStrip3.TabIndex = 1;
+            this.menuStrip3.Text = "menuStrip3";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.nEwContractToolStripMenuItem,
+            this.openToolStripMenuItem,
+            this.prinToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.customerDataToolStripMenuItem,
+            this.vehicleDataToolStripMenuItem,
+            this.serviceHistoryToolStripMenuItem,
+            this.eLOArchiveToolStripMenuItem,
+            this.mileageRegisterToolStripMenuItem,
+            this.invoiceToolStripMenuItem,
+            this.toolStripSeparator3,
+            this.invoiceToolStripMenuItem1,
+            this.toolStripSeparator4,
+            this.exitApplicationToolStripMenuItem});
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(99, 20);
+            this.toolStripMenuItem1.Text = "Service Contract";
+            // 
+            // nEwContractToolStripMenuItem
+            // 
+            this.nEwContractToolStripMenuItem.Name = "nEwContractToolStripMenuItem";
+            this.nEwContractToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.nEwContractToolStripMenuItem.Text = "New contract";
+            this.nEwContractToolStripMenuItem.Click += new System.EventHandler(this.nEwContractToolStripMenuItem_Click);
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.openToolStripMenuItem.Text = "Open";
+            // 
+            // prinToolStripMenuItem
+            // 
+            this.prinToolStripMenuItem.Name = "prinToolStripMenuItem";
+            this.prinToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.prinToolStripMenuItem.Text = "Print contract";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(147, 6);
+            // 
+            // customerDataToolStripMenuItem
+            // 
+            this.customerDataToolStripMenuItem.Name = "customerDataToolStripMenuItem";
+            this.customerDataToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.customerDataToolStripMenuItem.Text = "Customer data";
+            // 
+            // vehicleDataToolStripMenuItem
+            // 
+            this.vehicleDataToolStripMenuItem.Name = "vehicleDataToolStripMenuItem";
+            this.vehicleDataToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.vehicleDataToolStripMenuItem.Text = "Vehicle data";
+            // 
+            // serviceHistoryToolStripMenuItem
+            // 
+            this.serviceHistoryToolStripMenuItem.Name = "serviceHistoryToolStripMenuItem";
+            this.serviceHistoryToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.serviceHistoryToolStripMenuItem.Text = "Service history";
+            // 
+            // eLOArchiveToolStripMenuItem
+            // 
+            this.eLOArchiveToolStripMenuItem.Name = "eLOArchiveToolStripMenuItem";
+            this.eLOArchiveToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.eLOArchiveToolStripMenuItem.Text = "ELO archive";
+            // 
+            // mileageRegisterToolStripMenuItem
+            // 
+            this.mileageRegisterToolStripMenuItem.Name = "mileageRegisterToolStripMenuItem";
+            this.mileageRegisterToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.mileageRegisterToolStripMenuItem.Text = "Mileage register";
+            // 
+            // invoiceToolStripMenuItem
+            // 
+            this.invoiceToolStripMenuItem.Name = "invoiceToolStripMenuItem";
+            this.invoiceToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.invoiceToolStripMenuItem.Text = "Invoices";
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(147, 6);
+            // 
+            // invoiceToolStripMenuItem1
+            // 
+            this.invoiceToolStripMenuItem1.Name = "invoiceToolStripMenuItem1";
+            this.invoiceToolStripMenuItem1.Size = new System.Drawing.Size(150, 22);
+            this.invoiceToolStripMenuItem1.Text = "Export data";
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(147, 6);
+            // 
+            // exitApplicationToolStripMenuItem
+            // 
+            this.exitApplicationToolStripMenuItem.Name = "exitApplicationToolStripMenuItem";
+            this.exitApplicationToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.exitApplicationToolStripMenuItem.Text = "Exit application";
+            this.exitApplicationToolStripMenuItem.Click += new System.EventHandler(this.exitApplicationToolStripMenuItem_Click);
+            // 
+            // masterDataToolStripMenuItem1
+            // 
+            this.masterDataToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.contractTypeToolStripMenuItem1,
+            this.optionListToolStripMenuItem1,
+            this.optionPriceListToolStripMenuItem1});
+            this.masterDataToolStripMenuItem1.Name = "masterDataToolStripMenuItem1";
+            this.masterDataToolStripMenuItem1.Size = new System.Drawing.Size(78, 20);
+            this.masterDataToolStripMenuItem1.Text = "Master Data";
+            // 
+            // contractTypeToolStripMenuItem1
+            // 
+            this.contractTypeToolStripMenuItem1.Name = "contractTypeToolStripMenuItem1";
+            this.contractTypeToolStripMenuItem1.Size = new System.Drawing.Size(151, 22);
+            this.contractTypeToolStripMenuItem1.Text = "Contract Type";
+            this.contractTypeToolStripMenuItem1.Click += new System.EventHandler(this.contractTypeToolStripMenuItem1_Click);
+            // 
+            // optionListToolStripMenuItem1
+            // 
+            this.optionListToolStripMenuItem1.Name = "optionListToolStripMenuItem1";
+            this.optionListToolStripMenuItem1.Size = new System.Drawing.Size(151, 22);
+            this.optionListToolStripMenuItem1.Text = "Option List";
+            this.optionListToolStripMenuItem1.Click += new System.EventHandler(this.optionListToolStripMenuItem1_Click);
+            // 
+            // optionPriceListToolStripMenuItem1
+            // 
+            this.optionPriceListToolStripMenuItem1.Name = "optionPriceListToolStripMenuItem1";
+            this.optionPriceListToolStripMenuItem1.Size = new System.Drawing.Size(151, 22);
+            this.optionPriceListToolStripMenuItem1.Text = "Option Price List";
+            this.optionPriceListToolStripMenuItem1.Click += new System.EventHandler(this.optionPriceListToolStripMenuItem1_Click);
+            // 
+            // testToolStripMenuItem
+            // 
+            this.testToolStripMenuItem.Name = "testToolStripMenuItem";
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.testToolStripMenuItem.Text = "Test";
+            this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
+            // 
             // SCMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1233, 669);
+            this.ClientSize = new System.Drawing.Size(1028, 669);
             this.Controls.Add(this.gridContract);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
@@ -650,13 +650,13 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridContract)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.contractBindingSource)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.menuStrip3.ResumeLayout(false);
             this.menuStrip3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.contractBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

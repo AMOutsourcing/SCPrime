@@ -86,11 +86,11 @@
     <Compile Include="Contracts\ContractFrm.Designer.cs">
       <DependentUpon>ContractFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Contracts\ContractOption.cs">
+    <Compile Include="Contracts\ContractOptionControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Contracts\ContractOption.Designer.cs">
-      <DependentUpon>ContractOption.cs</DependentUpon>
+    <Compile Include="Contracts\ContractOptionControl.Designer.cs">
+      <DependentUpon>ContractOptionControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Contracts\CustomerSearchFrm.cs">
       <SubType>Form</SubType>
@@ -174,8 +174,8 @@
     <EmbeddedResource Include="Contracts\ContractFrm.resx">
       <DependentUpon>ContractFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Contracts\ContractOption.resx">
-      <DependentUpon>ContractOption.cs</DependentUpon>
+    <EmbeddedResource Include="Contracts\ContractOptionControl.resx">
+      <DependentUpon>ContractOptionControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Contracts\CustomerSearchFrm.resx">
       <DependentUpon>CustomerSearchFrm.cs</DependentUpon>
