@@ -22,7 +22,7 @@ namespace SCPrime.Contracts
         public static SearchEmployee updateEmployee;
 
         public static ContractFrm _instance;
-        public  Contract objContact;
+        public Contract objContact;
         public List<SCContractType> contractType;
 
         public static ContractFrm instance
@@ -95,7 +95,7 @@ namespace SCPrime.Contracts
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-          
+
         }
 
         //private void headerControl1_Load(object sender, EventArgs e)
@@ -199,7 +199,7 @@ namespace SCPrime.Contracts
         private void loadTree()
         {
             //load category
-           this.contractOption1.treeView1.Nodes.Clear();
+            this.contractOption1.treeView1.Nodes.Clear();
 
             List<SCOptionCategory> myCategories = SCOptionCategory.getOptionCategoryList();
             if (myCategories.Count > 0)
@@ -244,10 +244,25 @@ namespace SCPrime.Contracts
 
         private void tabControl1_Selected(object sender, TabControlEventArgs e)
         {
-           if(this.tabControl1.SelectedIndex == 2)
+            System.Diagnostics.Debug.WriteLine("---------------------tabControl1_Selected: " + this.tabControl1.SelectedIndex);
+
+
+            if (this.tabControl1.SelectedIndex == 1)
+
+            {
+                System.Diagnostics.Debug.WriteLine("---------------------tabControl1_Selected loadVehice: ");
+                this.loadVehice();
+            }
+            else if (this.tabControl1.SelectedIndex == 2)
             {
                 this.loadTree();
             }
+        }
+
+        private void loadVehice()
+        {
+            ContractVehicle vehicleObj = objContact.VehiId;
+            vehicleDataTab.loadDataVehicle(vehicleObj);
         }
     }
 }

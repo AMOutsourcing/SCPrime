@@ -38,7 +38,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.sCOptionBaseBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.PartialPayerCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.InvoiceFlagCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.oidCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PartNrCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,8 +52,7 @@
             this.SalesPriceCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QuantityCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.InfoCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PartialPayerCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.InvoiceFlagCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sCOptionBaseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -135,6 +135,7 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -156,103 +157,118 @@
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(257, 36);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(648, 409);
             this.dataGridView1.TabIndex = 3;
             // 
-            // sCOptionBaseBindingSource
+            // PartialPayerCol
             // 
-            this.sCOptionBaseBindingSource.DataSource = typeof(SCPrime.Model.SCOptionBase);
+            this.PartialPayerCol.HeaderText = "Partial payer";
+            this.PartialPayerCol.Name = "PartialPayerCol";
+            this.PartialPayerCol.ReadOnly = true;
+            // 
+            // InvoiceFlagCol
+            // 
+            this.InvoiceFlagCol.HeaderText = "Invoice flag";
+            this.InvoiceFlagCol.Name = "InvoiceFlagCol";
+            this.InvoiceFlagCol.ReadOnly = true;
             // 
             // oidCol
             // 
             this.oidCol.DataPropertyName = "OID";
             this.oidCol.HeaderText = "OID";
             this.oidCol.Name = "oidCol";
+            this.oidCol.ReadOnly = true;
             // 
             // nameCol
             // 
             this.nameCol.DataPropertyName = "Name";
             this.nameCol.HeaderText = "Name";
             this.nameCol.Name = "nameCol";
+            this.nameCol.ReadOnly = true;
             // 
             // PartNrCol
             // 
             this.PartNrCol.DataPropertyName = "ItemNo";
             this.PartNrCol.HeaderText = "Part Nr";
             this.PartNrCol.Name = "PartNrCol";
+            this.PartNrCol.ReadOnly = true;
             // 
             // itemSuplNoDataGridViewTextBoxColumn
             // 
             this.itemSuplNoDataGridViewTextBoxColumn.DataPropertyName = "ItemSuplNo";
             this.itemSuplNoDataGridViewTextBoxColumn.HeaderText = "ItemSuplNo";
             this.itemSuplNoDataGridViewTextBoxColumn.Name = "itemSuplNoDataGridViewTextBoxColumn";
+            this.itemSuplNoDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // PartNameCol
             // 
             this.PartNameCol.DataPropertyName = "ItemName";
             this.PartNameCol.HeaderText = "Part name";
             this.PartNameCol.Name = "PartNameCol";
+            this.PartNameCol.ReadOnly = true;
             // 
             // LabourCodeCol
             // 
             this.LabourCodeCol.DataPropertyName = "WrksId";
             this.LabourCodeCol.HeaderText = "Labour code";
             this.LabourCodeCol.Name = "LabourCodeCol";
+            this.LabourCodeCol.ReadOnly = true;
             // 
             // LabourNameCol
             // 
             this.LabourNameCol.DataPropertyName = "WrksName";
             this.LabourNameCol.HeaderText = "Labour name";
             this.LabourNameCol.Name = "LabourNameCol";
+            this.LabourNameCol.ReadOnly = true;
             // 
             // BaseSalesPriceCol
             // 
             this.BaseSalesPriceCol.DataPropertyName = "BaseSelPr";
             this.BaseSalesPriceCol.HeaderText = "Base sales price";
             this.BaseSalesPriceCol.Name = "BaseSalesPriceCol";
+            this.BaseSalesPriceCol.ReadOnly = true;
             // 
             // PurchasePriceCol
             // 
             this.PurchasePriceCol.DataPropertyName = "BuyPr";
             this.PurchasePriceCol.HeaderText = "Purchase price";
             this.PurchasePriceCol.Name = "PurchasePriceCol";
+            this.PurchasePriceCol.ReadOnly = true;
             // 
             // SalesPriceCol
             // 
             this.SalesPriceCol.DataPropertyName = "SelPr";
             this.SalesPriceCol.HeaderText = "Sales price";
             this.SalesPriceCol.Name = "SalesPriceCol";
+            this.SalesPriceCol.ReadOnly = true;
             // 
             // QuantityCol
             // 
             this.QuantityCol.DataPropertyName = "Quantity";
             this.QuantityCol.HeaderText = "Quantity";
             this.QuantityCol.Name = "QuantityCol";
+            this.QuantityCol.ReadOnly = true;
             // 
             // InfoCol
             // 
             this.InfoCol.DataPropertyName = "Info";
             this.InfoCol.HeaderText = "Info";
             this.InfoCol.Name = "InfoCol";
+            this.InfoCol.ReadOnly = true;
             // 
-            // PartialPayerCol
+            // sCOptionBaseBindingSource
             // 
-            this.PartialPayerCol.HeaderText = "Partial payer";
-            this.PartialPayerCol.Name = "PartialPayerCol";
+            this.sCOptionBaseBindingSource.DataSource = typeof(SCPrime.Model.SCOptionBase);
             // 
-            // InvoiceFlagCol
-            // 
-            this.InvoiceFlagCol.HeaderText = "Invoice flag";
-            this.InvoiceFlagCol.Name = "InvoiceFlagCol";
-            // 
-            // ContractOption
+            // ContractOptionControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Name = "ContractOption";
+            this.Name = "ContractOptionControl";
             this.Size = new System.Drawing.Size(905, 445);
             this.Load += new System.EventHandler(this.ContractOption_Load);
             this.panel1.ResumeLayout(false);

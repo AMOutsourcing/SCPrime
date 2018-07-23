@@ -103,5 +103,10 @@ namespace SCPrime.Contracts
             searhCustomer.Owner = this;
             searhCustomer.ShowDialog();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

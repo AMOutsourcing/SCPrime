@@ -42,14 +42,16 @@
             this.tabContractData = new System.Windows.Forms.TabPage();
             this.tabOptions = new System.Windows.Forms.TabPage();
             this.tabHeader = new System.Windows.Forms.TabPage();
+            this.headerControl1 = new SCPrime.Contracts.HeaderControl();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabVehicle = new System.Windows.Forms.TabPage();
-            this.headerControl1 = new SCPrime.Contracts.HeaderControl();
+            this.vehicleDataTab = new SCPrime.Contracts.VehicleDataTabPage();
             this.contractOption1 = new SCPrime.Contracts.ContractOptionControl();
             this.panel1.SuspendLayout();
             this.tabOptions.SuspendLayout();
             this.tabHeader.SuspendLayout();
             this.tabControl1.SuspendLayout();
+            this.tabVehicle.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -179,6 +181,14 @@
             this.tabOptions.Text = "Options";
             this.tabOptions.UseVisualStyleBackColor = true;
             // 
+            // contractOption1
+            // 
+            this.contractOption1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.contractOption1.Location = new System.Drawing.Point(3, 3);
+            this.contractOption1.Name = "contractOption1";
+            this.contractOption1.Size = new System.Drawing.Size(910, 706);
+            this.contractOption1.TabIndex = 0;
+            // 
             // tabHeader
             // 
             this.tabHeader.Controls.Add(this.headerControl1);
@@ -189,6 +199,14 @@
             this.tabHeader.TabIndex = 1;
             this.tabHeader.Text = "Header";
             this.tabHeader.UseVisualStyleBackColor = true;
+            // 
+            // headerControl1
+            // 
+            this.headerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.headerControl1.Location = new System.Drawing.Point(3, 3);
+            this.headerControl1.Name = "headerControl1";
+            this.headerControl1.Size = new System.Drawing.Size(910, 706);
+            this.headerControl1.TabIndex = 0;
             // 
             // tabControl1
             // 
@@ -209,6 +227,7 @@
             // 
             // tabVehicle
             // 
+            this.tabVehicle.Controls.Add(this.vehicleDataTab);
             this.tabVehicle.Location = new System.Drawing.Point(4, 22);
             this.tabVehicle.Name = "tabVehicle";
             this.tabVehicle.Padding = new System.Windows.Forms.Padding(3);
@@ -217,21 +236,12 @@
             this.tabVehicle.Text = "Vehicle data";
             this.tabVehicle.UseVisualStyleBackColor = true;
             // 
-            // headerControl1
+            // vehicleDataTab
             // 
-            this.headerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.headerControl1.Location = new System.Drawing.Point(3, 3);
-            this.headerControl1.Name = "headerControl1";
-            this.headerControl1.Size = new System.Drawing.Size(910, 706);
-            this.headerControl1.TabIndex = 0;
-            // 
-            // contractOption1
-            // 
-            this.contractOption1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.contractOption1.Location = new System.Drawing.Point(3, 3);
-            this.contractOption1.Name = "contractOption1";
-            this.contractOption1.Size = new System.Drawing.Size(910, 706);
-            this.contractOption1.TabIndex = 0;
+            this.vehicleDataTab.Location = new System.Drawing.Point(-1, 6);
+            this.vehicleDataTab.Name = "vehicleDataTab";
+            this.vehicleDataTab.Size = new System.Drawing.Size(924, 594);
+            this.vehicleDataTab.TabIndex = 0;
             // 
             // ContractFrm
             // 
@@ -247,6 +257,7 @@
             this.tabOptions.ResumeLayout(false);
             this.tabHeader.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
+            this.tabVehicle.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -271,5 +282,6 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabVehicle;
         private ContractOptionControl contractOption1;
+        private VehicleDataTabPage vehicleDataTab;
     }
 }

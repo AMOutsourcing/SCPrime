@@ -266,12 +266,31 @@ namespace SCPrime
             System.Diagnostics.Debug.WriteLine("toolStripButton9_Click listContract: " + listContract.Count);
         }
 
+        bool init = true;
         private void buildGridView(List<Contract> listContract)
         {
+            //gridContract.DataSource = null;
+            //gridContract.Columns.Clear();
+            gridContract.Refresh();
             //gridContract.AutoGenerateColumns = false;
             //gridContract.AllowUserToAddRows = false;
             gridContract.DataSource = listContract;
 
+            if (init)
+            {
+                generateColumns();
+                init = false;
+            }
+        }
+
+        private void testToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tmp fr = new tmp();
+            fr.ShowDialog();
+        }
+
+        private void generateColumns()
+        {
             ////Generate column
             int i = 0;
             DataGridViewTextBoxColumn colStatus = new DataGridViewTextBoxColumn();
@@ -416,12 +435,6 @@ namespace SCPrime
             LastMile.HeaderText = "Last mileage";
             LastMile.DataPropertyName = "LastMile";
             gridContract.Columns.Insert(i++, LastMile);
-        }
-
-        private void testToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            tmp fr = new tmp();
-            fr.ShowDialog();
         }
     }
 }
