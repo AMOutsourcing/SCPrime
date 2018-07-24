@@ -40,7 +40,108 @@ namespace SCPrime.Model
         public string VIN { get; set; }
         public string Make { get; set; }
         public string Model { get; set; }
-        public string SubModel { get; set; }
+		public string SubModel { get; set; }
+
+        public List<clsBaseListItem> dynFields1 = new List<clsBaseListItem>();
+        public List<clsBaseListItem> dynFields2 = new List<clsBaseListItem>();
+        public List<clsBaseListItem> dynFields3 = new List<clsBaseListItem>();
+        public List<clsBaseListItem> dynFields4 = new List<clsBaseListItem>();
+        public List<VehicleMileage> Mileages = new List<VehicleMileage>();
+
+        public bool loadMileages(clsSqlFactory hSql)
+        {
+            bool bRet = true;
+            try
+            {
+                string strSql = "select  Created,Mileage,Info,InputType from V_ZSC_MileageReg where VEHIID=? order by Created desc ";
+                hSql.NewCommand(strSql);
+                hSql.Com.Parameters.Add("VEHIID", this.VehiId);
+                hSql.ExecuteReader();
+                while (hSql.Read())
+                {
+                    VehicleMileage field = new VehicleMileage();
+                    int colId = hSql.Reader.GetOrdinal("Created");
+                    if (!hSql.Reader.IsDBNull(colId)) field.MileageDate = hSql.Reader.GetDateTime(colId);
+                    colId = hSql.Reader.GetOrdinal("Mileage");
+                    if (!hSql.Reader.IsDBNull(colId)) field.Mileage = hSql.Reader.GetInt32(colId);
+                    colId = hSql.Reader.GetOrdinal("Info");
+                    if (!hSql.Reader.IsDBNull(colId)) field.Info = hSql.Reader.GetString(colId);
+                    colId = hSql.Reader.GetOrdinal("InputType");
+                    if (!hSql.Reader.IsDBNull(colId)) field.InputType = hSql.Reader.GetInt32(colId);
+                    Mileages.Add(field);
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                bRet = false;
+                hSql.Rollback();
+                throw ex;
+            }
+            return bRet;
+        }
+        public bool loadDynFields(clsSqlFactory hSql)
+        {
+            bool bRet = true;
+            try
+            {
+                string strSql = "select  a.ADINDATA as Data,b.C2 as Title,c.C3 as FieldGroup from ADIN a, CORW b,CORW c where a.INSTYPE='V' and a.ADINID=? and b.CODAID = 'ADDINFVEHI' and b.c1 = a.FIELDID and c.CODAID='ZSCVEHADIN' and c.C4=a.FIELDID order by c.C3,c.C1 ";
+                hSql.NewCommand(strSql);
+                hSql.Com.Parameters.Add("VEHIID", this.VehiId.ToString());
+                hSql.ExecuteReader();
+                while (hSql.Read())
+                {
+                    int colId = hSql.Reader.GetOrdinal("ADINDATA");
+                    if (!hSql.Reader.IsDBNull(colId))
+                    {
+                        clsBaseListItem field = new clsBaseListItem();
+                        field.strValue1 = hSql.Reader.GetString(colId);
+                        colId = hSql.Reader.GetOrdinal("Title");
+                        if (!hSql.Reader.IsDBNull(colId)) field.strText = hSql.Reader.GetString(colId);
+                        colId = hSql.Reader.GetOrdinal("FieldGroup");
+                        if (!hSql.Reader.IsDBNull(colId))
+                        {
+                            string strGroup = hSql.Reader.GetString(colId);
+                            switch (strGroup)
+                            {
+                                case "BODY":
+                                    dynFields1.Add(field);
+                                    break;
+                                case "CRANE":
+                                    dynFields1.Add(field);
+                                    break;
+                                case "TAILLIFT":
+                                    dynFields1.Add(field);
+                                    break;
+                                case "COOLING":
+                                    dynFields1.Add(field);
+                                    break;
+                                default:
+                                    break;
+                            }
+
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                bRet = false;
+                hSql.Rollback();
+                throw ex;
+            }
+            return bRet;
+        }
+
+
+    }
+    public class VehicleMileage
+    {
+        public DateTime MileageDate;
+        public int Mileage;
+        public String Info;
+        public int InputType;
     }
     public class ContractDate
     {
@@ -125,6 +226,27 @@ namespace SCPrime.Model
             ExtraKmMaxDeviation = (Decimal)0.05;
         }
     }
+    public class SubContractorContract
+    {
+        public int OID;
+        public clsBaseListItem SuplNo = new clsBaseListItem();
+        public String SubcontractNo;
+        public String Info;
+        public String Expl;
+        public DateTime DateLimit;
+        public int KmLimit;
+        public Decimal BuyPrice;
+
+    }
+    public class CollectiveContract
+    {
+        public int OID;
+        public int ContractNo;
+        public int VersionNo;
+        public string ContractStatus;
+        public String VIN;
+        public String Info;
+    }
     public  class Contract
     {
         public int ContractOID { get; set; }
@@ -161,6 +283,9 @@ namespace SCPrime.Model
         public Decimal RiskLevel { get; set; }
         public clsBaseListItem RollingCode = new clsBaseListItem();
         public bool IsInvoiceDetail { get; set; }
+
+        public List<SubContractorContract> SubContracts;
+        public List<CollectiveContract> SelfContracts;
 
         public Contract()
         {
@@ -376,11 +501,13 @@ namespace SCPrime.Model
             {
 
                 hSql.NewCommand(strSql);
+                hSql.NewCommand("select a.BuyPr, a.DateLimit, a.Expl, a.Info, a.KMLimit, a.OID, a.SubContractNo, a.SuplNo, b.Name as SuplName from ZSC_SubcontractorContract a left join SUPL b on a.SUPLNO=b.SUPLNO where ContractOID=? ");
                 hSql.Com.Parameters.AddWithValue("ContractCustId", ContractCustId);
                 hSql.Com.Parameters.AddWithValue("VehiId", VehiId);
                 hSql.ExecuteReader();
                 while (hSql.Read())
                 {
+                    SubContractorContract sc = new SubContractorContract();
                     result = hSql.Reader.GetInt32(6);
 
                 }
@@ -395,6 +522,87 @@ namespace SCPrime.Model
                 hSql.Close();
             }
             return result;
+        }
+		 public bool loadDetail()
+        {
+            bool bRet = true;
+            clsSqlFactory hSql = new clsSqlFactory();
+            try
+            {
+                //sub contracts
+                SubContracts = new List<SubContractorContract>();
+                hSql.NewCommand("select a.BuyPr, a.DateLimit, a.Expl, a.Info, a.KMLimit, a.OID, a.SubContractNo, a.SuplNo, b.Name as SuplName from ZSC_SubcontractorContract a left join SUPL b on a.SUPLNO=b.SUPLNO where ContractOID=? ");
+                hSql.Com.Parameters.Add("ContractOID", this.ContractOID);
+                hSql.ExecuteReader();
+                while (hSql.Read())
+                {
+                    SubContractorContract sc = new SubContractorContract();
+                    int colId = hSql.Reader.GetOrdinal("OID");
+                    if (!hSql.Reader.IsDBNull(colId)) sc.OID = hSql.Reader.GetInt32(colId);
+                    colId = hSql.Reader.GetOrdinal("SuplNo");
+                    if (!hSql.Reader.IsDBNull(colId))
+                    {
+                        sc.SuplNo.strValue1 = hSql.Reader.GetString(colId);
+                        colId = hSql.Reader.GetOrdinal("SuplName");
+                        if (!hSql.Reader.IsDBNull(colId)) sc.SuplNo.strText = hSql.Reader.GetString(colId);
+                    }
+                    colId = hSql.Reader.GetOrdinal("BuyPr");
+                    if (!hSql.Reader.IsDBNull(colId)) sc.BuyPrice = hSql.Reader.GetDecimal(colId);
+                    colId = hSql.Reader.GetOrdinal("DateLimit");
+                    if (!hSql.Reader.IsDBNull(colId)) sc.DateLimit = hSql.Reader.GetDateTime(colId);
+                    colId = hSql.Reader.GetOrdinal("Expl");
+                    if (!hSql.Reader.IsDBNull(colId)) sc.Expl = hSql.Reader.GetString(colId);
+                    colId = hSql.Reader.GetOrdinal("Info");
+                    if (!hSql.Reader.IsDBNull(colId)) sc.Info = hSql.Reader.GetString(colId);
+                    colId = hSql.Reader.GetOrdinal("KMLimit");
+                    if (!hSql.Reader.IsDBNull(colId)) sc.KmLimit = hSql.Reader.GetInt32(colId);
+                    colId = hSql.Reader.GetOrdinal("SubContractNo");
+                    if (!hSql.Reader.IsDBNull(colId)) sc.SubcontractNo = hSql.Reader.GetString(colId);
+
+                    SubContracts.Add(sc);
+                }
+
+                //self contracts
+                SelfContracts = new List<CollectiveContract>();
+                hSql.NewCommand("select  a.OID, a.Info,b.ContractNo,b.VersionNo, b.ContractStatus,c.SERIALNO from ZSC_ContractCollective a , ZSC_Contract b, VEHI c where a.ContractOID=? and a.DetailContractOID=b.OID and b.VEHIID=c.VEHIID ");
+                hSql.Com.Parameters.Add("ContractOID", this.ContractOID);
+                hSql.ExecuteReader();
+                while (hSql.Read())
+                {
+                    CollectiveContract sc = new CollectiveContract();
+                    int colId = hSql.Reader.GetOrdinal("OID");
+                    if (!hSql.Reader.IsDBNull(colId)) sc.OID = hSql.Reader.GetInt32(colId);
+                    
+                    colId = hSql.Reader.GetOrdinal("Info");
+                    if (!hSql.Reader.IsDBNull(colId)) sc.Info = hSql.Reader.GetString(colId);
+                    colId = hSql.Reader.GetOrdinal("ContractNo");
+                    if (!hSql.Reader.IsDBNull(colId)) sc.ContractNo = hSql.Reader.GetInt32(colId);
+                    colId = hSql.Reader.GetOrdinal("VersionNo");
+                    if (!hSql.Reader.IsDBNull(colId)) sc.VersionNo = hSql.Reader.GetInt32(colId);
+                    colId = hSql.Reader.GetOrdinal("ContractStatus");
+                    if (!hSql.Reader.IsDBNull(colId)) sc.ContractStatus = hSql.Reader.GetString(colId);
+                    colId = hSql.Reader.GetOrdinal("SERIALNO");
+                    if (!hSql.Reader.IsDBNull(colId)) sc.VIN = hSql.Reader.GetString(colId);
+                    SelfContracts.Add(sc);
+                }
+                if (this.VehiId != null)
+                {
+                    bRet = VehiId.loadDynFields(hSql);
+                    bRet = VehiId.loadMileages(hSql);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                bRet = false;
+                hSql.Rollback();
+                throw ex;
+            }
+            finally
+            {
+                hSql.Close();
+            }
+            return bRet;
         }
         //ThuyetLV Add
         public String Status
