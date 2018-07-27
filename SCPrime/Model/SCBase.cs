@@ -9,32 +9,74 @@ using System.Configuration;
 using SCPrime.Utils;
 using System.Text.RegularExpressions;
 
+
 namespace SCPrime.Model
 {
     public class SCOptionCategory : SCOptionBase
     {
         public int InvoiceFlag { get; set; }
+        public string MainGroupCode { get; set; }
         public List<SCOption> Options = new List<SCOption>();
+        public static List<SCOptionCategory> getContractOptionCategory(int ContractOID, clsSqlFactory hSql)
+        {
+
+            //get list from master
+            List<SCOptionCategory> Result = new List<SCOptionCategory>();
+            try
+            {
+
+                String strSql = " select a.OID,a.Name,isnull(a.ItemNo,''),isnull(a.ItemSuplNo,''),isnull(a.WrksId,''),isnull(a.SelPr,0),isnull(a.InvoiceFlag,0),isnull(b.NAME,''),isnull(b.BUYPR,0),isnull(c.NAME,'') " +
+                    ", isnull(d.IsAvailable,-1), isnull(d.Info,'') from ZSC_OptionCategory a left join ITEM b on a.ITEMNO=b.ITEMNO and a.ITEMSUPLNO=b.SUPLNO left join WRKS c on a.WRKSID=c.WRKSID and c.WPTYPE='T' " +
+                    " inner join ZSC_ContractOption d on a.OID = d.OptionCategoryOID and d.ContractOID =? and d.OptionOID is null and d.OptionDetailOID is null " +
+                    " order by a.OID ";
+                hSql.NewCommand(strSql);
+                hSql.Com.Parameters.AddWithValue("ContractOID", ContractOID);
+                hSql.ExecuteReader();
+                while (hSql.Read())
+                {
+                    SCOptionCategory item = new SCOptionCategory();
+                    item.OID = hSql.Reader.GetInt32(0);
+                    item.Name = hSql.Reader.GetString(1);
+                    item.ItemNo = hSql.Reader.GetString(2);
+                    item.ItemSuplNo = hSql.Reader.GetString(3);
+                    item.WrksId = hSql.Reader.GetString(4);
+                    item.BaseSelPr = hSql.Reader.GetDecimal(5);
+                    item.InvoiceFlag = hSql.Reader.GetInt32(6);
+                    item.ItemName = hSql.Reader.GetString(7);
+                    item.BuyPr = hSql.Reader.GetDecimal(8);
+                    item.WrksName = hSql.Reader.GetString(9);
+                    //item.Options = SCOption.getContractOptionPriceList(item.OID, ContractTypeOID);
+                    item.isAvailable = hSql.Reader.GetInt32(10);
+                    item.Info = hSql.Reader.GetString(11);
+                    Result.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+              
+            }
+            return Result;
+        }
 
         public static List<SCOptionCategory> getContractOptionCategoryPriceList(int ContractTypeOID)
         {
-
+            
             //get list from master
             List<SCOptionCategory> Result = new List<SCOptionCategory>();
             clsSqlFactory hSql = new clsSqlFactory();
             try
             {
-                clsGlobalVariable objGlobal = new clsGlobalVariable();
-                string LangId = objGlobal.CultureInfo;
-
-                String strSql = " select a.OID,isnull(x.Name,a.Name) as Name,isnull(a.ItemNo,''),isnull(a.ItemSuplNo,''),isnull(a.WrksId,''),isnull(a.SelPr,0),isnull(a.InvoiceFlag,0),isnull(b.NAME,''),isnull(b.BUYPR,0),isnull(c.NAME,'') " +
+             
+                String strSql = " select a.OID,a.Name,isnull(a.ItemNo,''),isnull(a.ItemSuplNo,''),isnull(a.WrksId,''),isnull(a.SelPr,0),isnull(a.InvoiceFlag,0),isnull(b.NAME,''),isnull(b.BUYPR,0),isnull(c.NAME,'') " +
                     ", isnull(d.IsAvailable,-1), isnull(d.Info,'') from ZSC_OptionCategory a left join ITEM b on a.ITEMNO=b.ITEMNO and a.ITEMSUPLNO=b.SUPLNO left join WRKS c on a.WRKSID=c.WRKSID and c.WPTYPE='T' " +
                     " left join ZSC_OptionPriceList d on a.OID = d.OptionCategoryOID and d.ContractTypeOID =? and d.OptionOID is null and d.OptionDetailOID is null " +
-                    " left join ZSC_OptionForeignName x on x.ObjectType=1 and x.ObjectOID=a.OID and x.LangId=? " +
                     " order by a.OID ";
                 hSql.NewCommand(strSql);
                 hSql.Com.Parameters.AddWithValue("ContractTypeOID", ContractTypeOID);
-                hSql.Com.Parameters.AddWithValue("LangId", LangId);
                 hSql.ExecuteReader();
                 while (hSql.Read())
                 {
@@ -76,7 +118,7 @@ namespace SCPrime.Model
                 clsGlobalVariable objGlobal = new clsGlobalVariable();
                 string LangId = objGlobal.CultureInfo;
                 
-                String strSql = " select a.OID,isnull(x.Name,a.Name),isnull(a.ItemNo,''),isnull(a.ItemSuplNo,''),isnull(a.WrksId,''),isnull(a.SelPr,0),isnull(a.InvoiceFlag,0),isnull(b.NAME,''),isnull(b.BUYPR,0),isnull(c.NAME,'') " +
+                String strSql = " select a.OID,isnull(x.Name,a.Name),isnull(a.ItemNo,''),isnull(a.ItemSuplNo,''),isnull(a.WrksId,''),isnull(a.SelPr,0),isnull(a.InvoiceFlag,0),isnull(b.NAME,''),isnull(b.BUYPR,0),isnull(c.NAME,''), isnull(a.MainGroupCode,'') " +
                     " from ZSC_OptionCategory a left join ITEM b on a.ITEMNO=b.ITEMNO and a.ITEMSUPLNO=b.SUPLNO left join WRKS c on a.WRKSID=c.WRKSID and c.WPTYPE='T' "+
                     " left join ZSC_OptionForeignName x on x.ObjectType=1 and x.ObjectOID=a.OID and x.LangId=? " +
                     " order by a.OID ";
@@ -96,6 +138,7 @@ namespace SCPrime.Model
                     item.ItemName = hSql.Reader.GetString(7);
                     item.BuyPr = hSql.Reader.GetDecimal(8);
                     item.WrksName = hSql.Reader.GetString(9);
+                    item.MainGroupCode = hSql.Reader.GetString(10);
                     item.Options = SCOption.getOptionList(item.OID);
                     Result.Add(item);
                 }
@@ -149,12 +192,13 @@ namespace SCPrime.Model
                         else
                         {
                             //update
-                            bRet = hSql.NewCommand("update ZSC_Option set Name=?,ItemNo=?,ItemSuplNo=?,WrksId=?,SelPr=?,Modified=getdate() where OID=?");
+                            bRet = hSql.NewCommand("update ZSC_Option set Name=?,ItemNo=?,ItemSuplNo=?,WrksId=?,SelPr=?,Modified=getdate(), SubGroupCode=? where OID=?");
                             hSql.Com.Parameters.AddWithValue("Name", objOption.Name);
                             hSql.Com.Parameters.AddWithValue("ItemNo", objOption.ItemNo);
                             hSql.Com.Parameters.AddWithValue("ItemSuplNo", objOption.ItemSuplNo);
                             hSql.Com.Parameters.AddWithValue("WrksId", objOption.WrksId);
                             hSql.Com.Parameters.AddWithValue("SelPr", objOption.SelPr);
+                            hSql.Com.Parameters.AddWithValue("SubGroupCode", objOption.SubGroupCode);
                             hSql.Com.Parameters.AddWithValue("OID", objOption.OID);
                             bRet = bRet && hSql.ExecuteNonQuery();
 
@@ -184,13 +228,14 @@ namespace SCPrime.Model
                     else
                     {
                         //insert
-                        bRet = hSql.NewCommand("insert into ZSC_Option (Name,ItemNo,ItemSuplNo,WrksId,SelPr,Modified,Created,OptionCategoryOID) values (?,?,?,?,?,getdate(),getdate(),?) ");
+                        bRet = hSql.NewCommand("insert into ZSC_Option (Name,ItemNo,ItemSuplNo,WrksId,SelPr,Modified,Created,OptionCategoryOID,SubGroupCode) values (?,?,?,?,?,getdate(),getdate(),?,?) ");
                         hSql.Com.Parameters.AddWithValue("Name", objOption.Name);
                         hSql.Com.Parameters.AddWithValue("ItemNo", objOption.ItemNo);
                         hSql.Com.Parameters.AddWithValue("ItemSuplNo", objOption.ItemSuplNo);
                         hSql.Com.Parameters.AddWithValue("WrksId", objOption.WrksId);
                         hSql.Com.Parameters.AddWithValue("SelPr", objOption.SelPr);
                         hSql.Com.Parameters.AddWithValue("OptionCategoryOID", this.OID);
+                        hSql.Com.Parameters.AddWithValue("SubGroupCode", objOption.SubGroupCode);
                         bRet = bRet && hSql.ExecuteNonQuery();
                         bRet = hSql.NewCommand("select max(OID) from  ZSC_Option ");
                         bRet = bRet && hSql.ExecuteReader() && hSql.Read();
@@ -262,13 +307,14 @@ namespace SCPrime.Model
                         else
                         {
                             //update
-                            bRet = hSql.NewCommand("update ZSC_OptionCategory set Name=?,ItemNo=?,ItemSuplNo=?,WrksId=?,SelPr=?,InvoiceFlag=?,Modified=getdate() where OID=?");
+                            bRet = hSql.NewCommand("update ZSC_OptionCategory set Name=?,ItemNo=?,ItemSuplNo=?,WrksId=?,SelPr=?,InvoiceFlag=?,MainGroupCode = ?, Modified=getdate() where OID=?");
                             hSql.Com.Parameters.AddWithValue("Name", objCategory.Name);
                             hSql.Com.Parameters.AddWithValue("ItemNo", objCategory.ItemNo);
                             hSql.Com.Parameters.AddWithValue("ItemSuplNo", objCategory.ItemSuplNo);
                             hSql.Com.Parameters.AddWithValue("WrksId", objCategory.WrksId);
                             hSql.Com.Parameters.AddWithValue("SelPr", objCategory.SelPr);
                             hSql.Com.Parameters.AddWithValue("InvoiceFlag", objCategory.InvoiceFlag);
+                            hSql.Com.Parameters.AddWithValue("MainGroupCode", objCategory.MainGroupCode);
                             hSql.Com.Parameters.AddWithValue("OID", objCategory.OID);
                             bRet = bRet && hSql.ExecuteNonQuery();
 
@@ -301,13 +347,14 @@ namespace SCPrime.Model
                         if (objCategory.isMarkDeleted == false) //longdq Case: New Object => Delete Object => Save object
                         {
                             //insert
-                            bRet = hSql.NewCommand("insert into ZSC_OptionCategory (Name,ItemNo,ItemSuplNo,WrksId,SelPr,InvoiceFlag,Modified,Created) values (?,?,?,?,?,?,getdate(),getdate()) ");
+                            bRet = hSql.NewCommand("insert into ZSC_OptionCategory (Name,ItemNo,ItemSuplNo,WrksId,SelPr,InvoiceFlag,Modified,Created,MainGroupCode) values (?,?,?,?,?,?,getdate(),getdate(),?) ");
                             hSql.Com.Parameters.AddWithValue("Name", objCategory.Name);
                             hSql.Com.Parameters.AddWithValue("ItemNo", objCategory.ItemNo);
                             hSql.Com.Parameters.AddWithValue("ItemSuplNo", objCategory.ItemSuplNo);
                             hSql.Com.Parameters.AddWithValue("WrksId", objCategory.WrksId);
                             hSql.Com.Parameters.AddWithValue("SelPr", objCategory.SelPr);
                             hSql.Com.Parameters.AddWithValue("InvoiceFlag", objCategory.InvoiceFlag);
+                            hSql.Com.Parameters.AddWithValue("MainGroupCode", objCategory.MainGroupCode);
                             bRet = bRet && hSql.ExecuteNonQuery();
                             bRet = hSql.NewCommand("select max(OID) from  ZSC_OptionCategory ");
                             bRet = bRet && hSql.ExecuteReader() && hSql.Read();
@@ -339,6 +386,7 @@ namespace SCPrime.Model
     }
     public class SCOption : SCOptionBase
     {
+        public string SubGroupCode { get; set; }
         public List<SCOptionDetail> OptionDetails = new List<SCOptionDetail>();
         public static List<SCOption> getContractOptionPriceList(int OptionCategoryOID, int ContractTypeOID)
         {
@@ -346,17 +394,13 @@ namespace SCPrime.Model
             clsSqlFactory hSql = new clsSqlFactory();
             try
             {
-                clsGlobalVariable objGlobal = new clsGlobalVariable();
-                string LangId = objGlobal.CultureInfo;
 
-                String strSql = " select a.OID,isnull(x.Name,a.Name) as Name,isnull(a.ItemNo,''),isnull(a.ItemSuplNo,''),isnull(a.WrksId,''),isnull(a.SelPr,0),null,isnull(b.NAME,''),isnull(b.BUYPR,0),isnull(c.NAME,'') " +
-                    ", isnull(d.IsAvailable,-1), isnull(d.Info,'') from ZSC_Option a left join ITEM b on a.ITEMNO=b.ITEMNO and a.ITEMSUPLNO=b.SUPLNO left join WRKS c on a.WRKSID=c.WRKSID and c.WPTYPE='T'  " +
+                String strSql = " select a.OID,a.Name,isnull(a.ItemNo,''),isnull(a.ItemSuplNo,''),isnull(a.WrksId,''),isnull(a.SelPr,0),null,isnull(b.NAME,''),isnull(b.BUYPR,0),isnull(c.NAME,'') " +
+                    ", isnull(d.IsAvailable,0), isnull(d.Info,'') from ZSC_Option a left join ITEM b on a.ITEMNO=b.ITEMNO and a.ITEMSUPLNO=b.SUPLNO left join WRKS c on a.WRKSID=c.WRKSID and c.WPTYPE='T'  " +
                     " left join ZSC_OptionPriceList d on a.OptionCategoryOID = d.OptionCategoryOID and d.ContractTypeOID =? and d.OptionOID =a.OID and d.OptionDetailOID is null " +
-                    " left join ZSC_OptionForeignName x on x.ObjectType=1 and x.ObjectOID=a.OID and x.LangId=? " +
                     " where a.OptionCategoryOID=? order by a.Name ";
                 hSql.NewCommand(strSql);
                 hSql.Com.Parameters.AddWithValue("ContractTypeOID", ContractTypeOID);
-                hSql.Com.Parameters.AddWithValue("LangId", LangId);
                 hSql.Com.Parameters.AddWithValue("OptionCategoryOID", OptionCategoryOID);
                 hSql.ExecuteReader();
                 while (hSql.Read())
@@ -395,7 +439,7 @@ namespace SCPrime.Model
             {
                 clsGlobalVariable objGlobal = new clsGlobalVariable();
                 string LangId = objGlobal.CultureInfo;
-                String strSql = " select a.OID,isnull(x.Name,a.Name),isnull(a.ItemNo,''),isnull(a.ItemSuplNo,''),isnull(a.WrksId,''),isnull(a.SelPr,0),null,isnull(b.NAME,''),isnull(b.BUYPR,0),isnull(c.NAME,'') " +
+                String strSql = " select a.OID,isnull(x.Name,a.Name),isnull(a.ItemNo,''),isnull(a.ItemSuplNo,''),isnull(a.WrksId,''),isnull(a.SelPr,0),null,isnull(b.NAME,''),isnull(b.BUYPR,0),isnull(c.NAME,''), isnull(a.SubGroupCode,'') " +
                     " from ZSC_Option a left join ITEM b on a.ITEMNO=b.ITEMNO and a.ITEMSUPLNO=b.SUPLNO left join WRKS c on a.WRKSID=c.WRKSID and c.WPTYPE='T' "+
                     " left join ZSC_OptionForeignName x on x.ObjectType=2 and x.ObjectOID=a.OID and x.LangId=? " +
                     " where a.OptionCategoryOID=? order by isnull(x.Name,a.Name) ";
@@ -415,6 +459,7 @@ namespace SCPrime.Model
                     item.ItemName = hSql.Reader.GetString(7);
                     item.BuyPr = hSql.Reader.GetDecimal(8);
                     item.WrksName = hSql.Reader.GetString(9);
+                    item.SubGroupCode = hSql.Reader.GetString(10);
                     //item.BaseSelPr = hSql.Reader.GetDecimal(5);
                     item.OptionDetails = SCOptionDetail.getOptionDetailList(item.OID);
                     Result.Add(item);
@@ -556,18 +601,14 @@ namespace SCPrime.Model
             clsSqlFactory hSql = new clsSqlFactory();
             try
             {
-                clsGlobalVariable objGlobal = new clsGlobalVariable();
-                string LangId = objGlobal.CultureInfo;
 
-                String strSql = " select a.OID,isnull(x.Name,a.Name) as Name,isnull(a.ItemNo,''),isnull(a.ItemSuplNo,''),isnull(a.WrksId,''),isnull(a.SelPr,0),null,isnull(b.NAME,''),isnull(b.BUYPR,0),isnull(c.NAME,'') " +
-                    ", isnull(d.IsAvailable,-1), isnull(d.Info,'')  from ZSC_OptionDetail a left join ITEM b on a.ITEMNO=b.ITEMNO and a.ITEMSUPLNO=b.SUPLNO left join WRKS c on a.WRKSID=c.WRKSID and c.WPTYPE='T' " +
+                String strSql = " select a.OID,a.Name,isnull(a.ItemNo,''),isnull(a.ItemSuplNo,''),isnull(a.WrksId,''),isnull(a.SelPr,0),null,isnull(b.NAME,''),isnull(b.BUYPR,0),isnull(c.NAME,'') " +
+                    ", isnull(d.IsAvailable,0), isnull(d.Info,'')  from ZSC_OptionDetail a left join ITEM b on a.ITEMNO=b.ITEMNO and a.ITEMSUPLNO=b.SUPLNO left join WRKS c on a.WRKSID=c.WRKSID and c.WPTYPE='T' " +
                     " left join ZSC_OptionPriceList d on d.OptionCategoryOID = ? and d.ContractTypeOID =? and d.OptionOID =a.OptionOID and d.OptionDetailOID =a.OID " +
-                    " left join ZSC_OptionForeignName x on x.ObjectType=1 and x.ObjectOID=a.OID and x.LangId=? " +
                     " where a.OptionOID=? order by a.Name ";
                 hSql.NewCommand(strSql);
                 hSql.Com.Parameters.AddWithValue("OptionCategoryOID", OptionCategoryOID);
                 hSql.Com.Parameters.AddWithValue("ContractTypeOID", ContractTypeOID);
-                hSql.Com.Parameters.AddWithValue("LangId", LangId);
                 hSql.Com.Parameters.AddWithValue("OptionOID", OptionOID);
                 hSql.ExecuteReader();
                 while (hSql.Read())
@@ -659,10 +700,10 @@ namespace SCPrime.Model
         public int isAvailable { get; set; } = 0;
         public bool isMarkDeleted { get; set; } = false;
         protected static readonly ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-
+        
         public SCOptionBase()
         {
-
+            
         }
 
         public SCOptionBase(int oid, String name)
@@ -681,6 +722,7 @@ namespace SCPrime.Model
         public bool isCollective { get; set; }
         public bool isLeadExport { get; set; }
         public bool isMarkDeleted { get; set; }
+        
 
         public SCContractType()
         {
@@ -698,7 +740,6 @@ namespace SCPrime.Model
         }
 
         public List<SCOptionPrice> listOptionPrice = new List<SCOptionPrice>();
-
         public List<SCOptionPrice> getOptionPriceList(int contactTypeId)
         {
             List<SCOptionPrice> Result = new List<SCOptionPrice>();
@@ -1022,7 +1063,7 @@ namespace SCPrime.Model
                     else
                     {
                         //new
-                        bRet = hSql.NewCommand("insert into ZSC_ContractType(Name,IsInvoice,IsActive,IsCollective,Created,Modified,IsLeadExport) values(?,?,?,?,getdate(),getdate(),?)");
+                        bRet = hSql.NewCommand("insert into ZSC_ContractType(Name,IsInvoice,IsActive,IsCollective,Created,Modified,?) values(?,?,?,?,getdate(),getdate(),?)");
                         hSql.Com.Parameters.AddWithValue("Name", objContractType.Name);
                         hSql.Com.Parameters.AddWithValue("IsInvoice", objContractType.isInvoice);
                         hSql.Com.Parameters.AddWithValue("IsActive", objContractType.isActive);
@@ -1072,7 +1113,19 @@ namespace SCPrime.Model
             return Result;
         }
 
+        public static Contract searchContracts(int paramOID)
+        {
+            SCBase sC = new SCBase();
+            List<Contract> Result =  sC.searchContracts(new List<SCContractType>(), new List<String>(), new List<String>() , "", paramOID);
+            if (Result.Count > 0) return Result[0];
+            else return null;
+        }
         public static List<Contract> searchContracts(List<SCContractType> contractTypes, List<String> sites, List<String> statuses, string namephrase)
+        {
+            SCBase sC = new SCBase();
+            return sC.searchContracts(contractTypes, sites, statuses, namephrase, 0);
+        }
+        private  List<Contract> searchContracts(List<SCContractType> contractTypes, List<String> sites, List<String> statuses, string namephrase, int paramOID)
         {
             List<Contract> Result = new List<Contract>();
             String strSqlWhere = "";
@@ -1106,6 +1159,10 @@ namespace SCPrime.Model
                         strSqlWhere += "," + contractTypes[i].OID.ToString() + "";
                     }
                     strSqlWhere += ")";
+                }
+                if (paramOID > 0)
+                {
+                    strSqlWhere += " and a.OID = " +paramOID.ToString();
                 }
 
                 String strSql = "select ";
@@ -1433,8 +1490,6 @@ namespace SCPrime.Model
         {
             ContractTypes.Clear();
             String strSql = " select a.OID,a.Name,isnull(a.IsInvoice,0),isnull(a.IsActive,0),isnull(a.IsCollective,0),isnull(a.IsLeadExport,0) from ZSC_ContractType a  order by a.Name ";
-
-            //" left join ZSC_OptionForeignName x on x.ObjectType=1 and x.ObjectOID=a.OID and x.LangId=? " +
             hSql.NewCommand(strSql);
             hSql.ExecuteReader();
             while (hSql.Read())
@@ -1598,12 +1653,12 @@ namespace SCPrime.Model
         {
 
             string strSql = "select top maxresult a._OID as _OID, isnull(a.ITEMNO,'') as PartNr, a.NAME as Name, isnull(a.SUPLNO,'') as Supplier, isnull(a.SKEY,'') as SearchKey, isnull(a.SELPR,0) as SalesPr, isnull(a.BUYPR,0) as PurchasePr  from ITEM a  where 1=1 ";
-
+            
             var tmp = MyUtils.GetMaxResult();
             if (tmp > 0)
-                strSql = Regex.Replace(strSql, "maxresult", tmp.ToString());
+                strSql = Regex.Replace(strSql, "maxresult",tmp.ToString() );
             else
-                strSql = Regex.Replace(strSql, "maxresult", "0");
+                strSql = Regex.Replace(strSql, "maxresult","0");
 
 
             if (namephrase != "")
@@ -1648,8 +1703,7 @@ namespace SCPrime.Model
             return Result;
         }
     }
-
-    public class SCViewContract
+	 public class SCViewContract
     {
         public int _OID { get; set; }
         public string PartNr { get; set; }

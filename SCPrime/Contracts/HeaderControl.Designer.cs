@@ -69,6 +69,8 @@
             this.txtInvoiceCusNr = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.dgvSubcontract = new System.Windows.Forms.DataGridView();
+            this.colSupplier1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SuplName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label18 = new System.Windows.Forms.Label();
             this.btnNewSubcontractor = new System.Windows.Forms.Button();
             this.btnDelSubcontractor = new System.Windows.Forms.Button();
@@ -109,8 +111,6 @@
             this.txtEmployeeID2 = new System.Windows.Forms.TextBox();
             this.label32 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.colSupplier1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SuplName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colOID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colContractNr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colInfo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -306,9 +306,9 @@
             // 
             this.cbxCostcenter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxCostcenter.FormattingEnabled = true;
-            this.cbxCostcenter.Location = new System.Drawing.Point(350, 177);
+            this.cbxCostcenter.Location = new System.Drawing.Point(327, 177);
             this.cbxCostcenter.Name = "cbxCostcenter";
-            this.cbxCostcenter.Size = new System.Drawing.Size(102, 21);
+            this.cbxCostcenter.Size = new System.Drawing.Size(124, 21);
             this.cbxCostcenter.TabIndex = 23;
             // 
             // label10
@@ -347,6 +347,7 @@
             this.cbxContractType.Size = new System.Drawing.Size(349, 21);
             this.cbxContractType.TabIndex = 27;
             this.cbxContractType.SelectedIndexChanged += new System.EventHandler(this.cbxContractType_SelectedIndexChanged);
+            this.cbxContractType.DataSourceChanged += new System.EventHandler(this.cbxContractType_DataSourceChanged);
             // 
             // label12
             // 
@@ -506,6 +507,18 @@
             this.dgvSubcontract.TabIndex = 30;
             this.dgvSubcontract.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSubcontract_CellValidated);
             // 
+            // colSupplier1
+            // 
+            this.colSupplier1.DataPropertyName = "SuplNoVal";
+            this.colSupplier1.HeaderText = "Supplier1";
+            this.colSupplier1.Name = "colSupplier1";
+            // 
+            // SuplName
+            // 
+            this.SuplName.DataPropertyName = "SuplName";
+            this.SuplName.HeaderText = "SuplName";
+            this.SuplName.Name = "SuplName";
+            // 
             // label18
             // 
             this.label18.AutoSize = true;
@@ -538,7 +551,6 @@
             this.groupBox2.Controls.Add(this.txtContractCusPhone);
             this.groupBox2.Controls.Add(this.label19);
             this.groupBox2.Controls.Add(this.txtContractCusEmail);
-            this.groupBox2.Controls.Add(this.label20);
             this.groupBox2.Controls.Add(this.txtContractCusAdd);
             this.groupBox2.Controls.Add(this.label21);
             this.groupBox2.Controls.Add(this.txtContractCusName);
@@ -581,7 +593,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(17, 90);
+            this.label20.Location = new System.Drawing.Point(289, -16);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(32, 13);
             this.label20.TabIndex = 37;
@@ -885,18 +897,6 @@
             this.pictureBox1.TabIndex = 48;
             this.pictureBox1.TabStop = false;
             // 
-            // colSupplier1
-            // 
-            this.colSupplier1.DataPropertyName = "SuplNoVal";
-            this.colSupplier1.HeaderText = "Supplier1";
-            this.colSupplier1.Name = "colSupplier1";
-            // 
-            // SuplName
-            // 
-            this.SuplName.DataPropertyName = "SuplName";
-            this.SuplName.HeaderText = "SuplName";
-            this.SuplName.Name = "SuplName";
-            // 
             // colOID
             // 
             this.colOID.DataPropertyName = "OID";
@@ -950,6 +950,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.btnDelSelfContract);
+            this.Controls.Add(this.label20);
             this.Controls.Add(this.btnNewSelfContract);
             this.Controls.Add(this.label26);
             this.Controls.Add(this.dgvSelfContract);

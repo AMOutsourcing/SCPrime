@@ -143,14 +143,7 @@ namespace SCPrime.Contracts
         public void loadComboboxData()
         {
             SCBase sc = new SCBase();
-            //load cbxContractType
-            contractType = sc.getContractTypeActive();
-            if (contractType != null && contractType.Count > 0)
-            {
-                this.headerControl1.cbxContractType.DataSource = contractType;
-                this.headerControl1.cbxContractType.DisplayMember = "Name";
-                this.headerControl1.cbxContractType.ValueMember = "OID";
-            }
+
 
             //load cbxResponsibleSite
             List<clsBaseListItem> listTmp = sc.getAMSites();
@@ -162,8 +155,44 @@ namespace SCPrime.Contracts
             this.headerControl1.cbxResponsibleSite.DataSource = lstSites;
             this.headerControl1.cbxResponsibleSite.ValueMember = "id";
             this.headerControl1.cbxResponsibleSite.DisplayMember = "text";
+
+            //load cbxContractType
+            contractType = sc.getContractTypeActive();
+            if (contractType != null && contractType.Count > 0)
+            {
+                this.headerControl1.cbxContractType.DataSource = contractType;
+                this.headerControl1.cbxContractType.ValueMember = "OID";
+                this.headerControl1.cbxContractType.DisplayMember = "Name";
+                this.headerControl1.cbxContractType.SelectedItem = contractType[0];
+            }
+
             //load cbxCostcenter TODO
+            List<clsBaseListItem> ccs = Contract.getCostCenter();
+            if (ccs != null && ccs.Count > 0)
+            {
+                List<ObjTmp> myccs = new List<ObjTmp>(ccs.Count);
+                foreach (clsBaseListItem cc in ccs)
+                {
+                    myccs.Add(new ObjTmp(cc.strValue1, cc.strText));
+                }
+                this.headerControl1.cbxCostcenter.DataSource = myccs;
+                this.headerControl1.cbxCostcenter.ValueMember = "id";
+                this.headerControl1.cbxCostcenter.DisplayMember = "text";
+            }
             //load cbxValidWorkshop TODO
+
+            List<clsBaseListItem> ws = Contract.getValidWorkshop();
+            if (ws != null && ws.Count > 0)
+            {
+                List<ObjTmp> myws = new List<ObjTmp>(ws.Count);
+                foreach (clsBaseListItem w in ws)
+                {
+                    myws.Add(new ObjTmp(w.strValue1, w.strText));
+                }
+                this.headerControl1.cbxValidWorkshop.DataSource = myws;
+                this.headerControl1.cbxValidWorkshop.ValueMember = "id";
+                this.headerControl1.cbxValidWorkshop.DisplayMember = "text";
+            }
 
 
 
@@ -172,7 +201,7 @@ namespace SCPrime.Contracts
         {
 
             this.displayStatus();
-            
+
             this.headerControl1.txtInternalID.Text = objContract.ContractOID.ToString();
             this.headerControl1.txtContracNr.Text = objContract.ContractNo.ToString();
             this.headerControl1.txtExtContractNr.Text = objContract.ExtContractNo;
@@ -212,7 +241,7 @@ namespace SCPrime.Contracts
 
                     DataTable dt = new DataTable();
                     dt = ObjectUtils.ConvertToDataTable(ls);
-                    
+
                     DataGridViewComboBoxColumn cb = new DataGridViewComboBoxColumn();
                     cb.HeaderText = "Supplier";
                     cb.Name = "colSupplier";
@@ -221,7 +250,7 @@ namespace SCPrime.Contracts
                     cb.DataPropertyName = "SuplNoVal";
                     cb.ValueMember = "value";
                     cb.DisplayMember = "text";
-                    cb.DisplayIndex=0;
+                    cb.DisplayIndex = 0;
                     cb.DisplayStyle = DataGridViewComboBoxDisplayStyle.DropDownButton;
                     headerControl1.dgvSubcontract.Columns.Add(cb);
                 }

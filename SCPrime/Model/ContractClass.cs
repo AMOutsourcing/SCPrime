@@ -544,14 +544,14 @@ namespace SCPrime.Model
             {
 
                 hSql.NewCommand(strSql);
-                hSql.NewCommand("select a.BuyPr, a.DateLimit, a.Expl, a.Info, a.KMLimit, a.OID, a.SubContractNo, a.SuplNo, b.Name as SuplName from ZSC_SubcontractorContract a left join SUPL b on a.SUPLNO=b.SUPLNO where ContractOID=? ");
+                //hSql.NewCommand("select a.BuyPr, a.DateLimit, a.Expl, a.Info, a.KMLimit, a.OID, a.SubContractNo, a.SuplNo, b.Name as SuplName from ZSC_SubcontractorContract a left join SUPL b on a.SUPLNO=b.SUPLNO where ContractOID=? ");
                 hSql.Com.Parameters.AddWithValue("ContractCustId", ContractCustId);
                 hSql.Com.Parameters.AddWithValue("VehiId", VehiId);
                 hSql.ExecuteReader();
                 while (hSql.Read())
                 {
                     //  SubContractorContract sc = new SubContractorContract();
-                    result = hSql.Reader.GetInt32(6);
+                    result = hSql.Reader.GetInt32(0);
 
                 }
 
@@ -1076,6 +1076,70 @@ namespace SCPrime.Model
                 ContractPaymentData = null;
             }
         }
+        public static List<clsBaseListItem> getCostCenter()
+        {
+            List<clsBaseListItem> Result = new List<clsBaseListItem>();
+            clsSqlFactory hSql = new clsSqlFactory();
+            try
+            {
+
+                String strSql = " select C1 as Code, C2 as Name from ALL_CORW where CODAID='OSASTOT' and _UNITID=? ";
+                hSql.NewCommand(strSql);
+                hSql.Com.Parameters.AddWithValue("_UNITID", new clsGlobalVariable().CurrentSiteId);
+                hSql.ExecuteReader();
+                while (hSql.Read())
+                {
+                    clsBaseListItem item = new clsBaseListItem();
+                    //item.nValue1 = hSql.Reader.GetInt32(0);
+                    item.strValue1 = hSql.Reader.GetString(0);
+                    item.strText = hSql.Reader.GetString(1);
+                    
+                    Result.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                hSql.Close();
+            }
+            return Result;
+        }
+
+        public static List<clsBaseListItem> getValidWorkshop()
+        {
+            List<clsBaseListItem> Result = new List<clsBaseListItem>();
+            clsSqlFactory hSql = new clsSqlFactory();
+            try
+            {
+
+                String strSql = "select C1 as Code, C2 as Name from ALL_CORW where CODAID='ZSCVALIDWS' and _UNITID=?";
+                hSql.NewCommand(strSql);
+                hSql.Com.Parameters.AddWithValue("_UNITID", new clsGlobalVariable().CurrentSiteId);
+                hSql.ExecuteReader();
+                while (hSql.Read())
+                {
+                    clsBaseListItem item = new clsBaseListItem();
+                    //item.nValue1 = hSql.Reader.GetInt32(0);
+                    item.strValue1 = hSql.Reader.GetString(0);
+                    item.strText = hSql.Reader.GetString(1);
+
+                    Result.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                hSql.Close();
+            }
+            return Result;
+        }
+
     }
 
     //ThuyetLV Add

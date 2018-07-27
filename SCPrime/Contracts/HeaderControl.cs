@@ -202,6 +202,9 @@ namespace SCPrime.Contracts
 
         }
 
-       
+        private void cbxContractType_DataSourceChanged(object sender, EventArgs e)
+        {
+            MessageBox.Show("Test");
+        }
     }
 }
