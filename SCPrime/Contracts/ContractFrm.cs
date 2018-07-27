@@ -21,21 +21,21 @@ namespace SCPrime.Contracts
         public delegate void SearchEmployee(SCViewEmployee epl, int flag);
         public static SearchEmployee updateEmployee;
 
-        public static ContractFrm _instance;
-        public Contract objContact;
+        //public static ContractFrm _instance;
+        public static Contract objContract;
         public List<SCContractType> contractType;
 
-        public static ContractFrm instance
-        {
-            get
-            {
-                if (ContractFrm._instance == null || ContractFrm._instance.IsDisposed)
-                {
-                    ContractFrm._instance = new ContractFrm();
-                }
-                return ContractFrm._instance;
-            }
-        }
+        //public static ContractFrm instance
+        //{
+        //    get
+        //    {
+        //        if (_instance == null || _instance.IsDisposed)
+        //        {
+        //            ContractFrm._instance = new ContractFrm();
+        //        }
+        //        return _instance;
+        //    }
+        //}
 
 
         public ContractFrm()
@@ -44,10 +44,27 @@ namespace SCPrime.Contracts
             Sender = new SendStatus(GetStatus);
             updateEmployee = new SearchEmployee(UpdateEmployee);
             this.headerControl1.cbxContractType.SelectedIndexChanged += new System.EventHandler(this.headerControl1.cbxContractType_SelectedIndexChanged);
+            this.headerControl1.btnNewSubcontractor.Click += new System.EventHandler(this.btnNewSubcontractor_click);
+            //this.headerControl1.dgvSubcontract.CellValidated += new System.EventHandler(this.dgvSubcontract_cellvalidated);
+            objContract = new Contract();
+            this.loadComboboxData();
+            this.loadContractData();
+        }
+        private void dgvSubcontract_cellvalidated()
+        {
 
         }
 
+        private void btnNewSubcontractor_click(object sender, EventArgs e)
+        {
+            //MessageBox.Show("Test");
+            objContract.SubContracts.Add(new SubContractorContract());
+            var source = new BindingSource();
+            source.DataSource = objContract.SubContracts;
+            this.headerControl1.dgvSubcontract.DataSource = source;
+            this.headerControl1.dgvSubcontract.Refresh();
 
+        }
 
         private void UpdateEmployee(SCViewEmployee epl, int flag)
         {
@@ -89,7 +106,7 @@ namespace SCPrime.Contracts
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            objContact = null;
+            objContract = null;
             this.Close();
         }
 
@@ -118,9 +135,9 @@ namespace SCPrime.Contracts
 
         private void ContractFrm_Load(object sender, EventArgs e)
         {
-            objContact = new Contract();
-            this.loadComboboxData();
-            this.loadContractData();
+            //objContract = new Contract();
+            //this.loadComboboxData();
+            //this.loadContractData();
 
         }
         public void loadComboboxData()
@@ -155,21 +172,76 @@ namespace SCPrime.Contracts
         {
 
             this.displayStatus();
-            this.headerControl1.txtInternalID.Text = this.objContact.ContractOID.ToString();
-            this.headerControl1.txtContracNr.Text = this.objContact.ContractNo.ToString();
-            this.headerControl1.txtExtContractNr.Text = this.objContact.ExtContractNo;
-            this.headerControl1.txtVersionNr.Text = this.objContact.VersionNo.ToString();
-            this.headerControl1.txtCreated.Text = this.objContact.Created.ToString();
-            this.headerControl1.txtChanged.Text = this.objContact.Modified.ToString();
-            this.headerControl1.txtLastInvoice.Text = this.objContact.LastInvoiceDate.ToString();
+            
+            this.headerControl1.txtInternalID.Text = objContract.ContractOID.ToString();
+            this.headerControl1.txtContracNr.Text = objContract.ContractNo.ToString();
+            this.headerControl1.txtExtContractNr.Text = objContract.ExtContractNo;
+            this.headerControl1.txtVersionNr.Text = objContract.VersionNo.ToString();
+            this.headerControl1.txtCreated.Text = objContract.Created.ToString();
+            this.headerControl1.txtChanged.Text = objContract.Modified.ToString();
+            this.headerControl1.txtLastInvoice.Text = objContract.LastInvoiceDate.ToString();
 
-            this.headerControl1.cbxContractType.SelectedValue = this.objContact.ContractTypeOID;
+            this.headerControl1.cbxContractType.SelectedValue = objContract.ContractTypeOID;
+
+
+            this.loadDetail();
+            this.addSupplierCbx();
 
 
         }
+
+        public void addSupplierCbx()
+        {
+            bool flag = false;
+            foreach (DataGridViewColumn dc in headerControl1.dgvSubcontract.Columns)
+            {
+                if (dc.Name == "colSupplier")
+                {
+                    flag = true;
+                    break;
+                }
+
+            }
+            if (!flag)
+            {
+
+                List<ObjTmp> ls = new List<ObjTmp>();
+                ls = SubContractorContract.getSuppliers();
+                if (ls.Count > 0)
+                {
+
+                    DataTable dt = new DataTable();
+                    dt = ObjectUtils.ConvertToDataTable(ls);
+                    
+                    DataGridViewComboBoxColumn cb = new DataGridViewComboBoxColumn();
+                    cb.HeaderText = "Supplier";
+                    cb.Name = "colSupplier";
+                    cb.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    cb.DataSource = dt;
+                    cb.DataPropertyName = "SuplNoVal";
+                    cb.ValueMember = "value";
+                    cb.DisplayMember = "text";
+                    cb.DisplayIndex=0;
+                    cb.DisplayStyle = DataGridViewComboBoxDisplayStyle.DropDownButton;
+                    headerControl1.dgvSubcontract.Columns.Add(cb);
+                }
+            }
+        }
+        public void loadDetail()
+        {
+            //load supplier
+
+            bool tmp = objContract.loadDetail();
+            if (tmp)
+            {
+                this.headerControl1.dgvSubcontract.DataSource = objContract.SubContracts;
+            }
+
+            addSupplierCbx();
+        }
         public void displayStatus()
         {
-            switch (this.objContact.ContractStatus.Trim())
+            switch (objContract.ContractStatus.Trim())
             {
                 case ContractStatus.Model:
                     this.headerControl1.txtContractStatus.Text = ContractStatus.ModelText;
@@ -261,7 +333,7 @@ namespace SCPrime.Contracts
 
         private void loadVehice()
         {
-            ContractVehicle vehicleObj = objContact.VehiId;
+            ContractVehicle vehicleObj = objContract.VehiId;
             vehicleDataTab.loadDataVehicle(vehicleObj);
         }
     }

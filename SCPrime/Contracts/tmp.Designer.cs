@@ -36,6 +36,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -80,7 +81,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(446, 52);
+            this.panel1.Size = new System.Drawing.Size(699, 52);
             this.panel1.TabIndex = 3;
             // 
             // panel2
@@ -92,11 +93,12 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.checkedListBox1);
             this.panel3.Controls.Add(this.button4);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 52);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(120, 257);
+            this.panel3.Size = new System.Drawing.Size(315, 257);
             this.panel3.TabIndex = 4;
             // 
             // button4
@@ -113,16 +115,28 @@
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(120, 52);
+            this.dataGridView1.Location = new System.Drawing.Point(315, 52);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(326, 257);
+            this.dataGridView1.Size = new System.Drawing.Size(384, 257);
             this.dataGridView1.TabIndex = 5;
+            // 
+            // checkedListBox1
+            // 
+            this.checkedListBox1.FormattingEnabled = true;
+            this.checkedListBox1.Items.AddRange(new object[] {
+            "a",
+            "b",
+            "c"});
+            this.checkedListBox1.Location = new System.Drawing.Point(66, 115);
+            this.checkedListBox1.Name = "checkedListBox1";
+            this.checkedListBox1.Size = new System.Drawing.Size(120, 94);
+            this.checkedListBox1.TabIndex = 1;
             // 
             // tmp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(446, 309);
+            this.ClientSize = new System.Drawing.Size(699, 309);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
@@ -145,5 +159,6 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.CheckedListBox checkedListBox1;
     }
 }

@@ -32,7 +32,7 @@ namespace SCPrime.Model
         public string Name;
         public string Phone;
         public string Email;
-     }
+    }
     public class ContractVehicle
     {
         public int VehiId { get; set; }
@@ -40,7 +40,7 @@ namespace SCPrime.Model
         public string VIN { get; set; }
         public string Make { get; set; }
         public string Model { get; set; }
-		public string SubModel { get; set; }
+        public string SubModel { get; set; }
 
         public List<clsBaseListItem> dynFields1 = new List<clsBaseListItem>();
         public List<clsBaseListItem> dynFields2 = new List<clsBaseListItem>();
@@ -158,7 +158,7 @@ namespace SCPrime.Model
         public int ContractEndHour;
         public DateTime InvoiceEndDate;
         public ContractDate()
-            {
+        {
             //default values
             ContractStartDate = DateTime.Now;
             ContractStartKm = 0;
@@ -173,7 +173,7 @@ namespace SCPrime.Model
             ContractEndKm = ContractStartKm + ContractPeriodKm;
             ContractEndHour = ContractStartHour + ContractPeriodHour;
 
-            }
+        }
     }
     public class ContractPayment
     {
@@ -228,16 +228,59 @@ namespace SCPrime.Model
     }
     public class SubContractorContract
     {
-        public int OID;
-        public clsBaseListItem SuplNo = new clsBaseListItem();
-        public String SubcontractNo;
-        public String Info;
-        public String Expl;
-        public DateTime DateLimit;
-        public int KmLimit;
-        public Decimal BuyPrice;
+        public int OID { get; set; }
+        // public clsBaseListItem SuplNo = new clsBaseListItem();
+        public clsBaseListItem SuplNo
+        {
+            get
+            {
+                return this.SuplNo;
+            }
+            set
+            {
+                this.SuplNo = new clsBaseListItem();
+            }
+
+        }
+        public string SuplNoVal { get; set; }
+        public string SuplName { get; set; }
+
+        public String SubcontractNo { get; set; }
+        public String Info { get; set; }
+        public String Expl { get; set; }
+        public DateTime DateLimit { get; set; }
+        public int KmLimit { get; set; }
+        public Decimal BuyPrice { get; set; }
+
+        public static List<ObjTmp> getSuppliers()
+        {
+            List<ObjTmp> objs = new List<ObjTmp>();
+            clsSqlFactory hSql = new clsSqlFactory();
+            string sql = "Select suplno, name as suplname from supl order by name";
+
+            hSql.NewCommand(sql);
+            hSql.ExecuteReader();
+            while (hSql.Read())
+            {
+                ObjTmp obj = new ObjTmp();
+
+                var colId = hSql.Reader.GetOrdinal("suplno");
+                if (!hSql.Reader.IsDBNull(colId))
+                    obj.value = hSql.Reader.GetString(colId);
+
+                colId = hSql.Reader.GetOrdinal("suplname");
+                if (!hSql.Reader.IsDBNull(colId))
+                    obj.text = hSql.Reader.GetString(colId);
+
+
+                objs.Add(obj);
+            }
+
+            return objs;
+        }
 
     }
+
     public class CollectiveContract
     {
         public int OID;
@@ -247,7 +290,7 @@ namespace SCPrime.Model
         public String VIN;
         public String Info;
     }
-    public  class Contract
+    public class Contract
     {
         public int ContractOID { get; set; }
         public string ContractStatus = SCPrime.Model.ContractStatus.Model;
@@ -314,7 +357,7 @@ namespace SCPrime.Model
                 if (!(ContractOID > 0))
                 {
                     bNewContract = true;
-                    strSql = "insert into ZSC_Contract(ContractStatus, ContractNo, VersionNo, Created, Modified, SiteId, ContractTypeOID, ContractCustId, VehiId, ContractStartDate, InvoiceStartDate, ContractEndDate, InvoiceEndDate, CostBasis) "+
+                    strSql = "insert into ZSC_Contract(ContractStatus, ContractNo, VersionNo, Created, Modified, SiteId, ContractTypeOID, ContractCustId, VehiId, ContractStartDate, InvoiceStartDate, ContractEndDate, InvoiceEndDate, CostBasis) " +
                         " values (?,?,?,getdate(),getdate(),?,?,?,?,?,?,?,?,?) ";
                     bRet = hSql.NewCommand(strSql);
                     hSql.Com.Parameters.AddWithValue("ContractStatus", ContractStatus);
@@ -325,7 +368,7 @@ namespace SCPrime.Model
                     hSql.Com.Parameters.AddWithValue("ContractCustId", ContractCustId.CustId);
                     hSql.Com.Parameters.AddWithValue("VehiId", VehiId.VehiId);
                     hSql.Com.Parameters.AddWithValue("ContractStartDate", ContractDateData.ContractStartDate);
-                    hSql.Com.Parameters.AddWithValue("InvoiceStartDate", ContractDateData.InvoiceStartDate != null ? ContractDateData.InvoiceStartDate : DateTime.Now  );
+                    hSql.Com.Parameters.AddWithValue("InvoiceStartDate", ContractDateData.InvoiceStartDate != null ? ContractDateData.InvoiceStartDate : DateTime.Now);
                     hSql.Com.Parameters.AddWithValue("ContractEndDate", ContractDateData.ContractEndDate);
                     hSql.Com.Parameters.AddWithValue("InvoiceEndDate", ContractDateData.InvoiceEndDate);
                     hSql.Com.Parameters.AddWithValue("CostBasis", ContractCostData.CostBasis.strValue1);
@@ -334,7 +377,7 @@ namespace SCPrime.Model
                     hSql.Com.Parameters.AddWithValue("ContractNo", ContractNo);
                     hSql.Com.Parameters.AddWithValue("VersionNo", VersionNo);
                     bRet = bRet && hSql.ExecuteReader() && hSql.Read();
-                    this.ContractOID  = hSql.Reader.GetInt32(0);
+                    this.ContractOID = hSql.Reader.GetInt32(0);
                 }
                 //update data
                 if (ContractOID > 0)
@@ -356,13 +399,13 @@ namespace SCPrime.Model
                         hSql.Com.Parameters.AddWithValue("OID", ContractOID);
                         bRet = bRet && hSql.ExecuteNonQuery();
                     }
-                    strSql = "update ZSC_Contract set Modified=getdate(),ExtContractNo=?, CostCenter=?, ValidWorkshopCode=?, InvoiceCustId=?, RespSmanId=?, CareSmanId=?, IsBodyIncl=?, IsTailLiftIncl=?, IsCoolingIncl=?, IsCraneIncl=?,"+
-                        " ContractStartKm=?, ContractStartHour=?, ContractPeriodMonth=?, ContractPeriodKm=?, ContractPeriodHour=?, ContractPeriodKmHour=?, ContractEndKm=?, ContractEndHour=?, TerminationType=?, PaymentPeriod=?, "+
-                        " PaymentIsInBlock=?, PaymentNextBlockStart=?, PaymentNextBlockEnd=?, PaymentCollectionType=?, PaymentGroupingLevel=?, PaymentTerm=?, InvoiceSiteId=?, IsManualInvoice=?, CapitalStartAmount=?, CapitalStartPayer=?,"+
+                    strSql = "update ZSC_Contract set Modified=getdate(),ExtContractNo=?, CostCenter=?, ValidWorkshopCode=?, InvoiceCustId=?, RespSmanId=?, CareSmanId=?, IsBodyIncl=?, IsTailLiftIncl=?, IsCoolingIncl=?, IsCraneIncl=?," +
+                        " ContractStartKm=?, ContractStartHour=?, ContractPeriodMonth=?, ContractPeriodKm=?, ContractPeriodHour=?, ContractPeriodKmHour=?, ContractEndKm=?, ContractEndHour=?, TerminationType=?, PaymentPeriod=?, " +
+                        " PaymentIsInBlock=?, PaymentNextBlockStart=?, PaymentNextBlockEnd=?, PaymentCollectionType=?, PaymentGroupingLevel=?, PaymentTerm=?, InvoiceSiteId=?, IsManualInvoice=?, CapitalStartAmount=?, CapitalStartPayer=?," +
                         " CapitalMonthAmount=?, CapitalMonthPayer=?, CostBasedOnService=?, CostMonthBasis=?, CostKmBasis=?, CostPerKm=?, ExtraKmInvoicePeriod=?, ExtraKmAccounting=?, ExtraKmMaxDeviation=?, ExtraKmLowAmount=?, ExtraKmHighAmount=?," +
                         " RiskCustId=?, RiskLevel=?, RollingCode=?, IsInvoiceDetail=? where OID=?  ";
                     bRet = hSql.NewCommand(strSql);
-                    if (ExtContractNo!=null) hSql.Com.Parameters.AddWithValue("ExtContractNo", ExtContractNo); else hSql.Com.Parameters.AddWithValue("ExtContractNo", DBNull.Value);
+                    if (ExtContractNo != null) hSql.Com.Parameters.AddWithValue("ExtContractNo", ExtContractNo); else hSql.Com.Parameters.AddWithValue("ExtContractNo", DBNull.Value);
                     if (CostCenter != null) hSql.Com.Parameters.AddWithValue("CostCenter", CostCenter.strValue1); else hSql.Com.Parameters.AddWithValue("CostCenter", DBNull.Value);
                     if (ValidWorkshopCode != null) hSql.Com.Parameters.AddWithValue("ValidWorkshopCode", ValidWorkshopCode.strValue1); else hSql.Com.Parameters.AddWithValue("ValidWorkshopCode", DBNull.Value);
                     if (InvoiceCustId != null) hSql.Com.Parameters.AddWithValue("InvoiceCustId", InvoiceCustId.CustId); else hSql.Com.Parameters.AddWithValue("InvoiceCustId", DBNull.Value);
@@ -401,10 +444,10 @@ namespace SCPrime.Model
                         hSql.Com.Parameters.AddWithValue("PaymentPeriod", ContractPaymentData.PaymentPeriod.strValue1);
                         hSql.Com.Parameters.AddWithValue("PaymentIsInBlock", ContractPaymentData.PaymentIsInBlock);
                         if (ContractPaymentData.PaymentNextBlockStart != DateTime.MinValue)
-                        hSql.Com.Parameters.AddWithValue("PaymentNextBlockStart", ContractPaymentData.PaymentNextBlockStart);
+                            hSql.Com.Parameters.AddWithValue("PaymentNextBlockStart", ContractPaymentData.PaymentNextBlockStart);
                         else hSql.Com.Parameters.AddWithValue("PaymentNextBlockStart", DBNull.Value);
-                        if (ContractPaymentData.PaymentNextBlockEnd!= DateTime.MinValue)
-                        hSql.Com.Parameters.AddWithValue("PaymentNextBlockEnd", ContractPaymentData.PaymentNextBlockEnd);
+                        if (ContractPaymentData.PaymentNextBlockEnd != DateTime.MinValue)
+                            hSql.Com.Parameters.AddWithValue("PaymentNextBlockEnd", ContractPaymentData.PaymentNextBlockEnd);
                         else hSql.Com.Parameters.AddWithValue("PaymentNextBlockEnd", DBNull.Value);
                         hSql.Com.Parameters.AddWithValue("PaymentCollectionType", ContractPaymentData.PaymentCollectionType);
                         hSql.Com.Parameters.AddWithValue("PaymentGroupingLevel", ContractPaymentData.PaymentGroupingLevel);
@@ -420,7 +463,7 @@ namespace SCPrime.Model
                         hSql.Com.Parameters.AddWithValue("PaymentGroupingLevel", DBNull.Value);
                         hSql.Com.Parameters.AddWithValue("PaymentTerm", DBNull.Value);
                     }
-                    if (InvoiceSiteId!= null) hSql.Com.Parameters.AddWithValue("InvoiceSiteId", InvoiceSiteId.strValue1); else hSql.Com.Parameters.AddWithValue("InvoiceSiteId", DBNull.Value);
+                    if (InvoiceSiteId != null) hSql.Com.Parameters.AddWithValue("InvoiceSiteId", InvoiceSiteId.strValue1); else hSql.Com.Parameters.AddWithValue("InvoiceSiteId", DBNull.Value);
                     hSql.Com.Parameters.AddWithValue("IsManualInvoice", IsManualInvoice);
                     if (ContractCapitalData != null)
                     {
@@ -466,16 +509,16 @@ namespace SCPrime.Model
                         hSql.Com.Parameters.AddWithValue("ExtraKmLowAmount", DBNull.Value);
                         hSql.Com.Parameters.AddWithValue("ExtraKmHighAmount", DBNull.Value);
                     }
-                    if (RiskCustId!=null) hSql.Com.Parameters.AddWithValue("RiskCustId", RiskCustId.CustId); else hSql.Com.Parameters.AddWithValue("RiskCustId", DBNull.Value);
+                    if (RiskCustId != null) hSql.Com.Parameters.AddWithValue("RiskCustId", RiskCustId.CustId); else hSql.Com.Parameters.AddWithValue("RiskCustId", DBNull.Value);
                     hSql.Com.Parameters.AddWithValue("RiskLevel", RiskLevel);
-                    if (RollingCode!=null) hSql.Com.Parameters.AddWithValue("RollingCode", RollingCode.strValue1); else hSql.Com.Parameters.AddWithValue("RollingCode", DBNull.Value);
+                    if (RollingCode != null) hSql.Com.Parameters.AddWithValue("RollingCode", RollingCode.strValue1); else hSql.Com.Parameters.AddWithValue("RollingCode", DBNull.Value);
                     hSql.Com.Parameters.AddWithValue("IsInvoiceDetail", IsInvoiceDetail);
-                    
+
                     hSql.Com.Parameters.AddWithValue("OID", ContractOID);
                     bRet = bRet && hSql.ExecuteNonQuery();
                 }
 
-                    hSql.Commit();
+                hSql.Commit();
             }
             catch (Exception ex)
             {
@@ -491,7 +534,7 @@ namespace SCPrime.Model
         }
 
         //longdq added
-        public int countContract(int ContractCustId,int VehiId)
+        public int countContract(int ContractCustId, int VehiId)
         {
             int result = -1;
 
@@ -507,11 +550,11 @@ namespace SCPrime.Model
                 hSql.ExecuteReader();
                 while (hSql.Read())
                 {
-                    SubContractorContract sc = new SubContractorContract();
+                    //  SubContractorContract sc = new SubContractorContract();
                     result = hSql.Reader.GetInt32(6);
 
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -523,7 +566,7 @@ namespace SCPrime.Model
             }
             return result;
         }
-		 public bool loadDetail()
+        public bool loadDetail()
         {
             bool bRet = true;
             clsSqlFactory hSql = new clsSqlFactory();
@@ -543,8 +586,14 @@ namespace SCPrime.Model
                     if (!hSql.Reader.IsDBNull(colId))
                     {
                         sc.SuplNo.strValue1 = hSql.Reader.GetString(colId);
+                        sc.SuplNoVal = hSql.Reader.GetString(colId);
+                        
                         colId = hSql.Reader.GetOrdinal("SuplName");
-                        if (!hSql.Reader.IsDBNull(colId)) sc.SuplNo.strText = hSql.Reader.GetString(colId);
+                        if (!hSql.Reader.IsDBNull(colId))
+                        {
+                            sc.SuplNo.strText = hSql.Reader.GetString(colId);
+                            sc.SuplName = hSql.Reader.GetString(colId);
+                        }
                     }
                     colId = hSql.Reader.GetOrdinal("BuyPr");
                     if (!hSql.Reader.IsDBNull(colId)) sc.BuyPrice = hSql.Reader.GetDecimal(colId);
@@ -572,7 +621,7 @@ namespace SCPrime.Model
                     CollectiveContract sc = new CollectiveContract();
                     int colId = hSql.Reader.GetOrdinal("OID");
                     if (!hSql.Reader.IsDBNull(colId)) sc.OID = hSql.Reader.GetInt32(colId);
-                    
+
                     colId = hSql.Reader.GetOrdinal("Info");
                     if (!hSql.Reader.IsDBNull(colId)) sc.Info = hSql.Reader.GetString(colId);
                     colId = hSql.Reader.GetOrdinal("ContractNo");
@@ -618,8 +667,8 @@ namespace SCPrime.Model
                         case SCPrime.Model.ContractStatus.New: return SCPrime.Model.ContractStatus.NewText;
                         case SCPrime.Model.ContractStatus.Waiting: return SCPrime.Model.ContractStatus.WaitingText;
                         case SCPrime.Model.ContractStatus.Active: return SCPrime.Model.ContractStatus.ActiveText;
-                        case SCPrime.Model.ContractStatus.OnControl: return SCPrime.Model.ContractStatus.OnControlText; 
-                        case SCPrime.Model.ContractStatus.Closed: return SCPrime.Model.ContractStatus.ClosedText; 
+                        case SCPrime.Model.ContractStatus.OnControl: return SCPrime.Model.ContractStatus.OnControlText;
+                        case SCPrime.Model.ContractStatus.Closed: return SCPrime.Model.ContractStatus.ClosedText;
                         case SCPrime.Model.ContractStatus.Deactivated: return SCPrime.Model.ContractStatus.DeactivatedText;
                     }
                 }
@@ -1038,5 +1087,8 @@ namespace SCPrime.Model
         public string Info { get; set; }
         public string Deviation { get; set; }
     }
+
+
+
 }
 

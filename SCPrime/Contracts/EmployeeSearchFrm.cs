@@ -38,11 +38,11 @@ namespace SCPrime.Contracts
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (this.txtSearch.Text.Trim().Equals(""))
-            {
-                this.dataGridView1.DataSource = null;
-                return;
-            }
+            //if (this.txtSearch.Text.Trim().Equals(""))
+            //{
+            //    this.dataGridView1.DataSource = null;
+            //    return;
+            //}
             try
             {
                 this.dataGridView1.DataSource = null;

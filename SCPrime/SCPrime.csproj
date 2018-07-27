@@ -229,9 +229,11 @@
     <EmbeddedResource Include="SCOptionPriceFrm.resx">
       <DependentUpon>SCOptionPriceFrm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\SCPrime.Model.CollectiveContract.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.Contract.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.ContractStatus.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.ContractVehicle1.datasource" />
+    <None Include="Properties\DataSources\SCPrime.Model.ExtraKmAccountingType.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.MileageReg.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.SCBase.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.SCContractType.datasource" />
@@ -243,6 +245,7 @@
     <None Include="Properties\DataSources\SCPrime.Model.SCViewEmployee.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.SCViewItems.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.SCViewWorks.datasource" />
+    <None Include="Properties\DataSources\SCPrime.Model.SubContractorContract.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

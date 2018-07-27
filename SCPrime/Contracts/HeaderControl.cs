@@ -22,6 +22,8 @@ namespace SCPrime.Contracts
         //public SendStatus StatusSender;
         //public static HeaderControl _instance;
         //public string status;
+        public SubContractorContract subContractor;
+        public List<SubContractorContract> subContractorList;
 
         public HeaderControl()
         {
@@ -29,7 +31,7 @@ namespace SCPrime.Contracts
             //StatusSender = new SendStatus(setStatus);
 
         }
-       
+
 
 
         private void btnChangeStatus_Click(object sender, EventArgs e)
@@ -175,5 +177,31 @@ namespace SCPrime.Contracts
 
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //MessageBox.Show(this.Parent.Parent.Parent.GetType().ToString());
+            //if (this.Parent.Parent.Parent.GetType() == null || this.Parent.Parent.Parent.GetType() != typeof(ContractFrm))
+            //    return;
+
+            //HeaderControl hc1 = (this.Parent as TabPage).Controls["headerControl1"] as HeaderControl;
+            // dgvSubcontract.DataSource = (this.Parent.Parent.Parent as ContractFrm).objContract.SubContracts;
+            //hc1.dgvSubcontract.Refresh();
+        }
+
+        private void dgvSubcontract_CellValidated(object sender, DataGridViewCellEventArgs e)
+        {
+            //MessageBox.Show("Test");
+        }
+        private SubContractorContract rowToSubContractor(DataGridViewRow r)
+        {
+            SubContractorContract obj = new SubContractorContract();
+            //obj.SuplNo = r.Cells[]
+
+            return obj;
+
+        }
+
+       
     }
 }
