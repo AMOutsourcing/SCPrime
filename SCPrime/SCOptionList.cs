@@ -702,6 +702,7 @@ namespace SCPrime
             sc.Info = row.Cells["Info"].Value.ToString();
             sc.isAvailable = (int)row.Cells["isAvailable"].Value;
             sc.isMarkDeleted = (bool)row.Cells["isMarkDeleted"].Value;
+            sc.MainGroupCode = row.Cells["colMainGroupCode"].Value.ToString();
             sc.Options = new List<SCOption>();
 
 
@@ -1093,6 +1094,7 @@ namespace SCPrime
             sop.WrksId = row.Cells["OptionWrksId"].Value.ToString();
             sop.ItemName = row.Cells["OptionItemName"].Value.ToString();
             sop.WrksName = row.Cells["OptionWrksName"].Value.ToString();
+            sop.SubGroupCode = row.Cells["colSubGroupCode"].Value.ToString();
 
             var temp = (decimal)0;
             bool rs = Decimal.TryParse(row.Cells["OptionBaseSelPr"].Value.ToString(), out temp);
