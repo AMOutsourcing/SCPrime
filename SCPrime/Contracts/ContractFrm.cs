@@ -363,7 +363,8 @@ namespace SCPrime.Contracts
         private void loadVehice()
         {
             ContractVehicle vehicleObj = objContract.VehiId;
-            vehicleDataTab.fillDataVehicle(vehicleObj);
+            vehicleDataTab.setContract(objContract);
+            vehicleDataTab.fillDataVehicle();
         }
     }
 }

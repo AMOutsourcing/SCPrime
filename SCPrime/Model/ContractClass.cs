@@ -196,6 +196,26 @@ namespace SCPrime.Model
         public int Mileage { get; set; }
         public String Info { get; set; }
         public int InputType { get; set; }
+
+        public string CustomInputType
+        {
+            get
+            {
+                if (this.InputType == 1)
+                {
+                    return "Manual";
+                }
+                else
+                {
+                    return "From service history";
+                }
+            }
+
+            set
+            {
+                this.InputType = 1;
+            }
+        }
     }
     public class ContractDate
     {
@@ -1204,6 +1224,26 @@ namespace SCPrime.Model
         public string InputType { get; set; }
         public string Info { get; set; }
         public string Deviation { get; set; }
+
+        public string CustomInputType
+        {
+            get
+            {
+                if (this.InputType == "1")
+                {
+                    return "Manual";
+                }
+                else
+                {
+                    return "From service history";
+                }
+            }
+
+            set
+            {
+                this.InputType = null;
+            }
+        }
     }
 
 
