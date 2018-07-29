@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace SCPrime.Contracts
 {
-    public partial class ContractFrm : Form
+    public partial class ContractFrm : nsBaseClass.clsBaseForm
     {
         public delegate void SendStatus(string Message);
         public static SendStatus Sender;
@@ -24,6 +24,8 @@ namespace SCPrime.Contracts
         //public static ContractFrm _instance;
         public static Contract objContract;
         public List<SCContractType> contractType;
+        public List<clsBaseListItem> costCenterList = new List<clsBaseListItem>();
+        public List<clsBaseListItem> ws = new List<clsBaseListItem>();
 
         //public static ContractFrm instance
         //{
@@ -45,15 +47,158 @@ namespace SCPrime.Contracts
             updateEmployee = new SearchEmployee(UpdateEmployee);
             this.headerControl1.cbxContractType.SelectedIndexChanged += new System.EventHandler(this.headerControl1.cbxContractType_SelectedIndexChanged);
             this.headerControl1.btnNewSubcontractor.Click += new System.EventHandler(this.btnNewSubcontractor_click);
-            //this.headerControl1.dgvSubcontract.CellValidated += new System.EventHandler(this.dgvSubcontract_cellvalidated);
+            this.headerControl1.dgvSubcontract.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSubcontract_CellValidated);
+            this.headerControl1.txtContractStatus.TextChanged += new System.EventHandler(this.updat_satatus);
+            this.headerControl1.cbxResponsibleSite.SelectedIndexChanged += new System.EventHandler(this.cbxResponsibleSite_SelectedIndexChanged);
+            this.headerControl1.cbxCostcenter.SelectedIndexChanged += new System.EventHandler(this.cbxCostcenter_SelectedIndexChanged);
+            this.headerControl1.cbxValidWorkshop.SelectedIndexChanged += new System.EventHandler(this.cbxValidWorkshop_SelectedIndexChanged);
+
+
             objContract = new Contract();
             this.loadComboboxData();
             this.loadContractData();
         }
+
+        private void cbxValidWorkshop_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.headerControl1.cbxValidWorkshop.SelectedIndex >= 0)
+            {
+                if (this.headerControl1.cbxValidWorkshop.SelectedItem != null)
+                {
+                    ObjTmp s = (ObjTmp)this.headerControl1.cbxValidWorkshop.SelectedItem;
+                    objContract.ValidWorkshopCode = findclsBaseListItem(s.value, this.ws);
+                    //MessageBox.Show(s.value);
+                }
+
+            }
+        }
+
+        //private clsBaseListItem findValidWorkshop(string value, List<clsBaseListItem> list)
+        //{
+        //    clsBaseListItem Result = new clsBaseListItem();
+        //    Result = list.Find(x => x.strValue1 == value);
+        //    return Result;
+        //}
+
+        private void cbxCostcenter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.headerControl1.cbxCostcenter.SelectedIndex >= 0)
+            {
+                if (this.headerControl1.cbxCostcenter.SelectedItem != null)
+                {
+                    ObjTmp s = (ObjTmp)this.headerControl1.cbxCostcenter.SelectedItem;
+                    objContract.CostCenter = findclsBaseListItem(s.value, this.costCenterList);
+                    //MessageBox.Show(s.value);
+                }
+
+            }
+        }
+        public clsBaseListItem findclsBaseListItem(string val, List<clsBaseListItem> list)
+        {
+            clsBaseListItem Result = new clsBaseListItem();
+            Result = list.Find(x => x.strValue1 == val);
+            return Result;
+        }
+
+        private void cbxResponsibleSite_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.headerControl1.cbxResponsibleSite.SelectedIndex >= 0)
+            {
+                if (this.headerControl1.cbxResponsibleSite.SelectedItem != null)
+                {
+                    ObjTmp s = (ObjTmp)this.headerControl1.cbxResponsibleSite.SelectedItem;
+                    clsBaseListItem site = null;
+                    site = SCBase.findSite(s.value);
+                    if (site != null)
+                        objContract.SiteId = site;
+                    //MessageBox.Show(s.value);
+                }
+
+            }
+        }
+
+        private void updat_satatus(object sender, EventArgs e)
+        {
+            this.updateContractStatus();
+        }
+
+        private void updateContractStatus()
+        {
+            switch (this.headerControl1.txtContractStatus.Text.Trim())
+            {
+                case ContractStatus.ModelText:
+                    objContract.ContractStatus = ContractStatus.Model;
+                    break;
+                case ContractStatus.OfferText:
+                    objContract.ContractStatus = ContractStatus.Offer;
+                    break;
+                case ContractStatus.NewText:
+                    objContract.ContractStatus = ContractStatus.New;
+                    break;
+                case ContractStatus.WaitingText:
+                    objContract.ContractStatus = ContractStatus.Waiting;
+                    break;
+                case ContractStatus.ActiveText:
+                    objContract.ContractStatus = ContractStatus.Active;
+                    break;
+                case ContractStatus.OnControlText:
+                    objContract.ContractStatus = ContractStatus.OnControl;
+                    break;
+                case ContractStatus.DeactivatedText:
+                    objContract.ContractStatus = ContractStatus.Deactivated;
+                    break;
+
+            }
+        }
+
         private void dgvSubcontract_cellvalidated()
         {
 
         }
+        private void updateContractField()
+        {
+            // objContract.ResponsibleSite update on Event Changed Combobox
+        }
+        public SubContractorContract RowToSubcontractor(DataGridViewRow row)
+        {
+            SubContractorContract sc = new SubContractorContract();
+            int number = -1;
+            bool tmp = Int32.TryParse(row.Cells[0].Value.ToString(), out number);
+
+            if (tmp)
+                sc.OID = number;
+            else
+                sc.OID = -1;
+
+            sc.SubcontractNo = row.Cells["colSubcontractNo"].Value != null ? row.Cells["colSubcontractNo"].Value.ToString() : "";
+            sc.Info = row.Cells["colInfo"].Value != null ? row.Cells["colInfo"].Value.ToString() : "";
+            sc.Expl = row.Cells["colExpl"].Value != null ? row.Cells["colExpl"].Value.ToString() : "";
+            if (row.Cells["colSubcontractNo"].Value != null
+                && !string.IsNullOrEmpty(row.Cells["colSubcontractNo"].Value.ToString().Trim()))
+            {
+                sc.DateLimit = MyUtils.strToDate(row.Cells["colSubcontractNo"].Value.ToString(), objGlobal.CultureInfo);
+            }
+            sc.KmLimit = row.Cells["colKmLimit"].Value != null ? (int)row.Cells["colKmLimit"].Value : 0;
+
+            var temp = (decimal)0;
+            bool rs = Decimal.TryParse(row.Cells["colBuyPrice"].Value.ToString(), out temp);
+            if (rs)
+                sc.BuyPrice = Math.Round(temp, 2);
+            else
+                sc.BuyPrice = (decimal)0;
+
+
+            sc.SuplNoVal = row.Cells["colSuplNoVal"].Value != null ? row.Cells["colSuplNoVal"].Value.ToString() : "";
+            sc.SuplName = row.Cells["colSuplName"].Value != null ? row.Cells["colSuplName"].Value.ToString() : "";
+
+            clsBaseListItem t = new clsBaseListItem();
+            t.strValue1 = sc.SuplNoVal;
+            t.strText = sc.SuplName;
+            sc.SuplNo = t;
+
+            return sc;
+        }
+
 
         private void btnNewSubcontractor_click(object sender, EventArgs e)
         {
@@ -66,14 +211,52 @@ namespace SCPrime.Contracts
 
         }
 
+        private void dgvSubcontract_CellValidated(object sender, DataGridViewCellEventArgs e)
+        {
+            //DataGridViewCellEventArgs me = (DataGridViewCellEventArgs)e;
+            //if (me != null)
+
+            DataGridViewRow r = this.headerControl1.dgvSubcontract.Rows[e.RowIndex];
+            if (r != null)
+            {
+                SubContractorContract s = this.RowToSubcontractor(r);
+                if (s != null)
+                {
+                    //longdq
+                    objContract.SubContracts = this.replaceListSubContractorContract(objContract.SubContracts, s);
+
+                }
+
+            }
+        }
+        private List<SubContractorContract> replaceListSubContractorContract(List<SubContractorContract> list, SubContractorContract s)
+        {
+            //find index  by oid
+            var idx = list.FindIndex(x => x.OID == s.OID);
+            if (idx != null && idx >= 0)
+            {
+                list[idx] = s;
+            }
+            return list;
+        }
+
+
         private void UpdateEmployee(SCViewEmployee epl, int flag)
         {
+            ContractEmployee ce = new ContractEmployee();
+            ce.SmanId = epl.SmanId;
+            ce.Name = epl.Name;
+            ce.Phone = epl.Phone;
+            ce.Email = epl.Email;
+
             if (flag == 1)//Contract responsible person
             {
                 this.headerControl1.txtEmployeeID1.Text = epl.SmanId.ToString();
                 this.headerControl1.txtEmployeeName1.Text = epl.Name;
                 this.headerControl1.txtEmployeePhone1.Text = epl.Phone;
                 this.headerControl1.txtEmployeeEmail1.Text = epl.Email;
+
+                ContractFrm.objContract.RespSmanId = ce;
             }
             if (flag == 2)//Contract care taking person
             {
@@ -81,6 +264,7 @@ namespace SCPrime.Contracts
                 this.headerControl1.txtEmployeeName2.Text = epl.Name;
                 this.headerControl1.txtEmployeePhone2.Text = epl.Phone;
                 this.headerControl1.txtEmployeeEmail2.Text = epl.Email;
+                ContractFrm.objContract.CareSmanId = ce;
             }
         }
 
@@ -150,10 +334,10 @@ namespace SCPrime.Contracts
             List<ObjTmp> lstSites = new List<ObjTmp>(listTmp.Count);
             foreach (clsBaseListItem site in listTmp)
             {
-                lstSites.Add(new ObjTmp(site.strValue1, site.strText));
+                lstSites.Add(new ObjTmp(site.strValue1, site.strValue1 + "-" + site.strText));
             }
             this.headerControl1.cbxResponsibleSite.DataSource = lstSites;
-            this.headerControl1.cbxResponsibleSite.ValueMember = "id";
+            this.headerControl1.cbxResponsibleSite.ValueMember = "value";
             this.headerControl1.cbxResponsibleSite.DisplayMember = "text";
 
             //load cbxContractType
@@ -167,21 +351,22 @@ namespace SCPrime.Contracts
             }
 
             //load cbxCostcenter TODO
-            List<clsBaseListItem> ccs = Contract.getCostCenter();
-            if (ccs != null && ccs.Count > 0)
+            costCenterList = Contract.getCostCenter();
+
+            if (costCenterList != null && costCenterList.Count > 0)
             {
-                List<ObjTmp> myccs = new List<ObjTmp>(ccs.Count);
-                foreach (clsBaseListItem cc in ccs)
+                List<ObjTmp> myccs = new List<ObjTmp>(costCenterList.Count);
+                foreach (clsBaseListItem cc in costCenterList)
                 {
                     myccs.Add(new ObjTmp(cc.strValue1, cc.strText));
                 }
                 this.headerControl1.cbxCostcenter.DataSource = myccs;
-                this.headerControl1.cbxCostcenter.ValueMember = "id";
+                this.headerControl1.cbxCostcenter.ValueMember = "value";
                 this.headerControl1.cbxCostcenter.DisplayMember = "text";
             }
-            //load cbxValidWorkshop TODO
+            //load cbxValidWorkshop 
 
-            List<clsBaseListItem> ws = Contract.getValidWorkshop();
+            ws = Contract.getValidWorkshop();
             if (ws != null && ws.Count > 0)
             {
                 List<ObjTmp> myws = new List<ObjTmp>(ws.Count);
@@ -190,7 +375,7 @@ namespace SCPrime.Contracts
                     myws.Add(new ObjTmp(w.strValue1, w.strText));
                 }
                 this.headerControl1.cbxValidWorkshop.DataSource = myws;
-                this.headerControl1.cbxValidWorkshop.ValueMember = "id";
+                this.headerControl1.cbxValidWorkshop.ValueMember = "value";
                 this.headerControl1.cbxValidWorkshop.DisplayMember = "text";
             }
 
@@ -364,6 +549,14 @@ namespace SCPrime.Contracts
         {
             ContractVehicle vehicleObj = objContract.VehiId;
             vehicleDataTab.loadDataVehicle(vehicleObj);
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            objContract.VehiId.VehiId = 320;
+            bool tmp = false;
+            tmp = objContract.saveContract();
+            MessageBox.Show(tmp.ToString());
         }
     }
 }

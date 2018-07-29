@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -28,6 +29,8 @@ namespace SCPrime.Utils
             }
             return strSql;
         }
+
+
         public static int GetMaxResult()
         {
             int max = 0;
@@ -38,6 +41,26 @@ namespace SCPrime.Utils
                 return max;
             else
                 return 0;
+        }
+
+        public static string getDateFormat()
+        {
+            string datefm = ConfigurationManager.AppSettings["DateFormat"];
+            return datefm;
+        }
+        public static string getDateTimeFormat()
+        {
+            string datefm = ConfigurationManager.AppSettings["DateTimeFormat"];
+            return datefm;
+        }
+        public static DateTime strToDate(string value, string myCultureInfo)
+        {
+            DateTime dt = DateTime.Now;
+
+            DateTimeFormatInfo ukDtfi = new CultureInfo(myCultureInfo, false).DateTimeFormat;
+            dt = Convert.ToDateTime(value, ukDtfi);
+
+            return dt;
         }
     }
 }

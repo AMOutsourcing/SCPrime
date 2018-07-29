@@ -43,10 +43,10 @@
             this.tabOptions = new System.Windows.Forms.TabPage();
             this.contractOption1 = new SCPrime.Contracts.ContractOptionControl();
             this.tabHeader = new System.Windows.Forms.TabPage();
+            this.headerControl1 = new SCPrime.Contracts.HeaderControl();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabVehicle = new System.Windows.Forms.TabPage();
             this.vehicleDataTab = new SCPrime.Contracts.VehicleDataTabPage();
-            this.headerControl1 = new SCPrime.Contracts.HeaderControl();
             this.panel1.SuspendLayout();
             this.tabOptions.SuspendLayout();
             this.tabHeader.SuspendLayout();
@@ -142,12 +142,13 @@
             this.btnSave.TabIndex = 0;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // tabRemarks
             // 
             this.tabRemarks.Location = new System.Drawing.Point(4, 22);
             this.tabRemarks.Name = "tabRemarks";
-            this.tabRemarks.Size = new System.Drawing.Size(916, 712);
+            this.tabRemarks.Size = new System.Drawing.Size(916, 655);
             this.tabRemarks.TabIndex = 5;
             this.tabRemarks.Text = "Remarks";
             this.tabRemarks.UseVisualStyleBackColor = true;
@@ -156,7 +157,7 @@
             // 
             this.tabInvoices.Location = new System.Drawing.Point(4, 22);
             this.tabInvoices.Name = "tabInvoices";
-            this.tabInvoices.Size = new System.Drawing.Size(916, 712);
+            this.tabInvoices.Size = new System.Drawing.Size(916, 655);
             this.tabInvoices.TabIndex = 4;
             this.tabInvoices.Text = "Invoices";
             this.tabInvoices.UseVisualStyleBackColor = true;
@@ -165,7 +166,7 @@
             // 
             this.tabContractData.Location = new System.Drawing.Point(4, 22);
             this.tabContractData.Name = "tabContractData";
-            this.tabContractData.Size = new System.Drawing.Size(916, 712);
+            this.tabContractData.Size = new System.Drawing.Size(916, 655);
             this.tabContractData.TabIndex = 3;
             this.tabContractData.Text = "Contract data";
             this.tabContractData.UseVisualStyleBackColor = true;
@@ -176,7 +177,7 @@
             this.tabOptions.Location = new System.Drawing.Point(4, 22);
             this.tabOptions.Name = "tabOptions";
             this.tabOptions.Padding = new System.Windows.Forms.Padding(3);
-            this.tabOptions.Size = new System.Drawing.Size(916, 712);
+            this.tabOptions.Size = new System.Drawing.Size(916, 655);
             this.tabOptions.TabIndex = 2;
             this.tabOptions.Text = "Options";
             this.tabOptions.UseVisualStyleBackColor = true;
@@ -186,7 +187,7 @@
             this.contractOption1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.contractOption1.Location = new System.Drawing.Point(3, 3);
             this.contractOption1.Name = "contractOption1";
-            this.contractOption1.Size = new System.Drawing.Size(910, 706);
+            this.contractOption1.Size = new System.Drawing.Size(910, 649);
             this.contractOption1.TabIndex = 0;
             // 
             // tabHeader
@@ -199,6 +200,13 @@
             this.tabHeader.TabIndex = 1;
             this.tabHeader.Text = "Header";
             this.tabHeader.UseVisualStyleBackColor = true;
+            // 
+            // headerControl1
+            // 
+            this.headerControl1.Location = new System.Drawing.Point(0, 3);
+            this.headerControl1.Name = "headerControl1";
+            this.headerControl1.Size = new System.Drawing.Size(920, 650);
+            this.headerControl1.TabIndex = 0;
             // 
             // tabControl1
             // 
@@ -234,13 +242,6 @@
             this.vehicleDataTab.Name = "vehicleDataTab";
             this.vehicleDataTab.Size = new System.Drawing.Size(924, 594);
             this.vehicleDataTab.TabIndex = 0;
-            // 
-            // headerControl1
-            // 
-            this.headerControl1.Location = new System.Drawing.Point(0, 3);
-            this.headerControl1.Name = "headerControl1";
-            this.headerControl1.Size = new System.Drawing.Size(920, 650);
-            this.headerControl1.TabIndex = 0;
             // 
             // ContractFrm
             // 

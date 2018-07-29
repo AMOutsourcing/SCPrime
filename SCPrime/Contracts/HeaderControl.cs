@@ -95,32 +95,60 @@ namespace SCPrime.Contracts
 
         private void btnSearchCustomer1_Click(object sender, EventArgs e)
         {
+            //Invoice address
             dlgSearchCustomer searhCustomer = new dlgSearchCustomer();
             searhCustomer.Owner = this.ParentForm;
             searhCustomer.ShowDialog();
-            if (searhCustomer.Custno != "")
+
+            ContractCustomer cc = new ContractCustomer();
+            int id = -1;
+            bool tmp = int.TryParse(searhCustomer.Custno, out id);
+            if (tmp)
+                cc.CustId = id;
+            cc.Name = searhCustomer.CustName;
+            cc.Address = searhCustomer.CustAddress;
+            cc.Email = searhCustomer.CustEmail;
+            cc.Phone = searhCustomer.CustPhone;
+
+            if (! string.IsNullOrEmpty(searhCustomer.Custno))
             {
                 this.txtInvoiceCusNr.Text = searhCustomer.Custno;
                 this.txtInvoiceCusName.Text = searhCustomer.CustName;
                 this.txtInvoiceCusAdd.Text = searhCustomer.CustAddress;
                 this.txtInvoiceCusEmail.Text = searhCustomer.CustEmail;
                 this.txtInvoiceCusPhone.Text = searhCustomer.CustPhone;
+                ContractFrm.objContract.InvoiceCustId = cc;
 
             }
         }
 
         private void btnSearchCustomer2_Click(object sender, EventArgs e)
         {
+            //Contract customer
             dlgSearchCustomer searhCustomer = new dlgSearchCustomer();
             searhCustomer.Owner = this.ParentForm;
             searhCustomer.ShowDialog();
-            if (searhCustomer.Custno != "")
+
+            ContractCustomer cc = new ContractCustomer();
+            int id = -1;
+            bool tmp = int.TryParse(searhCustomer.Custno, out id);
+            if (tmp)
+                cc.CustId = id;
+            cc.Name = searhCustomer.CustName;
+            cc.Address = searhCustomer.CustAddress;
+            cc.Email = searhCustomer.CustEmail;
+            cc.Phone = searhCustomer.CustPhone;
+
+           
+            if (!string.IsNullOrEmpty(searhCustomer.Custno))
             {
                 this.txtContractCusNr.Text = searhCustomer.Custno;
                 this.txtContractCusName.Text = searhCustomer.CustName;
                 this.txtContractCusAdd.Text = searhCustomer.CustAddress;
                 this.txtContractCusEmail.Text = searhCustomer.CustEmail;
                 this.txtContractCusPhone.Text = searhCustomer.CustPhone;
+
+                ContractFrm.objContract.ContractCustId = cc;
 
             }
 
@@ -164,17 +192,22 @@ namespace SCPrime.Contracts
             if (this.cbxContractType.SelectedValue != null)
             {
                 SCContractType ct = (SCContractType)this.cbxContractType.SelectedItem;
-                if (ct.isInvoice)
+                if (ct != null)
                 {
-                    this.chkInvoiceToCus.Checked = true;
-                    this.chkInvoiceToCus.ForeColor = SystemColors.ControlText;
-                }
-                else
-                {
-                    this.chkInvoiceToCus.Checked = false;
-                    this.chkInvoiceToCus.ForeColor = SystemColors.ControlText;
-                }
+                    if (ct.isInvoice)
+                    {
+                        this.chkInvoiceToCus.Checked = true;
+                        this.chkInvoiceToCus.ForeColor = SystemColors.ControlText;
+                    }
+                    else
+                    {
+                        this.chkInvoiceToCus.Checked = false;
+                        this.chkInvoiceToCus.ForeColor = SystemColors.ControlText;
+                    }
+                    //update contract Type
+                    ContractFrm.objContract.ContractTypeOID = ct;
 
+                }
             }
         }
 
@@ -206,5 +239,7 @@ namespace SCPrime.Contracts
         {
             MessageBox.Show("Test");
         }
+
+
     }
 }

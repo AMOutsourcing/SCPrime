@@ -14,7 +14,7 @@ using SCPrime.Model;
 
 namespace SCPrime.Contracts
 {
-    public partial class tmp : Form
+    public partial class tmp : nsBaseClass.clsBaseForm
     {
         static readonly ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         static Random rnd = new Random();
@@ -105,6 +105,14 @@ namespace SCPrime.Contracts
         }
 
         private void button4_Click(object sender, EventArgs e)
+        {
+            //objGlobal.CultureInfo
+            DateTime dt = DateTime.Now;
+            MessageBox.Show(dt.ToString());
+            MessageBox.Show(dt.ToString(), objGlobal.CultureInfo);
+        }
+
+        private void dataGridView1_CellValidated(object sender, DataGridViewCellEventArgs e)
         {
 
         }

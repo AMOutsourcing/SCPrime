@@ -238,7 +238,8 @@ namespace SCPrime.Model
             }
             set
             {
-                this.SuplNo = new clsBaseListItem();
+
+               
             }
 
         }
