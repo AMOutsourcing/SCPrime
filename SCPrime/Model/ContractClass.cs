@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using nsBaseClass;
+using SCPrime.Utils;
 
 namespace SCPrime.Model
 {
@@ -134,14 +136,66 @@ namespace SCPrime.Model
             return bRet;
         }
 
+        public static List<ContractVehicle> seach(string namephrase)
+        {
+
+            string strSql = "select top maxresult a.VEHIID as _OID, isnull(a.LICNO,'') as VehicleLicenseNo, isnull(a.SERIALNO,'') as VehicleVIN, isnull(a.MAKE,'') as VehicleMake, isnull(a.MODEL,'') as VehicleModel, isnull(a.SUBMODEL,'') as VehicleSubModel  from VEHI a  where 1=1 ";
+
+            var tmp = MyUtils.GetMaxResult();
+            if (tmp > 0)
+                strSql = Regex.Replace(strSql, "maxresult", tmp.ToString());
+            else
+                strSql = Regex.Replace(strSql, "maxresult", "0");
+
+
+            if (namephrase != "")
+            {
+                String strFTSQL = Utils.MyUtils.getFTSearchSQL(namephrase, "FTVIEW_VEHI");
+                if (strFTSQL != "")
+                {
+                    strSql += " and exists (" + strFTSQL + " and v._OID=a._OID)";
+                }
+
+            }
+
+            List<ContractVehicle> Result = new List<ContractVehicle>();
+            clsSqlFactory hSql = new clsSqlFactory();
+            try
+            {
+
+                hSql.NewCommand(strSql);
+                hSql.ExecuteReader();
+                while (hSql.Read())
+                {
+                    ContractVehicle item = new ContractVehicle();
+                    item.VehiId = hSql.Reader.GetInt32(0);
+                    item.LicenseNo = hSql.Reader.GetString(1);
+                    item.VIN = hSql.Reader.GetString(2);
+                    item.Make = hSql.Reader.GetString(3);
+                    item.Model = hSql.Reader.GetString(4);
+                    item.SubModel = hSql.Reader.GetString(5);
+                    Result.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                hSql.Close();
+            }
+            return Result;
+        }
+
 
     }
     public class VehicleMileage
     {
-        public DateTime MileageDate;
-        public int Mileage;
-        public String Info;
-        public int InputType;
+        public DateTime MileageDate { get; set; }
+        public int Mileage { get; set; }
+        public String Info { get; set; }
+        public int InputType { get; set; }
     }
     public class ContractDate
     {

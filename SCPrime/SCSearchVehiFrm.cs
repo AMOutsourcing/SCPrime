@@ -53,13 +53,15 @@ namespace SCPrime
         {
             this.txtSearch.Text = "";
             this.Visible = true;
-          
+            this.gridVehicle.DataSource = null;
+            this.gridVehicle.DataSource = this.LoadVehicle(this.txtSearch.Text.Trim());
         }
         private DataTable LoadVehicle(string key)
         {
             DataTable dt = new DataTable();
-            List<SCViewWorks> result = new List<SCViewWorks>();
-            result = SCViewWorks.seach(key);
+            List<ContractVehicle> result = new List<ContractVehicle>();
+            result = ContractVehicle.seach(key);
+            System.Diagnostics.Debug.WriteLine("---------------------ContractVehicle seach: " + result.Count);
             dt = ObjectUtils.ConvertToDataTable(result);
             return dt;
         }
@@ -75,19 +77,11 @@ namespace SCPrime
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            if (this.txtSearch.Text.Trim().Equals(""))
-            {
-                this.dataGridView1.DataSource = null;
-                return;
-            }
             try
             {
-                this.dataGridView1.DataSource = null;
-                this.dataGridView1.DataSource = this.LoadVehicle(this.txtSearch.Text.Trim());
-
-                //Test
-                System.Diagnostics.Debug.WriteLine("---------------------userControl Test: " + this.txtSearch.Text.Trim());
-                userControl.Sender(this.txtSearch.Text.Trim());
+                this.gridVehicle.DataSource = null;
+                this.gridVehicle.DataSource = this.LoadVehicle(this.txtSearch.Text.Trim());
+                //userControl.Sender(this.txtSearch.Text.Trim());
             }
             catch (Exception ex)
             {
@@ -103,8 +97,8 @@ namespace SCPrime
                 {
                     try
                     {
-                        this.dataGridView1.DataSource = null;
-                        this.dataGridView1.DataSource = this.LoadVehicle(this.txtSearch.Text.Trim());
+                        this.gridVehicle.DataSource = null;
+                        this.gridVehicle.DataSource = this.LoadVehicle(this.txtSearch.Text.Trim());
                     }
                     catch (Exception ex)
                     {
@@ -113,36 +107,40 @@ namespace SCPrime
                 }
                 else
                 {
-                    this.dataGridView1.DataSource = null;
+                    this.gridVehicle.DataSource = null;
                 }
             }
         }
 
         private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            string tmp = this.objectMode +":" + this.getWrksId();
-            userControl.Sender(tmp);
-            this.Close();
-        }
-        private string getWrksId()
-        {
-            string result = "";
-            if (this.dataGridView1.SelectedRows.Count > 0)
+            if (e.RowIndex >= 0)
             {
-                foreach (DataGridViewRow r in this.dataGridView1.SelectedRows)
-                {
-                    result = r.Cells["LabourCodeColumn"].Value.ToString();
-                }
+                DataGridViewRow row = this.gridVehicle.Rows[e.RowIndex];
+                userControl.Sender(getData(row));
+                this.Close();
             }
-
-            return result;
+        }
+        private ContractVehicle getData(DataGridViewRow row)
+        {
+            ContractVehicle contractVehicle = new ContractVehicle();
+            contractVehicle.VehiId = Int32.Parse(row.Cells[0].Value.ToString());
+            contractVehicle.LicenseNo = row.Cells[1].Value.ToString();
+            contractVehicle.VIN = row.Cells[2].Value.ToString();
+            contractVehicle.Make = row.Cells[3].Value.ToString();
+            contractVehicle.Model = row.Cells[4].Value.ToString();
+            contractVehicle.SubModel = row.Cells[5].Value.ToString();
+            return contractVehicle;
         }
 
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            string tmp = this.objectMode + ":" + this.getWrksId();
-            userControl.Sender(tmp);
-            this.Close();
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = this.gridVehicle.Rows[e.RowIndex];
+                userControl.Sender(getData(row));
+                this.Close();
+            }
         }
 
         private void SCSearchVehiFrm_FormClosed(object sender, FormClosedEventArgs e)
@@ -150,8 +148,8 @@ namespace SCPrime
             SCSearchVehiFrm._instance = null;
         }
 
-        private VehicleDataTabPage userControl;
-        public void setUserControl(VehicleDataTabPage userControl)
+        private VehicleTab userControl;
+        public void setUserControl(VehicleTab userControl)
         {
             this.userControl = userControl;
         }

@@ -34,10 +34,18 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.gridVehicle = new System.Windows.Forms.DataGridView();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.vehiIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.licenseNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vINDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.makeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.modelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.subModelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contractVehicleBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridVehicle)).BeginInit();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.contractVehicleBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,7 +58,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 59);
+            this.panel1.Size = new System.Drawing.Size(800, 65);
             this.panel1.TabIndex = 1;
             // 
             // btnClose
@@ -90,24 +98,82 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Filter";
             // 
-            // dataGridView1
+            // gridVehicle
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.DataSource = this.contractVehicleBindingSource;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 59);
-            this.dataGridView1.MultiSelect = false;
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(800, 391);
-            this.dataGridView1.TabIndex = 2;
-            this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
-            this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
+            this.gridVehicle.AllowUserToAddRows = false;
+            this.gridVehicle.AllowUserToDeleteRows = false;
+            this.gridVehicle.AutoGenerateColumns = false;
+            this.gridVehicle.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.gridVehicle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridVehicle.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.vehiIdDataGridViewTextBoxColumn,
+            this.licenseNoDataGridViewTextBoxColumn,
+            this.vINDataGridViewTextBoxColumn,
+            this.makeDataGridViewTextBoxColumn,
+            this.modelDataGridViewTextBoxColumn,
+            this.subModelDataGridViewTextBoxColumn});
+            this.gridVehicle.DataSource = this.contractVehicleBindingSource;
+            this.gridVehicle.Location = new System.Drawing.Point(3, 71);
+            this.gridVehicle.MultiSelect = false;
+            this.gridVehicle.Name = "gridVehicle";
+            this.gridVehicle.ReadOnly = true;
+            this.gridVehicle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gridVehicle.Size = new System.Drawing.Size(794, 352);
+            this.gridVehicle.TabIndex = 2;
+            this.gridVehicle.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
+            this.gridVehicle.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.panel1);
+            this.panel2.Controls.Add(this.gridVehicle);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(800, 450);
+            this.panel2.TabIndex = 3;
+            // 
+            // vehiIdDataGridViewTextBoxColumn
+            // 
+            this.vehiIdDataGridViewTextBoxColumn.DataPropertyName = "VehiId";
+            this.vehiIdDataGridViewTextBoxColumn.HeaderText = "VehiId";
+            this.vehiIdDataGridViewTextBoxColumn.Name = "vehiIdDataGridViewTextBoxColumn";
+            this.vehiIdDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // licenseNoDataGridViewTextBoxColumn
+            // 
+            this.licenseNoDataGridViewTextBoxColumn.DataPropertyName = "LicenseNo";
+            this.licenseNoDataGridViewTextBoxColumn.HeaderText = "LicenseNo";
+            this.licenseNoDataGridViewTextBoxColumn.Name = "licenseNoDataGridViewTextBoxColumn";
+            this.licenseNoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // vINDataGridViewTextBoxColumn
+            // 
+            this.vINDataGridViewTextBoxColumn.DataPropertyName = "VIN";
+            this.vINDataGridViewTextBoxColumn.HeaderText = "VIN";
+            this.vINDataGridViewTextBoxColumn.Name = "vINDataGridViewTextBoxColumn";
+            this.vINDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // makeDataGridViewTextBoxColumn
+            // 
+            this.makeDataGridViewTextBoxColumn.DataPropertyName = "Make";
+            this.makeDataGridViewTextBoxColumn.HeaderText = "Make";
+            this.makeDataGridViewTextBoxColumn.Name = "makeDataGridViewTextBoxColumn";
+            this.makeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // modelDataGridViewTextBoxColumn
+            // 
+            this.modelDataGridViewTextBoxColumn.DataPropertyName = "Model";
+            this.modelDataGridViewTextBoxColumn.HeaderText = "Model";
+            this.modelDataGridViewTextBoxColumn.Name = "modelDataGridViewTextBoxColumn";
+            this.modelDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // subModelDataGridViewTextBoxColumn
+            // 
+            this.subModelDataGridViewTextBoxColumn.DataPropertyName = "SubModel";
+            this.subModelDataGridViewTextBoxColumn.HeaderText = "SubModel";
+            this.subModelDataGridViewTextBoxColumn.Name = "subModelDataGridViewTextBoxColumn";
+            this.subModelDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // contractVehicleBindingSource
             // 
@@ -118,15 +184,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel2);
             this.Name = "SCSearchVehiFrm";
             this.Text = "dlgSearchVehicle";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SCSearchVehiFrm_FormClosed);
             this.Load += new System.EventHandler(this.SCSearchVehiFrm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridVehicle)).EndInit();
+            this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.contractVehicleBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -138,7 +204,14 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView gridVehicle;
         private System.Windows.Forms.BindingSource contractVehicleBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn vehiIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn licenseNoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn vINDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn makeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn modelDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn subModelDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Panel panel2;
     }
 }
