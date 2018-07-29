@@ -548,12 +548,13 @@ namespace SCPrime.Contracts
         private void loadVehice()
         {
             ContractVehicle vehicleObj = objContract.VehiId;
-            vehicleDataTab.loadDataVehicle(vehicleObj);
+            vehicleDataTab.setContract(objContract);
+            vehicleDataTab.fillDataVehicle();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            objContract.VehiId.VehiId = 320;
+           // objContract.VehiId.VehiId = 320;
             bool tmp = false;
             tmp = objContract.saveContract();
             MessageBox.Show(tmp.ToString());

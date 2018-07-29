@@ -116,11 +116,11 @@
     <Compile Include="Contracts\tmp.Designer.cs">
       <DependentUpon>tmp.cs</DependentUpon>
     </Compile>
-    <Compile Include="Contracts\VehicleDataTabPage.cs">
+    <Compile Include="Contracts\VehicleTab.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Contracts\VehicleDataTabPage.Designer.cs">
-      <DependentUpon>VehicleDataTabPage.cs</DependentUpon>
+    <Compile Include="Contracts\VehicleTab.Designer.cs">
+      <DependentUpon>VehicleTab.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\ContractClass.cs" />
     <Compile Include="Model\KeyValue.cs" />
@@ -195,8 +195,8 @@
     <EmbeddedResource Include="Contracts\tmp.resx">
       <DependentUpon>tmp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Contracts\VehicleDataTabPage.resx">
-      <DependentUpon>VehicleDataTabPage.cs</DependentUpon>
+    <EmbeddedResource Include="Contracts\VehicleTab.resx">
+      <DependentUpon>VehicleTab.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -246,6 +246,7 @@
     <None Include="Properties\DataSources\SCPrime.Model.SCViewItems.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.SCViewWorks.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.SubContractorContract.datasource" />
+    <None Include="Properties\DataSources\SCPrime.Model.VehicleMileage.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -46,12 +46,18 @@
             this.headerControl1 = new SCPrime.Contracts.HeaderControl();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabVehicle = new System.Windows.Forms.TabPage();
-            this.vehicleDataTab = new SCPrime.Contracts.VehicleDataTabPage();
+            //<<<<<<< HEAD
+            //            this.vehicleDataTab = new SCPrime.Contracts.VehicleDataTabPage();
+            //=======
+            this.vehicleDataTab = new SCPrime.Contracts.VehicleTab();
+            this.panel2 = new System.Windows.Forms.Panel();
+            //>>>>>>> 86752f2a42502f7914948186737d7bd96530e0ff
             this.panel1.SuspendLayout();
             this.tabOptions.SuspendLayout();
             this.tabHeader.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabVehicle.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -227,7 +233,7 @@
             // 
             // tabVehicle
             // 
-            this.tabVehicle.Controls.Add(this.vehicleDataTab);
+            this.tabVehicle.Controls.Add(this.panel2);
             this.tabVehicle.Location = new System.Drawing.Point(4, 22);
             this.tabVehicle.Name = "tabVehicle";
             this.tabVehicle.Padding = new System.Windows.Forms.Padding(3);
@@ -238,10 +244,21 @@
             // 
             // vehicleDataTab
             // 
-            this.vehicleDataTab.Location = new System.Drawing.Point(-1, 6);
+            this.vehicleDataTab.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.vehicleDataTab.Location = new System.Drawing.Point(0, 0);
             this.vehicleDataTab.Name = "vehicleDataTab";
-            this.vehicleDataTab.Size = new System.Drawing.Size(924, 594);
+            this.vehicleDataTab.Size = new System.Drawing.Size(910, 706);
             this.vehicleDataTab.TabIndex = 0;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.vehicleDataTab);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(3, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(910, 706);
+            this.panel2.TabIndex = 1;
+
             // 
             // ContractFrm
             // 
@@ -258,6 +275,7 @@
             this.tabHeader.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabVehicle.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -277,11 +295,12 @@
         private System.Windows.Forms.TabPage tabInvoices;
         private System.Windows.Forms.TabPage tabContractData;
         private System.Windows.Forms.TabPage tabOptions;
-        public System.Windows.Forms.TabPage tabHeader;
+        private System.Windows.Forms.TabPage tabHeader;
+        public HeaderControl headerControl1;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabVehicle;
         private ContractOptionControl contractOption1;
-        private VehicleDataTabPage vehicleDataTab;
-        private HeaderControl headerControl1;
+        private VehicleTab vehicleDataTab;
+        private System.Windows.Forms.Panel panel2;
     }
 }
