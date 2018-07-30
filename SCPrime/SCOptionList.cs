@@ -1,22 +1,16 @@
-﻿using log4net;
-using SCPrime.Model;
+﻿using SCPrime.Model;
 using SCPrime.Utils;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SCPrime
 {
     public partial class SCOptionList : nsBaseClass.clsBaseForm
     {
-        static readonly ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        //static readonly ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private static SCOptionList _instance;
         //private List<SCOptionCategory> myCategories;
         private DataTable categoryDataTable;
@@ -831,7 +825,7 @@ namespace SCPrime
 
             //foreach (DataColumn c in dataTable.Columns)
             //{
-            //    log.Debug(c.ColumnName + ": " + c.DataType);
+            //    _log.Debug(c.ColumnName + ": " + c.DataType);
             //}
 
             DataRow myRow = dataTable.NewRow();
