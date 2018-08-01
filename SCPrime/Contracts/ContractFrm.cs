@@ -53,10 +53,17 @@ namespace SCPrime.Contracts
             this.headerControl1.cbxCostcenter.SelectedIndexChanged += new System.EventHandler(this.cbxCostcenter_SelectedIndexChanged);
             this.headerControl1.cbxValidWorkshop.SelectedIndexChanged += new System.EventHandler(this.cbxValidWorkshop_SelectedIndexChanged);
 
-
-            objContract = new Contract();
+            if (SCMain.ContractOid > 0)
+            {
+                objContract = SCBase.searchContracts(SCMain.ContractOid);
+            }
+            else
+            {
+                objContract = new Contract();
+            }
             this.loadComboboxData();
             this.loadContractData();
+            this.loadCustomerEmployee();
         }
 
         private void cbxValidWorkshop_SelectedIndexChanged(object sender, EventArgs e)
@@ -299,22 +306,10 @@ namespace SCPrime.Contracts
 
         }
 
-        //private void headerControl1_Load(object sender, EventArgs e)
-        //{
 
-        //}
 
         private void headerControl1_cbxContractType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //if (this.headerControl1.cbxContractType.SelectedValue != null)
-            //{
-            //    SCContractType ct = (SCContractType)this.headerControl1.cbxContractType.SelectedItem;
-            //    if (ct.isInvoice)
-            //        this.headerControl1.chkInvoiceToCus.Checked = true;
-            //    else
-            //        this.headerControl1.chkInvoiceToCus.Checked = false;
-
-            //}
         }
 
         private void ContractFrm_Load(object sender, EventArgs e)
@@ -340,6 +335,11 @@ namespace SCPrime.Contracts
             this.headerControl1.cbxResponsibleSite.ValueMember = "value";
             this.headerControl1.cbxResponsibleSite.DisplayMember = "text";
 
+            if (!string.IsNullOrEmpty(objContract.ResponsibleSite))
+            {
+                this.headerControl1.cbxResponsibleSite.SelectedValue = objContract.ResponsibleSite;
+            }
+
             //load cbxContractType
             contractType = sc.getContractTypeActive();
             if (contractType != null && contractType.Count > 0)
@@ -348,6 +348,11 @@ namespace SCPrime.Contracts
                 this.headerControl1.cbxContractType.ValueMember = "OID";
                 this.headerControl1.cbxContractType.DisplayMember = "Name";
                 this.headerControl1.cbxContractType.SelectedItem = contractType[0];
+
+                if (objContract.ContractTypeOID != null)
+                {
+                    this.headerControl1.cbxContractType.SelectedValue = objContract.ContractTypeOID.OID;
+                }
             }
 
             //load cbxCostcenter TODO
@@ -363,6 +368,11 @@ namespace SCPrime.Contracts
                 this.headerControl1.cbxCostcenter.DataSource = myccs;
                 this.headerControl1.cbxCostcenter.ValueMember = "value";
                 this.headerControl1.cbxCostcenter.DisplayMember = "text";
+
+                if (objContract.CostCenter != null)
+                {
+                    this.headerControl1.cbxCostcenter.SelectedValue = objContract.CostCenter.strValue1;
+                }
             }
             //load cbxValidWorkshop 
 
@@ -377,6 +387,11 @@ namespace SCPrime.Contracts
                 this.headerControl1.cbxValidWorkshop.DataSource = myws;
                 this.headerControl1.cbxValidWorkshop.ValueMember = "value";
                 this.headerControl1.cbxValidWorkshop.DisplayMember = "text";
+
+                if (objContract.ValidWorkshopCode != null)
+                {
+                    this.headerControl1.cbxValidWorkshop.SelectedValue = objContract.ValidWorkshopCode.strValue1;
+                }
             }
 
 
@@ -402,6 +417,55 @@ namespace SCPrime.Contracts
             this.addSupplierCbx();
 
 
+        }
+        public void loadCustomerEmployee()
+        {
+            //loadInVoiceAddress
+            ContractCustomer ccInvoice = new ContractCustomer();
+            ccInvoice = objContract.InvoiceCustId;
+            if (ccInvoice != null)
+            {
+
+                this.headerControl1.txtInvoiceCusNr.Text = ccInvoice.CustId.ToString();
+                this.headerControl1.txtInvoiceCusName.Text = ccInvoice.Name;
+                this.headerControl1.txtInvoiceCusAdd.Text = ccInvoice.Address;
+                this.headerControl1.txtInvoiceCusEmail.Text = ccInvoice.Email;
+                this.headerControl1.txtInvoiceCusPhone.Text = ccInvoice.Phone;
+            }
+            //load ContractCustomer
+            ContractCustomer cc = new ContractCustomer();
+            cc = objContract.ContractCustId;
+            if (cc != null)
+            {
+
+                this.headerControl1.txtContractCusNr.Text = cc.CustId.ToString();
+                this.headerControl1.txtContractCusName.Text = cc.Name;
+                this.headerControl1.txtContractCusAdd.Text = cc.Address;
+                this.headerControl1.txtContractCusEmail.Text = cc.Email;
+                this.headerControl1.txtContractCusPhone.Text = cc.Phone;
+            }
+
+            //load Responsible Employee
+            ContractEmployee ces = new ContractEmployee();
+            ces = objContract.RespSmanId;
+            if(ces != null)
+            {
+                this.headerControl1.txtEmployeeID1.Text = ces.SmanId.ToString();
+                this.headerControl1.txtEmployeeName1.Text = ces.Name;
+                this.headerControl1.txtEmployeePhone1.Text = ces.Phone;
+                this.headerControl1.txtEmployeeEmail1.Text = ces.Email;
+            }
+
+            //load Care taking Employee
+            ContractEmployee cte = new ContractEmployee();
+            cte = objContract.RespSmanId;
+            if (cte != null)
+            {
+                this.headerControl1.txtEmployeeID2.Text = cte.SmanId.ToString();
+                this.headerControl1.txtEmployeeName2.Text = cte.Name;
+                this.headerControl1.txtEmployeePhone2.Text = cte.Phone;
+                this.headerControl1.txtEmployeeEmail2.Text = cte.Email;
+            }
         }
 
         public void addSupplierCbx()
@@ -554,7 +618,12 @@ namespace SCPrime.Contracts
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-           // objContract.VehiId.VehiId = 320;
+            // objContract.VehiId.VehiId = 320;
+            if (objContract.VehiId.VehiId <= 0)
+            {
+                // MessageBox.Show("Select Vehicle");
+                return;
+            }
             bool tmp = false;
             tmp = objContract.saveContract();
             MessageBox.Show(tmp.ToString());

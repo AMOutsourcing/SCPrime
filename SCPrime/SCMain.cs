@@ -21,7 +21,7 @@ namespace SCPrime
     public partial class SCMain : nsBaseClass.clsBaseForm
     {
         static readonly ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-
+        public static int ContractOid;
         public SCMain()
         {
             InitializeComponent();
@@ -30,6 +30,7 @@ namespace SCPrime
 
         private void SCMain_Load(object sender, EventArgs e)
         {
+            ContractOid = -1;
             _log.Info("Start Service Contract Prime...Version " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString());
             clsLoginDialog f = new clsLoginDialog();
             DialogResult i = f.ShowDialog();
@@ -435,6 +436,25 @@ namespace SCPrime
             LastMile.HeaderText = "Last mileage";
             LastMile.DataPropertyName = "LastMile";
             gridContract.Columns.Insert(i++, LastMile);
+        }
+
+        private void gridContract_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+           
+        }
+
+        private void gridContract_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                DataGridViewRow r = gridContract.Rows[e.RowIndex];
+                if (r != null && !string.IsNullOrEmpty(r.Cells["colCcontractOID"].Value.ToString()))
+                {
+                    ContractOid = (int)r.Cells["colCcontractOID"].Value;
+                    ContractFrm cf = new ContractFrm();
+                    cf.ShowDialog();
+                }
+            }
         }
     }
 }

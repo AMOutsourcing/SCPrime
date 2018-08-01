@@ -38,26 +38,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cblModel = new System.Windows.Forms.CheckedListBox();
             this.gridContract = new System.Windows.Forms.DataGridView();
-            this.contractOIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contractNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.versionNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.extContractNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.createdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lastInvoiceDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nextInvoiceDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isManualInvoiceDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.invoiceCustIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.respSmanIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.careSmanIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isBodyInclDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.isTailLiftInclDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.isCoolingInclDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.isCraneInclDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.riskLevelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isInvoiceDetailDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.custPhoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contractBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
@@ -93,12 +73,32 @@
             this.optionListToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.optionPriceListToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.colCcontractOID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contractNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.versionNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.extContractNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.createdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastInvoiceDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nextInvoiceDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isManualInvoiceDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.invoiceCustIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.respSmanIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.careSmanIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isBodyInclDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.isTailLiftInclDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.isCoolingInclDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.isCraneInclDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.riskLevelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isInvoiceDetailDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.custPhoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contractBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridContract)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.contractBindingSource)).BeginInit();
             this.panel2.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.menuStrip3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.contractBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -178,7 +178,7 @@
             this.gridContract.AutoGenerateColumns = false;
             this.gridContract.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridContract.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.contractOIDDataGridViewTextBoxColumn,
+            this.colCcontractOID,
             this.contractNoDataGridViewTextBoxColumn,
             this.versionNoDataGridViewTextBoxColumn,
             this.extContractNoDataGridViewTextBoxColumn,
@@ -204,153 +204,8 @@
             this.gridContract.ReadOnly = true;
             this.gridContract.Size = new System.Drawing.Size(838, 621);
             this.gridContract.TabIndex = 2;
-            // 
-            // contractOIDDataGridViewTextBoxColumn
-            // 
-            this.contractOIDDataGridViewTextBoxColumn.DataPropertyName = "ContractOID";
-            this.contractOIDDataGridViewTextBoxColumn.HeaderText = "ContractOID";
-            this.contractOIDDataGridViewTextBoxColumn.Name = "contractOIDDataGridViewTextBoxColumn";
-            this.contractOIDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // contractNoDataGridViewTextBoxColumn
-            // 
-            this.contractNoDataGridViewTextBoxColumn.DataPropertyName = "ContractNo";
-            this.contractNoDataGridViewTextBoxColumn.HeaderText = "ContractNo";
-            this.contractNoDataGridViewTextBoxColumn.Name = "contractNoDataGridViewTextBoxColumn";
-            this.contractNoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // versionNoDataGridViewTextBoxColumn
-            // 
-            this.versionNoDataGridViewTextBoxColumn.DataPropertyName = "VersionNo";
-            this.versionNoDataGridViewTextBoxColumn.HeaderText = "VersionNo";
-            this.versionNoDataGridViewTextBoxColumn.Name = "versionNoDataGridViewTextBoxColumn";
-            this.versionNoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // extContractNoDataGridViewTextBoxColumn
-            // 
-            this.extContractNoDataGridViewTextBoxColumn.DataPropertyName = "ExtContractNo";
-            this.extContractNoDataGridViewTextBoxColumn.HeaderText = "ExtContractNo";
-            this.extContractNoDataGridViewTextBoxColumn.Name = "extContractNoDataGridViewTextBoxColumn";
-            this.extContractNoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // createdDataGridViewTextBoxColumn
-            // 
-            this.createdDataGridViewTextBoxColumn.DataPropertyName = "Created";
-            this.createdDataGridViewTextBoxColumn.HeaderText = "Created";
-            this.createdDataGridViewTextBoxColumn.Name = "createdDataGridViewTextBoxColumn";
-            this.createdDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // modifiedDataGridViewTextBoxColumn
-            // 
-            this.modifiedDataGridViewTextBoxColumn.DataPropertyName = "Modified";
-            this.modifiedDataGridViewTextBoxColumn.HeaderText = "Modified";
-            this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
-            this.modifiedDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // lastInvoiceDateDataGridViewTextBoxColumn
-            // 
-            this.lastInvoiceDateDataGridViewTextBoxColumn.DataPropertyName = "LastInvoiceDate";
-            this.lastInvoiceDateDataGridViewTextBoxColumn.HeaderText = "LastInvoiceDate";
-            this.lastInvoiceDateDataGridViewTextBoxColumn.Name = "lastInvoiceDateDataGridViewTextBoxColumn";
-            this.lastInvoiceDateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nextInvoiceDateDataGridViewTextBoxColumn
-            // 
-            this.nextInvoiceDateDataGridViewTextBoxColumn.DataPropertyName = "NextInvoiceDate";
-            this.nextInvoiceDateDataGridViewTextBoxColumn.HeaderText = "NextInvoiceDate";
-            this.nextInvoiceDateDataGridViewTextBoxColumn.Name = "nextInvoiceDateDataGridViewTextBoxColumn";
-            this.nextInvoiceDateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // isManualInvoiceDataGridViewCheckBoxColumn
-            // 
-            this.isManualInvoiceDataGridViewCheckBoxColumn.DataPropertyName = "IsManualInvoice";
-            this.isManualInvoiceDataGridViewCheckBoxColumn.HeaderText = "IsManualInvoice";
-            this.isManualInvoiceDataGridViewCheckBoxColumn.Name = "isManualInvoiceDataGridViewCheckBoxColumn";
-            this.isManualInvoiceDataGridViewCheckBoxColumn.ReadOnly = true;
-            // 
-            // invoiceCustIdDataGridViewTextBoxColumn
-            // 
-            this.invoiceCustIdDataGridViewTextBoxColumn.DataPropertyName = "InvoiceCustId";
-            this.invoiceCustIdDataGridViewTextBoxColumn.HeaderText = "InvoiceCustId";
-            this.invoiceCustIdDataGridViewTextBoxColumn.Name = "invoiceCustIdDataGridViewTextBoxColumn";
-            this.invoiceCustIdDataGridViewTextBoxColumn.ReadOnly = true;
-            this.invoiceCustIdDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // respSmanIdDataGridViewTextBoxColumn
-            // 
-            this.respSmanIdDataGridViewTextBoxColumn.DataPropertyName = "RespSmanId";
-            this.respSmanIdDataGridViewTextBoxColumn.HeaderText = "RespSmanId";
-            this.respSmanIdDataGridViewTextBoxColumn.Name = "respSmanIdDataGridViewTextBoxColumn";
-            this.respSmanIdDataGridViewTextBoxColumn.ReadOnly = true;
-            this.respSmanIdDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // careSmanIdDataGridViewTextBoxColumn
-            // 
-            this.careSmanIdDataGridViewTextBoxColumn.DataPropertyName = "CareSmanId";
-            this.careSmanIdDataGridViewTextBoxColumn.HeaderText = "CareSmanId";
-            this.careSmanIdDataGridViewTextBoxColumn.Name = "careSmanIdDataGridViewTextBoxColumn";
-            this.careSmanIdDataGridViewTextBoxColumn.ReadOnly = true;
-            this.careSmanIdDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // isBodyInclDataGridViewCheckBoxColumn
-            // 
-            this.isBodyInclDataGridViewCheckBoxColumn.DataPropertyName = "IsBodyIncl";
-            this.isBodyInclDataGridViewCheckBoxColumn.HeaderText = "IsBodyIncl";
-            this.isBodyInclDataGridViewCheckBoxColumn.Name = "isBodyInclDataGridViewCheckBoxColumn";
-            this.isBodyInclDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.isBodyInclDataGridViewCheckBoxColumn.Visible = false;
-            // 
-            // isTailLiftInclDataGridViewCheckBoxColumn
-            // 
-            this.isTailLiftInclDataGridViewCheckBoxColumn.DataPropertyName = "IsTailLiftIncl";
-            this.isTailLiftInclDataGridViewCheckBoxColumn.HeaderText = "IsTailLiftIncl";
-            this.isTailLiftInclDataGridViewCheckBoxColumn.Name = "isTailLiftInclDataGridViewCheckBoxColumn";
-            this.isTailLiftInclDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.isTailLiftInclDataGridViewCheckBoxColumn.Visible = false;
-            // 
-            // isCoolingInclDataGridViewCheckBoxColumn
-            // 
-            this.isCoolingInclDataGridViewCheckBoxColumn.DataPropertyName = "IsCoolingIncl";
-            this.isCoolingInclDataGridViewCheckBoxColumn.HeaderText = "IsCoolingIncl";
-            this.isCoolingInclDataGridViewCheckBoxColumn.Name = "isCoolingInclDataGridViewCheckBoxColumn";
-            this.isCoolingInclDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.isCoolingInclDataGridViewCheckBoxColumn.Visible = false;
-            // 
-            // isCraneInclDataGridViewCheckBoxColumn
-            // 
-            this.isCraneInclDataGridViewCheckBoxColumn.DataPropertyName = "IsCraneIncl";
-            this.isCraneInclDataGridViewCheckBoxColumn.HeaderText = "IsCraneIncl";
-            this.isCraneInclDataGridViewCheckBoxColumn.Name = "isCraneInclDataGridViewCheckBoxColumn";
-            this.isCraneInclDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.isCraneInclDataGridViewCheckBoxColumn.Visible = false;
-            // 
-            // riskLevelDataGridViewTextBoxColumn
-            // 
-            this.riskLevelDataGridViewTextBoxColumn.DataPropertyName = "RiskLevel";
-            this.riskLevelDataGridViewTextBoxColumn.HeaderText = "RiskLevel";
-            this.riskLevelDataGridViewTextBoxColumn.Name = "riskLevelDataGridViewTextBoxColumn";
-            this.riskLevelDataGridViewTextBoxColumn.ReadOnly = true;
-            this.riskLevelDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // isInvoiceDetailDataGridViewCheckBoxColumn
-            // 
-            this.isInvoiceDetailDataGridViewCheckBoxColumn.DataPropertyName = "IsInvoiceDetail";
-            this.isInvoiceDetailDataGridViewCheckBoxColumn.HeaderText = "IsInvoiceDetail";
-            this.isInvoiceDetailDataGridViewCheckBoxColumn.Name = "isInvoiceDetailDataGridViewCheckBoxColumn";
-            this.isInvoiceDetailDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.isInvoiceDetailDataGridViewCheckBoxColumn.Visible = false;
-            // 
-            // custPhoneDataGridViewTextBoxColumn
-            // 
-            this.custPhoneDataGridViewTextBoxColumn.DataPropertyName = "CustPhone";
-            this.custPhoneDataGridViewTextBoxColumn.HeaderText = "CustPhone";
-            this.custPhoneDataGridViewTextBoxColumn.Name = "custPhoneDataGridViewTextBoxColumn";
-            this.custPhoneDataGridViewTextBoxColumn.ReadOnly = true;
-            this.custPhoneDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // contractBindingSource
-            // 
-            this.contractBindingSource.DataSource = typeof(SCPrime.Model.Contract);
+            this.gridContract.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridContract_CellContentClick);
+            this.gridContract.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridContract_CellDoubleClick);
             // 
             // panel2
             // 
@@ -636,6 +491,153 @@
             this.testToolStripMenuItem.Text = "Test";
             this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
             // 
+            // colCcontractOID
+            // 
+            this.colCcontractOID.DataPropertyName = "ContractOID";
+            this.colCcontractOID.HeaderText = "ContractOID";
+            this.colCcontractOID.Name = "colCcontractOID";
+            this.colCcontractOID.ReadOnly = true;
+            // 
+            // contractNoDataGridViewTextBoxColumn
+            // 
+            this.contractNoDataGridViewTextBoxColumn.DataPropertyName = "ContractNo";
+            this.contractNoDataGridViewTextBoxColumn.HeaderText = "ContractNo";
+            this.contractNoDataGridViewTextBoxColumn.Name = "contractNoDataGridViewTextBoxColumn";
+            this.contractNoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // versionNoDataGridViewTextBoxColumn
+            // 
+            this.versionNoDataGridViewTextBoxColumn.DataPropertyName = "VersionNo";
+            this.versionNoDataGridViewTextBoxColumn.HeaderText = "VersionNo";
+            this.versionNoDataGridViewTextBoxColumn.Name = "versionNoDataGridViewTextBoxColumn";
+            this.versionNoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // extContractNoDataGridViewTextBoxColumn
+            // 
+            this.extContractNoDataGridViewTextBoxColumn.DataPropertyName = "ExtContractNo";
+            this.extContractNoDataGridViewTextBoxColumn.HeaderText = "ExtContractNo";
+            this.extContractNoDataGridViewTextBoxColumn.Name = "extContractNoDataGridViewTextBoxColumn";
+            this.extContractNoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // createdDataGridViewTextBoxColumn
+            // 
+            this.createdDataGridViewTextBoxColumn.DataPropertyName = "Created";
+            this.createdDataGridViewTextBoxColumn.HeaderText = "Created";
+            this.createdDataGridViewTextBoxColumn.Name = "createdDataGridViewTextBoxColumn";
+            this.createdDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // modifiedDataGridViewTextBoxColumn
+            // 
+            this.modifiedDataGridViewTextBoxColumn.DataPropertyName = "Modified";
+            this.modifiedDataGridViewTextBoxColumn.HeaderText = "Modified";
+            this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
+            this.modifiedDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // lastInvoiceDateDataGridViewTextBoxColumn
+            // 
+            this.lastInvoiceDateDataGridViewTextBoxColumn.DataPropertyName = "LastInvoiceDate";
+            this.lastInvoiceDateDataGridViewTextBoxColumn.HeaderText = "LastInvoiceDate";
+            this.lastInvoiceDateDataGridViewTextBoxColumn.Name = "lastInvoiceDateDataGridViewTextBoxColumn";
+            this.lastInvoiceDateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nextInvoiceDateDataGridViewTextBoxColumn
+            // 
+            this.nextInvoiceDateDataGridViewTextBoxColumn.DataPropertyName = "NextInvoiceDate";
+            this.nextInvoiceDateDataGridViewTextBoxColumn.HeaderText = "NextInvoiceDate";
+            this.nextInvoiceDateDataGridViewTextBoxColumn.Name = "nextInvoiceDateDataGridViewTextBoxColumn";
+            this.nextInvoiceDateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // isManualInvoiceDataGridViewCheckBoxColumn
+            // 
+            this.isManualInvoiceDataGridViewCheckBoxColumn.DataPropertyName = "IsManualInvoice";
+            this.isManualInvoiceDataGridViewCheckBoxColumn.HeaderText = "IsManualInvoice";
+            this.isManualInvoiceDataGridViewCheckBoxColumn.Name = "isManualInvoiceDataGridViewCheckBoxColumn";
+            this.isManualInvoiceDataGridViewCheckBoxColumn.ReadOnly = true;
+            // 
+            // invoiceCustIdDataGridViewTextBoxColumn
+            // 
+            this.invoiceCustIdDataGridViewTextBoxColumn.DataPropertyName = "InvoiceCustId";
+            this.invoiceCustIdDataGridViewTextBoxColumn.HeaderText = "InvoiceCustId";
+            this.invoiceCustIdDataGridViewTextBoxColumn.Name = "invoiceCustIdDataGridViewTextBoxColumn";
+            this.invoiceCustIdDataGridViewTextBoxColumn.ReadOnly = true;
+            this.invoiceCustIdDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // respSmanIdDataGridViewTextBoxColumn
+            // 
+            this.respSmanIdDataGridViewTextBoxColumn.DataPropertyName = "RespSmanId";
+            this.respSmanIdDataGridViewTextBoxColumn.HeaderText = "RespSmanId";
+            this.respSmanIdDataGridViewTextBoxColumn.Name = "respSmanIdDataGridViewTextBoxColumn";
+            this.respSmanIdDataGridViewTextBoxColumn.ReadOnly = true;
+            this.respSmanIdDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // careSmanIdDataGridViewTextBoxColumn
+            // 
+            this.careSmanIdDataGridViewTextBoxColumn.DataPropertyName = "CareSmanId";
+            this.careSmanIdDataGridViewTextBoxColumn.HeaderText = "CareSmanId";
+            this.careSmanIdDataGridViewTextBoxColumn.Name = "careSmanIdDataGridViewTextBoxColumn";
+            this.careSmanIdDataGridViewTextBoxColumn.ReadOnly = true;
+            this.careSmanIdDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // isBodyInclDataGridViewCheckBoxColumn
+            // 
+            this.isBodyInclDataGridViewCheckBoxColumn.DataPropertyName = "IsBodyIncl";
+            this.isBodyInclDataGridViewCheckBoxColumn.HeaderText = "IsBodyIncl";
+            this.isBodyInclDataGridViewCheckBoxColumn.Name = "isBodyInclDataGridViewCheckBoxColumn";
+            this.isBodyInclDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.isBodyInclDataGridViewCheckBoxColumn.Visible = false;
+            // 
+            // isTailLiftInclDataGridViewCheckBoxColumn
+            // 
+            this.isTailLiftInclDataGridViewCheckBoxColumn.DataPropertyName = "IsTailLiftIncl";
+            this.isTailLiftInclDataGridViewCheckBoxColumn.HeaderText = "IsTailLiftIncl";
+            this.isTailLiftInclDataGridViewCheckBoxColumn.Name = "isTailLiftInclDataGridViewCheckBoxColumn";
+            this.isTailLiftInclDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.isTailLiftInclDataGridViewCheckBoxColumn.Visible = false;
+            // 
+            // isCoolingInclDataGridViewCheckBoxColumn
+            // 
+            this.isCoolingInclDataGridViewCheckBoxColumn.DataPropertyName = "IsCoolingIncl";
+            this.isCoolingInclDataGridViewCheckBoxColumn.HeaderText = "IsCoolingIncl";
+            this.isCoolingInclDataGridViewCheckBoxColumn.Name = "isCoolingInclDataGridViewCheckBoxColumn";
+            this.isCoolingInclDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.isCoolingInclDataGridViewCheckBoxColumn.Visible = false;
+            // 
+            // isCraneInclDataGridViewCheckBoxColumn
+            // 
+            this.isCraneInclDataGridViewCheckBoxColumn.DataPropertyName = "IsCraneIncl";
+            this.isCraneInclDataGridViewCheckBoxColumn.HeaderText = "IsCraneIncl";
+            this.isCraneInclDataGridViewCheckBoxColumn.Name = "isCraneInclDataGridViewCheckBoxColumn";
+            this.isCraneInclDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.isCraneInclDataGridViewCheckBoxColumn.Visible = false;
+            // 
+            // riskLevelDataGridViewTextBoxColumn
+            // 
+            this.riskLevelDataGridViewTextBoxColumn.DataPropertyName = "RiskLevel";
+            this.riskLevelDataGridViewTextBoxColumn.HeaderText = "RiskLevel";
+            this.riskLevelDataGridViewTextBoxColumn.Name = "riskLevelDataGridViewTextBoxColumn";
+            this.riskLevelDataGridViewTextBoxColumn.ReadOnly = true;
+            this.riskLevelDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // isInvoiceDetailDataGridViewCheckBoxColumn
+            // 
+            this.isInvoiceDetailDataGridViewCheckBoxColumn.DataPropertyName = "IsInvoiceDetail";
+            this.isInvoiceDetailDataGridViewCheckBoxColumn.HeaderText = "IsInvoiceDetail";
+            this.isInvoiceDetailDataGridViewCheckBoxColumn.Name = "isInvoiceDetailDataGridViewCheckBoxColumn";
+            this.isInvoiceDetailDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.isInvoiceDetailDataGridViewCheckBoxColumn.Visible = false;
+            // 
+            // custPhoneDataGridViewTextBoxColumn
+            // 
+            this.custPhoneDataGridViewTextBoxColumn.DataPropertyName = "CustPhone";
+            this.custPhoneDataGridViewTextBoxColumn.HeaderText = "CustPhone";
+            this.custPhoneDataGridViewTextBoxColumn.Name = "custPhoneDataGridViewTextBoxColumn";
+            this.custPhoneDataGridViewTextBoxColumn.ReadOnly = true;
+            this.custPhoneDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // contractBindingSource
+            // 
+            this.contractBindingSource.DataSource = typeof(SCPrime.Model.Contract);
+            // 
             // SCMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -650,13 +652,13 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridContract)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.contractBindingSource)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.menuStrip3.ResumeLayout(false);
             this.menuStrip3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.contractBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -712,7 +714,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn invCustNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn custEmailDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource contractBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn contractOIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCcontractOID;
         private System.Windows.Forms.DataGridViewTextBoxColumn contractNoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn versionNoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn extContractNoDataGridViewTextBoxColumn;
@@ -731,7 +734,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn riskLevelDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isInvoiceDetailDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn custPhoneDataGridViewTextBoxColumn;
-        private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
     }
 }
 

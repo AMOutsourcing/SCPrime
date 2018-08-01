@@ -69,16 +69,8 @@
             this.txtInvoiceCusNr = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.dgvSubcontract = new System.Windows.Forms.DataGridView();
-            this.colOID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSuplNoVal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSuplName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSubcontractNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colInfo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colExpl = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDateLimit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colKmLimit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colBuyPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.subContractorContractBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label18 = new System.Windows.Forms.Label();
             this.btnNewSubcontractor = new System.Windows.Forms.Button();
             this.btnDelSubcontractor = new System.Windows.Forms.Button();
@@ -119,14 +111,23 @@
             this.txtEmployeeID2 = new System.Windows.Forms.TextBox();
             this.label32 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.colOID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSubcontractNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colInfo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colExpl = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDateLimit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colKmLimit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colBuyPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.subContractorContractBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label33 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSubcontract)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.subContractorContractBindingSource)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSelfContract)).BeginInit();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.subContractorContractBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -507,12 +508,6 @@
             this.dgvSubcontract.TabIndex = 30;
             this.dgvSubcontract.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSubcontract_CellValidated);
             // 
-            // colOID
-            // 
-            this.colOID.DataPropertyName = "OID";
-            this.colOID.HeaderText = "OID";
-            this.colOID.Name = "colOID";
-            // 
             // colSuplNoVal
             // 
             this.colSuplNoVal.DataPropertyName = "SuplNoVal";
@@ -524,46 +519,6 @@
             this.colSuplName.DataPropertyName = "SuplName";
             this.colSuplName.HeaderText = "SuplName";
             this.colSuplName.Name = "colSuplName";
-            // 
-            // colSubcontractNo
-            // 
-            this.colSubcontractNo.DataPropertyName = "SubcontractNo";
-            this.colSubcontractNo.HeaderText = "Contract Nr";
-            this.colSubcontractNo.Name = "colSubcontractNo";
-            // 
-            // colInfo
-            // 
-            this.colInfo.DataPropertyName = "Info";
-            this.colInfo.HeaderText = "Info";
-            this.colInfo.Name = "colInfo";
-            // 
-            // colExpl
-            // 
-            this.colExpl.DataPropertyName = "Expl";
-            this.colExpl.HeaderText = "Description";
-            this.colExpl.Name = "colExpl";
-            // 
-            // colDateLimit
-            // 
-            this.colDateLimit.DataPropertyName = "DateLimit";
-            this.colDateLimit.HeaderText = "Limit date";
-            this.colDateLimit.Name = "colDateLimit";
-            // 
-            // colKmLimit
-            // 
-            this.colKmLimit.DataPropertyName = "KmLimit";
-            this.colKmLimit.HeaderText = "Limit km";
-            this.colKmLimit.Name = "colKmLimit";
-            // 
-            // colBuyPrice
-            // 
-            this.colBuyPrice.DataPropertyName = "BuyPrice";
-            this.colBuyPrice.HeaderText = "Purchase pr";
-            this.colBuyPrice.Name = "colBuyPrice";
-            // 
-            // subContractorContractBindingSource
-            // 
-            this.subContractorContractBindingSource.DataSource = typeof(SCPrime.Model.SubContractorContract);
             // 
             // label18
             // 
@@ -594,6 +549,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label33);
             this.groupBox2.Controls.Add(this.txtContractCusPhone);
             this.groupBox2.Controls.Add(this.label19);
             this.groupBox2.Controls.Add(this.txtContractCusEmail);
@@ -943,6 +899,61 @@
             this.pictureBox1.TabIndex = 48;
             this.pictureBox1.TabStop = false;
             // 
+            // colOID
+            // 
+            this.colOID.DataPropertyName = "OID";
+            this.colOID.HeaderText = "OID";
+            this.colOID.Name = "colOID";
+            // 
+            // colSubcontractNo
+            // 
+            this.colSubcontractNo.DataPropertyName = "SubcontractNo";
+            this.colSubcontractNo.HeaderText = "Contract Nr";
+            this.colSubcontractNo.Name = "colSubcontractNo";
+            // 
+            // colInfo
+            // 
+            this.colInfo.DataPropertyName = "Info";
+            this.colInfo.HeaderText = "Info";
+            this.colInfo.Name = "colInfo";
+            // 
+            // colExpl
+            // 
+            this.colExpl.DataPropertyName = "Expl";
+            this.colExpl.HeaderText = "Description";
+            this.colExpl.Name = "colExpl";
+            // 
+            // colDateLimit
+            // 
+            this.colDateLimit.DataPropertyName = "DateLimit";
+            this.colDateLimit.HeaderText = "Limit date";
+            this.colDateLimit.Name = "colDateLimit";
+            // 
+            // colKmLimit
+            // 
+            this.colKmLimit.DataPropertyName = "KmLimit";
+            this.colKmLimit.HeaderText = "Limit km";
+            this.colKmLimit.Name = "colKmLimit";
+            // 
+            // colBuyPrice
+            // 
+            this.colBuyPrice.DataPropertyName = "BuyPrice";
+            this.colBuyPrice.HeaderText = "Purchase pr";
+            this.colBuyPrice.Name = "colBuyPrice";
+            // 
+            // subContractorContractBindingSource
+            // 
+            this.subContractorContractBindingSource.DataSource = typeof(SCPrime.Model.SubContractorContract);
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(17, 90);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(32, 13);
+            this.label33.TabIndex = 41;
+            this.label33.Text = "Email";
+            // 
             // HeaderControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -995,7 +1006,6 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSubcontract)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.subContractorContractBindingSource)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -1004,6 +1014,7 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.subContractorContractBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1101,5 +1112,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colDateLimit;
         private System.Windows.Forms.DataGridViewTextBoxColumn colKmLimit;
         private System.Windows.Forms.DataGridViewTextBoxColumn colBuyPrice;
+        public System.Windows.Forms.Label label33;
     }
 }
