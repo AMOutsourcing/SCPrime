@@ -728,6 +728,45 @@ namespace SCPrime.Model
             }
             return bRet;
         }
+
+        //longdq add 01082018
+        public static  bool checkContractVariant(int ContractCustId)
+        {
+            bool ret = false;
+           
+            clsSqlFactory hSql = new clsSqlFactory();
+            string strSql = "select COUNT(distinct(versionNo)) as count from dbo.ZSC_Contract a where a.ContractCustId = ?";
+            try
+            {
+
+                hSql.NewCommand(strSql);
+                hSql.Com.Parameters.AddWithValue("ContractCustId", ContractCustId);
+                hSql.ExecuteReader();
+                while (hSql.Read())
+                {
+                    //  SubContractorContract sc = new SubContractorContract();
+                   int result = hSql.Reader.GetInt32(0);
+                    if (result > 0)
+                        ret = true;
+                    else
+                        ret = false;
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                hSql.Close();
+            }
+
+
+            return ret;
+
+        }
         //ThuyetLV Add
         public String Status
         {

@@ -75,6 +75,7 @@
             this.btnNewSubcontractor = new System.Windows.Forms.Button();
             this.btnDelSubcontractor = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label33 = new System.Windows.Forms.Label();
             this.txtContractCusPhone = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.txtContractCusEmail = new System.Windows.Forms.TextBox();
@@ -119,7 +120,6 @@
             this.colKmLimit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colBuyPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.subContractorContractBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.label33 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSubcontract)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -296,6 +296,7 @@
             // chkContractVariant
             // 
             this.chkContractVariant.AutoSize = true;
+            this.chkContractVariant.Enabled = false;
             this.chkContractVariant.Location = new System.Drawing.Point(263, 143);
             this.chkContractVariant.Name = "chkContractVariant";
             this.chkContractVariant.Size = new System.Drawing.Size(134, 17);
@@ -566,6 +567,15 @@
             this.groupBox2.TabIndex = 41;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Contract customer";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(17, 90);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(32, 13);
+            this.label33.TabIndex = 41;
+            this.label33.Text = "Email";
             // 
             // txtContractCusPhone
             // 
@@ -944,15 +954,6 @@
             // subContractorContractBindingSource
             // 
             this.subContractorContractBindingSource.DataSource = typeof(SCPrime.Model.SubContractorContract);
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(17, 90);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(32, 13);
-            this.label33.TabIndex = 41;
-            this.label33.Text = "Email";
             // 
             // HeaderControl
             // 

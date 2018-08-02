@@ -110,7 +110,7 @@ namespace SCPrime.Contracts
             cc.Email = searhCustomer.CustEmail;
             cc.Phone = searhCustomer.CustPhone;
 
-            if (! string.IsNullOrEmpty(searhCustomer.Custno))
+            if (!string.IsNullOrEmpty(searhCustomer.Custno))
             {
                 this.txtInvoiceCusNr.Text = searhCustomer.Custno;
                 this.txtInvoiceCusName.Text = searhCustomer.CustName;
@@ -139,7 +139,7 @@ namespace SCPrime.Contracts
             cc.Email = searhCustomer.CustEmail;
             cc.Phone = searhCustomer.CustPhone;
 
-           
+
             if (!string.IsNullOrEmpty(searhCustomer.Custno))
             {
                 this.txtContractCusNr.Text = searhCustomer.Custno;
@@ -239,7 +239,5 @@ namespace SCPrime.Contracts
         {
             MessageBox.Show("Test");
         }
-
-
     }
 }

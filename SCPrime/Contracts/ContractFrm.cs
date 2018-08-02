@@ -63,7 +63,7 @@ namespace SCPrime.Contracts
             }
             this.loadComboboxData();
             this.loadContractData();
-            this.loadCustomerEmployee();
+            // this.loadCustomerEmployee();
         }
 
         private void cbxValidWorkshop_SelectedIndexChanged(object sender, EventArgs e)
@@ -412,9 +412,12 @@ namespace SCPrime.Contracts
 
             this.headerControl1.cbxContractType.SelectedValue = objContract.ContractTypeOID;
 
+            this.headerControl1.chkContractVariant.Checked = Contract.checkContractVariant(objContract.ContractCustId.CustId);
+
 
             this.loadDetail();
             this.addSupplierCbx();
+            this.loadCustomerEmployee();
 
 
         }
@@ -448,7 +451,7 @@ namespace SCPrime.Contracts
             //load Responsible Employee
             ContractEmployee ces = new ContractEmployee();
             ces = objContract.RespSmanId;
-            if(ces != null)
+            if (ces != null)
             {
                 this.headerControl1.txtEmployeeID1.Text = ces.SmanId.ToString();
                 this.headerControl1.txtEmployeeName1.Text = ces.Name;
@@ -615,10 +618,15 @@ namespace SCPrime.Contracts
             vehicleDataTab.setContract(objContract);
             vehicleDataTab.fillDataVehicle();
         }
+        public void updateContract()
+        {
+            objContract.ExtContractNo = this.headerControl1.txtExtContractNr.Text;
+        }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            // objContract.VehiId.VehiId = 320;
+            this.updateContract();
+
             if (objContract.VehiId.VehiId <= 0)
             {
                 // MessageBox.Show("Select Vehicle");
@@ -627,6 +635,64 @@ namespace SCPrime.Contracts
             bool tmp = false;
             tmp = objContract.saveContract();
             MessageBox.Show(tmp.ToString());
+        }
+
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Do you want to create new version?", "Warning", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                if (objContract.ContractOID != 0)
+                {
+                    // get old object 
+                    Contract oldContract = new Contract();
+                    oldContract = SCBase.searchContracts(SCMain.ContractOid);
+                    //update status old then save
+                    oldContract.ContractStatus = ContractStatus.Deactivated;
+                    oldContract.saveContract();
+
+                    //  new object
+                    objContract.ContractOID = 0;
+                    objContract.VersionNo = objContract.VersionNo + 1;
+                    this.updateContract();
+                    bool tmp = objContract.saveContract();
+                    if (tmp)
+                    {
+                        this.loadComboboxData();
+                        this.loadContractData();
+                    }
+                }
+            }
+            else
+            {
+                //MessageBox.Show("Ha ha");
+            }
+        }
+
+        private void btnCopy_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Do you want to copy this contract?", "Warning", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                if (objContract.ContractOID != 0)
+                {
+                    //  new object
+                    objContract.ContractOID = 0;
+                    objContract.ContractNo = 0;
+                    //objContract.VersionNo =  1;
+                   // this.updateContract();
+                    bool tmp = objContract.saveContract();
+                    if (tmp)
+                    {
+                        this.loadComboboxData();
+                        this.loadContractData();
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Ha ha");
+            }
         }
     }
 }
