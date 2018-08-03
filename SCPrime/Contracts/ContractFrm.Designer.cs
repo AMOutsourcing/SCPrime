@@ -69,7 +69,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(932, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(104, 759);
+            this.panel1.Size = new System.Drawing.Size(104, 753);
             this.panel1.TabIndex = 0;
             // 
             // btnCopy
@@ -152,7 +152,7 @@
             // 
             this.tabRemarks.Location = new System.Drawing.Point(4, 22);
             this.tabRemarks.Name = "tabRemarks";
-            this.tabRemarks.Size = new System.Drawing.Size(951, 674);
+            this.tabRemarks.Size = new System.Drawing.Size(924, 733);
             this.tabRemarks.TabIndex = 5;
             this.tabRemarks.Text = "Remarks";
             this.tabRemarks.UseVisualStyleBackColor = true;
@@ -161,7 +161,7 @@
             // 
             this.tabInvoices.Location = new System.Drawing.Point(4, 22);
             this.tabInvoices.Name = "tabInvoices";
-            this.tabInvoices.Size = new System.Drawing.Size(951, 674);
+            this.tabInvoices.Size = new System.Drawing.Size(924, 733);
             this.tabInvoices.TabIndex = 4;
             this.tabInvoices.Text = "Invoices";
             this.tabInvoices.UseVisualStyleBackColor = true;
@@ -170,7 +170,7 @@
             // 
             this.tabContractData.Location = new System.Drawing.Point(4, 22);
             this.tabContractData.Name = "tabContractData";
-            this.tabContractData.Size = new System.Drawing.Size(951, 674);
+            this.tabContractData.Size = new System.Drawing.Size(924, 733);
             this.tabContractData.TabIndex = 3;
             this.tabContractData.Text = "Contract data";
             this.tabContractData.UseVisualStyleBackColor = true;
@@ -181,7 +181,7 @@
             this.tabOptions.Location = new System.Drawing.Point(4, 22);
             this.tabOptions.Name = "tabOptions";
             this.tabOptions.Padding = new System.Windows.Forms.Padding(3);
-            this.tabOptions.Size = new System.Drawing.Size(951, 674);
+            this.tabOptions.Size = new System.Drawing.Size(924, 733);
             this.tabOptions.TabIndex = 2;
             this.tabOptions.Text = "Options";
             this.tabOptions.UseVisualStyleBackColor = true;
@@ -191,7 +191,7 @@
             this.contractOption1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.contractOption1.Location = new System.Drawing.Point(3, 3);
             this.contractOption1.Name = "contractOption1";
-            this.contractOption1.Size = new System.Drawing.Size(945, 668);
+            this.contractOption1.Size = new System.Drawing.Size(918, 727);
             this.contractOption1.TabIndex = 0;
             // 
             // tabHeader
@@ -200,7 +200,7 @@
             this.tabHeader.Location = new System.Drawing.Point(4, 22);
             this.tabHeader.Name = "tabHeader";
             this.tabHeader.Padding = new System.Windows.Forms.Padding(3);
-            this.tabHeader.Size = new System.Drawing.Size(924, 733);
+            this.tabHeader.Size = new System.Drawing.Size(924, 727);
             this.tabHeader.TabIndex = 1;
             this.tabHeader.Text = "Header";
             this.tabHeader.UseVisualStyleBackColor = true;
@@ -211,7 +211,7 @@
             this.headerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.headerControl1.Location = new System.Drawing.Point(3, 3);
             this.headerControl1.Name = "headerControl1";
-            this.headerControl1.Size = new System.Drawing.Size(918, 727);
+            this.headerControl1.Size = new System.Drawing.Size(918, 721);
             this.headerControl1.TabIndex = 0;
             // 
             // tabControl1
@@ -226,7 +226,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(932, 759);
+            this.tabControl1.Size = new System.Drawing.Size(932, 753);
             this.tabControl1.TabIndex = 1;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl1_Selected);
@@ -237,7 +237,7 @@
             this.tabVehicle.Location = new System.Drawing.Point(4, 22);
             this.tabVehicle.Name = "tabVehicle";
             this.tabVehicle.Padding = new System.Windows.Forms.Padding(3);
-            this.tabVehicle.Size = new System.Drawing.Size(951, 674);
+            this.tabVehicle.Size = new System.Drawing.Size(924, 733);
             this.tabVehicle.TabIndex = 6;
             this.tabVehicle.Text = "Vehicle data";
             this.tabVehicle.UseVisualStyleBackColor = true;
@@ -248,7 +248,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(945, 668);
+            this.panel2.Size = new System.Drawing.Size(918, 727);
             this.panel2.TabIndex = 1;
             // 
             // vehicleDataTab
@@ -256,14 +256,14 @@
             this.vehicleDataTab.Dock = System.Windows.Forms.DockStyle.Fill;
             this.vehicleDataTab.Location = new System.Drawing.Point(0, 0);
             this.vehicleDataTab.Name = "vehicleDataTab";
-            this.vehicleDataTab.Size = new System.Drawing.Size(945, 668);
+            this.vehicleDataTab.Size = new System.Drawing.Size(918, 727);
             this.vehicleDataTab.TabIndex = 0;
             // 
             // ContractFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1036, 759);
+            this.ClientSize = new System.Drawing.Size(1036, 753);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel1);
             this.Name = "ContractFrm";

@@ -26,6 +26,7 @@ namespace SCPrime.Contracts
         public List<SCContractType> contractType;
         public List<clsBaseListItem> costCenterList = new List<clsBaseListItem>();
         public List<clsBaseListItem> ws = new List<clsBaseListItem>();
+        private int subOid = 0;
 
         //public static ContractFrm instance
         //{
@@ -45,13 +46,16 @@ namespace SCPrime.Contracts
             InitializeComponent();
             Sender = new SendStatus(GetStatus);
             updateEmployee = new SearchEmployee(UpdateEmployee);
-            this.headerControl1.cbxContractType.SelectedIndexChanged += new System.EventHandler(this.headerControl1.cbxContractType_SelectedIndexChanged);
+         
             this.headerControl1.btnNewSubcontractor.Click += new System.EventHandler(this.btnNewSubcontractor_click);
             this.headerControl1.dgvSubcontract.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSubcontract_CellValidated);
             this.headerControl1.txtContractStatus.TextChanged += new System.EventHandler(this.updat_satatus);
             this.headerControl1.cbxResponsibleSite.SelectedIndexChanged += new System.EventHandler(this.cbxResponsibleSite_SelectedIndexChanged);
             this.headerControl1.cbxCostcenter.SelectedIndexChanged += new System.EventHandler(this.cbxCostcenter_SelectedIndexChanged);
             this.headerControl1.cbxValidWorkshop.SelectedIndexChanged += new System.EventHandler(this.cbxValidWorkshop_SelectedIndexChanged);
+            //this.headerControl1.cbxContractType.SelectedIndexChanged += new System.EventHandler(this.cbxContractType_SelectedIndexChanged);
+            this.headerControl1.cbxContractType.DropDownClosed += new System.EventHandler(this.cbxContractType_DropDownClosed);
+            this.headerControl1.cbxContractType.KeyUp += new KeyEventHandler(this.cbxContractType_DropDownClosed);
 
             if (SCMain.ContractOid > 0)
             {
@@ -64,6 +68,30 @@ namespace SCPrime.Contracts
             this.loadComboboxData();
             this.loadContractData();
             // this.loadCustomerEmployee();
+        }
+
+        private void cbxContractType_DropDownClosed(object sender, EventArgs e)
+        {
+            if (this.headerControl1.cbxContractType.SelectedValue != null)
+            {
+                SCContractType ct = (SCContractType)this.headerControl1.cbxContractType.SelectedItem;
+                if (ct != null)
+                {
+                    if (ct.isInvoice)
+                    {
+                        this.headerControl1.chkInvoiceToCus.Checked = true;
+                        this.headerControl1.chkInvoiceToCus.ForeColor = SystemColors.ControlText;
+                    }
+                    else
+                    {
+                        this.headerControl1.chkInvoiceToCus.Checked = false;
+                        this.headerControl1.chkInvoiceToCus.ForeColor = SystemColors.ControlText;
+                    }
+                    //update contract Type
+                    objContract.ContractTypeOID = ct;
+                   // this.headerControl1.cbxContractType.SelectedItem = ct;
+                }
+            }
         }
 
         private void cbxValidWorkshop_SelectedIndexChanged(object sender, EventArgs e)
@@ -175,7 +203,7 @@ namespace SCPrime.Contracts
             if (tmp)
                 sc.OID = number;
             else
-                sc.OID = -1;
+                sc.OID = 0;
 
             sc.SubcontractNo = row.Cells["colSubcontractNo"].Value != null ? row.Cells["colSubcontractNo"].Value.ToString() : "";
             sc.Info = row.Cells["colInfo"].Value != null ? row.Cells["colInfo"].Value.ToString() : "";
@@ -213,7 +241,10 @@ namespace SCPrime.Contracts
         private void btnNewSubcontractor_click(object sender, EventArgs e)
         {
             //MessageBox.Show("Test");
-            objContract.SubContracts.Add(new SubContractorContract());
+            SubContractorContract tmp = new SubContractorContract();
+            subOid--;
+            tmp.OID = subOid ;
+            objContract.SubContracts.Add(tmp);
             var source = new BindingSource();
             source.DataSource = objContract.SubContracts;
             this.headerControl1.dgvSubcontract.DataSource = source;
@@ -322,6 +353,14 @@ namespace SCPrime.Contracts
             //this.loadContractData();
 
         }
+        public SCContractType findContracTypeByOiD(int oid, List<SCContractType> list)
+        {
+            SCContractType sc = new SCContractType();
+
+            sc = list.SingleOrDefault(x => x.OID == oid);
+
+            return sc;
+        }
         public void loadComboboxData()
         {
             SCBase sc = new SCBase();
@@ -350,11 +389,11 @@ namespace SCPrime.Contracts
                 this.headerControl1.cbxContractType.DataSource = contractType;
                 this.headerControl1.cbxContractType.ValueMember = "OID";
                 this.headerControl1.cbxContractType.DisplayMember = "Name";
-                this.headerControl1.cbxContractType.SelectedItem = contractType[0];
+                //this.headerControl1.cbxContractType.SelectedItem = contractType[0];
 
                 if (objContract.ContractTypeOID != null)
                 {
-                    this.headerControl1.cbxContractType.SelectedValue = objContract.ContractTypeOID.OID;
+                    this.headerControl1.cbxContractType.SelectedItem = this.findContracTypeByOiD(objContract.ContractTypeOID.OID,contractType); 
                 }
             }
 
@@ -413,7 +452,7 @@ namespace SCPrime.Contracts
             this.headerControl1.txtChanged.Text = objContract.Modified.ToString();
             this.headerControl1.txtLastInvoice.Text = objContract.LastInvoiceDate.ToString();
 
-            this.headerControl1.cbxContractType.SelectedValue = objContract.ContractTypeOID;
+            //this.headerControl1.cbxContractType.SelectedValue = objContract.ContractTypeOID;
 
             this.headerControl1.chkContractVariant.Checked = Contract.checkContractVariant(objContract.ContractCustId.CustId);
 

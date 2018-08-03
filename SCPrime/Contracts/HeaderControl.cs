@@ -194,26 +194,25 @@ namespace SCPrime.Contracts
 
         public void cbxContractType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.cbxContractType.SelectedValue != null)
-            {
-                SCContractType ct = (SCContractType)this.cbxContractType.SelectedItem;
-                if (ct != null)
-                {
-                    if (ct.isInvoice)
-                    {
-                        this.chkInvoiceToCus.Checked = true;
-                        this.chkInvoiceToCus.ForeColor = SystemColors.ControlText;
-                    }
-                    else
-                    {
-                        this.chkInvoiceToCus.Checked = false;
-                        this.chkInvoiceToCus.ForeColor = SystemColors.ControlText;
-                    }
-                    //update contract Type
-                    ContractFrm.objContract.ContractTypeOID = ct;
-
-                }
-            }
+            //if (this.cbxContractType.SelectedValue != null)
+            //{
+            //    SCContractType ct = (SCContractType)this.cbxContractType.SelectedItem;
+            //    if (ct != null)
+            //    {
+            //        if (ct.isInvoice)
+            //        {
+            //            this.chkInvoiceToCus.Checked = true;
+            //            this.chkInvoiceToCus.ForeColor = SystemColors.ControlText;
+            //        }
+            //        else
+            //        {
+            //            this.chkInvoiceToCus.Checked = false;
+            //            this.chkInvoiceToCus.ForeColor = SystemColors.ControlText;
+            //        }
+            //        //update contract Type
+            //        ContractFrm.objContract.ContractTypeOID = ct;
+            //    }
+            //}
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -240,10 +239,7 @@ namespace SCPrime.Contracts
 
         }
 
-        private void cbxContractType_DataSourceChanged(object sender, EventArgs e)
-        {
-            MessageBox.Show("Test");
-        }
+       
 
         private void btnDelSubcontractor_Click(object sender, EventArgs e)
         {

@@ -429,10 +429,10 @@ namespace SCPrime.Model
                     hSql.Com.Parameters.AddWithValue("OID", s.OID);
                     bRet = bRet && hSql.ExecuteNonQuery();
                 }
-                else
+                else 
                 {
                     //insert new subcontractor
-                    if (!(s.OID > 0))
+                    if (!(s.OID > 0) && !(s.isDeleted))
                     {
                         sql = "insert into ZSC_SubcontractorContract(ContractOID, SuplNo, SubContractNo, Created, Modified, Info, Expl, BuyPr, DateLimit, KMLimit) " +
                            " values (?,?,?,getdate(),getdate(),?,?,?,?,?) ";
@@ -518,10 +518,11 @@ namespace SCPrime.Model
                     hSql.Com.Parameters.AddWithValue("VersionNo", VersionNo);
                     bRet = bRet && hSql.ExecuteReader() && hSql.Read();
                     this.ContractOID = hSql.Reader.GetInt32(0);
-                    //if (SubContracts != null)
-                    //{
-                    //    bRet = bRet && saveSubcontractor(SubContracts, this.ContractOID, hSql);
-                    //}
+                    //longdq03082018
+                    if (SubContracts != null)
+                    {
+                        bRet = bRet && saveSubcontractor(SubContracts, this.ContractOID, hSql);
+                    }
                 }
                 //update data
                 if (ContractOID > 0)
@@ -560,11 +561,6 @@ namespace SCPrime.Model
                     hSql.Com.Parameters.AddWithValue("IsCoolingIncl", IsCoolingIncl);
                     hSql.Com.Parameters.AddWithValue("IsCraneIncl", IsCraneIncl);
 
-                    //longdq 02082018
-                    if (SubContracts != null)
-                    {
-                        bRet = bRet && saveSubcontractor(SubContracts, this.ContractOID, hSql);
-                    }
 
                     if (ContractDateData != null)
                     {
@@ -666,6 +662,12 @@ namespace SCPrime.Model
 
                     hSql.Com.Parameters.AddWithValue("OID", ContractOID);
                     bRet = bRet && hSql.ExecuteNonQuery();
+
+                    //longdq 02082018
+                    if (SubContracts != null)
+                    {
+                        bRet = bRet && saveSubcontractor(SubContracts, this.ContractOID, hSql);
+                    }
                 }
 
                 hSql.Commit();
