@@ -69,8 +69,6 @@
             this.txtInvoiceCusNr = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.dgvSubcontract = new System.Windows.Forms.DataGridView();
-            this.colSuplNoVal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSuplName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label18 = new System.Windows.Forms.Label();
             this.btnNewSubcontractor = new System.Windows.Forms.Button();
             this.btnDelSubcontractor = new System.Windows.Forms.Button();
@@ -112,14 +110,17 @@
             this.txtEmployeeID2 = new System.Windows.Forms.TextBox();
             this.label32 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.subContractorContractBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colOID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSuplNoVal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSuplName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSubcontractNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colInfo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colExpl = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDateLimit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colKmLimit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colBuyPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.subContractorContractBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.colIsDeleted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSubcontract)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -501,25 +502,15 @@
             this.colExpl,
             this.colDateLimit,
             this.colKmLimit,
-            this.colBuyPrice});
+            this.colBuyPrice,
+            this.colIsDeleted});
             this.dgvSubcontract.DataSource = this.subContractorContractBindingSource;
             this.dgvSubcontract.Location = new System.Drawing.Point(3, 470);
             this.dgvSubcontract.Name = "dgvSubcontract";
-            this.dgvSubcontract.Size = new System.Drawing.Size(456, 173);
+            this.dgvSubcontract.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvSubcontract.Size = new System.Drawing.Size(456, 240);
             this.dgvSubcontract.TabIndex = 30;
             this.dgvSubcontract.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSubcontract_CellValidated);
-            // 
-            // colSuplNoVal
-            // 
-            this.colSuplNoVal.DataPropertyName = "SuplNoVal";
-            this.colSuplNoVal.HeaderText = "Supplier1";
-            this.colSuplNoVal.Name = "colSuplNoVal";
-            // 
-            // colSuplName
-            // 
-            this.colSuplName.DataPropertyName = "SuplName";
-            this.colSuplName.HeaderText = "SuplName";
-            this.colSuplName.Name = "colSuplName";
             // 
             // label18
             // 
@@ -547,6 +538,7 @@
             this.btnDelSubcontractor.TabIndex = 43;
             this.btnDelSubcontractor.Text = "Delete";
             this.btnDelSubcontractor.UseVisualStyleBackColor = true;
+            this.btnDelSubcontractor.Click += new System.EventHandler(this.btnDelSubcontractor_Click);
             // 
             // groupBox2
             // 
@@ -773,7 +765,7 @@
             this.dgvSelfContract.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSelfContract.Location = new System.Drawing.Point(471, 470);
             this.dgvSelfContract.Name = "dgvSelfContract";
-            this.dgvSelfContract.Size = new System.Drawing.Size(432, 173);
+            this.dgvSelfContract.Size = new System.Drawing.Size(432, 240);
             this.dgvSelfContract.TabIndex = 44;
             // 
             // label26
@@ -909,11 +901,31 @@
             this.pictureBox1.TabIndex = 48;
             this.pictureBox1.TabStop = false;
             // 
+            // subContractorContractBindingSource
+            // 
+            this.subContractorContractBindingSource.DataSource = typeof(SCPrime.Model.SubContractorContract);
+            // 
             // colOID
             // 
             this.colOID.DataPropertyName = "OID";
             this.colOID.HeaderText = "OID";
             this.colOID.Name = "colOID";
+            this.colOID.ReadOnly = true;
+            this.colOID.Width = 40;
+            // 
+            // colSuplNoVal
+            // 
+            this.colSuplNoVal.DataPropertyName = "SuplNoVal";
+            this.colSuplNoVal.HeaderText = "Supplier";
+            this.colSuplNoVal.Name = "colSuplNoVal";
+            this.colSuplNoVal.Visible = false;
+            // 
+            // colSuplName
+            // 
+            this.colSuplName.DataPropertyName = "SuplName";
+            this.colSuplName.HeaderText = "SuplName";
+            this.colSuplName.Name = "colSuplName";
+            this.colSuplName.Visible = false;
             // 
             // colSubcontractNo
             // 
@@ -951,9 +963,12 @@
             this.colBuyPrice.HeaderText = "Purchase pr";
             this.colBuyPrice.Name = "colBuyPrice";
             // 
-            // subContractorContractBindingSource
+            // colIsDeleted
             // 
-            this.subContractorContractBindingSource.DataSource = typeof(SCPrime.Model.SubContractorContract);
+            this.colIsDeleted.DataPropertyName = "isDeleted";
+            this.colIsDeleted.HeaderText = "isDeleted";
+            this.colIsDeleted.Name = "colIsDeleted";
+            this.colIsDeleted.Visible = false;
             // 
             // HeaderControl
             // 
@@ -1002,7 +1017,7 @@
             this.Controls.Add(this.txtContractStatus);
             this.Controls.Add(this.label1);
             this.Name = "HeaderControl";
-            this.Size = new System.Drawing.Size(920, 656);
+            this.Size = new System.Drawing.Size(923, 723);
             this.Load += new System.EventHandler(this.HeaderControl_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -1104,6 +1119,7 @@
         public System.Windows.Forms.Label label32;
         public System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.BindingSource subContractorContractBindingSource;
+        public System.Windows.Forms.Label label33;
         private System.Windows.Forms.DataGridViewTextBoxColumn colOID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSuplNoVal;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSuplName;
@@ -1113,6 +1129,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colDateLimit;
         private System.Windows.Forms.DataGridViewTextBoxColumn colKmLimit;
         private System.Windows.Forms.DataGridViewTextBoxColumn colBuyPrice;
-        public System.Windows.Forms.Label label33;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn colIsDeleted;
     }
 }

@@ -150,6 +150,10 @@ namespace SCPrime.Contracts
 
                 ContractFrm.objContract.ContractCustId = cc;
 
+                //check contract Variant
+                bool chk = Contract.checkContractVariant(cc.CustId);
+                this.chkContractVariant.Checked = chk;
+
             }
 
         }
@@ -238,6 +242,23 @@ namespace SCPrime.Contracts
         private void cbxContractType_DataSourceChanged(object sender, EventArgs e)
         {
             MessageBox.Show("Test");
+        }
+
+        private void btnDelSubcontractor_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow r in dgvSubcontract.SelectedRows)
+            {
+                if ((bool)r.Cells["colIsDeleted"].Value)
+                {
+                    r.Cells["colIsDeleted"].Value = false;
+                    ViewUtils.remarkHeader(r, "colIsDeleted");
+                }
+                else
+                {
+                    r.Cells["colIsDeleted"].Value = true;
+                    ViewUtils.remarkHeader(r, "colIsDeleted");
+                }
+            }
         }
     }
 }

@@ -40,6 +40,7 @@
             this.tabRemarks = new System.Windows.Forms.TabPage();
             this.tabInvoices = new System.Windows.Forms.TabPage();
             this.tabContractData = new System.Windows.Forms.TabPage();
+            this.contractDataFrm = new SCPrime.Contracts.ContractDataFrm();
             this.tabOptions = new System.Windows.Forms.TabPage();
             this.contractOption1 = new SCPrime.Contracts.ContractOptionControl();
             this.tabHeader = new System.Windows.Forms.TabPage();
@@ -48,7 +49,12 @@
             this.tabVehicle = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.vehicleDataTab = new SCPrime.Contracts.VehicleTab();
+            this.invoicesFrm = new SCPrime.Contracts.InvoicesFrm();
+            this.remarkFrm = new SCPrime.Contracts.RemarkFrm();
             this.panel1.SuspendLayout();
+            this.tabRemarks.SuspendLayout();
+            this.tabInvoices.SuspendLayout();
+            this.tabContractData.SuspendLayout();
             this.tabOptions.SuspendLayout();
             this.tabHeader.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -150,6 +156,7 @@
             // 
             // tabRemarks
             // 
+            this.tabRemarks.Controls.Add(this.remarkFrm);
             this.tabRemarks.Location = new System.Drawing.Point(4, 22);
             this.tabRemarks.Name = "tabRemarks";
             this.tabRemarks.Size = new System.Drawing.Size(916, 655);
@@ -159,6 +166,7 @@
             // 
             // tabInvoices
             // 
+            this.tabInvoices.Controls.Add(this.invoicesFrm);
             this.tabInvoices.Location = new System.Drawing.Point(4, 22);
             this.tabInvoices.Name = "tabInvoices";
             this.tabInvoices.Size = new System.Drawing.Size(916, 655);
@@ -168,12 +176,21 @@
             // 
             // tabContractData
             // 
+            this.tabContractData.Controls.Add(this.contractDataFrm);
             this.tabContractData.Location = new System.Drawing.Point(4, 22);
             this.tabContractData.Name = "tabContractData";
             this.tabContractData.Size = new System.Drawing.Size(916, 655);
             this.tabContractData.TabIndex = 3;
             this.tabContractData.Text = "Contract data";
             this.tabContractData.UseVisualStyleBackColor = true;
+            // 
+            // contractDataFrm
+            // 
+            this.contractDataFrm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.contractDataFrm.Location = new System.Drawing.Point(0, 0);
+            this.contractDataFrm.Name = "contractDataFrm";
+            this.contractDataFrm.Size = new System.Drawing.Size(916, 655);
+            this.contractDataFrm.TabIndex = 0;
             // 
             // tabOptions
             // 
@@ -258,6 +275,22 @@
             this.vehicleDataTab.Size = new System.Drawing.Size(910, 649);
             this.vehicleDataTab.TabIndex = 0;
             // 
+            // invoicesFrm
+            // 
+            this.invoicesFrm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.invoicesFrm.Location = new System.Drawing.Point(0, 0);
+            this.invoicesFrm.Name = "invoicesFrm";
+            this.invoicesFrm.Size = new System.Drawing.Size(916, 655);
+            this.invoicesFrm.TabIndex = 0;
+            // 
+            // remarkFrm
+            // 
+            this.remarkFrm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.remarkFrm.Location = new System.Drawing.Point(0, 0);
+            this.remarkFrm.Name = "remarkFrm";
+            this.remarkFrm.Size = new System.Drawing.Size(916, 655);
+            this.remarkFrm.TabIndex = 0;
+            // 
             // ContractFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -269,6 +302,9 @@
             this.Text = "Contracts";
             this.Load += new System.EventHandler(this.ContractFrm_Load);
             this.panel1.ResumeLayout(false);
+            this.tabRemarks.ResumeLayout(false);
+            this.tabInvoices.ResumeLayout(false);
+            this.tabContractData.ResumeLayout(false);
             this.tabOptions.ResumeLayout(false);
             this.tabHeader.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
@@ -300,5 +336,8 @@
         private ContractOptionControl contractOption1;
         private VehicleTab vehicleDataTab;
         private System.Windows.Forms.Panel panel2;
+        private ContractDataFrm contractDataFrm;
+        private InvoicesFrm invoicesFrm;
+        private RemarkFrm remarkFrm;
     }
 }
