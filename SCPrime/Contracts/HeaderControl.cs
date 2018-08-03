@@ -148,6 +148,7 @@ namespace SCPrime.Contracts
                 this.txtContractCusEmail.Text = searhCustomer.CustEmail;
                 this.txtContractCusPhone.Text = searhCustomer.CustPhone;
 
+
                 ContractFrm.objContract.ContractCustId = cc;
 
                 //check contract Variant

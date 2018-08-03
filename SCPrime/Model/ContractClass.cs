@@ -518,6 +518,10 @@ namespace SCPrime.Model
                     hSql.Com.Parameters.AddWithValue("VersionNo", VersionNo);
                     bRet = bRet && hSql.ExecuteReader() && hSql.Read();
                     this.ContractOID = hSql.Reader.GetInt32(0);
+                    //if (SubContracts != null)
+                    //{
+                    //    bRet = bRet && saveSubcontractor(SubContracts, this.ContractOID, hSql);
+                    //}
                 }
                 //update data
                 if (ContractOID > 0)
@@ -735,7 +739,7 @@ namespace SCPrime.Model
                     {
                         sc.SuplNo.strValue1 = hSql.Reader.GetString(colId);
                         sc.SuplNoVal = hSql.Reader.GetString(colId);
-                        
+
                         colId = hSql.Reader.GetOrdinal("SuplName");
                         if (!hSql.Reader.IsDBNull(colId))
                         {
@@ -803,10 +807,10 @@ namespace SCPrime.Model
         }
 
         //longdq add 01082018
-        public static  bool checkContractVariant(int ContractCustId)
+        public static bool checkContractVariant(int ContractCustId)
         {
             bool ret = false;
-           
+
             clsSqlFactory hSql = new clsSqlFactory();
             string strSql = "select COUNT(distinct(versionNo)) as count from dbo.ZSC_Contract a where a.ContractCustId = ?";
             try
@@ -818,7 +822,7 @@ namespace SCPrime.Model
                 while (hSql.Read())
                 {
                     //  SubContractorContract sc = new SubContractorContract();
-                   int result = hSql.Reader.GetInt32(0);
+                    int result = hSql.Reader.GetInt32(0);
                     if (result > 0)
                         ret = true;
                     else
@@ -1280,7 +1284,7 @@ namespace SCPrime.Model
                     //item.nValue1 = hSql.Reader.GetInt32(0);
                     item.strValue1 = hSql.Reader.GetString(0);
                     item.strText = hSql.Reader.GetString(1);
-                    
+
                     Result.Add(item);
                 }
             }

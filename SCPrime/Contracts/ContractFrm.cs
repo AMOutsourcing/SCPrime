@@ -186,7 +186,9 @@ namespace SCPrime.Contracts
             }
             sc.KmLimit = row.Cells["colKmLimit"].Value != null ? (int)row.Cells["colKmLimit"].Value : 0;
 
-            var temp = (decimal)0;
+           
+
+                var temp = (decimal)0;
             bool rs = Decimal.TryParse(row.Cells["colBuyPrice"].Value.ToString(), out temp);
             if (rs)
                 sc.BuyPrice = Math.Round(temp, 2);
