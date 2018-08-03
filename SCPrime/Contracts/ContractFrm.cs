@@ -180,14 +180,15 @@ namespace SCPrime.Contracts
             sc.SubcontractNo = row.Cells["colSubcontractNo"].Value != null ? row.Cells["colSubcontractNo"].Value.ToString() : "";
             sc.Info = row.Cells["colInfo"].Value != null ? row.Cells["colInfo"].Value.ToString() : "";
             sc.Expl = row.Cells["colExpl"].Value != null ? row.Cells["colExpl"].Value.ToString() : "";
-            if (row.Cells["colSubcontractNo"].Value != null
-                && !string.IsNullOrEmpty(row.Cells["colSubcontractNo"].Value.ToString().Trim()))
+            if ((DateTime)(row.Cells["colDateLimit"].Value) > DateTime.MinValue )
             {
-                sc.DateLimit = MyUtils.strToDate(row.Cells["colSubcontractNo"].Value.ToString(), objGlobal.CultureInfo);
+                sc.DateLimit = MyUtils.strToDate(row.Cells["colDateLimit"].Value.ToString(), objGlobal.CultureInfo);
             }
             sc.KmLimit = row.Cells["colKmLimit"].Value != null ? (int)row.Cells["colKmLimit"].Value : 0;
 
-            var temp = (decimal)0;
+           
+
+                var temp = (decimal)0;
             bool rs = Decimal.TryParse(row.Cells["colBuyPrice"].Value.ToString(), out temp);
             if (rs)
                 sc.BuyPrice = Math.Round(temp, 2);
@@ -197,6 +198,8 @@ namespace SCPrime.Contracts
 
             sc.SuplNoVal = row.Cells["colSuplNoVal"].Value != null ? row.Cells["colSuplNoVal"].Value.ToString() : "";
             sc.SuplName = row.Cells["colSuplName"].Value != null ? row.Cells["colSuplName"].Value.ToString() : "";
+
+            sc.isDeleted = (bool)row.Cells["colIsDeleted"].Value ;
 
             clsBaseListItem t = new clsBaseListItem();
             t.strValue1 = sc.SuplNoVal;
@@ -635,6 +638,8 @@ namespace SCPrime.Contracts
             bool tmp = false;
             tmp = objContract.saveContract();
             MessageBox.Show(tmp.ToString());
+            this.loadComboboxData();
+            this.loadContractData();
         }
 
         private void btnNew_Click(object sender, EventArgs e)

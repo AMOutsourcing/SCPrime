@@ -303,20 +303,20 @@ namespace SCPrime.Model
     public class SubContractorContract
     {
         public int OID { get; set; }
-        // public clsBaseListItem SuplNo = new clsBaseListItem();
-        public clsBaseListItem SuplNo
-        {
-            get
-            {
-                return this.SuplNo;
-            }
-            set
-            {
+         public clsBaseListItem SuplNo = new clsBaseListItem();
+        //public clsBaseListItem SuplNo
+        //{
+        //    get
+        //    {
+        //        return SuplNo;
+        //    }
+        //    set
+        //    {
+        //        SuplNo = value;
 
-               
-            }
+        //    }
 
-        }
+        //}
         public string SuplNoVal { get; set; }
         public string SuplName { get; set; }
 
@@ -326,6 +326,8 @@ namespace SCPrime.Model
         public DateTime DateLimit { get; set; }
         public int KmLimit { get; set; }
         public Decimal BuyPrice { get; set; }
+
+        public bool isDeleted { get; set; }
 
         public static List<ObjTmp> getSuppliers()
         {
@@ -412,6 +414,69 @@ namespace SCPrime.Model
             SiteId.strValue1 = new clsGlobalVariable().CurrentSiteId;
 
         }
+        public bool saveSubcontractor(List<SubContractorContract> sccs, int contractOid, clsSqlFactory hSql)
+        {
+            bool bRet = true;
+            foreach (SubContractorContract s in sccs)
+            {
+
+                string sql = "";
+                //delete subcontractor
+                if (s.isDeleted && (s.OID > 0))
+                {
+                    sql = "delete from ZSC_SubcontractorContract where OID = ?";
+                    bRet = hSql.NewCommand(sql);
+                    hSql.Com.Parameters.AddWithValue("OID", s.OID);
+                    bRet = bRet && hSql.ExecuteNonQuery();
+                }
+                else
+                {
+                    //insert new subcontractor
+                    if (!(s.OID > 0))
+                    {
+                        sql = "insert into ZSC_SubcontractorContract(ContractOID, SuplNo, SubContractNo, Created, Modified, Info, Expl, BuyPr, DateLimit, KMLimit) " +
+                           " values (?,?,?,getdate(),getdate(),?,?,?,?,?) ";
+
+                        bRet = hSql.NewCommand(sql);
+                        hSql.Com.Parameters.AddWithValue("ContractOID", contractOid);
+                        hSql.Com.Parameters.AddWithValue("SuplNo", s.SuplNoVal);
+                        hSql.Com.Parameters.AddWithValue("SubContractNo", s.SubcontractNo);
+                        hSql.Com.Parameters.AddWithValue("Info", s.Info);
+                        hSql.Com.Parameters.AddWithValue("Expl", s.Expl);
+                        hSql.Com.Parameters.AddWithValue("BuyPr", s.BuyPrice);
+                        if (s.DateLimit != null && s.DateLimit > DateTime.MinValue)
+                            hSql.Com.Parameters.AddWithValue("DateLimit", s.DateLimit);
+                        else
+                            hSql.Com.Parameters.AddWithValue("DateLimit", DBNull.Value);
+                        hSql.Com.Parameters.AddWithValue("KMLimit", s.KmLimit);
+                        bRet = bRet && hSql.ExecuteNonQuery();
+                    }
+
+                    //update
+                    if (s.OID > 0)
+                    {
+                        sql = "update ZSC_SubcontractorContract set Modified = getdate(), ContractOID=?, SuplNo =?, SubContractNo =?, Info =?, Expl =?, BuyPr = ?, DateLimit =?, KMLimit =? where OID =? ";
+                        bRet = hSql.NewCommand(sql);
+                        hSql.Com.Parameters.AddWithValue("ContractOID", contractOid);
+                        hSql.Com.Parameters.AddWithValue("SuplNo", s.SuplNoVal);
+                        hSql.Com.Parameters.AddWithValue("SubContractNo", s.SubcontractNo);
+                        hSql.Com.Parameters.AddWithValue("Info", s.Info);
+                        hSql.Com.Parameters.AddWithValue("Expl", s.Expl);
+                        hSql.Com.Parameters.AddWithValue("BuyPr", s.BuyPrice);
+                        if (s.DateLimit != null && s.DateLimit > DateTime.MinValue)
+                            hSql.Com.Parameters.AddWithValue("DateLimit", s.DateLimit);
+                        else
+                            hSql.Com.Parameters.AddWithValue("DateLimit", DBNull.Value);
+                        hSql.Com.Parameters.AddWithValue("KMLimit", s.KmLimit);
+                        hSql.Com.Parameters.AddWithValue("OID", s.OID);
+                        bRet = bRet && hSql.ExecuteNonQuery();
+                    }
+                }
+
+            }
+            return bRet;
+
+        }
         public bool saveContract()
         {
             bool bRet = true;
@@ -453,6 +518,10 @@ namespace SCPrime.Model
                     hSql.Com.Parameters.AddWithValue("VersionNo", VersionNo);
                     bRet = bRet && hSql.ExecuteReader() && hSql.Read();
                     this.ContractOID = hSql.Reader.GetInt32(0);
+                    //if (SubContracts != null)
+                    //{
+                    //    bRet = bRet && saveSubcontractor(SubContracts, this.ContractOID, hSql);
+                    //}
                 }
                 //update data
                 if (ContractOID > 0)
@@ -490,6 +559,12 @@ namespace SCPrime.Model
                     hSql.Com.Parameters.AddWithValue("IsTailLiftIncl", IsTailLiftIncl);
                     hSql.Com.Parameters.AddWithValue("IsCoolingIncl", IsCoolingIncl);
                     hSql.Com.Parameters.AddWithValue("IsCraneIncl", IsCraneIncl);
+
+                    //longdq 02082018
+                    if (SubContracts != null)
+                    {
+                        bRet = bRet && saveSubcontractor(SubContracts, this.ContractOID, hSql);
+                    }
 
                     if (ContractDateData != null)
                     {
@@ -662,7 +737,7 @@ namespace SCPrime.Model
                     {
                         sc.SuplNo.strValue1 = hSql.Reader.GetString(colId);
                         sc.SuplNoVal = hSql.Reader.GetString(colId);
-                        
+
                         colId = hSql.Reader.GetOrdinal("SuplName");
                         if (!hSql.Reader.IsDBNull(colId))
                         {
@@ -730,10 +805,10 @@ namespace SCPrime.Model
         }
 
         //longdq add 01082018
-        public static  bool checkContractVariant(int ContractCustId)
+        public static bool checkContractVariant(int ContractCustId)
         {
             bool ret = false;
-           
+
             clsSqlFactory hSql = new clsSqlFactory();
             string strSql = "select COUNT(distinct(versionNo)) as count from dbo.ZSC_Contract a where a.ContractCustId = ?";
             try
@@ -745,7 +820,7 @@ namespace SCPrime.Model
                 while (hSql.Read())
                 {
                     //  SubContractorContract sc = new SubContractorContract();
-                   int result = hSql.Reader.GetInt32(0);
+                    int result = hSql.Reader.GetInt32(0);
                     if (result > 0)
                         ret = true;
                     else
@@ -1207,7 +1282,7 @@ namespace SCPrime.Model
                     //item.nValue1 = hSql.Reader.GetInt32(0);
                     item.strValue1 = hSql.Reader.GetString(0);
                     item.strText = hSql.Reader.GetString(1);
-                    
+
                     Result.Add(item);
                 }
             }
