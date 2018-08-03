@@ -652,6 +652,10 @@ namespace SCPrime.Contracts
             {
                 this.loadTree();
             }
+            else if (this.tabControl1.SelectedIndex == 3)
+            {
+                contractDataFrm.setContract(objContract);
+            }
         }
 
         private void loadVehice()

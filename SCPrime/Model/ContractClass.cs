@@ -561,7 +561,6 @@ namespace SCPrime.Model
                     hSql.Com.Parameters.AddWithValue("IsCoolingIncl", IsCoolingIncl);
                     hSql.Com.Parameters.AddWithValue("IsCraneIncl", IsCraneIncl);
 
-
                     if (ContractDateData != null)
                     {
                         hSql.Com.Parameters.AddWithValue("ContractStartKm", ContractDateData.ContractStartKm);

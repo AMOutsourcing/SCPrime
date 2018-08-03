@@ -80,6 +80,12 @@
     <Compile Include="Contracts\ChangeStatusFrm.Designer.cs">
       <DependentUpon>ChangeStatusFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Contracts\ContractDataFrm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Contracts\ContractDataFrm.Designer.cs">
+      <DependentUpon>ContractDataFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Contracts\ContractFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +115,18 @@
     </Compile>
     <Compile Include="Contracts\HeaderControl.Designer.cs">
       <DependentUpon>HeaderControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Contracts\InvoicesFrm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Contracts\InvoicesFrm.Designer.cs">
+      <DependentUpon>InvoicesFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Contracts\RemarkFrm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Contracts\RemarkFrm.Designer.cs">
+      <DependentUpon>RemarkFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="Contracts\tmp.cs">
       <SubType>Form</SubType>
