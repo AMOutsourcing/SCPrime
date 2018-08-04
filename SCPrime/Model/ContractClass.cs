@@ -360,12 +360,12 @@ namespace SCPrime.Model
 
     public class CollectiveContract
     {
-        public int OID;
-        public int ContractNo;
-        public int VersionNo;
-        public string ContractStatus;
-        public String VIN;
-        public String Info;
+        public int OID { get; set; }
+        public int ContractNo { get; set; }
+        public int VersionNo { get; set; }
+        public string ContractStatus { get; set; }
+        public String VIN { get; set; }
+        public String Info { get; set; }
     }
     public class Contract
     {

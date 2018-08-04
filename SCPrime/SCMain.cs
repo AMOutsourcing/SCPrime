@@ -452,6 +452,7 @@ namespace SCPrime
                 {
                     ContractOid = (int)r.Cells["colCcontractOID"].Value;
                     ContractFrm cf = new ContractFrm();
+                    cf.StartPosition = FormStartPosition.CenterParent;
                     cf.ShowDialog();
                 }
             }

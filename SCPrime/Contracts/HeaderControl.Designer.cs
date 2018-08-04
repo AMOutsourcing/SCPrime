@@ -113,6 +113,13 @@
             this.txtEmployeeID2 = new System.Windows.Forms.TextBox();
             this.label32 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.oIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contractNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.versionNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contractStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vINDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.infoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.collectiveContractBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colOID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSubcontractNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colInfo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -128,6 +135,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvSelfContract)).BeginInit();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.collectiveContractBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.subContractorContractBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -508,6 +516,8 @@
             this.dgvSubcontract.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSubcontract.Size = new System.Drawing.Size(456, 240);
             this.dgvSubcontract.TabIndex = 30;
+            this.dgvSubcontract.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSubcontract_CellClick);
+            this.dgvSubcontract.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSubcontract_CellLeave);
             this.dgvSubcontract.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSubcontract_CellValidated);
             // 
             // colSuplNoVal
@@ -781,7 +791,17 @@
             // 
             // dgvSelfContract
             // 
+            this.dgvSelfContract.AllowUserToAddRows = false;
+            this.dgvSelfContract.AutoGenerateColumns = false;
             this.dgvSelfContract.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSelfContract.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.oIDDataGridViewTextBoxColumn,
+            this.contractNoDataGridViewTextBoxColumn,
+            this.versionNoDataGridViewTextBoxColumn,
+            this.contractStatusDataGridViewTextBoxColumn,
+            this.vINDataGridViewTextBoxColumn,
+            this.infoDataGridViewTextBoxColumn});
+            this.dgvSelfContract.DataSource = this.collectiveContractBindingSource;
             this.dgvSelfContract.Location = new System.Drawing.Point(471, 470);
             this.dgvSelfContract.Name = "dgvSelfContract";
             this.dgvSelfContract.Size = new System.Drawing.Size(432, 240);
@@ -920,6 +940,46 @@
             this.pictureBox1.TabIndex = 48;
             this.pictureBox1.TabStop = false;
             // 
+            // oIDDataGridViewTextBoxColumn
+            // 
+            this.oIDDataGridViewTextBoxColumn.DataPropertyName = "OID";
+            this.oIDDataGridViewTextBoxColumn.HeaderText = "OID";
+            this.oIDDataGridViewTextBoxColumn.Name = "oIDDataGridViewTextBoxColumn";
+            // 
+            // contractNoDataGridViewTextBoxColumn
+            // 
+            this.contractNoDataGridViewTextBoxColumn.DataPropertyName = "ContractNo";
+            this.contractNoDataGridViewTextBoxColumn.HeaderText = "ContractNo";
+            this.contractNoDataGridViewTextBoxColumn.Name = "contractNoDataGridViewTextBoxColumn";
+            // 
+            // versionNoDataGridViewTextBoxColumn
+            // 
+            this.versionNoDataGridViewTextBoxColumn.DataPropertyName = "VersionNo";
+            this.versionNoDataGridViewTextBoxColumn.HeaderText = "VersionNo";
+            this.versionNoDataGridViewTextBoxColumn.Name = "versionNoDataGridViewTextBoxColumn";
+            // 
+            // contractStatusDataGridViewTextBoxColumn
+            // 
+            this.contractStatusDataGridViewTextBoxColumn.DataPropertyName = "ContractStatus";
+            this.contractStatusDataGridViewTextBoxColumn.HeaderText = "ContractStatus";
+            this.contractStatusDataGridViewTextBoxColumn.Name = "contractStatusDataGridViewTextBoxColumn";
+            // 
+            // vINDataGridViewTextBoxColumn
+            // 
+            this.vINDataGridViewTextBoxColumn.DataPropertyName = "VIN";
+            this.vINDataGridViewTextBoxColumn.HeaderText = "VIN";
+            this.vINDataGridViewTextBoxColumn.Name = "vINDataGridViewTextBoxColumn";
+            // 
+            // infoDataGridViewTextBoxColumn
+            // 
+            this.infoDataGridViewTextBoxColumn.DataPropertyName = "Info";
+            this.infoDataGridViewTextBoxColumn.HeaderText = "Info";
+            this.infoDataGridViewTextBoxColumn.Name = "infoDataGridViewTextBoxColumn";
+            // 
+            // collectiveContractBindingSource
+            // 
+            this.collectiveContractBindingSource.DataSource = typeof(SCPrime.Model.CollectiveContract);
+            // 
             // colOID
             // 
             this.colOID.DataPropertyName = "OID";
@@ -1028,6 +1088,7 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.collectiveContractBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.subContractorContractBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1128,5 +1189,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colKmLimit;
         private System.Windows.Forms.DataGridViewTextBoxColumn colBuyPrice;
         private System.Windows.Forms.DataGridViewCheckBoxColumn colIsDeleted;
+        private System.Windows.Forms.BindingSource collectiveContractBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn oIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn contractNoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn versionNoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn contractStatusDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn vINDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn infoDataGridViewTextBoxColumn;
     }
 }

@@ -27,6 +27,8 @@ namespace SCPrime.Contracts
         public List<clsBaseListItem> costCenterList = new List<clsBaseListItem>();
         public List<clsBaseListItem> ws = new List<clsBaseListItem>();
         private int subOid = 0;
+        public static string myCulture;
+        public List<ObjTmp> ls = new List<ObjTmp>();
 
         //public static ContractFrm instance
         //{
@@ -46,7 +48,7 @@ namespace SCPrime.Contracts
             InitializeComponent();
             Sender = new SendStatus(GetStatus);
             updateEmployee = new SearchEmployee(UpdateEmployee);
-         
+
             this.headerControl1.btnNewSubcontractor.Click += new System.EventHandler(this.btnNewSubcontractor_click);
             this.headerControl1.dgvSubcontract.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSubcontract_CellValidated);
             this.headerControl1.txtContractStatus.TextChanged += new System.EventHandler(this.updat_satatus);
@@ -56,6 +58,7 @@ namespace SCPrime.Contracts
             //this.headerControl1.cbxContractType.SelectedIndexChanged += new System.EventHandler(this.cbxContractType_SelectedIndexChanged);
             this.headerControl1.cbxContractType.DropDownClosed += new System.EventHandler(this.cbxContractType_DropDownClosed);
             this.headerControl1.cbxContractType.KeyUp += new KeyEventHandler(this.cbxContractType_DropDownClosed);
+            this.headerControl1.cbxContractType.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.cbxContractType_DropDownClosed);
 
             if (SCMain.ContractOid > 0)
             {
@@ -67,10 +70,11 @@ namespace SCPrime.Contracts
             }
             this.loadComboboxData();
             this.loadContractData();
+
+            myCulture = objGlobal.CultureInfo;
             // this.loadCustomerEmployee();
         }
-
-        private void cbxContractType_DropDownClosed(object sender, EventArgs e)
+        private void checkInvoiceToCustomer()
         {
             if (this.headerControl1.cbxContractType.SelectedValue != null)
             {
@@ -89,9 +93,16 @@ namespace SCPrime.Contracts
                     }
                     //update contract Type
                     objContract.ContractTypeOID = ct;
-                   // this.headerControl1.cbxContractType.SelectedItem = ct;
+                    // this.headerControl1.cbxContractType.SelectedItem = ct;
                 }
             }
+        }
+
+      
+
+        private void cbxContractType_DropDownClosed(object sender, EventArgs e)
+        {
+            checkInvoiceToCustomer();
         }
 
         private void cbxValidWorkshop_SelectedIndexChanged(object sender, EventArgs e)
@@ -208,15 +219,15 @@ namespace SCPrime.Contracts
             sc.SubcontractNo = row.Cells["colSubcontractNo"].Value != null ? row.Cells["colSubcontractNo"].Value.ToString() : "";
             sc.Info = row.Cells["colInfo"].Value != null ? row.Cells["colInfo"].Value.ToString() : "";
             sc.Expl = row.Cells["colExpl"].Value != null ? row.Cells["colExpl"].Value.ToString() : "";
-            if ((DateTime)(row.Cells["colDateLimit"].Value) > DateTime.MinValue )
+            if ((DateTime)(row.Cells["colDateLimit"].Value) > DateTime.MinValue)
             {
                 sc.DateLimit = MyUtils.strToDate(row.Cells["colDateLimit"].Value.ToString(), objGlobal.CultureInfo);
             }
             sc.KmLimit = row.Cells["colKmLimit"].Value != null ? (int)row.Cells["colKmLimit"].Value : 0;
 
-           
 
-                var temp = (decimal)0;
+
+            var temp = (decimal)0;
             bool rs = Decimal.TryParse(row.Cells["colBuyPrice"].Value.ToString(), out temp);
             if (rs)
                 sc.BuyPrice = Math.Round(temp, 2);
@@ -227,7 +238,7 @@ namespace SCPrime.Contracts
             sc.SuplNoVal = row.Cells["colSuplNoVal"].Value != null ? row.Cells["colSuplNoVal"].Value.ToString() : "";
             sc.SuplName = row.Cells["colSuplName"].Value != null ? row.Cells["colSuplName"].Value.ToString() : "";
 
-            sc.isDeleted = (bool)row.Cells["colIsDeleted"].Value ;
+            sc.isDeleted = (bool)row.Cells["colIsDeleted"].Value;
 
             clsBaseListItem t = new clsBaseListItem();
             t.strValue1 = sc.SuplNoVal;
@@ -243,7 +254,8 @@ namespace SCPrime.Contracts
             //MessageBox.Show("Test");
             SubContractorContract tmp = new SubContractorContract();
             subOid--;
-            tmp.OID = subOid ;
+            tmp.OID = subOid;
+            tmp.SuplNoVal = ls[0].value;
             objContract.SubContracts.Add(tmp);
             var source = new BindingSource();
             source.DataSource = objContract.SubContracts;
@@ -373,6 +385,7 @@ namespace SCPrime.Contracts
             {
                 lstSites.Add(new ObjTmp(site.strValue1, site.strValue1 + "-" + site.strText));
             }
+
             this.headerControl1.cbxResponsibleSite.DataSource = lstSites;
             this.headerControl1.cbxResponsibleSite.ValueMember = "value";
             this.headerControl1.cbxResponsibleSite.DisplayMember = "text";
@@ -393,7 +406,7 @@ namespace SCPrime.Contracts
 
                 if (objContract.ContractTypeOID != null)
                 {
-                    this.headerControl1.cbxContractType.SelectedItem = this.findContracTypeByOiD(objContract.ContractTypeOID.OID,contractType); 
+                    this.headerControl1.cbxContractType.SelectedItem = this.findContracTypeByOiD(objContract.ContractTypeOID.OID, contractType);
                 }
             }
 
@@ -417,7 +430,6 @@ namespace SCPrime.Contracts
                 }
             }
             //load cbxValidWorkshop 
-
             ws = Contract.getValidWorkshop();
             if (ws != null && ws.Count > 0)
             {
@@ -435,9 +447,6 @@ namespace SCPrime.Contracts
                     this.headerControl1.cbxValidWorkshop.SelectedValue = objContract.ValidWorkshopCode.strValue1;
                 }
             }
-
-
-
         }
         public void loadContractData()
         {
@@ -528,7 +537,7 @@ namespace SCPrime.Contracts
             if (!flag)
             {
 
-                List<ObjTmp> ls = new List<ObjTmp>();
+               
                 ls = SubContractorContract.getSuppliers();
                 if (ls.Count > 0)
                 {
@@ -538,6 +547,7 @@ namespace SCPrime.Contracts
 
                     DataGridViewComboBoxColumn cb = new DataGridViewComboBoxColumn();
                     cb.HeaderText = "Supplier";
+                    cb.FlatStyle = FlatStyle.Flat;
                     cb.Name = "colSupplier";
                     cb.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                     cb.DataSource = dt;
@@ -547,6 +557,8 @@ namespace SCPrime.Contracts
                     cb.DisplayIndex = 0;
                     cb.DisplayStyle = DataGridViewComboBoxDisplayStyle.DropDownButton;
                     headerControl1.dgvSubcontract.Columns.Add(cb);
+                   
+
                 }
             }
         }
@@ -728,7 +740,7 @@ namespace SCPrime.Contracts
                     objContract.ContractOID = 0;
                     objContract.ContractNo = 0;
                     //objContract.VersionNo =  1;
-                   // this.updateContract();
+                    // this.updateContract();
                     bool tmp = objContract.saveContract();
                     if (tmp)
                     {

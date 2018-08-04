@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,7 @@ namespace SCPrime.Contracts
         //public string status;
         public SubContractorContract subContractor;
         public List<SubContractorContract> subContractorList;
+        public DateTimePicker oDateTimePicker = new DateTimePicker();
 
         public HeaderControl()
         {
@@ -239,7 +241,7 @@ namespace SCPrime.Contracts
 
         }
 
-       
+
 
         private void btnDelSubcontractor_Click(object sender, EventArgs e)
         {
@@ -257,5 +259,59 @@ namespace SCPrime.Contracts
                 }
             }
         }
+
+        private void dgvSubcontract_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // If any cell is clicked on the Second column which is our date Column  
+            if (e.ColumnIndex == 6)
+            {
+                //Initialized a new DateTimePicker Control  
+                oDateTimePicker = new DateTimePicker();
+
+                //Adding DateTimePicker control into DataGridView   
+                dgvSubcontract.Controls.Add(oDateTimePicker);
+
+                // Setting the format (i.e. 2014-10-10)  
+                oDateTimePicker.Format = DateTimePickerFormat.Short;
+
+                // It returns the retangular area that represents the Display area for a cell  
+                Rectangle oRectangle = dgvSubcontract.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
+
+                //Setting area for DateTimePicker Control  
+                oDateTimePicker.Size = new Size(oRectangle.Width, oRectangle.Height);
+
+                // Setting Location  
+                oDateTimePicker.Location = new Point(oRectangle.X, oRectangle.Y);
+
+                // An event attached to dateTimePicker Control which is fired when DateTimeControl is closed  
+                oDateTimePicker.CloseUp += new EventHandler(oDateTimePicker_CloseUp);
+
+                // An event attached to dateTimePicker Control which is fired when any date is selected  
+                oDateTimePicker.TextChanged += new EventHandler(dateTimePicker_OnTextChange);
+
+                // Now make it visible  
+                oDateTimePicker.Visible = true;
+            }
+        }
+        void oDateTimePicker_CloseUp(object sender, EventArgs e)
+        {
+            // Hiding the control after use   
+            oDateTimePicker.Visible = false;
+        }
+
+        private void dateTimePicker_OnTextChange(object sender, EventArgs e)
+        {
+            CultureInfo cu = new CultureInfo(ContractFrm.myCulture);
+
+            // Saving the 'Selected Date on Calendar' into DataGridView current cell  
+            dgvSubcontract.CurrentCell.Value = oDateTimePicker.Text.ToString(cu);
+        }
+
+        private void dgvSubcontract_CellLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            oDateTimePicker.Visible = false;
+        }
+
+
     }
 }
