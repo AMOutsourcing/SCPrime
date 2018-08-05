@@ -113,12 +113,6 @@
             this.txtEmployeeID2 = new System.Windows.Forms.TextBox();
             this.label32 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.oIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contractNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.versionNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contractStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.vINDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.infoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.collectiveContractBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colOID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSubcontractNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -128,6 +122,14 @@
             this.colKmLimit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colBuyPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.subContractorContractBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.colOidSelf = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colInternalID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colContractNoSelf = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colVersionNoSelf = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colContractStatusSelf = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colVinSelf = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colInfoSelf = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colIsDeletedSelf = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSubcontract)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -792,18 +794,22 @@
             // dgvSelfContract
             // 
             this.dgvSelfContract.AllowUserToAddRows = false;
+            this.dgvSelfContract.AllowUserToDeleteRows = false;
             this.dgvSelfContract.AutoGenerateColumns = false;
             this.dgvSelfContract.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSelfContract.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.oIDDataGridViewTextBoxColumn,
-            this.contractNoDataGridViewTextBoxColumn,
-            this.versionNoDataGridViewTextBoxColumn,
-            this.contractStatusDataGridViewTextBoxColumn,
-            this.vINDataGridViewTextBoxColumn,
-            this.infoDataGridViewTextBoxColumn});
+            this.colOidSelf,
+            this.colInternalID,
+            this.colContractNoSelf,
+            this.colVersionNoSelf,
+            this.colContractStatusSelf,
+            this.colVinSelf,
+            this.colInfoSelf,
+            this.colIsDeletedSelf});
             this.dgvSelfContract.DataSource = this.collectiveContractBindingSource;
             this.dgvSelfContract.Location = new System.Drawing.Point(471, 470);
             this.dgvSelfContract.Name = "dgvSelfContract";
+            this.dgvSelfContract.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSelfContract.Size = new System.Drawing.Size(432, 240);
             this.dgvSelfContract.TabIndex = 44;
             // 
@@ -824,6 +830,7 @@
             this.btnDelSelfContract.TabIndex = 47;
             this.btnDelSelfContract.Text = "Delete";
             this.btnDelSelfContract.UseVisualStyleBackColor = true;
+            this.btnDelSelfContract.Click += new System.EventHandler(this.btnDelSelfContract_Click);
             // 
             // btnNewSelfContract
             // 
@@ -833,6 +840,7 @@
             this.btnNewSelfContract.TabIndex = 46;
             this.btnNewSelfContract.Text = "New";
             this.btnNewSelfContract.UseVisualStyleBackColor = true;
+            this.btnNewSelfContract.Click += new System.EventHandler(this.btnNewSelfContract_Click);
             // 
             // groupBox4
             // 
@@ -940,42 +948,6 @@
             this.pictureBox1.TabIndex = 48;
             this.pictureBox1.TabStop = false;
             // 
-            // oIDDataGridViewTextBoxColumn
-            // 
-            this.oIDDataGridViewTextBoxColumn.DataPropertyName = "OID";
-            this.oIDDataGridViewTextBoxColumn.HeaderText = "OID";
-            this.oIDDataGridViewTextBoxColumn.Name = "oIDDataGridViewTextBoxColumn";
-            // 
-            // contractNoDataGridViewTextBoxColumn
-            // 
-            this.contractNoDataGridViewTextBoxColumn.DataPropertyName = "ContractNo";
-            this.contractNoDataGridViewTextBoxColumn.HeaderText = "ContractNo";
-            this.contractNoDataGridViewTextBoxColumn.Name = "contractNoDataGridViewTextBoxColumn";
-            // 
-            // versionNoDataGridViewTextBoxColumn
-            // 
-            this.versionNoDataGridViewTextBoxColumn.DataPropertyName = "VersionNo";
-            this.versionNoDataGridViewTextBoxColumn.HeaderText = "VersionNo";
-            this.versionNoDataGridViewTextBoxColumn.Name = "versionNoDataGridViewTextBoxColumn";
-            // 
-            // contractStatusDataGridViewTextBoxColumn
-            // 
-            this.contractStatusDataGridViewTextBoxColumn.DataPropertyName = "ContractStatus";
-            this.contractStatusDataGridViewTextBoxColumn.HeaderText = "ContractStatus";
-            this.contractStatusDataGridViewTextBoxColumn.Name = "contractStatusDataGridViewTextBoxColumn";
-            // 
-            // vINDataGridViewTextBoxColumn
-            // 
-            this.vINDataGridViewTextBoxColumn.DataPropertyName = "VIN";
-            this.vINDataGridViewTextBoxColumn.HeaderText = "VIN";
-            this.vINDataGridViewTextBoxColumn.Name = "vINDataGridViewTextBoxColumn";
-            // 
-            // infoDataGridViewTextBoxColumn
-            // 
-            this.infoDataGridViewTextBoxColumn.DataPropertyName = "Info";
-            this.infoDataGridViewTextBoxColumn.HeaderText = "Info";
-            this.infoDataGridViewTextBoxColumn.Name = "infoDataGridViewTextBoxColumn";
-            // 
             // collectiveContractBindingSource
             // 
             this.collectiveContractBindingSource.DataSource = typeof(SCPrime.Model.CollectiveContract);
@@ -1027,6 +999,60 @@
             // subContractorContractBindingSource
             // 
             this.subContractorContractBindingSource.DataSource = typeof(SCPrime.Model.SubContractorContract);
+            // 
+            // colOidSelf
+            // 
+            this.colOidSelf.DataPropertyName = "OID";
+            this.colOidSelf.HeaderText = "OID";
+            this.colOidSelf.Name = "colOidSelf";
+            this.colOidSelf.ReadOnly = true;
+            this.colOidSelf.Visible = false;
+            // 
+            // colInternalID
+            // 
+            this.colInternalID.DataPropertyName = "DetailContractOID";
+            this.colInternalID.HeaderText = "Internal ID";
+            this.colInternalID.Name = "colInternalID";
+            // 
+            // colContractNoSelf
+            // 
+            this.colContractNoSelf.DataPropertyName = "ContractNo";
+            this.colContractNoSelf.HeaderText = "Contract Nr";
+            this.colContractNoSelf.Name = "colContractNoSelf";
+            this.colContractNoSelf.ReadOnly = true;
+            // 
+            // colVersionNoSelf
+            // 
+            this.colVersionNoSelf.DataPropertyName = "VersionNo";
+            this.colVersionNoSelf.HeaderText = "VersionNo";
+            this.colVersionNoSelf.Name = "colVersionNoSelf";
+            this.colVersionNoSelf.ReadOnly = true;
+            // 
+            // colContractStatusSelf
+            // 
+            this.colContractStatusSelf.DataPropertyName = "ContractStatus";
+            this.colContractStatusSelf.HeaderText = "ContractStatus";
+            this.colContractStatusSelf.Name = "colContractStatusSelf";
+            this.colContractStatusSelf.ReadOnly = true;
+            // 
+            // colVinSelf
+            // 
+            this.colVinSelf.DataPropertyName = "VIN";
+            this.colVinSelf.HeaderText = "VIN";
+            this.colVinSelf.Name = "colVinSelf";
+            this.colVinSelf.ReadOnly = true;
+            // 
+            // colInfoSelf
+            // 
+            this.colInfoSelf.DataPropertyName = "Info";
+            this.colInfoSelf.HeaderText = "Info";
+            this.colInfoSelf.Name = "colInfoSelf";
+            // 
+            // colIsDeletedSelf
+            // 
+            this.colIsDeletedSelf.DataPropertyName = "isDeleted";
+            this.colIsDeletedSelf.HeaderText = "isDeleted";
+            this.colIsDeletedSelf.Name = "colIsDeletedSelf";
             // 
             // HeaderControl
             // 
@@ -1190,11 +1216,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colBuyPrice;
         private System.Windows.Forms.DataGridViewCheckBoxColumn colIsDeleted;
         private System.Windows.Forms.BindingSource collectiveContractBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn oIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn contractNoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn versionNoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn contractStatusDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn vINDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn infoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colOidSelf;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colInternalID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colContractNoSelf;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colVersionNoSelf;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colContractStatusSelf;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colVinSelf;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colInfoSelf;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn colIsDeletedSelf;
     }
 }

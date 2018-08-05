@@ -76,6 +76,7 @@ namespace SCPrime.Contracts
         }
         private void checkInvoiceToCustomer()
         {
+
             if (this.headerControl1.cbxContractType.SelectedValue != null)
             {
                 SCContractType ct = (SCContractType)this.headerControl1.cbxContractType.SelectedItem;
@@ -85,6 +86,7 @@ namespace SCPrime.Contracts
                     {
                         this.headerControl1.chkInvoiceToCus.Checked = true;
                         this.headerControl1.chkInvoiceToCus.ForeColor = SystemColors.ControlText;
+
                     }
                     else
                     {
@@ -94,11 +96,12 @@ namespace SCPrime.Contracts
                     //update contract Type
                     objContract.ContractTypeOID = ct;
                     // this.headerControl1.cbxContractType.SelectedItem = ct;
+                    this.disableButton(ct);
                 }
             }
         }
 
-      
+
 
         private void cbxContractType_DropDownClosed(object sender, EventArgs e)
         {
@@ -452,6 +455,7 @@ namespace SCPrime.Contracts
         {
 
             this.displayStatus();
+            this.disableButton(objContract.ContractTypeOID);
 
             this.headerControl1.txtInternalID.Text = objContract.ContractOID.ToString();
             this.headerControl1.txtContracNr.Text = objContract.ContractNo.ToString();
@@ -537,7 +541,7 @@ namespace SCPrime.Contracts
             if (!flag)
             {
 
-               
+
                 ls = SubContractorContract.getSuppliers();
                 if (ls.Count > 0)
                 {
@@ -557,7 +561,7 @@ namespace SCPrime.Contracts
                     cb.DisplayIndex = 0;
                     cb.DisplayStyle = DataGridViewComboBoxDisplayStyle.DropDownButton;
                     headerControl1.dgvSubcontract.Columns.Add(cb);
-                   
+
 
                 }
             }
@@ -570,9 +574,24 @@ namespace SCPrime.Contracts
             if (tmp)
             {
                 this.headerControl1.dgvSubcontract.DataSource = objContract.SubContracts;
+                this.headerControl1.dgvSelfContract.DataSource = objContract.SelfContracts;
+
             }
 
             addSupplierCbx();
+        }
+        public void disableButton(SCContractType ct)
+        {
+            if (!ct.isCollective)
+            {
+                this.headerControl1.btnNewSelfContract.Enabled = false;
+                this.headerControl1.btnDelSelfContract.Enabled = false;
+            }
+            else
+            {
+                this.headerControl1.btnNewSelfContract.Enabled = true;
+                this.headerControl1.btnDelSelfContract.Enabled = true;
+            }
         }
         public void displayStatus()
         {
@@ -751,7 +770,7 @@ namespace SCPrime.Contracts
             }
             else
             {
-                MessageBox.Show("Ha ha");
+                //MessageBox.Show("Ha ha");
             }
         }
     }

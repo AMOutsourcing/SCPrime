@@ -303,20 +303,7 @@ namespace SCPrime.Model
     public class SubContractorContract
     {
         public int OID { get; set; }
-         public clsBaseListItem SuplNo = new clsBaseListItem();
-        //public clsBaseListItem SuplNo
-        //{
-        //    get
-        //    {
-        //        return SuplNo;
-        //    }
-        //    set
-        //    {
-        //        SuplNo = value;
-
-        //    }
-
-        //}
+        public clsBaseListItem SuplNo = new clsBaseListItem();
         public string SuplNoVal { get; set; }
         public string SuplName { get; set; }
 
@@ -358,14 +345,72 @@ namespace SCPrime.Model
 
     }
 
+
+
     public class CollectiveContract
     {
-        public int OID { get; set; }
-        public int ContractNo { get; set; }
+        public int OID { get; set; } //=> OID
+        public int ContractOID { get; set; }// => contractOID
+        public int DetailContractOID { get; set; }//Internal ID => DetailContractOID
+        public String Info { get; set; } // Remark => Info
+        public int ContractNo { get; set; } //Contract Nr
+
         public int VersionNo { get; set; }
         public string ContractStatus { get; set; }
         public String VIN { get; set; }
-        public String Info { get; set; }
+       
+
+        public bool isDeleted { get; set; }
+
+        public static List<CollectiveContract> searchSelfContract(int ContractCustId)
+        {
+            List<CollectiveContract> ls = new List<CollectiveContract>();
+
+            clsSqlFactory hSql = new clsSqlFactory();
+            string strSql = "select a.OID as DetailContractOID, a.ContractNo,a.VersionNo,a.ContractStatus, c.SERIALNO FROM ZSC_Contract a  INNER JOIN VEHI c ON a.VehiId = c.VEHIID where ContractCustId = ? and a.OID not in (select b.DetailContractOID from ZSC_ContractCollective b)";
+            try
+            {
+
+                hSql.NewCommand(strSql);
+                //hSql.NewCommand("select a.BuyPr, a.DateLimit, a.Expl, a.Info, a.KMLimit, a.OID, a.SubContractNo, a.SuplNo, b.Name as SuplName from ZSC_SubcontractorContract a left join SUPL b on a.SUPLNO=b.SUPLNO where ContractOID=? ");
+                hSql.Com.Parameters.AddWithValue("ContractCustId", ContractCustId);
+                hSql.ExecuteReader();
+                while (hSql.Read())
+                {
+                    CollectiveContract collective = new CollectiveContract();
+                    int colId = hSql.Reader.GetOrdinal("DetailContractOID");
+                    if (!hSql.Reader.IsDBNull(colId)) collective.DetailContractOID = hSql.Reader.GetInt32(colId);
+
+                    colId = hSql.Reader.GetOrdinal("ContractNo");
+                    collective.ContractNo = hSql.Reader.GetInt32(colId);
+
+                    colId = hSql.Reader.GetOrdinal("VersionNo");
+                    collective.VersionNo = hSql.Reader.GetInt32(colId);
+
+                    colId = hSql.Reader.GetOrdinal("ContractStatus");
+                    collective.ContractStatus = hSql.Reader.GetString(colId);
+
+                    colId = hSql.Reader.GetOrdinal("SERIALNO");
+                    collective.VIN = hSql.Reader.GetString(colId);
+
+                    ls.Add(collective);
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                hSql.Close();
+            }
+
+
+
+            return ls;
+        }
     }
     public class Contract
     {
@@ -414,6 +459,68 @@ namespace SCPrime.Model
             SiteId.strValue1 = new clsGlobalVariable().CurrentSiteId;
 
         }
+        //longdq05082018
+
+        public bool savSelfContract(List<CollectiveContract> sccs, int contractOid, clsSqlFactory hSql)
+        {
+            bool bRet = true;
+            foreach (CollectiveContract s in sccs)
+            {
+
+                string sql = "";
+                //delete subcontractor
+                if (s.isDeleted && (s.OID > 0))
+                {
+                    sql = "delete from ZSC_ContractCollective where OID = ?";
+                    bRet = hSql.NewCommand(sql);
+                    hSql.Com.Parameters.AddWithValue("OID", s.OID);
+                    bRet = bRet && hSql.ExecuteNonQuery();
+                }
+                else
+                {
+                    //insert new 
+                    if (!(s.OID > 0) && !(s.isDeleted))
+                    {
+                        sql = "insert into ZSC_ContractCollective(ContractOID, DetailContractOID, Info, Created, Modified) " +
+                           " values (?,?,?,getdate(),getdate()) ";
+
+                        bRet = hSql.NewCommand(sql);
+                        hSql.Com.Parameters.AddWithValue("ContractOID", contractOid);
+                        hSql.Com.Parameters.AddWithValue("DetailContractOID", s.DetailContractOID);
+                        if (s.Info == null)
+                        {
+                            s.Info = "";
+                        }
+                        hSql.Com.Parameters.AddWithValue("Info", s.Info);
+                       
+                        bRet = bRet && hSql.ExecuteNonQuery();
+                    }
+
+                    //update
+                    if (s.OID > 0)
+                    {
+                        sql = "update ZSC_ContractCollective set Modified = getdate(), ContractOID=?, DetailContractOID =?, Info =? where OID =? ";
+                        bRet = hSql.NewCommand(sql);
+                        hSql.Com.Parameters.AddWithValue("ContractOID", contractOid);
+                        hSql.Com.Parameters.AddWithValue("DetailContractOID", s.DetailContractOID);
+                        if(s.Info == null)
+                        {
+                            s.Info = "";
+                        }
+                        hSql.Com.Parameters.AddWithValue("Info", s.Info);
+                        hSql.Com.Parameters.AddWithValue("OID", s.OID);
+
+
+                        bRet = bRet && hSql.ExecuteNonQuery();
+                    }
+                }
+
+            }
+            return bRet;
+
+        }
+
+        //
         public bool saveSubcontractor(List<SubContractorContract> sccs, int contractOid, clsSqlFactory hSql)
         {
             bool bRet = true;
@@ -429,7 +536,7 @@ namespace SCPrime.Model
                     hSql.Com.Parameters.AddWithValue("OID", s.OID);
                     bRet = bRet && hSql.ExecuteNonQuery();
                 }
-                else 
+                else
                 {
                     //insert new subcontractor
                     if (!(s.OID > 0) && !(s.isDeleted))
@@ -522,6 +629,10 @@ namespace SCPrime.Model
                     if (SubContracts != null)
                     {
                         bRet = bRet && saveSubcontractor(SubContracts, this.ContractOID, hSql);
+                    }
+                    if (SelfContracts != null)
+                    {
+                        bRet = bRet && savSelfContract(SelfContracts, this.ContractOID, hSql);
                     }
                 }
                 //update data
@@ -667,6 +778,11 @@ namespace SCPrime.Model
                     {
                         bRet = bRet && saveSubcontractor(SubContracts, this.ContractOID, hSql);
                     }
+                    //longdq 05082018
+                    if (SelfContracts != null)
+                    {
+                        bRet = bRet && savSelfContract(SelfContracts, this.ContractOID, hSql);
+                    }
                 }
 
                 hSql.Commit();
@@ -764,7 +880,7 @@ namespace SCPrime.Model
 
                 //self contracts
                 SelfContracts = new List<CollectiveContract>();
-                hSql.NewCommand("select  a.OID, a.Info,b.ContractNo,b.VersionNo, b.ContractStatus,c.SERIALNO from ZSC_ContractCollective a , ZSC_Contract b, VEHI c where a.ContractOID=? and a.DetailContractOID=b.OID and b.VEHIID=c.VEHIID ");
+                hSql.NewCommand("select  a.OID, a.Info,b.ContractNo,b.VersionNo, b.ContractStatus,c.SERIALNO,a.DetailContractOID from ZSC_ContractCollective a , ZSC_Contract b, VEHI c where a.ContractOID=? and a.DetailContractOID=b.OID and b.VEHIID=c.VEHIID ");
                 hSql.Com.Parameters.Add("ContractOID", this.ContractOID);
                 hSql.ExecuteReader();
                 while (hSql.Read())
@@ -783,6 +899,8 @@ namespace SCPrime.Model
                     if (!hSql.Reader.IsDBNull(colId)) sc.ContractStatus = hSql.Reader.GetString(colId);
                     colId = hSql.Reader.GetOrdinal("SERIALNO");
                     if (!hSql.Reader.IsDBNull(colId)) sc.VIN = hSql.Reader.GetString(colId);
+                    colId = hSql.Reader.GetOrdinal("DetailContractOID");
+                    if (!hSql.Reader.IsDBNull(colId)) sc.DetailContractOID = hSql.Reader.GetInt32(colId);
                     SelfContracts.Add(sc);
                 }
                 if (this.VehiId != null)
