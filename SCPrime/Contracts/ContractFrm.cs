@@ -711,7 +711,7 @@ namespace SCPrime.Contracts
             }
             bool tmp = false;
             tmp = objContract.saveContract();
-            MessageBox.Show(tmp.ToString());
+           // MessageBox.Show(tmp.ToString());
             this.loadComboboxData();
             this.loadContractData();
         }
