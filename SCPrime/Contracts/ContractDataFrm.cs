@@ -45,11 +45,11 @@ namespace SCPrime.Contracts
             if (contract != null && contract.ContractOID > 0)
             {
                 //Start
-                txtStartDate.Text = contract.ContractDateData.ContractStartDate.ToString();
+                txtStartDate.Value = contract.ContractDateData.ContractStartDate;
                 txtStartKm.Text = contract.ContractDateData.ContractStartKm.ToString();
                 txtStartHr.Text = contract.ContractDateData.ContractStartHour.ToString();
                 txtStartInvoice.Text = contract.ContractDateData.InvoiceStartDate.ToString();
-                txtPeriod.Text = contract.ContractDateData.ContractPeriodMonth.ToString();
+                txtPeriod.Value = contract.ContractDateData.ContractPeriodMonth;
                 txtKmHr.Text = contract.ContractDateData.ContractPeriodKmHour.ToString();
                 if (contract.ContractDateData.ContractPeriodKmHour == 1)
                 {
@@ -63,7 +63,7 @@ namespace SCPrime.Contracts
                 }
 
                 //End
-                txtEndDate.Text = contract.ContractDateData.ContractEndDate.ToString();
+                txtEndDate.Value = contract.ContractDateData.ContractEndDate;
                 txtEndKm.Text = contract.ContractDateData.ContractEndKm.ToString();
                 txtEndHr.Text = contract.ContractDateData.ContractEndHour.ToString();
                 txtEndInvoice.Text = contract.ContractDateData.InvoiceEndDate.ToString();
@@ -122,15 +122,15 @@ namespace SCPrime.Contracts
             else
             {
                 //Start
-                txtStartDate.Text = "";
+                txtStartDate.Value = DateTime.Now;
                 txtStartKm.Text = "";
                 txtStartHr.Text = "";
                 txtStartInvoice.Text = "";
-                txtPeriod.Text = "";
+                txtPeriod.Value = 0;
                 txtKmHr.Text = "";
 
                 //End
-                txtEndDate.Text = "";
+                txtEndDate.Value = DateTime.Now;
                 txtEndKm.Text = "";
                 txtEndHr.Text = "";
                 txtEndInvoice.Text = "";
@@ -191,6 +191,31 @@ namespace SCPrime.Contracts
                 txtParnerName.Text = searhCustomer.CustName;
                 txtRishLevel.Text = contract.RiskLevel.ToString();
 
+            }
+        }
+
+        private void caclEndDate()
+        {
+            Console.WriteLine("------caclEndDate----------");
+            DateTime ContractStartDate = txtStartDate.Value.AddDays(1).AddMonths(Int32.Parse(txtPeriod.Text)).AddDays(-1);
+            txtEndDate.Value = ContractStartDate;
+        }
+
+        private void txtPeriod_ValueChanged(object sender, EventArgs e)
+        {
+            if (txtPeriod.Value > 0 && txtPeriod.Value != contract.ContractDateData.ContractPeriodMonth)
+            {
+                //Edit period in month -> recalculate End date = Start date + Period month
+                caclEndDate();
+            }
+        }
+
+        private void txtStartDate_ValueChanged(object sender, EventArgs e)
+        {
+            if (txtStartDate.Text != "" && txtStartDate.Value != contract.ContractDateData.ContractStartDate)
+            {
+                //Edit stat date -> recalculate End date = Start date + Period month
+                caclEndDate();
             }
         }
     }

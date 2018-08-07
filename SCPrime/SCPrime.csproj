@@ -195,6 +195,9 @@
     <EmbeddedResource Include="Contracts\ChangeStatusFrm.resx">
       <DependentUpon>ChangeStatusFrm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Contracts\ContractDataFrm.resx">
+      <DependentUpon>ContractDataFrm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Contracts\ContractFrm.resx">
       <DependentUpon>ContractFrm.cs</DependentUpon>
     </EmbeddedResource>

@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pnAll = new System.Windows.Forms.Panel();
             this.pnBottom = new System.Windows.Forms.Panel();
             this.pnLeft = new System.Windows.Forms.Panel();
             this.gridRisk = new System.Windows.Forms.DataGridView();
             this.pnTopGrid = new System.Windows.Forms.Panel();
+            this.btnRick = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnNew = new System.Windows.Forms.Button();
             this.txtRishLevel = new System.Windows.Forms.TextBox();
@@ -111,10 +113,8 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.txtEndDate = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtKmHr = new System.Windows.Forms.TextBox();
-            this.txtPeriod = new System.Windows.Forms.TextBox();
             this.txtStartInvoice = new System.Windows.Forms.TextBox();
             this.txtStartHr = new System.Windows.Forms.TextBox();
             this.txtStartKm = new System.Windows.Forms.TextBox();
@@ -126,8 +126,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtStartDate = new System.Windows.Forms.TextBox();
-            this.btnRick = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.txtPeriod = new System.Windows.Forms.NumericUpDown();
+            this.txtStartDate = new System.Windows.Forms.DateTimePicker();
+            this.txtEndDate = new System.Windows.Forms.DateTimePicker();
             this.pnAll.SuspendLayout();
             this.pnBottom.SuspendLayout();
             this.pnLeft.SuspendLayout();
@@ -142,6 +144,7 @@
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPeriod)).BeginInit();
             this.SuspendLayout();
             // 
             // pnAll
@@ -199,6 +202,16 @@
             this.pnTopGrid.Name = "pnTopGrid";
             this.pnTopGrid.Size = new System.Drawing.Size(599, 64);
             this.pnTopGrid.TabIndex = 0;
+            // 
+            // btnRick
+            // 
+            this.btnRick.Location = new System.Drawing.Point(185, 9);
+            this.btnRick.Name = "btnRick";
+            this.btnRick.Size = new System.Drawing.Size(28, 23);
+            this.btnRick.TabIndex = 23;
+            this.btnRick.Text = "...";
+            this.btnRick.UseVisualStyleBackColor = true;
+            this.btnRick.Click += new System.EventHandler(this.btnRick_Click);
             // 
             // btnDelete
             // 
@@ -827,6 +840,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.txtEndDate);
             this.groupBox2.Controls.Add(this.cbTemType);
             this.groupBox2.Controls.Add(this.txtEndInvoice);
             this.groupBox2.Controls.Add(this.txtEndHr);
@@ -836,7 +850,6 @@
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.label12);
-            this.groupBox2.Controls.Add(this.txtEndDate);
             this.groupBox2.Location = new System.Drawing.Point(305, 4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(294, 194);
@@ -918,17 +931,11 @@
             this.label12.TabIndex = 1;
             this.label12.Text = "End date";
             // 
-            // txtEndDate
-            // 
-            this.txtEndDate.Location = new System.Drawing.Point(99, 19);
-            this.txtEndDate.Name = "txtEndDate";
-            this.txtEndDate.Size = new System.Drawing.Size(154, 20);
-            this.txtEndDate.TabIndex = 0;
-            // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.txtKmHr);
+            this.groupBox1.Controls.Add(this.txtStartDate);
             this.groupBox1.Controls.Add(this.txtPeriod);
+            this.groupBox1.Controls.Add(this.txtKmHr);
             this.groupBox1.Controls.Add(this.txtStartInvoice);
             this.groupBox1.Controls.Add(this.txtStartHr);
             this.groupBox1.Controls.Add(this.txtStartKm);
@@ -940,7 +947,6 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.txtStartDate);
             this.groupBox1.Location = new System.Drawing.Point(4, 4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(294, 194);
@@ -954,13 +960,6 @@
             this.txtKmHr.Name = "txtKmHr";
             this.txtKmHr.Size = new System.Drawing.Size(154, 20);
             this.txtKmHr.TabIndex = 12;
-            // 
-            // txtPeriod
-            // 
-            this.txtPeriod.Location = new System.Drawing.Point(99, 117);
-            this.txtPeriod.Name = "txtPeriod";
-            this.txtPeriod.Size = new System.Drawing.Size(154, 20);
-            this.txtPeriod.TabIndex = 11;
             // 
             // txtStartInvoice
             // 
@@ -1059,22 +1058,33 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Start date";
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // txtPeriod
+            // 
+            this.txtPeriod.Location = new System.Drawing.Point(99, 119);
+            this.txtPeriod.Name = "txtPeriod";
+            this.txtPeriod.Size = new System.Drawing.Size(154, 20);
+            this.txtPeriod.TabIndex = 13;
+            this.txtPeriod.ValueChanged += new System.EventHandler(this.txtPeriod_ValueChanged);
+            // 
             // txtStartDate
             // 
-            this.txtStartDate.Location = new System.Drawing.Point(99, 19);
+            this.txtStartDate.Location = new System.Drawing.Point(100, 16);
             this.txtStartDate.Name = "txtStartDate";
-            this.txtStartDate.Size = new System.Drawing.Size(154, 20);
-            this.txtStartDate.TabIndex = 0;
+            this.txtStartDate.Size = new System.Drawing.Size(156, 20);
+            this.txtStartDate.TabIndex = 14;
+            this.txtStartDate.ValueChanged += new System.EventHandler(this.txtStartDate_ValueChanged);
             // 
-            // btnRick
+            // txtEndDate
             // 
-            this.btnRick.Location = new System.Drawing.Point(185, 9);
-            this.btnRick.Name = "btnRick";
-            this.btnRick.Size = new System.Drawing.Size(28, 23);
-            this.btnRick.TabIndex = 23;
-            this.btnRick.Text = "...";
-            this.btnRick.UseVisualStyleBackColor = true;
-            this.btnRick.Click += new System.EventHandler(this.btnRick_Click);
+            this.txtEndDate.Location = new System.Drawing.Point(99, 16);
+            this.txtEndDate.Name = "txtEndDate";
+            this.txtEndDate.Size = new System.Drawing.Size(155, 20);
+            this.txtEndDate.TabIndex = 12;
             // 
             // ContractDataFrm
             // 
@@ -1105,6 +1115,7 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPeriod)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1118,7 +1129,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtStartDate;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
@@ -1127,7 +1137,6 @@
         private System.Windows.Forms.RadioButton rdKmBase;
         private System.Windows.Forms.TextBox txtStartKm;
         private System.Windows.Forms.TextBox txtKmHr;
-        private System.Windows.Forms.TextBox txtPeriod;
         private System.Windows.Forms.TextBox txtStartInvoice;
         private System.Windows.Forms.TextBox txtStartHr;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -1139,7 +1148,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox txtEndDate;
         private System.Windows.Forms.ComboBox cbTemType;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ComboBox cbPayPeriod;
@@ -1211,5 +1219,9 @@
         private System.Windows.Forms.CheckBox cbInvoice;
         private System.Windows.Forms.CheckBox cbPayment;
         private System.Windows.Forms.Button btnRick;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.NumericUpDown txtPeriod;
+        private System.Windows.Forms.DateTimePicker txtStartDate;
+        private System.Windows.Forms.DateTimePicker txtEndDate;
     }
 }
