@@ -104,6 +104,12 @@
     <Compile Include="Contracts\CustomerSearchFrm.Designer.cs">
       <DependentUpon>CustomerSearchFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Contracts\DetailContractSearchFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Contracts\DetailContractSearchFrm.Designer.cs">
+      <DependentUpon>DetailContractSearchFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Contracts\EmployeeSearchFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -206,6 +212,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Contracts\CustomerSearchFrm.resx">
       <DependentUpon>CustomerSearchFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contracts\DetailContractSearchFrm.resx">
+      <DependentUpon>DetailContractSearchFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Contracts\EmployeeSearchFrm.resx">
       <DependentUpon>EmployeeSearchFrm.cs</DependentUpon>

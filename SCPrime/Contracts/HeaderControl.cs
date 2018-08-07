@@ -312,6 +312,58 @@ namespace SCPrime.Contracts
             oDateTimePicker.Visible = false;
         }
 
+        private void btnNewSelfContract_Click(object sender, EventArgs e)
+        {
+            DetailContractSearchFrm frm = new DetailContractSearchFrm();
+            frm.StartPosition = FormStartPosition.CenterParent;
+            frm.ShowDialog();
+            if (frm.myCollectiveContract != null)
+            {
+                //MessageBox.Show(frm.myCollectiveContract.OID.ToString());
+                this.addRowToCollectiveGrid(frm.myCollectiveContract);
+            }
 
+        }
+        private void addRowToCollectiveGrid(CollectiveContract cc)
+        {
+            //find object in list
+            int index = -1;
+            index = ContractFrm.objContract.SelfContracts.FindIndex(x => x.DetailContractOID == cc.DetailContractOID);
+            if (index == -1)
+            {
+                ContractFrm.objContract.SelfContracts.Add(cc);
+                var source = new BindingSource();
+                source.DataSource = ContractFrm.objContract.SelfContracts;
+                this.dgvSelfContract.DataSource = source;
+                this.dgvSelfContract.Refresh();
+            }
+            else
+            {
+                cc.OID = ContractFrm.objContract.SelfContracts[index].OID;
+                ContractFrm.objContract.SelfContracts[index] = cc;
+
+                var source = new BindingSource();
+                source.DataSource = ContractFrm.objContract.SelfContracts;
+                this.dgvSelfContract.DataSource = source;
+                this.dgvSelfContract.Refresh();
+            }
+        }
+
+        private void btnDelSelfContract_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow r in dgvSelfContract.SelectedRows)
+            {
+                if ((bool)r.Cells["colIsDeletedSelf"].Value)
+                {
+                    r.Cells["colIsDeletedSelf"].Value = false;
+                    ViewUtils.remarkHeader(r, "colIsDeletedSelf");
+                }
+                else
+                {
+                    r.Cells["colIsDeletedSelf"].Value = true;
+                    ViewUtils.remarkHeader(r, "colIsDeletedSelf");
+                }
+            }
+        }
     }
 }
