@@ -121,8 +121,8 @@ namespace SCPrime
                 lstModel.Add(new ObjTmp(words[0], words[1]));
             }
             cblModel.DataSource = lstModel;
-            cblModel.ValueMember = "value";
-            cblModel.DisplayMember = "text";
+            cblModel.ValueMember = "strValue1";
+            cblModel.DisplayMember = "strText";
 
 
             //Load sites
@@ -134,8 +134,8 @@ namespace SCPrime
                 lstSites.Add(new ObjTmp(site.strValue1, site.strText));
             }
             cbSites.DataSource = lstSites;
-            cbSites.ValueMember = "id";
-            cbSites.DisplayMember = "text";
+            cbSites.ValueMember = "strValue1";
+            cbSites.DisplayMember = "strValue1";
             
 
             //Load contaactType
@@ -158,7 +158,7 @@ namespace SCPrime
             string value;
             for (int i = 0; i < cblModel.Items.Count; i++)
             {
-                value = ((ObjTmp)cblModel.Items[i]).value;
+                value = ((ObjTmp)cblModel.Items[i]).strValue1;
                 if (value != "C" && value != "D")
                 {
                     cblModel.SetItemChecked(i, true);
@@ -249,13 +249,13 @@ namespace SCPrime
             List<String> listSite = new List<String>();
             foreach (ObjTmp itemChecked in cbSites.CheckedItems)
             {
-                listSite.Add(itemChecked.value);
+                listSite.Add(itemChecked.strValue1);
             }
 
             List<String> listStatus = new List<String>();
             foreach (ObjTmp itemChecked in cblModel.CheckedItems)
             {
-                listStatus.Add(itemChecked.value);
+                listStatus.Add(itemChecked.strValue1);
             }
 
             System.Diagnostics.Debug.WriteLine("toolStripButton9_Click Text: " + toolStripTextBox1.Text);

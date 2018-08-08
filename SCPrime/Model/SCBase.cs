@@ -1687,6 +1687,47 @@ namespace SCPrime.Model
             return Result;
         }
 
+
+        public List<clsBaseListItem> GetConfig(string configName)
+        {
+            List<clsBaseListItem> rtn = new List<clsBaseListItem>();
+            clsSqlFactory hSql = new clsSqlFactory();
+            try
+            {
+                String strSql = "select V1 as PaymentTerm,C2 as PaymentTermDescription from CORW where codaid = ?";
+                hSql.NewCommand(strSql);
+                hSql.Com.Parameters.AddWithValue("codaid", configName);
+                hSql.ExecuteReader();
+                int colId;
+                while (hSql.Read())
+                {
+                    clsBaseListItem item = new clsBaseListItem();
+                    colId = hSql.Reader.GetOrdinal("PaymentTerm");
+                    if (!hSql.Reader.IsDBNull(colId))
+                        item.nValue1 = hSql.Reader.GetInt32(colId);
+                    else
+                        item.nValue1 = 0;
+
+                    colId = hSql.Reader.GetOrdinal("PaymentTermDescription");
+                    if (!hSql.Reader.IsDBNull(colId))
+                        item.strText = hSql.Reader.GetString(colId);
+                    else
+                        item.strText = "";
+                    rtn.Add(item);
+                }
+            }
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                hSql.Close();
+            }
+            return rtn;
+        }
+
         #region publicListGeter
         public List<clsBaseListItem> getAMSites()
         {
@@ -1776,26 +1817,22 @@ namespace SCPrime.Model
 
     public class ObjTmp
     {
-        public int id { get; set; }
-        public String text { get; set; }
-        public String value { get; set; }
-        public ObjTmp()
-        {
-        }
-        public ObjTmp(String value, String text)
-        {
-            this.text = text;
-            this.value = value;
-        }
-        public ObjTmp(int id, String text)
-        {
-            this.text = text;
-            this.value = value;
-        }
-
         public int nValue1 { get; set; }
         public string strValue1 { get; set; }
         public string strText { get; set; }
+        public ObjTmp(String value, String text)
+        {
+            this.strValue1 = value;
+            this.strText = text;
+        }
+        public ObjTmp(int id, String text)
+        {
+            this.nValue1 = id;
+            this.strText = text;
+        }
+        public ObjTmp()
+        {
+        }
     }
 
     public class SCViewWorks

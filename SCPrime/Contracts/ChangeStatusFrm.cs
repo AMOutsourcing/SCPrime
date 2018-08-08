@@ -52,8 +52,8 @@ namespace SCPrime.Contracts
             this.loadData();
 
             this.cbxContractStatus.DataSource = this.statusList;
-            this.cbxContractStatus.ValueMember = "value";
-            this.cbxContractStatus.DisplayMember = "text";
+            this.cbxContractStatus.ValueMember = "strValue1";
+            this.cbxContractStatus.DisplayMember = "strText";
         }
         private void loadData()
         {
@@ -78,14 +78,14 @@ namespace SCPrime.Contracts
             ObjTmp h = new ObjTmp();
             ObjTmp c = new ObjTmp();
             ObjTmp d = new ObjTmp();
-            m = lstModel.Find(x => x.value.Equals("M"));
-            o = lstModel.Find(x => x.value.Equals("O"));
-            n = lstModel.Find(x => x.value.Equals("N"));
-            w = lstModel.Find(x => x.value.Equals("W"));
-            a = lstModel.Find(x => x.value.Equals("A"));
-            h = lstModel.Find(x => x.value.Equals("H"));
-            c = lstModel.Find(x => x.value.Equals("C"));
-            d = lstModel.Find(x => x.value.Equals("D"));
+            m = lstModel.Find(x => x.strValue1.Equals("M"));
+            o = lstModel.Find(x => x.strValue1.Equals("O"));
+            n = lstModel.Find(x => x.strValue1.Equals("N"));
+            w = lstModel.Find(x => x.strValue1.Equals("W"));
+            a = lstModel.Find(x => x.strValue1.Equals("A"));
+            h = lstModel.Find(x => x.strValue1.Equals("H"));
+            c = lstModel.Find(x => x.strValue1.Equals("C"));
+            d = lstModel.Find(x => x.strValue1.Equals("D"));
 
             switch (this.status)
             {

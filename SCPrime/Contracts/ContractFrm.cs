@@ -115,7 +115,7 @@ namespace SCPrime.Contracts
                 if (this.headerControl1.cbxValidWorkshop.SelectedItem != null)
                 {
                     ObjTmp s = (ObjTmp)this.headerControl1.cbxValidWorkshop.SelectedItem;
-                    objContract.ValidWorkshopCode = findclsBaseListItem(s.value, this.ws);
+                    objContract.ValidWorkshopCode = findclsBaseListItem(s.strValue1, this.ws);
                     //MessageBox.Show(s.value);
                 }
 
@@ -136,7 +136,7 @@ namespace SCPrime.Contracts
                 if (this.headerControl1.cbxCostcenter.SelectedItem != null)
                 {
                     ObjTmp s = (ObjTmp)this.headerControl1.cbxCostcenter.SelectedItem;
-                    objContract.CostCenter = findclsBaseListItem(s.value, this.costCenterList);
+                    objContract.CostCenter = findclsBaseListItem(s.strValue1, this.costCenterList);
                     //MessageBox.Show(s.value);
                 }
 
@@ -157,7 +157,7 @@ namespace SCPrime.Contracts
                 {
                     ObjTmp s = (ObjTmp)this.headerControl1.cbxResponsibleSite.SelectedItem;
                     clsBaseListItem site = null;
-                    site = SCBase.findSite(s.value);
+                    site = SCBase.findSite(s.strValue1);
                     if (site != null)
                         objContract.SiteId = site;
                     //MessageBox.Show(s.value);
@@ -258,7 +258,7 @@ namespace SCPrime.Contracts
             SubContractorContract tmp = new SubContractorContract();
             subOid--;
             tmp.OID = subOid;
-            tmp.SuplNoVal = ls[0].value;
+            tmp.SuplNoVal = ls[0].strValue1;
             objContract.SubContracts.Add(tmp);
             var source = new BindingSource();
             source.DataSource = objContract.SubContracts;
@@ -390,8 +390,8 @@ namespace SCPrime.Contracts
             }
 
             this.headerControl1.cbxResponsibleSite.DataSource = lstSites;
-            this.headerControl1.cbxResponsibleSite.ValueMember = "value";
-            this.headerControl1.cbxResponsibleSite.DisplayMember = "text";
+            this.headerControl1.cbxResponsibleSite.ValueMember = "strValue1";
+            this.headerControl1.cbxResponsibleSite.DisplayMember = "strText";
 
             if (!string.IsNullOrEmpty(objContract.ResponsibleSite))
             {
@@ -424,8 +424,8 @@ namespace SCPrime.Contracts
                     myccs.Add(new ObjTmp(cc.strValue1, cc.strText));
                 }
                 this.headerControl1.cbxCostcenter.DataSource = myccs;
-                this.headerControl1.cbxCostcenter.ValueMember = "value";
-                this.headerControl1.cbxCostcenter.DisplayMember = "text";
+                this.headerControl1.cbxCostcenter.ValueMember = "strText";
+                this.headerControl1.cbxCostcenter.DisplayMember = "strValue1";
 
                 if (objContract.CostCenter != null)
                 {
@@ -442,8 +442,8 @@ namespace SCPrime.Contracts
                     myws.Add(new ObjTmp(w.strValue1, w.strText));
                 }
                 this.headerControl1.cbxValidWorkshop.DataSource = myws;
-                this.headerControl1.cbxValidWorkshop.ValueMember = "value";
-                this.headerControl1.cbxValidWorkshop.DisplayMember = "text";
+                this.headerControl1.cbxValidWorkshop.ValueMember = "strValue1";
+                this.headerControl1.cbxValidWorkshop.DisplayMember = "strText";
 
                 if (objContract.ValidWorkshopCode != null)
                 {
@@ -556,8 +556,8 @@ namespace SCPrime.Contracts
                     cb.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                     cb.DataSource = dt;
                     cb.DataPropertyName = "SuplNoVal";
-                    cb.ValueMember = "value";
-                    cb.DisplayMember = "text";
+                    cb.ValueMember = "strValue1";
+                    cb.DisplayMember = "strText";
                     cb.DisplayIndex = 0;
                     cb.DisplayStyle = DataGridViewComboBoxDisplayStyle.DropDownButton;
                     headerControl1.dgvSubcontract.Columns.Add(cb);
@@ -686,6 +686,7 @@ namespace SCPrime.Contracts
             else if (this.tabControl1.SelectedIndex == 3)
             {
                 contractDataFrm.setContract(objContract);
+                contractDataFrm.fillData();
             }
         }
 

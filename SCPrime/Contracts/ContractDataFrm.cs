@@ -57,15 +57,8 @@ namespace SCPrime.Contracts
 
             //Termination 
             List<ObjTmp> listTermination = new List<ObjTmp>();
-            ObjTmp termination1 = new ObjTmp();
-            termination1.strValue1 = "T";
-            termination1.strText = "Time";
-            listTermination.Add(termination1);
-
-            ObjTmp termination2 = new ObjTmp();
-            termination2.strValue1 = "K";
-            termination2.strText = "Kilometer or hour";
-            listTermination.Add(termination2);
+            listTermination.Add(new ObjTmp("T", "Time"));
+            listTermination.Add(new ObjTmp("K", "Kilometer or hour"));
             cbTemType.DataSource = listTermination;
             cbTemType.ValueMember = "strValue1";
             cbTemType.DisplayMember = "strText";
@@ -73,14 +66,47 @@ namespace SCPrime.Contracts
 
             //Payment period  
             List<ObjTmp> listPayment = new List<ObjTmp>();
-            ObjTmp payment1 = new ObjTmp();
-            payment1.strValue1 = "M";
-            payment1.strText = "Monthly";
-            listPayment.Add(payment1);
+            listPayment.Add(new ObjTmp("M", "Month"));
+            listPayment.Add(new ObjTmp("Q", "Quarter"));
+            listPayment.Add(new ObjTmp("H", "Half year"));
+            listPayment.Add(new ObjTmp("Y", "Year"));
+
             cbPayPeriod.DataSource = listPayment;
             cbPayPeriod.ValueMember = "strValue1";
             cbPayPeriod.DisplayMember = "strText";
 
+
+            //Payment collection type
+            List<ObjTmp> listPaymentCol = new List<ObjTmp>();
+            listPaymentCol.Add(new ObjTmp("E", "ESR"));
+            listPaymentCol.Add(new ObjTmp("D", "Debit"));
+            listPaymentCol.Add(new ObjTmp("R", "e-Rechnung"));
+
+            cbColType.DataSource = listPaymentCol;
+            cbColType.ValueMember = "strValue1";
+            cbColType.DisplayMember = "strText";
+
+
+            //Payment Grouping level
+            List<ObjTmp> listPaymentGrp = new List<ObjTmp>();
+            listPaymentGrp.Add(new ObjTmp("C", "By customer"));
+            listPaymentGrp.Add(new ObjTmp("S", "By contract"));
+            listPaymentGrp.Add(new ObjTmp("F", "Flat rate"));
+
+            cbGrpLevel.DataSource = listPaymentGrp;
+            cbGrpLevel.ValueMember = "strValue1";
+            cbGrpLevel.DisplayMember = "strText";
+
+            //payment term: from control data
+            List<clsBaseListItem> listPaymentTermDb = sCBase.GetConfig("MAKSUEHDOT");
+            List<ObjTmp> listPaymentTerm = new List<ObjTmp>(listPaymentTermDb.Count);
+            foreach (clsBaseListItem term in listPaymentTermDb)
+            {
+                listPaymentTerm.Add(new ObjTmp(term.nValue1, term.strText));
+            }
+            cbPayTerm.DataSource = listPaymentTerm;
+            cbPayTerm.ValueMember = "nValue1";
+            cbPayTerm.DisplayMember = "strText";
 
             //Invoicing site 
             List<clsBaseListItem> listSite = sCBase.getAMSites();
@@ -90,73 +116,56 @@ namespace SCPrime.Contracts
                 lstSites.Add(new ObjTmp(site.strValue1, site.strText));
             }
             cbInvoiceSite.DataSource = lstSites;
-            cbInvoiceSite.ValueMember = "id";
-            cbInvoiceSite.DisplayMember = "text";
+            cbInvoiceSite.ValueMember = "strValue1";
+            cbInvoiceSite.DisplayMember = "strText";
+
+            //Start amount payer
+            listPaymentTermDb = sCBase.GetConfig("ZSCCAPPAYE");
+            List<ObjTmp> listZSCCAPPAYE = new List<ObjTmp>(listPaymentTermDb.Count);
+            List<ObjTmp> listMonAmount = new List<ObjTmp>(listPaymentTermDb.Count);
+            foreach (clsBaseListItem term in listPaymentTermDb)
+            {
+                listZSCCAPPAYE.Add(new ObjTmp(term.nValue1.ToString(), term.strText));
+                listMonAmount.Add(new ObjTmp(term.nValue1.ToString(), term.strText));
+            }
+            txtStartAmountPayer.DataSource = listZSCCAPPAYE;
+            txtStartAmountPayer.ValueMember = "strValue1";
+            txtStartAmountPayer.DisplayMember = "strText";
+
+            //Monthly amount player
+            txtMonAmountPayer.DataSource = listMonAmount;
+            txtMonAmountPayer.ValueMember = "strValue1";
+            txtMonAmountPayer.DisplayMember = "strText";
 
             //Cost basis
             List<ObjTmp> listCostBs = new List<ObjTmp>();
-            ObjTmp cost1 = new ObjTmp();
-            cost1.strValue1 = "M";
-            cost1.strText = "Monthly cost fix";
-            listCostBs.Add(cost1);
-
-            ObjTmp cost2 = new ObjTmp();
-            cost2.strValue1 = "K";
-            cost2.strText = "Km or hour cost";
-            listCostBs.Add(cost2);
-
-            ObjTmp cost3 = new ObjTmp();
-            cost3.strValue1 = "L";
-            cost3.strText = "Km or hour cost with lump amount";
-            listCostBs.Add(cost3);
+            listCostBs.Add(new ObjTmp("M", "Monthly cost fix"));
+            listCostBs.Add(new ObjTmp("K", "Km or hour cost"));
+            listCostBs.Add(new ObjTmp("L", "Km or hour cost with lump amount"));
             cbCostBassis.DataSource = listCostBs;
             cbCostBassis.ValueMember = "strValue1";
             cbCostBassis.DisplayMember = "strText";
 
             //Set Billing period
             List<ObjTmp> listBiling = new List<ObjTmp>();
-            ObjTmp billing1 = new ObjTmp();
-            billing1.strValue1 = "M";
-            billing1.strText = "Monthly";
-            listBiling.Add(billing1);
-
-            ObjTmp billing2 = new ObjTmp();
-            billing2.strValue1 = "H";
-            billing2.strText = "Half year";
-            listBiling.Add(billing2);
-
-            ObjTmp billing3 = new ObjTmp();
-            billing3.strValue1 = "Y";
-            billing3.strText = "Yearly";
-            listBiling.Add(billing3);
-
+            listBiling.Add(new ObjTmp("M", "Monthly"));
+            listBiling.Add(new ObjTmp("H", "Half year"));
+            listBiling.Add(new ObjTmp("Y", "Yearly"));
             cbBiling.DataSource = listBiling;
             cbBiling.ValueMember = "strValue1";
             cbBiling.DisplayMember = "strText";
 
             //Accounting
             List<ObjTmp> listAccounting = new List<ObjTmp>();
-            ObjTmp acc1 = new ObjTmp();
-            acc1.strValue1 = "H";
-            acc1.strText = "Only for higher km";
-            listAccounting.Add(acc1);
-
-            ObjTmp acc2 = new ObjTmp();
-            acc2.strValue1 = "L";
-            acc2.strText = "Only for lower km (return)";
-            listAccounting.Add(acc2);
-
-            ObjTmp acc3 = new ObjTmp();
-            acc3.strValue1 = "A";
-            acc3.strText = "Both higher and lower km";
-            listAccounting.Add(acc3);
-
+            listAccounting.Add(new ObjTmp("H", "Only for higher km"));
+            listAccounting.Add(new ObjTmp("L", "Only for lower km (return)"));
+            listAccounting.Add(new ObjTmp("A", "Both higher and lower km"));
             cbAccounting.DataSource = listAccounting;
             cbAccounting.ValueMember = "strValue1";
             cbAccounting.DisplayMember = "strText";
         }
 
-        private void fillData()
+        public void fillData()
         {
             if (contract != null && contract.ContractOID > 0)
             {
@@ -183,10 +192,18 @@ namespace SCPrime.Contracts
                 txtEndKm.Text = contract.ContractDateData.ContractEndKm.ToString();
                 txtEndHr.Text = contract.ContractDateData.ContractEndHour.ToString();
                 txtEndInvoice.Value = contract.ContractDateData.InvoiceEndDate;
-                cbTemType.Text = contract.TerminationType.ToString();
+                cbTemType.SelectedValue = contract.TerminationType.strValue1;
 
                 //Payment
-                cbPayPeriod.Text = contract.ContractPaymentData.PaymentPeriod.ToString();
+                if(contract.ContractPaymentData.PaymentPeriod != null && contract.ContractPaymentData.PaymentPeriod.strValue1 != null)
+                {
+                    cbPayPeriod.SelectedValue = contract.ContractPaymentData.PaymentPeriod.strValue1;
+                }
+                else
+                {
+                    cbPayPeriod.SelectedIndex = -1;
+                }
+                
                 if (contract.IsManualInvoice)
                 {
                     cbPayment.Checked = true;
@@ -205,27 +222,70 @@ namespace SCPrime.Contracts
                 }
 
                 txtNextBlock.Text = contract.ContractPaymentData.PaymentNextBlockEnd.ToString();
-                cbColType.Text = contract.ContractPaymentData.PaymentCollectionType.ToString();
-                cbGrpLevel.Text = contract.ContractPaymentData.PaymentGroupingLevel.ToString();
-                cbPayTerm.Text = contract.ContractPaymentData.PaymentTerm.ToString();
-                cbInvoiceSite.Text = contract.InvoiceSiteId.ToString();
+                cbColType.SelectedValue = contract.ContractPaymentData.PaymentCollectionType;
+                cbGrpLevel.SelectedValue = contract.ContractPaymentData.PaymentGroupingLevel;
+                cbPayTerm.SelectedValue = contract.ContractPaymentData.PaymentTerm;
+                if (contract.InvoiceSiteId != null)
+                {
+                    cbInvoiceSite.SelectedValue = contract.InvoiceSiteId.strValue1;
+                }
+                else{
+                    cbInvoiceSite.SelectedValue = -1;
+                }
+                
 
                 //captial
                 txtStartAmount.Text = contract.ContractCapitalData.CapitalStartAmount.ToString();
-                txtStartAmountPayer.Text = contract.ContractCapitalData.CapitalStartPayer.strValue1;
+                if (contract.ContractCapitalData != null && contract.ContractCapitalData.CapitalStartPayer != null
+                    && contract.ContractCapitalData.CapitalStartPayer.strValue1 != null && contract.ContractCapitalData.CapitalStartPayer.strValue1.Length > 0)
+                {
+                    txtStartAmountPayer.SelectedValue = contract.ContractCapitalData.CapitalStartPayer.strValue1;
+                }
+                else
+                {
+                    txtStartAmountPayer.SelectedValue = -1;
+                }
+                
                 txtMonAmount.Text = contract.ContractCapitalData.CapitalMonthAmount.ToString();
-                txtMonAmountPayer.Text = contract.ContractCapitalData.CapitalMonthPayer.strValue1;
+                if (contract.ContractCapitalData != null && contract.ContractCapitalData.CapitalMonthPayer != null 
+                    && contract.ContractCapitalData.CapitalMonthPayer.strValue1 != null && contract.ContractCapitalData.CapitalMonthPayer.strValue1.Length >0)
+                {
+                    txtMonAmountPayer.SelectedValue = contract.ContractCapitalData.CapitalMonthPayer.strValue1;
+                }
+                else
+                {
+                    txtMonAmountPayer.SelectedValue = -1;
+                }
                 txtTotalAmount.Text = (contract.ContractCapitalData.CapitalStartAmount
                     + contract.ContractCapitalData.CapitalMonthAmount * contract.ContractDateData.ContractPeriodMonth).ToString();
 
                 //Cost
-                cbCostBassis.Text = contract.ContractCostData.CostBasis.ToString();
+                if (contract.ContractCostData.CostBasis != null
+                    && contract.ContractCostData.CostBasis.strValue1 != null && contract.ContractCostData.CostBasis.strValue1.Length > 0)
+                {
+                    cbCostBassis.SelectedValue = contract.ContractCostData.CostBasis.strValue1;
+                }
+                else
+                {
+                    cbCostBassis.SelectedIndex = -1;
+                }
+                
                 txtCostBase.Text = contract.ContractCostData.CostBasedOnService.ToString();
                 txtMonBassis.Text = contract.ContractCostData.CostMonthBasis.ToString();
                 txtKmBassis.Text = contract.ContractCostData.CostKmBasis.ToString();
                 txtLastPay.Text = "txtLastPay";
                 txtErr.Text = contract.ContractCostData.CostPerKm.ToString();
-                txtLastKm.Text = "";
+
+                //LastKm info
+                VehicleMileage vehicleMileage = contract.VehiId.lastMileages();
+                if(vehicleMileage != null)
+                {
+                    txtLastKm.Text = vehicleMileage.LastKmInfo();
+                }
+                else
+                {
+                    txtLastKm.Text = "";
+                }
 
                 //Extra
                 cbBiling.Text = contract.ContractExtraKmData.ExtraKmInvoicePeriod.strValue1;
@@ -253,14 +313,14 @@ namespace SCPrime.Contracts
                 cbTemType.Text = "";
 
                 //Payment
-                cbPayPeriod.Text = "";
+                cbPayPeriod.SelectedIndex = -1;
                 cbPayment.Checked = false;
                 cbInvoice.Checked = false;
                 txtNextBlock.Text = "";
-                cbColType.Text = "";
-                cbGrpLevel.Text = "";
-                cbPayTerm.Text = "";
-                cbInvoiceSite.Text = "";
+                cbColType.SelectedIndex = -1;
+                cbGrpLevel.SelectedIndex = -1;
+                cbPayTerm.SelectedIndex = -1;
+                cbInvoiceSite.SelectedIndex = -1;
 
                 //captial
                 txtStartAmount.Text = "";
@@ -348,6 +408,26 @@ namespace SCPrime.Contracts
             ContractCapital ContractCapitalData = contract.ContractCapitalData;
             ContractCost ContractCostData = contract.ContractCostData;
             ContractExtraKm ContractExtraKmData = contract.ContractExtraKmData;
+            if (contractDate == null)
+            {
+                contractDate = new ContractDate();
+            }
+            if (ContractPaymentData == null)
+            {
+                ContractPaymentData = new ContractPayment();
+            }
+            if (ContractCapitalData == null)
+            {
+                ContractCapitalData = new ContractCapital();
+            }
+            if (ContractCostData == null)
+            {
+                ContractCostData = new ContractCost();
+            }
+            if (ContractExtraKmData == null)
+            {
+                ContractExtraKmData = new ContractExtraKm();
+            }
 
             //Start
             contractDate.ContractStartDate = txtStartDate.Value;
@@ -372,33 +452,37 @@ namespace SCPrime.Contracts
             contractDate.InvoiceEndDate = txtEndInvoice.Value;
 
             //Payment
-            clsBaseListItem PaymentPeriod = new clsBaseListItem();
-            PaymentPeriod.strValue1 = cbPayPeriod.SelectedText.ToString();
-            PaymentPeriod.strText = cbPayPeriod.SelectedValue.ToString();
-            ContractPaymentData.PaymentPeriod = PaymentPeriod;
+            if (cbPayPeriod.SelectedValue != null)
+            {
+                clsBaseListItem PaymentPeriod = new clsBaseListItem();
+                PaymentPeriod.strValue1 = cbPayPeriod.SelectedValue.ToString(); 
+                PaymentPeriod.strText = cbPayPeriod.SelectedText;
+                ContractPaymentData.PaymentPeriod = PaymentPeriod;
+            }
+
             contract.IsManualInvoice = cbPayment.Checked;
             contract.PaymentInBlock = cbInvoice.Checked;
 
             //ContractPaymentData.PaymentNextBlockEnd = DateTime.Parse(txtNextBlock.Text);
-            ContractPaymentData.PaymentCollectionType = cbColType.Text;
-            ContractPaymentData.PaymentGroupingLevel = cbGrpLevel.Text;
+            ContractPaymentData.PaymentCollectionType = cbColType.SelectedValue.ToString();
+            ContractPaymentData.PaymentGroupingLevel = cbGrpLevel.SelectedValue.ToString();
             //ContractPaymentData.PaymentTerm = Int32.Parse(cbPayTerm.Text);
 
             clsBaseListItem InvoiceSiteId = new clsBaseListItem();
-            InvoiceSiteId.strValue1 = cbInvoiceSite.SelectedText.ToString();
-            InvoiceSiteId.strText = cbInvoiceSite.SelectedValue.ToString();
+            InvoiceSiteId.strValue1 = cbInvoiceSite.SelectedValue.ToString();
+            InvoiceSiteId.strText = cbInvoiceSite.SelectedText;
             contract.InvoiceSiteId = InvoiceSiteId;
 
             //captial
             ContractCapitalData.CapitalStartAmount = Decimal.Parse(txtStartAmount.Text);
             clsBaseListItem CapitalStartPayer = new clsBaseListItem();
-            CapitalStartPayer.strValue1 = txtStartAmountPayer.Text.ToString();
-            CapitalStartPayer.strText = txtStartAmountPayer.Text.ToString();
+            CapitalStartPayer.strValue1 = txtStartAmountPayer.SelectedValue.ToString();
+            CapitalStartPayer.strText = txtStartAmountPayer.SelectedText.ToString();
             ContractCapitalData.CapitalStartPayer = CapitalStartPayer;
             ContractCapitalData.CapitalMonthAmount = Decimal.Parse(txtMonAmount.Text);
             clsBaseListItem CapitalMonthPayer = new clsBaseListItem();
-            CapitalMonthPayer.strValue1 = txtMonAmountPayer.Text.ToString();
-            CapitalMonthPayer.strText = txtMonAmountPayer.Text.ToString();
+            CapitalMonthPayer.strValue1 = txtMonAmountPayer.SelectedValue.ToString();
+            CapitalMonthPayer.strText = txtMonAmountPayer.SelectedText.ToString();
             ContractCapitalData.CapitalMonthPayer = CapitalMonthPayer;
             
             txtTotalAmount.Text = (contract.ContractCapitalData.CapitalStartAmount

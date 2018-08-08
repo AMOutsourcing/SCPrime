@@ -50,6 +50,42 @@ namespace SCPrime.Model
         public List<clsBaseListItem> dynFields4 = new List<clsBaseListItem>();
         public List<VehicleMileage> Mileages = new List<VehicleMileage>();
 
+        public VehicleMileage lastMileages()
+        {
+            VehicleMileage field = null;
+            clsSqlFactory hSql = new clsSqlFactory();
+            try
+            {
+                string strSql = "select top 1 Created,Mileage,Info,InputType from V_ZSC_MileageReg where VEHIID=? order by Created desc ";
+                hSql.NewCommand(strSql);
+                hSql.Com.Parameters.Add("VEHIID", this.VehiId);
+                hSql.ExecuteReader();
+                field = new VehicleMileage();
+                while (hSql.Read())
+                {
+                    int colId = hSql.Reader.GetOrdinal("Created");
+                    if (!hSql.Reader.IsDBNull(colId)) field.MileageDate = hSql.Reader.GetDateTime(colId);
+                    colId = hSql.Reader.GetOrdinal("Mileage");
+                    if (!hSql.Reader.IsDBNull(colId)) field.Mileage = hSql.Reader.GetInt32(colId);
+                    colId = hSql.Reader.GetOrdinal("Info");
+                    if (!hSql.Reader.IsDBNull(colId)) field.Info = hSql.Reader.GetString(colId);
+                    colId = hSql.Reader.GetOrdinal("InputType");
+                    if (!hSql.Reader.IsDBNull(colId)) field.InputType = hSql.Reader.GetInt32(colId);
+                    Mileages.Add(field);
+                }
+            }
+            catch (Exception ex)
+            {
+                field = null;
+                throw ex;
+            }
+            finally
+            {
+                hSql.Close();
+            }
+            return field;
+        }
+
         public bool loadMileages(clsSqlFactory hSql)
         {
             bool bRet = true;
@@ -221,6 +257,15 @@ namespace SCPrime.Model
                 this.InputType = 1;
             }
         }
+
+        public string LastKmInfo()
+        {
+            if (MileageDate != null)
+            {
+                return Mileage + "," + MileageDate.ToString() + "," + Info;
+            }
+            return "";
+        }
     }
     public class ContractDate
     {
@@ -335,11 +380,11 @@ namespace SCPrime.Model
 
                 var colId = hSql.Reader.GetOrdinal("suplno");
                 if (!hSql.Reader.IsDBNull(colId))
-                    obj.value = hSql.Reader.GetString(colId);
+                    obj.strValue1 = hSql.Reader.GetString(colId);
 
                 colId = hSql.Reader.GetOrdinal("suplname");
                 if (!hSql.Reader.IsDBNull(colId))
-                    obj.text = hSql.Reader.GetString(colId);
+                    obj.strText = hSql.Reader.GetString(colId);
 
 
                 objs.Add(obj);
@@ -363,7 +408,7 @@ namespace SCPrime.Model
         public int VersionNo { get; set; }
         public string ContractStatus { get; set; }
         public String VIN { get; set; }
-       
+
 
         public bool isDeleted { get; set; }
 
@@ -498,7 +543,7 @@ namespace SCPrime.Model
                             s.Info = "";
                         }
                         hSql.Com.Parameters.AddWithValue("Info", s.Info);
-                       
+
                         bRet = bRet && hSql.ExecuteNonQuery();
                     }
 
@@ -509,7 +554,7 @@ namespace SCPrime.Model
                         bRet = hSql.NewCommand(sql);
                         hSql.Com.Parameters.AddWithValue("ContractOID", contractOid);
                         hSql.Com.Parameters.AddWithValue("DetailContractOID", s.DetailContractOID);
-                        if(s.Info == null)
+                        if (s.Info == null)
                         {
                             s.Info = "";
                         }
@@ -640,7 +685,7 @@ namespace SCPrime.Model
                     {
                         bRet = bRet && savSelfContract(SelfContracts, this.ContractOID, hSql);
                     }
-                   
+
                 }
                 //update data
                 if (ContractOID > 0)

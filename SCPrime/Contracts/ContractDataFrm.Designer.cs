@@ -78,9 +78,7 @@
             this.label28 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.txtTotalAmount = new System.Windows.Forms.TextBox();
-            this.txtMonAmountPayer = new System.Windows.Forms.TextBox();
             this.txtMonAmount = new System.Windows.Forms.TextBox();
-            this.txtStartAmountPayer = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
@@ -104,6 +102,7 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtEndInvoice = new System.Windows.Forms.DateTimePicker();
             this.txtEndDate = new System.Windows.Forms.DateTimePicker();
             this.cbTemType = new System.Windows.Forms.ComboBox();
             this.txtEndHr = new System.Windows.Forms.TextBox();
@@ -114,6 +113,7 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtStartInvoice = new System.Windows.Forms.DateTimePicker();
             this.txtStartDate = new System.Windows.Forms.DateTimePicker();
             this.txtPeriod = new System.Windows.Forms.NumericUpDown();
             this.txtKmHr = new System.Windows.Forms.TextBox();
@@ -128,8 +128,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.txtStartInvoice = new System.Windows.Forms.DateTimePicker();
-            this.txtEndInvoice = new System.Windows.Forms.DateTimePicker();
+            this.txtStartAmountPayer = new System.Windows.Forms.ComboBox();
+            this.txtMonAmountPayer = new System.Windows.Forms.ComboBox();
             this.pnAll.SuspendLayout();
             this.pnBottom.SuspendLayout();
             this.pnLeft.SuspendLayout();
@@ -586,10 +586,10 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.txtTotalAmount);
             this.groupBox4.Controls.Add(this.txtMonAmountPayer);
-            this.groupBox4.Controls.Add(this.txtMonAmount);
+            this.groupBox4.Controls.Add(this.txtTotalAmount);
             this.groupBox4.Controls.Add(this.txtStartAmountPayer);
+            this.groupBox4.Controls.Add(this.txtMonAmount);
             this.groupBox4.Controls.Add(this.label19);
             this.groupBox4.Controls.Add(this.label20);
             this.groupBox4.Controls.Add(this.label21);
@@ -610,26 +610,12 @@
             this.txtTotalAmount.Size = new System.Drawing.Size(123, 20);
             this.txtTotalAmount.TabIndex = 11;
             // 
-            // txtMonAmountPayer
-            // 
-            this.txtMonAmountPayer.Location = new System.Drawing.Point(130, 111);
-            this.txtMonAmountPayer.Name = "txtMonAmountPayer";
-            this.txtMonAmountPayer.Size = new System.Drawing.Size(123, 20);
-            this.txtMonAmountPayer.TabIndex = 10;
-            // 
             // txtMonAmount
             // 
             this.txtMonAmount.Location = new System.Drawing.Point(130, 84);
             this.txtMonAmount.Name = "txtMonAmount";
             this.txtMonAmount.Size = new System.Drawing.Size(123, 20);
             this.txtMonAmount.TabIndex = 9;
-            // 
-            // txtStartAmountPayer
-            // 
-            this.txtStartAmountPayer.Location = new System.Drawing.Point(130, 54);
-            this.txtStartAmountPayer.Name = "txtStartAmountPayer";
-            this.txtStartAmountPayer.Size = new System.Drawing.Size(123, 20);
-            this.txtStartAmountPayer.TabIndex = 8;
             // 
             // label19
             // 
@@ -857,6 +843,13 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Contract end";
             // 
+            // txtEndInvoice
+            // 
+            this.txtEndInvoice.Location = new System.Drawing.Point(99, 98);
+            this.txtEndInvoice.Name = "txtEndInvoice";
+            this.txtEndInvoice.Size = new System.Drawing.Size(154, 20);
+            this.txtEndInvoice.TabIndex = 13;
+            // 
             // txtEndDate
             // 
             this.txtEndDate.Location = new System.Drawing.Point(99, 16);
@@ -953,6 +946,13 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Contract start";
+            // 
+            // txtStartInvoice
+            // 
+            this.txtStartInvoice.Location = new System.Drawing.Point(100, 94);
+            this.txtStartInvoice.Name = "txtStartInvoice";
+            this.txtStartInvoice.Size = new System.Drawing.Size(153, 20);
+            this.txtStartInvoice.TabIndex = 15;
             // 
             // txtStartDate
             // 
@@ -1072,19 +1072,21 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // txtStartInvoice
+            // txtStartAmountPayer
             // 
-            this.txtStartInvoice.Location = new System.Drawing.Point(100, 94);
-            this.txtStartInvoice.Name = "txtStartInvoice";
-            this.txtStartInvoice.Size = new System.Drawing.Size(153, 20);
-            this.txtStartInvoice.TabIndex = 15;
+            this.txtStartAmountPayer.FormattingEnabled = true;
+            this.txtStartAmountPayer.Location = new System.Drawing.Point(130, 55);
+            this.txtStartAmountPayer.Name = "txtStartAmountPayer";
+            this.txtStartAmountPayer.Size = new System.Drawing.Size(121, 21);
+            this.txtStartAmountPayer.TabIndex = 19;
             // 
-            // txtEndInvoice
+            // txtMonAmountPayer
             // 
-            this.txtEndInvoice.Location = new System.Drawing.Point(99, 98);
-            this.txtEndInvoice.Name = "txtEndInvoice";
-            this.txtEndInvoice.Size = new System.Drawing.Size(154, 20);
-            this.txtEndInvoice.TabIndex = 13;
+            this.txtMonAmountPayer.FormattingEnabled = true;
+            this.txtMonAmountPayer.Location = new System.Drawing.Point(130, 110);
+            this.txtMonAmountPayer.Name = "txtMonAmountPayer";
+            this.txtMonAmountPayer.Size = new System.Drawing.Size(121, 21);
+            this.txtMonAmountPayer.TabIndex = 20;
             // 
             // ContractDataFrm
             // 
@@ -1162,9 +1164,7 @@
         private System.Windows.Forms.ComboBox cbColType;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.TextBox txtTotalAmount;
-        private System.Windows.Forms.TextBox txtMonAmountPayer;
         private System.Windows.Forms.TextBox txtMonAmount;
-        private System.Windows.Forms.TextBox txtStartAmountPayer;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
@@ -1223,5 +1223,7 @@
         private System.Windows.Forms.DateTimePicker txtEndDate;
         private System.Windows.Forms.DateTimePicker txtStartInvoice;
         private System.Windows.Forms.DateTimePicker txtEndInvoice;
+        private System.Windows.Forms.ComboBox txtMonAmountPayer;
+        private System.Windows.Forms.ComboBox txtStartAmountPayer;
     }
 }
