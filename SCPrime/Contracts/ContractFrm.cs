@@ -709,6 +709,9 @@ namespace SCPrime.Contracts
                 // MessageBox.Show("Select Vehicle");
                 return;
             }
+
+            //Update contract data
+            objContract = contractDataFrm.saveContractData();
             bool tmp = false;
             tmp = objContract.saveContract();
            // MessageBox.Show(tmp.ToString());

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SCPrime.Model;
 using CashRegPrime;
+using nsBaseClass;
 
 namespace SCPrime.Contracts
 {
@@ -34,10 +35,125 @@ namespace SCPrime.Contracts
             this.contract = objContract;
         }
 
+        SCBase sCBase;
         //
         public ContractDataFrm()
         {
             InitializeComponent();
+
+            sCBase = new SCBase();
+
+            txtStartDate.Format = DateTimePickerFormat.Custom;
+            txtStartDate.CustomFormat = "yyyy-MM-dd";
+
+            txtEndDate.Format = DateTimePickerFormat.Custom;
+            txtEndDate.CustomFormat = "yyyy-MM-dd";
+
+            txtStartInvoice.Format = DateTimePickerFormat.Custom;
+            txtStartInvoice.CustomFormat = "yyyy-MM-dd";
+
+            txtEndInvoice.Format = DateTimePickerFormat.Custom;
+            txtEndInvoice.CustomFormat = "yyyy-MM-dd";
+
+            //Termination 
+            List<ObjTmp> listTermination = new List<ObjTmp>();
+            ObjTmp termination1 = new ObjTmp();
+            termination1.strValue1 = "T";
+            termination1.strText = "Time";
+            listTermination.Add(termination1);
+
+            ObjTmp termination2 = new ObjTmp();
+            termination2.strValue1 = "K";
+            termination2.strText = "Kilometer or hour";
+            listTermination.Add(termination2);
+            cbTemType.DataSource = listTermination;
+            cbTemType.ValueMember = "strValue1";
+            cbTemType.DisplayMember = "strText";
+
+
+            //Payment period  
+            List<ObjTmp> listPayment = new List<ObjTmp>();
+            ObjTmp payment1 = new ObjTmp();
+            payment1.strValue1 = "M";
+            payment1.strText = "Monthly";
+            listPayment.Add(payment1);
+            cbPayPeriod.DataSource = listPayment;
+            cbPayPeriod.ValueMember = "strValue1";
+            cbPayPeriod.DisplayMember = "strText";
+
+
+            //Invoicing site 
+            List<clsBaseListItem> listSite = sCBase.getAMSites();
+            List<ObjTmp> lstSites = new List<ObjTmp>(listSite.Count);
+            foreach (clsBaseListItem site in listSite)
+            {
+                lstSites.Add(new ObjTmp(site.strValue1, site.strText));
+            }
+            cbInvoiceSite.DataSource = lstSites;
+            cbInvoiceSite.ValueMember = "id";
+            cbInvoiceSite.DisplayMember = "text";
+
+            //Cost basis
+            List<ObjTmp> listCostBs = new List<ObjTmp>();
+            ObjTmp cost1 = new ObjTmp();
+            cost1.strValue1 = "M";
+            cost1.strText = "Monthly cost fix";
+            listCostBs.Add(cost1);
+
+            ObjTmp cost2 = new ObjTmp();
+            cost2.strValue1 = "K";
+            cost2.strText = "Km or hour cost";
+            listCostBs.Add(cost2);
+
+            ObjTmp cost3 = new ObjTmp();
+            cost3.strValue1 = "L";
+            cost3.strText = "Km or hour cost with lump amount";
+            listCostBs.Add(cost3);
+            cbCostBassis.DataSource = listCostBs;
+            cbCostBassis.ValueMember = "strValue1";
+            cbCostBassis.DisplayMember = "strText";
+
+            //Set Billing period
+            List<ObjTmp> listBiling = new List<ObjTmp>();
+            ObjTmp billing1 = new ObjTmp();
+            billing1.strValue1 = "M";
+            billing1.strText = "Monthly";
+            listBiling.Add(billing1);
+
+            ObjTmp billing2 = new ObjTmp();
+            billing2.strValue1 = "H";
+            billing2.strText = "Half year";
+            listBiling.Add(billing2);
+
+            ObjTmp billing3 = new ObjTmp();
+            billing3.strValue1 = "Y";
+            billing3.strText = "Yearly";
+            listBiling.Add(billing3);
+
+            cbBiling.DataSource = listBiling;
+            cbBiling.ValueMember = "strValue1";
+            cbBiling.DisplayMember = "strText";
+
+            //Accounting
+            List<ObjTmp> listAccounting = new List<ObjTmp>();
+            ObjTmp acc1 = new ObjTmp();
+            acc1.strValue1 = "H";
+            acc1.strText = "Only for higher km";
+            listAccounting.Add(acc1);
+
+            ObjTmp acc2 = new ObjTmp();
+            acc2.strValue1 = "L";
+            acc2.strText = "Only for lower km (return)";
+            listAccounting.Add(acc2);
+
+            ObjTmp acc3 = new ObjTmp();
+            acc3.strValue1 = "A";
+            acc3.strText = "Both higher and lower km";
+            listAccounting.Add(acc3);
+
+            cbAccounting.DataSource = listAccounting;
+            cbAccounting.ValueMember = "strValue1";
+            cbAccounting.DisplayMember = "strText";
         }
 
         private void fillData()
@@ -48,7 +164,7 @@ namespace SCPrime.Contracts
                 txtStartDate.Value = contract.ContractDateData.ContractStartDate;
                 txtStartKm.Text = contract.ContractDateData.ContractStartKm.ToString();
                 txtStartHr.Text = contract.ContractDateData.ContractStartHour.ToString();
-                txtStartInvoice.Text = contract.ContractDateData.InvoiceStartDate.ToString();
+                txtStartInvoice.Value = contract.ContractDateData.InvoiceStartDate;
                 txtPeriod.Value = contract.ContractDateData.ContractPeriodMonth;
                 txtKmHr.Text = contract.ContractDateData.ContractPeriodKmHour.ToString();
                 if (contract.ContractDateData.ContractPeriodKmHour == 1)
@@ -66,7 +182,7 @@ namespace SCPrime.Contracts
                 txtEndDate.Value = contract.ContractDateData.ContractEndDate;
                 txtEndKm.Text = contract.ContractDateData.ContractEndKm.ToString();
                 txtEndHr.Text = contract.ContractDateData.ContractEndHour.ToString();
-                txtEndInvoice.Text = contract.ContractDateData.InvoiceEndDate.ToString();
+                txtEndInvoice.Value = contract.ContractDateData.InvoiceEndDate;
                 cbTemType.Text = contract.TerminationType.ToString();
 
                 //Payment
@@ -125,7 +241,7 @@ namespace SCPrime.Contracts
                 txtStartDate.Value = DateTime.Now;
                 txtStartKm.Text = "";
                 txtStartHr.Text = "";
-                txtStartInvoice.Text = "";
+                txtStartInvoice.Value = DateTime.Now;
                 txtPeriod.Value = 0;
                 txtKmHr.Text = "";
 
@@ -133,7 +249,7 @@ namespace SCPrime.Contracts
                 txtEndDate.Value = DateTime.Now;
                 txtEndKm.Text = "";
                 txtEndHr.Text = "";
-                txtEndInvoice.Text = "";
+                txtEndInvoice.Value = DateTime.Now;
                 cbTemType.Text = "";
 
                 //Payment
@@ -217,6 +333,112 @@ namespace SCPrime.Contracts
                 //Edit stat date -> recalculate End date = Start date + Period month
                 caclEndDate();
             }
+        }
+
+        public Contract saveContractData()
+        {
+            //ContractDate contractDate = contract.ContractDateData;
+            //ContractPayment ContractPaymentData = contract.ContractPaymentData;
+            //ContractCapital ContractCapitalData = contract.ContractCapitalData;
+            //ContractCost ContractCostData = contract.ContractCostData;
+            //ContractExtraKm ContractExtraKmData = contract.ContractExtraKmData;
+
+            ContractDate contractDate = contract.ContractDateData;
+            ContractPayment ContractPaymentData = contract.ContractPaymentData;
+            ContractCapital ContractCapitalData = contract.ContractCapitalData;
+            ContractCost ContractCostData = contract.ContractCostData;
+            ContractExtraKm ContractExtraKmData = contract.ContractExtraKmData;
+
+            //Start
+            contractDate.ContractStartDate = txtStartDate.Value;
+            contractDate.ContractStartKm = Int32.Parse(txtStartKm.Text);
+            contractDate.ContractStartHour = Int32.Parse(txtStartHr.Text);
+            contractDate.InvoiceStartDate = txtStartInvoice.Value;
+            contractDate.ContractPeriodMonth = Int32.Parse(txtPeriod.Text);
+            contractDate.ContractPeriodKmHour = Int32.Parse(txtKmHr.Text);
+            if (rdKmBase.Checked)
+            {
+                contract.ContractDateData.ContractPeriodKmHour = 1;
+            }
+            if (rdHrBase.Checked)
+            {
+                contract.ContractDateData.ContractPeriodKmHour = 2;
+            }
+
+            //End
+            contractDate.ContractEndDate = txtEndDate.Value;
+            contractDate.ContractEndKm = Int32.Parse(txtEndKm.Text);
+            contractDate.ContractEndHour = Int32.Parse(txtEndHr.Text);
+            contractDate.InvoiceEndDate = txtEndInvoice.Value;
+
+            //Payment
+            clsBaseListItem PaymentPeriod = new clsBaseListItem();
+            PaymentPeriod.strValue1 = cbPayPeriod.SelectedText.ToString();
+            PaymentPeriod.strText = cbPayPeriod.SelectedValue.ToString();
+            ContractPaymentData.PaymentPeriod = PaymentPeriod;
+            contract.IsManualInvoice = cbPayment.Checked;
+            contract.PaymentInBlock = cbInvoice.Checked;
+
+            //ContractPaymentData.PaymentNextBlockEnd = DateTime.Parse(txtNextBlock.Text);
+            ContractPaymentData.PaymentCollectionType = cbColType.Text;
+            ContractPaymentData.PaymentGroupingLevel = cbGrpLevel.Text;
+            //ContractPaymentData.PaymentTerm = Int32.Parse(cbPayTerm.Text);
+
+            clsBaseListItem InvoiceSiteId = new clsBaseListItem();
+            InvoiceSiteId.strValue1 = cbInvoiceSite.SelectedText.ToString();
+            InvoiceSiteId.strText = cbInvoiceSite.SelectedValue.ToString();
+            contract.InvoiceSiteId = InvoiceSiteId;
+
+            //captial
+            ContractCapitalData.CapitalStartAmount = Decimal.Parse(txtStartAmount.Text);
+            clsBaseListItem CapitalStartPayer = new clsBaseListItem();
+            CapitalStartPayer.strValue1 = txtStartAmountPayer.Text.ToString();
+            CapitalStartPayer.strText = txtStartAmountPayer.Text.ToString();
+            ContractCapitalData.CapitalStartPayer = CapitalStartPayer;
+            ContractCapitalData.CapitalMonthAmount = Decimal.Parse(txtMonAmount.Text);
+            clsBaseListItem CapitalMonthPayer = new clsBaseListItem();
+            CapitalMonthPayer.strValue1 = txtMonAmountPayer.Text.ToString();
+            CapitalMonthPayer.strText = txtMonAmountPayer.Text.ToString();
+            ContractCapitalData.CapitalMonthPayer = CapitalMonthPayer;
+            
+            txtTotalAmount.Text = (contract.ContractCapitalData.CapitalStartAmount
+                + contract.ContractCapitalData.CapitalMonthAmount * contract.ContractDateData.ContractPeriodMonth).ToString();
+
+            //Cost
+            clsBaseListItem CostBasis = new clsBaseListItem();
+            CostBasis.strValue1 = cbCostBassis.SelectedValue.ToString();
+            CostBasis.strText = cbCostBassis.SelectedText.ToString();
+            ContractCostData.CostBasis = CostBasis;
+            ContractCostData.CostBasedOnService = Decimal.Parse(txtCostBase.Text);
+            ContractCostData.CostMonthBasis = Decimal.Parse(txtMonBassis.Text);
+            ContractCostData.CostKmBasis = Decimal.Parse(txtKmBassis.Text);
+            ContractCostData.CostPerKm = Decimal.Parse(txtErr.Text);
+            txtLastPay.Text = "txtLastPay";
+            txtLastKm.Text = "";
+
+            //Extra
+
+
+            clsBaseListItem ExtraKmInvoicePeriod = new clsBaseListItem();
+            ExtraKmInvoicePeriod.strValue1 = cbBiling.SelectedValue.ToString();
+            ExtraKmInvoicePeriod.strText = cbBiling.SelectedText.ToString();
+            ContractExtraKmData.ExtraKmInvoicePeriod = ExtraKmInvoicePeriod;
+            clsBaseListItem ExtraKmAccounting = new clsBaseListItem();
+            ExtraKmAccounting.strValue1 = cbAccounting.SelectedValue.ToString();
+            ExtraKmAccounting.strText = cbAccounting.SelectedText.ToString();
+            ContractExtraKmData.ExtraKmAccounting = ExtraKmAccounting;
+            ContractExtraKmData.ExtraKmMaxDeviation = Decimal.Parse(txtMaxDev.Text);
+            ContractExtraKmData.ExtraKmLowAmount = Decimal.Parse(txtMinKm.Text);
+            ContractExtraKmData.ExtraKmHighAmount = Decimal.Parse(txtMehrKm.Text);
+            ContractExtraKmData.ExtraKmInvoicedAmount = Decimal.Parse(txtBetrag.Text);
+
+
+            contract.ContractDateData = contractDate;
+            contract.ContractPaymentData = ContractPaymentData;
+            contract.ContractCapitalData = ContractCapitalData;
+            contract.ContractCostData = ContractCostData;
+            contract.ContractExtraKmData = ContractExtraKmData;
+            return contract;
         }
     }
 }

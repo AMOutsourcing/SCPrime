@@ -53,6 +53,7 @@ namespace SCPrime.Model
         public bool loadMileages(clsSqlFactory hSql)
         {
             bool bRet = true;
+            Mileages.Clear(); //LHD bug fix
             try
             {
                 string strSql = "select  Created,Mileage,Info,InputType from V_ZSC_MileageReg where VEHIID=? order by Created desc ";
@@ -88,13 +89,17 @@ namespace SCPrime.Model
             bool bRet = true;
             try
             {
+                dynFields1.Clear();
+                dynFields2.Clear();
+                dynFields3.Clear();
+                dynFields4.Clear();
                 string strSql = "select  a.ADINDATA as Data,b.C2 as Title,c.C3 as FieldGroup from ADIN a, CORW b,CORW c where a.INSTYPE='V' and a.ADINID=? and b.CODAID = 'ADDINFVEHI' and b.c1 = a.FIELDID and c.CODAID='ZSCVEHADIN' and c.C4=a.FIELDID order by c.C3,c.C1 ";
                 hSql.NewCommand(strSql);
                 hSql.Com.Parameters.Add("VEHIID", this.VehiId.ToString());
                 hSql.ExecuteReader();
                 while (hSql.Read())
                 {
-                    int colId = hSql.Reader.GetOrdinal("ADINDATA");
+                    int colId = hSql.Reader.GetOrdinal("Data");
                     if (!hSql.Reader.IsDBNull(colId))
                     {
                         clsBaseListItem field = new clsBaseListItem();
@@ -111,13 +116,13 @@ namespace SCPrime.Model
                                     dynFields1.Add(field);
                                     break;
                                 case "CRANE":
-                                    dynFields1.Add(field);
+                                    dynFields2.Add(field);
                                     break;
                                 case "TAILLIFT":
-                                    dynFields1.Add(field);
+                                    dynFields3.Add(field);
                                     break;
                                 case "COOLING":
-                                    dynFields1.Add(field);
+                                    dynFields4.Add(field);
                                     break;
                                 default:
                                     break;
@@ -452,6 +457,7 @@ namespace SCPrime.Model
         public List<SubContractorContract> SubContracts;
         public List<CollectiveContract> SelfContracts;
 
+        public List<SCOptionCategory> OptionCategories;
         public Contract()
         {
             //default values
@@ -634,6 +640,7 @@ namespace SCPrime.Model
                     {
                         bRet = bRet && savSelfContract(SelfContracts, this.ContractOID, hSql);
                     }
+                   
                 }
                 //update data
                 if (ContractOID > 0)
@@ -783,6 +790,10 @@ namespace SCPrime.Model
                     {
                         bRet = bRet && savSelfContract(SelfContracts, this.ContractOID, hSql);
                     }
+                    if (OptionCategories != null)
+                    {
+                        bRet = bRet && SCOptionCategory.saveContractOptionCategoryList(this.ContractOID, this.OptionCategories, hSql);
+                    }
                 }
 
                 hSql.Commit();
@@ -908,6 +919,8 @@ namespace SCPrime.Model
                     bRet = VehiId.loadDynFields(hSql);
                     bRet = VehiId.loadMileages(hSql);
                 }
+                OptionCategories = SCOptionCategory.getContractOptionCategory(this.ContractOID, hSql);
+
 
             }
             catch (Exception ex)
