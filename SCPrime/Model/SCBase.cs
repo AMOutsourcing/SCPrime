@@ -463,6 +463,51 @@ namespace SCPrime.Model
             }
             return bRet;
         }
+
+        public static SCOptionCategory getByOID(int CategoryOID)
+        {
+            SCOptionCategory item = new SCOptionCategory();
+            clsSqlFactory hSql = new clsSqlFactory();
+            try
+            {
+
+                clsGlobalVariable objGlobal = new clsGlobalVariable();
+                string LangId = objGlobal.CultureInfo;
+
+                String strSql = " select a.OID,isnull(x.Name,a.Name),isnull(a.ItemNo,''),isnull(a.ItemSuplNo,''),isnull(a.WrksId,''),isnull(a.SelPr,0),isnull(a.InvoiceFlag,0),isnull(b.NAME,''),isnull(b.BUYPR,0),isnull(c.NAME,''), isnull(a.MainGroupCode,'') " +
+                    " from ZSC_OptionCategory a left join ITEM b on a.ITEMNO=b.ITEMNO and a.ITEMSUPLNO=b.SUPLNO left join WRKS c on a.WRKSID=c.WRKSID and c.WPTYPE='T' " +
+                    " left join ZSC_OptionForeignName x on x.ObjectType=1 and x.ObjectOID=a.OID and x.LangId=? " +
+                    " WHERE a.OID=? order by a.OID ";
+                hSql.NewCommand(strSql);
+                hSql.Com.Parameters.AddWithValue("LangId", LangId);
+                hSql.Com.Parameters.AddWithValue("CategoryOID", CategoryOID);
+                hSql.ExecuteReader();
+                item = new SCOptionCategory();
+                while (hSql.Read())
+                {
+                    item.OID = hSql.Reader.GetInt32(0);
+                    item.Name = hSql.Reader.GetString(1);
+                    item.ItemNo = hSql.Reader.GetString(2);
+                    item.ItemSuplNo = hSql.Reader.GetString(3);
+                    item.WrksId = hSql.Reader.GetString(4);
+                    item.SelPr = hSql.Reader.GetDecimal(5);
+                    item.InvoiceFlag = hSql.Reader.GetInt32(6);
+                    item.ItemName = hSql.Reader.GetString(7);
+                    item.BuyPr = hSql.Reader.GetDecimal(8);
+                    item.WrksName = hSql.Reader.GetString(9);
+                    item.MainGroupCode = hSql.Reader.GetString(10);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                hSql.Close();
+            }
+            return item;
+        }
     }
     public class SCOption : SCOptionBase
     {
@@ -741,6 +786,48 @@ namespace SCPrime.Model
             this.OID = oid;
             this.Name = name;
         }
+
+        public static SCOption getByOID(int OptionOID)
+        {
+            SCOption item = null;
+            clsSqlFactory hSql = new clsSqlFactory();
+            try
+            {
+                clsGlobalVariable objGlobal = new clsGlobalVariable();
+                string LangId = objGlobal.CultureInfo;
+                String strSql = " select a.OID,isnull(x.Name,a.Name),isnull(a.ItemNo,''),isnull(a.ItemSuplNo,''),isnull(a.WrksId,''),isnull(a.SelPr,0),null,isnull(b.NAME,''),isnull(b.BUYPR,0),isnull(c.NAME,''), isnull(a.SubGroupCode,'') " +
+                    " from ZSC_Option a left join ITEM b on a.ITEMNO=b.ITEMNO and a.ITEMSUPLNO=b.SUPLNO left join WRKS c on a.WRKSID=c.WRKSID and c.WPTYPE='T' " +
+                    " left join ZSC_OptionForeignName x on x.ObjectType=2 and x.ObjectOID=a.OID and x.LangId=? " +
+                    " where a.OID=? order by isnull(x.Name,a.Name) ";
+                hSql.NewCommand(strSql);
+                hSql.Com.Parameters.AddWithValue("LangId", LangId);
+                hSql.Com.Parameters.AddWithValue("OptionOID", OptionOID);
+                hSql.ExecuteReader();
+                item = new SCOption();
+                while (hSql.Read())
+                {   
+                    item.OID = hSql.Reader.GetInt32(0);
+                    item.Name = hSql.Reader.GetString(1);
+                    item.ItemNo = hSql.Reader.GetString(2);
+                    item.ItemSuplNo = hSql.Reader.GetString(3);
+                    item.WrksId = hSql.Reader.GetString(4);
+                    item.SelPr = hSql.Reader.GetDecimal(5);
+                    item.ItemName = hSql.Reader.GetString(7);
+                    item.BuyPr = hSql.Reader.GetDecimal(8);
+                    item.WrksName = hSql.Reader.GetString(9);
+                    item.SubGroupCode = hSql.Reader.GetString(10);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                hSql.Close();
+            }
+            return item;
+        }
     }
     public class SCOptionDetail : SCOptionBase
     {
@@ -891,6 +978,48 @@ namespace SCPrime.Model
                 hSql.Close();
             }
             return Result;
+        }
+
+        public static SCOptionDetail getByOID(int detailOID)
+        {
+            SCOptionDetail item = null;
+            clsSqlFactory hSql = new clsSqlFactory();
+            try
+            {
+                clsGlobalVariable objGlobal = new clsGlobalVariable();
+                string LangId = objGlobal.CultureInfo;
+
+                String strSql = " select a.OID,isnull(x.Name,a.Name),isnull(a.ItemNo,''),isnull(a.ItemSuplNo,''),isnull(a.WrksId,''),isnull(a.SelPr,0),null,isnull(b.NAME,''),isnull(b.BUYPR,0),isnull(c.NAME,'') " +
+                    " from ZSC_OptionDetail a left join ITEM b on a.ITEMNO=b.ITEMNO and a.ITEMSUPLNO=b.SUPLNO left join WRKS c on a.WRKSID=c.WRKSID and c.WPTYPE='T' " +
+                    " left join ZSC_OptionForeignName x on x.ObjectType=3 and x.ObjectOID=a.OID and x.LangId=? " +
+                    " where a.OID=? order by isnull(x.Name,a.Name) ";
+                hSql.NewCommand(strSql);
+                hSql.Com.Parameters.AddWithValue("LangId", LangId);
+                hSql.Com.Parameters.AddWithValue("detailOID", detailOID);
+                hSql.ExecuteReader();
+                item = new SCOptionDetail();
+                while (hSql.Read())
+                {   
+                    item.OID = hSql.Reader.GetInt32(0);
+                    item.Name = hSql.Reader.GetString(1);
+                    item.ItemNo = hSql.Reader.GetString(2);
+                    item.ItemSuplNo = hSql.Reader.GetString(3);
+                    item.WrksId = hSql.Reader.GetString(4);
+                    item.SelPr = hSql.Reader.GetDecimal(5);
+                    item.ItemName = hSql.Reader.GetString(7);
+                    item.BuyPr = hSql.Reader.GetDecimal(8);
+                    item.WrksName = hSql.Reader.GetString(9);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                hSql.Close();
+            }
+            return item;
         }
     }
     public class SCOptionBase

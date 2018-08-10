@@ -14,23 +14,81 @@ namespace SCPrime.Contracts
 {
     public partial class ContractOptionControl : UserControl
     {
-        
+
         public ContractOptionControl()
         {
             InitializeComponent();
         }
 
-       
+
 
         private void ContractOption_Load(object sender, EventArgs e)
         {
-           
+
         }
 
-        public List<SCOptionCategory> myCategories = null;
-        private void loadTree()
-        {
+        public List<SCOptionPrice> myCategories = null;
+        SCContractType SCContractType = null;
 
+        public void loadTree()
+        {
+            SCContractType = ContractFrm.objContract.ContractTypeOID;
+            myCategories = SCContractType.getOptionPriceList(SCContractType.OID);
+            buidTree();
+        }
+
+        private void buidTree()
+        {
+            List<SCOptionPrice> listToClone = myCategories.ToList();
+
+            IEnumerable<SCOptionPrice> listCategory = myCategories.Where(s => !s.NotAvailable && s.OptionOID <= 0 && s.OptionDetailOID <= 0);
+
+            IEnumerable<SCOptionPrice> listOptions;
+            IEnumerable<SCOptionPrice> listOptionDetails;
+
+
+            treeView1.Nodes.Clear();
+            if (myCategories.Count > 0)
+            {
+                foreach (SCOptionPrice cat in listCategory)
+                {
+                    TreeNode treeNode = new TreeNode(cat.CategoryName);
+                    treeNode.Name = "C" + cat.CategoryOID.ToString();
+                    if (cat.Include)
+                    {
+                        treeNode.Checked = true;
+                    }
+                    treeView1.Nodes.Add(treeNode);
+                    //get option
+                    listOptions = myCategories.Where(s => !s.NotAvailable && s.CategoryOID == cat.CategoryOID && s.OptionOID > 0 && s.OptionDetailOID <= 0);
+
+                    foreach (SCOptionPrice op in listOptions)
+                    {
+                        TreeNode treeNodeL2 = new TreeNode(op.OptionName);
+                        treeNodeL2.Name = "O" + op.OptionOID.ToString();
+                        if (op.Include)
+                        {
+                            treeNodeL2.Checked = true;
+                        }
+                        treeNode.Nodes.Add(treeNodeL2);
+                        //load all detail
+                        listOptionDetails = myCategories.Where(s => !s.NotAvailable && s.CategoryOID == cat.CategoryOID && s.OptionOID == op.OptionOID && s.OptionDetailOID > 0);
+
+                        foreach (SCOptionPrice sod in listOptionDetails)
+                        {
+                            // create childnode level3
+                            TreeNode treeNodeL3 = new TreeNode(sod.OptionDetailName);
+                            treeNodeL3.Name = "D" + sod.OptionDetailOID.ToString();
+                            if (sod.Include)
+                            {
+                                treeNodeL3.Checked = true;
+                            }
+                            treeNodeL2.Nodes.Add(treeNodeL3);
+                        }
+                    }
+
+                }
+            }
         }
 
         DataTable dataTable = new DataTable();
@@ -45,40 +103,34 @@ namespace SCPrime.Contracts
         {
             if (e.Node.Checked)
             {
-                Console.WriteLine("CHECK: " + e.Node.Name);
-                if(e.Node.Level == 0)// category
+                var item = getOptionBase(e.Node.Name, e.Node.Text);
+                if (item != null)
                 {
-                    var item = getOptionCategory(e.Node.Text);
-                    if (item != null)
-                    {
-                        DataRow drToAdd = ObjectUtils.FillDataToRow(dataTable.NewRow(),item);
-
-                        dataTable.Rows.Add(drToAdd);
-
-                        //int idx = this.GetIndexOfRowCategory(this.dataGridView1, item.OID);
-                        //if (idx > -1)
-                        //{
-                        //    this.dataGridView1.Rows[idx].Cells[1].Selected = true;
-                        //    this.dataGridView1.BeginEdit(true);
-                        //}
-                    }
+                    DataRow drToAdd = ObjectUtils.FillDataToRow(dataTable.NewRow(), item);
+                    dataTable.Rows.Add(drToAdd);
                 }
             }
             else
                 MessageBox.Show("unchecked");
         }
-        public SCOptionCategory getOptionCategory(int oid)
-        {
-            List<SCOptionCategory> myCategories = SCOptionCategory.getOptionCategoryList();
-            SCOptionCategory sc = new SCOptionCategory();
-            sc = myCategories.Find(x => x.OID == oid);
-            return sc;
-        }
 
-        public SCOptionCategory getOptionCategory(string text)
+        public SCOptionBase getOptionBase(string name, string text)
         {
-            var item = ContractFrm.myCategories.Find(x => x.Name == text);
-            return item;
+            string type = name.Substring(0, 1);
+            Int32 value = Int32.Parse(name.Substring(1));
+            Console.WriteLine("------getOptionCategory: " + name + " " + type + " " + value);
+            if (type.Equals("C"))
+            {
+                return SCOptionCategory.getByOID(value);
+            }
+            else if (type.Equals("D"))
+            {
+                return SCOption.getByOID(value);
+            }
+            else
+            {
+                return SCOptionDetail.getByOID(value);
+            }
         }
 
         private int GetIndexOfRowCategory(DataGridView dataGrid, int id)

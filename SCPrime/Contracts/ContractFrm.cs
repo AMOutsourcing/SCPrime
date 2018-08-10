@@ -622,55 +622,6 @@ namespace SCPrime.Contracts
             }
         }
 
-        public static List<SCOptionCategory> myCategories = null;
-
-        private void loadTree()
-        {
-            //load category
-            if (myCategories == null)
-            {
-                myCategories = SCOptionCategory.getOptionCategoryList();
-            }
-            this.contractOption1.treeView1.Nodes.Clear();
-            if (myCategories.Count > 0)
-            {
-                foreach (SCOptionCategory cat in myCategories)
-                {
-                    TreeNode treeNode = new TreeNode(cat.Name);
-                    treeNode.Name = cat.GetType().ToString() + cat.OID.ToString();
-
-                    this.contractOption1.treeView1.Nodes.Add(treeNode);
-
-                    //load all Option
-                    List<SCOption> myOptions = new List<SCOption>();
-                    myOptions = SCOption.getOptionList(cat.OID);
-                    if (myOptions.Count > 0)
-                    {
-                        foreach (SCOption op in myOptions)
-                        {
-                            TreeNode treeNodeL2 = new TreeNode(op.Name);
-                            treeNodeL2.Name = op.GetType().ToString() + op.OID.ToString();
-                            treeNode.Nodes.Add(treeNodeL2);
-                            //load all detail
-                            List<SCOptionDetail> myOptionDetails = new List<SCOptionDetail>();
-                            myOptionDetails = SCOptionDetail.getOptionDetailList(op.OID);
-                            if (myOptionDetails.Count > 0)
-                            {
-                                foreach (SCOptionDetail sod in myOptionDetails)
-                                {
-                                    // create childnode level3
-                                    TreeNode treeNodeL3 = new TreeNode(sod.Name);
-                                    treeNodeL3.Name = sod.GetType().ToString() + sod.OID.ToString();
-                                    treeNodeL2.Nodes.Add(treeNodeL3);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-        }
-
         private void OptionLoadGrid()
         {
             contractOption1.loadDataGrid(objContract.OptionCategories);
@@ -689,7 +640,7 @@ namespace SCPrime.Contracts
             }
             else if (this.tabControl1.SelectedIndex == 2)
             {
-                this.loadTree();
+                this.contractOption1.loadTree();
                 this.OptionLoadGrid();
             }
             else if (this.tabControl1.SelectedIndex == 3)
