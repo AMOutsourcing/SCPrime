@@ -118,7 +118,6 @@ namespace SCPrime.Contracts
         {
             string type = name.Substring(0, 1);
             Int32 value = Int32.Parse(name.Substring(1));
-            Console.WriteLine("------getOptionCategory: " + name + " " + type + " " + value);
             if (type.Equals("C"))
             {
                 return SCOptionCategory.getByOID(value);

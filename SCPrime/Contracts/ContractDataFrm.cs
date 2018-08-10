@@ -32,7 +32,7 @@ namespace SCPrime.Contracts
         //
         private Contract contract;
         DataTable dataTable;
-        
+
         public void setContract(Contract objContract)
         {
             this.contract = objContract;
@@ -194,7 +194,7 @@ namespace SCPrime.Contracts
                 txtStartInvoice.Value = contract.ContractDateData.InvoiceStartDate;
                 txtPeriod.Value = contract.ContractDateData.ContractPeriodMonth;
                 txtKm.Text = contract.ContractDateData.ContractPeriodKm.ToString();
-                txtHr.Text =  contract.ContractDateData.ContractPeriodHour.ToString();
+                txtHr.Text = contract.ContractDateData.ContractPeriodHour.ToString();
 
 
                 rdKmBase.Checked = (contract.ContractDateData != null && contract.ContractDateData.ContractPeriodKmHour == 1);
@@ -218,7 +218,7 @@ namespace SCPrime.Contracts
                 }
 
                 cbPayment.Checked = contract.IsManualInvoice;
-                
+
                 cbInvoice.Checked = contract.ContractPaymentData.PaymentIsInBlock;
 
 
@@ -366,8 +366,10 @@ namespace SCPrime.Contracts
                 txtRishLevel.Text = contract.RiskLevel.ToString();
 
                 //Load data grid
-                List<ZSC_SubcontractorContractRisk> contractRisk = contract.loadZSC_SubcontractorContractRisk();
-                dataTable = ObjectUtils.ConvertToDataTable(contractRisk);
+
+                fillRisk();
+
+                generateColumns();
             }
             else
             {
@@ -446,8 +448,12 @@ namespace SCPrime.Contracts
             {
                 DataRow drToAdd = dataTable.NewRow();
 
-                drToAdd["RiskPartnerCustId"] = 123;
+                drToAdd["RiskPartnerCustId"] = Int32.Parse(searhCustomer.Custno);
                 drToAdd["Name"] = searhCustomer.CustName;
+
+                List<SubContractorContract> SubContracts = contract.SubContracts;
+                foreach (SubContractorContract subContract in SubContracts)
+                    drToAdd["sub" + subContract.OID] = 0;
 
                 dataTable.Rows.Add(drToAdd);
                 dataTable.AcceptChanges();
@@ -563,7 +569,7 @@ namespace SCPrime.Contracts
 
 
             contract.IsManualInvoice = cbPayment.Checked;
-            
+
 
             ContractPaymentData.PaymentIsInBlock = cbInvoice.Checked;
 
@@ -679,6 +685,64 @@ namespace SCPrime.Contracts
                 }
             }
 
+        }
+
+        private void fillRisk()
+        {
+            List<ZSC_SubcontractorContractRisk> contractRisk = contract.loadZSC_SubcontractorContractRisk();
+            dataTable = ObjectUtils.ConvertToDataTable(contractRisk);
+
+            //Add Column subcontracter
+            List<SubContractorContract> SubContracts = contract.SubContracts;
+
+            List<ZSC_SubcontractorContractRisk> listRiskSub = null;
+
+            foreach (SubContractorContract subContract in SubContracts)
+            {
+                dataTable.Columns.Add("sub" + subContract.OID, typeof(Int32));
+            }
+            foreach (SubContractorContract subContract in SubContracts)
+            {
+                listRiskSub = ZSC_SubcontractorContractRisk.getContractRiskBySub(contract.ContractOID, subContract.OID);
+                if (listRiskSub.Count > 0)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                        row["sub" + subContract.OID] = listRiskSub.Single(s => s.RiskPartnerCustId == Int32.Parse(row["RiskPartnerCustId"].ToString())).RiskLevel;
+                }
+                else
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                        row["sub" + subContract.OID] = 0;
+                }
+            }
+        }
+        private void generateColumns()
+        {
+            gridRisk.AutoGenerateColumns = false;
+            DataGridViewTextBoxColumn col = new DataGridViewTextBoxColumn();
+            col.Name = "RiskPartnerCustId";
+            col.HeaderText = "Risk partner Nr.";
+            col.DataPropertyName = "RiskPartnerCustId";
+            gridRisk.Columns.Add(col);
+
+            DataGridViewTextBoxColumn col2 = new DataGridViewTextBoxColumn();
+            col2.Name = "Name";
+            col2.HeaderText = "Name";
+            col2.DataPropertyName = "Name";
+            gridRisk.Columns.Add(col2);
+
+
+            //Add Column subcontracter
+            List<SubContractorContract> SubContracts = contract.SubContracts;
+
+            foreach (SubContractorContract subContract in SubContracts)
+            {
+                DataGridViewTextBoxColumn colStatus = new DataGridViewTextBoxColumn();
+                colStatus.Name = "sub" + subContract.OID;
+                colStatus.HeaderText = subContract.SuplName;
+                colStatus.DataPropertyName = "sub" + subContract.OID;
+                gridRisk.Columns.Add(colStatus);
+            }
         }
     }
 }

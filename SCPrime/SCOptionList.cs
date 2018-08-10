@@ -314,9 +314,6 @@ namespace SCPrime
                 }
                 this.loadOptionList(CatOid);
             }
-
-           
-
         }
 
         private void dataGridViewCategory_SelectionChanged(object sender, EventArgs e)

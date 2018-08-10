@@ -35,6 +35,7 @@
             this.pnGrid = new System.Windows.Forms.Panel();
             this.gridRisk = new System.Windows.Forms.DataGridView();
             this.pnTopGrid = new System.Windows.Forms.Panel();
+            this.txtRiskCusId = new System.Windows.Forms.TextBox();
             this.btnRick = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnNew = new System.Windows.Forms.Button();
@@ -118,6 +119,7 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtHr = new System.Windows.Forms.TextBox();
             this.txtStartInvoice = new System.Windows.Forms.DateTimePicker();
             this.txtStartDate = new System.Windows.Forms.DateTimePicker();
             this.txtPeriod = new System.Windows.Forms.NumericUpDown();
@@ -133,17 +135,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.txtRiskCusId = new System.Windows.Forms.TextBox();
-            this.riskPartnerCustIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.riskLevelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.oIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contractOIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.subContractOIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.createdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.zSCSubcontractorContractRiskBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.txtHr = new System.Windows.Forms.TextBox();
             this.pnAll.SuspendLayout();
             this.pnBottom.SuspendLayout();
             this.pnLeft.SuspendLayout();
@@ -160,7 +151,6 @@
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtPeriod)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.zSCSubcontractorContractRiskBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // pnAll
@@ -204,18 +194,8 @@
             // 
             // gridRisk
             // 
-            this.gridRisk.AutoGenerateColumns = false;
+            this.gridRisk.AllowUserToAddRows = false;
             this.gridRisk.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridRisk.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.riskPartnerCustIdDataGridViewTextBoxColumn,
-            this.nameDataGridViewTextBoxColumn,
-            this.riskLevelDataGridViewTextBoxColumn,
-            this.oIDDataGridViewTextBoxColumn,
-            this.contractOIDDataGridViewTextBoxColumn,
-            this.subContractOIDDataGridViewTextBoxColumn,
-            this.createdDataGridViewTextBoxColumn,
-            this.modifiedDataGridViewTextBoxColumn});
-            this.gridRisk.DataSource = this.zSCSubcontractorContractRiskBindingSource;
             this.gridRisk.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridRisk.Location = new System.Drawing.Point(0, 0);
             this.gridRisk.Name = "gridRisk";
@@ -239,6 +219,14 @@
             this.pnTopGrid.Name = "pnTopGrid";
             this.pnTopGrid.Size = new System.Drawing.Size(599, 70);
             this.pnTopGrid.TabIndex = 0;
+            // 
+            // txtRiskCusId
+            // 
+            this.txtRiskCusId.Location = new System.Drawing.Point(103, 37);
+            this.txtRiskCusId.Name = "txtRiskCusId";
+            this.txtRiskCusId.Size = new System.Drawing.Size(100, 20);
+            this.txtRiskCusId.TabIndex = 24;
+            this.txtRiskCusId.Visible = false;
             // 
             // btnRick
             // 
@@ -1029,6 +1017,13 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Contract start";
             // 
+            // txtHr
+            // 
+            this.txtHr.Location = new System.Drawing.Point(182, 142);
+            this.txtHr.Name = "txtHr";
+            this.txtHr.Size = new System.Drawing.Size(69, 20);
+            this.txtHr.TabIndex = 16;
+            // 
             // txtStartInvoice
             // 
             this.txtStartInvoice.Location = new System.Drawing.Point(100, 94);
@@ -1154,78 +1149,6 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // txtRiskCusId
-            // 
-            this.txtRiskCusId.Location = new System.Drawing.Point(103, 37);
-            this.txtRiskCusId.Name = "txtRiskCusId";
-            this.txtRiskCusId.Size = new System.Drawing.Size(100, 20);
-            this.txtRiskCusId.TabIndex = 24;
-            this.txtRiskCusId.Visible = false;
-            // 
-            // riskPartnerCustIdDataGridViewTextBoxColumn
-            // 
-            this.riskPartnerCustIdDataGridViewTextBoxColumn.DataPropertyName = "RiskPartnerCustId";
-            this.riskPartnerCustIdDataGridViewTextBoxColumn.HeaderText = "RiskPartnerCustId";
-            this.riskPartnerCustIdDataGridViewTextBoxColumn.Name = "riskPartnerCustIdDataGridViewTextBoxColumn";
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            // 
-            // riskLevelDataGridViewTextBoxColumn
-            // 
-            this.riskLevelDataGridViewTextBoxColumn.DataPropertyName = "RiskLevel";
-            this.riskLevelDataGridViewTextBoxColumn.HeaderText = "RiskLevel";
-            this.riskLevelDataGridViewTextBoxColumn.Name = "riskLevelDataGridViewTextBoxColumn";
-            // 
-            // oIDDataGridViewTextBoxColumn
-            // 
-            this.oIDDataGridViewTextBoxColumn.DataPropertyName = "OID";
-            this.oIDDataGridViewTextBoxColumn.HeaderText = "OID";
-            this.oIDDataGridViewTextBoxColumn.Name = "oIDDataGridViewTextBoxColumn";
-            this.oIDDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // contractOIDDataGridViewTextBoxColumn
-            // 
-            this.contractOIDDataGridViewTextBoxColumn.DataPropertyName = "ContractOID";
-            this.contractOIDDataGridViewTextBoxColumn.HeaderText = "ContractOID";
-            this.contractOIDDataGridViewTextBoxColumn.Name = "contractOIDDataGridViewTextBoxColumn";
-            this.contractOIDDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // subContractOIDDataGridViewTextBoxColumn
-            // 
-            this.subContractOIDDataGridViewTextBoxColumn.DataPropertyName = "SubContractOID";
-            this.subContractOIDDataGridViewTextBoxColumn.HeaderText = "SubContractOID";
-            this.subContractOIDDataGridViewTextBoxColumn.Name = "subContractOIDDataGridViewTextBoxColumn";
-            this.subContractOIDDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // createdDataGridViewTextBoxColumn
-            // 
-            this.createdDataGridViewTextBoxColumn.DataPropertyName = "Created";
-            this.createdDataGridViewTextBoxColumn.HeaderText = "Created";
-            this.createdDataGridViewTextBoxColumn.Name = "createdDataGridViewTextBoxColumn";
-            this.createdDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // modifiedDataGridViewTextBoxColumn
-            // 
-            this.modifiedDataGridViewTextBoxColumn.DataPropertyName = "Modified";
-            this.modifiedDataGridViewTextBoxColumn.HeaderText = "Modified";
-            this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
-            this.modifiedDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // zSCSubcontractorContractRiskBindingSource
-            // 
-            this.zSCSubcontractorContractRiskBindingSource.DataSource = typeof(SCPrime.Model.ZSC_SubcontractorContractRisk);
-            // 
-            // txtHr
-            // 
-            this.txtHr.Location = new System.Drawing.Point(182, 142);
-            this.txtHr.Name = "txtHr";
-            this.txtHr.Size = new System.Drawing.Size(69, 20);
-            this.txtHr.TabIndex = 16;
-            // 
             // ContractDataFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1257,7 +1180,6 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtPeriod)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.zSCSubcontractorContractRiskBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1366,15 +1288,6 @@
         private System.Windows.Forms.ComboBox txtMonAmountPayer;
         private System.Windows.Forms.ComboBox txtStartAmountPayer;
         private System.Windows.Forms.Panel pnGrid;
-        private System.Windows.Forms.BindingSource zSCSubcontractorContractRiskBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn riskPartnerCustIdDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn riskLevelDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn oIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn contractOIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn subContractOIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn createdDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
         private System.Windows.Forms.TextBox txtNextBlockEnd;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.TextBox txtRiskCusId;
