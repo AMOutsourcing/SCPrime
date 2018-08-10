@@ -395,8 +395,6 @@ namespace SCPrime.Model
 
     }
 
-
-
     public class CollectiveContract
     {
         public int OID { get; set; } //=> OID
@@ -462,6 +460,19 @@ namespace SCPrime.Model
             return ls;
         }
     }
+
+    public class ZSC_SubcontractorContractRisk
+    {
+        public int OID { get; set; }
+        public int ContractOID { get; set; }
+        public int SubContractOID { get; set; }
+        public int RiskPartnerCustId { get; set; }
+        public decimal RiskLevel { get; set; }
+        public DateTime Created { get; set; }
+        public DateTime Modified { get; set; }
+        public string Name { get; set; }
+    }
+
     public class Contract
     {
         public int ContractOID { get; set; }
@@ -511,6 +522,54 @@ namespace SCPrime.Model
 
         }
         //longdq05082018
+
+        //Thuyetlv
+        public List<ZSC_SubcontractorContractRisk> loadZSC_SubcontractorContractRisk()
+        {
+            List<ZSC_SubcontractorContractRisk> rtn = null;
+            clsSqlFactory hSql = new clsSqlFactory();
+            try
+            {
+                string strSql = "select s.*,c.LNAME from ZSC_SubcontractorContractRisk s LEFT JOIN CUST c ON s.RiskPartnerCustId=c._OID where s.ContractOID=? order by s.Created desc ";
+                hSql.NewCommand(strSql);
+                hSql.Com.Parameters.Add("ContractOID", this.ContractOID);
+                hSql.ExecuteReader();
+                rtn = new List<ZSC_SubcontractorContractRisk>();
+                int colId = 0;
+                ZSC_SubcontractorContractRisk obj = null;
+                while (hSql.Read())
+                {
+                    obj = new ZSC_SubcontractorContractRisk();
+                    colId = hSql.Reader.GetOrdinal("OID");
+                    if (!hSql.Reader.IsDBNull(colId)) obj.OID = hSql.Reader.GetInt32(colId);
+                    colId = hSql.Reader.GetOrdinal("ContractOID");
+                    if (!hSql.Reader.IsDBNull(colId)) obj.ContractOID = hSql.Reader.GetInt32(colId);
+                    colId = hSql.Reader.GetOrdinal("SubContractOID");
+                    if (!hSql.Reader.IsDBNull(colId)) obj.SubContractOID = hSql.Reader.GetInt32(colId);
+                    colId = hSql.Reader.GetOrdinal("RiskPartnerCustId");
+                    if (!hSql.Reader.IsDBNull(colId)) obj.RiskPartnerCustId = hSql.Reader.GetInt32(colId);
+                    colId = hSql.Reader.GetOrdinal("RiskLevel");
+                    if (!hSql.Reader.IsDBNull(colId)) obj.RiskLevel = hSql.Reader.GetDecimal(colId);
+                    colId = hSql.Reader.GetOrdinal("Created");
+                    if (!hSql.Reader.IsDBNull(colId)) obj.Created = hSql.Reader.GetDateTime(colId);
+                    colId = hSql.Reader.GetOrdinal("Modified");
+                    if (!hSql.Reader.IsDBNull(colId)) obj.Modified = hSql.Reader.GetDateTime(colId);
+                    colId = hSql.Reader.GetOrdinal("LNAME");
+                    if (!hSql.Reader.IsDBNull(colId)) obj.Name = hSql.Reader.GetString(colId);
+                    rtn.Add(obj);
+                }
+            }
+            catch (Exception ex)
+            {
+                rtn = null;
+                throw ex;
+            }
+            finally
+            {
+                hSql.Close();
+            }
+            return rtn;
+        }
 
         public bool savSelfContract(List<CollectiveContract> sccs, int contractOid, clsSqlFactory hSql)
         {

@@ -277,6 +277,7 @@
     <None Include="Properties\DataSources\SCPrime.Model.SCViewWorks.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.SubContractorContract.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.VehicleMileage.datasource" />
+    <None Include="Properties\DataSources\SCPrime.Model.ZSC_SubcontractorContractRisk.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

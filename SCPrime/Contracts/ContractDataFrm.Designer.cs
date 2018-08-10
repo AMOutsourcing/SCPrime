@@ -32,6 +32,7 @@
             this.pnAll = new System.Windows.Forms.Panel();
             this.pnBottom = new System.Windows.Forms.Panel();
             this.pnLeft = new System.Windows.Forms.Panel();
+            this.pnGrid = new System.Windows.Forms.Panel();
             this.gridRisk = new System.Windows.Forms.DataGridView();
             this.pnTopGrid = new System.Windows.Forms.Panel();
             this.btnRick = new System.Windows.Forms.Button();
@@ -46,15 +47,15 @@
             this.pnRight = new System.Windows.Forms.Panel();
             this.cbRoll = new System.Windows.Forms.ComboBox();
             this.label39 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.cbInvoiceDetail = new System.Windows.Forms.CheckBox();
             this.pnMid = new System.Windows.Forms.Panel();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.cbAccounting = new System.Windows.Forms.ComboBox();
             this.cbBiling = new System.Windows.Forms.ComboBox();
-            this.txtBetrag = new System.Windows.Forms.TextBox();
+            this.txtInvoiceAmount = new System.Windows.Forms.TextBox();
             this.label30 = new System.Windows.Forms.Label();
-            this.txtMehrKm = new System.Windows.Forms.TextBox();
-            this.txtMinKm = new System.Windows.Forms.TextBox();
+            this.txtHighKm = new System.Windows.Forms.TextBox();
+            this.txtLowKm = new System.Windows.Forms.TextBox();
             this.txtMaxDev = new System.Windows.Forms.TextBox();
             this.label32 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
@@ -77,7 +78,9 @@
             this.label27 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.txtMonAmountPayer = new System.Windows.Forms.ComboBox();
             this.txtTotalAmount = new System.Windows.Forms.TextBox();
+            this.txtStartAmountPayer = new System.Windows.Forms.ComboBox();
             this.txtMonAmount = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
@@ -87,6 +90,8 @@
             this.txtStartAmount = new System.Windows.Forms.TextBox();
             this.pnTop = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.txtNextBlockEnd = new System.Windows.Forms.TextBox();
+            this.label40 = new System.Windows.Forms.Label();
             this.cbInvoice = new System.Windows.Forms.CheckBox();
             this.cbPayment = new System.Windows.Forms.CheckBox();
             this.cbPayTerm = new System.Windows.Forms.ComboBox();
@@ -116,7 +121,7 @@
             this.txtStartInvoice = new System.Windows.Forms.DateTimePicker();
             this.txtStartDate = new System.Windows.Forms.DateTimePicker();
             this.txtPeriod = new System.Windows.Forms.NumericUpDown();
-            this.txtKmHr = new System.Windows.Forms.TextBox();
+            this.txtKm = new System.Windows.Forms.TextBox();
             this.txtStartHr = new System.Windows.Forms.TextBox();
             this.txtStartKm = new System.Windows.Forms.TextBox();
             this.rdHrBase = new System.Windows.Forms.RadioButton();
@@ -128,11 +133,21 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.txtStartAmountPayer = new System.Windows.Forms.ComboBox();
-            this.txtMonAmountPayer = new System.Windows.Forms.ComboBox();
+            this.txtRiskCusId = new System.Windows.Forms.TextBox();
+            this.riskPartnerCustIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.riskLevelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.oIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contractOIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.subContractOIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.createdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.zSCSubcontractorContractRiskBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.txtHr = new System.Windows.Forms.TextBox();
             this.pnAll.SuspendLayout();
             this.pnBottom.SuspendLayout();
             this.pnLeft.SuspendLayout();
+            this.pnGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridRisk)).BeginInit();
             this.pnTopGrid.SuspendLayout();
             this.pnRight.SuspendLayout();
@@ -145,6 +160,7 @@
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtPeriod)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.zSCSubcontractorContractRiskBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // pnAll
@@ -169,7 +185,7 @@
             // 
             // pnLeft
             // 
-            this.pnLeft.Controls.Add(this.gridRisk);
+            this.pnLeft.Controls.Add(this.pnGrid);
             this.pnLeft.Controls.Add(this.pnTopGrid);
             this.pnLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnLeft.Location = new System.Drawing.Point(0, 0);
@@ -177,17 +193,38 @@
             this.pnLeft.Size = new System.Drawing.Size(599, 134);
             this.pnLeft.TabIndex = 2;
             // 
+            // pnGrid
+            // 
+            this.pnGrid.Controls.Add(this.gridRisk);
+            this.pnGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnGrid.Location = new System.Drawing.Point(0, 70);
+            this.pnGrid.Name = "pnGrid";
+            this.pnGrid.Size = new System.Drawing.Size(599, 64);
+            this.pnGrid.TabIndex = 1;
+            // 
             // gridRisk
             // 
+            this.gridRisk.AutoGenerateColumns = false;
             this.gridRisk.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridRisk.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.riskPartnerCustIdDataGridViewTextBoxColumn,
+            this.nameDataGridViewTextBoxColumn,
+            this.riskLevelDataGridViewTextBoxColumn,
+            this.oIDDataGridViewTextBoxColumn,
+            this.contractOIDDataGridViewTextBoxColumn,
+            this.subContractOIDDataGridViewTextBoxColumn,
+            this.createdDataGridViewTextBoxColumn,
+            this.modifiedDataGridViewTextBoxColumn});
+            this.gridRisk.DataSource = this.zSCSubcontractorContractRiskBindingSource;
             this.gridRisk.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridRisk.Location = new System.Drawing.Point(0, 64);
+            this.gridRisk.Location = new System.Drawing.Point(0, 0);
             this.gridRisk.Name = "gridRisk";
-            this.gridRisk.Size = new System.Drawing.Size(599, 70);
+            this.gridRisk.Size = new System.Drawing.Size(599, 64);
             this.gridRisk.TabIndex = 1;
             // 
             // pnTopGrid
             // 
+            this.pnTopGrid.Controls.Add(this.txtRiskCusId);
             this.pnTopGrid.Controls.Add(this.btnRick);
             this.pnTopGrid.Controls.Add(this.btnDelete);
             this.pnTopGrid.Controls.Add(this.btnNew);
@@ -200,14 +237,14 @@
             this.pnTopGrid.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnTopGrid.Location = new System.Drawing.Point(0, 0);
             this.pnTopGrid.Name = "pnTopGrid";
-            this.pnTopGrid.Size = new System.Drawing.Size(599, 64);
+            this.pnTopGrid.Size = new System.Drawing.Size(599, 70);
             this.pnTopGrid.TabIndex = 0;
             // 
             // btnRick
             // 
             this.btnRick.Location = new System.Drawing.Point(185, 9);
             this.btnRick.Name = "btnRick";
-            this.btnRick.Size = new System.Drawing.Size(28, 23);
+            this.btnRick.Size = new System.Drawing.Size(27, 23);
             this.btnRick.TabIndex = 23;
             this.btnRick.Text = "...";
             this.btnRick.UseVisualStyleBackColor = true;
@@ -243,13 +280,15 @@
             // 
             this.txtParnerName.Location = new System.Drawing.Point(286, 11);
             this.txtParnerName.Name = "txtParnerName";
-            this.txtParnerName.Size = new System.Drawing.Size(71, 20);
+            this.txtParnerName.ReadOnly = true;
+            this.txtParnerName.Size = new System.Drawing.Size(106, 20);
             this.txtParnerName.TabIndex = 19;
             // 
             // txtPatnerNr
             // 
             this.txtPatnerNr.Location = new System.Drawing.Point(106, 11);
             this.txtPatnerNr.Name = "txtPatnerNr";
+            this.txtPatnerNr.ReadOnly = true;
             this.txtPatnerNr.Size = new System.Drawing.Size(71, 20);
             this.txtPatnerNr.TabIndex = 13;
             // 
@@ -284,7 +323,7 @@
             // 
             this.pnRight.Controls.Add(this.cbRoll);
             this.pnRight.Controls.Add(this.label39);
-            this.pnRight.Controls.Add(this.checkBox1);
+            this.pnRight.Controls.Add(this.cbInvoiceDetail);
             this.pnRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.pnRight.Location = new System.Drawing.Point(605, 0);
             this.pnRight.Name = "pnRight";
@@ -304,19 +343,19 @@
             this.label39.AutoSize = true;
             this.label39.Location = new System.Drawing.Point(6, 15);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(104, 13);
+            this.label39.Size = new System.Drawing.Size(66, 13);
             this.label39.TabIndex = 3;
-            this.label39.Text = "Rollendes Fz Langer";
+            this.label39.Text = "Rolling code";
             // 
-            // checkBox1
+            // cbInvoiceDetail
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(114, 39);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(164, 17);
-            this.checkBox1.TabIndex = 18;
-            this.checkBox1.Text = "Rechnungsverdichtungslevel";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.cbInvoiceDetail.AutoSize = true;
+            this.cbInvoiceDetail.Location = new System.Drawing.Point(114, 39);
+            this.cbInvoiceDetail.Name = "cbInvoiceDetail";
+            this.cbInvoiceDetail.Size = new System.Drawing.Size(97, 17);
+            this.cbInvoiceDetail.TabIndex = 18;
+            this.cbInvoiceDetail.Text = "Invoicing detail";
+            this.cbInvoiceDetail.UseVisualStyleBackColor = true;
             // 
             // pnMid
             // 
@@ -324,26 +363,26 @@
             this.pnMid.Controls.Add(this.groupBox5);
             this.pnMid.Controls.Add(this.groupBox4);
             this.pnMid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnMid.Location = new System.Drawing.Point(0, 201);
+            this.pnMid.Location = new System.Drawing.Point(0, 234);
             this.pnMid.Name = "pnMid";
-            this.pnMid.Size = new System.Drawing.Size(914, 372);
+            this.pnMid.Size = new System.Drawing.Size(914, 339);
             this.pnMid.TabIndex = 1;
             // 
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.cbAccounting);
             this.groupBox6.Controls.Add(this.cbBiling);
-            this.groupBox6.Controls.Add(this.txtBetrag);
+            this.groupBox6.Controls.Add(this.txtInvoiceAmount);
             this.groupBox6.Controls.Add(this.label30);
-            this.groupBox6.Controls.Add(this.txtMehrKm);
-            this.groupBox6.Controls.Add(this.txtMinKm);
+            this.groupBox6.Controls.Add(this.txtHighKm);
+            this.groupBox6.Controls.Add(this.txtLowKm);
             this.groupBox6.Controls.Add(this.txtMaxDev);
             this.groupBox6.Controls.Add(this.label32);
             this.groupBox6.Controls.Add(this.label33);
             this.groupBox6.Controls.Add(this.label34);
             this.groupBox6.Controls.Add(this.label35);
             this.groupBox6.Controls.Add(this.label36);
-            this.groupBox6.Location = new System.Drawing.Point(609, 44);
+            this.groupBox6.Location = new System.Drawing.Point(609, 13);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(294, 188);
             this.groupBox6.TabIndex = 18;
@@ -366,35 +405,36 @@
             this.cbBiling.Size = new System.Drawing.Size(154, 21);
             this.cbBiling.TabIndex = 17;
             // 
-            // txtBetrag
+            // txtInvoiceAmount
             // 
-            this.txtBetrag.Location = new System.Drawing.Point(99, 144);
-            this.txtBetrag.Name = "txtBetrag";
-            this.txtBetrag.Size = new System.Drawing.Size(154, 20);
-            this.txtBetrag.TabIndex = 14;
+            this.txtInvoiceAmount.Location = new System.Drawing.Point(99, 144);
+            this.txtInvoiceAmount.Name = "txtInvoiceAmount";
+            this.txtInvoiceAmount.ReadOnly = true;
+            this.txtInvoiceAmount.Size = new System.Drawing.Size(154, 20);
+            this.txtInvoiceAmount.TabIndex = 14;
             // 
             // label30
             // 
             this.label30.AutoSize = true;
             this.label30.Location = new System.Drawing.Point(13, 149);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(38, 13);
+            this.label30.Size = new System.Drawing.Size(86, 13);
             this.label30.TabIndex = 13;
-            this.label30.Text = "Betrag";
+            this.label30.Text = "Invoiced amount";
             // 
-            // txtMehrKm
+            // txtHighKm
             // 
-            this.txtMehrKm.Location = new System.Drawing.Point(99, 120);
-            this.txtMehrKm.Name = "txtMehrKm";
-            this.txtMehrKm.Size = new System.Drawing.Size(154, 20);
-            this.txtMehrKm.TabIndex = 11;
+            this.txtHighKm.Location = new System.Drawing.Point(99, 120);
+            this.txtHighKm.Name = "txtHighKm";
+            this.txtHighKm.Size = new System.Drawing.Size(154, 20);
+            this.txtHighKm.TabIndex = 11;
             // 
-            // txtMinKm
+            // txtLowKm
             // 
-            this.txtMinKm.Location = new System.Drawing.Point(99, 95);
-            this.txtMinKm.Name = "txtMinKm";
-            this.txtMinKm.Size = new System.Drawing.Size(154, 20);
-            this.txtMinKm.TabIndex = 10;
+            this.txtLowKm.Location = new System.Drawing.Point(99, 95);
+            this.txtLowKm.Name = "txtLowKm";
+            this.txtLowKm.Size = new System.Drawing.Size(154, 20);
+            this.txtLowKm.TabIndex = 10;
             // 
             // txtMaxDev
             // 
@@ -408,18 +448,18 @@
             this.label32.AutoSize = true;
             this.label32.Location = new System.Drawing.Point(12, 123);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(73, 13);
+            this.label32.Size = new System.Drawing.Size(84, 13);
             this.label32.TabIndex = 5;
-            this.label32.Text = "Mehr Km Satz";
+            this.label32.Text = "High km amount";
             // 
             // label33
             // 
             this.label33.AutoSize = true;
             this.label33.Location = new System.Drawing.Point(11, 98);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(81, 13);
+            this.label33.Size = new System.Drawing.Size(82, 13);
             this.label33.TabIndex = 4;
-            this.label33.Text = "Minder Km Satz";
+            this.label33.Text = "Low km amount";
             // 
             // label34
             // 
@@ -464,9 +504,9 @@
             this.groupBox5.Controls.Add(this.label26);
             this.groupBox5.Controls.Add(this.label27);
             this.groupBox5.Controls.Add(this.label28);
-            this.groupBox5.Location = new System.Drawing.Point(305, 6);
+            this.groupBox5.Location = new System.Drawing.Point(305, 0);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(294, 226);
+            this.groupBox5.Size = new System.Drawing.Size(294, 202);
             this.groupBox5.TabIndex = 13;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Contract cost";
@@ -478,10 +518,11 @@
             this.cbCostBassis.Name = "cbCostBassis";
             this.cbCostBassis.Size = new System.Drawing.Size(138, 21);
             this.cbCostBassis.TabIndex = 17;
+            this.cbCostBassis.SelectedIndexChanged += new System.EventHandler(this.cbCostBassis_SelectedIndexChanged);
             // 
             // txtLastKm
             // 
-            this.txtLastKm.Location = new System.Drawing.Point(115, 192);
+            this.txtLastKm.Location = new System.Drawing.Point(115, 173);
             this.txtLastKm.Name = "txtLastKm";
             this.txtLastKm.Size = new System.Drawing.Size(138, 20);
             this.txtLastKm.TabIndex = 14;
@@ -489,7 +530,7 @@
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(11, 199);
+            this.label29.Location = new System.Drawing.Point(11, 180);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(64, 13);
             this.label29.TabIndex = 13;
@@ -497,27 +538,29 @@
             // 
             // txtErr
             // 
-            this.txtErr.Location = new System.Drawing.Point(115, 163);
+            this.txtErr.Location = new System.Drawing.Point(115, 148);
             this.txtErr.Name = "txtErr";
             this.txtErr.Size = new System.Drawing.Size(138, 20);
             this.txtErr.TabIndex = 12;
             // 
             // txtLastPay
             // 
-            this.txtLastPay.Location = new System.Drawing.Point(115, 117);
+            this.txtLastPay.Location = new System.Drawing.Point(115, 122);
             this.txtLastPay.Name = "txtLastPay";
+            this.txtLastPay.ReadOnly = true;
             this.txtLastPay.Size = new System.Drawing.Size(138, 20);
             this.txtLastPay.TabIndex = 11;
             // 
             // txtKmBassis
             // 
-            this.txtKmBassis.Location = new System.Drawing.Point(115, 92);
+            this.txtKmBassis.Location = new System.Drawing.Point(115, 96);
             this.txtKmBassis.Name = "txtKmBassis";
             this.txtKmBassis.Size = new System.Drawing.Size(138, 20);
             this.txtKmBassis.TabIndex = 10;
             // 
             // txtMonBassis
             // 
+            this.txtMonBassis.Enabled = false;
             this.txtMonBassis.Location = new System.Drawing.Point(115, 69);
             this.txtMonBassis.Name = "txtMonBassis";
             this.txtMonBassis.Size = new System.Drawing.Size(138, 20);
@@ -525,8 +568,9 @@
             // 
             // txtCostBase
             // 
-            this.txtCostBase.Location = new System.Drawing.Point(115, 45);
+            this.txtCostBase.Location = new System.Drawing.Point(115, 41);
             this.txtCostBase.Name = "txtCostBase";
+            this.txtCostBase.ReadOnly = true;
             this.txtCostBase.Size = new System.Drawing.Size(138, 20);
             this.txtCostBase.TabIndex = 8;
             // 
@@ -535,14 +579,14 @@
             this.label18.AutoSize = true;
             this.label18.Location = new System.Drawing.Point(11, 148);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(202, 13);
+            this.label18.Size = new System.Drawing.Size(69, 13);
             this.label18.TabIndex = 6;
-            this.label18.Text = "Errechneter km/h gemass bez Pauschale";
+            this.label18.Text = "Km with lump";
             // 
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(11, 119);
+            this.label24.Location = new System.Drawing.Point(10, 122);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(94, 13);
             this.label24.TabIndex = 5;
@@ -551,7 +595,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(11, 95);
+            this.label25.Location = new System.Drawing.Point(11, 96);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(54, 13);
             this.label25.TabIndex = 4;
@@ -560,7 +604,7 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(11, 71);
+            this.label26.Location = new System.Drawing.Point(11, 69);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(76, 13);
             this.label26.TabIndex = 3;
@@ -569,7 +613,7 @@
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(11, 49);
+            this.label27.Location = new System.Drawing.Point(11, 44);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(106, 13);
             this.label27.TabIndex = 2;
@@ -578,7 +622,7 @@
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(11, 22);
+            this.label28.Location = new System.Drawing.Point(11, 20);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(60, 13);
             this.label28.TabIndex = 1;
@@ -596,19 +640,36 @@
             this.groupBox4.Controls.Add(this.label22);
             this.groupBox4.Controls.Add(this.label23);
             this.groupBox4.Controls.Add(this.txtStartAmount);
-            this.groupBox4.Location = new System.Drawing.Point(4, 63);
+            this.groupBox4.Location = new System.Drawing.Point(4, 25);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(294, 169);
             this.groupBox4.TabIndex = 13;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Contract captial";
             // 
+            // txtMonAmountPayer
+            // 
+            this.txtMonAmountPayer.FormattingEnabled = true;
+            this.txtMonAmountPayer.Location = new System.Drawing.Point(130, 110);
+            this.txtMonAmountPayer.Name = "txtMonAmountPayer";
+            this.txtMonAmountPayer.Size = new System.Drawing.Size(121, 21);
+            this.txtMonAmountPayer.TabIndex = 20;
+            // 
             // txtTotalAmount
             // 
             this.txtTotalAmount.Location = new System.Drawing.Point(130, 141);
             this.txtTotalAmount.Name = "txtTotalAmount";
+            this.txtTotalAmount.ReadOnly = true;
             this.txtTotalAmount.Size = new System.Drawing.Size(123, 20);
             this.txtTotalAmount.TabIndex = 11;
+            // 
+            // txtStartAmountPayer
+            // 
+            this.txtStartAmountPayer.FormattingEnabled = true;
+            this.txtStartAmountPayer.Location = new System.Drawing.Point(130, 55);
+            this.txtStartAmountPayer.Name = "txtStartAmountPayer";
+            this.txtStartAmountPayer.Size = new System.Drawing.Size(121, 21);
+            this.txtStartAmountPayer.TabIndex = 19;
             // 
             // txtMonAmount
             // 
@@ -677,11 +738,13 @@
             this.pnTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnTop.Location = new System.Drawing.Point(0, 0);
             this.pnTop.Name = "pnTop";
-            this.pnTop.Size = new System.Drawing.Size(914, 201);
+            this.pnTop.Size = new System.Drawing.Size(914, 234);
             this.pnTop.TabIndex = 0;
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.txtNextBlockEnd);
+            this.groupBox3.Controls.Add(this.label40);
             this.groupBox3.Controls.Add(this.cbInvoice);
             this.groupBox3.Controls.Add(this.cbPayment);
             this.groupBox3.Controls.Add(this.cbPayTerm);
@@ -698,10 +761,27 @@
             this.groupBox3.Controls.Add(this.label16);
             this.groupBox3.Location = new System.Drawing.Point(609, 4);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(294, 194);
+            this.groupBox3.Size = new System.Drawing.Size(294, 230);
             this.groupBox3.TabIndex = 14;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Payment method";
+            // 
+            // txtNextBlockEnd
+            // 
+            this.txtNextBlockEnd.Location = new System.Drawing.Point(99, 92);
+            this.txtNextBlockEnd.Name = "txtNextBlockEnd";
+            this.txtNextBlockEnd.ReadOnly = true;
+            this.txtNextBlockEnd.Size = new System.Drawing.Size(154, 20);
+            this.txtNextBlockEnd.TabIndex = 20;
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(12, 93);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(79, 13);
+            this.label40.TabIndex = 19;
+            this.label40.Text = "Next block end";
             // 
             // cbInvoice
             // 
@@ -726,7 +806,7 @@
             // cbPayTerm
             // 
             this.cbPayTerm.FormattingEnabled = true;
-            this.cbPayTerm.Location = new System.Drawing.Point(99, 140);
+            this.cbPayTerm.Location = new System.Drawing.Point(99, 176);
             this.cbPayTerm.Name = "cbPayTerm";
             this.cbPayTerm.Size = new System.Drawing.Size(153, 21);
             this.cbPayTerm.TabIndex = 16;
@@ -734,7 +814,7 @@
             // cbInvoiceSite
             // 
             this.cbInvoiceSite.FormattingEnabled = true;
-            this.cbInvoiceSite.Location = new System.Drawing.Point(99, 165);
+            this.cbInvoiceSite.Location = new System.Drawing.Point(99, 203);
             this.cbInvoiceSite.Name = "cbInvoiceSite";
             this.cbInvoiceSite.Size = new System.Drawing.Size(153, 21);
             this.cbInvoiceSite.TabIndex = 15;
@@ -742,7 +822,7 @@
             // cbGrpLevel
             // 
             this.cbGrpLevel.FormattingEnabled = true;
-            this.cbGrpLevel.Location = new System.Drawing.Point(99, 113);
+            this.cbGrpLevel.Location = new System.Drawing.Point(99, 148);
             this.cbGrpLevel.Name = "cbGrpLevel";
             this.cbGrpLevel.Size = new System.Drawing.Size(153, 21);
             this.cbGrpLevel.TabIndex = 14;
@@ -750,7 +830,7 @@
             // cbColType
             // 
             this.cbColType.FormattingEnabled = true;
-            this.cbColType.Location = new System.Drawing.Point(99, 86);
+            this.cbColType.Location = new System.Drawing.Point(99, 120);
             this.cbColType.Name = "cbColType";
             this.cbColType.Size = new System.Drawing.Size(153, 21);
             this.cbColType.TabIndex = 13;
@@ -758,7 +838,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(16, 171);
+            this.label17.Location = new System.Drawing.Point(16, 206);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(69, 13);
             this.label17.TabIndex = 12;
@@ -774,15 +854,16 @@
             // 
             // txtNextBlock
             // 
-            this.txtNextBlock.Location = new System.Drawing.Point(99, 61);
+            this.txtNextBlock.Location = new System.Drawing.Point(99, 65);
             this.txtNextBlock.Name = "txtNextBlock";
+            this.txtNextBlock.ReadOnly = true;
             this.txtNextBlock.Size = new System.Drawing.Size(154, 20);
             this.txtNextBlock.TabIndex = 8;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(11, 143);
+            this.label7.Location = new System.Drawing.Point(14, 180);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(71, 13);
             this.label7.TabIndex = 5;
@@ -791,7 +872,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(12, 116);
+            this.label13.Location = new System.Drawing.Point(15, 150);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(61, 13);
             this.label13.TabIndex = 4;
@@ -800,7 +881,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(11, 89);
+            this.label14.Location = new System.Drawing.Point(12, 123);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(76, 13);
             this.label14.TabIndex = 3;
@@ -809,11 +890,11 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(11, 64);
+            this.label15.Location = new System.Drawing.Point(12, 66);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(58, 13);
+            this.label15.Size = new System.Drawing.Size(81, 13);
             this.label15.TabIndex = 2;
-            this.label15.Text = "Next block";
+            this.label15.Text = "Next block start";
             // 
             // label16
             // 
@@ -926,10 +1007,11 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtHr);
             this.groupBox1.Controls.Add(this.txtStartInvoice);
             this.groupBox1.Controls.Add(this.txtStartDate);
             this.groupBox1.Controls.Add(this.txtPeriod);
-            this.groupBox1.Controls.Add(this.txtKmHr);
+            this.groupBox1.Controls.Add(this.txtKm);
             this.groupBox1.Controls.Add(this.txtStartHr);
             this.groupBox1.Controls.Add(this.txtStartKm);
             this.groupBox1.Controls.Add(this.rdHrBase);
@@ -970,12 +1052,12 @@
             this.txtPeriod.TabIndex = 13;
             this.txtPeriod.ValueChanged += new System.EventHandler(this.txtPeriod_ValueChanged);
             // 
-            // txtKmHr
+            // txtKm
             // 
-            this.txtKmHr.Location = new System.Drawing.Point(99, 142);
-            this.txtKmHr.Name = "txtKmHr";
-            this.txtKmHr.Size = new System.Drawing.Size(154, 20);
-            this.txtKmHr.TabIndex = 12;
+            this.txtKm.Location = new System.Drawing.Point(99, 142);
+            this.txtKm.Name = "txtKm";
+            this.txtKm.Size = new System.Drawing.Size(67, 20);
+            this.txtKm.TabIndex = 12;
             // 
             // txtStartHr
             // 
@@ -1072,21 +1154,77 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // txtStartAmountPayer
+            // txtRiskCusId
             // 
-            this.txtStartAmountPayer.FormattingEnabled = true;
-            this.txtStartAmountPayer.Location = new System.Drawing.Point(130, 55);
-            this.txtStartAmountPayer.Name = "txtStartAmountPayer";
-            this.txtStartAmountPayer.Size = new System.Drawing.Size(121, 21);
-            this.txtStartAmountPayer.TabIndex = 19;
+            this.txtRiskCusId.Location = new System.Drawing.Point(103, 37);
+            this.txtRiskCusId.Name = "txtRiskCusId";
+            this.txtRiskCusId.Size = new System.Drawing.Size(100, 20);
+            this.txtRiskCusId.TabIndex = 24;
+            this.txtRiskCusId.Visible = false;
             // 
-            // txtMonAmountPayer
+            // riskPartnerCustIdDataGridViewTextBoxColumn
             // 
-            this.txtMonAmountPayer.FormattingEnabled = true;
-            this.txtMonAmountPayer.Location = new System.Drawing.Point(130, 110);
-            this.txtMonAmountPayer.Name = "txtMonAmountPayer";
-            this.txtMonAmountPayer.Size = new System.Drawing.Size(121, 21);
-            this.txtMonAmountPayer.TabIndex = 20;
+            this.riskPartnerCustIdDataGridViewTextBoxColumn.DataPropertyName = "RiskPartnerCustId";
+            this.riskPartnerCustIdDataGridViewTextBoxColumn.HeaderText = "RiskPartnerCustId";
+            this.riskPartnerCustIdDataGridViewTextBoxColumn.Name = "riskPartnerCustIdDataGridViewTextBoxColumn";
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            // 
+            // riskLevelDataGridViewTextBoxColumn
+            // 
+            this.riskLevelDataGridViewTextBoxColumn.DataPropertyName = "RiskLevel";
+            this.riskLevelDataGridViewTextBoxColumn.HeaderText = "RiskLevel";
+            this.riskLevelDataGridViewTextBoxColumn.Name = "riskLevelDataGridViewTextBoxColumn";
+            // 
+            // oIDDataGridViewTextBoxColumn
+            // 
+            this.oIDDataGridViewTextBoxColumn.DataPropertyName = "OID";
+            this.oIDDataGridViewTextBoxColumn.HeaderText = "OID";
+            this.oIDDataGridViewTextBoxColumn.Name = "oIDDataGridViewTextBoxColumn";
+            this.oIDDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // contractOIDDataGridViewTextBoxColumn
+            // 
+            this.contractOIDDataGridViewTextBoxColumn.DataPropertyName = "ContractOID";
+            this.contractOIDDataGridViewTextBoxColumn.HeaderText = "ContractOID";
+            this.contractOIDDataGridViewTextBoxColumn.Name = "contractOIDDataGridViewTextBoxColumn";
+            this.contractOIDDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // subContractOIDDataGridViewTextBoxColumn
+            // 
+            this.subContractOIDDataGridViewTextBoxColumn.DataPropertyName = "SubContractOID";
+            this.subContractOIDDataGridViewTextBoxColumn.HeaderText = "SubContractOID";
+            this.subContractOIDDataGridViewTextBoxColumn.Name = "subContractOIDDataGridViewTextBoxColumn";
+            this.subContractOIDDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // createdDataGridViewTextBoxColumn
+            // 
+            this.createdDataGridViewTextBoxColumn.DataPropertyName = "Created";
+            this.createdDataGridViewTextBoxColumn.HeaderText = "Created";
+            this.createdDataGridViewTextBoxColumn.Name = "createdDataGridViewTextBoxColumn";
+            this.createdDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // modifiedDataGridViewTextBoxColumn
+            // 
+            this.modifiedDataGridViewTextBoxColumn.DataPropertyName = "Modified";
+            this.modifiedDataGridViewTextBoxColumn.HeaderText = "Modified";
+            this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
+            this.modifiedDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // zSCSubcontractorContractRiskBindingSource
+            // 
+            this.zSCSubcontractorContractRiskBindingSource.DataSource = typeof(SCPrime.Model.ZSC_SubcontractorContractRisk);
+            // 
+            // txtHr
+            // 
+            this.txtHr.Location = new System.Drawing.Point(182, 142);
+            this.txtHr.Name = "txtHr";
+            this.txtHr.Size = new System.Drawing.Size(69, 20);
+            this.txtHr.TabIndex = 16;
             // 
             // ContractDataFrm
             // 
@@ -1098,6 +1236,7 @@
             this.pnAll.ResumeLayout(false);
             this.pnBottom.ResumeLayout(false);
             this.pnLeft.ResumeLayout(false);
+            this.pnGrid.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridRisk)).EndInit();
             this.pnTopGrid.ResumeLayout(false);
             this.pnTopGrid.PerformLayout();
@@ -1118,6 +1257,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtPeriod)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.zSCSubcontractorContractRiskBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1138,7 +1278,7 @@
         private System.Windows.Forms.RadioButton rdHrBase;
         private System.Windows.Forms.RadioButton rdKmBase;
         private System.Windows.Forms.TextBox txtStartKm;
-        private System.Windows.Forms.TextBox txtKmHr;
+        private System.Windows.Forms.TextBox txtKm;
         private System.Windows.Forms.TextBox txtStartHr;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox txtEndHr;
@@ -1188,10 +1328,10 @@
         private System.Windows.Forms.ComboBox cbCostBassis;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.ComboBox cbBiling;
-        private System.Windows.Forms.TextBox txtBetrag;
+        private System.Windows.Forms.TextBox txtInvoiceAmount;
         private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.TextBox txtMehrKm;
-        private System.Windows.Forms.TextBox txtMinKm;
+        private System.Windows.Forms.TextBox txtHighKm;
+        private System.Windows.Forms.TextBox txtLowKm;
         private System.Windows.Forms.TextBox txtMaxDev;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Label label33;
@@ -1205,7 +1345,7 @@
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.ComboBox cbRoll;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox cbInvoiceDetail;
         private System.Windows.Forms.TextBox txtRishLevel;
         private System.Windows.Forms.TextBox txtParnerName;
         private System.Windows.Forms.TextBox txtPatnerNr;
@@ -1225,5 +1365,19 @@
         private System.Windows.Forms.DateTimePicker txtEndInvoice;
         private System.Windows.Forms.ComboBox txtMonAmountPayer;
         private System.Windows.Forms.ComboBox txtStartAmountPayer;
+        private System.Windows.Forms.Panel pnGrid;
+        private System.Windows.Forms.BindingSource zSCSubcontractorContractRiskBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn riskPartnerCustIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn riskLevelDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn oIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn contractOIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn subContractOIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn createdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
+        private System.Windows.Forms.TextBox txtNextBlockEnd;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.TextBox txtRiskCusId;
+        private System.Windows.Forms.TextBox txtHr;
     }
 }

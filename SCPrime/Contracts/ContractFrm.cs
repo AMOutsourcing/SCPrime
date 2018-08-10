@@ -622,12 +622,16 @@ namespace SCPrime.Contracts
             }
         }
 
+        public static List<SCOptionCategory> myCategories = null;
+
         private void loadTree()
         {
             //load category
+            if (myCategories == null)
+            {
+                myCategories = SCOptionCategory.getOptionCategoryList();
+            }
             this.contractOption1.treeView1.Nodes.Clear();
-
-            List<SCOptionCategory> myCategories = SCOptionCategory.getOptionCategoryList();
             if (myCategories.Count > 0)
             {
                 foreach (SCOptionCategory cat in myCategories)
@@ -664,8 +668,12 @@ namespace SCPrime.Contracts
                     }
                 }
             }
-            //this.treeView1.ExpandAll();
 
+        }
+
+        private void OptionLoadGrid()
+        {
+            contractOption1.loadDataGrid(objContract.OptionCategories);
         }
 
         private void tabControl1_Selected(object sender, TabControlEventArgs e)
@@ -682,6 +690,7 @@ namespace SCPrime.Contracts
             else if (this.tabControl1.SelectedIndex == 2)
             {
                 this.loadTree();
+                this.OptionLoadGrid();
             }
             else if (this.tabControl1.SelectedIndex == 3)
             {

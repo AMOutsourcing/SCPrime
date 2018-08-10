@@ -57,7 +57,15 @@ namespace SCPrime.Utils
                 table.Rows.Add(row);
             }
             return table;
+        }
 
+        public static DataRow FillDataToRow<T>(DataRow row, T item)
+        {
+            PropertyDescriptorCollection properties =
+               TypeDescriptor.GetProperties(typeof(T));
+                foreach (PropertyDescriptor prop in properties)
+                    row[prop.Name] = prop.GetValue(item) ?? DBNull.Value;
+            return row;
         }
 
         public static List<SCOption> ListReplace(List<SCOption> list, SCOption data)
