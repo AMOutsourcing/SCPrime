@@ -1153,6 +1153,7 @@ namespace SCPrime.Model
             sql = "delete from ZSC_ContractOption where ContractOID = ?";
             bRet = hSql.NewCommand(sql);
             hSql.Com.Parameters.AddWithValue("ContractOID", ContractOID);
+            bRet = bRet && hSql.ExecuteNonQuery();
 
             foreach (SCOptionDetail objOptionDetail in list)
             {

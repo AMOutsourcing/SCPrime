@@ -68,6 +68,10 @@ namespace SCPrime.Contracts
                             treeNode.Checked = true;
                         }
                     }
+                    else
+                    {
+                        treeNode.Checked = checkTree(treeNode, cat);
+                    }
                     treeView1.Nodes.Add(treeNode);
                     if (ContractFrm.objContract.ContractOID <= 0)
                     {
@@ -76,6 +80,10 @@ namespace SCPrime.Contracts
                             //Include -> check true and add grid
                             addRow(treeNode);
                         }
+                    }
+                    else
+                    {
+                        if (checkTree(treeNode, cat)) addRow(treeNode);
                     }
                     //get option
                     listOptions = myCategories.Where(s => !s.NotAvailable && s.CategoryOID == cat.CategoryOID && s.OptionOID > 0 && s.OptionDetailOID <= 0);
@@ -92,6 +100,10 @@ namespace SCPrime.Contracts
                                 treeNodeL2.Checked = true;
                             }
                         }
+                        else
+                        {
+                            treeNodeL2.Checked = checkTree(treeNodeL2, op);
+                        }
                         treeNode.Nodes.Add(treeNodeL2);
 
                         if (ContractFrm.objContract.ContractOID <= 0)
@@ -101,6 +113,10 @@ namespace SCPrime.Contracts
                                 //Include -> check true and add grid
                                 addRow(treeNodeL2);
                             }
+                        }
+                        else
+                        {
+                            if (checkTree(treeNodeL2, op)) addRow(treeNodeL2);
                         }
 
                         //load all detail
@@ -119,6 +135,10 @@ namespace SCPrime.Contracts
                                     treeNodeL3.Checked = true;
                                 }
                             }
+                            else
+                            {
+                                treeNodeL3.Checked = checkTree(treeNodeL3, sod);
+                            }
                             treeNodeL2.Nodes.Add(treeNodeL3);
 
                             if (ContractFrm.objContract.ContractOID <= 0)
@@ -129,57 +149,63 @@ namespace SCPrime.Contracts
                                     addRow(treeNodeL3);
                                 }
                             }
+                            else
+                            {
+                                if(checkTree(treeNodeL3, sod)) addRow(treeNodeL3);
+                            }
                         }
                     }
                 }
             }
-
-            //Set checked cho 
-            //checkTree();
         }
 
-        private void checkTree()
+        private bool checkTree(TreeNode node, SCOptionPrice scprice)
         {
-            if(listOptionDetailTmp.Count > 0)
+            if (listOptionDetailTmp.Count <= 0)
             {
-                TreeNode[] treeNodes = null;
-                //Duyet list
-                string name = "";
-                foreach (SCOptionDetail detail in listOptionDetailTmp)
+                if (scprice.Include)
                 {
-                    if(detail.OID > 0)
-                    {
-                        name = "D" + detail.OID;
-                    }
-                    else
-                    {
-                        if (detail.optionOID > 0)
-                        {
-                            name = "O" + detail.optionOID;
-                        }
-                        else
-                        {
-                            name = "C" + detail.categoryOID;
-                        }
-                    }
-                    treeNodes = treeView1.Nodes
-                                    .Cast<TreeNode>()
-                                    .Where(r => r.Name == name)
-                                    .ToArray();
-
-                    foreach (TreeNode node in treeNodes)
-                    {
-                        node.Checked = true;
-                    }
+                    return true;
                 }
             }
+            else
+            {
+                if (listOptionDetailTmp.ContainsKey(node.Name))
+                {
+                    return true;
+                }
+                //string name = "";
+                //foreach (SCOptionDetail detail in listOptionDetailTmp)
+                //{
+                //    if (detail.OID > 0)
+                //    {
+                //        name = "D" + detail.OID;
+                //    }
+                //    else
+                //    {
+                //        if (detail.optionOID > 0)
+                //        {
+                //            name = "O" + detail.optionOID;
+                //        }
+                //        else
+                //        {
+                //            name = "C" + detail.categoryOID;
+                //        }
+                //    }
+                //    if(node.Name == name)
+                //    {
+                //        return true;
+                //    }
+                //}
+            }
+            return false;
         }
 
         DataTable dataTable = new DataTable();
 
-
+        
         List<SCOptionDetail> listOptionDetail = new List<SCOptionDetail>();
-        List<SCOptionDetail> listOptionDetailTmp = new List<SCOptionDetail>();
+        Dictionary<String, SCOptionDetail> listOptionDetailTmp = new Dictionary<String, SCOptionDetail>();
 
         List<SCOptionCategory> OptionCategories = new List<SCOptionCategory>();
 
@@ -200,13 +226,13 @@ namespace SCPrime.Contracts
             {
                 foreach (SCOptionCategory cate in OptionCategories)
                 {
-                    listOptionDetailTmp.Add(cate.convertToDetail());
+                    listOptionDetailTmp.Add("C"+cate.OID,cate.convertToDetail());
                     foreach (SCOption option in cate.Options)
                     {
-                        listOptionDetailTmp.Add(option.convertToDetail());
+                        listOptionDetailTmp.Add("O" + option.OID, option.convertToDetail());
                         foreach (SCOptionDetail detail in option.OptionDetails)
                         {
-                            listOptionDetailTmp.Add(detail);
+                            listOptionDetailTmp.Add("D" + detail.OID, detail);
                         }
                     }
                 }
