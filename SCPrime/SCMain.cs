@@ -180,6 +180,7 @@ namespace SCPrime
 
         private void nEwContractToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            SCMain.ContractOid = 0;
             ContractFrm cf = new ContractFrm();
             
             cf.ShowDialog();

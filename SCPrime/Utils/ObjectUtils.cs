@@ -42,6 +42,16 @@ namespace SCPrime.Utils
             return table;
         }
 
+        public static DataTable BuidDataTable<T>(T item)
+        {
+            DataTable table = new DataTable();
+            PropertyDescriptorCollection properties =
+               TypeDescriptor.GetProperties(typeof(T));
+            foreach (PropertyDescriptor prop in properties)
+                table.Columns.Add(prop.Name);
+            return table;
+        }
+
         public static DataTable ConvertToDataTable<T>(IList<T> data)
         {
             PropertyDescriptorCollection properties =

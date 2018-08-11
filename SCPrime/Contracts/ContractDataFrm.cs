@@ -644,14 +644,40 @@ namespace SCPrime.Contracts
                 RiskCustId.CustId = Int32.Parse(txtRiskCusId.Text);
             }
             contract.RiskCustId = RiskCustId;
+            contract.RiskLevel = decimal.Parse(txtRishLevel.Text);
 
+            
 
+            //Save Risk
+            List<ZSC_SubcontractorContractRisk> listRisk = new List<ZSC_SubcontractorContractRisk>();
+            List<SubContractorContract> SubContracts = contract.SubContracts;
 
+            ZSC_SubcontractorContractRisk objRisk = null;
+            string colName = "";
+            decimal newInteger;
+            foreach (DataRow row in dataTable.Rows)
+            {
+                foreach (SubContractorContract subContract in SubContracts)
+                {
+                    colName = "sub" + subContract.OID;
+                    if (row[colName] != null && row[colName].ToString().Trim().Length > 0
+                        && decimal.TryParse(row[colName].ToString().Trim(), out newInteger) && newInteger > 0)
+                    {
+                        objRisk = new ZSC_SubcontractorContractRisk();
+                        objRisk.SubContractOID = subContract.OID;
+                        objRisk.RiskPartnerCustId = Int32.Parse(row["RiskPartnerCustId"].ToString().Trim());
+                        objRisk.RiskLevel = decimal.Parse(row[colName].ToString().Trim());
+                        listRisk.Add(objRisk);
+                    }
+                }
+            }
+            contract.SubcontractorContractRisks = listRisk;
             contract.ContractDateData = contractDate;
             contract.ContractPaymentData = ContractPaymentData;
             contract.ContractCapitalData = ContractCapitalData;
             contract.ContractCostData = ContractCostData;
             contract.ContractExtraKmData = ContractExtraKmData;
+
             return contract;
         }
 
@@ -723,12 +749,14 @@ namespace SCPrime.Contracts
             col.Name = "RiskPartnerCustId";
             col.HeaderText = "Risk partner Nr.";
             col.DataPropertyName = "RiskPartnerCustId";
+            col.ReadOnly = true;
             gridRisk.Columns.Add(col);
 
             DataGridViewTextBoxColumn col2 = new DataGridViewTextBoxColumn();
             col2.Name = "Name";
             col2.HeaderText = "Name";
             col2.DataPropertyName = "Name";
+            col2.ReadOnly = true;
             gridRisk.Columns.Add(col2);
 
 
@@ -742,6 +770,27 @@ namespace SCPrime.Contracts
                 colStatus.HeaderText = subContract.SuplName;
                 colStatus.DataPropertyName = "sub" + subContract.OID;
                 gridRisk.Columns.Add(colStatus);
+            }
+        }
+
+        private void gridRisk_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (e.ColumnIndex == 2 || e.ColumnIndex == 3)
+            {
+                //Console.WriteLine("gridRisk_CellValidating " + e.ColumnIndex);
+                gridRisk.Rows[e.RowIndex].ErrorText = "";
+                decimal newInteger;
+
+                // Don't try to validate the 'new row' until finished 
+                // editing since there
+                // is not any point in validating its initial value.
+                if (gridRisk.Rows[e.RowIndex].IsNewRow) { return; }
+                if (!decimal.TryParse(e.FormattedValue.ToString(),
+                    out newInteger) || newInteger < 0)
+                {
+                    e.Cancel = true;
+                    gridRisk.Rows[e.RowIndex].ErrorText = "The value must be a non-negative decimal";
+                }
             }
         }
     }

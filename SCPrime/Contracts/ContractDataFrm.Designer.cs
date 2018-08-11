@@ -160,7 +160,7 @@
             this.pnAll.Controls.Add(this.pnTop);
             this.pnAll.Location = new System.Drawing.Point(4, 4);
             this.pnAll.Name = "pnAll";
-            this.pnAll.Size = new System.Drawing.Size(914, 573);
+            this.pnAll.Size = new System.Drawing.Size(914, 702);
             this.pnAll.TabIndex = 0;
             // 
             // pnBottom
@@ -168,9 +168,9 @@
             this.pnBottom.Controls.Add(this.pnLeft);
             this.pnBottom.Controls.Add(this.pnRight);
             this.pnBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnBottom.Location = new System.Drawing.Point(0, 439);
+            this.pnBottom.Location = new System.Drawing.Point(0, 442);
             this.pnBottom.Name = "pnBottom";
-            this.pnBottom.Size = new System.Drawing.Size(914, 134);
+            this.pnBottom.Size = new System.Drawing.Size(914, 260);
             this.pnBottom.TabIndex = 2;
             // 
             // pnLeft
@@ -180,7 +180,7 @@
             this.pnLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnLeft.Location = new System.Drawing.Point(0, 0);
             this.pnLeft.Name = "pnLeft";
-            this.pnLeft.Size = new System.Drawing.Size(599, 134);
+            this.pnLeft.Size = new System.Drawing.Size(599, 260);
             this.pnLeft.TabIndex = 2;
             // 
             // pnGrid
@@ -189,7 +189,7 @@
             this.pnGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnGrid.Location = new System.Drawing.Point(0, 70);
             this.pnGrid.Name = "pnGrid";
-            this.pnGrid.Size = new System.Drawing.Size(599, 64);
+            this.pnGrid.Size = new System.Drawing.Size(599, 190);
             this.pnGrid.TabIndex = 1;
             // 
             // gridRisk
@@ -199,8 +199,9 @@
             this.gridRisk.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridRisk.Location = new System.Drawing.Point(0, 0);
             this.gridRisk.Name = "gridRisk";
-            this.gridRisk.Size = new System.Drawing.Size(599, 64);
+            this.gridRisk.Size = new System.Drawing.Size(599, 190);
             this.gridRisk.TabIndex = 1;
+            this.gridRisk.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.gridRisk_CellValidating);
             // 
             // pnTopGrid
             // 
@@ -315,7 +316,7 @@
             this.pnRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.pnRight.Location = new System.Drawing.Point(605, 0);
             this.pnRight.Name = "pnRight";
-            this.pnRight.Size = new System.Drawing.Size(309, 134);
+            this.pnRight.Size = new System.Drawing.Size(309, 260);
             this.pnRight.TabIndex = 1;
             // 
             // cbRoll
@@ -353,7 +354,7 @@
             this.pnMid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnMid.Location = new System.Drawing.Point(0, 234);
             this.pnMid.Name = "pnMid";
-            this.pnMid.Size = new System.Drawing.Size(914, 339);
+            this.pnMid.Size = new System.Drawing.Size(914, 468);
             this.pnMid.TabIndex = 1;
             // 
             // groupBox6
@@ -1155,7 +1156,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pnAll);
             this.Name = "ContractDataFrm";
-            this.Size = new System.Drawing.Size(918, 580);
+            this.Size = new System.Drawing.Size(918, 662);
             this.pnAll.ResumeLayout(false);
             this.pnBottom.ResumeLayout(false);
             this.pnLeft.ResumeLayout(false);

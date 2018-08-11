@@ -496,6 +496,7 @@ namespace SCPrime.Model
                     item.BuyPr = hSql.Reader.GetDecimal(8);
                     item.WrksName = hSql.Reader.GetString(9);
                     item.MainGroupCode = hSql.Reader.GetString(10);
+                    item.type = "C";
                 }
             }
             catch (Exception ex)
@@ -816,6 +817,7 @@ namespace SCPrime.Model
                     item.BuyPr = hSql.Reader.GetDecimal(8);
                     item.WrksName = hSql.Reader.GetString(9);
                     item.SubGroupCode = hSql.Reader.GetString(10);
+                    item.type = "O";
                 }
             }
             catch (Exception ex)
@@ -1009,6 +1011,7 @@ namespace SCPrime.Model
                     item.ItemName = hSql.Reader.GetString(7);
                     item.BuyPr = hSql.Reader.GetDecimal(8);
                     item.WrksName = hSql.Reader.GetString(9);
+                    item.type = "D";
                 }
             }
             catch (Exception ex)
@@ -1039,6 +1042,7 @@ namespace SCPrime.Model
         public string PartialPayer { get; set; } = "";
         public int isAvailable { get; set; } = 0;
         public bool isMarkDeleted { get; set; } = false;
+        public string type { get; set; }
         protected static readonly ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         public SCOptionBase()
@@ -1764,6 +1768,9 @@ namespace SCPrime.Model
                         colId = hSql.Reader.GetOrdinal("RiskCustAddress");
                         if (!hSql.Reader.IsDBNull(colId)) item.RiskCustId.Address = hSql.Reader.GetString(colId);
                     }
+                    //
+                    colId = hSql.Reader.GetOrdinal("RiskLevel");
+                    if (!hSql.Reader.IsDBNull(colId)) item.RiskLevel = hSql.Reader.GetDecimal(colId);
                     colId = hSql.Reader.GetOrdinal("RollingCode");
                     if (!hSql.Reader.IsDBNull(colId)) item.RollingCode.strValue1 = hSql.Reader.GetString(colId);
                     colId = hSql.Reader.GetOrdinal("RollingCodeName");

@@ -622,11 +622,6 @@ namespace SCPrime.Contracts
             }
         }
 
-        private void OptionLoadGrid()
-        {
-            contractOption1.loadDataGrid(objContract.OptionCategories);
-        }
-
         private void tabControl1_Selected(object sender, TabControlEventArgs e)
         {
             System.Diagnostics.Debug.WriteLine("---------------------tabControl1_Selected: " + this.tabControl1.SelectedIndex);
@@ -640,8 +635,8 @@ namespace SCPrime.Contracts
             }
             else if (this.tabControl1.SelectedIndex == 2)
             {
+                this.contractOption1.loadDataGrid();
                 this.contractOption1.loadTree();
-                this.OptionLoadGrid();
             }
             else if (this.tabControl1.SelectedIndex == 3)
             {
@@ -671,11 +666,13 @@ namespace SCPrime.Contracts
                 return;
             }
 
+            //Update category
+            this.contractOption1.saveOptionCategories();
             //Update contract data
             objContract = contractDataFrm.saveContractData();
             bool tmp = false;
             tmp = objContract.saveContract();
-           // MessageBox.Show(tmp.ToString());
+            // MessageBox.Show(tmp.ToString());
             this.loadComboboxData();
             this.loadContractData();
         }
