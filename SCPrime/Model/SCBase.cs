@@ -17,9 +17,9 @@ namespace SCPrime.Model
         public int InvoiceFlag { get; set; }
         public string MainGroupCode { get; set; }
         public List<SCOption> Options = new List<SCOption>();
-        public static List<SCOptionCategory> getContractOptionCategory(int ContractOID, clsSqlFactory hSql)
+        public static List<SCOptionCategory> getContractOptionCategory(int ContractOID)
         {
-
+            clsSqlFactory hSql = new clsSqlFactory();
             //get list from master
             List<SCOptionCategory> Result = new List<SCOptionCategory>();
             try
@@ -29,7 +29,7 @@ namespace SCPrime.Model
 
                 String strSql = " select a.OID,isnull(x.Name,a.Name),isnull(a.ItemNo,''),isnull(a.ItemSuplNo,''),isnull(a.WrksId,''),isnull(a.SelPr,0) as ListPrice,isnull(a.InvoiceFlag,0),isnull(b.NAME,''),isnull(b.BUYPR,0),isnull(c.NAME,'') " +
                     ", isnull(d.Info,''), isnull(d.SelPr,0) as SalesPrice,isnull(d.Quantity,0),isnull(d.PartialPayer,''), isnull(a.MainGroupCode,'') from ZSC_OptionCategory a left join ITEM b on a.ITEMNO=b.ITEMNO and a.ITEMSUPLNO=b.SUPLNO left join WRKS c on a.WRKSID=c.WRKSID and c.WPTYPE='T' " +
-                   " left join ZSC_OptionForeignName x on x.ObjectType=1 and x.ObjectOID=a.OID and x.LangId=? " + 
+                   " left join ZSC_OptionForeignName x on x.ObjectType=1 and x.ObjectOID=a.OID and x.LangId=? " +
                     " inner join ZSC_ContractOption d on a.OID = d.OptionCategoryOID and d.ContractOID =? and d.OptionOID is null and d.OptionDetailOID is null " +
                     " order by isnull(x.Name,a.Name)  ";
                 hSql.NewCommand(strSql);
@@ -49,7 +49,7 @@ namespace SCPrime.Model
                     item.ItemName = hSql.Reader.GetString(7);
                     item.BuyPr = hSql.Reader.GetDecimal(8);
                     item.WrksName = hSql.Reader.GetString(9);
-                    item.Options = SCOption.getContractOptionList(ContractOID,item.OID);
+                    item.Options = SCOption.getContractOptionList(ContractOID, item.OID);
                     item.Info = hSql.Reader.GetString(10);
                     item.SelPr = hSql.Reader.GetDecimal(11);
                     item.Quantity = hSql.Reader.GetInt32(12);
@@ -64,7 +64,7 @@ namespace SCPrime.Model
             }
             finally
             {
-
+                hSql.Close();
             }
             return Result;
         }
@@ -271,10 +271,10 @@ namespace SCPrime.Model
         {
             bool bRet = true;
             try
-            {            
+            {
                 foreach (SCOption objOption in Options)
                 {
-                    if ((objOption.OID > 0)&& (objOption.isMarkDeleted == false))
+                    if ((objOption.OID > 0) && (objOption.isMarkDeleted == false))
                     {
                         bRet = hSql.NewCommand("insert into ZSC_ContractOption(ContractOID,OptionCategoryOID,OptionOID, SelPr,Quantity,Info,Created,Modified,PartialPayer) values(?,?,?,?,?,?,getdate(),getdate(),?) ");
                         hSql.Com.Parameters.AddWithValue("ContractOID", ContractOID);
@@ -285,12 +285,9 @@ namespace SCPrime.Model
                         hSql.Com.Parameters.AddWithValue("Info", objOption.Info);
                         hSql.Com.Parameters.AddWithValue("PartialPayer", objOption.PartialPayer);
                         bRet = bRet && hSql.ExecuteNonQuery();
-                        bRet = bRet && objOption.saveContractOptionDetails(ContractOID, hSql,this.OID);
+                        bRet = bRet && objOption.saveContractOptionDetails(ContractOID, hSql, this.OID);
                     }
-                 
                 }
-
-
             }
             catch (Exception ex)
             {
@@ -436,20 +433,17 @@ namespace SCPrime.Model
                 {
                     if ((objCategory.OID > 0) && (objCategory.isMarkDeleted == false))
                     {
-                            bRet = hSql.NewCommand("insert into ZSC_ContractOption(ContractOID,OptionCategoryOID,SelPr,Quantity,Info,Created,Modified,PartialPayer) values(?,?,?,?,?,getdate(),getdate(),?) ");
-                            hSql.Com.Parameters.AddWithValue("ContractOID", ContractOID);
-                            hSql.Com.Parameters.AddWithValue("OptionCategoryOID", objCategory.OID);
-                            hSql.Com.Parameters.AddWithValue("SelPr", objCategory.SelPr);
-                            hSql.Com.Parameters.AddWithValue("Quantity", objCategory.Quantity);
-                            hSql.Com.Parameters.AddWithValue("Info", objCategory.Info);
-                            hSql.Com.Parameters.AddWithValue("PartialPayer", objCategory.PartialPayer);
-                            bRet = bRet && hSql.ExecuteNonQuery();
-                            bRet = bRet && objCategory.saveContractOptions(ContractOID, hSql);
-                        
+                        bRet = hSql.NewCommand("insert into ZSC_ContractOption(ContractOID,OptionCategoryOID,SelPr,Quantity,Info,Created,Modified,PartialPayer) values(?,?,?,?,?,getdate(),getdate(),?) ");
+                        hSql.Com.Parameters.AddWithValue("ContractOID", ContractOID);
+                        hSql.Com.Parameters.AddWithValue("OptionCategoryOID", objCategory.OID);
+                        hSql.Com.Parameters.AddWithValue("SelPr", objCategory.SelPr);
+                        hSql.Com.Parameters.AddWithValue("Quantity", objCategory.Quantity);
+                        hSql.Com.Parameters.AddWithValue("Info", objCategory.Info);
+                        hSql.Com.Parameters.AddWithValue("PartialPayer", objCategory.PartialPayer);
+                        bRet = bRet && hSql.ExecuteNonQuery();
+                        bRet = bRet && objCategory.saveContractOptions(ContractOID, hSql);
                     }
-
                 }
-           
             }
             catch (Exception ex)
             {
@@ -459,7 +453,7 @@ namespace SCPrime.Model
             }
             finally
             {
-              
+
             }
             return bRet;
         }
@@ -509,9 +503,27 @@ namespace SCPrime.Model
             }
             return item;
         }
+
+        public SCOptionDetail convertToDetail()
+        {
+            SCOptionDetail sCOptionDetail = new SCOptionDetail();
+            sCOptionDetail.OID = 0;
+            sCOptionDetail.categoryOID = this.OID;
+            sCOptionDetail.optionOID = 0;
+            sCOptionDetail.Name = this.Name;
+            sCOptionDetail.ItemNo = this.ItemNo;
+            sCOptionDetail.ItemSuplNo = this.ItemSuplNo;
+            sCOptionDetail.WrksId = this.WrksId;
+            sCOptionDetail.SelPr = this.SelPr;
+            sCOptionDetail.ItemName = this.ItemName;
+            sCOptionDetail.BuyPr = this.BuyPr;
+            sCOptionDetail.WrksName = this.WrksName;
+            return sCOptionDetail;
+        }
     }
     public class SCOption : SCOptionBase
     {
+        public int categoryOID { get; set; }
         public string SubGroupCode { get; set; }
         public List<SCOptionDetail> OptionDetails = new List<SCOptionDetail>();
         public static List<SCOption> getContractOptionPriceList(int OptionCategoryOID, int ContractTypeOID)
@@ -601,7 +613,7 @@ namespace SCPrime.Model
             }
             return Result;
         }
-        public static List<SCOption> getContractOptionList(int ContractOID,int OptionCategoryOID)
+        public static List<SCOption> getContractOptionList(int ContractOID, int OptionCategoryOID)
         {
             List<SCOption> Result = new List<SCOption>();
             clsSqlFactory hSql = new clsSqlFactory();
@@ -610,7 +622,7 @@ namespace SCPrime.Model
                 clsGlobalVariable objGlobal = new clsGlobalVariable();
                 string LangId = objGlobal.CultureInfo;
                 String strSql = " select a.OID,isnull(x.Name,a.Name),isnull(a.ItemNo,''),isnull(a.ItemSuplNo,''),isnull(a.WrksId,''),isnull(a.SelPr,0) as BaseSelPr,null,isnull(b.NAME,''),isnull(b.BUYPR,0),isnull(c.NAME,''), isnull(a.SubGroupCode,'') " +
-                    ", isnull(d.Info, ''), isnull(d.SelPr, 0) as SalesPrice,isnull(d.Quantity, 0),isnull(d.PartialPayer, 0) "+
+                    ", isnull(d.Info, ''), isnull(d.SelPr, 0) as SalesPrice,isnull(d.Quantity, 0),isnull(d.PartialPayer, 0) " +
                     " from ZSC_Option a left join ITEM b on a.ITEMNO=b.ITEMNO and a.ITEMSUPLNO=b.SUPLNO left join WRKS c on a.WRKSID=c.WRKSID and c.WPTYPE='T' " +
                     " left join ZSC_OptionForeignName x on x.ObjectType=2 and x.ObjectOID=a.OID and x.LangId=? " +
                     " inner join ZSC_ContractOption d on a.OID = d.OptionOID and d.ContractOID =? and d.OptionCategoryOID=? and d.OptionDetailOID is null" +
@@ -624,6 +636,7 @@ namespace SCPrime.Model
                 {
                     SCOption item = new SCOption();
                     item.OID = hSql.Reader.GetInt32(0);
+                    item.categoryOID = OptionCategoryOID;
                     item.Name = hSql.Reader.GetString(1);
                     item.ItemNo = hSql.Reader.GetString(2);
                     item.ItemSuplNo = hSql.Reader.GetString(3);
@@ -637,7 +650,7 @@ namespace SCPrime.Model
                     item.SelPr = hSql.Reader.GetDecimal(12);
                     item.Quantity = hSql.Reader.GetInt32(13);
                     item.PartialPayer = hSql.Reader.GetString(14);
-                    item.OptionDetails = SCOptionDetail.getContractOptionDetailList(item.OID, ContractOID);
+                    item.OptionDetails = SCOptionDetail.getContractOptionDetailList(OptionCategoryOID, item.OID, ContractOID);
                     Result.Add(item);
                 }
             }
@@ -746,7 +759,7 @@ namespace SCPrime.Model
             }
             return bRet;
         }
-        public bool saveContractOptionDetails(int ContractOID, clsSqlFactory hSql,int OptionCategoryOID)
+        public bool saveContractOptionDetails(int ContractOID, clsSqlFactory hSql, int OptionCategoryOID)
         {
             bool bRet = true;
             try
@@ -765,10 +778,10 @@ namespace SCPrime.Model
                         hSql.Com.Parameters.AddWithValue("Info", objOptionDetail.Info);
                         hSql.Com.Parameters.AddWithValue("PartialPayer", objOptionDetail.PartialPayer);
                         bRet = bRet && hSql.ExecuteNonQuery();
-                        
+
                     }
                 }
-                }
+            }
             catch (Exception ex)
             {
                 bRet = false;
@@ -806,7 +819,7 @@ namespace SCPrime.Model
                 hSql.ExecuteReader();
                 item = new SCOption();
                 while (hSql.Read())
-                {   
+                {
                     item.OID = hSql.Reader.GetInt32(0);
                     item.Name = hSql.Reader.GetString(1);
                     item.ItemNo = hSql.Reader.GetString(2);
@@ -830,9 +843,29 @@ namespace SCPrime.Model
             }
             return item;
         }
+
+        public SCOptionDetail convertToDetail()
+        {
+            SCOptionDetail sCOptionDetail = new SCOptionDetail();
+            sCOptionDetail.OID = 0;
+            sCOptionDetail.categoryOID = this.categoryOID;
+            sCOptionDetail.optionOID = this.OID;
+            sCOptionDetail.Name = this.Name;
+            sCOptionDetail.ItemNo = this.ItemNo;
+            sCOptionDetail.ItemSuplNo = this.ItemSuplNo;
+            sCOptionDetail.WrksId = this.WrksId;
+            sCOptionDetail.SelPr = this.SelPr;
+            sCOptionDetail.ItemName = this.ItemName;
+            sCOptionDetail.BuyPr = this.BuyPr;
+            sCOptionDetail.WrksName = this.WrksName;
+            return sCOptionDetail;
+        }
     }
     public class SCOptionDetail : SCOptionBase
     {
+        public int categoryOID { get; set; }
+        public int optionOID { get; set; }
+
         public SCOptionDetail()
         {
 
@@ -931,7 +964,7 @@ namespace SCPrime.Model
             }
             return Result;
         }
-        public static List<SCOptionDetail> getContractOptionDetailList(int OptionOID,int ContractOID)
+        public static List<SCOptionDetail> getContractOptionDetailList(int OptionCategoryOID, int OptionOID, int ContractOID)
         {
             List<SCOptionDetail> Result = new List<SCOptionDetail>();
             clsSqlFactory hSql = new clsSqlFactory();
@@ -956,6 +989,8 @@ namespace SCPrime.Model
                 {
                     SCOptionDetail item = new SCOptionDetail();
                     item.OID = hSql.Reader.GetInt32(0);
+                    item.categoryOID = OptionCategoryOID;
+                    item.optionOID = OptionOID;
                     item.Name = hSql.Reader.GetString(1);
                     item.ItemNo = hSql.Reader.GetString(2);
                     item.ItemSuplNo = hSql.Reader.GetString(3);
@@ -1001,7 +1036,7 @@ namespace SCPrime.Model
                 hSql.ExecuteReader();
                 item = new SCOptionDetail();
                 while (hSql.Read())
-                {   
+                {
                     item.OID = hSql.Reader.GetInt32(0);
                     item.Name = hSql.Reader.GetString(1);
                     item.ItemNo = hSql.Reader.GetString(2);

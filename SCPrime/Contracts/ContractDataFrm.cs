@@ -27,17 +27,9 @@ namespace SCPrime.Contracts
             }
             return ContractDataFrm._instance;
         }
-
-
-        //
-        private Contract contract;
+        
         DataTable dataTable;
-
-        public void setContract(Contract objContract)
-        {
-            this.contract = objContract;
-        }
-
+        
         SCBase sCBase;
         //
         public ContractDataFrm()
@@ -185,66 +177,66 @@ namespace SCPrime.Contracts
 
         public void fillData()
         {
-            if (contract != null && contract.ContractOID > 0)
+            if (ContractFrm.objContract != null && ContractFrm.objContract.ContractOID > 0)
             {
                 //Start
-                txtStartDate.Value = contract.ContractDateData.ContractStartDate;
-                txtStartKm.Text = contract.ContractDateData.ContractStartKm.ToString();
-                txtStartHr.Text = contract.ContractDateData.ContractStartHour.ToString();
-                txtStartInvoice.Value = contract.ContractDateData.InvoiceStartDate;
-                txtPeriod.Value = contract.ContractDateData.ContractPeriodMonth;
-                txtKm.Text = contract.ContractDateData.ContractPeriodKm.ToString();
-                txtHr.Text = contract.ContractDateData.ContractPeriodHour.ToString();
+                txtStartDate.Value = ContractFrm.objContract.ContractDateData.ContractStartDate;
+                txtStartKm.Text = ContractFrm.objContract.ContractDateData.ContractStartKm.ToString();
+                txtStartHr.Text = ContractFrm.objContract.ContractDateData.ContractStartHour.ToString();
+                txtStartInvoice.Value = ContractFrm.objContract.ContractDateData.InvoiceStartDate;
+                txtPeriod.Value = ContractFrm.objContract.ContractDateData.ContractPeriodMonth;
+                txtKm.Text = ContractFrm.objContract.ContractDateData.ContractPeriodKm.ToString();
+                txtHr.Text = ContractFrm.objContract.ContractDateData.ContractPeriodHour.ToString();
 
 
-                rdKmBase.Checked = (contract.ContractDateData != null && contract.ContractDateData.ContractPeriodKmHour == 1);
-                rdHrBase.Checked = (contract.ContractDateData != null && contract.ContractDateData.ContractPeriodKmHour == 2);
+                rdKmBase.Checked = (ContractFrm.objContract.ContractDateData != null && ContractFrm.objContract.ContractDateData.ContractPeriodKmHour == 1);
+                rdHrBase.Checked = (ContractFrm.objContract.ContractDateData != null && ContractFrm.objContract.ContractDateData.ContractPeriodKmHour == 2);
 
                 //End
-                txtEndDate.Value = contract.ContractDateData.ContractEndDate;
-                txtEndKm.Text = contract.ContractDateData.ContractEndKm.ToString();
-                txtEndHr.Text = contract.ContractDateData.ContractEndHour.ToString();
-                txtEndInvoice.Value = contract.ContractDateData.InvoiceEndDate;
-                cbTemType.SelectedValue = contract.TerminationType.strValue1;
+                txtEndDate.Value = ContractFrm.objContract.ContractDateData.ContractEndDate;
+                txtEndKm.Text = ContractFrm.objContract.ContractDateData.ContractEndKm.ToString();
+                txtEndHr.Text = ContractFrm.objContract.ContractDateData.ContractEndHour.ToString();
+                txtEndInvoice.Value = ContractFrm.objContract.ContractDateData.InvoiceEndDate;
+                cbTemType.SelectedValue = ContractFrm.objContract.TerminationType.strValue1;
 
                 //Payment
-                if (contract.ContractPaymentData.PaymentPeriod != null && contract.ContractPaymentData.PaymentPeriod.strValue1 != null)
+                if (ContractFrm.objContract.ContractPaymentData.PaymentPeriod != null && ContractFrm.objContract.ContractPaymentData.PaymentPeriod.strValue1 != null)
                 {
-                    cbPayPeriod.SelectedValue = contract.ContractPaymentData.PaymentPeriod.strValue1;
+                    cbPayPeriod.SelectedValue = ContractFrm.objContract.ContractPaymentData.PaymentPeriod.strValue1;
                 }
                 else
                 {
                     cbPayPeriod.SelectedIndex = -1;
                 }
 
-                cbPayment.Checked = contract.IsManualInvoice;
+                cbPayment.Checked = ContractFrm.objContract.IsManualInvoice;
 
-                cbInvoice.Checked = contract.ContractPaymentData.PaymentIsInBlock;
+                cbInvoice.Checked = ContractFrm.objContract.ContractPaymentData.PaymentIsInBlock;
 
 
-                if (contract.ContractPaymentData != null && contract.ContractPaymentData.PaymentNextBlockStart != null)
+                if (ContractFrm.objContract.ContractPaymentData != null && ContractFrm.objContract.ContractPaymentData.PaymentNextBlockStart != null)
                 {
-                    txtNextBlock.Text = contract.ContractPaymentData.PaymentNextBlockStart.ToString();
+                    txtNextBlock.Text = ContractFrm.objContract.ContractPaymentData.PaymentNextBlockStart.ToString();
                 }
                 else
                 {
                     txtNextBlock.Text = "";
                 }
-                if (contract.ContractPaymentData != null && contract.ContractPaymentData.PaymentNextBlockEnd != null)
+                if (ContractFrm.objContract.ContractPaymentData != null && ContractFrm.objContract.ContractPaymentData.PaymentNextBlockEnd != null)
                 {
-                    txtNextBlockEnd.Text = contract.ContractPaymentData.PaymentNextBlockEnd.ToString();
+                    txtNextBlockEnd.Text = ContractFrm.objContract.ContractPaymentData.PaymentNextBlockEnd.ToString();
                 }
                 else
                 {
                     txtNextBlockEnd.Text = "";
                 }
 
-                cbColType.SelectedValue = contract.ContractPaymentData.PaymentCollectionType;
-                cbGrpLevel.SelectedValue = contract.ContractPaymentData.PaymentGroupingLevel;
-                cbPayTerm.SelectedValue = contract.ContractPaymentData.PaymentTerm;
-                if (contract.InvoiceSiteId != null)
+                cbColType.SelectedValue = ContractFrm.objContract.ContractPaymentData.PaymentCollectionType;
+                cbGrpLevel.SelectedValue = ContractFrm.objContract.ContractPaymentData.PaymentGroupingLevel;
+                cbPayTerm.SelectedValue = ContractFrm.objContract.ContractPaymentData.PaymentTerm;
+                if (ContractFrm.objContract.InvoiceSiteId != null)
                 {
-                    cbInvoiceSite.SelectedValue = contract.InvoiceSiteId.strValue1;
+                    cbInvoiceSite.SelectedValue = ContractFrm.objContract.InvoiceSiteId.strValue1;
                 }
                 else
                 {
@@ -253,50 +245,50 @@ namespace SCPrime.Contracts
 
 
                 //captial
-                txtStartAmount.Text = contract.ContractCapitalData.CapitalStartAmount.ToString();
-                if (contract.ContractCapitalData != null && contract.ContractCapitalData.CapitalStartPayer != null
-                    && contract.ContractCapitalData.CapitalStartPayer.strValue1 != null && contract.ContractCapitalData.CapitalStartPayer.strValue1.Length > 0)
+                txtStartAmount.Text = ContractFrm.objContract.ContractCapitalData.CapitalStartAmount.ToString();
+                if (ContractFrm.objContract.ContractCapitalData != null && ContractFrm.objContract.ContractCapitalData.CapitalStartPayer != null
+                    && ContractFrm.objContract.ContractCapitalData.CapitalStartPayer.strValue1 != null && ContractFrm.objContract.ContractCapitalData.CapitalStartPayer.strValue1.Length > 0)
                 {
-                    txtStartAmountPayer.SelectedValue = contract.ContractCapitalData.CapitalStartPayer.strValue1;
+                    txtStartAmountPayer.SelectedValue = ContractFrm.objContract.ContractCapitalData.CapitalStartPayer.strValue1;
                 }
                 else
                 {
                     txtStartAmountPayer.SelectedValue = -1;
                 }
 
-                txtMonAmount.Text = contract.ContractCapitalData.CapitalMonthAmount.ToString();
-                if (contract.ContractCapitalData != null && contract.ContractCapitalData.CapitalMonthPayer != null
-                    && contract.ContractCapitalData.CapitalMonthPayer.strValue1 != null && contract.ContractCapitalData.CapitalMonthPayer.strValue1.Length > 0)
+                txtMonAmount.Text = ContractFrm.objContract.ContractCapitalData.CapitalMonthAmount.ToString();
+                if (ContractFrm.objContract.ContractCapitalData != null && ContractFrm.objContract.ContractCapitalData.CapitalMonthPayer != null
+                    && ContractFrm.objContract.ContractCapitalData.CapitalMonthPayer.strValue1 != null && ContractFrm.objContract.ContractCapitalData.CapitalMonthPayer.strValue1.Length > 0)
                 {
-                    txtMonAmountPayer.SelectedValue = contract.ContractCapitalData.CapitalMonthPayer.strValue1;
+                    txtMonAmountPayer.SelectedValue = ContractFrm.objContract.ContractCapitalData.CapitalMonthPayer.strValue1;
                 }
                 else
                 {
                     txtMonAmountPayer.SelectedValue = -1;
                 }
-                txtTotalAmount.Text = (contract.ContractCapitalData.CapitalStartAmount
-                    + contract.ContractCapitalData.CapitalMonthAmount * contract.ContractDateData.ContractPeriodMonth).ToString();
+                txtTotalAmount.Text = (ContractFrm.objContract.ContractCapitalData.CapitalStartAmount
+                    + ContractFrm.objContract.ContractCapitalData.CapitalMonthAmount * ContractFrm.objContract.ContractDateData.ContractPeriodMonth).ToString();
 
                 //Cost
-                if (contract.ContractCostData.CostBasis != null
-                    && contract.ContractCostData.CostBasis.strValue1 != null
-                    && contract.ContractCostData.CostBasis.strValue1.Length > 0)
+                if (ContractFrm.objContract.ContractCostData.CostBasis != null
+                    && ContractFrm.objContract.ContractCostData.CostBasis.strValue1 != null
+                    && ContractFrm.objContract.ContractCostData.CostBasis.strValue1.Length > 0)
                 {
-                    cbCostBassis.SelectedValue = contract.ContractCostData.CostBasis.strValue1;
+                    cbCostBassis.SelectedValue = ContractFrm.objContract.ContractCostData.CostBasis.strValue1;
                 }
                 else
                 {
                     cbCostBassis.SelectedIndex = -1;
                 }
 
-                txtCostBase.Text = contract.ContractCostData.CostBasedOnService.ToString();
-                txtMonBassis.Text = contract.ContractCostData.CostMonthBasis.ToString();
-                txtKmBassis.Text = contract.ContractCostData.CostKmBasis.ToString();
+                txtCostBase.Text = ContractFrm.objContract.ContractCostData.CostBasedOnService.ToString();
+                txtMonBassis.Text = ContractFrm.objContract.ContractCostData.CostMonthBasis.ToString();
+                txtKmBassis.Text = ContractFrm.objContract.ContractCostData.CostKmBasis.ToString();
                 txtLastPay.Text = "txtLastPay";
-                txtErr.Text = contract.ContractCostData.CostPerKm.ToString();
+                txtErr.Text = ContractFrm.objContract.ContractCostData.CostPerKm.ToString();
 
                 //LastKm info
-                VehicleMileage vehicleMileage = contract.VehiId.lastMileages();
+                VehicleMileage vehicleMileage = ContractFrm.objContract.VehiId.lastMileages();
                 if (vehicleMileage != null)
                 {
                     txtLastKm.Text = vehicleMileage.LastKmInfo();
@@ -307,11 +299,11 @@ namespace SCPrime.Contracts
                 }
 
                 //Extra
-                if (contract.ContractExtraKmData.ExtraKmInvoicePeriod != null
-                    && contract.ContractExtraKmData.ExtraKmInvoicePeriod.strValue1 != null
-                    && contract.ContractExtraKmData.ExtraKmInvoicePeriod.strValue1 != "")
+                if (ContractFrm.objContract.ContractExtraKmData.ExtraKmInvoicePeriod != null
+                    && ContractFrm.objContract.ContractExtraKmData.ExtraKmInvoicePeriod.strValue1 != null
+                    && ContractFrm.objContract.ContractExtraKmData.ExtraKmInvoicePeriod.strValue1 != "")
                 {
-                    cbBiling.SelectedValue = contract.ContractExtraKmData.ExtraKmInvoicePeriod.strValue1;
+                    cbBiling.SelectedValue = ContractFrm.objContract.ContractExtraKmData.ExtraKmInvoicePeriod.strValue1;
                 }
                 else
                 {
@@ -319,11 +311,11 @@ namespace SCPrime.Contracts
                 }
 
 
-                if (contract.ContractExtraKmData.ExtraKmInvoicePeriod != null
-                    && contract.ContractExtraKmData.ExtraKmAccounting.strValue1 != null
-                    && contract.ContractExtraKmData.ExtraKmAccounting.strValue1 != "")
+                if (ContractFrm.objContract.ContractExtraKmData.ExtraKmInvoicePeriod != null
+                    && ContractFrm.objContract.ContractExtraKmData.ExtraKmAccounting.strValue1 != null
+                    && ContractFrm.objContract.ContractExtraKmData.ExtraKmAccounting.strValue1 != "")
                 {
-                    cbAccounting.SelectedValue = contract.ContractExtraKmData.ExtraKmAccounting.strValue1;
+                    cbAccounting.SelectedValue = ContractFrm.objContract.ContractExtraKmData.ExtraKmAccounting.strValue1;
                 }
                 else
                 {
@@ -331,25 +323,25 @@ namespace SCPrime.Contracts
                 }
 
 
-                txtMaxDev.Text = contract.ContractExtraKmData.ExtraKmMaxDeviation.ToString();
-                txtLowKm.Text = contract.ContractExtraKmData.ExtraKmLowAmount.ToString();
-                txtHighKm.Text = contract.ContractExtraKmData.ExtraKmHighAmount.ToString();
-                txtInvoiceAmount.Text = contract.ContractExtraKmData.ExtraKmInvoicedAmount.ToString();
+                txtMaxDev.Text = ContractFrm.objContract.ContractExtraKmData.ExtraKmMaxDeviation.ToString();
+                txtLowKm.Text = ContractFrm.objContract.ContractExtraKmData.ExtraKmLowAmount.ToString();
+                txtHighKm.Text = ContractFrm.objContract.ContractExtraKmData.ExtraKmHighAmount.ToString();
+                txtInvoiceAmount.Text = ContractFrm.objContract.ContractExtraKmData.ExtraKmInvoicedAmount.ToString();
 
                 //cbRoll
-                if (contract.RollingCode != null && contract.RollingCode.strValue1 != null && contract.RollingCode.strValue1 != "")
+                if (ContractFrm.objContract.RollingCode != null && ContractFrm.objContract.RollingCode.strValue1 != null && ContractFrm.objContract.RollingCode.strValue1 != "")
                 {
-                    cbRoll.SelectedValue = contract.RollingCode.strValue1;
+                    cbRoll.SelectedValue = ContractFrm.objContract.RollingCode.strValue1;
                 }
                 else
                 {
                     cbRoll.SelectedIndex = -1;
                 }
 
-                cbInvoiceDetail.Checked = contract.IsInvoiceDetail;
+                cbInvoiceDetail.Checked = ContractFrm.objContract.IsInvoiceDetail;
 
                 //Risk
-                ContractCustomer RiskCustId = contract.RiskCustId;
+                ContractCustomer RiskCustId = ContractFrm.objContract.RiskCustId;
                 if (RiskCustId != null && RiskCustId.CustId > 0)
                 {
                     txtRiskCusId.Text = RiskCustId.CustId.ToString();
@@ -363,7 +355,7 @@ namespace SCPrime.Contracts
                     txtParnerName.Text = "";
                 }
 
-                txtRishLevel.Text = contract.RiskLevel.ToString();
+                txtRishLevel.Text = ContractFrm.objContract.RiskLevel.ToString();
 
                 //Load data grid
 
@@ -451,7 +443,7 @@ namespace SCPrime.Contracts
                 drToAdd["RiskPartnerCustId"] = Int32.Parse(searhCustomer.Custno);
                 drToAdd["Name"] = searhCustomer.CustName;
 
-                List<SubContractorContract> SubContracts = contract.SubContracts;
+                List<SubContractorContract> SubContracts = ContractFrm.objContract.SubContracts;
                 foreach (SubContractorContract subContract in SubContracts)
                     drToAdd["sub" + subContract.OID] = 0;
 
@@ -470,7 +462,7 @@ namespace SCPrime.Contracts
                 txtRiskCusId.Text = searhCustomer.Custno;
                 txtPatnerNr.Text = searhCustomer.Custno;
                 txtParnerName.Text = searhCustomer.CustName;
-                txtRishLevel.Text = contract.RiskLevel.ToString();
+                txtRishLevel.Text = ContractFrm.objContract.RiskLevel.ToString();
             }
         }
 
@@ -483,7 +475,7 @@ namespace SCPrime.Contracts
 
         private void txtPeriod_ValueChanged(object sender, EventArgs e)
         {
-            if (txtPeriod.Value > 0 && txtPeriod.Value != contract.ContractDateData.ContractPeriodMonth)
+            if (txtPeriod.Value > 0 && txtPeriod.Value != ContractFrm.objContract.ContractDateData.ContractPeriodMonth)
             {
                 //Edit period in month -> recalculate End date = Start date + Period month
                 caclEndDate();
@@ -492,7 +484,7 @@ namespace SCPrime.Contracts
 
         private void txtStartDate_ValueChanged(object sender, EventArgs e)
         {
-            if (txtStartDate.Text != "" && txtStartDate.Value != contract.ContractDateData.ContractStartDate)
+            if (txtStartDate.Text != "" && txtStartDate.Value != ContractFrm.objContract.ContractDateData.ContractStartDate)
             {
                 //Edit stat date -> recalculate End date = Start date + Period month
                 caclEndDate();
@@ -507,11 +499,11 @@ namespace SCPrime.Contracts
             //ContractCost ContractCostData = contract.ContractCostData;
             //ContractExtraKm ContractExtraKmData = contract.ContractExtraKmData;
 
-            ContractDate contractDate = contract.ContractDateData;
-            ContractPayment ContractPaymentData = contract.ContractPaymentData;
-            ContractCapital ContractCapitalData = contract.ContractCapitalData;
-            ContractCost ContractCostData = contract.ContractCostData;
-            ContractExtraKm ContractExtraKmData = contract.ContractExtraKmData;
+            ContractDate contractDate = ContractFrm.objContract.ContractDateData;
+            ContractPayment ContractPaymentData = ContractFrm.objContract.ContractPaymentData;
+            ContractCapital ContractCapitalData = ContractFrm.objContract.ContractCapitalData;
+            ContractCost ContractCostData = ContractFrm.objContract.ContractCostData;
+            ContractExtraKm ContractExtraKmData = ContractFrm.objContract.ContractExtraKmData;
             if (contractDate == null)
             {
                 contractDate = new ContractDate();
@@ -545,11 +537,11 @@ namespace SCPrime.Contracts
 
             if (rdKmBase.Checked)
             {
-                contract.ContractDateData.ContractPeriodKmHour = 1;
+                ContractFrm.objContract.ContractDateData.ContractPeriodKmHour = 1;
             }
             if (rdHrBase.Checked)
             {
-                contract.ContractDateData.ContractPeriodKmHour = 2;
+                ContractFrm.objContract.ContractDateData.ContractPeriodKmHour = 2;
             }
 
             //End
@@ -568,7 +560,7 @@ namespace SCPrime.Contracts
             }
 
 
-            contract.IsManualInvoice = cbPayment.Checked;
+            ContractFrm.objContract.IsManualInvoice = cbPayment.Checked;
 
 
             ContractPaymentData.PaymentIsInBlock = cbInvoice.Checked;
@@ -581,7 +573,7 @@ namespace SCPrime.Contracts
             clsBaseListItem InvoiceSiteId = new clsBaseListItem();
             InvoiceSiteId.strValue1 = cbInvoiceSite.SelectedValue.ToString();
             InvoiceSiteId.strText = cbInvoiceSite.SelectedText;
-            contract.InvoiceSiteId = InvoiceSiteId;
+            ContractFrm.objContract.InvoiceSiteId = InvoiceSiteId;
 
             //captial
             ContractCapitalData.CapitalStartAmount = Decimal.Parse(txtStartAmount.Text);
@@ -595,8 +587,8 @@ namespace SCPrime.Contracts
             CapitalMonthPayer.strText = txtMonAmountPayer.SelectedText.ToString();
             ContractCapitalData.CapitalMonthPayer = CapitalMonthPayer;
 
-            txtTotalAmount.Text = (contract.ContractCapitalData.CapitalStartAmount
-                + contract.ContractCapitalData.CapitalMonthAmount * contract.ContractDateData.ContractPeriodMonth).ToString();
+            txtTotalAmount.Text = (ContractFrm.objContract.ContractCapitalData.CapitalStartAmount
+                + ContractFrm.objContract.ContractCapitalData.CapitalMonthAmount * ContractFrm.objContract.ContractDateData.ContractPeriodMonth).ToString();
 
             //Cost
             clsBaseListItem CostBasis = new clsBaseListItem();
@@ -633,9 +625,9 @@ namespace SCPrime.Contracts
                 RollingCode.strValue1 = cbRoll.SelectedValue.ToString();
                 RollingCode.strText = cbRoll.SelectedText.ToString();
             }
-            contract.RollingCode = RollingCode;
+            ContractFrm.objContract.RollingCode = RollingCode;
 
-            contract.IsInvoiceDetail = cbInvoiceDetail.Checked;
+            ContractFrm.objContract.IsInvoiceDetail = cbInvoiceDetail.Checked;
 
             //RiskCustId
             ContractCustomer RiskCustId = new ContractCustomer();
@@ -643,14 +635,14 @@ namespace SCPrime.Contracts
             {
                 RiskCustId.CustId = Int32.Parse(txtRiskCusId.Text);
             }
-            contract.RiskCustId = RiskCustId;
-            contract.RiskLevel = decimal.Parse(txtRishLevel.Text);
+            ContractFrm.objContract.RiskCustId = RiskCustId;
+            ContractFrm.objContract.RiskLevel = decimal.Parse(txtRishLevel.Text);
 
             
 
             //Save Risk
             List<ZSC_SubcontractorContractRisk> listRisk = new List<ZSC_SubcontractorContractRisk>();
-            List<SubContractorContract> SubContracts = contract.SubContracts;
+            List<SubContractorContract> SubContracts = ContractFrm.objContract.SubContracts;
 
             ZSC_SubcontractorContractRisk objRisk = null;
             string colName = "";
@@ -671,14 +663,14 @@ namespace SCPrime.Contracts
                     }
                 }
             }
-            contract.SubcontractorContractRisks = listRisk;
-            contract.ContractDateData = contractDate;
-            contract.ContractPaymentData = ContractPaymentData;
-            contract.ContractCapitalData = ContractCapitalData;
-            contract.ContractCostData = ContractCostData;
-            contract.ContractExtraKmData = ContractExtraKmData;
+            ContractFrm.objContract.SubcontractorContractRisks = listRisk;
+            ContractFrm.objContract.ContractDateData = contractDate;
+            ContractFrm.objContract.ContractPaymentData = ContractPaymentData;
+            ContractFrm.objContract.ContractCapitalData = ContractCapitalData;
+            ContractFrm.objContract.ContractCostData = ContractCostData;
+            ContractFrm.objContract.ContractExtraKmData = ContractExtraKmData;
 
-            return contract;
+            return ContractFrm.objContract;
         }
 
         private void cbCostBassis_SelectedIndexChanged(object sender, EventArgs e)
@@ -715,11 +707,11 @@ namespace SCPrime.Contracts
 
         private void fillRisk()
         {
-            List<ZSC_SubcontractorContractRisk> contractRisk = contract.loadZSC_SubcontractorContractRisk();
+            List<ZSC_SubcontractorContractRisk> contractRisk = ContractFrm.objContract.loadZSC_SubcontractorContractRisk();
             dataTable = ObjectUtils.ConvertToDataTable(contractRisk);
 
             //Add Column subcontracter
-            List<SubContractorContract> SubContracts = contract.SubContracts;
+            List<SubContractorContract> SubContracts = ContractFrm.objContract.SubContracts;
 
             List<ZSC_SubcontractorContractRisk> listRiskSub = null;
 
@@ -729,7 +721,7 @@ namespace SCPrime.Contracts
             }
             foreach (SubContractorContract subContract in SubContracts)
             {
-                listRiskSub = ZSC_SubcontractorContractRisk.getContractRiskBySub(contract.ContractOID, subContract.OID);
+                listRiskSub = ZSC_SubcontractorContractRisk.getContractRiskBySub(ContractFrm.objContract.ContractOID, subContract.OID);
                 if (listRiskSub.Count > 0)
                 {
                     foreach (DataRow row in dataTable.Rows)
@@ -761,7 +753,7 @@ namespace SCPrime.Contracts
 
 
             //Add Column subcontracter
-            List<SubContractorContract> SubContracts = contract.SubContracts;
+            List<SubContractorContract> SubContracts = ContractFrm.objContract.SubContracts;
 
             foreach (SubContractorContract subContract in SubContracts)
             {

@@ -38,8 +38,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.PartialPayerCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.InvoiceFlagCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.oidCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PartNrCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,6 +50,8 @@
             this.SalesPriceCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QuantityCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.InfoCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PartialPayerCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.InvoiceFlagCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sCOptionBaseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -78,6 +78,7 @@
             this.treeView1.Size = new System.Drawing.Size(257, 445);
             this.treeView1.TabIndex = 0;
             this.treeView1.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterCheck);
+            this.treeView1.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterExpand);
             // 
             // panel2
             // 
@@ -160,18 +161,6 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(648, 409);
             this.dataGridView1.TabIndex = 3;
-            // 
-            // PartialPayerCol
-            // 
-            this.PartialPayerCol.HeaderText = "Partial payer";
-            this.PartialPayerCol.Name = "PartialPayerCol";
-            this.PartialPayerCol.ReadOnly = true;
-            // 
-            // InvoiceFlagCol
-            // 
-            this.InvoiceFlagCol.HeaderText = "Invoice flag";
-            this.InvoiceFlagCol.Name = "InvoiceFlagCol";
-            this.InvoiceFlagCol.ReadOnly = true;
             // 
             // oidCol
             // 
@@ -256,6 +245,18 @@
             this.InfoCol.HeaderText = "Info";
             this.InfoCol.Name = "InfoCol";
             this.InfoCol.ReadOnly = true;
+            // 
+            // PartialPayerCol
+            // 
+            this.PartialPayerCol.HeaderText = "Partial payer";
+            this.PartialPayerCol.Name = "PartialPayerCol";
+            this.PartialPayerCol.ReadOnly = true;
+            // 
+            // InvoiceFlagCol
+            // 
+            this.InvoiceFlagCol.HeaderText = "Invoice flag";
+            this.InvoiceFlagCol.Name = "InvoiceFlagCol";
+            this.InvoiceFlagCol.ReadOnly = true;
             // 
             // sCOptionBaseBindingSource
             // 

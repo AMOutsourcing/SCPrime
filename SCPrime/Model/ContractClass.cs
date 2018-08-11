@@ -740,6 +740,7 @@ namespace SCPrime.Model
 
         public List<SCOptionCategory> OptionCategories;
         public List<ZSC_SubcontractorContractRisk> SubcontractorContractRisks;
+        public List<SCOptionDetail> listOptionDetail;
         public Contract()
         {
             //default values
@@ -1108,10 +1109,13 @@ namespace SCPrime.Model
                     {
                         bRet = bRet && savSelfContract(SelfContracts, this.ContractOID, hSql);
                     }
-                    if (OptionCategories != null)
-                    {
-                        bRet = bRet && SCOptionCategory.saveContractOptionCategoryList(this.ContractOID, this.OptionCategories, hSql);
-                    }
+                    //if (OptionCategories != null)
+                    //{
+                    //    bRet = bRet && SCOptionCategory.saveContractOptionCategoryList(this.ContractOID, this.OptionCategories, hSql);
+                    //}
+
+                    //ThuyetLV: Save ContractOption
+                    bRet = bRet && saveContractOption(this.ContractOID, this.listOptionDetail, hSql);
 
                     //ThuyetLV: Save ContractRisk
                     bRet = bRet && ZSC_SubcontractorContractRisk.saveContractRisk(this.ContractOID, this.SubcontractorContractRisks, hSql);
@@ -1129,6 +1133,65 @@ namespace SCPrime.Model
             {
                 hSql.Close();
             }
+            return bRet;
+        }
+
+        public static bool saveContractOption(int ContractOID, List<SCOptionDetail> list, clsSqlFactory hSql)
+        {
+            bool bRet = true;
+            string sql = "";
+            if (list.Count <= 0)
+            {
+                //Delete
+                sql = "delete from ZSC_ContractOption where ContractOID = ?";
+                bRet = hSql.NewCommand(sql);
+                hSql.Com.Parameters.AddWithValue("ContractOID", ContractOID);
+                return bRet = bRet && hSql.ExecuteNonQuery();
+            }
+
+            //Delete
+            sql = "delete from ZSC_ContractOption where ContractOID = ?";
+            bRet = hSql.NewCommand(sql);
+            hSql.Com.Parameters.AddWithValue("ContractOID", ContractOID);
+
+            foreach (SCOptionDetail objOptionDetail in list)
+            {
+                bRet = hSql.NewCommand("insert into ZSC_ContractOption(ContractOID,OptionCategoryOID,OptionOID,OptionDetailOID, SelPr,Quantity,Info,Created,Modified,PartialPayer) values(?,?,?,?,?,?,?,getdate(),getdate(),?) ");
+                hSql.Com.Parameters.AddWithValue("ContractOID", ContractOID);
+                if (objOptionDetail.categoryOID > 0)
+                {
+                    hSql.Com.Parameters.AddWithValue("OptionCategoryOID", objOptionDetail.categoryOID);
+                }
+                else
+                {
+                    hSql.Com.Parameters.AddWithValue("OptionCategoryOID", DBNull.Value);
+                }
+
+                if (objOptionDetail.optionOID > 0)
+                {
+                    hSql.Com.Parameters.AddWithValue("OptionOID", objOptionDetail.optionOID);
+                }
+                else
+                {
+                    hSql.Com.Parameters.AddWithValue("OptionOID", DBNull.Value);
+                }
+
+                if (objOptionDetail.OID > 0)
+                {
+                    hSql.Com.Parameters.AddWithValue("OptionDetailOID", objOptionDetail.OID);
+                }
+                else
+                {
+                    hSql.Com.Parameters.AddWithValue("OptionDetailOID", DBNull.Value);
+                }
+                hSql.Com.Parameters.AddWithValue("SelPr", objOptionDetail.SelPr);
+                hSql.Com.Parameters.AddWithValue("Quantity", objOptionDetail.Quantity);
+                hSql.Com.Parameters.AddWithValue("Info", objOptionDetail.Info);
+                hSql.Com.Parameters.AddWithValue("PartialPayer", objOptionDetail.PartialPayer);
+                bRet = bRet && hSql.ExecuteNonQuery();
+
+            }
+
             return bRet;
         }
 
@@ -1240,9 +1303,7 @@ namespace SCPrime.Model
                     bRet = VehiId.loadDynFields(hSql);
                     bRet = VehiId.loadMileages(hSql);
                 }
-                OptionCategories = SCOptionCategory.getContractOptionCategory(this.ContractOID, hSql);
-
-
+                OptionCategories = SCOptionCategory.getContractOptionCategory(this.ContractOID);
             }
             catch (Exception ex)
             {

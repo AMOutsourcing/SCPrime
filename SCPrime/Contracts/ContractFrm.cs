@@ -63,6 +63,7 @@ namespace SCPrime.Contracts
             if (SCMain.ContractOid > 0)
             {
                 objContract = SCBase.searchContracts(SCMain.ContractOid);
+                objContract.OptionCategories = SCOptionCategory.getContractOptionCategory(objContract.ContractOID);
             }
             else
             {
@@ -72,6 +73,12 @@ namespace SCPrime.Contracts
             this.loadContractData();
 
             myCulture = objGlobal.CultureInfo;
+
+            //
+            this.loadVehice();
+            this.contractOption1.loadDataGrid();
+            this.contractOption1.loadTree();
+            contractDataFrm.fillData();
             // this.loadCustomerEmployee();
         }
         private void checkInvoiceToCustomer()
@@ -627,22 +634,7 @@ namespace SCPrime.Contracts
             System.Diagnostics.Debug.WriteLine("---------------------tabControl1_Selected: " + this.tabControl1.SelectedIndex);
 
 
-            if (this.tabControl1.SelectedIndex == 1)
 
-            {
-                System.Diagnostics.Debug.WriteLine("---------------------tabControl1_Selected loadVehice: ");
-                this.loadVehice();
-            }
-            else if (this.tabControl1.SelectedIndex == 2)
-            {
-                this.contractOption1.loadDataGrid();
-                this.contractOption1.loadTree();
-            }
-            else if (this.tabControl1.SelectedIndex == 3)
-            {
-                contractDataFrm.setContract(objContract);
-                contractDataFrm.fillData();
-            }
         }
 
         private void loadVehice()
