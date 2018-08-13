@@ -503,27 +503,10 @@ namespace SCPrime.Model
             }
             return item;
         }
-
-        public SCOptionDetail convertToDetail()
-        {
-            SCOptionDetail sCOptionDetail = new SCOptionDetail();
-            sCOptionDetail.OID = 0;
-            sCOptionDetail.categoryOID = this.OID;
-            sCOptionDetail.optionOID = 0;
-            sCOptionDetail.Name = this.Name;
-            sCOptionDetail.ItemNo = this.ItemNo;
-            sCOptionDetail.ItemSuplNo = this.ItemSuplNo;
-            sCOptionDetail.WrksId = this.WrksId;
-            sCOptionDetail.SelPr = this.SelPr;
-            sCOptionDetail.ItemName = this.ItemName;
-            sCOptionDetail.BuyPr = this.BuyPr;
-            sCOptionDetail.WrksName = this.WrksName;
-            return sCOptionDetail;
-        }
+        
     }
     public class SCOption : SCOptionBase
     {
-        public int categoryOID { get; set; }
         public string SubGroupCode { get; set; }
         public List<SCOptionDetail> OptionDetails = new List<SCOptionDetail>();
         public static List<SCOption> getContractOptionPriceList(int OptionCategoryOID, int ContractTypeOID)
@@ -636,7 +619,6 @@ namespace SCPrime.Model
                 {
                     SCOption item = new SCOption();
                     item.OID = hSql.Reader.GetInt32(0);
-                    item.categoryOID = OptionCategoryOID;
                     item.Name = hSql.Reader.GetString(1);
                     item.ItemNo = hSql.Reader.GetString(2);
                     item.ItemSuplNo = hSql.Reader.GetString(3);
@@ -843,28 +825,9 @@ namespace SCPrime.Model
             }
             return item;
         }
-
-        public SCOptionDetail convertToDetail()
-        {
-            SCOptionDetail sCOptionDetail = new SCOptionDetail();
-            sCOptionDetail.OID = 0;
-            sCOptionDetail.categoryOID = this.categoryOID;
-            sCOptionDetail.optionOID = this.OID;
-            sCOptionDetail.Name = this.Name;
-            sCOptionDetail.ItemNo = this.ItemNo;
-            sCOptionDetail.ItemSuplNo = this.ItemSuplNo;
-            sCOptionDetail.WrksId = this.WrksId;
-            sCOptionDetail.SelPr = this.SelPr;
-            sCOptionDetail.ItemName = this.ItemName;
-            sCOptionDetail.BuyPr = this.BuyPr;
-            sCOptionDetail.WrksName = this.WrksName;
-            return sCOptionDetail;
-        }
     }
     public class SCOptionDetail : SCOptionBase
     {
-        public int categoryOID { get; set; }
-        public int optionOID { get; set; }
 
         public SCOptionDetail()
         {
@@ -989,8 +952,6 @@ namespace SCPrime.Model
                 {
                     SCOptionDetail item = new SCOptionDetail();
                     item.OID = hSql.Reader.GetInt32(0);
-                    item.categoryOID = OptionCategoryOID;
-                    item.optionOID = OptionOID;
                     item.Name = hSql.Reader.GetString(1);
                     item.ItemNo = hSql.Reader.GetString(2);
                     item.ItemSuplNo = hSql.Reader.GetString(3);

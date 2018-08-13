@@ -14,13 +14,10 @@ namespace SCPrime.Contracts
 {
     public partial class ContractOptionControl : UserControl
     {
-
         public ContractOptionControl()
         {
             InitializeComponent();
         }
-
-
 
         private void ContractOption_Load(object sender, EventArgs e)
         {
@@ -33,7 +30,7 @@ namespace SCPrime.Contracts
         public void buildTable()
         {
             //Buid table
-            dataTable = ObjectUtils.BuidDataTable(new SCOptionDetail());
+            dataTable = ObjectUtils.BuidDataTable(new ContractOption());
         }
 
         public void loadTree()
@@ -151,7 +148,7 @@ namespace SCPrime.Contracts
                             }
                             else
                             {
-                                if(checkTree(treeNodeL3, sod)) addRow(treeNodeL3);
+                                if (checkTree(treeNodeL3, sod)) addRow(treeNodeL3);
                             }
                         }
                     }
@@ -174,45 +171,19 @@ namespace SCPrime.Contracts
                 {
                     return true;
                 }
-                //string name = "";
-                //foreach (SCOptionDetail detail in listOptionDetailTmp)
-                //{
-                //    if (detail.OID > 0)
-                //    {
-                //        name = "D" + detail.OID;
-                //    }
-                //    else
-                //    {
-                //        if (detail.optionOID > 0)
-                //        {
-                //            name = "O" + detail.optionOID;
-                //        }
-                //        else
-                //        {
-                //            name = "C" + detail.categoryOID;
-                //        }
-                //    }
-                //    if(node.Name == name)
-                //    {
-                //        return true;
-                //    }
-                //}
             }
             return false;
         }
 
         DataTable dataTable = new DataTable();
 
-        
-        List<SCOptionDetail> listOptionDetail = new List<SCOptionDetail>();
-        Dictionary<String, SCOptionDetail> listOptionDetailTmp = new Dictionary<String, SCOptionDetail>();
 
-        List<SCOptionCategory> OptionCategories = new List<SCOptionCategory>();
+        List<ContractOption> listOptionDetail = new List<ContractOption>();
+        Dictionary<String, String> listOptionDetailTmp = new Dictionary<String, String>();
 
         public void loadDataGrid()
         {
             buildTable();
-            OptionCategories = ContractFrm.objContract.OptionCategories;
             fillToListOptionDetail();
             dataTable = ObjectUtils.ConvertToDataTable(listOptionDetail);
             dataGridView1.DataSource = dataTable;
@@ -222,19 +193,21 @@ namespace SCPrime.Contracts
         {
             listOptionDetail.Clear();
             listOptionDetailTmp.Clear();
-            if (OptionCategories.Count > 0)
+            if (ContractFrm.objContract.listContractOptions.Count > 0)
             {
-                foreach (SCOptionCategory cate in OptionCategories)
+                foreach (ContractOption cate in ContractFrm.objContract.listContractOptions)
                 {
-                    listOptionDetailTmp.Add("C"+cate.OID,cate.convertToDetail());
-                    foreach (SCOption option in cate.Options)
+                    if (cate.OptionDetailOID > 0)
                     {
-                        listOptionDetailTmp.Add("O" + option.OID, option.convertToDetail());
-                        foreach (SCOptionDetail detail in option.OptionDetails)
-                        {
-                            listOptionDetailTmp.Add("D" + detail.OID, detail);
-                        }
+                        listOptionDetailTmp.Add("D" + cate.OptionDetailOID, "1");
+                        continue;
                     }
+                    if (cate.OptionOID > 0)
+                    {
+                        listOptionDetailTmp.Add("O" + cate.OptionOID, "1");
+                        continue;
+                    }
+                    listOptionDetailTmp.Add("C" + cate.OptionCategoryOID, "1");
                 }
             }
 
@@ -252,39 +225,75 @@ namespace SCPrime.Contracts
             }
         }
 
+
+
         private void addRow(TreeNode Node)
         {
             var item = getOptionBase(Node.Name, Node.Text);
             if (item != null)
             {
-                DataRow drToAdd = ObjectUtils.FillDataToRow(dataTable.NewRow(), item);
-                dataTable.Rows.Add(drToAdd);
-            }
-            //Add List OptionCategories
-            if (item.GetType() == typeof(SCOptionCategory))
-            {
-                listOptionDetail.Add(((SCOptionCategory)item).convertToDetail());
-            }
-            else if (item.GetType() == typeof(SCOption))
-            {
-                TreeNode parent = Node.Parent;
-                Int32 cateId = Int32.Parse(parent.Name.Substring(1));
-                SCOption option = (SCOption)item;
-                option.categoryOID = cateId;
-                listOptionDetail.Add(option.convertToDetail());
-            }
-            else
-            {
-                TreeNode scOption = Node.Parent;
-                Int32 optionOID = Int32.Parse(scOption.Name.Substring(1));
+                //Add List OptionCategories
+                ContractOption rtn = null;
+                if (item.GetType() == typeof(SCOptionCategory))
+                {
+                    rtn = new ContractOption();
+                    rtn.OptionCategoryOID = item.OID;
+                    rtn.Name = item.Name;
+                    rtn.PartNr = item.ItemNo;
+                    rtn.PartName = item.ItemName;
+                    rtn.LabourCode = item.WrksId;
+                    rtn.LabourName = item.WrksName;
+                    rtn.BaseSelPr = item.BaseSelPr;
+                    rtn.PurchasePr = item.BuyPr;
+                }
+                else if (item.GetType() == typeof(SCOption))
+                {
+                    rtn = new ContractOption();
+                    TreeNode parent = Node.Parent;
+                    Int32 cateId = Int32.Parse(parent.Name.Substring(1));
+                    SCOption option = (SCOption)item;
+                    rtn.OptionCategoryOID = cateId;
+                    rtn.OptionOID = option.OID;
+                    rtn.Name = option.Name;
+                    rtn.PartNr = option.ItemNo;
+                    rtn.PartName = option.ItemName;
+                    rtn.LabourCode = option.WrksId;
+                    rtn.LabourName = option.WrksName;
+                    rtn.BaseSelPr = option.BaseSelPr;
+                    rtn.PurchasePr = option.BuyPr;
+                }
+                else
+                {
+                    rtn = new ContractOption();
+                    TreeNode scOption = Node.Parent;
+                    Int32 optionOID = Int32.Parse(scOption.Name.Substring(1));
 
-                TreeNode scCate = scOption.Parent;
-                Int32 cateOID = Int32.Parse(scCate.Name.Substring(1));
+                    TreeNode scCate = scOption.Parent;
+                    Int32 cateOID = Int32.Parse(scCate.Name.Substring(1));
 
-                SCOptionDetail detail = (SCOptionDetail)item;
-                detail.categoryOID = cateOID;
-                detail.optionOID = optionOID;
-                listOptionDetail.Add(detail);
+                    SCOptionDetail detail = (SCOptionDetail)item;
+
+                    rtn.OptionCategoryOID = cateOID;
+                    rtn.OptionOID = optionOID;
+                    rtn.OptionDetailOID = detail.OID;
+                    rtn.Name = detail.Name;
+                    rtn.PartNr = detail.ItemNo;
+                    rtn.PartName = detail.ItemName;
+                    rtn.LabourCode = detail.WrksId;
+                    rtn.LabourName = detail.WrksName;
+                    rtn.BaseSelPr = detail.BaseSelPr;
+                    rtn.PurchasePr = detail.BuyPr;
+                }
+
+                
+                if (rtn != null)
+                {
+                    listOptionDetail.Add(rtn);
+
+                    //Add to grid
+                    DataRow drToAdd = ObjectUtils.FillDataToRow(dataTable.NewRow(), rtn);
+                    dataTable.Rows.Add(drToAdd);
+                }
             }
         }
 
@@ -293,46 +302,58 @@ namespace SCPrime.Contracts
             string name = Node.Name;
             string type = name.Substring(0, 1);
             Int32 value = Int32.Parse(name.Substring(1));
-            for (int i = 0; i < dataTable.Rows.Count; i++)
-            {
-                DataRow recRow = dataTable.Rows[i];
-                if (value.Equals(recRow["OID"]) && type.Equals(recRow["type"]))
-                {
-                    recRow.Delete();
-                    dataTable.AcceptChanges();
-                    break;
-                }
-            }
+            
 
-            //
+            int cateId = 0;
+            int optionId = 0;
+            int detailId = 0;
             //Remove List OptionCategories
             var item = getOptionBase(Node.Name, Node.Text);
             if (item != null)
             {
                 if (item.GetType() == typeof(SCOptionCategory))
                 {
-                    listOptionDetail.Remove(((SCOptionCategory)item).convertToDetail());
+                    cateId = item.OID;
+                    listOptionDetail.RemoveAll(x => x.OptionCategoryOID == item.OID && x.OptionOID <= 0 && x.OptionDetailOID <= 0);
+                    //SCOptionDetail tesst = ((SCOptionCategory)item).convertToDetail();
+                    //listOptionDetail.Remove(((SCOptionCategory)item).convertToDetail());
                 }
                 else if (item.GetType() == typeof(SCOption))
                 {
                     TreeNode parent = Node.Parent;
-                    Int32 cateId = Int32.Parse(parent.Name.Substring(1));
+                    cateId = Int32.Parse(parent.Name.Substring(1));
                     SCOption option = (SCOption)item;
-                    option.categoryOID = cateId;
-                    listOptionDetail.Remove(option.convertToDetail());
+                    optionId = option.OID;
+
+                    listOptionDetail.RemoveAll(x => x.OptionCategoryOID == cateId && x.OptionOID == option.OID && x.OptionDetailOID <= 0);
+                    //listOptionDetail.Remove(option.convertToDetail());
                 }
                 else
                 {
                     TreeNode scOption = Node.Parent;
-                    Int32 optionOID = Int32.Parse(scOption.Name.Substring(1));
+                    optionId = Int32.Parse(scOption.Name.Substring(1));
 
                     TreeNode scCate = scOption.Parent;
-                    Int32 cateOID = Int32.Parse(scCate.Name.Substring(1));
+                    cateId = Int32.Parse(scCate.Name.Substring(1));
 
                     SCOptionDetail detail = (SCOptionDetail)item;
-                    detail.categoryOID = cateOID;
-                    detail.optionOID = optionOID;
-                    listOptionDetail.Remove(detail);
+                    detailId = detail.OID;
+                    listOptionDetail.RemoveAll(x => x.OptionCategoryOID == cateId && x.OptionOID == optionId && x.OptionDetailOID == detail.OID);
+                    //listOptionDetail.Remove(detail);
+                }
+
+                //Xoa grid
+                for (int i = 0; i < dataTable.Rows.Count; i++)
+                {
+                    DataRow recRow = dataTable.Rows[i];
+                    if (cateId.Equals(recRow["OptionCategoryOID"]) 
+                        && optionId.Equals(recRow["OptionOID"])
+                        && detailId.Equals(recRow["OptionDetailOID"]))
+                    {
+                        recRow.Delete();
+                        dataTable.AcceptChanges();
+                        break;
+                    }
                 }
             }
         }
@@ -386,7 +407,7 @@ namespace SCPrime.Contracts
 
         public void saveOptionCategories()
         {
-            ContractFrm.objContract.listOptionDetail = this.listOptionDetail;
+            ContractFrm.objContract.listContractOptions = this.listOptionDetail;
         }
 
         private void treeView1_AfterExpand(object sender, TreeViewEventArgs e)
