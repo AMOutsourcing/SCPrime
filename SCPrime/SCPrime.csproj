@@ -261,6 +261,7 @@
     </EmbeddedResource>
     <None Include="Properties\DataSources\SCPrime.Model.CollectiveContract.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.Contract.datasource" />
+    <None Include="Properties\DataSources\SCPrime.Model.ContractOption.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.ContractStatus.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.ContractVehicle1.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.ExtraKmAccountingType.datasource" />

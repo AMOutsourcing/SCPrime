@@ -38,24 +38,32 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.oidCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PartNrCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.itemSuplNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PartNameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LabourCodeCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LabourNameCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BaseSalesPriceCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PurchasePriceCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SalesPriceCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QuantityCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.InfoCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PartialPayerCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.InvoiceFlagCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.oIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.partNrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.partNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.labourCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.labourNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.baseSelPrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.purchasePrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.salePrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.infoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.optionCategoryOIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.optionOIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.optionDetailOIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.createdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.partialPayerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contractOIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contractOptionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sCOptionBaseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.contractOptionBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sCOptionBaseBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -140,111 +148,32 @@
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.oidCol,
-            this.nameCol,
-            this.PartNrCol,
-            this.itemSuplNoDataGridViewTextBoxColumn,
-            this.PartNameCol,
-            this.LabourCodeCol,
-            this.LabourNameCol,
-            this.BaseSalesPriceCol,
-            this.PurchasePriceCol,
-            this.SalesPriceCol,
-            this.QuantityCol,
-            this.InfoCol,
+            this.oIDDataGridViewTextBoxColumn,
+            this.nameDataGridViewTextBoxColumn,
+            this.partNrDataGridViewTextBoxColumn,
+            this.partNameDataGridViewTextBoxColumn,
+            this.labourCodeDataGridViewTextBoxColumn,
+            this.labourNameDataGridViewTextBoxColumn,
+            this.baseSelPrDataGridViewTextBoxColumn,
+            this.purchasePrDataGridViewTextBoxColumn,
+            this.salePrDataGridViewTextBoxColumn,
+            this.quantityDataGridViewTextBoxColumn,
+            this.infoDataGridViewTextBoxColumn,
             this.PartialPayerCol,
-            this.InvoiceFlagCol});
-            this.dataGridView1.DataSource = this.sCOptionBaseBindingSource;
+            this.optionCategoryOIDDataGridViewTextBoxColumn,
+            this.optionOIDDataGridViewTextBoxColumn,
+            this.optionDetailOIDDataGridViewTextBoxColumn,
+            this.createdDataGridViewTextBoxColumn,
+            this.modifiedDataGridViewTextBoxColumn,
+            this.partialPayerDataGridViewTextBoxColumn,
+            this.InvoiceFlagCol,
+            this.contractOIDDataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = this.contractOptionBindingSource;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(257, 36);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(648, 409);
             this.dataGridView1.TabIndex = 3;
-            // 
-            // oidCol
-            // 
-            this.oidCol.DataPropertyName = "OID";
-            this.oidCol.HeaderText = "OID";
-            this.oidCol.Name = "oidCol";
-            this.oidCol.ReadOnly = true;
-            // 
-            // nameCol
-            // 
-            this.nameCol.DataPropertyName = "Name";
-            this.nameCol.HeaderText = "Name";
-            this.nameCol.Name = "nameCol";
-            this.nameCol.ReadOnly = true;
-            // 
-            // PartNrCol
-            // 
-            this.PartNrCol.DataPropertyName = "ItemNo";
-            this.PartNrCol.HeaderText = "Part Nr";
-            this.PartNrCol.Name = "PartNrCol";
-            this.PartNrCol.ReadOnly = true;
-            // 
-            // itemSuplNoDataGridViewTextBoxColumn
-            // 
-            this.itemSuplNoDataGridViewTextBoxColumn.DataPropertyName = "ItemSuplNo";
-            this.itemSuplNoDataGridViewTextBoxColumn.HeaderText = "ItemSuplNo";
-            this.itemSuplNoDataGridViewTextBoxColumn.Name = "itemSuplNoDataGridViewTextBoxColumn";
-            this.itemSuplNoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // PartNameCol
-            // 
-            this.PartNameCol.DataPropertyName = "ItemName";
-            this.PartNameCol.HeaderText = "Part name";
-            this.PartNameCol.Name = "PartNameCol";
-            this.PartNameCol.ReadOnly = true;
-            // 
-            // LabourCodeCol
-            // 
-            this.LabourCodeCol.DataPropertyName = "WrksId";
-            this.LabourCodeCol.HeaderText = "Labour code";
-            this.LabourCodeCol.Name = "LabourCodeCol";
-            this.LabourCodeCol.ReadOnly = true;
-            // 
-            // LabourNameCol
-            // 
-            this.LabourNameCol.DataPropertyName = "WrksName";
-            this.LabourNameCol.HeaderText = "Labour name";
-            this.LabourNameCol.Name = "LabourNameCol";
-            this.LabourNameCol.ReadOnly = true;
-            // 
-            // BaseSalesPriceCol
-            // 
-            this.BaseSalesPriceCol.DataPropertyName = "BaseSelPr";
-            this.BaseSalesPriceCol.HeaderText = "Base sales price";
-            this.BaseSalesPriceCol.Name = "BaseSalesPriceCol";
-            this.BaseSalesPriceCol.ReadOnly = true;
-            // 
-            // PurchasePriceCol
-            // 
-            this.PurchasePriceCol.DataPropertyName = "BuyPr";
-            this.PurchasePriceCol.HeaderText = "Purchase price";
-            this.PurchasePriceCol.Name = "PurchasePriceCol";
-            this.PurchasePriceCol.ReadOnly = true;
-            // 
-            // SalesPriceCol
-            // 
-            this.SalesPriceCol.DataPropertyName = "SelPr";
-            this.SalesPriceCol.HeaderText = "Sales price";
-            this.SalesPriceCol.Name = "SalesPriceCol";
-            this.SalesPriceCol.ReadOnly = true;
-            // 
-            // QuantityCol
-            // 
-            this.QuantityCol.DataPropertyName = "Quantity";
-            this.QuantityCol.HeaderText = "Quantity";
-            this.QuantityCol.Name = "QuantityCol";
-            this.QuantityCol.ReadOnly = true;
-            // 
-            // InfoCol
-            // 
-            this.InfoCol.DataPropertyName = "Info";
-            this.InfoCol.HeaderText = "Info";
-            this.InfoCol.Name = "InfoCol";
-            this.InfoCol.ReadOnly = true;
             // 
             // PartialPayerCol
             // 
@@ -257,6 +186,145 @@
             this.InvoiceFlagCol.HeaderText = "Invoice flag";
             this.InvoiceFlagCol.Name = "InvoiceFlagCol";
             this.InvoiceFlagCol.ReadOnly = true;
+            this.InvoiceFlagCol.Visible = false;
+            // 
+            // oIDDataGridViewTextBoxColumn
+            // 
+            this.oIDDataGridViewTextBoxColumn.DataPropertyName = "OID";
+            this.oIDDataGridViewTextBoxColumn.HeaderText = "OID";
+            this.oIDDataGridViewTextBoxColumn.Name = "oIDDataGridViewTextBoxColumn";
+            this.oIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.oIDDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // partNrDataGridViewTextBoxColumn
+            // 
+            this.partNrDataGridViewTextBoxColumn.DataPropertyName = "PartNr";
+            this.partNrDataGridViewTextBoxColumn.HeaderText = "PartNr";
+            this.partNrDataGridViewTextBoxColumn.Name = "partNrDataGridViewTextBoxColumn";
+            this.partNrDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // partNameDataGridViewTextBoxColumn
+            // 
+            this.partNameDataGridViewTextBoxColumn.DataPropertyName = "PartName";
+            this.partNameDataGridViewTextBoxColumn.HeaderText = "PartName";
+            this.partNameDataGridViewTextBoxColumn.Name = "partNameDataGridViewTextBoxColumn";
+            this.partNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // labourCodeDataGridViewTextBoxColumn
+            // 
+            this.labourCodeDataGridViewTextBoxColumn.DataPropertyName = "LabourCode";
+            this.labourCodeDataGridViewTextBoxColumn.HeaderText = "LabourCode";
+            this.labourCodeDataGridViewTextBoxColumn.Name = "labourCodeDataGridViewTextBoxColumn";
+            this.labourCodeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // labourNameDataGridViewTextBoxColumn
+            // 
+            this.labourNameDataGridViewTextBoxColumn.DataPropertyName = "LabourName";
+            this.labourNameDataGridViewTextBoxColumn.HeaderText = "LabourName";
+            this.labourNameDataGridViewTextBoxColumn.Name = "labourNameDataGridViewTextBoxColumn";
+            this.labourNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // baseSelPrDataGridViewTextBoxColumn
+            // 
+            this.baseSelPrDataGridViewTextBoxColumn.DataPropertyName = "BaseSelPr";
+            this.baseSelPrDataGridViewTextBoxColumn.HeaderText = "BaseSelPr";
+            this.baseSelPrDataGridViewTextBoxColumn.Name = "baseSelPrDataGridViewTextBoxColumn";
+            this.baseSelPrDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // purchasePrDataGridViewTextBoxColumn
+            // 
+            this.purchasePrDataGridViewTextBoxColumn.DataPropertyName = "PurchasePr";
+            this.purchasePrDataGridViewTextBoxColumn.HeaderText = "PurchasePr";
+            this.purchasePrDataGridViewTextBoxColumn.Name = "purchasePrDataGridViewTextBoxColumn";
+            this.purchasePrDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // salePrDataGridViewTextBoxColumn
+            // 
+            this.salePrDataGridViewTextBoxColumn.DataPropertyName = "SalePr";
+            this.salePrDataGridViewTextBoxColumn.HeaderText = "SalePr";
+            this.salePrDataGridViewTextBoxColumn.Name = "salePrDataGridViewTextBoxColumn";
+            this.salePrDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // quantityDataGridViewTextBoxColumn
+            // 
+            this.quantityDataGridViewTextBoxColumn.DataPropertyName = "Quantity";
+            this.quantityDataGridViewTextBoxColumn.HeaderText = "Quantity";
+            this.quantityDataGridViewTextBoxColumn.Name = "quantityDataGridViewTextBoxColumn";
+            this.quantityDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // infoDataGridViewTextBoxColumn
+            // 
+            this.infoDataGridViewTextBoxColumn.DataPropertyName = "Info";
+            this.infoDataGridViewTextBoxColumn.HeaderText = "Info";
+            this.infoDataGridViewTextBoxColumn.Name = "infoDataGridViewTextBoxColumn";
+            this.infoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // optionCategoryOIDDataGridViewTextBoxColumn
+            // 
+            this.optionCategoryOIDDataGridViewTextBoxColumn.DataPropertyName = "OptionCategoryOID";
+            this.optionCategoryOIDDataGridViewTextBoxColumn.HeaderText = "OptionCategoryOID";
+            this.optionCategoryOIDDataGridViewTextBoxColumn.Name = "optionCategoryOIDDataGridViewTextBoxColumn";
+            this.optionCategoryOIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.optionCategoryOIDDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // optionOIDDataGridViewTextBoxColumn
+            // 
+            this.optionOIDDataGridViewTextBoxColumn.DataPropertyName = "OptionOID";
+            this.optionOIDDataGridViewTextBoxColumn.HeaderText = "OptionOID";
+            this.optionOIDDataGridViewTextBoxColumn.Name = "optionOIDDataGridViewTextBoxColumn";
+            this.optionOIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.optionOIDDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // optionDetailOIDDataGridViewTextBoxColumn
+            // 
+            this.optionDetailOIDDataGridViewTextBoxColumn.DataPropertyName = "OptionDetailOID";
+            this.optionDetailOIDDataGridViewTextBoxColumn.HeaderText = "OptionDetailOID";
+            this.optionDetailOIDDataGridViewTextBoxColumn.Name = "optionDetailOIDDataGridViewTextBoxColumn";
+            this.optionDetailOIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.optionDetailOIDDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // createdDataGridViewTextBoxColumn
+            // 
+            this.createdDataGridViewTextBoxColumn.DataPropertyName = "Created";
+            this.createdDataGridViewTextBoxColumn.HeaderText = "Created";
+            this.createdDataGridViewTextBoxColumn.Name = "createdDataGridViewTextBoxColumn";
+            this.createdDataGridViewTextBoxColumn.ReadOnly = true;
+            this.createdDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // modifiedDataGridViewTextBoxColumn
+            // 
+            this.modifiedDataGridViewTextBoxColumn.DataPropertyName = "Modified";
+            this.modifiedDataGridViewTextBoxColumn.HeaderText = "Modified";
+            this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
+            this.modifiedDataGridViewTextBoxColumn.ReadOnly = true;
+            this.modifiedDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // partialPayerDataGridViewTextBoxColumn
+            // 
+            this.partialPayerDataGridViewTextBoxColumn.DataPropertyName = "PartialPayer";
+            this.partialPayerDataGridViewTextBoxColumn.HeaderText = "PartialPayer";
+            this.partialPayerDataGridViewTextBoxColumn.Name = "partialPayerDataGridViewTextBoxColumn";
+            this.partialPayerDataGridViewTextBoxColumn.ReadOnly = true;
+            this.partialPayerDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // contractOIDDataGridViewTextBoxColumn
+            // 
+            this.contractOIDDataGridViewTextBoxColumn.DataPropertyName = "ContractOID";
+            this.contractOIDDataGridViewTextBoxColumn.HeaderText = "ContractOID";
+            this.contractOIDDataGridViewTextBoxColumn.Name = "contractOIDDataGridViewTextBoxColumn";
+            this.contractOIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.contractOIDDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // contractOptionBindingSource
+            // 
+            this.contractOptionBindingSource.DataSource = typeof(SCPrime.Model.ContractOption);
             // 
             // sCOptionBaseBindingSource
             // 
@@ -276,6 +344,7 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.contractOptionBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sCOptionBaseBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -293,19 +362,26 @@
         public System.Windows.Forms.Label label1;
         public System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.BindingSource sCOptionBaseBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn oidCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PartNrCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn itemSuplNoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PartNameCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LabourCodeCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LabourNameCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BaseSalesPriceCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PurchasePriceCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SalesPriceCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn QuantityCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn InfoCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn oIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn partNrDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn partNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn labourCodeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn labourNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn baseSelPrDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn purchasePrDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn salePrDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn infoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn PartialPayerCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn optionCategoryOIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn optionOIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn optionDetailOIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn createdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn partialPayerDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn InvoiceFlagCol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn contractOIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource contractOptionBindingSource;
     }
 }

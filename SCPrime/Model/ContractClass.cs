@@ -698,6 +698,133 @@ namespace SCPrime.Model
         }
     }
 
+    public class ContractOption
+    {
+        public int OID { get; set; }
+        public int ContractOID { get; set; }
+        public int OptionCategoryOID { get; set; }
+        public int OptionOID { get; set; }
+        public int OptionDetailOID { get; set; }
+        public decimal SalePr { get; set; }
+        public decimal Quantity { get; set; }
+        public string Info { get; set; }
+        public DateTime Created { get; set; }
+        public DateTime Modified { get; set; }
+        public string PartialPayer { get; set; }
+
+
+        //Them
+        public string Name { get; set; }
+        public string PartNr { get; set; }
+        public string PartName { get; set; }
+        public string LabourCode { get; set; }
+        public string LabourName { get; set; }
+        public decimal BaseSelPr { get; set; }
+        public decimal PurchasePr { get; set; }
+
+        public static List<ContractOption> getContractOption(int ContractOID)
+        {
+            clsSqlFactory hSql = new clsSqlFactory();
+            //get list from master
+            List<ContractOption> Result = new List<ContractOption>();
+            try
+            {
+                clsGlobalVariable objGlobal = new clsGlobalVariable();
+                string LangId = objGlobal.CultureInfo;
+
+                String strSqlCate = "SELECT z.OID,isnull(z.ContractOID,0) as ContractOID,isnull(z.OptionCategoryOID,0) as OptionCategoryOID,isnull(z.OptionOID,0) as OptionOID,isnull(z.OptionDetailOID,0) as OptionDetailOID,isnull(x.Name,a.Name) as Name,isnull(a.ItemNo,'') as PartNr, "
+                    + " isnull(b.NAME,'') as PartName, isnull(a.WrksId,'') as LabourCode,isnull(a.Name,'') as LabourName, isnull(a.SelPr,0) as BaseSelPr,  "
+                    + " isnull(b.BUYPR,0) as PurchasePr,isnull(z.SelPr,0) as SalePr,isnull(z.Quantity,0) as Quantity,isnull(z.Info,'') as Info,isnull(z.PartialPayer,'') as PartialPayer  "
+                    + " FROM ZSC_ContractOption z "
+                    + " inner JOIN ZSC_OptionCategory a on z.OptionCategoryOID = a.OID and z.OptionOID is null and  z.OptionDetailOID is null "
+                    + " left join ITEM b on a.ITEMNO=b.ITEMNO and a.ITEMSUPLNO=b.SUPLNO "
+                    + " left join WRKS c on a.WRKSID=c.WRKSID and c.WPTYPE='T'  "
+                    + " left join ZSC_OptionForeignName x on x.ObjectType=1 and x.ObjectOID=a.OID and x.LangId=? "
+                    + " WHERE z.ContractOID=?";
+
+                String strSqlOption = "SELECT z.OID,z.ContractOID,z.OptionCategoryOID,z.OptionOID,z.OptionDetailOID,isnull(x.Name,a.Name) as Name,isnull(a.ItemNo,'') as PartNr, "
+                    + " isnull(b.NAME,'') as PartName, isnull(a.WrksId,'') as LabourCode,isnull(a.Name,'') as LabourName, isnull(a.SelPr,0) as BaseSelPr,  "
+                    + " isnull(b.BUYPR,0) as PurchasePr,isnull(z.SelPr,0) as SalePr,isnull(z.Quantity,0) as Quantity,isnull(z.Info,'') as Info,isnull(z.PartialPayer,'') as PartialPayer  "
+                    + " FROM ZSC_ContractOption z "
+                    + " inner JOIN ZSC_Option a on z.OptionCategoryOID = a.OptionCategoryOID AND z.OptionOID = a.OID and z.OptionDetailOID is null "
+                    + " left join ITEM b on a.ITEMNO=b.ITEMNO and a.ITEMSUPLNO=b.SUPLNO "
+                    + " left join WRKS c on a.WRKSID=c.WRKSID and c.WPTYPE='T'  "
+                    + " left join ZSC_OptionForeignName x on x.ObjectType=2 and x.ObjectOID=a.OID and x.LangId=? "
+                    + " WHERE z.ContractOID=?";
+
+                String strSqlOptionDetail = "SELECT z.OID,z.ContractOID,z.OptionCategoryOID,z.OptionOID,z.OptionDetailOID,isnull(x.Name,a.Name) as Name,isnull(a.ItemNo,'') as PartNr, "
+                    + " isnull(b.NAME,'') as PartName, isnull(a.WrksId,'') as LabourCode,isnull(a.Name,'') as LabourName, isnull(a.SelPr,0) as BaseSelPr,  "
+                    + " isnull(b.BUYPR,0) as PurchasePr,isnull(z.SelPr,0) as SalePr,isnull(z.Quantity,0) as Quantity,isnull(z.Info,'') as Info,isnull(z.PartialPayer,'') as PartialPayer  "
+                    + " FROM ZSC_ContractOption z "
+                    + " inner JOIN ZSC_OptionDetail a on z.OptionOID = a.OptionOID AND z.OptionDetailOID = a.OID "
+                    + " left join ITEM b on a.ITEMNO=b.ITEMNO and a.ITEMSUPLNO=b.SUPLNO "
+                    + " left join WRKS c on a.WRKSID=c.WRKSID and c.WPTYPE='T'  "
+                    + " left join ZSC_OptionForeignName x on x.ObjectType=3 and x.ObjectOID=a.OID and x.LangId=? "
+                    + " WHERE z.ContractOID=?";
+
+                String strSql = strSqlCate + " UNION ALL " + strSqlOption + " UNION ALL " + strSqlOptionDetail;
+
+                hSql.NewCommand(strSql);
+                hSql.Com.Parameters.AddWithValue("LangId", LangId);
+                hSql.Com.Parameters.AddWithValue("ContractOID", ContractOID);
+                hSql.Com.Parameters.AddWithValue("LangId", LangId);
+                hSql.Com.Parameters.AddWithValue("ContractOID", ContractOID);
+                hSql.Com.Parameters.AddWithValue("LangId", LangId);
+                hSql.Com.Parameters.AddWithValue("ContractOID", ContractOID);
+                hSql.ExecuteReader();
+
+                int colId;
+
+                while (hSql.Read())
+                {
+                    ContractOption item = new ContractOption();
+                    colId = hSql.Reader.GetOrdinal("OID");
+                    if (!hSql.Reader.IsDBNull(colId)) item.OID = hSql.Reader.GetInt32(colId);
+                    colId = hSql.Reader.GetOrdinal("ContractOID");
+                    if (!hSql.Reader.IsDBNull(colId)) item.ContractOID = hSql.Reader.GetInt32(colId);
+                    colId = hSql.Reader.GetOrdinal("OptionCategoryOID");
+                    if (!hSql.Reader.IsDBNull(colId)) item.OptionCategoryOID = hSql.Reader.GetInt32(colId);
+                    colId = hSql.Reader.GetOrdinal("OptionOID");
+                    if (!hSql.Reader.IsDBNull(colId)) item.OptionOID = hSql.Reader.GetInt32(colId);
+                    colId = hSql.Reader.GetOrdinal("OptionDetailOID");
+                    if (!hSql.Reader.IsDBNull(colId)) item.OptionDetailOID = hSql.Reader.GetInt32(colId);
+                    colId = hSql.Reader.GetOrdinal("Name");
+                    if (!hSql.Reader.IsDBNull(colId)) item.Name = hSql.Reader.GetString(colId);
+                    colId = hSql.Reader.GetOrdinal("PartNr");
+                    if (!hSql.Reader.IsDBNull(colId)) item.PartNr = hSql.Reader.GetString(colId);
+                    colId = hSql.Reader.GetOrdinal("PartName");
+                    if (!hSql.Reader.IsDBNull(colId)) item.PartName = hSql.Reader.GetString(colId);
+                    colId = hSql.Reader.GetOrdinal("LabourCode");
+                    if (!hSql.Reader.IsDBNull(colId)) item.LabourCode = hSql.Reader.GetString(colId);
+                    colId = hSql.Reader.GetOrdinal("LabourName");
+                    if (!hSql.Reader.IsDBNull(colId)) item.LabourName = hSql.Reader.GetString(colId);
+                    colId = hSql.Reader.GetOrdinal("BaseSelPr");
+                    if (!hSql.Reader.IsDBNull(colId)) item.BaseSelPr = hSql.Reader.GetDecimal(colId);
+                    colId = hSql.Reader.GetOrdinal("PurchasePr");
+                    if (!hSql.Reader.IsDBNull(colId)) item.PurchasePr = hSql.Reader.GetDecimal(colId);
+                    colId = hSql.Reader.GetOrdinal("SalePr");
+                    if (!hSql.Reader.IsDBNull(colId)) item.SalePr = hSql.Reader.GetDecimal(colId);
+                    colId = hSql.Reader.GetOrdinal("Quantity");
+                    if (!hSql.Reader.IsDBNull(colId)) item.Quantity = hSql.Reader.GetDecimal(colId);
+                    colId = hSql.Reader.GetOrdinal("Info");
+                    if (!hSql.Reader.IsDBNull(colId)) item.Info = hSql.Reader.GetString(colId);
+                    colId = hSql.Reader.GetOrdinal("PartialPayer");
+                    if (!hSql.Reader.IsDBNull(colId)) item.PartialPayer = hSql.Reader.GetString(colId);
+                    Result.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                hSql.Close();
+            }
+            return Result;
+        }
+    }
+
     public class Contract
     {
         public int ContractOID { get; set; }
@@ -740,7 +867,6 @@ namespace SCPrime.Model
 
         public List<SCOptionCategory> OptionCategories;
         public List<ZSC_SubcontractorContractRisk> SubcontractorContractRisks;
-        public List<SCOptionDetail> listOptionDetail;
         public Contract()
         {
             //default values
@@ -1115,7 +1241,7 @@ namespace SCPrime.Model
                     //}
 
                     //ThuyetLV: Save ContractOption
-                    bRet = bRet && saveContractOption(this.ContractOID, this.listOptionDetail, hSql);
+                    bRet = bRet && saveContractOption(this.ContractOID, this.listContractOptions, hSql);
 
                     //ThuyetLV: Save ContractRisk
                     bRet = bRet && ZSC_SubcontractorContractRisk.saveContractRisk(this.ContractOID, this.SubcontractorContractRisks, hSql);
@@ -1136,7 +1262,10 @@ namespace SCPrime.Model
             return bRet;
         }
 
-        public static bool saveContractOption(int ContractOID, List<SCOptionDetail> list, clsSqlFactory hSql)
+        //
+        public List<ContractOption> listContractOptions;
+
+        public static bool saveContractOption(int ContractOID, List<ContractOption> list, clsSqlFactory hSql)
         {
             bool bRet = true;
             string sql = "";
@@ -1155,42 +1284,69 @@ namespace SCPrime.Model
             hSql.Com.Parameters.AddWithValue("ContractOID", ContractOID);
             bRet = bRet && hSql.ExecuteNonQuery();
 
-            foreach (SCOptionDetail objOptionDetail in list)
+            foreach (ContractOption objOptionDetail in list)
             {
                 bRet = hSql.NewCommand("insert into ZSC_ContractOption(ContractOID,OptionCategoryOID,OptionOID,OptionDetailOID, SelPr,Quantity,Info,Created,Modified,PartialPayer) values(?,?,?,?,?,?,?,getdate(),getdate(),?) ");
                 hSql.Com.Parameters.AddWithValue("ContractOID", ContractOID);
-                if (objOptionDetail.categoryOID > 0)
+                if (objOptionDetail.OptionCategoryOID > 0)
                 {
-                    hSql.Com.Parameters.AddWithValue("OptionCategoryOID", objOptionDetail.categoryOID);
+                    hSql.Com.Parameters.AddWithValue("OptionCategoryOID", objOptionDetail.OptionCategoryOID);
                 }
                 else
                 {
                     hSql.Com.Parameters.AddWithValue("OptionCategoryOID", DBNull.Value);
                 }
 
-                if (objOptionDetail.optionOID > 0)
+                if (objOptionDetail.OptionOID > 0)
                 {
-                    hSql.Com.Parameters.AddWithValue("OptionOID", objOptionDetail.optionOID);
+                    hSql.Com.Parameters.AddWithValue("OptionOID", objOptionDetail.OptionOID);
                 }
                 else
                 {
                     hSql.Com.Parameters.AddWithValue("OptionOID", DBNull.Value);
                 }
 
-                if (objOptionDetail.OID > 0)
+                if (objOptionDetail.OptionDetailOID > 0)
                 {
-                    hSql.Com.Parameters.AddWithValue("OptionDetailOID", objOptionDetail.OID);
+                    hSql.Com.Parameters.AddWithValue("OptionDetailOID", objOptionDetail.OptionDetailOID);
                 }
                 else
                 {
                     hSql.Com.Parameters.AddWithValue("OptionDetailOID", DBNull.Value);
                 }
-                hSql.Com.Parameters.AddWithValue("SelPr", objOptionDetail.SelPr);
-                hSql.Com.Parameters.AddWithValue("Quantity", objOptionDetail.Quantity);
-                hSql.Com.Parameters.AddWithValue("Info", objOptionDetail.Info);
-                hSql.Com.Parameters.AddWithValue("PartialPayer", objOptionDetail.PartialPayer);
+                if (objOptionDetail.SalePr > 0)
+                {
+                    hSql.Com.Parameters.AddWithValue("SelPr", objOptionDetail.SalePr);
+                }
+                else
+                {
+                    hSql.Com.Parameters.AddWithValue("SelPr", DBNull.Value);
+                }
+                if (objOptionDetail.Quantity > 0)
+                {
+                    hSql.Com.Parameters.AddWithValue("Quantity", objOptionDetail.Quantity);
+                }
+                else
+                {
+                    hSql.Com.Parameters.AddWithValue("Quantity", DBNull.Value);
+                }
+                if (objOptionDetail.Info != null)
+                {
+                    hSql.Com.Parameters.AddWithValue("Info", objOptionDetail.Info);
+                }
+                else
+                {
+                    hSql.Com.Parameters.AddWithValue("Info", DBNull.Value);
+                }
+                if (objOptionDetail.PartialPayer  != null)
+                {
+                    hSql.Com.Parameters.AddWithValue("PartialPayer", objOptionDetail.PartialPayer);
+                }
+                else
+                {
+                    hSql.Com.Parameters.AddWithValue("PartialPayer", DBNull.Value);
+                }
                 bRet = bRet && hSql.ExecuteNonQuery();
-
             }
 
             return bRet;

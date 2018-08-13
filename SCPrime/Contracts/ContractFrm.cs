@@ -42,7 +42,7 @@ namespace SCPrime.Contracts
         //    }
         //}
 
-
+            
         public ContractFrm()
         {
             InitializeComponent();
@@ -63,7 +63,8 @@ namespace SCPrime.Contracts
             if (SCMain.ContractOid > 0)
             {
                 objContract = SCBase.searchContracts(SCMain.ContractOid);
-                objContract.OptionCategories = SCOptionCategory.getContractOptionCategory(objContract.ContractOID);
+
+                objContract.listContractOptions = ContractOption.getContractOption(objContract.ContractOID);
             }
             else
             {
