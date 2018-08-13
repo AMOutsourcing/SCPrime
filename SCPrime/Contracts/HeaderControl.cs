@@ -191,6 +191,7 @@ namespace SCPrime.Contracts
             //MessageBox.Show("1");
             //this.loadComboboxData();
             //this.loadContractData();
+           // this.Dock = DockStyle.Fill;
 
         }
 

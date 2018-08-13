@@ -726,5 +726,10 @@ namespace SCPrime.Contracts
                 //MessageBox.Show("Ha ha");
             }
         }
+
+        private void ContractFrm_ResizeEnd(object sender, EventArgs e)
+        {
+           // this.headerControl1.Dock = DockStyle.Fill;
+        }
     }
 }

@@ -31,11 +31,12 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
+    <Optimize>true</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -53,6 +54,10 @@
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Word.15.0.4797.1003\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="nsBaseClass, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -109,6 +114,12 @@
     </Compile>
     <Compile Include="Contracts\DetailContractSearchFrm.Designer.cs">
       <DependentUpon>DetailContractSearchFrm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Contracts\dlgPrintContract.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Contracts\dlgPrintContract.Designer.cs">
+      <DependentUpon>dlgPrintContract.cs</DependentUpon>
     </Compile>
     <Compile Include="Contracts\EmployeeSearchFrm.cs">
       <SubType>Form</SubType>
@@ -216,6 +227,9 @@
     <EmbeddedResource Include="Contracts\DetailContractSearchFrm.resx">
       <DependentUpon>DetailContractSearchFrm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Contracts\dlgPrintContract.resx">
+      <DependentUpon>dlgPrintContract.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Contracts\EmployeeSearchFrm.resx">
       <DependentUpon>EmployeeSearchFrm.cs</DependentUpon>
     </EmbeddedResource>
@@ -259,6 +273,7 @@
     <EmbeddedResource Include="SCOptionPriceFrm.resx">
       <DependentUpon>SCOptionPriceFrm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\DataSources\SCPrime.Model.CollectiveContract.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.Contract.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.ContractStatus.datasource" />
