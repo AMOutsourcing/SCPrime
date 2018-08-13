@@ -291,7 +291,7 @@
             this.Name = "ContractFrm";
             this.Text = "Contracts";
             this.Load += new System.EventHandler(this.ContractFrm_Load);
-            this.ResizeEnd += new System.EventHandler(this.ContractFrm_ResizeEnd);
+            this.Resize += new System.EventHandler(this.ContractFrm_Resize);
             this.panel1.ResumeLayout(false);
             this.tabRemarks.ResumeLayout(false);
             this.tabInvoices.ResumeLayout(false);

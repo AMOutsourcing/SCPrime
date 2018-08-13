@@ -193,21 +193,24 @@ namespace SCPrime.Contracts
         {
             listOptionDetail.Clear();
             listOptionDetailTmp.Clear();
-            if (ContractFrm.objContract.listContractOptions.Count > 0)
+            if (ContractFrm.objContract.listContractOptions != null)
             {
-                foreach (ContractOption cate in ContractFrm.objContract.listContractOptions)
+                if (ContractFrm.objContract.listContractOptions.Count > 0)
                 {
-                    if (cate.OptionDetailOID > 0)
+                    foreach (ContractOption cate in ContractFrm.objContract.listContractOptions)
                     {
-                        listOptionDetailTmp.Add("D" + cate.OptionDetailOID, "1");
-                        continue;
+                        if (cate.OptionDetailOID > 0)
+                        {
+                            listOptionDetailTmp.Add("D" + cate.OptionDetailOID, "1");
+                            continue;
+                        }
+                        if (cate.OptionOID > 0)
+                        {
+                            listOptionDetailTmp.Add("O" + cate.OptionOID, "1");
+                            continue;
+                        }
+                        listOptionDetailTmp.Add("C" + cate.OptionCategoryOID, "1");
                     }
-                    if (cate.OptionOID > 0)
-                    {
-                        listOptionDetailTmp.Add("O" + cate.OptionOID, "1");
-                        continue;
-                    }
-                    listOptionDetailTmp.Add("C" + cate.OptionCategoryOID, "1");
                 }
             }
 
