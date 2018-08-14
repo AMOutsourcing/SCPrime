@@ -229,7 +229,6 @@ namespace SCPrime.Contracts
         }
 
 
-
         private void addRow(TreeNode Node)
         {
             var item = getOptionBase(Node.Name, Node.Text);
@@ -288,9 +287,24 @@ namespace SCPrime.Contracts
                     rtn.PurchasePr = detail.BuyPr;
                 }
 
-                
+
                 if (rtn != null)
                 {
+                    //Update info
+                    try
+                    {
+                        ContractOption finded = ContractFrm.objContract.listContractOptions.Single(s => s.OptionCategoryOID == rtn.OptionCategoryOID && s.OptionOID == rtn.OptionOID && s.OptionDetailOID == rtn.OptionDetailOID);
+                        rtn.Info = finded.Info;
+                        rtn.PartialPayer = finded.PartialPayer;
+                        rtn.Quantity = finded.Quantity;
+                        rtn.SalePr = finded.SalePr;
+                    }
+                    catch (System.InvalidOperationException)
+                    {
+                        Console.WriteLine("The collection does not contain exactly one element.");
+                    }
+
+                    //Add to list
                     listOptionDetail.Add(rtn);
 
                     //Add to grid
@@ -305,7 +319,7 @@ namespace SCPrime.Contracts
             string name = Node.Name;
             string type = name.Substring(0, 1);
             Int32 value = Int32.Parse(name.Substring(1));
-            
+
 
             int cateId = 0;
             int optionId = 0;
@@ -349,7 +363,7 @@ namespace SCPrime.Contracts
                 for (int i = 0; i < dataTable.Rows.Count; i++)
                 {
                     DataRow recRow = dataTable.Rows[i];
-                    if (cateId.Equals(recRow["OptionCategoryOID"]) 
+                    if (cateId.Equals(recRow["OptionCategoryOID"])
                         && optionId.Equals(recRow["OptionOID"])
                         && detailId.Equals(recRow["OptionDetailOID"]))
                     {
@@ -410,7 +424,7 @@ namespace SCPrime.Contracts
 
         public void saveOptionCategories()
         {
-            if(this.listOptionDetail.Count == 0)
+            if (this.listOptionDetail.Count == 0)
             {
                 ContractFrm.objContract.listContractOptions = this.listOptionDetail;
             }
@@ -445,8 +459,11 @@ namespace SCPrime.Contracts
                     {
                         finded = ContractFrm.objContract.listContractOptions.Single(s => s.OptionCategoryOID == contractOption.OptionCategoryOID && s.OptionOID == contractOption.OptionOID && s.OptionDetailOID == contractOption.OptionDetailOID);
                         //Check update
-                        if (!finded.Info.Equals(contractOption.Info)
-                            || finded.PartialPayer.Equals(contractOption.PartialPayer))
+                        //Console.WriteLine("Info: " + finded.Info + " - " + contractOption.Info + " is: " + finded.Info.Equals(contractOption.Info));
+                        if (!finded.SalePr.Equals(contractOption.SalePr)
+                            || !finded.Quantity.Equals(contractOption.Quantity)
+                            || !finded.Info.Equals(contractOption.Info)
+                            || !finded.PartialPayer.Equals(contractOption.PartialPayer))
                         {
                             contractOption.isUpdate = true;
                         }
@@ -463,12 +480,73 @@ namespace SCPrime.Contracts
                 ContractFrm.objContract.listContractOptions = this.listOptionDetail;
 
             }
-            
+
         }
 
         private void treeView1_AfterExpand(object sender, TreeViewEventArgs e)
         {
 
+        }
+
+        private void dataGridView1_RowValidated(object sender, DataGridViewCellEventArgs e)
+        {
+            Console.WriteLine("dataGridView1_RowValidated: " + e.RowIndex);
+            //Update data
+            if (e.RowIndex >= 0)
+            {
+                try
+                {
+                    DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+                    Int32 OptionCategoryOID = 0;
+                    Int32 OptionOID = 0;
+                    Int32 OptionDetailOID = 0;
+                    Int32.TryParse(row.Cells[12].Value.ToString(), out OptionCategoryOID);
+                    Int32.TryParse(row.Cells[13].Value.ToString(), out OptionOID);
+                    Int32.TryParse(row.Cells[14].Value.ToString(), out OptionDetailOID);
+                    //Console.WriteLine("OptionCategoryOID: " + OptionCategoryOID + " - OptionOID: " + OptionOID + " -OptionDetailOID: " + OptionDetailOID);
+                    ContractOption finded = this.listOptionDetail.Single(s => s.OptionCategoryOID == OptionCategoryOID && s.OptionOID == OptionOID && s.OptionDetailOID == OptionDetailOID);
+
+                    Int32 sellPr = 0;
+                    Int32 Quantity = 0;
+                    Int32.TryParse(row.Cells[8].Value.ToString(), out sellPr);
+                    Int32.TryParse(row.Cells[9].Value.ToString(), out Quantity);
+                    finded.SalePr = sellPr;
+                    finded.Quantity = Quantity;
+                    if (row.Cells[10].Value != null)
+                        finded.Info = row.Cells[10].Value.ToString();
+                    if (row.Cells[11].Value != null)
+                        finded.PartialPayer = row.Cells[11].Value.ToString();
+                }
+                catch (System.InvalidOperationException)
+                {
+                    Console.WriteLine("The collection does not contain exactly one element.");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("" + ex.Message);
+                }
+            }
+        }
+
+        private void dataGridView1_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (e.ColumnIndex == 8 || e.ColumnIndex == 8)
+            {
+                //Console.WriteLine("gridRisk_CellValidating " + e.ColumnIndex);
+                dataGridView1.Rows[e.RowIndex].ErrorText = "";
+                decimal newInteger;
+
+                // Don't try to validate the 'new row' until finished 
+                // editing since there
+                // is not any point in validating its initial value.
+                if (dataGridView1.Rows[e.RowIndex].IsNewRow) { return; }
+                if (!decimal.TryParse(e.FormattedValue.ToString(),
+                    out newInteger) || newInteger < 0)
+                {
+                    e.Cancel = true;
+                    dataGridView1.Rows[e.RowIndex].ErrorText = "The value must be a non-negative decimal";
+                }
+            }
         }
     }
 }

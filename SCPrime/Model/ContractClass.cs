@@ -1318,7 +1318,25 @@ namespace SCPrime.Model
                 else if (objOptionDetail.isUpdate)
                 {
                     //Update
-                    bRet = hSql.NewCommand("UPDATE ZSC_ContractOption SET SelPr=?,Quantity=?,Info=?,Modified=getdate(),PartialPayer=? WHERE ContractOID=? and OptionCategoryOID=? and OptionOID=? and OptionDetailOID=?");
+                    String sqls = "UPDATE ZSC_ContractOption SET SelPr=?,Quantity=?,Info=?,Modified=getdate(),PartialPayer=? WHERE ContractOID=? and OptionCategoryOID=? ";
+
+                    if (objOptionDetail.OptionOID <= 0)
+                    {
+                        sqls += " and OptionOID is null and OptionDetailOID is null";
+                    }
+                    else
+                    {
+                        if (objOptionDetail.OptionDetailOID <= 0)
+                        {
+                            sqls += " and OptionOID=? and OptionDetailOID is null";
+                        }
+                        else
+                        {
+                            sqls += " and OptionOID=? and OptionDetailOID = ?";
+                        }
+                    }
+                    bRet = hSql.NewCommand(sqls);
+
                     if (objOptionDetail.SalePr > 0)
                     {
                         hSql.Com.Parameters.AddWithValue("SelPr", objOptionDetail.SalePr);
@@ -1353,33 +1371,17 @@ namespace SCPrime.Model
                     }
 
                     hSql.Com.Parameters.AddWithValue("ContractOID", ContractOID);
-                    if (objOptionDetail.OptionCategoryOID > 0)
-                    {
-                        hSql.Com.Parameters.AddWithValue("OptionCategoryOID", objOptionDetail.OptionCategoryOID);
-                    }
-                    else
-                    {
-                        hSql.Com.Parameters.AddWithValue("OptionCategoryOID", DBNull.Value);
-                    }
+                    hSql.Com.Parameters.AddWithValue("OptionCategoryOID", objOptionDetail.OptionCategoryOID);
 
-                    if (objOptionDetail.OptionOID > 0)
-                    {
+                    //sdf
+                    if (objOptionDetail.OptionOID > 0) { 
                         hSql.Com.Parameters.AddWithValue("OptionOID", objOptionDetail.OptionOID);
-                    }
-                    else
-                    {
-                        hSql.Com.Parameters.AddWithValue("OptionOID", DBNull.Value);
+                        if (objOptionDetail.OptionDetailOID > 0)
+                        {
+                            hSql.Com.Parameters.AddWithValue("OptionDetailOID", objOptionDetail.OptionDetailOID);
+                        }
                     }
 
-                    if (objOptionDetail.OptionDetailOID > 0)
-                    {
-                        hSql.Com.Parameters.AddWithValue("OptionDetailOID", objOptionDetail.OptionDetailOID);
-                    }
-                    else
-                    {
-                        hSql.Com.Parameters.AddWithValue("OptionDetailOID", DBNull.Value);
-                    }
-                    
                     bRet = bRet && hSql.ExecuteNonQuery();
                 }
                 else

@@ -174,6 +174,8 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(648, 409);
             this.dataGridView1.TabIndex = 3;
+            this.dataGridView1.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView1_CellValidating);
+            this.dataGridView1.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_RowValidated);
             // 
             // contractOptionBindingSource
             // 
@@ -245,7 +247,6 @@
             this.salePrDataGridViewTextBoxColumn.DataPropertyName = "SalePr";
             this.salePrDataGridViewTextBoxColumn.HeaderText = "SalePr";
             this.salePrDataGridViewTextBoxColumn.Name = "salePrDataGridViewTextBoxColumn";
-            this.salePrDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // quantityDataGridViewTextBoxColumn
             // 
