@@ -35,7 +35,10 @@ namespace SCPrime.Contracts
         public ContractDataFrm()
         {
             InitializeComponent();
+        }
 
+        private void initFrm()
+        {
             sCBase = new SCBase();
 
             txtStartDate.Format = DateTimePickerFormat.Custom;
@@ -177,6 +180,8 @@ namespace SCPrime.Contracts
 
         public void fillData()
         {
+            initFrm();
+
             if (ContractFrm.objContract != null && ContractFrm.objContract.ContractOID > 0)
             {
                 //Start

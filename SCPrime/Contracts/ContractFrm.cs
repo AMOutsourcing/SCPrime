@@ -633,9 +633,6 @@ namespace SCPrime.Contracts
         private void tabControl1_Selected(object sender, TabControlEventArgs e)
         {
             System.Diagnostics.Debug.WriteLine("---------------------tabControl1_Selected: " + this.tabControl1.SelectedIndex);
-
-
-
         }
 
         private void loadVehice()
