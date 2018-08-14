@@ -136,7 +136,7 @@ namespace SCPrime
             cbSites.DataSource = lstSites;
             cbSites.ValueMember = "strValue1";
             cbSites.DisplayMember = "strValue1";
-            
+
 
             //Load contaactType
             cblContactType.DataSource = sCBase.getContractTypeActive();
@@ -182,7 +182,7 @@ namespace SCPrime
         {
             SCMain.ContractOid = 0;
             ContractFrm cf = new ContractFrm();
-            
+            cf.StartPosition = FormStartPosition.CenterParent;
             cf.ShowDialog();
         }
 
@@ -195,7 +195,7 @@ namespace SCPrime
 
         private void cblContactType_MouseMove(object sender, MouseEventArgs e)
         {
-            
+
         }
 
         private void cblContactType_MouseEnter(object sender, EventArgs e)
@@ -231,7 +231,7 @@ namespace SCPrime
 
         private void cblContactType_SelectedIndexChanged(object sender, EventArgs e)
         {
-           // this.displayTooltip();
+            // this.displayTooltip();
         }
 
         private void toolStripButton9_Click(object sender, EventArgs e)
@@ -441,7 +441,7 @@ namespace SCPrime
 
         private void gridContract_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-           
+
         }
 
         private void gridContract_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -457,6 +457,58 @@ namespace SCPrime
                     cf.ShowDialog();
                 }
             }
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            SCMain.ContractOid = 0;
+            ContractFrm cf = new ContractFrm();
+            cf.StartPosition = FormStartPosition.CenterParent;
+            cf.ShowDialog();
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow r in this.gridContract.SelectedRows)
+            {
+                ContractOid = (int)r.Cells["colCcontractOID"].Value;
+            }
+            ContractFrm cf = new ContractFrm();
+            cf.StartPosition = FormStartPosition.CenterParent;
+            cf.ShowDialog();
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow r in this.gridContract.SelectedRows)
+            {
+                ContractOid = (int)r.Cells["colCcontractOID"].Value;
+            }
+            ContractFrm cf = new ContractFrm();
+            cf.StartPosition = FormStartPosition.CenterParent;
+            cf.ShowDialog();
+        }
+
+        private void prinToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow r in this.gridContract.SelectedRows)
+            {
+                ContractOid = (int)r.Cells["colCcontractOID"].Value;
+            }
+            Contract mycontract = SCBase.searchContracts(SCMain.ContractOid);
+            dlgPrintContract printer = new dlgPrintContract(mycontract);
+            printer.ShowDialog();
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow r in this.gridContract.SelectedRows)
+            {
+                ContractOid = (int)r.Cells["colCcontractOID"].Value;
+            }
+            Contract mycontract = SCBase.searchContracts(SCMain.ContractOid);
+            dlgPrintContract printer = new dlgPrintContract(mycontract);
+            printer.ShowDialog();
         }
     }
 }

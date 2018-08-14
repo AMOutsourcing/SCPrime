@@ -200,8 +200,10 @@
             this.gridContract.DataSource = this.contractBindingSource;
             this.gridContract.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridContract.Location = new System.Drawing.Point(190, 48);
+            this.gridContract.MultiSelect = false;
             this.gridContract.Name = "gridContract";
             this.gridContract.ReadOnly = true;
+            this.gridContract.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridContract.Size = new System.Drawing.Size(838, 621);
             this.gridContract.TabIndex = 2;
             this.gridContract.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridContract_CellContentClick);
@@ -246,6 +248,7 @@
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton1.Text = "New";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // toolStripButton2
             // 
@@ -255,6 +258,7 @@
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton2.Text = "Open Contract";
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // toolStripButton3
             // 
@@ -264,6 +268,7 @@
             this.toolStripButton3.Name = "toolStripButton3";
             this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton3.Text = "Print";
+            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
             // toolStripButton4
             // 
@@ -373,83 +378,85 @@
             // nEwContractToolStripMenuItem
             // 
             this.nEwContractToolStripMenuItem.Name = "nEwContractToolStripMenuItem";
-            this.nEwContractToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.nEwContractToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.nEwContractToolStripMenuItem.Text = "New contract";
             this.nEwContractToolStripMenuItem.Click += new System.EventHandler(this.nEwContractToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // prinToolStripMenuItem
             // 
             this.prinToolStripMenuItem.Name = "prinToolStripMenuItem";
-            this.prinToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.prinToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.prinToolStripMenuItem.Text = "Print contract";
+            this.prinToolStripMenuItem.Click += new System.EventHandler(this.prinToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(147, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
             // customerDataToolStripMenuItem
             // 
             this.customerDataToolStripMenuItem.Name = "customerDataToolStripMenuItem";
-            this.customerDataToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.customerDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.customerDataToolStripMenuItem.Text = "Customer data";
             // 
             // vehicleDataToolStripMenuItem
             // 
             this.vehicleDataToolStripMenuItem.Name = "vehicleDataToolStripMenuItem";
-            this.vehicleDataToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.vehicleDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.vehicleDataToolStripMenuItem.Text = "Vehicle data";
             // 
             // serviceHistoryToolStripMenuItem
             // 
             this.serviceHistoryToolStripMenuItem.Name = "serviceHistoryToolStripMenuItem";
-            this.serviceHistoryToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.serviceHistoryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.serviceHistoryToolStripMenuItem.Text = "Service history";
             // 
             // eLOArchiveToolStripMenuItem
             // 
             this.eLOArchiveToolStripMenuItem.Name = "eLOArchiveToolStripMenuItem";
-            this.eLOArchiveToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.eLOArchiveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.eLOArchiveToolStripMenuItem.Text = "ELO archive";
             // 
             // mileageRegisterToolStripMenuItem
             // 
             this.mileageRegisterToolStripMenuItem.Name = "mileageRegisterToolStripMenuItem";
-            this.mileageRegisterToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.mileageRegisterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.mileageRegisterToolStripMenuItem.Text = "Mileage register";
             // 
             // invoiceToolStripMenuItem
             // 
             this.invoiceToolStripMenuItem.Name = "invoiceToolStripMenuItem";
-            this.invoiceToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.invoiceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.invoiceToolStripMenuItem.Text = "Invoices";
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(147, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
             // 
             // invoiceToolStripMenuItem1
             // 
             this.invoiceToolStripMenuItem1.Name = "invoiceToolStripMenuItem1";
-            this.invoiceToolStripMenuItem1.Size = new System.Drawing.Size(150, 22);
+            this.invoiceToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.invoiceToolStripMenuItem1.Text = "Export data";
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(147, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
             // 
             // exitApplicationToolStripMenuItem
             // 
             this.exitApplicationToolStripMenuItem.Name = "exitApplicationToolStripMenuItem";
-            this.exitApplicationToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.exitApplicationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitApplicationToolStripMenuItem.Text = "Exit application";
             this.exitApplicationToolStripMenuItem.Click += new System.EventHandler(this.exitApplicationToolStripMenuItem_Click);
             // 

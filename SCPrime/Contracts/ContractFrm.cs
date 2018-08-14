@@ -42,7 +42,7 @@ namespace SCPrime.Contracts
         //    }
         //}
 
-            
+
         public ContractFrm()
         {
             InitializeComponent();
@@ -79,7 +79,7 @@ namespace SCPrime.Contracts
             this.loadVehice();
             this.contractOption1.loadDataGrid();
             this.contractOption1.loadTree();
-            contractDataFrm.fillData();
+            this.contractDataFrm.fillData();
             // this.loadCustomerEmployee();
         }
         private void checkInvoiceToCustomer()
@@ -728,6 +728,22 @@ namespace SCPrime.Contracts
             else
             {
                 //MessageBox.Show("Ha ha");
+            }
+        }
+
+        private void ContractFrm_ResizeEnd(object sender, EventArgs e)
+        {
+
+
+           
+        }
+
+        private void ContractFrm_Resize(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Maximized)
+
+            {
+                MessageBox.Show(this.WindowState.ToString());
             }
         }
     }

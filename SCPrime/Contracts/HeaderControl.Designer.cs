@@ -69,9 +69,17 @@
             this.txtInvoiceCusNr = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.dgvSubcontract = new System.Windows.Forms.DataGridView();
+            this.colOID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSuplNoVal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSuplName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSubcontractNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colInfo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colExpl = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDateLimit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colKmLimit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colBuyPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colIsDeleted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.subContractorContractBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label18 = new System.Windows.Forms.Label();
             this.btnNewSubcontractor = new System.Windows.Forms.Button();
             this.btnDelSubcontractor = new System.Windows.Forms.Button();
@@ -99,6 +107,15 @@
             this.txtEmployeeID1 = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
             this.dgvSelfContract = new System.Windows.Forms.DataGridView();
+            this.colOidSelf = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colInternalID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colContractNoSelf = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colVersionNoSelf = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colContractStatusSelf = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colVinSelf = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colInfoSelf = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colIsDeletedSelf = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.collectiveContractBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label26 = new System.Windows.Forms.Label();
             this.btnDelSelfContract = new System.Windows.Forms.Button();
             this.btnNewSelfContract = new System.Windows.Forms.Button();
@@ -113,32 +130,15 @@
             this.txtEmployeeID2 = new System.Windows.Forms.TextBox();
             this.label32 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.collectiveContractBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.colOID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSubcontractNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colInfo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colExpl = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDateLimit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colKmLimit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colBuyPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.subContractorContractBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.colOidSelf = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colInternalID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colContractNoSelf = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colVersionNoSelf = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colContractStatusSelf = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colVinSelf = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colInfoSelf = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colIsDeletedSelf = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSubcontract)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.subContractorContractBindingSource)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSelfContract)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.collectiveContractBindingSource)).BeginInit();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.collectiveContractBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.subContractorContractBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -522,6 +522,14 @@
             this.dgvSubcontract.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSubcontract_CellLeave);
             this.dgvSubcontract.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSubcontract_CellValidated);
             // 
+            // colOID
+            // 
+            this.colOID.DataPropertyName = "OID";
+            this.colOID.HeaderText = "OID";
+            this.colOID.Name = "colOID";
+            this.colOID.ReadOnly = true;
+            this.colOID.Width = 40;
+            // 
             // colSuplNoVal
             // 
             this.colSuplNoVal.DataPropertyName = "SuplNoVal";
@@ -536,12 +544,52 @@
             this.colSuplName.Name = "colSuplName";
             this.colSuplName.Visible = false;
             // 
+            // colSubcontractNo
+            // 
+            this.colSubcontractNo.DataPropertyName = "SubcontractNo";
+            this.colSubcontractNo.HeaderText = "Contract Nr";
+            this.colSubcontractNo.Name = "colSubcontractNo";
+            // 
+            // colInfo
+            // 
+            this.colInfo.DataPropertyName = "Info";
+            this.colInfo.HeaderText = "Info";
+            this.colInfo.Name = "colInfo";
+            // 
+            // colExpl
+            // 
+            this.colExpl.DataPropertyName = "Expl";
+            this.colExpl.HeaderText = "Description";
+            this.colExpl.Name = "colExpl";
+            // 
+            // colDateLimit
+            // 
+            this.colDateLimit.DataPropertyName = "DateLimit";
+            this.colDateLimit.HeaderText = "Limit date";
+            this.colDateLimit.Name = "colDateLimit";
+            // 
+            // colKmLimit
+            // 
+            this.colKmLimit.DataPropertyName = "KmLimit";
+            this.colKmLimit.HeaderText = "Limit km";
+            this.colKmLimit.Name = "colKmLimit";
+            // 
+            // colBuyPrice
+            // 
+            this.colBuyPrice.DataPropertyName = "BuyPrice";
+            this.colBuyPrice.HeaderText = "Purchase pr";
+            this.colBuyPrice.Name = "colBuyPrice";
+            // 
             // colIsDeleted
             // 
             this.colIsDeleted.DataPropertyName = "isDeleted";
             this.colIsDeleted.HeaderText = "isDeleted";
             this.colIsDeleted.Name = "colIsDeleted";
             this.colIsDeleted.Visible = false;
+            // 
+            // subContractorContractBindingSource
+            // 
+            this.subContractorContractBindingSource.DataSource = typeof(SCPrime.Model.SubContractorContract);
             // 
             // label18
             // 
@@ -813,6 +861,64 @@
             this.dgvSelfContract.Size = new System.Drawing.Size(432, 240);
             this.dgvSelfContract.TabIndex = 44;
             // 
+            // colOidSelf
+            // 
+            this.colOidSelf.DataPropertyName = "OID";
+            this.colOidSelf.HeaderText = "OID";
+            this.colOidSelf.Name = "colOidSelf";
+            this.colOidSelf.ReadOnly = true;
+            this.colOidSelf.Visible = false;
+            // 
+            // colInternalID
+            // 
+            this.colInternalID.DataPropertyName = "DetailContractOID";
+            this.colInternalID.HeaderText = "Internal ID";
+            this.colInternalID.Name = "colInternalID";
+            // 
+            // colContractNoSelf
+            // 
+            this.colContractNoSelf.DataPropertyName = "ContractNo";
+            this.colContractNoSelf.HeaderText = "Contract Nr";
+            this.colContractNoSelf.Name = "colContractNoSelf";
+            this.colContractNoSelf.ReadOnly = true;
+            // 
+            // colVersionNoSelf
+            // 
+            this.colVersionNoSelf.DataPropertyName = "VersionNo";
+            this.colVersionNoSelf.HeaderText = "VersionNo";
+            this.colVersionNoSelf.Name = "colVersionNoSelf";
+            this.colVersionNoSelf.ReadOnly = true;
+            // 
+            // colContractStatusSelf
+            // 
+            this.colContractStatusSelf.DataPropertyName = "ContractStatus";
+            this.colContractStatusSelf.HeaderText = "ContractStatus";
+            this.colContractStatusSelf.Name = "colContractStatusSelf";
+            this.colContractStatusSelf.ReadOnly = true;
+            // 
+            // colVinSelf
+            // 
+            this.colVinSelf.DataPropertyName = "VIN";
+            this.colVinSelf.HeaderText = "VIN";
+            this.colVinSelf.Name = "colVinSelf";
+            this.colVinSelf.ReadOnly = true;
+            // 
+            // colInfoSelf
+            // 
+            this.colInfoSelf.DataPropertyName = "Info";
+            this.colInfoSelf.HeaderText = "Info";
+            this.colInfoSelf.Name = "colInfoSelf";
+            // 
+            // colIsDeletedSelf
+            // 
+            this.colIsDeletedSelf.DataPropertyName = "isDeleted";
+            this.colIsDeletedSelf.HeaderText = "isDeleted";
+            this.colIsDeletedSelf.Name = "colIsDeletedSelf";
+            // 
+            // collectiveContractBindingSource
+            // 
+            this.collectiveContractBindingSource.DataSource = typeof(SCPrime.Model.CollectiveContract);
+            // 
             // label26
             // 
             this.label26.AutoSize = true;
@@ -948,112 +1054,6 @@
             this.pictureBox1.TabIndex = 48;
             this.pictureBox1.TabStop = false;
             // 
-            // collectiveContractBindingSource
-            // 
-            this.collectiveContractBindingSource.DataSource = typeof(SCPrime.Model.CollectiveContract);
-            // 
-            // colOID
-            // 
-            this.colOID.DataPropertyName = "OID";
-            this.colOID.HeaderText = "OID";
-            this.colOID.Name = "colOID";
-            this.colOID.ReadOnly = true;
-            this.colOID.Width = 40;
-            // 
-            // colSubcontractNo
-            // 
-            this.colSubcontractNo.DataPropertyName = "SubcontractNo";
-            this.colSubcontractNo.HeaderText = "Contract Nr";
-            this.colSubcontractNo.Name = "colSubcontractNo";
-            // 
-            // colInfo
-            // 
-            this.colInfo.DataPropertyName = "Info";
-            this.colInfo.HeaderText = "Info";
-            this.colInfo.Name = "colInfo";
-            // 
-            // colExpl
-            // 
-            this.colExpl.DataPropertyName = "Expl";
-            this.colExpl.HeaderText = "Description";
-            this.colExpl.Name = "colExpl";
-            // 
-            // colDateLimit
-            // 
-            this.colDateLimit.DataPropertyName = "DateLimit";
-            this.colDateLimit.HeaderText = "Limit date";
-            this.colDateLimit.Name = "colDateLimit";
-            // 
-            // colKmLimit
-            // 
-            this.colKmLimit.DataPropertyName = "KmLimit";
-            this.colKmLimit.HeaderText = "Limit km";
-            this.colKmLimit.Name = "colKmLimit";
-            // 
-            // colBuyPrice
-            // 
-            this.colBuyPrice.DataPropertyName = "BuyPrice";
-            this.colBuyPrice.HeaderText = "Purchase pr";
-            this.colBuyPrice.Name = "colBuyPrice";
-            // 
-            // subContractorContractBindingSource
-            // 
-            this.subContractorContractBindingSource.DataSource = typeof(SCPrime.Model.SubContractorContract);
-            // 
-            // colOidSelf
-            // 
-            this.colOidSelf.DataPropertyName = "OID";
-            this.colOidSelf.HeaderText = "OID";
-            this.colOidSelf.Name = "colOidSelf";
-            this.colOidSelf.ReadOnly = true;
-            this.colOidSelf.Visible = false;
-            // 
-            // colInternalID
-            // 
-            this.colInternalID.DataPropertyName = "DetailContractOID";
-            this.colInternalID.HeaderText = "Internal ID";
-            this.colInternalID.Name = "colInternalID";
-            // 
-            // colContractNoSelf
-            // 
-            this.colContractNoSelf.DataPropertyName = "ContractNo";
-            this.colContractNoSelf.HeaderText = "Contract Nr";
-            this.colContractNoSelf.Name = "colContractNoSelf";
-            this.colContractNoSelf.ReadOnly = true;
-            // 
-            // colVersionNoSelf
-            // 
-            this.colVersionNoSelf.DataPropertyName = "VersionNo";
-            this.colVersionNoSelf.HeaderText = "VersionNo";
-            this.colVersionNoSelf.Name = "colVersionNoSelf";
-            this.colVersionNoSelf.ReadOnly = true;
-            // 
-            // colContractStatusSelf
-            // 
-            this.colContractStatusSelf.DataPropertyName = "ContractStatus";
-            this.colContractStatusSelf.HeaderText = "ContractStatus";
-            this.colContractStatusSelf.Name = "colContractStatusSelf";
-            this.colContractStatusSelf.ReadOnly = true;
-            // 
-            // colVinSelf
-            // 
-            this.colVinSelf.DataPropertyName = "VIN";
-            this.colVinSelf.HeaderText = "VIN";
-            this.colVinSelf.Name = "colVinSelf";
-            this.colVinSelf.ReadOnly = true;
-            // 
-            // colInfoSelf
-            // 
-            this.colInfoSelf.DataPropertyName = "Info";
-            this.colInfoSelf.HeaderText = "Info";
-            this.colInfoSelf.Name = "colInfoSelf";
-            // 
-            // colIsDeletedSelf
-            // 
-            this.colIsDeletedSelf.DataPropertyName = "isDeleted";
-            this.colIsDeletedSelf.HeaderText = "isDeleted";
-            this.colIsDeletedSelf.Name = "colIsDeletedSelf";
-            // 
             // HeaderControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1106,16 +1106,16 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSubcontract)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.subContractorContractBindingSource)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSelfContract)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.collectiveContractBindingSource)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.collectiveContractBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.subContractorContractBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
