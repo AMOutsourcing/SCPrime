@@ -668,6 +668,9 @@ namespace SCPrime.Contracts
             // MessageBox.Show(tmp.ToString());
             this.loadComboboxData();
             this.loadContractData();
+
+            //Load lai data
+            objContract.listContractOptions = ContractOption.getContractOption(objContract.ContractOID);
         }
 
         private void btnNew_Click(object sender, EventArgs e)

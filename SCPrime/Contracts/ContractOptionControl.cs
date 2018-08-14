@@ -407,7 +407,60 @@ namespace SCPrime.Contracts
 
         public void saveOptionCategories()
         {
-            ContractFrm.objContract.listContractOptions = this.listOptionDetail;
+            if(this.listOptionDetail.Count == 0)
+            {
+                ContractFrm.objContract.listContractOptions = this.listOptionDetail;
+            }
+            else
+            {
+                //Tao list xoa, update, insert
+                ContractOption finded = null;
+
+                //List delete
+                foreach (ContractOption contractOption in ContractFrm.objContract.listContractOptions)
+                {
+                    try
+                    {
+                        finded = this.listOptionDetail.Single(s => s.OptionCategoryOID == contractOption.OptionCategoryOID && s.OptionOID == contractOption.OptionOID && s.OptionDetailOID == contractOption.OptionDetailOID);
+                    }
+                    catch (System.InvalidOperationException)
+                    {
+                        Console.WriteLine("The collection does not contain exactly one element.");
+                        //Xoa
+                        contractOption.isDelete = true;
+                        this.listOptionDetail.Add(contractOption);
+                    }
+                }
+
+                foreach (ContractOption contractOption in this.listOptionDetail)
+                {
+                    if (contractOption.isDelete)
+                    {
+                        continue;
+                    }
+                    try
+                    {
+                        finded = ContractFrm.objContract.listContractOptions.Single(s => s.OptionCategoryOID == contractOption.OptionCategoryOID && s.OptionOID == contractOption.OptionOID && s.OptionDetailOID == contractOption.OptionDetailOID);
+                        //Check update
+                        if (!finded.Info.Equals(contractOption.Info)
+                            || finded.PartialPayer.Equals(contractOption.PartialPayer))
+                        {
+                            contractOption.isUpdate = true;
+                        }
+                    }
+                    catch (System.InvalidOperationException)
+                    {
+                        Console.WriteLine("The collection does not contain exactly one element.");
+                        //Xoa
+                        contractOption.isInsert = true;
+                    }
+                }
+
+                //Gan lai lisst
+                ContractFrm.objContract.listContractOptions = this.listOptionDetail;
+
+            }
+            
         }
 
         private void treeView1_AfterExpand(object sender, TreeViewEventArgs e)

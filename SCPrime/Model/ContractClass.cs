@@ -722,6 +722,10 @@ namespace SCPrime.Model
         public decimal BaseSelPr { get; set; }
         public decimal PurchasePr { get; set; }
 
+        public bool isDelete { get; set; }
+        public bool isUpdate { get; set; }
+        public bool isInsert { get; set; }
+
         public static List<ContractOption> getContractOption(int ContractOID)
         {
             clsSqlFactory hSql = new clsSqlFactory();
@@ -1278,76 +1282,244 @@ namespace SCPrime.Model
                 return bRet = bRet && hSql.ExecuteNonQuery();
             }
 
-            //Delete
-            sql = "delete from ZSC_ContractOption where ContractOID = ?";
-            bRet = hSql.NewCommand(sql);
-            hSql.Com.Parameters.AddWithValue("ContractOID", ContractOID);
-            bRet = bRet && hSql.ExecuteNonQuery();
-
             foreach (ContractOption objOptionDetail in list)
             {
-                bRet = hSql.NewCommand("insert into ZSC_ContractOption(ContractOID,OptionCategoryOID,OptionOID,OptionDetailOID, SelPr,Quantity,Info,Created,Modified,PartialPayer) values(?,?,?,?,?,?,?,getdate(),getdate(),?) ");
-                hSql.Com.Parameters.AddWithValue("ContractOID", ContractOID);
-                if (objOptionDetail.OptionCategoryOID > 0)
+                if (objOptionDetail.isDelete)
                 {
+                    //Xoa
+                    if (objOptionDetail.OptionOID <= 0)
+                    {
+                        sql = "delete from ZSC_ContractOption where ContractOID = ? and OptionCategoryOID=? and OptionOID is null and OptionDetailOID is null";
+                        bRet = hSql.NewCommand(sql);
+                        hSql.Com.Parameters.AddWithValue("ContractOID", ContractOID);
+                        hSql.Com.Parameters.AddWithValue("OptionCategoryOID", objOptionDetail.OptionCategoryOID);
+                        bRet = bRet && hSql.ExecuteNonQuery();
+                        continue;
+                    }
+
+                    if (objOptionDetail.OptionDetailOID <= 0)
+                    {
+                        sql = "delete from ZSC_ContractOption where ContractOID = ? and OptionCategoryOID=? and OptionOID=? and OptionDetailOID is null";
+                        bRet = hSql.NewCommand(sql);
+                        hSql.Com.Parameters.AddWithValue("ContractOID", ContractOID);
+                        hSql.Com.Parameters.AddWithValue("OptionCategoryOID", objOptionDetail.OptionCategoryOID);
+                        hSql.Com.Parameters.AddWithValue("OptionOID", objOptionDetail.OptionOID);
+                        bRet = bRet && hSql.ExecuteNonQuery();
+                        continue;
+                    }
+                    sql = "delete from ZSC_ContractOption where ContractOID = ? and OptionCategoryOID=? and OptionOID is null and OptionDetailOID=?";
+                    bRet = hSql.NewCommand(sql);
+                    hSql.Com.Parameters.AddWithValue("ContractOID", ContractOID);
                     hSql.Com.Parameters.AddWithValue("OptionCategoryOID", objOptionDetail.OptionCategoryOID);
-                }
-                else
-                {
-                    hSql.Com.Parameters.AddWithValue("OptionCategoryOID", DBNull.Value);
-                }
-
-                if (objOptionDetail.OptionOID > 0)
-                {
                     hSql.Com.Parameters.AddWithValue("OptionOID", objOptionDetail.OptionOID);
-                }
-                else
-                {
-                    hSql.Com.Parameters.AddWithValue("OptionOID", DBNull.Value);
-                }
-
-                if (objOptionDetail.OptionDetailOID > 0)
-                {
                     hSql.Com.Parameters.AddWithValue("OptionDetailOID", objOptionDetail.OptionDetailOID);
+                    bRet = bRet && hSql.ExecuteNonQuery();
+                }
+                else if (objOptionDetail.isUpdate)
+                {
+                    //Update
+                    bRet = hSql.NewCommand("UPDATE ZSC_ContractOption SET SelPr=?,Quantity=?,Info=?,Modified=getdate(),PartialPayer=? WHERE ContractOID=? and OptionCategoryOID=? and OptionOID=? and OptionDetailOID=?");
+                    if (objOptionDetail.SalePr > 0)
+                    {
+                        hSql.Com.Parameters.AddWithValue("SelPr", objOptionDetail.SalePr);
+                    }
+                    else
+                    {
+                        hSql.Com.Parameters.AddWithValue("SelPr", DBNull.Value);
+                    }
+                    if (objOptionDetail.Quantity > 0)
+                    {
+                        hSql.Com.Parameters.AddWithValue("Quantity", objOptionDetail.Quantity);
+                    }
+                    else
+                    {
+                        hSql.Com.Parameters.AddWithValue("Quantity", DBNull.Value);
+                    }
+                    if (objOptionDetail.Info != null)
+                    {
+                        hSql.Com.Parameters.AddWithValue("Info", objOptionDetail.Info);
+                    }
+                    else
+                    {
+                        hSql.Com.Parameters.AddWithValue("Info", DBNull.Value);
+                    }
+                    if (objOptionDetail.PartialPayer != null)
+                    {
+                        hSql.Com.Parameters.AddWithValue("PartialPayer", objOptionDetail.PartialPayer);
+                    }
+                    else
+                    {
+                        hSql.Com.Parameters.AddWithValue("PartialPayer", DBNull.Value);
+                    }
+
+                    hSql.Com.Parameters.AddWithValue("ContractOID", ContractOID);
+                    if (objOptionDetail.OptionCategoryOID > 0)
+                    {
+                        hSql.Com.Parameters.AddWithValue("OptionCategoryOID", objOptionDetail.OptionCategoryOID);
+                    }
+                    else
+                    {
+                        hSql.Com.Parameters.AddWithValue("OptionCategoryOID", DBNull.Value);
+                    }
+
+                    if (objOptionDetail.OptionOID > 0)
+                    {
+                        hSql.Com.Parameters.AddWithValue("OptionOID", objOptionDetail.OptionOID);
+                    }
+                    else
+                    {
+                        hSql.Com.Parameters.AddWithValue("OptionOID", DBNull.Value);
+                    }
+
+                    if (objOptionDetail.OptionDetailOID > 0)
+                    {
+                        hSql.Com.Parameters.AddWithValue("OptionDetailOID", objOptionDetail.OptionDetailOID);
+                    }
+                    else
+                    {
+                        hSql.Com.Parameters.AddWithValue("OptionDetailOID", DBNull.Value);
+                    }
+                    
+                    bRet = bRet && hSql.ExecuteNonQuery();
                 }
                 else
                 {
-                    hSql.Com.Parameters.AddWithValue("OptionDetailOID", DBNull.Value);
+                    //insert
+                    bRet = hSql.NewCommand("insert into ZSC_ContractOption(ContractOID,OptionCategoryOID,OptionOID,OptionDetailOID, SelPr,Quantity,Info,Created,Modified,PartialPayer) values(?,?,?,?,?,?,?,getdate(),getdate(),?) ");
+
+                    hSql.Com.Parameters.AddWithValue("ContractOID", ContractOID);
+                    if (objOptionDetail.OptionCategoryOID > 0)
+                    {
+                        hSql.Com.Parameters.AddWithValue("OptionCategoryOID", objOptionDetail.OptionCategoryOID);
+                    }
+                    else
+                    {
+                        hSql.Com.Parameters.AddWithValue("OptionCategoryOID", DBNull.Value);
+                    }
+
+                    if (objOptionDetail.OptionOID > 0)
+                    {
+                        hSql.Com.Parameters.AddWithValue("OptionOID", objOptionDetail.OptionOID);
+                    }
+                    else
+                    {
+                        hSql.Com.Parameters.AddWithValue("OptionOID", DBNull.Value);
+                    }
+
+                    if (objOptionDetail.OptionDetailOID > 0)
+                    {
+                        hSql.Com.Parameters.AddWithValue("OptionDetailOID", objOptionDetail.OptionDetailOID);
+                    }
+                    else
+                    {
+                        hSql.Com.Parameters.AddWithValue("OptionDetailOID", DBNull.Value);
+                    }
+                    if (objOptionDetail.SalePr > 0)
+                    {
+                        hSql.Com.Parameters.AddWithValue("SelPr", objOptionDetail.SalePr);
+                    }
+                    else
+                    {
+                        hSql.Com.Parameters.AddWithValue("SelPr", DBNull.Value);
+                    }
+                    if (objOptionDetail.Quantity > 0)
+                    {
+                        hSql.Com.Parameters.AddWithValue("Quantity", objOptionDetail.Quantity);
+                    }
+                    else
+                    {
+                        hSql.Com.Parameters.AddWithValue("Quantity", DBNull.Value);
+                    }
+                    if (objOptionDetail.Info != null)
+                    {
+                        hSql.Com.Parameters.AddWithValue("Info", objOptionDetail.Info);
+                    }
+                    else
+                    {
+                        hSql.Com.Parameters.AddWithValue("Info", DBNull.Value);
+                    }
+                    if (objOptionDetail.PartialPayer != null)
+                    {
+                        hSql.Com.Parameters.AddWithValue("PartialPayer", objOptionDetail.PartialPayer);
+                    }
+                    else
+                    {
+                        hSql.Com.Parameters.AddWithValue("PartialPayer", DBNull.Value);
+                    }
+                    bRet = bRet && hSql.ExecuteNonQuery();
                 }
-                if (objOptionDetail.SalePr > 0)
-                {
-                    hSql.Com.Parameters.AddWithValue("SelPr", objOptionDetail.SalePr);
-                }
-                else
-                {
-                    hSql.Com.Parameters.AddWithValue("SelPr", DBNull.Value);
-                }
-                if (objOptionDetail.Quantity > 0)
-                {
-                    hSql.Com.Parameters.AddWithValue("Quantity", objOptionDetail.Quantity);
-                }
-                else
-                {
-                    hSql.Com.Parameters.AddWithValue("Quantity", DBNull.Value);
-                }
-                if (objOptionDetail.Info != null)
-                {
-                    hSql.Com.Parameters.AddWithValue("Info", objOptionDetail.Info);
-                }
-                else
-                {
-                    hSql.Com.Parameters.AddWithValue("Info", DBNull.Value);
-                }
-                if (objOptionDetail.PartialPayer  != null)
-                {
-                    hSql.Com.Parameters.AddWithValue("PartialPayer", objOptionDetail.PartialPayer);
-                }
-                else
-                {
-                    hSql.Com.Parameters.AddWithValue("PartialPayer", DBNull.Value);
-                }
-                bRet = bRet && hSql.ExecuteNonQuery();
             }
+
+            ////Delete
+            //sql = "delete from ZSC_ContractOption where ContractOID = ?";
+            //bRet = hSql.NewCommand(sql);
+            //hSql.Com.Parameters.AddWithValue("ContractOID", ContractOID);
+            //bRet = bRet && hSql.ExecuteNonQuery();
+
+            //foreach (ContractOption objOptionDetail in list)
+            //{
+            //    bRet = hSql.NewCommand("insert into ZSC_ContractOption(ContractOID,OptionCategoryOID,OptionOID,OptionDetailOID, SelPr,Quantity,Info,Created,Modified,PartialPayer) values(?,?,?,?,?,?,?,getdate(),getdate(),?) ");
+            //    hSql.Com.Parameters.AddWithValue("ContractOID", ContractOID);
+            //    if (objOptionDetail.OptionCategoryOID > 0)
+            //    {
+            //        hSql.Com.Parameters.AddWithValue("OptionCategoryOID", objOptionDetail.OptionCategoryOID);
+            //    }
+            //    else
+            //    {
+            //        hSql.Com.Parameters.AddWithValue("OptionCategoryOID", DBNull.Value);
+            //    }
+
+            //    if (objOptionDetail.OptionOID > 0)
+            //    {
+            //        hSql.Com.Parameters.AddWithValue("OptionOID", objOptionDetail.OptionOID);
+            //    }
+            //    else
+            //    {
+            //        hSql.Com.Parameters.AddWithValue("OptionOID", DBNull.Value);
+            //    }
+
+            //    if (objOptionDetail.OptionDetailOID > 0)
+            //    {
+            //        hSql.Com.Parameters.AddWithValue("OptionDetailOID", objOptionDetail.OptionDetailOID);
+            //    }
+            //    else
+            //    {
+            //        hSql.Com.Parameters.AddWithValue("OptionDetailOID", DBNull.Value);
+            //    }
+            //    if (objOptionDetail.SalePr > 0)
+            //    {
+            //        hSql.Com.Parameters.AddWithValue("SelPr", objOptionDetail.SalePr);
+            //    }
+            //    else
+            //    {
+            //        hSql.Com.Parameters.AddWithValue("SelPr", DBNull.Value);
+            //    }
+            //    if (objOptionDetail.Quantity > 0)
+            //    {
+            //        hSql.Com.Parameters.AddWithValue("Quantity", objOptionDetail.Quantity);
+            //    }
+            //    else
+            //    {
+            //        hSql.Com.Parameters.AddWithValue("Quantity", DBNull.Value);
+            //    }
+            //    if (objOptionDetail.Info != null)
+            //    {
+            //        hSql.Com.Parameters.AddWithValue("Info", objOptionDetail.Info);
+            //    }
+            //    else
+            //    {
+            //        hSql.Com.Parameters.AddWithValue("Info", DBNull.Value);
+            //    }
+            //    if (objOptionDetail.PartialPayer != null)
+            //    {
+            //        hSql.Com.Parameters.AddWithValue("PartialPayer", objOptionDetail.PartialPayer);
+            //    }
+            //    else
+            //    {
+            //        hSql.Com.Parameters.AddWithValue("PartialPayer", DBNull.Value);
+            //    }
+            //    bRet = bRet && hSql.ExecuteNonQuery();
+            //}
 
             return bRet;
         }

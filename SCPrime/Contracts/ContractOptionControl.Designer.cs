@@ -38,8 +38,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.PartialPayerCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.InvoiceFlagCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contractOptionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.sCOptionBaseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.oIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.partNrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,15 +51,15 @@
             this.salePrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.infoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PartialPayerCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.optionCategoryOIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.optionOIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.optionDetailOIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.createdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.partialPayerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.InvoiceFlagCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contractOIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contractOptionBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.sCOptionBaseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -175,18 +175,13 @@
             this.dataGridView1.Size = new System.Drawing.Size(648, 409);
             this.dataGridView1.TabIndex = 3;
             // 
-            // PartialPayerCol
+            // contractOptionBindingSource
             // 
-            this.PartialPayerCol.HeaderText = "Partial payer";
-            this.PartialPayerCol.Name = "PartialPayerCol";
-            this.PartialPayerCol.ReadOnly = true;
+            this.contractOptionBindingSource.DataSource = typeof(SCPrime.Model.ContractOption);
             // 
-            // InvoiceFlagCol
+            // sCOptionBaseBindingSource
             // 
-            this.InvoiceFlagCol.HeaderText = "Invoice flag";
-            this.InvoiceFlagCol.Name = "InvoiceFlagCol";
-            this.InvoiceFlagCol.ReadOnly = true;
-            this.InvoiceFlagCol.Visible = false;
+            this.sCOptionBaseBindingSource.DataSource = typeof(SCPrime.Model.SCOptionBase);
             // 
             // oIDDataGridViewTextBoxColumn
             // 
@@ -257,14 +252,17 @@
             this.quantityDataGridViewTextBoxColumn.DataPropertyName = "Quantity";
             this.quantityDataGridViewTextBoxColumn.HeaderText = "Quantity";
             this.quantityDataGridViewTextBoxColumn.Name = "quantityDataGridViewTextBoxColumn";
-            this.quantityDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // infoDataGridViewTextBoxColumn
             // 
             this.infoDataGridViewTextBoxColumn.DataPropertyName = "Info";
             this.infoDataGridViewTextBoxColumn.HeaderText = "Info";
             this.infoDataGridViewTextBoxColumn.Name = "infoDataGridViewTextBoxColumn";
-            this.infoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // PartialPayerCol
+            // 
+            this.PartialPayerCol.HeaderText = "Partial payer";
+            this.PartialPayerCol.Name = "PartialPayerCol";
             // 
             // optionCategoryOIDDataGridViewTextBoxColumn
             // 
@@ -314,6 +312,13 @@
             this.partialPayerDataGridViewTextBoxColumn.ReadOnly = true;
             this.partialPayerDataGridViewTextBoxColumn.Visible = false;
             // 
+            // InvoiceFlagCol
+            // 
+            this.InvoiceFlagCol.HeaderText = "Invoice flag";
+            this.InvoiceFlagCol.Name = "InvoiceFlagCol";
+            this.InvoiceFlagCol.ReadOnly = true;
+            this.InvoiceFlagCol.Visible = false;
+            // 
             // contractOIDDataGridViewTextBoxColumn
             // 
             this.contractOIDDataGridViewTextBoxColumn.DataPropertyName = "ContractOID";
@@ -321,14 +326,6 @@
             this.contractOIDDataGridViewTextBoxColumn.Name = "contractOIDDataGridViewTextBoxColumn";
             this.contractOIDDataGridViewTextBoxColumn.ReadOnly = true;
             this.contractOIDDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // contractOptionBindingSource
-            // 
-            this.contractOptionBindingSource.DataSource = typeof(SCPrime.Model.ContractOption);
-            // 
-            // sCOptionBaseBindingSource
-            // 
-            this.sCOptionBaseBindingSource.DataSource = typeof(SCPrime.Model.SCOptionBase);
             // 
             // ContractOptionControl
             // 
@@ -362,6 +359,7 @@
         public System.Windows.Forms.Label label1;
         public System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.BindingSource sCOptionBaseBindingSource;
+        private System.Windows.Forms.BindingSource contractOptionBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn oIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn partNrDataGridViewTextBoxColumn;
@@ -382,6 +380,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn partialPayerDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn InvoiceFlagCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn contractOIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource contractOptionBindingSource;
     }
 }

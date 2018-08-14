@@ -39,7 +39,6 @@
             this.btnRick = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnNew = new System.Windows.Forms.Button();
-            this.txtRishLevel = new System.Windows.Forms.TextBox();
             this.txtParnerName = new System.Windows.Forms.TextBox();
             this.txtPatnerNr = new System.Windows.Forms.TextBox();
             this.label38 = new System.Windows.Forms.Label();
@@ -53,11 +52,7 @@
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.cbAccounting = new System.Windows.Forms.ComboBox();
             this.cbBiling = new System.Windows.Forms.ComboBox();
-            this.txtInvoiceAmount = new System.Windows.Forms.TextBox();
             this.label30 = new System.Windows.Forms.Label();
-            this.txtHighKm = new System.Windows.Forms.TextBox();
-            this.txtLowKm = new System.Windows.Forms.TextBox();
-            this.txtMaxDev = new System.Windows.Forms.TextBox();
             this.label32 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
@@ -67,11 +62,7 @@
             this.cbCostBassis = new System.Windows.Forms.ComboBox();
             this.txtLastKm = new System.Windows.Forms.TextBox();
             this.label29 = new System.Windows.Forms.Label();
-            this.txtErr = new System.Windows.Forms.TextBox();
             this.txtLastPay = new System.Windows.Forms.TextBox();
-            this.txtKmBassis = new System.Windows.Forms.TextBox();
-            this.txtMonBassis = new System.Windows.Forms.TextBox();
-            this.txtCostBase = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
@@ -82,13 +73,11 @@
             this.txtMonAmountPayer = new System.Windows.Forms.ComboBox();
             this.txtTotalAmount = new System.Windows.Forms.TextBox();
             this.txtStartAmountPayer = new System.Windows.Forms.ComboBox();
-            this.txtMonAmount = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
-            this.txtStartAmount = new System.Windows.Forms.TextBox();
             this.pnTop = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtNextBlockEnd = new System.Windows.Forms.TextBox();
@@ -111,21 +100,15 @@
             this.txtEndInvoice = new System.Windows.Forms.DateTimePicker();
             this.txtEndDate = new System.Windows.Forms.DateTimePicker();
             this.cbTemType = new System.Windows.Forms.ComboBox();
-            this.txtEndHr = new System.Windows.Forms.TextBox();
-            this.txtEndKm = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtHr = new System.Windows.Forms.TextBox();
             this.txtStartInvoice = new System.Windows.Forms.DateTimePicker();
             this.txtStartDate = new System.Windows.Forms.DateTimePicker();
             this.txtPeriod = new System.Windows.Forms.NumericUpDown();
-            this.txtKm = new System.Windows.Forms.TextBox();
-            this.txtStartHr = new System.Windows.Forms.TextBox();
-            this.txtStartKm = new System.Windows.Forms.TextBox();
             this.rdHrBase = new System.Windows.Forms.RadioButton();
             this.rdKmBase = new System.Windows.Forms.RadioButton();
             this.label6 = new System.Windows.Forms.Label();
@@ -135,6 +118,24 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.txtStartKm = new System.Windows.Forms.NumericUpDown();
+            this.txtStartHr = new System.Windows.Forms.NumericUpDown();
+            this.txtKm = new System.Windows.Forms.NumericUpDown();
+            this.txtHr = new System.Windows.Forms.NumericUpDown();
+            this.txtStartAmount = new System.Windows.Forms.NumericUpDown();
+            this.txtMonAmount = new System.Windows.Forms.NumericUpDown();
+            this.txtEndKm = new System.Windows.Forms.NumericUpDown();
+            this.txtEndHr = new System.Windows.Forms.NumericUpDown();
+            this.txtMonBassis = new System.Windows.Forms.NumericUpDown();
+            this.txtKmBassis = new System.Windows.Forms.NumericUpDown();
+            this.txtErr = new System.Windows.Forms.NumericUpDown();
+            this.txtCostBase = new System.Windows.Forms.NumericUpDown();
+            this.txtMaxDev = new System.Windows.Forms.NumericUpDown();
+            this.txtLowKm = new System.Windows.Forms.NumericUpDown();
+            this.txtHighKm = new System.Windows.Forms.NumericUpDown();
+            this.txtInvoiceAmount = new System.Windows.Forms.NumericUpDown();
+            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.txtRishLevel = new System.Windows.Forms.NumericUpDown();
             this.pnAll.SuspendLayout();
             this.pnBottom.SuspendLayout();
             this.pnLeft.SuspendLayout();
@@ -151,6 +152,23 @@
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtPeriod)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStartKm)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStartHr)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtKm)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtHr)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStartAmount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMonAmount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtEndKm)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtEndHr)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMonBassis)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtKmBassis)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtErr)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCostBase)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMaxDev)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLowKm)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtHighKm)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtInvoiceAmount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRishLevel)).BeginInit();
             this.SuspendLayout();
             // 
             // pnAll
@@ -205,11 +223,11 @@
             // 
             // pnTopGrid
             // 
+            this.pnTopGrid.Controls.Add(this.txtRishLevel);
             this.pnTopGrid.Controls.Add(this.txtRiskCusId);
             this.pnTopGrid.Controls.Add(this.btnRick);
             this.pnTopGrid.Controls.Add(this.btnDelete);
             this.pnTopGrid.Controls.Add(this.btnNew);
-            this.pnTopGrid.Controls.Add(this.txtRishLevel);
             this.pnTopGrid.Controls.Add(this.txtParnerName);
             this.pnTopGrid.Controls.Add(this.txtPatnerNr);
             this.pnTopGrid.Controls.Add(this.label38);
@@ -257,13 +275,6 @@
             this.btnNew.Text = "New";
             this.btnNew.UseVisualStyleBackColor = true;
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
-            // 
-            // txtRishLevel
-            // 
-            this.txtRishLevel.Location = new System.Drawing.Point(509, 11);
-            this.txtRishLevel.Name = "txtRishLevel";
-            this.txtRishLevel.Size = new System.Drawing.Size(71, 20);
-            this.txtRishLevel.TabIndex = 20;
             // 
             // txtParnerName
             // 
@@ -359,13 +370,13 @@
             // 
             // groupBox6
             // 
-            this.groupBox6.Controls.Add(this.cbAccounting);
-            this.groupBox6.Controls.Add(this.cbBiling);
             this.groupBox6.Controls.Add(this.txtInvoiceAmount);
-            this.groupBox6.Controls.Add(this.label30);
             this.groupBox6.Controls.Add(this.txtHighKm);
             this.groupBox6.Controls.Add(this.txtLowKm);
             this.groupBox6.Controls.Add(this.txtMaxDev);
+            this.groupBox6.Controls.Add(this.cbAccounting);
+            this.groupBox6.Controls.Add(this.cbBiling);
+            this.groupBox6.Controls.Add(this.label30);
             this.groupBox6.Controls.Add(this.label32);
             this.groupBox6.Controls.Add(this.label33);
             this.groupBox6.Controls.Add(this.label34);
@@ -394,14 +405,6 @@
             this.cbBiling.Size = new System.Drawing.Size(154, 21);
             this.cbBiling.TabIndex = 17;
             // 
-            // txtInvoiceAmount
-            // 
-            this.txtInvoiceAmount.Location = new System.Drawing.Point(99, 144);
-            this.txtInvoiceAmount.Name = "txtInvoiceAmount";
-            this.txtInvoiceAmount.ReadOnly = true;
-            this.txtInvoiceAmount.Size = new System.Drawing.Size(154, 20);
-            this.txtInvoiceAmount.TabIndex = 14;
-            // 
             // label30
             // 
             this.label30.AutoSize = true;
@@ -410,27 +413,6 @@
             this.label30.Size = new System.Drawing.Size(86, 13);
             this.label30.TabIndex = 13;
             this.label30.Text = "Invoiced amount";
-            // 
-            // txtHighKm
-            // 
-            this.txtHighKm.Location = new System.Drawing.Point(99, 120);
-            this.txtHighKm.Name = "txtHighKm";
-            this.txtHighKm.Size = new System.Drawing.Size(154, 20);
-            this.txtHighKm.TabIndex = 11;
-            // 
-            // txtLowKm
-            // 
-            this.txtLowKm.Location = new System.Drawing.Point(99, 95);
-            this.txtLowKm.Name = "txtLowKm";
-            this.txtLowKm.Size = new System.Drawing.Size(154, 20);
-            this.txtLowKm.TabIndex = 10;
-            // 
-            // txtMaxDev
-            // 
-            this.txtMaxDev.Location = new System.Drawing.Point(99, 72);
-            this.txtMaxDev.Name = "txtMaxDev";
-            this.txtMaxDev.Size = new System.Drawing.Size(154, 20);
-            this.txtMaxDev.TabIndex = 9;
             // 
             // label32
             // 
@@ -479,14 +461,14 @@
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.cbCostBassis);
-            this.groupBox5.Controls.Add(this.txtLastKm);
-            this.groupBox5.Controls.Add(this.label29);
             this.groupBox5.Controls.Add(this.txtErr);
-            this.groupBox5.Controls.Add(this.txtLastPay);
             this.groupBox5.Controls.Add(this.txtKmBassis);
             this.groupBox5.Controls.Add(this.txtMonBassis);
             this.groupBox5.Controls.Add(this.txtCostBase);
+            this.groupBox5.Controls.Add(this.cbCostBassis);
+            this.groupBox5.Controls.Add(this.txtLastKm);
+            this.groupBox5.Controls.Add(this.label29);
+            this.groupBox5.Controls.Add(this.txtLastPay);
             this.groupBox5.Controls.Add(this.label18);
             this.groupBox5.Controls.Add(this.label24);
             this.groupBox5.Controls.Add(this.label25);
@@ -525,13 +507,6 @@
             this.label29.TabIndex = 13;
             this.label29.Text = "Last km info";
             // 
-            // txtErr
-            // 
-            this.txtErr.Location = new System.Drawing.Point(115, 148);
-            this.txtErr.Name = "txtErr";
-            this.txtErr.Size = new System.Drawing.Size(138, 20);
-            this.txtErr.TabIndex = 12;
-            // 
             // txtLastPay
             // 
             this.txtLastPay.Location = new System.Drawing.Point(115, 122);
@@ -539,29 +514,6 @@
             this.txtLastPay.ReadOnly = true;
             this.txtLastPay.Size = new System.Drawing.Size(138, 20);
             this.txtLastPay.TabIndex = 11;
-            // 
-            // txtKmBassis
-            // 
-            this.txtKmBassis.Location = new System.Drawing.Point(115, 96);
-            this.txtKmBassis.Name = "txtKmBassis";
-            this.txtKmBassis.Size = new System.Drawing.Size(138, 20);
-            this.txtKmBassis.TabIndex = 10;
-            // 
-            // txtMonBassis
-            // 
-            this.txtMonBassis.Enabled = false;
-            this.txtMonBassis.Location = new System.Drawing.Point(115, 69);
-            this.txtMonBassis.Name = "txtMonBassis";
-            this.txtMonBassis.Size = new System.Drawing.Size(138, 20);
-            this.txtMonBassis.TabIndex = 9;
-            // 
-            // txtCostBase
-            // 
-            this.txtCostBase.Location = new System.Drawing.Point(115, 41);
-            this.txtCostBase.Name = "txtCostBase";
-            this.txtCostBase.ReadOnly = true;
-            this.txtCostBase.Size = new System.Drawing.Size(138, 20);
-            this.txtCostBase.TabIndex = 8;
             // 
             // label18
             // 
@@ -619,16 +571,16 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.txtMonAmount);
+            this.groupBox4.Controls.Add(this.txtStartAmount);
             this.groupBox4.Controls.Add(this.txtMonAmountPayer);
             this.groupBox4.Controls.Add(this.txtTotalAmount);
             this.groupBox4.Controls.Add(this.txtStartAmountPayer);
-            this.groupBox4.Controls.Add(this.txtMonAmount);
             this.groupBox4.Controls.Add(this.label19);
             this.groupBox4.Controls.Add(this.label20);
             this.groupBox4.Controls.Add(this.label21);
             this.groupBox4.Controls.Add(this.label22);
             this.groupBox4.Controls.Add(this.label23);
-            this.groupBox4.Controls.Add(this.txtStartAmount);
             this.groupBox4.Location = new System.Drawing.Point(4, 25);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(294, 169);
@@ -659,13 +611,6 @@
             this.txtStartAmountPayer.Name = "txtStartAmountPayer";
             this.txtStartAmountPayer.Size = new System.Drawing.Size(121, 21);
             this.txtStartAmountPayer.TabIndex = 19;
-            // 
-            // txtMonAmount
-            // 
-            this.txtMonAmount.Location = new System.Drawing.Point(130, 84);
-            this.txtMonAmount.Name = "txtMonAmount";
-            this.txtMonAmount.Size = new System.Drawing.Size(123, 20);
-            this.txtMonAmount.TabIndex = 9;
             // 
             // label19
             // 
@@ -711,13 +656,6 @@
             this.label23.Size = new System.Drawing.Size(81, 13);
             this.label23.TabIndex = 1;
             this.label23.Text = "Starting amount";
-            // 
-            // txtStartAmount
-            // 
-            this.txtStartAmount.Location = new System.Drawing.Point(130, 26);
-            this.txtStartAmount.Name = "txtStartAmount";
-            this.txtStartAmount.Size = new System.Drawing.Size(123, 20);
-            this.txtStartAmount.TabIndex = 0;
             // 
             // pnTop
             // 
@@ -896,11 +834,11 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.txtEndHr);
+            this.groupBox2.Controls.Add(this.txtEndKm);
             this.groupBox2.Controls.Add(this.txtEndInvoice);
             this.groupBox2.Controls.Add(this.txtEndDate);
             this.groupBox2.Controls.Add(this.cbTemType);
-            this.groupBox2.Controls.Add(this.txtEndHr);
-            this.groupBox2.Controls.Add(this.txtEndKm);
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.label10);
@@ -934,20 +872,6 @@
             this.cbTemType.Name = "cbTemType";
             this.cbTemType.Size = new System.Drawing.Size(153, 21);
             this.cbTemType.TabIndex = 11;
-            // 
-            // txtEndHr
-            // 
-            this.txtEndHr.Location = new System.Drawing.Point(99, 71);
-            this.txtEndHr.Name = "txtEndHr";
-            this.txtEndHr.Size = new System.Drawing.Size(154, 20);
-            this.txtEndHr.TabIndex = 9;
-            // 
-            // txtEndKm
-            // 
-            this.txtEndKm.Location = new System.Drawing.Point(99, 46);
-            this.txtEndKm.Name = "txtEndKm";
-            this.txtEndKm.Size = new System.Drawing.Size(154, 20);
-            this.txtEndKm.TabIndex = 8;
             // 
             // label8
             // 
@@ -997,12 +921,12 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.txtHr);
-            this.groupBox1.Controls.Add(this.txtStartInvoice);
-            this.groupBox1.Controls.Add(this.txtStartDate);
-            this.groupBox1.Controls.Add(this.txtPeriod);
             this.groupBox1.Controls.Add(this.txtKm);
             this.groupBox1.Controls.Add(this.txtStartHr);
             this.groupBox1.Controls.Add(this.txtStartKm);
+            this.groupBox1.Controls.Add(this.txtStartInvoice);
+            this.groupBox1.Controls.Add(this.txtStartDate);
+            this.groupBox1.Controls.Add(this.txtPeriod);
             this.groupBox1.Controls.Add(this.rdHrBase);
             this.groupBox1.Controls.Add(this.rdKmBase);
             this.groupBox1.Controls.Add(this.label6);
@@ -1017,13 +941,6 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Contract start";
-            // 
-            // txtHr
-            // 
-            this.txtHr.Location = new System.Drawing.Point(182, 142);
-            this.txtHr.Name = "txtHr";
-            this.txtHr.Size = new System.Drawing.Size(69, 20);
-            this.txtHr.TabIndex = 16;
             // 
             // txtStartInvoice
             // 
@@ -1047,27 +964,6 @@
             this.txtPeriod.Size = new System.Drawing.Size(154, 20);
             this.txtPeriod.TabIndex = 13;
             this.txtPeriod.ValueChanged += new System.EventHandler(this.txtPeriod_ValueChanged);
-            // 
-            // txtKm
-            // 
-            this.txtKm.Location = new System.Drawing.Point(99, 142);
-            this.txtKm.Name = "txtKm";
-            this.txtKm.Size = new System.Drawing.Size(67, 20);
-            this.txtKm.TabIndex = 12;
-            // 
-            // txtStartHr
-            // 
-            this.txtStartHr.Location = new System.Drawing.Point(99, 69);
-            this.txtStartHr.Name = "txtStartHr";
-            this.txtStartHr.Size = new System.Drawing.Size(154, 20);
-            this.txtStartHr.TabIndex = 9;
-            // 
-            // txtStartKm
-            // 
-            this.txtStartKm.Location = new System.Drawing.Point(99, 45);
-            this.txtStartKm.Name = "txtStartKm";
-            this.txtStartKm.Size = new System.Drawing.Size(154, 20);
-            this.txtStartKm.TabIndex = 8;
             // 
             // rdHrBase
             // 
@@ -1150,6 +1046,202 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // txtStartKm
+            // 
+            this.txtStartKm.Location = new System.Drawing.Point(99, 41);
+            this.txtStartKm.Name = "txtStartKm";
+            this.txtStartKm.Size = new System.Drawing.Size(157, 20);
+            this.txtStartKm.TabIndex = 17;
+            // 
+            // txtStartHr
+            // 
+            this.txtStartHr.Location = new System.Drawing.Point(99, 69);
+            this.txtStartHr.Name = "txtStartHr";
+            this.txtStartHr.Size = new System.Drawing.Size(157, 20);
+            this.txtStartHr.TabIndex = 18;
+            // 
+            // txtKm
+            // 
+            this.txtKm.Location = new System.Drawing.Point(99, 144);
+            this.txtKm.Maximum = new decimal(new int[] {
+            1661992959,
+            1808227885,
+            5,
+            0});
+            this.txtKm.Name = "txtKm";
+            this.txtKm.Size = new System.Drawing.Size(77, 20);
+            this.txtKm.TabIndex = 19;
+            // 
+            // txtHr
+            // 
+            this.txtHr.Location = new System.Drawing.Point(182, 143);
+            this.txtHr.Maximum = new decimal(new int[] {
+            1661992959,
+            1808227885,
+            5,
+            0});
+            this.txtHr.Name = "txtHr";
+            this.txtHr.Size = new System.Drawing.Size(69, 20);
+            this.txtHr.TabIndex = 20;
+            // 
+            // txtStartAmount
+            // 
+            this.txtStartAmount.Location = new System.Drawing.Point(130, 20);
+            this.txtStartAmount.Maximum = new decimal(new int[] {
+            1661992959,
+            1808227885,
+            5,
+            0});
+            this.txtStartAmount.Name = "txtStartAmount";
+            this.txtStartAmount.Size = new System.Drawing.Size(120, 20);
+            this.txtStartAmount.TabIndex = 21;
+            // 
+            // txtMonAmount
+            // 
+            this.txtMonAmount.Location = new System.Drawing.Point(130, 82);
+            this.txtMonAmount.Maximum = new decimal(new int[] {
+            1661992959,
+            1808227885,
+            5,
+            0});
+            this.txtMonAmount.Name = "txtMonAmount";
+            this.txtMonAmount.Size = new System.Drawing.Size(120, 20);
+            this.txtMonAmount.TabIndex = 22;
+            // 
+            // txtEndKm
+            // 
+            this.txtEndKm.Location = new System.Drawing.Point(99, 42);
+            this.txtEndKm.Maximum = new decimal(new int[] {
+            1661992959,
+            1808227885,
+            5,
+            0});
+            this.txtEndKm.Name = "txtEndKm";
+            this.txtEndKm.Size = new System.Drawing.Size(154, 20);
+            this.txtEndKm.TabIndex = 14;
+            // 
+            // txtEndHr
+            // 
+            this.txtEndHr.Location = new System.Drawing.Point(99, 71);
+            this.txtEndHr.Maximum = new decimal(new int[] {
+            1661992959,
+            1808227885,
+            5,
+            0});
+            this.txtEndHr.Name = "txtEndHr";
+            this.txtEndHr.Size = new System.Drawing.Size(154, 20);
+            this.txtEndHr.TabIndex = 15;
+            // 
+            // txtMonBassis
+            // 
+            this.txtMonBassis.Location = new System.Drawing.Point(115, 69);
+            this.txtMonBassis.Maximum = new decimal(new int[] {
+            1661992959,
+            1808227885,
+            5,
+            0});
+            this.txtMonBassis.Name = "txtMonBassis";
+            this.txtMonBassis.Size = new System.Drawing.Size(138, 20);
+            this.txtMonBassis.TabIndex = 19;
+            // 
+            // txtKmBassis
+            // 
+            this.txtKmBassis.Location = new System.Drawing.Point(115, 96);
+            this.txtKmBassis.Maximum = new decimal(new int[] {
+            1661992959,
+            1808227885,
+            5,
+            0});
+            this.txtKmBassis.Name = "txtKmBassis";
+            this.txtKmBassis.Size = new System.Drawing.Size(138, 20);
+            this.txtKmBassis.TabIndex = 20;
+            // 
+            // txtErr
+            // 
+            this.txtErr.Location = new System.Drawing.Point(115, 146);
+            this.txtErr.Maximum = new decimal(new int[] {
+            1661992959,
+            1808227885,
+            5,
+            0});
+            this.txtErr.Name = "txtErr";
+            this.txtErr.Size = new System.Drawing.Size(138, 20);
+            this.txtErr.TabIndex = 21;
+            // 
+            // txtCostBase
+            // 
+            this.txtCostBase.Location = new System.Drawing.Point(115, 43);
+            this.txtCostBase.Maximum = new decimal(new int[] {
+            1661992959,
+            1808227885,
+            5,
+            0});
+            this.txtCostBase.Name = "txtCostBase";
+            this.txtCostBase.ReadOnly = true;
+            this.txtCostBase.Size = new System.Drawing.Size(138, 20);
+            this.txtCostBase.TabIndex = 18;
+            // 
+            // txtMaxDev
+            // 
+            this.txtMaxDev.Location = new System.Drawing.Point(98, 73);
+            this.txtMaxDev.Maximum = new decimal(new int[] {
+            1661992959,
+            1808227885,
+            5,
+            0});
+            this.txtMaxDev.Name = "txtMaxDev";
+            this.txtMaxDev.Size = new System.Drawing.Size(154, 20);
+            this.txtMaxDev.TabIndex = 19;
+            // 
+            // txtLowKm
+            // 
+            this.txtLowKm.Location = new System.Drawing.Point(100, 97);
+            this.txtLowKm.Maximum = new decimal(new int[] {
+            1661992959,
+            1808227885,
+            5,
+            0});
+            this.txtLowKm.Name = "txtLowKm";
+            this.txtLowKm.Size = new System.Drawing.Size(151, 20);
+            this.txtLowKm.TabIndex = 20;
+            // 
+            // txtHighKm
+            // 
+            this.txtHighKm.Location = new System.Drawing.Point(98, 122);
+            this.txtHighKm.Maximum = new decimal(new int[] {
+            1661992959,
+            1808227885,
+            5,
+            0});
+            this.txtHighKm.Name = "txtHighKm";
+            this.txtHighKm.Size = new System.Drawing.Size(153, 20);
+            this.txtHighKm.TabIndex = 21;
+            // 
+            // txtInvoiceAmount
+            // 
+            this.txtInvoiceAmount.Location = new System.Drawing.Point(99, 149);
+            this.txtInvoiceAmount.Maximum = new decimal(new int[] {
+            1661992959,
+            1808227885,
+            5,
+            0});
+            this.txtInvoiceAmount.Name = "txtInvoiceAmount";
+            this.txtInvoiceAmount.ReadOnly = true;
+            this.txtInvoiceAmount.Size = new System.Drawing.Size(152, 20);
+            this.txtInvoiceAmount.TabIndex = 22;
+            // 
+            // contextMenuStrip2
+            // 
+            this.contextMenuStrip2.Name = "contextMenuStrip2";
+            this.contextMenuStrip2.Size = new System.Drawing.Size(61, 4);
+            // 
+            // txtRishLevel
+            // 
+            this.txtRishLevel.Location = new System.Drawing.Point(499, 11);
+            this.txtRishLevel.Name = "txtRishLevel";
+            this.txtRishLevel.Size = new System.Drawing.Size(80, 20);
+            this.txtRishLevel.TabIndex = 25;
+            // 
             // ContractDataFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1181,6 +1273,23 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtPeriod)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStartKm)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStartHr)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtKm)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtHr)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStartAmount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMonAmount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtEndKm)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtEndHr)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMonBassis)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtKmBassis)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtErr)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCostBase)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMaxDev)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLowKm)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtHighKm)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtInvoiceAmount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRishLevel)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1200,12 +1309,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.RadioButton rdHrBase;
         private System.Windows.Forms.RadioButton rdKmBase;
-        private System.Windows.Forms.TextBox txtStartKm;
-        private System.Windows.Forms.TextBox txtKm;
-        private System.Windows.Forms.TextBox txtStartHr;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox txtEndHr;
-        private System.Windows.Forms.TextBox txtEndKm;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
@@ -1227,19 +1331,13 @@
         private System.Windows.Forms.ComboBox cbColType;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.TextBox txtTotalAmount;
-        private System.Windows.Forms.TextBox txtMonAmount;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.TextBox txtStartAmount;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.TextBox txtErr;
         private System.Windows.Forms.TextBox txtLastPay;
-        private System.Windows.Forms.TextBox txtKmBassis;
-        private System.Windows.Forms.TextBox txtMonBassis;
-        private System.Windows.Forms.TextBox txtCostBase;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label25;
@@ -1251,11 +1349,7 @@
         private System.Windows.Forms.ComboBox cbCostBassis;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.ComboBox cbBiling;
-        private System.Windows.Forms.TextBox txtInvoiceAmount;
         private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.TextBox txtHighKm;
-        private System.Windows.Forms.TextBox txtLowKm;
-        private System.Windows.Forms.TextBox txtMaxDev;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label34;
@@ -1269,7 +1363,6 @@
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.ComboBox cbRoll;
         private System.Windows.Forms.CheckBox cbInvoiceDetail;
-        private System.Windows.Forms.TextBox txtRishLevel;
         private System.Windows.Forms.TextBox txtParnerName;
         private System.Windows.Forms.TextBox txtPatnerNr;
         private System.Windows.Forms.Button btnDelete;
@@ -1292,6 +1385,23 @@
         private System.Windows.Forms.TextBox txtNextBlockEnd;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.TextBox txtRiskCusId;
-        private System.Windows.Forms.TextBox txtHr;
+        private System.Windows.Forms.NumericUpDown txtStartKm;
+        private System.Windows.Forms.NumericUpDown txtStartHr;
+        private System.Windows.Forms.NumericUpDown txtHr;
+        private System.Windows.Forms.NumericUpDown txtKm;
+        private System.Windows.Forms.NumericUpDown txtStartAmount;
+        private System.Windows.Forms.NumericUpDown txtMonAmount;
+        private System.Windows.Forms.NumericUpDown txtEndHr;
+        private System.Windows.Forms.NumericUpDown txtEndKm;
+        private System.Windows.Forms.NumericUpDown txtMonBassis;
+        private System.Windows.Forms.NumericUpDown txtErr;
+        private System.Windows.Forms.NumericUpDown txtKmBassis;
+        private System.Windows.Forms.NumericUpDown txtCostBase;
+        private System.Windows.Forms.NumericUpDown txtLowKm;
+        private System.Windows.Forms.NumericUpDown txtMaxDev;
+        private System.Windows.Forms.NumericUpDown txtHighKm;
+        private System.Windows.Forms.NumericUpDown txtInvoiceAmount;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
+        private System.Windows.Forms.NumericUpDown txtRishLevel;
     }
 }
