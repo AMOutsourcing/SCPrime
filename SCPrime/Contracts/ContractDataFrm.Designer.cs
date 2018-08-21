@@ -35,6 +35,7 @@
             this.pnGrid = new System.Windows.Forms.Panel();
             this.gridRisk = new System.Windows.Forms.DataGridView();
             this.pnTopGrid = new System.Windows.Forms.Panel();
+            this.txtRishLevel = new System.Windows.Forms.NumericUpDown();
             this.txtRiskCusId = new System.Windows.Forms.TextBox();
             this.btnRick = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -50,6 +51,10 @@
             this.cbInvoiceDetail = new System.Windows.Forms.CheckBox();
             this.pnMid = new System.Windows.Forms.Panel();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.txtInvoiceAmount = new System.Windows.Forms.NumericUpDown();
+            this.txtHighKm = new System.Windows.Forms.NumericUpDown();
+            this.txtLowKm = new System.Windows.Forms.NumericUpDown();
+            this.txtMaxDev = new System.Windows.Forms.NumericUpDown();
             this.cbAccounting = new System.Windows.Forms.ComboBox();
             this.cbBiling = new System.Windows.Forms.ComboBox();
             this.label30 = new System.Windows.Forms.Label();
@@ -59,6 +64,10 @@
             this.label35 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.txtErr = new System.Windows.Forms.NumericUpDown();
+            this.txtKmBassis = new System.Windows.Forms.NumericUpDown();
+            this.txtMonBassis = new System.Windows.Forms.NumericUpDown();
+            this.txtCostBase = new System.Windows.Forms.NumericUpDown();
             this.cbCostBassis = new System.Windows.Forms.ComboBox();
             this.txtLastKm = new System.Windows.Forms.TextBox();
             this.label29 = new System.Windows.Forms.Label();
@@ -70,6 +79,8 @@
             this.label27 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.txtMonAmount = new System.Windows.Forms.NumericUpDown();
+            this.txtStartAmount = new System.Windows.Forms.NumericUpDown();
             this.txtMonAmountPayer = new System.Windows.Forms.ComboBox();
             this.txtTotalAmount = new System.Windows.Forms.TextBox();
             this.txtStartAmountPayer = new System.Windows.Forms.ComboBox();
@@ -97,6 +108,8 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtEndHr = new System.Windows.Forms.NumericUpDown();
+            this.txtEndKm = new System.Windows.Forms.NumericUpDown();
             this.txtEndInvoice = new System.Windows.Forms.DateTimePicker();
             this.txtEndDate = new System.Windows.Forms.DateTimePicker();
             this.cbTemType = new System.Windows.Forms.ComboBox();
@@ -106,6 +119,10 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtHr = new System.Windows.Forms.NumericUpDown();
+            this.txtKm = new System.Windows.Forms.NumericUpDown();
+            this.txtStartHr = new System.Windows.Forms.NumericUpDown();
+            this.txtStartKm = new System.Windows.Forms.NumericUpDown();
             this.txtStartInvoice = new System.Windows.Forms.DateTimePicker();
             this.txtStartDate = new System.Windows.Forms.DateTimePicker();
             this.txtPeriod = new System.Windows.Forms.NumericUpDown();
@@ -118,57 +135,40 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.txtStartKm = new System.Windows.Forms.NumericUpDown();
-            this.txtStartHr = new System.Windows.Forms.NumericUpDown();
-            this.txtKm = new System.Windows.Forms.NumericUpDown();
-            this.txtHr = new System.Windows.Forms.NumericUpDown();
-            this.txtStartAmount = new System.Windows.Forms.NumericUpDown();
-            this.txtMonAmount = new System.Windows.Forms.NumericUpDown();
-            this.txtEndKm = new System.Windows.Forms.NumericUpDown();
-            this.txtEndHr = new System.Windows.Forms.NumericUpDown();
-            this.txtMonBassis = new System.Windows.Forms.NumericUpDown();
-            this.txtKmBassis = new System.Windows.Forms.NumericUpDown();
-            this.txtErr = new System.Windows.Forms.NumericUpDown();
-            this.txtCostBase = new System.Windows.Forms.NumericUpDown();
-            this.txtMaxDev = new System.Windows.Forms.NumericUpDown();
-            this.txtLowKm = new System.Windows.Forms.NumericUpDown();
-            this.txtHighKm = new System.Windows.Forms.NumericUpDown();
-            this.txtInvoiceAmount = new System.Windows.Forms.NumericUpDown();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.txtRishLevel = new System.Windows.Forms.NumericUpDown();
             this.pnAll.SuspendLayout();
             this.pnBottom.SuspendLayout();
             this.pnLeft.SuspendLayout();
             this.pnGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridRisk)).BeginInit();
             this.pnTopGrid.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRishLevel)).BeginInit();
             this.pnRight.SuspendLayout();
             this.pnMid.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtInvoiceAmount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtHighKm)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLowKm)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMaxDev)).BeginInit();
             this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtErr)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtKmBassis)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMonBassis)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCostBase)).BeginInit();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMonAmount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStartAmount)).BeginInit();
             this.pnTop.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPeriod)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtStartKm)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtStartHr)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtKm)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtHr)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtStartAmount)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMonAmount)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtEndKm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEndHr)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMonBassis)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtKmBassis)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtErr)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCostBase)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMaxDev)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtLowKm)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtHighKm)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtInvoiceAmount)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRishLevel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtEndKm)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtHr)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtKm)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStartHr)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStartKm)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPeriod)).BeginInit();
             this.SuspendLayout();
             // 
             // pnAll
@@ -238,6 +238,13 @@
             this.pnTopGrid.Name = "pnTopGrid";
             this.pnTopGrid.Size = new System.Drawing.Size(599, 70);
             this.pnTopGrid.TabIndex = 0;
+            // 
+            // txtRishLevel
+            // 
+            this.txtRishLevel.Location = new System.Drawing.Point(499, 11);
+            this.txtRishLevel.Name = "txtRishLevel";
+            this.txtRishLevel.Size = new System.Drawing.Size(80, 20);
+            this.txtRishLevel.TabIndex = 25;
             // 
             // txtRiskCusId
             // 
@@ -389,6 +396,55 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Extra km";
             // 
+            // txtInvoiceAmount
+            // 
+            this.txtInvoiceAmount.Location = new System.Drawing.Point(99, 149);
+            this.txtInvoiceAmount.Maximum = new decimal(new int[] {
+            1661992959,
+            1808227885,
+            5,
+            0});
+            this.txtInvoiceAmount.Name = "txtInvoiceAmount";
+            this.txtInvoiceAmount.ReadOnly = true;
+            this.txtInvoiceAmount.Size = new System.Drawing.Size(152, 20);
+            this.txtInvoiceAmount.TabIndex = 22;
+            // 
+            // txtHighKm
+            // 
+            this.txtHighKm.Location = new System.Drawing.Point(98, 122);
+            this.txtHighKm.Maximum = new decimal(new int[] {
+            1661992959,
+            1808227885,
+            5,
+            0});
+            this.txtHighKm.Name = "txtHighKm";
+            this.txtHighKm.Size = new System.Drawing.Size(153, 20);
+            this.txtHighKm.TabIndex = 21;
+            // 
+            // txtLowKm
+            // 
+            this.txtLowKm.Location = new System.Drawing.Point(100, 97);
+            this.txtLowKm.Maximum = new decimal(new int[] {
+            1661992959,
+            1808227885,
+            5,
+            0});
+            this.txtLowKm.Name = "txtLowKm";
+            this.txtLowKm.Size = new System.Drawing.Size(151, 20);
+            this.txtLowKm.TabIndex = 20;
+            // 
+            // txtMaxDev
+            // 
+            this.txtMaxDev.Location = new System.Drawing.Point(98, 73);
+            this.txtMaxDev.Maximum = new decimal(new int[] {
+            1661992959,
+            1808227885,
+            5,
+            0});
+            this.txtMaxDev.Name = "txtMaxDev";
+            this.txtMaxDev.Size = new System.Drawing.Size(154, 20);
+            this.txtMaxDev.TabIndex = 19;
+            // 
             // cbAccounting
             // 
             this.cbAccounting.FormattingEnabled = true;
@@ -481,6 +537,55 @@
             this.groupBox5.TabIndex = 13;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Contract cost";
+            // 
+            // txtErr
+            // 
+            this.txtErr.Location = new System.Drawing.Point(115, 146);
+            this.txtErr.Maximum = new decimal(new int[] {
+            1661992959,
+            1808227885,
+            5,
+            0});
+            this.txtErr.Name = "txtErr";
+            this.txtErr.Size = new System.Drawing.Size(138, 20);
+            this.txtErr.TabIndex = 21;
+            // 
+            // txtKmBassis
+            // 
+            this.txtKmBassis.Location = new System.Drawing.Point(115, 96);
+            this.txtKmBassis.Maximum = new decimal(new int[] {
+            1661992959,
+            1808227885,
+            5,
+            0});
+            this.txtKmBassis.Name = "txtKmBassis";
+            this.txtKmBassis.Size = new System.Drawing.Size(138, 20);
+            this.txtKmBassis.TabIndex = 20;
+            // 
+            // txtMonBassis
+            // 
+            this.txtMonBassis.Location = new System.Drawing.Point(115, 69);
+            this.txtMonBassis.Maximum = new decimal(new int[] {
+            1661992959,
+            1808227885,
+            5,
+            0});
+            this.txtMonBassis.Name = "txtMonBassis";
+            this.txtMonBassis.Size = new System.Drawing.Size(138, 20);
+            this.txtMonBassis.TabIndex = 19;
+            // 
+            // txtCostBase
+            // 
+            this.txtCostBase.Location = new System.Drawing.Point(115, 43);
+            this.txtCostBase.Maximum = new decimal(new int[] {
+            1661992959,
+            1808227885,
+            5,
+            0});
+            this.txtCostBase.Name = "txtCostBase";
+            this.txtCostBase.ReadOnly = true;
+            this.txtCostBase.Size = new System.Drawing.Size(138, 20);
+            this.txtCostBase.TabIndex = 18;
             // 
             // cbCostBassis
             // 
@@ -587,6 +692,30 @@
             this.groupBox4.TabIndex = 13;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Contract captial";
+            // 
+            // txtMonAmount
+            // 
+            this.txtMonAmount.Location = new System.Drawing.Point(130, 82);
+            this.txtMonAmount.Maximum = new decimal(new int[] {
+            1661992959,
+            1808227885,
+            5,
+            0});
+            this.txtMonAmount.Name = "txtMonAmount";
+            this.txtMonAmount.Size = new System.Drawing.Size(120, 20);
+            this.txtMonAmount.TabIndex = 22;
+            // 
+            // txtStartAmount
+            // 
+            this.txtStartAmount.Location = new System.Drawing.Point(130, 20);
+            this.txtStartAmount.Maximum = new decimal(new int[] {
+            1661992959,
+            1808227885,
+            5,
+            0});
+            this.txtStartAmount.Name = "txtStartAmount";
+            this.txtStartAmount.Size = new System.Drawing.Size(120, 20);
+            this.txtStartAmount.TabIndex = 21;
             // 
             // txtMonAmountPayer
             // 
@@ -851,6 +980,30 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Contract end";
             // 
+            // txtEndHr
+            // 
+            this.txtEndHr.Location = new System.Drawing.Point(99, 71);
+            this.txtEndHr.Maximum = new decimal(new int[] {
+            1661992959,
+            1808227885,
+            5,
+            0});
+            this.txtEndHr.Name = "txtEndHr";
+            this.txtEndHr.Size = new System.Drawing.Size(154, 20);
+            this.txtEndHr.TabIndex = 15;
+            // 
+            // txtEndKm
+            // 
+            this.txtEndKm.Location = new System.Drawing.Point(99, 42);
+            this.txtEndKm.Maximum = new decimal(new int[] {
+            1661992959,
+            1808227885,
+            5,
+            0});
+            this.txtEndKm.Name = "txtEndKm";
+            this.txtEndKm.Size = new System.Drawing.Size(154, 20);
+            this.txtEndKm.TabIndex = 14;
+            // 
             // txtEndInvoice
             // 
             this.txtEndInvoice.Location = new System.Drawing.Point(99, 98);
@@ -941,6 +1094,44 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Contract start";
+            // 
+            // txtHr
+            // 
+            this.txtHr.Location = new System.Drawing.Point(182, 143);
+            this.txtHr.Maximum = new decimal(new int[] {
+            1661992959,
+            1808227885,
+            5,
+            0});
+            this.txtHr.Name = "txtHr";
+            this.txtHr.Size = new System.Drawing.Size(69, 20);
+            this.txtHr.TabIndex = 20;
+            // 
+            // txtKm
+            // 
+            this.txtKm.Location = new System.Drawing.Point(99, 144);
+            this.txtKm.Maximum = new decimal(new int[] {
+            1661992959,
+            1808227885,
+            5,
+            0});
+            this.txtKm.Name = "txtKm";
+            this.txtKm.Size = new System.Drawing.Size(77, 20);
+            this.txtKm.TabIndex = 19;
+            // 
+            // txtStartHr
+            // 
+            this.txtStartHr.Location = new System.Drawing.Point(99, 69);
+            this.txtStartHr.Name = "txtStartHr";
+            this.txtStartHr.Size = new System.Drawing.Size(157, 20);
+            this.txtStartHr.TabIndex = 18;
+            // 
+            // txtStartKm
+            // 
+            this.txtStartKm.Location = new System.Drawing.Point(99, 41);
+            this.txtStartKm.Name = "txtStartKm";
+            this.txtStartKm.Size = new System.Drawing.Size(157, 20);
+            this.txtStartKm.TabIndex = 17;
             // 
             // txtStartInvoice
             // 
@@ -1046,201 +1237,10 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // txtStartKm
-            // 
-            this.txtStartKm.Location = new System.Drawing.Point(99, 41);
-            this.txtStartKm.Name = "txtStartKm";
-            this.txtStartKm.Size = new System.Drawing.Size(157, 20);
-            this.txtStartKm.TabIndex = 17;
-            // 
-            // txtStartHr
-            // 
-            this.txtStartHr.Location = new System.Drawing.Point(99, 69);
-            this.txtStartHr.Name = "txtStartHr";
-            this.txtStartHr.Size = new System.Drawing.Size(157, 20);
-            this.txtStartHr.TabIndex = 18;
-            // 
-            // txtKm
-            // 
-            this.txtKm.Location = new System.Drawing.Point(99, 144);
-            this.txtKm.Maximum = new decimal(new int[] {
-            1661992959,
-            1808227885,
-            5,
-            0});
-            this.txtKm.Name = "txtKm";
-            this.txtKm.Size = new System.Drawing.Size(77, 20);
-            this.txtKm.TabIndex = 19;
-            // 
-            // txtHr
-            // 
-            this.txtHr.Location = new System.Drawing.Point(182, 143);
-            this.txtHr.Maximum = new decimal(new int[] {
-            1661992959,
-            1808227885,
-            5,
-            0});
-            this.txtHr.Name = "txtHr";
-            this.txtHr.Size = new System.Drawing.Size(69, 20);
-            this.txtHr.TabIndex = 20;
-            // 
-            // txtStartAmount
-            // 
-            this.txtStartAmount.Location = new System.Drawing.Point(130, 20);
-            this.txtStartAmount.Maximum = new decimal(new int[] {
-            1661992959,
-            1808227885,
-            5,
-            0});
-            this.txtStartAmount.Name = "txtStartAmount";
-            this.txtStartAmount.Size = new System.Drawing.Size(120, 20);
-            this.txtStartAmount.TabIndex = 21;
-            // 
-            // txtMonAmount
-            // 
-            this.txtMonAmount.Location = new System.Drawing.Point(130, 82);
-            this.txtMonAmount.Maximum = new decimal(new int[] {
-            1661992959,
-            1808227885,
-            5,
-            0});
-            this.txtMonAmount.Name = "txtMonAmount";
-            this.txtMonAmount.Size = new System.Drawing.Size(120, 20);
-            this.txtMonAmount.TabIndex = 22;
-            // 
-            // txtEndKm
-            // 
-            this.txtEndKm.Location = new System.Drawing.Point(99, 42);
-            this.txtEndKm.Maximum = new decimal(new int[] {
-            1661992959,
-            1808227885,
-            5,
-            0});
-            this.txtEndKm.Name = "txtEndKm";
-            this.txtEndKm.Size = new System.Drawing.Size(154, 20);
-            this.txtEndKm.TabIndex = 14;
-            // 
-            // txtEndHr
-            // 
-            this.txtEndHr.Location = new System.Drawing.Point(99, 71);
-            this.txtEndHr.Maximum = new decimal(new int[] {
-            1661992959,
-            1808227885,
-            5,
-            0});
-            this.txtEndHr.Name = "txtEndHr";
-            this.txtEndHr.Size = new System.Drawing.Size(154, 20);
-            this.txtEndHr.TabIndex = 15;
-            // 
-            // txtMonBassis
-            // 
-            this.txtMonBassis.Location = new System.Drawing.Point(115, 69);
-            this.txtMonBassis.Maximum = new decimal(new int[] {
-            1661992959,
-            1808227885,
-            5,
-            0});
-            this.txtMonBassis.Name = "txtMonBassis";
-            this.txtMonBassis.Size = new System.Drawing.Size(138, 20);
-            this.txtMonBassis.TabIndex = 19;
-            // 
-            // txtKmBassis
-            // 
-            this.txtKmBassis.Location = new System.Drawing.Point(115, 96);
-            this.txtKmBassis.Maximum = new decimal(new int[] {
-            1661992959,
-            1808227885,
-            5,
-            0});
-            this.txtKmBassis.Name = "txtKmBassis";
-            this.txtKmBassis.Size = new System.Drawing.Size(138, 20);
-            this.txtKmBassis.TabIndex = 20;
-            // 
-            // txtErr
-            // 
-            this.txtErr.Location = new System.Drawing.Point(115, 146);
-            this.txtErr.Maximum = new decimal(new int[] {
-            1661992959,
-            1808227885,
-            5,
-            0});
-            this.txtErr.Name = "txtErr";
-            this.txtErr.Size = new System.Drawing.Size(138, 20);
-            this.txtErr.TabIndex = 21;
-            // 
-            // txtCostBase
-            // 
-            this.txtCostBase.Location = new System.Drawing.Point(115, 43);
-            this.txtCostBase.Maximum = new decimal(new int[] {
-            1661992959,
-            1808227885,
-            5,
-            0});
-            this.txtCostBase.Name = "txtCostBase";
-            this.txtCostBase.ReadOnly = true;
-            this.txtCostBase.Size = new System.Drawing.Size(138, 20);
-            this.txtCostBase.TabIndex = 18;
-            // 
-            // txtMaxDev
-            // 
-            this.txtMaxDev.Location = new System.Drawing.Point(98, 73);
-            this.txtMaxDev.Maximum = new decimal(new int[] {
-            1661992959,
-            1808227885,
-            5,
-            0});
-            this.txtMaxDev.Name = "txtMaxDev";
-            this.txtMaxDev.Size = new System.Drawing.Size(154, 20);
-            this.txtMaxDev.TabIndex = 19;
-            // 
-            // txtLowKm
-            // 
-            this.txtLowKm.Location = new System.Drawing.Point(100, 97);
-            this.txtLowKm.Maximum = new decimal(new int[] {
-            1661992959,
-            1808227885,
-            5,
-            0});
-            this.txtLowKm.Name = "txtLowKm";
-            this.txtLowKm.Size = new System.Drawing.Size(151, 20);
-            this.txtLowKm.TabIndex = 20;
-            // 
-            // txtHighKm
-            // 
-            this.txtHighKm.Location = new System.Drawing.Point(98, 122);
-            this.txtHighKm.Maximum = new decimal(new int[] {
-            1661992959,
-            1808227885,
-            5,
-            0});
-            this.txtHighKm.Name = "txtHighKm";
-            this.txtHighKm.Size = new System.Drawing.Size(153, 20);
-            this.txtHighKm.TabIndex = 21;
-            // 
-            // txtInvoiceAmount
-            // 
-            this.txtInvoiceAmount.Location = new System.Drawing.Point(99, 149);
-            this.txtInvoiceAmount.Maximum = new decimal(new int[] {
-            1661992959,
-            1808227885,
-            5,
-            0});
-            this.txtInvoiceAmount.Name = "txtInvoiceAmount";
-            this.txtInvoiceAmount.ReadOnly = true;
-            this.txtInvoiceAmount.Size = new System.Drawing.Size(152, 20);
-            this.txtInvoiceAmount.TabIndex = 22;
-            // 
             // contextMenuStrip2
             // 
             this.contextMenuStrip2.Name = "contextMenuStrip2";
             this.contextMenuStrip2.Size = new System.Drawing.Size(61, 4);
-            // 
-            // txtRishLevel
-            // 
-            this.txtRishLevel.Location = new System.Drawing.Point(499, 11);
-            this.txtRishLevel.Name = "txtRishLevel";
-            this.txtRishLevel.Size = new System.Drawing.Size(80, 20);
-            this.txtRishLevel.TabIndex = 25;
             // 
             // ContractDataFrm
             // 
@@ -1256,40 +1256,40 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridRisk)).EndInit();
             this.pnTopGrid.ResumeLayout(false);
             this.pnTopGrid.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRishLevel)).EndInit();
             this.pnRight.ResumeLayout(false);
             this.pnRight.PerformLayout();
             this.pnMid.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtInvoiceAmount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtHighKm)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLowKm)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMaxDev)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtErr)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtKmBassis)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMonBassis)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCostBase)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMonAmount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStartAmount)).EndInit();
             this.pnTop.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtEndHr)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtEndKm)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPeriod)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtStartKm)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtStartHr)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtKm)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHr)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtStartAmount)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMonAmount)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtEndKm)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtEndHr)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMonBassis)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtKmBassis)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtErr)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCostBase)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMaxDev)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtLowKm)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtHighKm)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtInvoiceAmount)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRishLevel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtKm)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStartHr)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStartKm)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPeriod)).EndInit();
             this.ResumeLayout(false);
 
         }

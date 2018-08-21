@@ -26,6 +26,9 @@ namespace SCPrime
         {
             InitializeComponent();
             this.Visible = false;
+            // remove context menu
+            this.ContextMenuStrip.Items.Clear();
+
         }
 
         private void SCMain_Load(object sender, EventArgs e)
@@ -142,7 +145,6 @@ namespace SCPrime
             cblContactType.DataSource = sCBase.getContractTypeActive();
             cblContactType.DisplayMember = "Name";
             cblContactType.ValueMember = "OID";
-
 
             //Set check default
             setCheckDefault();
@@ -509,6 +511,48 @@ namespace SCPrime
             Contract mycontract = SCBase.searchContracts(SCMain.ContractOid);
             dlgPrintContract printer = new dlgPrintContract(mycontract);
             printer.ShowDialog();
+        }
+
+        private void gridContract_MouseDown(object sender, MouseEventArgs e)
+        {
+            switch (e.Button)
+            {
+                case MouseButtons.Right:
+                    {
+                        rightClickMenuStrip.Show(this, new Point(e.X+200, e.Y+50));//places the menu at the pointer position
+                    }
+                    break;
+            }
+        }
+
+        private void openMenu_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("openMenu_Click");
+        }
+
+        private void customerData_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("customerData_Click");
+        }
+
+        private void vehicleData_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("vehicleData_Click");
+        }
+
+        private void serviceHistory_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("serviceHistory_Click");
+        }
+
+        private void eLOArchive_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("eLOArchive_Click");
+        }
+
+        private void mileageRegister_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("mileageRegister_Click");
         }
     }
 }

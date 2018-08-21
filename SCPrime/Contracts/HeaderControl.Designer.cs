@@ -69,17 +69,9 @@
             this.txtInvoiceCusNr = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.dgvSubcontract = new System.Windows.Forms.DataGridView();
-            this.colOID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSuplNoVal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSuplName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSubcontractNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colInfo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colExpl = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDateLimit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colKmLimit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colBuyPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colIsDeleted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.subContractorContractBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label18 = new System.Windows.Forms.Label();
             this.btnNewSubcontractor = new System.Windows.Forms.Button();
             this.btnDelSubcontractor = new System.Windows.Forms.Button();
@@ -107,15 +99,8 @@
             this.txtEmployeeID1 = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
             this.dgvSelfContract = new System.Windows.Forms.DataGridView();
-            this.colOidSelf = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colInternalID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colContractNoSelf = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colVersionNoSelf = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colContractStatusSelf = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colVinSelf = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colInfoSelf = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colIsDeletedSelf = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.collectiveContractBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label26 = new System.Windows.Forms.Label();
             this.btnDelSelfContract = new System.Windows.Forms.Button();
             this.btnNewSelfContract = new System.Windows.Forms.Button();
@@ -130,114 +115,144 @@
             this.txtEmployeeID2 = new System.Windows.Forms.TextBox();
             this.label32 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.colOID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSubcontractNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colInfo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colExpl = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDateLimit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colKmLimit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colBuyPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.subContractorContractBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.colOidSelf = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colContractNoSelf = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colVersionNoSelf = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colContractStatusSelf = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colVinSelf = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colInfoSelf = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.collectiveContractBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSubcontract)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.subContractorContractBindingSource)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSelfContract)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.collectiveContractBindingSource)).BeginInit();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.subContractorContractBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.collectiveContractBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 12);
+            this.label1.Location = new System.Drawing.Point(5, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(78, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Contract status";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // txtContractStatus
             // 
-            this.txtContractStatus.Location = new System.Drawing.Point(103, 8);
+            this.txtContractStatus.Location = new System.Drawing.Point(98, 8);
             this.txtContractStatus.Name = "txtContractStatus";
             this.txtContractStatus.ReadOnly = true;
             this.txtContractStatus.Size = new System.Drawing.Size(102, 20);
             this.txtContractStatus.TabIndex = 1;
+            this.txtContractStatus.TextChanged += new System.EventHandler(this.txtContractStatus_TextChanged);
             // 
             // txtInternalID
             // 
-            this.txtInternalID.Location = new System.Drawing.Point(103, 39);
+            this.txtInternalID.Location = new System.Drawing.Point(98, 39);
             this.txtInternalID.Name = "txtInternalID";
             this.txtInternalID.ReadOnly = true;
             this.txtInternalID.Size = new System.Drawing.Size(102, 20);
             this.txtInternalID.TabIndex = 4;
+            this.txtInternalID.TextChanged += new System.EventHandler(this.txtInternalID_TextChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 43);
+            this.label2.Location = new System.Drawing.Point(5, 43);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(56, 13);
             this.label2.TabIndex = 3;
             this.label2.Text = "Internal ID";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // txtContracNr
             // 
-            this.txtContracNr.Location = new System.Drawing.Point(103, 73);
+            this.txtContracNr.Location = new System.Drawing.Point(98, 73);
             this.txtContracNr.Name = "txtContracNr";
             this.txtContracNr.ReadOnly = true;
             this.txtContracNr.Size = new System.Drawing.Size(102, 20);
             this.txtContracNr.TabIndex = 6;
+            this.txtContracNr.TextChanged += new System.EventHandler(this.txtContracNr_TextChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 77);
+            this.label3.Location = new System.Drawing.Point(5, 77);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 13);
             this.label3.TabIndex = 5;
             this.label3.Text = "Contract Nr";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // txtCreated
             // 
-            this.txtCreated.Location = new System.Drawing.Point(103, 106);
+            this.txtCreated.Location = new System.Drawing.Point(98, 106);
             this.txtCreated.Name = "txtCreated";
             this.txtCreated.ReadOnly = true;
             this.txtCreated.Size = new System.Drawing.Size(102, 20);
             this.txtCreated.TabIndex = 8;
+            this.txtCreated.TextChanged += new System.EventHandler(this.txtCreated_TextChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(10, 110);
+            this.label4.Location = new System.Drawing.Point(5, 110);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(44, 13);
             this.label4.TabIndex = 7;
             this.label4.Text = "Created";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // txtLastInvoice
             // 
-            this.txtLastInvoice.Location = new System.Drawing.Point(103, 139);
+            this.txtLastInvoice.Location = new System.Drawing.Point(98, 139);
             this.txtLastInvoice.Name = "txtLastInvoice";
             this.txtLastInvoice.ReadOnly = true;
             this.txtLastInvoice.Size = new System.Drawing.Size(102, 20);
             this.txtLastInvoice.TabIndex = 10;
+            this.txtLastInvoice.TextChanged += new System.EventHandler(this.txtLastInvoice_TextChanged);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(10, 143);
+            this.label5.Location = new System.Drawing.Point(5, 143);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(64, 13);
             this.label5.TabIndex = 9;
             this.label5.Text = "Last invoice";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(10, 181);
+            this.label6.Location = new System.Drawing.Point(5, 181);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(84, 13);
             this.label6.TabIndex = 11;
             this.label6.Text = "Responsible site";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // btnChangeStatus
             // 
-            this.btnChangeStatus.Location = new System.Drawing.Point(260, 7);
+            this.btnChangeStatus.Location = new System.Drawing.Point(255, 7);
             this.btnChangeStatus.Name = "btnChangeStatus";
             this.btnChangeStatus.Size = new System.Drawing.Size(192, 23);
             this.btnChangeStatus.TabIndex = 13;
@@ -249,136 +264,151 @@
             // 
             this.cbxResponsibleSite.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxResponsibleSite.FormattingEnabled = true;
-            this.cbxResponsibleSite.Location = new System.Drawing.Point(103, 177);
+            this.cbxResponsibleSite.Location = new System.Drawing.Point(98, 177);
             this.cbxResponsibleSite.Name = "cbxResponsibleSite";
             this.cbxResponsibleSite.Size = new System.Drawing.Size(142, 21);
             this.cbxResponsibleSite.TabIndex = 14;
+            this.cbxResponsibleSite.SelectedIndexChanged += new System.EventHandler(this.cbxResponsibleSite_SelectedIndexChanged);
             // 
             // txtExtContractNr
             // 
-            this.txtExtContractNr.Location = new System.Drawing.Point(350, 39);
+            this.txtExtContractNr.Location = new System.Drawing.Point(345, 39);
             this.txtExtContractNr.Name = "txtExtContractNr";
             this.txtExtContractNr.Size = new System.Drawing.Size(102, 20);
             this.txtExtContractNr.TabIndex = 16;
+            this.txtExtContractNr.TextChanged += new System.EventHandler(this.txtExtContractNr_TextChanged);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(260, 43);
+            this.label7.Location = new System.Drawing.Point(255, 43);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(81, 13);
             this.label7.TabIndex = 15;
             this.label7.Text = "Ext. contract Nr";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // txtVersionNr
             // 
-            this.txtVersionNr.Location = new System.Drawing.Point(350, 73);
+            this.txtVersionNr.Location = new System.Drawing.Point(345, 73);
             this.txtVersionNr.Name = "txtVersionNr";
             this.txtVersionNr.ReadOnly = true;
             this.txtVersionNr.Size = new System.Drawing.Size(102, 20);
             this.txtVersionNr.TabIndex = 18;
+            this.txtVersionNr.TextChanged += new System.EventHandler(this.txtVersionNr_TextChanged);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(260, 77);
+            this.label8.Location = new System.Drawing.Point(255, 77);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(56, 13);
             this.label8.TabIndex = 17;
             this.label8.Text = "Version Nr";
+            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // txtChanged
             // 
-            this.txtChanged.Location = new System.Drawing.Point(350, 106);
+            this.txtChanged.Location = new System.Drawing.Point(345, 106);
             this.txtChanged.Name = "txtChanged";
             this.txtChanged.ReadOnly = true;
             this.txtChanged.Size = new System.Drawing.Size(102, 20);
             this.txtChanged.TabIndex = 20;
+            this.txtChanged.TextChanged += new System.EventHandler(this.txtChanged_TextChanged);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(260, 110);
+            this.label9.Location = new System.Drawing.Point(255, 110);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(50, 13);
             this.label9.TabIndex = 19;
             this.label9.Text = "Changed";
+            this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
             // chkContractVariant
             // 
             this.chkContractVariant.AutoSize = true;
             this.chkContractVariant.Enabled = false;
-            this.chkContractVariant.Location = new System.Drawing.Point(263, 143);
+            this.chkContractVariant.Location = new System.Drawing.Point(258, 143);
             this.chkContractVariant.Name = "chkContractVariant";
             this.chkContractVariant.Size = new System.Drawing.Size(134, 17);
             this.chkContractVariant.TabIndex = 21;
             this.chkContractVariant.Text = "Contract variant – New";
             this.chkContractVariant.UseVisualStyleBackColor = true;
+            this.chkContractVariant.CheckedChanged += new System.EventHandler(this.chkContractVariant_CheckedChanged);
             // 
             // cbxCostcenter
             // 
             this.cbxCostcenter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxCostcenter.FormattingEnabled = true;
-            this.cbxCostcenter.Location = new System.Drawing.Point(327, 177);
+            this.cbxCostcenter.Location = new System.Drawing.Point(322, 177);
             this.cbxCostcenter.Name = "cbxCostcenter";
             this.cbxCostcenter.Size = new System.Drawing.Size(124, 21);
             this.cbxCostcenter.TabIndex = 23;
+            this.cbxCostcenter.SelectedIndexChanged += new System.EventHandler(this.cbxCostcenter_SelectedIndexChanged);
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(260, 181);
+            this.label10.Location = new System.Drawing.Point(255, 181);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(61, 13);
             this.label10.TabIndex = 22;
             this.label10.Text = "Cost center";
+            this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
             // cbxValidWorkshop
             // 
             this.cbxValidWorkshop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxValidWorkshop.FormattingEnabled = true;
-            this.cbxValidWorkshop.Location = new System.Drawing.Point(103, 212);
+            this.cbxValidWorkshop.Location = new System.Drawing.Point(98, 212);
             this.cbxValidWorkshop.Name = "cbxValidWorkshop";
             this.cbxValidWorkshop.Size = new System.Drawing.Size(349, 21);
             this.cbxValidWorkshop.TabIndex = 25;
+            this.cbxValidWorkshop.SelectedIndexChanged += new System.EventHandler(this.cbxValidWorkshop_SelectedIndexChanged);
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(10, 216);
+            this.label11.Location = new System.Drawing.Point(5, 216);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(79, 13);
             this.label11.TabIndex = 24;
             this.label11.Text = "Valid workshop";
+            this.label11.Click += new System.EventHandler(this.label11_Click);
             // 
             // cbxContractType
             // 
             this.cbxContractType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxContractType.FormattingEnabled = true;
-            this.cbxContractType.Location = new System.Drawing.Point(103, 248);
+            this.cbxContractType.Location = new System.Drawing.Point(98, 248);
             this.cbxContractType.Name = "cbxContractType";
             this.cbxContractType.Size = new System.Drawing.Size(349, 21);
             this.cbxContractType.TabIndex = 27;
+            this.cbxContractType.SelectedIndexChanged += new System.EventHandler(this.cbxContractType_SelectedIndexChanged_1);
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(10, 252);
+            this.label12.Location = new System.Drawing.Point(5, 252);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(70, 13);
             this.label12.TabIndex = 26;
             this.label12.Text = "Contract type";
+            this.label12.Click += new System.EventHandler(this.label12_Click);
             // 
             // chkInvoiceToCus
             // 
             this.chkInvoiceToCus.AutoSize = true;
             this.chkInvoiceToCus.Enabled = false;
-            this.chkInvoiceToCus.Location = new System.Drawing.Point(103, 287);
+            this.chkInvoiceToCus.Location = new System.Drawing.Point(98, 287);
             this.chkInvoiceToCus.Name = "chkInvoiceToCus";
             this.chkInvoiceToCus.Size = new System.Drawing.Size(119, 17);
             this.chkInvoiceToCus.TabIndex = 28;
             this.chkInvoiceToCus.Text = "Invoice to customer";
             this.chkInvoiceToCus.UseVisualStyleBackColor = true;
+            this.chkInvoiceToCus.CheckedChanged += new System.EventHandler(this.chkInvoiceToCus_CheckedChanged);
             // 
             // groupBox1
             // 
@@ -393,12 +423,13 @@
             this.groupBox1.Controls.Add(this.btnSearchCustomer1);
             this.groupBox1.Controls.Add(this.txtInvoiceCusNr);
             this.groupBox1.Controls.Add(this.label13);
-            this.groupBox1.Location = new System.Drawing.Point(3, 310);
+            this.groupBox1.Location = new System.Drawing.Point(-2, 310);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(456, 122);
             this.groupBox1.TabIndex = 29;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Invoice address";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // txtInvoiceCusPhone
             // 
@@ -499,6 +530,9 @@
             // 
             this.dgvSubcontract.AllowUserToAddRows = false;
             this.dgvSubcontract.AllowUserToDeleteRows = false;
+            this.dgvSubcontract.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvSubcontract.AutoGenerateColumns = false;
             this.dgvSubcontract.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSubcontract.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -513,22 +547,15 @@
             this.colBuyPrice,
             this.colIsDeleted});
             this.dgvSubcontract.DataSource = this.subContractorContractBindingSource;
-            this.dgvSubcontract.Location = new System.Drawing.Point(3, 470);
+            this.dgvSubcontract.Location = new System.Drawing.Point(-2, 470);
             this.dgvSubcontract.Name = "dgvSubcontract";
             this.dgvSubcontract.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSubcontract.Size = new System.Drawing.Size(456, 240);
+            this.dgvSubcontract.Size = new System.Drawing.Size(468, 256);
             this.dgvSubcontract.TabIndex = 30;
             this.dgvSubcontract.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSubcontract_CellClick);
+            this.dgvSubcontract.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSubcontract_CellContentClick);
             this.dgvSubcontract.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSubcontract_CellLeave);
             this.dgvSubcontract.CellValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSubcontract_CellValidated);
-            // 
-            // colOID
-            // 
-            this.colOID.DataPropertyName = "OID";
-            this.colOID.HeaderText = "OID";
-            this.colOID.Name = "colOID";
-            this.colOID.ReadOnly = true;
-            this.colOID.Width = 40;
             // 
             // colSuplNoVal
             // 
@@ -544,42 +571,6 @@
             this.colSuplName.Name = "colSuplName";
             this.colSuplName.Visible = false;
             // 
-            // colSubcontractNo
-            // 
-            this.colSubcontractNo.DataPropertyName = "SubcontractNo";
-            this.colSubcontractNo.HeaderText = "Contract Nr";
-            this.colSubcontractNo.Name = "colSubcontractNo";
-            // 
-            // colInfo
-            // 
-            this.colInfo.DataPropertyName = "Info";
-            this.colInfo.HeaderText = "Info";
-            this.colInfo.Name = "colInfo";
-            // 
-            // colExpl
-            // 
-            this.colExpl.DataPropertyName = "Expl";
-            this.colExpl.HeaderText = "Description";
-            this.colExpl.Name = "colExpl";
-            // 
-            // colDateLimit
-            // 
-            this.colDateLimit.DataPropertyName = "DateLimit";
-            this.colDateLimit.HeaderText = "Limit date";
-            this.colDateLimit.Name = "colDateLimit";
-            // 
-            // colKmLimit
-            // 
-            this.colKmLimit.DataPropertyName = "KmLimit";
-            this.colKmLimit.HeaderText = "Limit km";
-            this.colKmLimit.Name = "colKmLimit";
-            // 
-            // colBuyPrice
-            // 
-            this.colBuyPrice.DataPropertyName = "BuyPrice";
-            this.colBuyPrice.HeaderText = "Purchase pr";
-            this.colBuyPrice.Name = "colBuyPrice";
-            // 
             // colIsDeleted
             // 
             this.colIsDeleted.DataPropertyName = "isDeleted";
@@ -587,31 +578,29 @@
             this.colIsDeleted.Name = "colIsDeleted";
             this.colIsDeleted.Visible = false;
             // 
-            // subContractorContractBindingSource
-            // 
-            this.subContractorContractBindingSource.DataSource = typeof(SCPrime.Model.SubContractorContract);
-            // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(10, 444);
+            this.label18.Location = new System.Drawing.Point(5, 444);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(121, 13);
             this.label18.TabIndex = 41;
             this.label18.Text = "Subcontractor contracts";
+            this.label18.Click += new System.EventHandler(this.label18_Click);
             // 
             // btnNewSubcontractor
             // 
-            this.btnNewSubcontractor.Location = new System.Drawing.Point(294, 439);
+            this.btnNewSubcontractor.Location = new System.Drawing.Point(289, 439);
             this.btnNewSubcontractor.Name = "btnNewSubcontractor";
             this.btnNewSubcontractor.Size = new System.Drawing.Size(75, 23);
             this.btnNewSubcontractor.TabIndex = 42;
             this.btnNewSubcontractor.Text = "New";
             this.btnNewSubcontractor.UseVisualStyleBackColor = true;
+            this.btnNewSubcontractor.Click += new System.EventHandler(this.btnNewSubcontractor_Click);
             // 
             // btnDelSubcontractor
             // 
-            this.btnDelSubcontractor.Location = new System.Drawing.Point(375, 439);
+            this.btnDelSubcontractor.Location = new System.Drawing.Point(370, 439);
             this.btnDelSubcontractor.Name = "btnDelSubcontractor";
             this.btnDelSubcontractor.Size = new System.Drawing.Size(75, 23);
             this.btnDelSubcontractor.TabIndex = 43;
@@ -632,7 +621,7 @@
             this.groupBox2.Controls.Add(this.btnSearchCustomer2);
             this.groupBox2.Controls.Add(this.txtContractCusNr);
             this.groupBox2.Controls.Add(this.label23);
-            this.groupBox2.Location = new System.Drawing.Point(471, 5);
+            this.groupBox2.Location = new System.Drawing.Point(10, 4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(432, 122);
             this.groupBox2.TabIndex = 41;
@@ -754,7 +743,7 @@
             this.groupBox3.Controls.Add(this.btnSeachEmployee1);
             this.groupBox3.Controls.Add(this.txtEmployeeID1);
             this.groupBox3.Controls.Add(this.label28);
-            this.groupBox3.Location = new System.Drawing.Point(471, 159);
+            this.groupBox3.Location = new System.Drawing.Point(10, 158);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(432, 122);
             this.groupBox3.TabIndex = 42;
@@ -843,6 +832,9 @@
             // 
             this.dgvSelfContract.AllowUserToAddRows = false;
             this.dgvSelfContract.AllowUserToDeleteRows = false;
+            this.dgvSelfContract.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvSelfContract.AutoGenerateColumns = false;
             this.dgvSelfContract.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSelfContract.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -855,19 +847,11 @@
             this.colInfoSelf,
             this.colIsDeletedSelf});
             this.dgvSelfContract.DataSource = this.collectiveContractBindingSource;
-            this.dgvSelfContract.Location = new System.Drawing.Point(471, 470);
+            this.dgvSelfContract.Location = new System.Drawing.Point(10, 469);
             this.dgvSelfContract.Name = "dgvSelfContract";
             this.dgvSelfContract.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSelfContract.Size = new System.Drawing.Size(432, 240);
+            this.dgvSelfContract.Size = new System.Drawing.Size(436, 253);
             this.dgvSelfContract.TabIndex = 44;
-            // 
-            // colOidSelf
-            // 
-            this.colOidSelf.DataPropertyName = "OID";
-            this.colOidSelf.HeaderText = "OID";
-            this.colOidSelf.Name = "colOidSelf";
-            this.colOidSelf.ReadOnly = true;
-            this.colOidSelf.Visible = false;
             // 
             // colInternalID
             // 
@@ -875,54 +859,16 @@
             this.colInternalID.HeaderText = "Internal ID";
             this.colInternalID.Name = "colInternalID";
             // 
-            // colContractNoSelf
-            // 
-            this.colContractNoSelf.DataPropertyName = "ContractNo";
-            this.colContractNoSelf.HeaderText = "Contract Nr";
-            this.colContractNoSelf.Name = "colContractNoSelf";
-            this.colContractNoSelf.ReadOnly = true;
-            // 
-            // colVersionNoSelf
-            // 
-            this.colVersionNoSelf.DataPropertyName = "VersionNo";
-            this.colVersionNoSelf.HeaderText = "VersionNo";
-            this.colVersionNoSelf.Name = "colVersionNoSelf";
-            this.colVersionNoSelf.ReadOnly = true;
-            // 
-            // colContractStatusSelf
-            // 
-            this.colContractStatusSelf.DataPropertyName = "ContractStatus";
-            this.colContractStatusSelf.HeaderText = "ContractStatus";
-            this.colContractStatusSelf.Name = "colContractStatusSelf";
-            this.colContractStatusSelf.ReadOnly = true;
-            // 
-            // colVinSelf
-            // 
-            this.colVinSelf.DataPropertyName = "VIN";
-            this.colVinSelf.HeaderText = "VIN";
-            this.colVinSelf.Name = "colVinSelf";
-            this.colVinSelf.ReadOnly = true;
-            // 
-            // colInfoSelf
-            // 
-            this.colInfoSelf.DataPropertyName = "Info";
-            this.colInfoSelf.HeaderText = "Info";
-            this.colInfoSelf.Name = "colInfoSelf";
-            // 
             // colIsDeletedSelf
             // 
             this.colIsDeletedSelf.DataPropertyName = "isDeleted";
             this.colIsDeletedSelf.HeaderText = "isDeleted";
             this.colIsDeletedSelf.Name = "colIsDeletedSelf";
             // 
-            // collectiveContractBindingSource
-            // 
-            this.collectiveContractBindingSource.DataSource = typeof(SCPrime.Model.CollectiveContract);
-            // 
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(475, 444);
+            this.label26.Location = new System.Drawing.Point(14, 443);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(72, 13);
             this.label26.TabIndex = 45;
@@ -930,7 +876,7 @@
             // 
             // btnDelSelfContract
             // 
-            this.btnDelSelfContract.Location = new System.Drawing.Point(828, 439);
+            this.btnDelSelfContract.Location = new System.Drawing.Point(367, 438);
             this.btnDelSelfContract.Name = "btnDelSelfContract";
             this.btnDelSelfContract.Size = new System.Drawing.Size(75, 23);
             this.btnDelSelfContract.TabIndex = 47;
@@ -940,7 +886,7 @@
             // 
             // btnNewSelfContract
             // 
-            this.btnNewSelfContract.Location = new System.Drawing.Point(747, 439);
+            this.btnNewSelfContract.Location = new System.Drawing.Point(286, 438);
             this.btnNewSelfContract.Name = "btnNewSelfContract";
             this.btnNewSelfContract.Size = new System.Drawing.Size(75, 23);
             this.btnNewSelfContract.TabIndex = 46;
@@ -959,7 +905,7 @@
             this.groupBox4.Controls.Add(this.btnSeachEmployee2);
             this.groupBox4.Controls.Add(this.txtEmployeeID2);
             this.groupBox4.Controls.Add(this.label32);
-            this.groupBox4.Location = new System.Drawing.Point(471, 291);
+            this.groupBox4.Location = new System.Drawing.Point(10, 290);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(432, 122);
             this.groupBox4.TabIndex = 43;
@@ -1047,75 +993,195 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::SCPrime.Properties.Resources.check;
-            this.pictureBox1.Location = new System.Drawing.Point(213, 4);
+            this.pictureBox1.Location = new System.Drawing.Point(208, 4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(32, 27);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 48;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.groupBox2);
+            this.panel1.Controls.Add(this.groupBox3);
+            this.panel1.Controls.Add(this.groupBox4);
+            this.panel1.Controls.Add(this.dgvSelfContract);
+            this.panel1.Controls.Add(this.btnDelSelfContract);
+            this.panel1.Controls.Add(this.label26);
+            this.panel1.Controls.Add(this.btnNewSelfContract);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel1.Location = new System.Drawing.Point(491, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(466, 723);
+            this.panel1.TabIndex = 42;
+            // 
+            // panel2
+            // 
+            this.panel2.AutoSize = true;
+            this.panel2.Controls.Add(this.btnChangeStatus);
+            this.panel2.Controls.Add(this.pictureBox1);
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.txtContractStatus);
+            this.panel2.Controls.Add(this.btnDelSubcontractor);
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.btnNewSubcontractor);
+            this.panel2.Controls.Add(this.txtInternalID);
+            this.panel2.Controls.Add(this.label18);
+            this.panel2.Controls.Add(this.label3);
+            this.panel2.Controls.Add(this.dgvSubcontract);
+            this.panel2.Controls.Add(this.txtContracNr);
+            this.panel2.Controls.Add(this.groupBox1);
+            this.panel2.Controls.Add(this.label4);
+            this.panel2.Controls.Add(this.chkInvoiceToCus);
+            this.panel2.Controls.Add(this.txtCreated);
+            this.panel2.Controls.Add(this.cbxContractType);
+            this.panel2.Controls.Add(this.label5);
+            this.panel2.Controls.Add(this.label12);
+            this.panel2.Controls.Add(this.txtLastInvoice);
+            this.panel2.Controls.Add(this.cbxValidWorkshop);
+            this.panel2.Controls.Add(this.label6);
+            this.panel2.Controls.Add(this.label11);
+            this.panel2.Controls.Add(this.cbxResponsibleSite);
+            this.panel2.Controls.Add(this.cbxCostcenter);
+            this.panel2.Controls.Add(this.label7);
+            this.panel2.Controls.Add(this.label10);
+            this.panel2.Controls.Add(this.txtExtContractNr);
+            this.panel2.Controls.Add(this.chkContractVariant);
+            this.panel2.Controls.Add(this.label8);
+            this.panel2.Controls.Add(this.txtChanged);
+            this.panel2.Controls.Add(this.txtVersionNr);
+            this.panel2.Controls.Add(this.label9);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(474, 723);
+            this.panel2.TabIndex = 48;
+            // 
+            // colOID
+            // 
+            this.colOID.DataPropertyName = "OID";
+            this.colOID.HeaderText = "OID";
+            this.colOID.Name = "colOID";
+            this.colOID.ReadOnly = true;
+            this.colOID.Width = 40;
+            // 
+            // colSubcontractNo
+            // 
+            this.colSubcontractNo.DataPropertyName = "SubcontractNo";
+            this.colSubcontractNo.HeaderText = "Contract Nr";
+            this.colSubcontractNo.Name = "colSubcontractNo";
+            // 
+            // colInfo
+            // 
+            this.colInfo.DataPropertyName = "Info";
+            this.colInfo.HeaderText = "Info";
+            this.colInfo.Name = "colInfo";
+            // 
+            // colExpl
+            // 
+            this.colExpl.DataPropertyName = "Expl";
+            this.colExpl.HeaderText = "Description";
+            this.colExpl.Name = "colExpl";
+            // 
+            // colDateLimit
+            // 
+            this.colDateLimit.DataPropertyName = "DateLimit";
+            this.colDateLimit.HeaderText = "Limit date";
+            this.colDateLimit.Name = "colDateLimit";
+            // 
+            // colKmLimit
+            // 
+            this.colKmLimit.DataPropertyName = "KmLimit";
+            this.colKmLimit.HeaderText = "Limit km";
+            this.colKmLimit.Name = "colKmLimit";
+            // 
+            // colBuyPrice
+            // 
+            this.colBuyPrice.DataPropertyName = "BuyPrice";
+            this.colBuyPrice.HeaderText = "Purchase pr";
+            this.colBuyPrice.Name = "colBuyPrice";
+            // 
+            // subContractorContractBindingSource
+            // 
+            this.subContractorContractBindingSource.DataSource = typeof(SCPrime.Model.SubContractorContract);
+            // 
+            // colOidSelf
+            // 
+            this.colOidSelf.DataPropertyName = "OID";
+            this.colOidSelf.HeaderText = "OID";
+            this.colOidSelf.Name = "colOidSelf";
+            this.colOidSelf.ReadOnly = true;
+            this.colOidSelf.Visible = false;
+            // 
+            // colContractNoSelf
+            // 
+            this.colContractNoSelf.DataPropertyName = "ContractNo";
+            this.colContractNoSelf.HeaderText = "Contract Nr";
+            this.colContractNoSelf.Name = "colContractNoSelf";
+            this.colContractNoSelf.ReadOnly = true;
+            // 
+            // colVersionNoSelf
+            // 
+            this.colVersionNoSelf.DataPropertyName = "VersionNo";
+            this.colVersionNoSelf.HeaderText = "VersionNo";
+            this.colVersionNoSelf.Name = "colVersionNoSelf";
+            this.colVersionNoSelf.ReadOnly = true;
+            // 
+            // colContractStatusSelf
+            // 
+            this.colContractStatusSelf.DataPropertyName = "ContractStatus";
+            this.colContractStatusSelf.HeaderText = "ContractStatus";
+            this.colContractStatusSelf.Name = "colContractStatusSelf";
+            this.colContractStatusSelf.ReadOnly = true;
+            // 
+            // colVinSelf
+            // 
+            this.colVinSelf.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colVinSelf.DataPropertyName = "VIN";
+            this.colVinSelf.HeaderText = "VIN";
+            this.colVinSelf.Name = "colVinSelf";
+            this.colVinSelf.ReadOnly = true;
+            this.colVinSelf.Width = 50;
+            // 
+            // colInfoSelf
+            // 
+            this.colInfoSelf.DataPropertyName = "Info";
+            this.colInfoSelf.HeaderText = "Info";
+            this.colInfoSelf.Name = "colInfoSelf";
+            // 
+            // collectiveContractBindingSource
+            // 
+            this.collectiveContractBindingSource.DataSource = typeof(SCPrime.Model.CollectiveContract);
             // 
             // HeaderControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.btnDelSelfContract);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.label20);
-            this.Controls.Add(this.btnNewSelfContract);
-            this.Controls.Add(this.label26);
-            this.Controls.Add(this.dgvSelfContract);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.btnDelSubcontractor);
-            this.Controls.Add(this.btnNewSubcontractor);
-            this.Controls.Add(this.label18);
-            this.Controls.Add(this.dgvSubcontract);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.chkInvoiceToCus);
-            this.Controls.Add(this.cbxContractType);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.cbxValidWorkshop);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.cbxCostcenter);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.chkContractVariant);
-            this.Controls.Add(this.txtChanged);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.txtVersionNr);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.txtExtContractNr);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.cbxResponsibleSite);
-            this.Controls.Add(this.btnChangeStatus);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.txtLastInvoice);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.txtCreated);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.txtContracNr);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtInternalID);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtContractStatus);
-            this.Controls.Add(this.label1);
             this.Name = "HeaderControl";
-            this.Size = new System.Drawing.Size(923, 723);
+            this.Size = new System.Drawing.Size(957, 723);
             this.Load += new System.EventHandler(this.HeaderControl_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSubcontract)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.subContractorContractBindingSource)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSelfContract)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.collectiveContractBindingSource)).EndInit();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.subContractorContractBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.collectiveContractBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1224,5 +1290,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colVinSelf;
         private System.Windows.Forms.DataGridViewTextBoxColumn colInfoSelf;
         private System.Windows.Forms.DataGridViewCheckBoxColumn colIsDeletedSelf;
+        public System.Windows.Forms.Panel panel2;
+        public System.Windows.Forms.Panel panel1;
     }
 }

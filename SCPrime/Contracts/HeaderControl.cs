@@ -366,5 +366,160 @@ namespace SCPrime.Contracts
                 }
             }
         }
+
+        private void txtContractStatus_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtExtContractNr_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtInternalID_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtContracNr_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtVersionNr_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtChanged_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtCreated_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtLastInvoice_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chkContractVariant_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbxResponsibleSite_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbxValidWorkshop_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbxContractType_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chkInvoiceToCus_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvSubcontract_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void label18_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnNewSubcontractor_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbxCostcenter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

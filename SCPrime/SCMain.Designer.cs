@@ -73,6 +73,16 @@
             this.optionListToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.optionPriceListToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rightClickMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.openMenu = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.customerData = new System.Windows.Forms.ToolStripMenuItem();
+            this.vehicleData = new System.Windows.Forms.ToolStripMenuItem();
+            this.serviceHistory = new System.Windows.Forms.ToolStripMenuItem();
+            this.eLOArchive = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.mileageRegister = new System.Windows.Forms.ToolStripMenuItem();
             this.colCcontractOID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contractNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.versionNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -98,6 +108,7 @@
             this.panel2.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.menuStrip3.SuspendLayout();
+            this.rightClickMenuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.contractBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -208,6 +219,7 @@
             this.gridContract.TabIndex = 2;
             this.gridContract.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridContract_CellContentClick);
             this.gridContract.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridContract_CellDoubleClick);
+            this.gridContract.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gridContract_MouseDown);
             // 
             // panel2
             // 
@@ -378,85 +390,85 @@
             // nEwContractToolStripMenuItem
             // 
             this.nEwContractToolStripMenuItem.Name = "nEwContractToolStripMenuItem";
-            this.nEwContractToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.nEwContractToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.nEwContractToolStripMenuItem.Text = "New contract";
             this.nEwContractToolStripMenuItem.Click += new System.EventHandler(this.nEwContractToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // prinToolStripMenuItem
             // 
             this.prinToolStripMenuItem.Name = "prinToolStripMenuItem";
-            this.prinToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.prinToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.prinToolStripMenuItem.Text = "Print contract";
             this.prinToolStripMenuItem.Click += new System.EventHandler(this.prinToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(147, 6);
             // 
             // customerDataToolStripMenuItem
             // 
             this.customerDataToolStripMenuItem.Name = "customerDataToolStripMenuItem";
-            this.customerDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.customerDataToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.customerDataToolStripMenuItem.Text = "Customer data";
             // 
             // vehicleDataToolStripMenuItem
             // 
             this.vehicleDataToolStripMenuItem.Name = "vehicleDataToolStripMenuItem";
-            this.vehicleDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.vehicleDataToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.vehicleDataToolStripMenuItem.Text = "Vehicle data";
             // 
             // serviceHistoryToolStripMenuItem
             // 
             this.serviceHistoryToolStripMenuItem.Name = "serviceHistoryToolStripMenuItem";
-            this.serviceHistoryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.serviceHistoryToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.serviceHistoryToolStripMenuItem.Text = "Service history";
             // 
             // eLOArchiveToolStripMenuItem
             // 
             this.eLOArchiveToolStripMenuItem.Name = "eLOArchiveToolStripMenuItem";
-            this.eLOArchiveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eLOArchiveToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.eLOArchiveToolStripMenuItem.Text = "ELO archive";
             // 
             // mileageRegisterToolStripMenuItem
             // 
             this.mileageRegisterToolStripMenuItem.Name = "mileageRegisterToolStripMenuItem";
-            this.mileageRegisterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.mileageRegisterToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.mileageRegisterToolStripMenuItem.Text = "Mileage register";
             // 
             // invoiceToolStripMenuItem
             // 
             this.invoiceToolStripMenuItem.Name = "invoiceToolStripMenuItem";
-            this.invoiceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.invoiceToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.invoiceToolStripMenuItem.Text = "Invoices";
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(147, 6);
             // 
             // invoiceToolStripMenuItem1
             // 
             this.invoiceToolStripMenuItem1.Name = "invoiceToolStripMenuItem1";
-            this.invoiceToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.invoiceToolStripMenuItem1.Size = new System.Drawing.Size(150, 22);
             this.invoiceToolStripMenuItem1.Text = "Export data";
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(147, 6);
             // 
             // exitApplicationToolStripMenuItem
             // 
             this.exitApplicationToolStripMenuItem.Name = "exitApplicationToolStripMenuItem";
-            this.exitApplicationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitApplicationToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.exitApplicationToolStripMenuItem.Text = "Exit application";
             this.exitApplicationToolStripMenuItem.Click += new System.EventHandler(this.exitApplicationToolStripMenuItem_Click);
             // 
@@ -497,6 +509,78 @@
             this.testToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
             this.testToolStripMenuItem.Text = "Test";
             this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
+            // 
+            // rightClickMenuStrip
+            // 
+            this.rightClickMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openMenu,
+            this.toolStripSeparator5,
+            this.customerData,
+            this.vehicleData,
+            this.serviceHistory,
+            this.toolStripSeparator6,
+            this.eLOArchive,
+            this.toolStripSeparator7,
+            this.mileageRegister});
+            this.rightClickMenuStrip.Name = "rightClickMenuStrip";
+            this.rightClickMenuStrip.Size = new System.Drawing.Size(195, 176);
+            // 
+            // openMenu
+            // 
+            this.openMenu.Name = "openMenu";
+            this.openMenu.Size = new System.Drawing.Size(194, 22);
+            this.openMenu.Text = "Open";
+            this.openMenu.Click += new System.EventHandler(this.openMenu_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(191, 6);
+            // 
+            // customerData
+            // 
+            this.customerData.Name = "customerData";
+            this.customerData.Size = new System.Drawing.Size(194, 22);
+            this.customerData.Text = "Customer data";
+            this.customerData.Click += new System.EventHandler(this.customerData_Click);
+            // 
+            // vehicleData
+            // 
+            this.vehicleData.Name = "vehicleData";
+            this.vehicleData.Size = new System.Drawing.Size(194, 22);
+            this.vehicleData.Text = "Vehicle data";
+            this.vehicleData.Click += new System.EventHandler(this.vehicleData_Click);
+            // 
+            // serviceHistory
+            // 
+            this.serviceHistory.Name = "serviceHistory";
+            this.serviceHistory.Size = new System.Drawing.Size(194, 22);
+            this.serviceHistory.Text = "Service history of vehicle";
+            this.serviceHistory.Click += new System.EventHandler(this.serviceHistory_Click);
+            // 
+            // eLOArchive
+            // 
+            this.eLOArchive.Name = "eLOArchive";
+            this.eLOArchive.Size = new System.Drawing.Size(194, 22);
+            this.eLOArchive.Text = "ELO Archive";
+            this.eLOArchive.Click += new System.EventHandler(this.eLOArchive_Click);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(191, 6);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(191, 6);
+            // 
+            // mileageRegister
+            // 
+            this.mileageRegister.Name = "mileageRegister";
+            this.mileageRegister.Size = new System.Drawing.Size(194, 22);
+            this.mileageRegister.Text = "Mileage register";
+            this.mileageRegister.Click += new System.EventHandler(this.mileageRegister_Click);
             // 
             // colCcontractOID
             // 
@@ -665,6 +749,7 @@
             this.toolStrip1.PerformLayout();
             this.menuStrip3.ResumeLayout(false);
             this.menuStrip3.PerformLayout();
+            this.rightClickMenuStrip.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.contractBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -741,6 +826,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn riskLevelDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isInvoiceDetailDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn custPhoneDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ContextMenuStrip rightClickMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem openMenu;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripMenuItem customerData;
+        private System.Windows.Forms.ToolStripMenuItem vehicleData;
+        private System.Windows.Forms.ToolStripMenuItem serviceHistory;
+        private System.Windows.Forms.ToolStripMenuItem eLOArchive;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.ToolStripMenuItem mileageRegister;
     }
 }
 

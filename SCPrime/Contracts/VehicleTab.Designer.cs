@@ -29,27 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.gridMileage = new System.Windows.Forms.DataGridView();
-            this.mileageDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mileageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.infoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.inputTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.vehicleMileageBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.txtMonDev = new System.Windows.Forms.TextBox();
-            this.txtMonAvg = new System.Windows.Forms.TextBox();
-            this.txtQuarterDev = new System.Windows.Forms.TextBox();
-            this.txtQuarterAvg = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.textBox19 = new System.Windows.Forms.TextBox();
-            this.txtYearAvg = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             this.panel2 = new System.Windows.Forms.Panel();
             this.grpCool = new System.Windows.Forms.GroupBox();
             this.txtSr4 = new System.Windows.Forms.TextBox();
@@ -96,211 +77,35 @@
             this.btnSearchVehicle = new System.Windows.Forms.Button();
             this.txtVin = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridMileage)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.vehicleMileageBindingSource)).BeginInit();
-            this.panel3.SuspendLayout();
+            this.gridMileage = new System.Windows.Forms.DataGridView();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtYearAvg = new System.Windows.Forms.TextBox();
+            this.textBox19 = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.txtQuarterAvg = new System.Windows.Forms.TextBox();
+            this.txtQuarterDev = new System.Windows.Forms.TextBox();
+            this.txtMonAvg = new System.Windows.Forms.TextBox();
+            this.txtMonDev = new System.Windows.Forms.TextBox();
+            this.mileageDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mileageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.infoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.inputTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vehicleMileageBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel2.SuspendLayout();
             this.grpCool.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridMileage)).BeginInit();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.vehicleMileageBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.gridMileage);
-            this.panel1.Controls.Add(this.panel3);
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Location = new System.Drawing.Point(4, 4);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(905, 550);
-            this.panel1.TabIndex = 0;
-            // 
-            // gridMileage
-            // 
-            this.gridMileage.AllowUserToAddRows = false;
-            this.gridMileage.AllowUserToDeleteRows = false;
-            this.gridMileage.AutoGenerateColumns = false;
-            this.gridMileage.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridMileage.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.mileageDateDataGridViewTextBoxColumn,
-            this.mileageDataGridViewTextBoxColumn,
-            this.infoDataGridViewTextBoxColumn,
-            this.inputTypeDataGridViewTextBoxColumn});
-            this.gridMileage.DataSource = this.vehicleMileageBindingSource;
-            this.gridMileage.Location = new System.Drawing.Point(453, 88);
-            this.gridMileage.Name = "gridMileage";
-            this.gridMileage.ReadOnly = true;
-            this.gridMileage.Size = new System.Drawing.Size(452, 462);
-            this.gridMileage.TabIndex = 2;
-            // 
-            // mileageDateDataGridViewTextBoxColumn
-            // 
-            this.mileageDateDataGridViewTextBoxColumn.DataPropertyName = "MileageDate";
-            this.mileageDateDataGridViewTextBoxColumn.HeaderText = "MileageDate";
-            this.mileageDateDataGridViewTextBoxColumn.Name = "mileageDateDataGridViewTextBoxColumn";
-            this.mileageDateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // mileageDataGridViewTextBoxColumn
-            // 
-            this.mileageDataGridViewTextBoxColumn.DataPropertyName = "Mileage";
-            this.mileageDataGridViewTextBoxColumn.HeaderText = "Mileage";
-            this.mileageDataGridViewTextBoxColumn.Name = "mileageDataGridViewTextBoxColumn";
-            this.mileageDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // infoDataGridViewTextBoxColumn
-            // 
-            this.infoDataGridViewTextBoxColumn.DataPropertyName = "Info";
-            this.infoDataGridViewTextBoxColumn.HeaderText = "Info";
-            this.infoDataGridViewTextBoxColumn.Name = "infoDataGridViewTextBoxColumn";
-            this.infoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // inputTypeDataGridViewTextBoxColumn
-            // 
-            this.inputTypeDataGridViewTextBoxColumn.DataPropertyName = "InputType";
-            this.inputTypeDataGridViewTextBoxColumn.HeaderText = "InputType";
-            this.inputTypeDataGridViewTextBoxColumn.Name = "inputTypeDataGridViewTextBoxColumn";
-            this.inputTypeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.inputTypeDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // vehicleMileageBindingSource
-            // 
-            this.vehicleMileageBindingSource.DataSource = typeof(SCPrime.Model.VehicleMileage);
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.txtMonDev);
-            this.panel3.Controls.Add(this.txtMonAvg);
-            this.panel3.Controls.Add(this.txtQuarterDev);
-            this.panel3.Controls.Add(this.txtQuarterAvg);
-            this.panel3.Controls.Add(this.label25);
-            this.panel3.Controls.Add(this.label24);
-            this.panel3.Controls.Add(this.textBox19);
-            this.panel3.Controls.Add(this.txtYearAvg);
-            this.panel3.Controls.Add(this.label7);
-            this.panel3.Controls.Add(this.label6);
-            this.panel3.Controls.Add(this.label5);
-            this.panel3.Controls.Add(this.label4);
-            this.panel3.Controls.Add(this.label2);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(453, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(452, 88);
-            this.panel3.TabIndex = 1;
-            // 
-            // txtMonDev
-            // 
-            this.txtMonDev.Location = new System.Drawing.Point(120, 46);
-            this.txtMonDev.Name = "txtMonDev";
-            this.txtMonDev.ReadOnly = true;
-            this.txtMonDev.Size = new System.Drawing.Size(56, 20);
-            this.txtMonDev.TabIndex = 15;
-            // 
-            // txtMonAvg
-            // 
-            this.txtMonAvg.Location = new System.Drawing.Point(120, 15);
-            this.txtMonAvg.Name = "txtMonAvg";
-            this.txtMonAvg.ReadOnly = true;
-            this.txtMonAvg.Size = new System.Drawing.Size(56, 20);
-            this.txtMonAvg.TabIndex = 14;
-            // 
-            // txtQuarterDev
-            // 
-            this.txtQuarterDev.Location = new System.Drawing.Point(266, 46);
-            this.txtQuarterDev.Name = "txtQuarterDev";
-            this.txtQuarterDev.ReadOnly = true;
-            this.txtQuarterDev.Size = new System.Drawing.Size(56, 20);
-            this.txtQuarterDev.TabIndex = 13;
-            // 
-            // txtQuarterAvg
-            // 
-            this.txtQuarterAvg.Location = new System.Drawing.Point(266, 15);
-            this.txtQuarterAvg.Name = "txtQuarterAvg";
-            this.txtQuarterAvg.ReadOnly = true;
-            this.txtQuarterAvg.Size = new System.Drawing.Size(56, 20);
-            this.txtQuarterAvg.TabIndex = 12;
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(357, 19);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(26, 13);
-            this.label25.TabIndex = 11;
-            this.label25.Text = "Avg";
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(237, 19);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(26, 13);
-            this.label24.TabIndex = 10;
-            this.label24.Text = "Avg";
-            // 
-            // textBox19
-            // 
-            this.textBox19.Location = new System.Drawing.Point(387, 46);
-            this.textBox19.Name = "textBox19";
-            this.textBox19.ReadOnly = true;
-            this.textBox19.Size = new System.Drawing.Size(56, 20);
-            this.textBox19.TabIndex = 9;
-            // 
-            // txtYearAvg
-            // 
-            this.txtYearAvg.Location = new System.Drawing.Point(386, 15);
-            this.txtYearAvg.Name = "txtYearAvg";
-            this.txtYearAvg.ReadOnly = true;
-            this.txtYearAvg.Size = new System.Drawing.Size(56, 20);
-            this.txtYearAvg.TabIndex = 8;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(328, 19);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(29, 13);
-            this.label7.TabIndex = 7;
-            this.label7.Text = "Year";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(194, 19);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(42, 13);
-            this.label6.TabIndex = 6;
-            this.label6.Text = "Quarter";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(57, 50);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(58, 13);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Month dev";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(56, 19);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(58, 13);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Month avg";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 19);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 13);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Mileage";
             // 
             // panel2
             // 
@@ -316,8 +121,8 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(453, 550);
-            this.panel2.TabIndex = 0;
+            this.panel2.Size = new System.Drawing.Size(453, 572);
+            this.panel2.TabIndex = 3;
             // 
             // grpCool
             // 
@@ -732,7 +537,6 @@
             this.btnSearchVehicle.TabIndex = 2;
             this.btnSearchVehicle.Text = "....";
             this.btnSearchVehicle.UseVisualStyleBackColor = true;
-            this.btnSearchVehicle.Click += new System.EventHandler(this.btnSearchVehicle_Click);
             // 
             // txtVin
             // 
@@ -751,18 +555,199 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "VIN";
             // 
+            // gridMileage
+            // 
+            this.gridMileage.AllowUserToAddRows = false;
+            this.gridMileage.AllowUserToDeleteRows = false;
+            this.gridMileage.AutoGenerateColumns = false;
+            this.gridMileage.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridMileage.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.mileageDateDataGridViewTextBoxColumn,
+            this.mileageDataGridViewTextBoxColumn,
+            this.infoDataGridViewTextBoxColumn,
+            this.inputTypeDataGridViewTextBoxColumn});
+            this.gridMileage.DataSource = this.vehicleMileageBindingSource;
+            this.gridMileage.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridMileage.Location = new System.Drawing.Point(453, 94);
+            this.gridMileage.Name = "gridMileage";
+            this.gridMileage.ReadOnly = true;
+            this.gridMileage.Size = new System.Drawing.Size(467, 478);
+            this.gridMileage.TabIndex = 2;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.txtMonDev);
+            this.panel3.Controls.Add(this.txtMonAvg);
+            this.panel3.Controls.Add(this.txtQuarterDev);
+            this.panel3.Controls.Add(this.txtQuarterAvg);
+            this.panel3.Controls.Add(this.label25);
+            this.panel3.Controls.Add(this.label24);
+            this.panel3.Controls.Add(this.textBox19);
+            this.panel3.Controls.Add(this.txtYearAvg);
+            this.panel3.Controls.Add(this.label7);
+            this.panel3.Controls.Add(this.label6);
+            this.panel3.Controls.Add(this.label5);
+            this.panel3.Controls.Add(this.label4);
+            this.panel3.Controls.Add(this.label2);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(453, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(467, 94);
+            this.panel3.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 19);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(44, 13);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Mileage";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(56, 19);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(58, 13);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Month avg";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(57, 50);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(58, 13);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "Month dev";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(194, 19);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(42, 13);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "Quarter";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(328, 19);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(29, 13);
+            this.label7.TabIndex = 7;
+            this.label7.Text = "Year";
+            // 
+            // txtYearAvg
+            // 
+            this.txtYearAvg.Location = new System.Drawing.Point(386, 15);
+            this.txtYearAvg.Name = "txtYearAvg";
+            this.txtYearAvg.ReadOnly = true;
+            this.txtYearAvg.Size = new System.Drawing.Size(56, 20);
+            this.txtYearAvg.TabIndex = 8;
+            // 
+            // textBox19
+            // 
+            this.textBox19.Location = new System.Drawing.Point(387, 46);
+            this.textBox19.Name = "textBox19";
+            this.textBox19.ReadOnly = true;
+            this.textBox19.Size = new System.Drawing.Size(56, 20);
+            this.textBox19.TabIndex = 9;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(237, 19);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(26, 13);
+            this.label24.TabIndex = 10;
+            this.label24.Text = "Avg";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(357, 19);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(26, 13);
+            this.label25.TabIndex = 11;
+            this.label25.Text = "Avg";
+            // 
+            // txtQuarterAvg
+            // 
+            this.txtQuarterAvg.Location = new System.Drawing.Point(266, 15);
+            this.txtQuarterAvg.Name = "txtQuarterAvg";
+            this.txtQuarterAvg.ReadOnly = true;
+            this.txtQuarterAvg.Size = new System.Drawing.Size(56, 20);
+            this.txtQuarterAvg.TabIndex = 12;
+            // 
+            // txtQuarterDev
+            // 
+            this.txtQuarterDev.Location = new System.Drawing.Point(266, 46);
+            this.txtQuarterDev.Name = "txtQuarterDev";
+            this.txtQuarterDev.ReadOnly = true;
+            this.txtQuarterDev.Size = new System.Drawing.Size(56, 20);
+            this.txtQuarterDev.TabIndex = 13;
+            // 
+            // txtMonAvg
+            // 
+            this.txtMonAvg.Location = new System.Drawing.Point(120, 15);
+            this.txtMonAvg.Name = "txtMonAvg";
+            this.txtMonAvg.ReadOnly = true;
+            this.txtMonAvg.Size = new System.Drawing.Size(56, 20);
+            this.txtMonAvg.TabIndex = 14;
+            // 
+            // txtMonDev
+            // 
+            this.txtMonDev.Location = new System.Drawing.Point(120, 46);
+            this.txtMonDev.Name = "txtMonDev";
+            this.txtMonDev.ReadOnly = true;
+            this.txtMonDev.Size = new System.Drawing.Size(56, 20);
+            this.txtMonDev.TabIndex = 15;
+            // 
+            // mileageDateDataGridViewTextBoxColumn
+            // 
+            this.mileageDateDataGridViewTextBoxColumn.DataPropertyName = "MileageDate";
+            this.mileageDateDataGridViewTextBoxColumn.HeaderText = "MileageDate";
+            this.mileageDateDataGridViewTextBoxColumn.Name = "mileageDateDataGridViewTextBoxColumn";
+            this.mileageDateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // mileageDataGridViewTextBoxColumn
+            // 
+            this.mileageDataGridViewTextBoxColumn.DataPropertyName = "Mileage";
+            this.mileageDataGridViewTextBoxColumn.HeaderText = "Mileage";
+            this.mileageDataGridViewTextBoxColumn.Name = "mileageDataGridViewTextBoxColumn";
+            this.mileageDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // infoDataGridViewTextBoxColumn
+            // 
+            this.infoDataGridViewTextBoxColumn.DataPropertyName = "Info";
+            this.infoDataGridViewTextBoxColumn.HeaderText = "Info";
+            this.infoDataGridViewTextBoxColumn.Name = "infoDataGridViewTextBoxColumn";
+            this.infoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // inputTypeDataGridViewTextBoxColumn
+            // 
+            this.inputTypeDataGridViewTextBoxColumn.DataPropertyName = "InputType";
+            this.inputTypeDataGridViewTextBoxColumn.HeaderText = "InputType";
+            this.inputTypeDataGridViewTextBoxColumn.Name = "inputTypeDataGridViewTextBoxColumn";
+            this.inputTypeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.inputTypeDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // vehicleMileageBindingSource
+            // 
+            this.vehicleMileageBindingSource.DataSource = typeof(SCPrime.Model.VehicleMileage);
+            // 
             // VehicleTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.gridMileage);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel2);
             this.Name = "VehicleTab";
-            this.Size = new System.Drawing.Size(909, 554);
-            this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridMileage)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.vehicleMileageBindingSource)).EndInit();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.Size = new System.Drawing.Size(920, 572);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.grpCool.ResumeLayout(false);
@@ -773,58 +758,19 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridMileage)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.vehicleMileageBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.DataGridView gridMileage;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.ComponentModel.BackgroundWorker backgroundWorker2;
-        private System.Windows.Forms.TextBox txtVin;
-        private System.Windows.Forms.Button btnSearchVehicle;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.CheckBox cbAu;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox txtMake;
-        private System.Windows.Forms.TextBox txtSr1;
-        private System.Windows.Forms.TextBox txtEmail1;
-        private System.Windows.Forms.TextBox txtTyp1;
-        private System.Windows.Forms.TextBox txtMake1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox txtSr2;
-        private System.Windows.Forms.TextBox txtEmail2;
-        private System.Windows.Forms.TextBox txtTyp2;
-        private System.Windows.Forms.TextBox txtMake2;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.CheckBox cbAn;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox txtSr3;
-        private System.Windows.Forms.TextBox txtEmail3;
-        private System.Windows.Forms.TextBox txtTyp3;
-        private System.Windows.Forms.TextBox txtMake3;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.CheckBox cbTai;
-        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.BindingSource vehicleMileageBindingSource;
+        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.GroupBox grpCool;
         private System.Windows.Forms.TextBox txtSr4;
         private System.Windows.Forms.TextBox txtEmail4;
@@ -835,18 +781,59 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.CheckBox cbCool;
         private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.TextBox textBox19;
-        private System.Windows.Forms.TextBox txtYearAvg;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TextBox txtSr3;
+        private System.Windows.Forms.TextBox txtEmail3;
+        private System.Windows.Forms.TextBox txtTyp3;
+        private System.Windows.Forms.TextBox txtMake3;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.CheckBox cbTai;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.TextBox txtSr2;
+        private System.Windows.Forms.TextBox txtEmail2;
+        private System.Windows.Forms.TextBox txtTyp2;
+        private System.Windows.Forms.TextBox txtMake2;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.CheckBox cbAn;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox txtMake;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox txtSr1;
+        private System.Windows.Forms.TextBox txtEmail1;
+        private System.Windows.Forms.TextBox txtTyp1;
+        private System.Windows.Forms.TextBox txtMake1;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.CheckBox cbAu;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnSearchVehicle;
+        private System.Windows.Forms.TextBox txtVin;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridView gridMileage;
+        private System.Windows.Forms.DataGridViewTextBoxColumn mileageDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn mileageDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn infoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn inputTypeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TextBox txtMonDev;
         private System.Windows.Forms.TextBox txtMonAvg;
         private System.Windows.Forms.TextBox txtQuarterDev;
         private System.Windows.Forms.TextBox txtQuarterAvg;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.BindingSource vehicleMileageBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn mileageDateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn mileageDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn infoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn inputTypeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.TextBox textBox19;
+        private System.Windows.Forms.TextBox txtYearAvg;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label2;
     }
 }

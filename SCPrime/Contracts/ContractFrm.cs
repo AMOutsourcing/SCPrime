@@ -46,6 +46,9 @@ namespace SCPrime.Contracts
         public ContractFrm()
         {
             InitializeComponent();
+            // remove context menu
+            this.ContextMenuStrip.Items.Clear();
+            // load data
             Sender = new SendStatus(GetStatus);
             updateEmployee = new SearchEmployee(UpdateEmployee);
 
@@ -732,16 +735,28 @@ namespace SCPrime.Contracts
         {
 
 
-           
+
         }
 
         private void ContractFrm_Resize(object sender, EventArgs e)
         {
-            if (this.WindowState == FormWindowState.Maximized)
+            // if (this.WindowState == FormWindowState.Maximized)
 
-            {
-                MessageBox.Show(this.WindowState.ToString());
-            }
+            //{
+            // MessageBox.Show(this.WindowState.ToString());
+            //this.headerControl1.Dock = DockStyle.Fill;
+            //this.headerControl1.dgvSubcontract.Width = this.headerControl1.Width / 2 - 10;
+            //this.headerControl1.dgvSelfContract.Width = this.headerControl1.Width / 2 - 10;
+            this.headerControl1.panel2.Width = this.headerControl1.Width / 2;
+            this.headerControl1.panel1.Width = this.headerControl1.Width / 2;
+
+            var x = this.headerControl1.panel2.Location.X + this.headerControl1.panel2.Width;
+            var y = this.headerControl1.panel2.Location.Y;
+            this.headerControl1.panel1.Location = new Point(x, y);
+
+            // }
+
+
         }
     }
 }

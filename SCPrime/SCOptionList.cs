@@ -48,6 +48,9 @@ namespace SCPrime
         public SCOptionList()
         {
             InitializeComponent();
+            // remove context menu
+            this.ContextMenuStrip.Items.Clear();
+
             this.Visible = false;
             this.saveCategories = new List<SCOptionCategory>();
             this.saveOptions = new List<SCOption>();
