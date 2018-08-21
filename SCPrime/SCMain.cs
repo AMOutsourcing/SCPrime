@@ -554,5 +554,13 @@ namespace SCPrime
         {
             MessageBox.Show("mileageRegister_Click");
         }
+
+        private void NewContractItem_Click(object sender, EventArgs e)
+        {
+            SCMain.ContractOid = 0;
+            ContractFrm cf = new ContractFrm();
+            cf.StartPosition = FormStartPosition.CenterParent;
+            cf.ShowDialog();
+        }
     }
 }
