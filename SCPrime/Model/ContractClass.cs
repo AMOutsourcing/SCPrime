@@ -722,9 +722,14 @@ namespace SCPrime.Model
         public decimal BaseSelPr { get; set; }
         public decimal PurchasePr { get; set; }
 
-        public bool isDelete { get; set; }
-        public bool isUpdate { get; set; }
-        public bool isInsert { get; set; }
+        public bool isDelete { get; set; } = false;
+        public bool isUpdate { get; set; } = false;
+        public bool isInsert { get; set; } = false;
+
+        public String toString()
+        {
+            return this.ContractOID + " - " + this.OptionCategoryOID + " - " + this.OptionOID + " - " + this.OptionDetailOID;
+        }
 
         public static List<ContractOption> getContractOption(int ContractOID)
         {
@@ -1307,7 +1312,7 @@ namespace SCPrime.Model
                         bRet = bRet && hSql.ExecuteNonQuery();
                         continue;
                     }
-                    sql = "delete from ZSC_ContractOption where ContractOID = ? and OptionCategoryOID=? and OptionOID is null and OptionDetailOID=?";
+                    sql = "delete from ZSC_ContractOption where ContractOID = ? and OptionCategoryOID=? and OptionOID=? and OptionDetailOID=?";
                     bRet = hSql.NewCommand(sql);
                     hSql.Com.Parameters.AddWithValue("ContractOID", ContractOID);
                     hSql.Com.Parameters.AddWithValue("OptionCategoryOID", objOptionDetail.OptionCategoryOID);
@@ -1384,7 +1389,7 @@ namespace SCPrime.Model
 
                     bRet = bRet && hSql.ExecuteNonQuery();
                 }
-                else
+                else if (objOptionDetail.isInsert)
                 {
                     //insert
                     bRet = hSql.NewCommand("insert into ZSC_ContractOption(ContractOID,OptionCategoryOID,OptionOID,OptionDetailOID, SelPr,Quantity,Info,Created,Modified,PartialPayer) values(?,?,?,?,?,?,?,getdate(),getdate(),?) ");

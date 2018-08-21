@@ -199,17 +199,24 @@ namespace SCPrime.Contracts
                 {
                     foreach (ContractOption cate in ContractFrm.objContract.listContractOptions)
                     {
-                        if (cate.OptionDetailOID > 0)
+                        try
                         {
-                            listOptionDetailTmp.Add("D" + cate.OptionDetailOID, "1");
-                            continue;
+                            if (cate.OptionDetailOID > 0)
+                            {
+                                listOptionDetailTmp.Add("D" + cate.OptionDetailOID, "1");
+                                continue;
+                            }
+                            if (cate.OptionOID > 0)
+                            {
+                                listOptionDetailTmp.Add("O" + cate.OptionOID, "1");
+                                continue;
+                            }
+                            listOptionDetailTmp.Add("C" + cate.OptionCategoryOID, "1");
                         }
-                        if (cate.OptionOID > 0)
+                        catch (Exception ex)
                         {
-                            listOptionDetailTmp.Add("O" + cate.OptionOID, "1");
-                            continue;
+                            Console.WriteLine("----fillToListOptionDetail Exception: " + ex.Message + " " + cate.OptionCategoryOID + " - " + cate.OptionOID + " " + cate.OptionDetailOID);
                         }
-                        listOptionDetailTmp.Add("C" + cate.OptionCategoryOID, "1");
                     }
                 }
             }
@@ -442,7 +449,7 @@ namespace SCPrime.Contracts
                     }
                     catch (System.InvalidOperationException)
                     {
-                        Console.WriteLine("The collection does not contain exactly one element.");
+                        Console.WriteLine("List delete The collection does not contain exactly one element: " + contractOption.toString());
                         //Xoa
                         contractOption.isDelete = true;
                         this.listOptionDetail.Add(contractOption);
@@ -470,7 +477,7 @@ namespace SCPrime.Contracts
                     }
                     catch (System.InvalidOperationException)
                     {
-                        Console.WriteLine("The collection does not contain exactly one element.");
+                        Console.WriteLine("List update The collection does not contain exactly one element : " + contractOption.toString());
                         //Xoa
                         contractOption.isInsert = true;
                     }
