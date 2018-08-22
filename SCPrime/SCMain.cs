@@ -512,6 +512,58 @@ namespace SCPrime
             dlgPrintContract printer = new dlgPrintContract(mycontract);
             printer.ShowDialog();
         }
+        private void customerDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow r in this.gridContract.SelectedRows)
+            {
+                ContractOid = (int)r.Cells["colCcontractOID"].Value;
+            }
+            Contract mycontract = SCBase.searchContracts(SCMain.ContractOid);
+
+            //TODO display customer data
+        }
+
+        private void vehicleDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow r in this.gridContract.SelectedRows)
+            {
+                ContractOid = (int)r.Cells["colCcontractOID"].Value;
+            }
+            Contract mycontract = SCBase.searchContracts(SCMain.ContractOid);
+
+            //TODO display vehicle data
+        }
+
+        private void serviceHistoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow r in this.gridContract.SelectedRows)
+            {
+                ContractOid = (int)r.Cells["colCcontractOID"].Value;
+            }
+            Contract mycontract = SCBase.searchContracts(SCMain.ContractOid);
+
+            //TODO display service history data
+        }
+
+        private void eLOArchiveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("eLOArchiveToolStripMenuItem_Click");
+        }
+        private void mileageRegisterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void invoiceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void invoiceToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        //---------------------------right click menu-----------------------------
 
         private void gridContract_MouseDown(object sender, MouseEventArgs e)
         {
@@ -527,27 +579,52 @@ namespace SCPrime
 
         private void openMenu_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("openMenu_Click");
+            foreach (DataGridViewRow r in this.gridContract.SelectedRows)
+            {
+                ContractOid = (int)r.Cells["colCcontractOID"].Value;
+            }
+            ContractFrm cf = new ContractFrm();
+            cf.StartPosition = FormStartPosition.CenterParent;
+            cf.ShowDialog();
         }
 
         private void customerData_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("customerData_Click");
+            foreach (DataGridViewRow r in this.gridContract.SelectedRows)
+            {
+                ContractOid = (int)r.Cells["colCcontractOID"].Value;
+            }
+            Contract mycontract = SCBase.searchContracts(SCMain.ContractOid);
+
+            //TODO display customer data
         }
 
         private void vehicleData_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("vehicleData_Click");
+            //MessageBox.Show("vehicleData_Click");
+            foreach (DataGridViewRow r in this.gridContract.SelectedRows)
+            {
+                ContractOid = (int)r.Cells["colCcontractOID"].Value;
+            }
+            Contract mycontract = SCBase.searchContracts(SCMain.ContractOid);
+
+            //TODO display vehicle data
         }
 
         private void serviceHistory_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("serviceHistory_Click");
+            foreach (DataGridViewRow r in this.gridContract.SelectedRows)
+            {
+                ContractOid = (int)r.Cells["colCcontractOID"].Value;
+            }
+            Contract mycontract = SCBase.searchContracts(SCMain.ContractOid);
+
+            //TODO display service history data
         }
 
         private void eLOArchive_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("eLOArchive_Click");
+            MessageBox.Show("eLOArchive_Right_Click");
         }
 
         private void mileageRegister_Click(object sender, EventArgs e)
@@ -561,6 +638,22 @@ namespace SCPrime
             ContractFrm cf = new ContractFrm();
             cf.StartPosition = FormStartPosition.CenterParent;
             cf.ShowDialog();
+        }
+
+        private void printMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow r in this.gridContract.SelectedRows)
+            {
+                ContractOid = (int)r.Cells["colCcontractOID"].Value;
+            }
+            Contract mycontract = SCBase.searchContracts(SCMain.ContractOid);
+            dlgPrintContract printer = new dlgPrintContract(mycontract);
+            printer.ShowDialog();
+        }
+
+        private void invoicesMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("eLOArchive_Right_Click");
         }
     }
 }
