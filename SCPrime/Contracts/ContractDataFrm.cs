@@ -435,6 +435,15 @@ namespace SCPrime.Contracts
             }
 
             gridRisk.DataSource = dataTable;
+
+            //()
+            formatDecimal();
+        }
+
+        private void formatDecimal()
+        {
+            txtCostBase.DecimalPlaces = 2;
+            txtCostBase.Increment = 0.01m;
         }
 
         private void btnNew_Click(object sender, EventArgs e)

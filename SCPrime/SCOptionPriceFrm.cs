@@ -35,8 +35,6 @@ namespace SCPrime
         {
             InitializeComponent();
             this.Visible = false;
-            // remove context menu
-            this.ContextMenuStrip.Items.Clear();
         }
 
         private void initData()
