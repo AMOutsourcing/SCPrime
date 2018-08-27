@@ -119,7 +119,10 @@ namespace SCPrime
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = this.gridVehicle.Rows[e.RowIndex];
-                userControl.Sender(getData(row));
+                if (userControl != null)
+                    userControl.Sender(getData(row));
+                else if (userControl2 != null)
+                    userControl2.Sender(getData(row));
                 this.Close();
             }
         }
@@ -140,7 +143,10 @@ namespace SCPrime
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = this.gridVehicle.Rows[e.RowIndex];
-                userControl.Sender(getData(row));
+                if (userControl != null)
+                    userControl.Sender(getData(row));
+                else if (userControl2 != null)
+                    userControl2.Sender(getData(row));
                 this.Close();
             }
         }
@@ -154,6 +160,12 @@ namespace SCPrime
         public void setUserControl(VehicleTab userControl)
         {
             this.userControl = userControl;
+        }
+
+        private MileageRegisterFrm userControl2;
+        public void setMileageControl(MileageRegisterFrm userControl2)
+        {
+            this.userControl2 = userControl2;
         }
     }
 }

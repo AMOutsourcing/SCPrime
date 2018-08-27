@@ -120,6 +120,8 @@ namespace SCPrime.Model
             }
             return bRet;
         }
+
+
         public bool loadDynFields(clsSqlFactory hSql)
         {
             bool bRet = true;
@@ -229,6 +231,45 @@ namespace SCPrime.Model
             return Result;
         }
 
+        //longdq add 26082018
+
+        public static List<ContractVehicle> getByVIN(string vin)
+        {
+
+            string strSql = "select a.VEHIID as _OID, isnull(a.LICNO,'') as VehicleLicenseNo, isnull(a.SERIALNO,'') as VehicleVIN, isnull(a.MAKE,'') as VehicleMake, isnull(a.MODEL,'') as VehicleModel, isnull(a.SUBMODEL,'') as VehicleSubModel  from VEHI a  where SERIALNO like ? ";
+
+         
+
+            List<ContractVehicle> Result = new List<ContractVehicle>();
+            clsSqlFactory hSql = new clsSqlFactory();
+            try
+            {
+
+                hSql.NewCommand(strSql);
+                hSql.Com.Parameters.AddWithValue("SERIALNO", vin);
+                hSql.ExecuteReader();
+                while (hSql.Read())
+                {
+                    ContractVehicle item = new ContractVehicle();
+                    item.VehiId = hSql.Reader.GetInt32(0);
+                    item.LicenseNo = hSql.Reader.GetString(1);
+                    item.VIN = hSql.Reader.GetString(2);
+                    item.Make = hSql.Reader.GetString(3);
+                    item.Model = hSql.Reader.GetString(4);
+                    item.SubModel = hSql.Reader.GetString(5);
+                    Result.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                hSql.Close();
+            }
+            return Result;
+        }
 
     }
     public class VehicleMileage
@@ -266,6 +307,42 @@ namespace SCPrime.Model
             }
             return "";
         }
+        //longdq add 23/08
+        public static bool saveMileages(VehicleMileage vm, Int32 vehiId)
+        {
+            bool ret = false;
+
+            clsSqlFactory hSql = new clsSqlFactory();
+            try
+            {
+                //string strSql = "select top 1 Created,Mileage,Info,InputType from V_ZSC_MileageReg where VEHIID=? order by Created desc ";
+                string strSql = "insert into ZSC_MileageReg (VEHIID,Mileage,Info,Created, Modified) VALUES (?,?,?,?,GETDATE () )";
+                //string strSql = "insert into ZSC_MileageReg (VEHIID,Mileage,Info,Created, Modified) VALUES (1,2,'abc',getdate(),GETDATE () )";
+                hSql.NewCommand(strSql);
+                hSql.Com.Parameters.AddWithValue("VEHIID", vehiId);
+                hSql.Com.Parameters.AddWithValue("Mileage", vm.Mileage);
+                hSql.Com.Parameters.AddWithValue("Info", vm.Info);
+                hSql.Com.Parameters.AddWithValue("Created", vm.MileageDate);
+
+                ret = hSql.ExecuteNonQuery();
+                hSql.Commit();
+                return ret;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                hSql.Close();
+            }
+
+
+            return ret;
+
+
+        }
+
     }
     public class ContractDate
     {
@@ -1379,7 +1456,8 @@ namespace SCPrime.Model
                     hSql.Com.Parameters.AddWithValue("OptionCategoryOID", objOptionDetail.OptionCategoryOID);
 
                     //sdf
-                    if (objOptionDetail.OptionOID > 0) { 
+                    if (objOptionDetail.OptionOID > 0)
+                    {
                         hSql.Com.Parameters.AddWithValue("OptionOID", objOptionDetail.OptionOID);
                         if (objOptionDetail.OptionDetailOID > 0)
                         {

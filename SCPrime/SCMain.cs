@@ -629,7 +629,8 @@ namespace SCPrime
 
         private void mileageRegister_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("mileageRegister_Click");
+            MileageRegisterFrm frm = new MileageRegisterFrm();
+            frm.ShowDialog();
         }
 
         private void NewContractItem_Click(object sender, EventArgs e)

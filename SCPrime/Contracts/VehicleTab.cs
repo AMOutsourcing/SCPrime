@@ -75,7 +75,7 @@ namespace SCPrime.Contracts
 
         }
 
-        private DataTable LoadGridMileage(ContractVehicle contractVehicle)
+        public static DataTable LoadGridMileage(ContractVehicle contractVehicle)
         {
             DataTable dt = new DataTable();
             List<VehicleMileage> Mileages = contractVehicle.Mileages;

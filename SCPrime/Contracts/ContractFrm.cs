@@ -758,5 +758,11 @@ namespace SCPrime.Contracts
 
 
         }
+
+        private void btnMileageReg_Click(object sender, EventArgs e)
+        {
+            MileageRegisterFrm frm = new MileageRegisterFrm();
+            frm.ShowDialog();
+        }
     }
 }
