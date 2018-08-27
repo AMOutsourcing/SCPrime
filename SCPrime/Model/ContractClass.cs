@@ -2323,6 +2323,15 @@ namespace SCPrime.Model
         }
     }
 
+    public class Invoice
+    {
+
+    }
+
+    public class InvoiceLine
+    {
+
+    }
 
 
 }

@@ -246,7 +246,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Contracts\MileageRegisterFrm.resx">
       <DependentUpon>MileageRegisterFrm.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Contracts\tmp.resx">
       <DependentUpon>tmp.cs</DependentUpon>

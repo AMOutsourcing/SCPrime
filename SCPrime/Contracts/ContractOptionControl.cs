@@ -324,64 +324,31 @@ namespace SCPrime.Contracts
                 removeRow(node);
 
                 //Comment chờ confirm có cần
-                //if (level == 1)
-                //{
-                //    TreeNode parent = null;
-                //    parent = node.Parent;
+                if (level == 0)
+                {
+                    foreach (TreeNode tn in node.Nodes)
+                    {
+                        if (tn.Checked)
+                        {
+                            tn.Checked = false;
+                            foreach (TreeNode detail in tn.Nodes)
+                            {
+                                if (detail.Checked)
+                                    detail.Checked = false;
+                            }
+                        }
+                    }
 
-                //    bool isCheck = false;
-                //    foreach (TreeNode tn in parent.Nodes)
-                //    {
-                //        if (tn.Checked)
-                //        {
-                //            isCheck = true;
-                //            break;
-                //        }
-                //    }
+                }
+                else if (level == 1)
+                {
+                    foreach (TreeNode tn in node.Nodes)
+                    {
+                        if (tn.Checked)
+                            tn.Checked = false;
+                    }
 
-                //    if (!isCheck)
-                //    {
-                //        parent.Checked = false;
-                //    }
-
-                //}
-                //else if (level == 2)
-                //{
-                //    TreeNode parent1 = null;
-
-                //    parent1 = node.Parent;
-
-                //    bool isCheck = false;
-                //    foreach (TreeNode tn in parent1.Nodes)
-                //    {
-                //        if (tn.Checked)
-                //        {
-                //            isCheck = true;
-                //            break;
-                //        }
-                //    }
-
-                //    if (!isCheck)
-                //    {
-                //        parent1.Checked = false;
-
-                //        //Check level category
-                //        TreeNode parent2 = parent1.Parent;
-                //        isCheck = false;
-                //        foreach (TreeNode tn in parent2.Nodes)
-                //        {
-                //            if (tn.Checked)
-                //            {
-                //                isCheck = true;
-                //                break;
-                //            }
-                //        }
-                //        if (!isCheck)
-                //        {
-                //            parent2.Checked = false;
-                //        }
-                //    }
-                //}
+                }
             }
         }
 
