@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SCPrime.Model;
 using SCPrime.Utils;
+using nsBaseClass;
 
 namespace SCPrime.Contracts
 {
@@ -101,6 +102,13 @@ namespace SCPrime.Contracts
                         {
                             treeNodeL2.Checked = checkTree(treeNodeL2, op);
                         }
+
+                        //Check parent
+                        if (!treeNode.Checked)
+                        {
+                            treeNode.Checked = true;
+                        }
+
                         treeNode.Nodes.Add(treeNodeL2);
 
                         if (ContractFrm.objContract.ContractOID <= 0)
@@ -136,6 +144,18 @@ namespace SCPrime.Contracts
                             {
                                 treeNodeL3.Checked = checkTree(treeNodeL3, sod);
                             }
+
+                            //Check parent
+                            if (!treeNodeL2.Checked)
+                            {
+                                treeNodeL2.Checked = true;
+                            }
+
+                            if (!treeNode.Checked)
+                            {
+                                treeNode.Checked = true;
+                            }
+
                             treeNodeL2.Nodes.Add(treeNodeL3);
 
                             if (ContractFrm.objContract.ContractOID <= 0)
@@ -199,39 +219,169 @@ namespace SCPrime.Contracts
                 {
                     foreach (ContractOption cate in ContractFrm.objContract.listContractOptions)
                     {
-                        try
-                        {
-                            if (cate.OptionDetailOID > 0)
-                            {
-                                listOptionDetailTmp.Add("D" + cate.OptionDetailOID, "1");
-                                continue;
-                            }
-                            if (cate.OptionOID > 0)
-                            {
-                                listOptionDetailTmp.Add("O" + cate.OptionOID, "1");
-                                continue;
-                            }
-                            listOptionDetailTmp.Add("C" + cate.OptionCategoryOID, "1");
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine("----fillToListOptionDetail Exception: " + ex.Message + " " + cate.OptionCategoryOID + " - " + cate.OptionOID + " " + cate.OptionDetailOID);
-                        }
+                        addToDic(cate);
                     }
                 }
             }
 
         }
 
+        private void addToDic(ContractOption cate)
+        {
+            try
+            {
+                string key = formatKey(cate);
+                listOptionDetailTmp.Add(key, "1");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("----addToDic Exception: " + ex.Message + " " + cate.OptionCategoryOID + " - " + cate.OptionOID + " " + cate.OptionDetailOID);
+            }
+        }
+
+        private string formatKey(ContractOption cate)
+        {
+            if (cate.OptionDetailOID > 0)
+            {
+                return "D" + cate.OptionDetailOID;
+            }
+            if (cate.OptionOID > 0)
+            {
+                return "O" + cate.OptionOID;
+            }
+            return "C" + cate.OptionCategoryOID;
+        }
+
+
+        private void removeFromDic(ContractOption cate)
+        {
+            try
+            {
+                if (listOptionDetailTmp != null && listOptionDetailTmp.Count > 0)
+                {
+                    string key = formatKey(cate);
+                    if (listOptionDetailTmp.ContainsKey(key))
+                    {
+                        listOptionDetailTmp.Remove(key);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("----removeFromDic Exception: " + ex.Message + " " + cate.OptionCategoryOID + " - " + cate.OptionOID + " " + cate.OptionDetailOID);
+            }
+        }
+
+        private void removeFromDic(TreeNode Node)
+        {
+            try
+            {
+                if (listOptionDetailTmp != null && listOptionDetailTmp.Count > 0)
+                {
+                    if (listOptionDetailTmp.ContainsKey(Node.Name))
+                    {
+                        listOptionDetailTmp.Remove(Node.Name);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("----removeFromDic Exception: " + ex.Message + " " + Node.Name);
+            }
+        }
+
         private void treeView1_AfterCheck(object sender, TreeViewEventArgs e)
         {
-            if (e.Node.Checked)
+
+            TreeNode node = e.Node;
+            int level = node.Level;
+            Console.WriteLine("----------------------treeView1_AfterCheck: " + e.Node.Name + " - " + e.Node.Level);
+            if (node.Checked)
             {
-                addRow(e.Node);
+                addRow(node);
+                if (level == 1)
+                {
+                    TreeNode parent = null;
+                    parent = node.Parent;
+                    if (parent != null && !parent.Checked)
+                        parent.Checked = true;
+                }
+                else if (level == 2)
+                {
+                    TreeNode parent1 = null;
+                    parent1 = node.Parent;
+                    if (!parent1.Checked)
+                    {
+                        parent1.Checked = true;
+                        TreeNode parent2 = parent1.Parent;
+                        if (!parent2.Checked)
+                            parent2.Checked = true;
+                    }
+                }
             }
             else
             {
-                removeRow(e.Node);
+                removeRow(node);
+
+                //Comment chờ confirm có cần
+                //if (level == 1)
+                //{
+                //    TreeNode parent = null;
+                //    parent = node.Parent;
+
+                //    bool isCheck = false;
+                //    foreach (TreeNode tn in parent.Nodes)
+                //    {
+                //        if (tn.Checked)
+                //        {
+                //            isCheck = true;
+                //            break;
+                //        }
+                //    }
+
+                //    if (!isCheck)
+                //    {
+                //        parent.Checked = false;
+                //    }
+
+                //}
+                //else if (level == 2)
+                //{
+                //    TreeNode parent1 = null;
+
+                //    parent1 = node.Parent;
+
+                //    bool isCheck = false;
+                //    foreach (TreeNode tn in parent1.Nodes)
+                //    {
+                //        if (tn.Checked)
+                //        {
+                //            isCheck = true;
+                //            break;
+                //        }
+                //    }
+
+                //    if (!isCheck)
+                //    {
+                //        parent1.Checked = false;
+
+                //        //Check level category
+                //        TreeNode parent2 = parent1.Parent;
+                //        isCheck = false;
+                //        foreach (TreeNode tn in parent2.Nodes)
+                //        {
+                //            if (tn.Checked)
+                //            {
+                //                isCheck = true;
+                //                break;
+                //            }
+                //        }
+                //        if (!isCheck)
+                //        {
+                //            parent2.Checked = false;
+                //        }
+                //    }
+                //}
             }
         }
 
@@ -311,12 +461,29 @@ namespace SCPrime.Contracts
                         Console.WriteLine("The collection does not contain exactly one element.");
                     }
 
-                    //Add to list
-                    listOptionDetail.Add(rtn);
+                    if (!listOptionDetailTmp.ContainsKey(Node.Name))
+                    {
+                        addToDic(rtn);
+                    }
 
                     //Add to grid
-                    DataRow drToAdd = ObjectUtils.FillDataToRow(dataTable.NewRow(), rtn);
-                    dataTable.Rows.Add(drToAdd);
+                    try
+                    {
+                        ContractOption finded = listOptionDetail.Single(s => s.OptionCategoryOID == rtn.OptionCategoryOID && s.OptionOID == rtn.OptionOID && s.OptionDetailOID == rtn.OptionDetailOID);
+                    }
+                    catch (System.InvalidOperationException)
+                    {
+                        Console.WriteLine("The collection does not contain exactly one element in grid --> Add");
+
+                        //Add to list
+                        listOptionDetail.Add(rtn);
+
+                        //Add to grid
+                        DataRow drToAdd = ObjectUtils.FillDataToRow(dataTable.NewRow(), rtn);
+
+                        Console.WriteLine("----Add row: " + drToAdd["PartialPayer"].ToString());
+                        dataTable.Rows.Add(drToAdd);
+                    }
                 }
             }
         }
@@ -365,6 +532,8 @@ namespace SCPrime.Contracts
                     listOptionDetail.RemoveAll(x => x.OptionCategoryOID == cateId && x.OptionOID == optionId && x.OptionDetailOID == detail.OID);
                     //listOptionDetail.Remove(detail);
                 }
+
+                removeFromDic(Node);
 
                 //Xoa grid
                 for (int i = 0; i < dataTable.Rows.Count; i++)
@@ -554,6 +723,37 @@ namespace SCPrime.Contracts
                     dataGridView1.Rows[e.RowIndex].ErrorText = "The value must be a non-negative decimal";
                 }
             }
+        }
+
+        private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            Console.WriteLine("======dataGridView1_DataBindingComplete======" + dataGridView1.RowCount);
+            //Hide OID column
+            dataGridView1.Columns[0].Visible = false;
+            //dataGridView1.Columns["OID"].Visible = false;
+
+            List<clsBaseListItem> listTmp = new SCBase().GetConfig("ZSCCAPPAYE");
+            List<ObjTmp> listZSCCAPPAYE = new List<ObjTmp>(listTmp.Count);
+            foreach (clsBaseListItem term in listTmp)
+            {
+                listZSCCAPPAYE.Add(new ObjTmp(term.nValue1.ToString(), term.strText));
+            }
+
+
+            DataGridViewComboBoxColumn cbox = (DataGridViewComboBoxColumn)dataGridView1.Columns[11];
+
+            cbox.DataSource = listZSCCAPPAYE;
+            cbox.ValueMember = "strValue1";
+            cbox.DisplayMember = "strText";
+
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                DataGridViewComboBoxCell cboContacts = (DataGridViewComboBoxCell)(row.Cells[11]);
+                cboContacts.DataSource = listZSCCAPPAYE;
+                cboContacts.DisplayMember = "strText"; //Name column of contact datasource
+                cboContacts.ValueMember = "strValue1";//Value column of contact datasource
+            }
+            Console.WriteLine("======dataGridView1_DataBindingComplete======");
         }
     }
 }

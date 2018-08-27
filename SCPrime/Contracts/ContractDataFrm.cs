@@ -822,5 +822,23 @@ namespace SCPrime.Contracts
                 }
             }
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("btnDelete_Click: " + gridRisk.SelectedRows.Count);
+            int selectedRow = gridRisk.SelectedRows.Count;
+            if(selectedRow > 0)
+            {
+                for (int i = 0;i < selectedRow; i++)
+                {
+                    dataTable.Rows.RemoveAt(gridRisk.SelectedCells[i].RowIndex);
+                    dataTable.AcceptChanges();
+                    //gridRisk.Rows.RemoveAt(gridRisk.SelectedCells[i].RowIndex);
+                }
+
+            }
+
+
+        }
     }
 }

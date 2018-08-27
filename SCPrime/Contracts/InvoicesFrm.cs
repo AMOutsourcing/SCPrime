@@ -28,5 +28,10 @@ namespace SCPrime.Contracts
             }
             return InvoicesFrm._instance;
         }
+
+        private void gridInvoice_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

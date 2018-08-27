@@ -272,6 +272,7 @@
             this.btnDelete.TabIndex = 22;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnNew
             // 
@@ -339,6 +340,7 @@
             // 
             // cbRoll
             // 
+            this.cbRoll.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbRoll.FormattingEnabled = true;
             this.cbRoll.Location = new System.Drawing.Point(114, 11);
             this.cbRoll.Name = "cbRoll";
@@ -447,6 +449,7 @@
             // 
             // cbAccounting
             // 
+            this.cbAccounting.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbAccounting.FormattingEnabled = true;
             this.cbAccounting.Location = new System.Drawing.Point(98, 45);
             this.cbAccounting.Name = "cbAccounting";
@@ -455,6 +458,7 @@
             // 
             // cbBiling
             // 
+            this.cbBiling.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbBiling.FormattingEnabled = true;
             this.cbBiling.Location = new System.Drawing.Point(99, 17);
             this.cbBiling.Name = "cbBiling";
@@ -589,6 +593,7 @@
             // 
             // cbCostBassis
             // 
+            this.cbCostBassis.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCostBassis.FormattingEnabled = true;
             this.cbCostBassis.Location = new System.Drawing.Point(115, 14);
             this.cbCostBassis.Name = "cbCostBassis";
@@ -719,6 +724,7 @@
             // 
             // txtMonAmountPayer
             // 
+            this.txtMonAmountPayer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.txtMonAmountPayer.FormattingEnabled = true;
             this.txtMonAmountPayer.Location = new System.Drawing.Point(130, 110);
             this.txtMonAmountPayer.Name = "txtMonAmountPayer";
@@ -735,6 +741,7 @@
             // 
             // txtStartAmountPayer
             // 
+            this.txtStartAmountPayer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.txtStartAmountPayer.FormattingEnabled = true;
             this.txtStartAmountPayer.Location = new System.Drawing.Point(130, 55);
             this.txtStartAmountPayer.Name = "txtStartAmountPayer";
@@ -861,6 +868,7 @@
             // 
             // cbPayTerm
             // 
+            this.cbPayTerm.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbPayTerm.FormattingEnabled = true;
             this.cbPayTerm.Location = new System.Drawing.Point(99, 176);
             this.cbPayTerm.Name = "cbPayTerm";
@@ -869,6 +877,7 @@
             // 
             // cbInvoiceSite
             // 
+            this.cbInvoiceSite.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbInvoiceSite.FormattingEnabled = true;
             this.cbInvoiceSite.Location = new System.Drawing.Point(99, 203);
             this.cbInvoiceSite.Name = "cbInvoiceSite";
@@ -877,6 +886,7 @@
             // 
             // cbGrpLevel
             // 
+            this.cbGrpLevel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbGrpLevel.FormattingEnabled = true;
             this.cbGrpLevel.Location = new System.Drawing.Point(99, 148);
             this.cbGrpLevel.Name = "cbGrpLevel";
@@ -885,6 +895,7 @@
             // 
             // cbColType
             // 
+            this.cbColType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbColType.FormattingEnabled = true;
             this.cbColType.Location = new System.Drawing.Point(99, 120);
             this.cbColType.Name = "cbColType";
@@ -902,6 +913,7 @@
             // 
             // cbPayPeriod
             // 
+            this.cbPayPeriod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbPayPeriod.FormattingEnabled = true;
             this.cbPayPeriod.Location = new System.Drawing.Point(99, 16);
             this.cbPayPeriod.Name = "cbPayPeriod";
@@ -1020,6 +1032,7 @@
             // 
             // cbTemType
             // 
+            this.cbTemType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTemType.FormattingEnabled = true;
             this.cbTemType.Location = new System.Drawing.Point(100, 124);
             this.cbTemType.Name = "cbTemType";
