@@ -59,6 +59,7 @@ namespace SCPrime.Contracts
             fillDataVehicle();
         }
 
+
         private void btnSearchVehicle_Click(object sender, EventArgs e)
         {
             SCSearchVehiFrm.instance.Show();
@@ -314,6 +315,14 @@ namespace SCPrime.Contracts
                 tmp = dynFields4[3];
                 txtSr4.Text = tmp.strValue1;
             }
+        }
+
+        public void saveVehicle()
+        {
+            ContractFrm.objContract.IsBodyIncl = cbAn.Checked;
+            ContractFrm.objContract.IsCraneIncl = cbAu.Checked;
+            ContractFrm.objContract.IsTailLiftIncl = cbTai.Checked;
+            ContractFrm.objContract.IsCoolingIncl = cbCool.Checked;
         }
     }
 }

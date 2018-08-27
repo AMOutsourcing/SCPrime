@@ -204,7 +204,6 @@
             // cbCool
             // 
             this.cbCool.AutoSize = true;
-            this.cbCool.Enabled = false;
             this.cbCool.Location = new System.Drawing.Point(58, 14);
             this.cbCool.Name = "cbCool";
             this.cbCool.Size = new System.Drawing.Size(114, 17);
@@ -301,7 +300,6 @@
             // cbTai
             // 
             this.cbTai.AutoSize = true;
-            this.cbTai.Enabled = false;
             this.cbTai.Location = new System.Drawing.Point(58, 14);
             this.cbTai.Name = "cbTai";
             this.cbTai.Size = new System.Drawing.Size(114, 17);
@@ -398,7 +396,6 @@
             // cbAn
             // 
             this.cbAn.AutoSize = true;
-            this.cbAn.Enabled = false;
             this.cbAn.Location = new System.Drawing.Point(58, 14);
             this.cbAn.Name = "cbAn";
             this.cbAn.Size = new System.Drawing.Size(114, 17);
@@ -503,7 +500,6 @@
             // cbAu
             // 
             this.cbAu.AutoSize = true;
-            this.cbAu.Enabled = false;
             this.cbAu.Location = new System.Drawing.Point(58, 14);
             this.cbAu.Name = "cbAu";
             this.cbAu.Size = new System.Drawing.Size(114, 17);

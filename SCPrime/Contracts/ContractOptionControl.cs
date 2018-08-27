@@ -81,7 +81,8 @@ namespace SCPrime.Contracts
                     }
                     else
                     {
-                        if (checkTree(treeNode, cat)) addRow(treeNode);
+                        treeNode.Checked = checkTree(treeNode, cat);
+                        //if (checkTree(treeNode, cat)) addRow(treeNode);
                     }
                     //get option
                     listOptions = myCategories.Where(s => !s.NotAvailable && s.CategoryOID == cat.CategoryOID && s.OptionOID > 0 && s.OptionDetailOID <= 0);
@@ -178,12 +179,9 @@ namespace SCPrime.Contracts
 
         private bool checkTree(TreeNode node, SCOptionPrice scprice)
         {
-            if (listOptionDetailTmp.Count <= 0)
+            if (listOptionDetailTmp == null || listOptionDetailTmp.Count <= 0)
             {
-                if (scprice.Include)
-                {
-                    return true;
-                }
+                return false;
             }
             else
             {

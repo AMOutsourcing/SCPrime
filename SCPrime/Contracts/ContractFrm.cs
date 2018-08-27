@@ -667,6 +667,8 @@ namespace SCPrime.Contracts
         {
             this.updateContract();
 
+            this.vehicleDataTab.saveVehicle();
+
             if (objContract.VehiId.VehiId <= 0)
             {
                 // MessageBox.Show("Select Vehicle");
