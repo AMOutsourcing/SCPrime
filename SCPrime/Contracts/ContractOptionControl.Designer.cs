@@ -51,13 +51,13 @@
             this.salePrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.infoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PartialPayerCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PartialPayerCol = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.optionCategoryOIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.optionOIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.optionDetailOIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.createdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.partialPayerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.partialPayerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.InvoiceFlagCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contractOIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
@@ -175,6 +175,7 @@
             this.dataGridView1.Size = new System.Drawing.Size(648, 409);
             this.dataGridView1.TabIndex = 3;
             this.dataGridView1.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView1_CellValidating);
+            this.dataGridView1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView1_DataBindingComplete);
             this.dataGridView1.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_RowValidated);
             // 
             // contractOptionBindingSource
@@ -264,6 +265,8 @@
             // 
             this.PartialPayerCol.HeaderText = "Partial payer";
             this.PartialPayerCol.Name = "PartialPayerCol";
+            this.PartialPayerCol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.PartialPayerCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // optionCategoryOIDDataGridViewTextBoxColumn
             // 
@@ -311,6 +314,8 @@
             this.partialPayerDataGridViewTextBoxColumn.HeaderText = "PartialPayer";
             this.partialPayerDataGridViewTextBoxColumn.Name = "partialPayerDataGridViewTextBoxColumn";
             this.partialPayerDataGridViewTextBoxColumn.ReadOnly = true;
+            this.partialPayerDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.partialPayerDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.partialPayerDataGridViewTextBoxColumn.Visible = false;
             // 
             // InvoiceFlagCol
@@ -372,13 +377,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn salePrDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn infoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PartialPayerCol;
+        private System.Windows.Forms.DataGridViewComboBoxColumn PartialPayerCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn optionCategoryOIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn optionOIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn optionDetailOIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn createdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn partialPayerDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewComboBoxColumn partialPayerDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn InvoiceFlagCol;
         private System.Windows.Forms.DataGridViewTextBoxColumn contractOIDDataGridViewTextBoxColumn;
     }
