@@ -472,9 +472,14 @@ namespace SCPrime.Contracts
             this.headerControl1.txtContracNr.Text = objContract.ContractNo.ToString();
             this.headerControl1.txtExtContractNr.Text = objContract.ExtContractNo;
             this.headerControl1.txtVersionNr.Text = objContract.VersionNo.ToString();
-            this.headerControl1.txtCreated.Text = objContract.Created.ToString();
-            this.headerControl1.txtChanged.Text = objContract.Modified.ToString();
-            this.headerControl1.txtLastInvoice.Text = objContract.LastInvoiceDate.ToString();
+
+            this.headerControl1.txtCreated.Text = objContract.Created.ToString("d",
+                System.Globalization.CultureInfo.GetCultureInfo(objGlobal.CultureInfo));
+            this.headerControl1.txtChanged.Text = objContract.Modified.ToString("d",
+                System.Globalization.CultureInfo.GetCultureInfo(objGlobal.CultureInfo));
+
+            this.headerControl1.txtLastInvoice.Text = objContract.LastInvoiceDate.ToString("d",
+                System.Globalization.CultureInfo.GetCultureInfo(objGlobal.CultureInfo));
 
             //this.headerControl1.cbxContractType.SelectedValue = objContract.ContractTypeOID;
 
@@ -527,7 +532,7 @@ namespace SCPrime.Contracts
 
             //load Care taking Employee
             ContractEmployee cte = new ContractEmployee();
-            cte = objContract.RespSmanId;
+            cte = objContract.CareSmanId;
             if (cte != null)
             {
                 this.headerControl1.txtEmployeeID2.Text = cte.SmanId.ToString();
@@ -597,6 +602,15 @@ namespace SCPrime.Contracts
             {
                 this.headerControl1.btnNewSelfContract.Enabled = false;
                 this.headerControl1.btnDelSelfContract.Enabled = false;
+                //delete collective contract
+                if (objContract.SelfContracts != null && objContract.SelfContracts.Count > 0)
+                    foreach (CollectiveContract c in objContract.SelfContracts)
+                    {
+                        c.isDeleted = true;
+                    }
+
+                if (this.headerControl1.dgvSelfContract.DataSource != null)
+                    this.headerControl1.dgvSelfContract.DataSource = null;
             }
             else
             {
@@ -740,21 +754,15 @@ namespace SCPrime.Contracts
 
         private void ContractFrm_Resize(object sender, EventArgs e)
         {
-            // if (this.WindowState == FormWindowState.Maximized)
+            
+            //this.headerControl1.panel2.Width = this.headerControl1.Width / 2;
+            //this.headerControl1.panel1.Width = this.headerControl1.Width / 2;
 
-            //{
-            // MessageBox.Show(this.WindowState.ToString());
-            //this.headerControl1.Dock = DockStyle.Fill;
-            //this.headerControl1.dgvSubcontract.Width = this.headerControl1.Width / 2 - 10;
-            //this.headerControl1.dgvSelfContract.Width = this.headerControl1.Width / 2 - 10;
-            this.headerControl1.panel2.Width = this.headerControl1.Width / 2;
-            this.headerControl1.panel1.Width = this.headerControl1.Width / 2;
+            //var x = this.headerControl1.panel2.Location.X + this.headerControl1.panel2.Width;
+            //var y = this.headerControl1.panel2.Location.Y;
+            //this.headerControl1.panel1.Location = new Point(x, y);
 
-            var x = this.headerControl1.panel2.Location.X + this.headerControl1.panel2.Width;
-            var y = this.headerControl1.panel2.Location.Y;
-            this.headerControl1.panel1.Location = new Point(x, y);
-
-            // }
+            
 
 
         }
@@ -763,6 +771,59 @@ namespace SCPrime.Contracts
         {
             MileageRegisterFrm frm = new MileageRegisterFrm();
             frm.ShowDialog();
+        }
+
+        private void btnPrev_Click(object sender, EventArgs e)
+        {
+            int prevOid = -1;
+            prevOid = Contract.getContractOidByVersion(objContract.ContractCustId.CustId, objContract.VehiId.VehiId, objContract.VersionNo - 1);
+            if (prevOid != -1)
+            {
+                objContract = SCBase.searchContracts(prevOid);
+                if (objContract != null)
+                {
+                    loadComboboxData();
+                    loadContractData();
+                }
+            }
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            int nextOid = -1;
+            nextOid = Contract.getContractOidByVersion(objContract.ContractCustId.CustId, objContract.VehiId.VehiId, objContract.VersionNo + 1);
+            if (nextOid != -1)
+            {
+                objContract = SCBase.searchContracts(nextOid);
+                if (objContract != null)
+                {
+                    loadComboboxData();
+                    loadContractData();
+                }
+            }
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            dlgPrintContract printer = new dlgPrintContract(objContract);
+            printer.ShowDialog();
+        }
+
+        private void ContractFrm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
+        protected override bool ProcessDialogKey(Keys keyData)
+        {
+            if (Form.ModifierKeys == Keys.None && keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessDialogKey(keyData);
         }
     }
 }

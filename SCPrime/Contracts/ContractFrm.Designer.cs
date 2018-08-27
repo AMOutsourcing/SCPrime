@@ -38,19 +38,19 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.tabRemarks = new System.Windows.Forms.TabPage();
-            this.remarkFrm = new SCPrime.Contracts.RemarkFrm();
             this.tabInvoices = new System.Windows.Forms.TabPage();
-            this.invoicesFrm = new SCPrime.Contracts.InvoicesFrm();
             this.tabContractData = new System.Windows.Forms.TabPage();
-            this.contractDataFrm = new SCPrime.Contracts.ContractDataFrm();
             this.tabOptions = new System.Windows.Forms.TabPage();
-            this.contractOption1 = new SCPrime.Contracts.ContractOptionControl();
             this.tabHeader = new System.Windows.Forms.TabPage();
-            this.headerControl1 = new SCPrime.Contracts.HeaderControl();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabVehicle = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.headerControl1 = new SCPrime.Contracts.HeaderControl();
             this.vehicleDataTab = new SCPrime.Contracts.VehicleTab();
+            this.contractOption1 = new SCPrime.Contracts.ContractOptionControl();
+            this.contractDataFrm = new SCPrime.Contracts.ContractDataFrm();
+            this.invoicesFrm = new SCPrime.Contracts.InvoicesFrm();
+            this.remarkFrm = new SCPrime.Contracts.RemarkFrm();
             this.panel1.SuspendLayout();
             this.tabRemarks.SuspendLayout();
             this.tabInvoices.SuspendLayout();
@@ -116,6 +116,7 @@
             this.btnPrint.TabIndex = 4;
             this.btnPrint.Text = "Print";
             this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // btnNext
             // 
@@ -125,6 +126,7 @@
             this.btnNext.TabIndex = 3;
             this.btnNext.Text = "Next. version";
             this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // btnPrev
             // 
@@ -134,6 +136,7 @@
             this.btnPrev.TabIndex = 2;
             this.btnPrev.Text = "Prev. version";
             this.btnPrev.UseVisualStyleBackColor = true;
+            this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
             // 
             // btnClose
             // 
@@ -165,14 +168,6 @@
             this.tabRemarks.Text = "Remarks";
             this.tabRemarks.UseVisualStyleBackColor = true;
             // 
-            // remarkFrm
-            // 
-            this.remarkFrm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.remarkFrm.Location = new System.Drawing.Point(0, 0);
-            this.remarkFrm.Name = "remarkFrm";
-            this.remarkFrm.Size = new System.Drawing.Size(916, 727);
-            this.remarkFrm.TabIndex = 0;
-            // 
             // tabInvoices
             // 
             this.tabInvoices.Controls.Add(this.invoicesFrm);
@@ -183,14 +178,6 @@
             this.tabInvoices.Text = "Invoices";
             this.tabInvoices.UseVisualStyleBackColor = true;
             // 
-            // invoicesFrm
-            // 
-            this.invoicesFrm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.invoicesFrm.Location = new System.Drawing.Point(0, 0);
-            this.invoicesFrm.Name = "invoicesFrm";
-            this.invoicesFrm.Size = new System.Drawing.Size(916, 727);
-            this.invoicesFrm.TabIndex = 0;
-            // 
             // tabContractData
             // 
             this.tabContractData.Controls.Add(this.contractDataFrm);
@@ -200,14 +187,6 @@
             this.tabContractData.TabIndex = 3;
             this.tabContractData.Text = "Contract data";
             this.tabContractData.UseVisualStyleBackColor = true;
-            // 
-            // contractDataFrm
-            // 
-            this.contractDataFrm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.contractDataFrm.Location = new System.Drawing.Point(0, 0);
-            this.contractDataFrm.Name = "contractDataFrm";
-            this.contractDataFrm.Size = new System.Drawing.Size(916, 727);
-            this.contractDataFrm.TabIndex = 0;
             // 
             // tabOptions
             // 
@@ -220,14 +199,6 @@
             this.tabOptions.Text = "Options";
             this.tabOptions.UseVisualStyleBackColor = true;
             // 
-            // contractOption1
-            // 
-            this.contractOption1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.contractOption1.Location = new System.Drawing.Point(3, 3);
-            this.contractOption1.Name = "contractOption1";
-            this.contractOption1.Size = new System.Drawing.Size(910, 721);
-            this.contractOption1.TabIndex = 0;
-            // 
             // tabHeader
             // 
             this.tabHeader.Controls.Add(this.headerControl1);
@@ -238,15 +209,6 @@
             this.tabHeader.TabIndex = 1;
             this.tabHeader.Text = "Header";
             this.tabHeader.UseVisualStyleBackColor = true;
-            // 
-            // headerControl1
-            // 
-            this.headerControl1.AutoScroll = true;
-            this.headerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.headerControl1.Location = new System.Drawing.Point(3, 3);
-            this.headerControl1.Name = "headerControl1";
-            this.headerControl1.Size = new System.Drawing.Size(910, 721);
-            this.headerControl1.TabIndex = 0;
             // 
             // tabControl1
             // 
@@ -285,6 +247,15 @@
             this.panel2.Size = new System.Drawing.Size(910, 721);
             this.panel2.TabIndex = 1;
             // 
+            // headerControl1
+            // 
+            this.headerControl1.AutoScroll = true;
+            this.headerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.headerControl1.Location = new System.Drawing.Point(3, 3);
+            this.headerControl1.Name = "headerControl1";
+            this.headerControl1.Size = new System.Drawing.Size(910, 721);
+            this.headerControl1.TabIndex = 0;
+            // 
             // vehicleDataTab
             // 
             this.vehicleDataTab.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -292,6 +263,38 @@
             this.vehicleDataTab.Name = "vehicleDataTab";
             this.vehicleDataTab.Size = new System.Drawing.Size(910, 721);
             this.vehicleDataTab.TabIndex = 0;
+            // 
+            // contractOption1
+            // 
+            this.contractOption1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.contractOption1.Location = new System.Drawing.Point(3, 3);
+            this.contractOption1.Name = "contractOption1";
+            this.contractOption1.Size = new System.Drawing.Size(910, 721);
+            this.contractOption1.TabIndex = 0;
+            // 
+            // contractDataFrm
+            // 
+            this.contractDataFrm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.contractDataFrm.Location = new System.Drawing.Point(0, 0);
+            this.contractDataFrm.Name = "contractDataFrm";
+            this.contractDataFrm.Size = new System.Drawing.Size(916, 727);
+            this.contractDataFrm.TabIndex = 0;
+            // 
+            // invoicesFrm
+            // 
+            this.invoicesFrm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.invoicesFrm.Location = new System.Drawing.Point(0, 0);
+            this.invoicesFrm.Name = "invoicesFrm";
+            this.invoicesFrm.Size = new System.Drawing.Size(916, 727);
+            this.invoicesFrm.TabIndex = 0;
+            // 
+            // remarkFrm
+            // 
+            this.remarkFrm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.remarkFrm.Location = new System.Drawing.Point(0, 0);
+            this.remarkFrm.Name = "remarkFrm";
+            this.remarkFrm.Size = new System.Drawing.Size(916, 727);
+            this.remarkFrm.TabIndex = 0;
             // 
             // ContractFrm
             // 
@@ -303,6 +306,7 @@
             this.Name = "ContractFrm";
             this.Text = "Contracts";
             this.Load += new System.EventHandler(this.ContractFrm_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ContractFrm_KeyDown);
             this.Resize += new System.EventHandler(this.ContractFrm_Resize);
             this.panel1.ResumeLayout(false);
             this.tabRemarks.ResumeLayout(false);

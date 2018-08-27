@@ -1642,6 +1642,40 @@ namespace SCPrime.Model
             }
             return result;
         }
+
+        //longdq added 27282018
+        public static int getContractOidByVersion(int ContractCustId, int VehiId, int version)
+        {
+            int result = -1;
+
+            clsSqlFactory hSql = new clsSqlFactory();
+            string strSql = "select oid as count from dbo.ZSC_Contract a where a.ContractCustId = ? and a.VehiId = ? and VersionNo = ?";
+            try
+            {
+
+                hSql.NewCommand(strSql);
+                hSql.Com.Parameters.AddWithValue("ContractCustId", ContractCustId);
+                hSql.Com.Parameters.AddWithValue("VehiId", VehiId);
+                hSql.Com.Parameters.AddWithValue("VersionNo", version);
+                hSql.ExecuteReader();
+                while (hSql.Read())
+                {
+                    //  SubContractorContract sc = new SubContractorContract();
+                    result = hSql.Reader.GetInt32(0);
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                hSql.Close();
+            }
+            return result;
+        }
         public bool loadDetail()
         {
             bool bRet = true;
@@ -1738,7 +1772,7 @@ namespace SCPrime.Model
             bool ret = false;
 
             clsSqlFactory hSql = new clsSqlFactory();
-            string strSql = "select COUNT(distinct(versionNo)) as count from dbo.ZSC_Contract a where a.ContractCustId = ?";
+            string strSql = "select COUNT(distinct(VehiId)) as count from dbo.ZSC_Contract a where a.ContractCustId = ?";
             try
             {
 
@@ -1749,10 +1783,10 @@ namespace SCPrime.Model
                 {
                     //  SubContractorContract sc = new SubContractorContract();
                     int result = hSql.Reader.GetInt32(0);
-                    if (result > 0)
-                        ret = true;
-                    else
+                    if (result > 1)
                         ret = false;
+                    else
+                        ret = true;
 
                 }
 

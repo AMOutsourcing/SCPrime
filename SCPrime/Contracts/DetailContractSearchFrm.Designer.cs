@@ -33,13 +33,13 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnClose = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.collectiveContractBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colDetailContractOID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colContractNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colVersionNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colContractStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colVin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colInfo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.collectiveContractBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -100,10 +100,6 @@
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
             // 
-            // collectiveContractBindingSource
-            // 
-            this.collectiveContractBindingSource.DataSource = typeof(SCPrime.Model.CollectiveContract);
-            // 
             // colDetailContractOID
             // 
             this.colDetailContractOID.DataPropertyName = "DetailContractOID";
@@ -148,6 +144,10 @@
             this.colInfo.ReadOnly = true;
             this.colInfo.Visible = false;
             // 
+            // collectiveContractBindingSource
+            // 
+            this.collectiveContractBindingSource.DataSource = typeof(SCPrime.Model.CollectiveContract);
+            // 
             // DetailContractSearchFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -158,6 +158,7 @@
             this.Name = "DetailContractSearchFrm";
             this.Text = "DetailContractSearchFrm";
             this.Load += new System.EventHandler(this.DetailContractSearchFrm_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DetailContractSearchFrm_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
