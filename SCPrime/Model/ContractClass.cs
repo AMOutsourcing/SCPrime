@@ -1309,6 +1309,8 @@ namespace SCPrime.Model
                     hSql.Com.Parameters.AddWithValue("IsInvoiceDetail", IsInvoiceDetail);
 
                     hSql.Com.Parameters.AddWithValue("OID", ContractOID);
+
+                
                     bRet = bRet && hSql.ExecuteNonQuery();
 
                     //longdq 02082018

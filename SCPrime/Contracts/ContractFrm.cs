@@ -121,16 +121,7 @@ namespace SCPrime.Contracts
 
         private void cbxValidWorkshop_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.headerControl1.cbxValidWorkshop.SelectedIndex >= 0)
-            {
-                if (this.headerControl1.cbxValidWorkshop.SelectedItem != null)
-                {
-                    ObjTmp s = (ObjTmp)this.headerControl1.cbxValidWorkshop.SelectedItem;
-                    objContract.ValidWorkshopCode = findclsBaseListItem(s.strValue1, this.ws);
-                    //MessageBox.Show(s.value);
-                }
-
-            }
+           
         }
 
         //private clsBaseListItem findValidWorkshop(string value, List<clsBaseListItem> list)
@@ -142,16 +133,16 @@ namespace SCPrime.Contracts
 
         private void cbxCostcenter_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.headerControl1.cbxCostcenter.SelectedIndex >= 0)
-            {
-                if (this.headerControl1.cbxCostcenter.SelectedItem != null)
-                {
-                    ObjTmp s = (ObjTmp)this.headerControl1.cbxCostcenter.SelectedItem;
-                    objContract.CostCenter = findclsBaseListItem(s.strValue1, this.costCenterList);
-                    //MessageBox.Show(s.value);
-                }
+            //if (this.headerControl1.cbxCostcenter.SelectedIndex >= 0)
+            //{
+            //    if (this.headerControl1.cbxCostcenter.SelectedItem != null)
+            //    {
+            //        ObjTmp s = (ObjTmp)this.headerControl1.cbxCostcenter.SelectedItem;
+            //        objContract.CostCenter = findclsBaseListItem(s.strValue1, this.costCenterList);
+            //        //MessageBox.Show(s.value);
+            //    }
 
-            }
+            //}
         }
         public clsBaseListItem findclsBaseListItem(string val, List<clsBaseListItem> list)
         {
@@ -162,19 +153,7 @@ namespace SCPrime.Contracts
 
         private void cbxResponsibleSite_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.headerControl1.cbxResponsibleSite.SelectedIndex >= 0)
-            {
-                if (this.headerControl1.cbxResponsibleSite.SelectedItem != null)
-                {
-                    ObjTmp s = (ObjTmp)this.headerControl1.cbxResponsibleSite.SelectedItem;
-                    clsBaseListItem site = null;
-                    site = SCBase.findSite(s.strValue1);
-                    if (site != null)
-                        objContract.SiteId = site;
-                    //MessageBox.Show(s.value);
-                }
-
-            }
+           
         }
 
         private void updat_satatus(object sender, EventArgs e)
@@ -406,6 +385,8 @@ namespace SCPrime.Contracts
 
             if (!string.IsNullOrEmpty(objContract.ResponsibleSite))
             {
+                int siteIdx = -1;
+                siteIdx = listTmp.FindIndex(x => x.strValue1 == objContract.ValidWorkshopCode.strValue1);
                 this.headerControl1.cbxResponsibleSite.SelectedValue = objContract.ResponsibleSite;
             }
 
@@ -440,7 +421,9 @@ namespace SCPrime.Contracts
 
                 if (objContract.CostCenter != null)
                 {
-                    this.headerControl1.cbxCostcenter.SelectedValue = objContract.CostCenter.strValue1;
+                    int costIdx = -1;
+                    costIdx = myccs.FindIndex(x=>x.strValue1== objContract.CostCenter.strValue1);
+                    this.headerControl1.cbxCostcenter.SelectedIndex = costIdx;//objContract.CostCenter.strValue1;
                 }
             }
             //load cbxValidWorkshop 
@@ -458,7 +441,9 @@ namespace SCPrime.Contracts
 
                 if (objContract.ValidWorkshopCode != null)
                 {
-                    this.headerControl1.cbxValidWorkshop.SelectedValue = objContract.ValidWorkshopCode.strValue1;
+                    int wsIdx = -1;
+                    wsIdx = myws.FindIndex(x => x.strValue1 == objContract.ValidWorkshopCode.strValue1);
+                    this.headerControl1.cbxValidWorkshop.SelectedItem = wsIdx;// objContract.ValidWorkshopCode.strValue1;
                 }
             }
         }
@@ -661,6 +646,41 @@ namespace SCPrime.Contracts
         public void updateContract()
         {
             objContract.ExtContractNo = this.headerControl1.txtExtContractNr.Text;
+            if (this.headerControl1.cbxCostcenter.SelectedIndex >= 0)
+            {
+                if (this.headerControl1.cbxCostcenter.SelectedItem != null)
+                {
+                    ObjTmp s = (ObjTmp)this.headerControl1.cbxCostcenter.SelectedItem;
+                    objContract.CostCenter = findclsBaseListItem(s.strValue1, this.costCenterList);
+                    //MessageBox.Show(s.value);
+                }
+
+            }
+
+            if (this.headerControl1.cbxResponsibleSite.SelectedIndex >= 0)
+            {
+                if (this.headerControl1.cbxResponsibleSite.SelectedItem != null)
+                {
+                    ObjTmp s = (ObjTmp)this.headerControl1.cbxResponsibleSite.SelectedItem;
+                    clsBaseListItem site = null;
+                    site = SCBase.findSite(s.strValue1);
+                    if (site != null)
+                        objContract.SiteId = site;
+                    //MessageBox.Show(s.value);
+                }
+
+            }
+
+            if (this.headerControl1.cbxValidWorkshop.SelectedIndex >= 0)
+            {
+                if (this.headerControl1.cbxValidWorkshop.SelectedItem != null)
+                {
+                    ObjTmp s = (ObjTmp)this.headerControl1.cbxValidWorkshop.SelectedItem;
+                    objContract.ValidWorkshopCode = findclsBaseListItem(s.strValue1, this.ws);
+                    //MessageBox.Show(s.value);
+                }
+
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -682,6 +702,7 @@ namespace SCPrime.Contracts
             bool tmp = false;
             tmp = objContract.saveContract();
             // MessageBox.Show(tmp.ToString());
+            objContract = SCBase.searchContracts(objContract.ContractOID);
             this.loadComboboxData();
             this.loadContractData();
 
