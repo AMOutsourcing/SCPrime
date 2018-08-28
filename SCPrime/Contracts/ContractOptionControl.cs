@@ -10,11 +10,14 @@ using System.Windows.Forms;
 using SCPrime.Model;
 using SCPrime.Utils;
 using nsBaseClass;
+using log4net;
 
 namespace SCPrime.Contracts
 {
     public partial class ContractOptionControl : UserControl
     {
+        static readonly ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         public ContractOptionControl()
         {
             InitializeComponent();
@@ -42,6 +45,7 @@ namespace SCPrime.Contracts
         }
 
         bool loadTreeDone = false;
+        
         private void buidTree()
         {
             List<SCOptionPrice> listToClone = myCategories.ToList();
@@ -55,137 +59,163 @@ namespace SCPrime.Contracts
             treeView1.Nodes.Clear();
             if (myCategories.Count > 0)
             {
-                foreach (SCOptionPrice cat in listCategory)
+                //
+                if (ContractFrm.objContract.ContractOID <= 0 || listOptionDetailTmp == null || listOptionDetailTmp.Count <= 0)
                 {
-                    TreeNode treeNode = new TreeNode(cat.CategoryName);
-                    treeNode.Name = "C" + cat.CategoryOID.ToString();
-                    if (ContractFrm.objContract.ContractOID <= 0)
+                    //Tao moi
+                    #region FillTree with Include
+                    foreach (SCOptionPrice cat in listCategory)
                     {
+                        TreeNode treeNode = new TreeNode(cat.CategoryName);
+                        treeNode.Name = "C" + cat.CategoryOID.ToString();
                         if (cat.Include)
                         {
                             //Include -> check true and add grid
                             treeNode.Checked = true;
+                            //fillDisalbeTreeNode
+                            fillDisalbeTreeNode(treeNode);
+                            
                         }
-                    }
-                    else
-                    {
-                        treeNode.Checked = checkTree(treeNode, cat);
-                    }
-                    treeView1.Nodes.Add(treeNode);
-                    if (ContractFrm.objContract.ContractOID <= 0)
-                    {
-                        if (cat.Include)
+                        treeView1.Nodes.Add(treeNode);
+
+                        if (treeNode.Checked)
                         {
-                            //Include -> check true and add grid
                             addRow(treeNode);
                         }
-                    }
-                    else
-                    {
-                        treeNode.Checked = checkTree(treeNode, cat);
-                        //if (checkTree(treeNode, cat)) addRow(treeNode);
-                    }
-                    //get option
-                    listOptions = myCategories.Where(s => !s.NotAvailable && s.CategoryOID == cat.CategoryOID && s.OptionOID > 0 && s.OptionDetailOID <= 0);
 
-                    foreach (SCOptionPrice op in listOptions)
-                    {
-                        TreeNode treeNodeL2 = new TreeNode(op.OptionName);
-                        treeNodeL2.Name = "O" + op.OptionOID.ToString();
-                        if (ContractFrm.objContract.ContractOID <= 0)
+                        //get option
+                        listOptions = myCategories.Where(s => !s.NotAvailable && s.CategoryOID == cat.CategoryOID && s.OptionOID > 0 && s.OptionDetailOID <= 0);
+
+                        foreach (SCOptionPrice op in listOptions)
                         {
+                            TreeNode treeNodeL2 = new TreeNode(op.OptionName);
+                            treeNodeL2.Name = "O" + op.OptionOID.ToString();
                             if (op.Include)
                             {
                                 //Include -> check true and add grid
                                 treeNodeL2.Checked = true;
+                                fillDisalbeTreeNode(treeNodeL2);
                             }
-                        }
-                        else
-                        {
-                            treeNodeL2.Checked = checkTree(treeNodeL2, op);
-                        }
 
-                        //Check parent
-                        if (treeNodeL2.Checked)
-                        {
-                            if (!treeNode.Checked)
-                            {
-                                treeNode.Checked = true;
-                            }
-                        }
-
-                        treeNode.Nodes.Add(treeNodeL2);
-
-                        if (ContractFrm.objContract.ContractOID <= 0)
-                        {
-                            if (op.Include)
-                            {
-                                //Include -> check true and add grid
-                                addRow(treeNodeL2);
-                            }
-                        }
-                        else
-                        {
-                            if (checkTree(treeNodeL2, op)) addRow(treeNodeL2);
-                        }
-
-                        //load all detail
-                        listOptionDetails = myCategories.Where(s => !s.NotAvailable && s.CategoryOID == cat.CategoryOID && s.OptionOID == op.OptionOID && s.OptionDetailOID > 0);
-
-                        foreach (SCOptionPrice sod in listOptionDetails)
-                        {
-                            // create childnode level3
-                            TreeNode treeNodeL3 = new TreeNode(sod.OptionDetailName);
-                            treeNodeL3.Name = "D" + sod.OptionDetailOID.ToString();
-                            if (ContractFrm.objContract.ContractOID <= 0)
-                            {
-                                if (sod.Include)
-                                {
-                                    //Include -> check true and add grid
-                                    treeNodeL3.Checked = true;
-                                }
-                            }
-                            else
-                            {
-                                treeNodeL3.Checked = checkTree(treeNodeL3, sod);
-                            }
+                            treeNode.Nodes.Add(treeNodeL2);
 
                             //Check parent
-                            if (treeNodeL3.Checked)
+                            if (treeNodeL2.Checked)
                             {
-                                if (!treeNodeL2.Checked)
-                                {
-                                    treeNodeL2.Checked = true;
-                                }
-
+                                addRow(treeNodeL2);
                                 if (!treeNode.Checked)
                                 {
                                     treeNode.Checked = true;
                                 }
                             }
 
-                            treeNodeL2.Nodes.Add(treeNodeL3);
+                            //load all detail
+                            listOptionDetails = myCategories.Where(s => !s.NotAvailable && s.CategoryOID == cat.CategoryOID && s.OptionOID == op.OptionOID && s.OptionDetailOID > 0);
 
-                            if (ContractFrm.objContract.ContractOID <= 0)
+                            foreach (SCOptionPrice sod in listOptionDetails)
                             {
-                                if (op.Include)
+                                // create childnode level3
+                                TreeNode treeNodeL3 = new TreeNode(sod.OptionDetailName);
+                                treeNodeL3.Name = "D" + sod.OptionDetailOID.ToString();
+                                if (sod.Include)
                                 {
                                     //Include -> check true and add grid
-                                    addRow(treeNodeL3);
+                                    treeNodeL3.Checked = true;
+                                    fillDisalbeTreeNode(treeNodeL3);
                                 }
-                            }
-                            else
-                            {
-                                if (checkTree(treeNodeL3, sod)) addRow(treeNodeL3);
+
+                                treeNodeL2.Nodes.Add(treeNodeL3);
+
+                                if (treeNodeL3.Checked)
+                                {
+                                    addRow(treeNodeL3);
+                                    if (!treeNodeL2.Checked)
+                                    {
+                                        treeNodeL2.Checked = true;
+                                    }
+
+                                    if (!treeNode.Checked)
+                                    {
+                                        treeNode.Checked = true;
+                                    }
+                                }
                             }
                         }
                     }
+                    #endregion
+                }
+                else
+                {
+                    #region FillTree with zsc_contractoption
+                    foreach (SCOptionPrice cat in listCategory)
+                    {
+                        TreeNode treeNode = new TreeNode(cat.CategoryName);
+                        treeNode.Name = "C" + cat.CategoryOID.ToString();
+                        treeNode.Checked = checkTree(treeNode, cat);
+                        treeView1.Nodes.Add(treeNode);
+
+                        if (treeNode.Checked)
+                        {
+                            addRow(treeNode);
+                        }
+
+                        //get option
+                        listOptions = myCategories.Where(s => !s.NotAvailable && s.CategoryOID == cat.CategoryOID && s.OptionOID > 0 && s.OptionDetailOID <= 0);
+
+                        foreach (SCOptionPrice op in listOptions)
+                        {
+                            TreeNode treeNodeL2 = new TreeNode(op.OptionName);
+                            treeNodeL2.Name = "O" + op.OptionOID.ToString();
+                            treeNodeL2.Checked = checkTree(treeNodeL2, op);
+                            treeNode.Nodes.Add(treeNodeL2);
+                            //Check parent
+                            if (treeNodeL2.Checked)
+                            {
+                                addRow(treeNodeL2);
+                                if (!treeNode.Checked)
+                                {
+                                    treeNode.Checked = true;
+                                }
+                            }
+
+                            //load all detail
+                            listOptionDetails = myCategories.Where(s => !s.NotAvailable && s.CategoryOID == cat.CategoryOID && s.OptionOID == op.OptionOID && s.OptionDetailOID > 0);
+
+                            foreach (SCOptionPrice sod in listOptionDetails)
+                            {
+                                // create childnode level3
+                                TreeNode treeNodeL3 = new TreeNode(sod.OptionDetailName);
+                                treeNodeL3.Name = "D" + sod.OptionDetailOID.ToString();
+                                treeNodeL3.Checked = checkTree(treeNodeL3, sod);
+                                treeNodeL2.Nodes.Add(treeNodeL3);
+                                if (treeNodeL3.Checked)
+                                {
+                                    addRow(treeNodeL3);
+                                    if (!treeNodeL2.Checked)
+                                    {
+                                        treeNodeL2.Checked = true;
+                                    }
+
+                                    if (!treeNode.Checked)
+                                    {
+                                        treeNode.Checked = true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    #endregion
                 }
             }
 
             //Danh dau de tinh tong cho de
             loadTreeDone = true;
             calcTotal();
+        }
+        
+        private void fillDisalbeTreeNode(TreeNode node)
+        {
+            node.ForeColor = SystemColors.GrayText;
         }
 
         private bool checkTree(TreeNode node, SCOptionPrice scprice)
@@ -244,7 +274,7 @@ namespace SCPrime.Contracts
             }
             catch (Exception ex)
             {
-                Console.WriteLine("----addToDic Exception: " + ex.Message + " " + cate.OptionCategoryOID + " - " + cate.OptionOID + " " + cate.OptionDetailOID);
+                _log.Error("ERROR addToDic: " + cate.toString(), ex);
             }
         }
 
@@ -277,7 +307,7 @@ namespace SCPrime.Contracts
             }
             catch (Exception ex)
             {
-                Console.WriteLine("----removeFromDic Exception: " + ex.Message + " " + cate.OptionCategoryOID + " - " + cate.OptionOID + " " + cate.OptionDetailOID);
+                _log.Error("ERROR removeFromDic: " + cate.toString(), ex);
             }
         }
 
@@ -295,7 +325,7 @@ namespace SCPrime.Contracts
             }
             catch (Exception ex)
             {
-                Console.WriteLine("----removeFromDic Exception: " + ex.Message + " " + Node.Name);
+                _log.Error("ERROR removeFromDic TreeNode: " + Node.Name, ex);
             }
         }
 
@@ -304,7 +334,7 @@ namespace SCPrime.Contracts
 
             TreeNode node = e.Node;
             int level = node.Level;
-            Console.WriteLine("----------------------treeView1_AfterCheck: " + e.Node.Name + " - " + e.Node.Level + " : " + node.Checked);
+            _log.Debug("-------treeView1_AfterCheck: " + node.Name);
             if (node.Checked)
             {
                 addRow(node);
@@ -332,7 +362,7 @@ namespace SCPrime.Contracts
             {
                 removeRow(node);
 
-                //Comment chờ confirm có cần
+                //Remove child
                 if (level == 0)
                 {
                     foreach (TreeNode tn in node.Nodes)
@@ -359,13 +389,13 @@ namespace SCPrime.Contracts
 
                 }
             }
-            
+
             if (loadTreeDone)
             {
                 //Tinh lại tổng mỗi khi click tree (Trừ lúc bắt đầu load)
                 calcTotal();
             }
-            
+
         }
 
 
@@ -442,10 +472,10 @@ namespace SCPrime.Contracts
                         rtn.SalePr = finded.SalePr;
                         rtn.BaseSelPr = finded.BaseSelPr;
                     }
-                    catch (System.InvalidOperationException)
+                    catch (System.InvalidOperationException ex)
                     {
                         rtn.Quantity = 1;
-                        Console.WriteLine("The collection does not contain exactly one element.");
+                        _log.Error("ContractFrm.objContract.listContractOptions Single not contain exactly one element: " + rtn.toString(), ex);
                     }
 
                     if (!listOptionDetailTmp.ContainsKey(Node.Name))
@@ -463,24 +493,17 @@ namespace SCPrime.Contracts
                         finded.SalePr = rtn.SalePr;
                         finded.BaseSelPr = rtn.BaseSelPr;
                     }
-                    catch (System.InvalidOperationException)
+                    catch (System.InvalidOperationException ex)
                     {
-                        Console.WriteLine("The collection does not contain exactly one element in grid --> Add");
-
-                        
-
-                        //Add to grid
-                        DataRow drToAdd = ObjectUtils.FillDataToRow(dataTable.NewRow(), ObjectUtils.DeepClone(rtn));
-
-                        Console.WriteLine("----Add row: " + drToAdd["PartialPayer"].ToString());
-                        dataTable.Rows.Add(drToAdd);
-
+                        _log.Error("listOptionDetail Single not contain exactly one element: " + rtn.toString(), ex);
 
                         //Add to list
-                        listOptionDetail.Add(ObjectUtils.DeepClone(rtn));
-                        Console.WriteLine("----listOptionDetail addd: " + rtn.Quantity);
+                        listOptionDetail.Add(rtn);
+
+                        //Add to grid
+                        DataRow drToAdd = ObjectUtils.FillDataToRow(dataTable.NewRow(), rtn);
+                        dataTable.Rows.Add(drToAdd);
                     }
-                    Console.WriteLine("----listOptionDetail addd after: " + rtn.Quantity);
                 }
             }
         }
@@ -503,8 +526,6 @@ namespace SCPrime.Contracts
                 {
                     cateId = item.OID;
                     listOptionDetail.RemoveAll(x => x.OptionCategoryOID == item.OID && x.OptionOID <= 0 && x.OptionDetailOID <= 0);
-                    //SCOptionDetail tesst = ((SCOptionCategory)item).convertToDetail();
-                    //listOptionDetail.Remove(((SCOptionCategory)item).convertToDetail());
                 }
                 else if (item.GetType() == typeof(SCOption))
                 {
@@ -512,9 +533,7 @@ namespace SCPrime.Contracts
                     cateId = Int32.Parse(parent.Name.Substring(1));
                     SCOption option = (SCOption)item;
                     optionId = option.OID;
-
                     listOptionDetail.RemoveAll(x => x.OptionCategoryOID == cateId && x.OptionOID == option.OID && x.OptionDetailOID <= 0);
-                    //listOptionDetail.Remove(option.convertToDetail());
                 }
                 else
                 {
@@ -527,7 +546,6 @@ namespace SCPrime.Contracts
                     SCOptionDetail detail = (SCOptionDetail)item;
                     detailId = detail.OID;
                     listOptionDetail.RemoveAll(x => x.OptionCategoryOID == cateId && x.OptionOID == optionId && x.OptionDetailOID == detail.OID);
-                    //listOptionDetail.Remove(detail);
                 }
 
                 removeFromDic(Node);
@@ -613,9 +631,9 @@ namespace SCPrime.Contracts
                     {
                         finded = this.listOptionDetail.Single(s => s.OptionCategoryOID == contractOption.OptionCategoryOID && s.OptionOID == contractOption.OptionOID && s.OptionDetailOID == contractOption.OptionDetailOID);
                     }
-                    catch (System.InvalidOperationException)
+                    catch (System.InvalidOperationException ex)
                     {
-                        Console.WriteLine("List delete The collection does not contain exactly one element: " + contractOption.toString());
+                        _log.Error("saveOptionCategories listOptionDetail Single not contain exactly one element: " + contractOption.toString(), ex);
                         //Xoa
                         contractOption.isDelete = true;
                         this.listOptionDetail.Add(contractOption);
@@ -641,9 +659,9 @@ namespace SCPrime.Contracts
                             contractOption.isUpdate = true;
                         }
                     }
-                    catch (System.InvalidOperationException)
+                    catch (System.InvalidOperationException ex)
                     {
-                        Console.WriteLine("List update The collection does not contain exactly one element : " + contractOption.toString());
+                        _log.Error("saveOptionCategories ContractFrm.objContract.listContractOptions Single not contain exactly one element: " + contractOption.toString(), ex);
                         //Xoa
                         contractOption.isInsert = true;
                     }
@@ -662,26 +680,27 @@ namespace SCPrime.Contracts
 
         private void dataGridView1_RowValidated(object sender, DataGridViewCellEventArgs e)
         {
-            Console.WriteLine("dataGridView1_RowValidated: " + e.RowIndex);
+            _log.Debug("dataGridView1_RowValidated: " + e.RowIndex);
             //Update data
             if (e.RowIndex >= 0)
             {
+                Int32 OptionCategoryOID = 0;
+                Int32 OptionOID = 0;
+                Int32 OptionDetailOID = 0;
                 try
                 {
                     DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
-                    Int32 OptionCategoryOID = 0;
-                    Int32 OptionOID = 0;
-                    Int32 OptionDetailOID = 0;
+                    
                     Int32.TryParse(row.Cells[12].Value.ToString(), out OptionCategoryOID);
                     Int32.TryParse(row.Cells[13].Value.ToString(), out OptionOID);
                     Int32.TryParse(row.Cells[14].Value.ToString(), out OptionDetailOID);
                     //Console.WriteLine("OptionCategoryOID: " + OptionCategoryOID + " - OptionOID: " + OptionOID + " -OptionDetailOID: " + OptionDetailOID);
                     ContractOption finded = this.listOptionDetail.Single(s => s.OptionCategoryOID == OptionCategoryOID && s.OptionOID == OptionOID && s.OptionDetailOID == OptionDetailOID);
 
-                    Int32 sellPr = 0;
-                    Int32 Quantity = 0;
-                    Int32.TryParse(row.Cells[8].Value.ToString(), out sellPr);
-                    Int32.TryParse(row.Cells[9].Value.ToString(), out Quantity);
+                    decimal sellPr = 0;
+                    decimal Quantity = 0;
+                    decimal.TryParse(row.Cells[8].Value.ToString(), out sellPr);
+                    decimal.TryParse(row.Cells[9].Value.ToString(), out Quantity);
                     finded.SalePr = sellPr;
                     finded.Quantity = Quantity;
                     if (row.Cells[10].Value != null)
@@ -689,13 +708,13 @@ namespace SCPrime.Contracts
                     if (row.Cells[11].Value != null)
                         finded.PartialPayer = row.Cells[11].Value.ToString();
                 }
-                catch (System.InvalidOperationException)
+                catch (System.InvalidOperationException ex)
                 {
-                    Console.WriteLine("The collection does not contain exactly one element.");
+                    _log.Error("dataGridView1_RowValidated listOptionDetail Single not contain exactly one element: " + OptionCategoryOID + " - " + OptionOID + " - " + OptionDetailOID, ex);
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("" + ex.Message);
+                    _log.Error("dataGridView1_RowValidated Exception: " + OptionCategoryOID + " - " + OptionOID + " - " + OptionDetailOID, ex);
                 }
             }
         }
@@ -723,7 +742,6 @@ namespace SCPrime.Contracts
 
         private void dataGridView1_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-            Console.WriteLine("======dataGridView1_DataBindingComplete======" + dataGridView1.RowCount);
             //Hide OID column
             dataGridView1.Columns[0].Visible = false;
             //dataGridView1.Columns["OID"].Visible = false;
@@ -749,7 +767,6 @@ namespace SCPrime.Contracts
                 cboContacts.DisplayMember = "strText"; //Name column of contact datasource
                 cboContacts.ValueMember = "strValue1";//Value column of contact datasource
             }
-            Console.WriteLine("======dataGridView1_DataBindingComplete======");
         }
 
         public void calcTotal()
@@ -777,6 +794,17 @@ namespace SCPrime.Contracts
                 }
                 txtTotalPurchase.Text = totalPurchase.ToString();
                 txtTotalSale.Text = totalSale.ToString();
+            }
+        }
+        
+
+        private void treeView1_BeforeCheck(object sender, TreeViewCancelEventArgs e)
+        {
+            TreeNode node = e.Node;
+            _log.Debug("treeView1_BeforeCheck: " + node.Name);
+            if (SystemColors.GrayText == node.ForeColor)
+            {
+                e.Cancel = true;
             }
         }
     }

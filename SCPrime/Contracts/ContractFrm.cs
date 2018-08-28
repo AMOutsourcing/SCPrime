@@ -383,6 +383,11 @@ namespace SCPrime.Contracts
             this.headerControl1.cbxResponsibleSite.ValueMember = "strValue1";
             this.headerControl1.cbxResponsibleSite.DisplayMember = "strText";
 
+            if(objContract == null)
+            {
+                objContract = new Contract();
+            }
+
             if (!string.IsNullOrEmpty(objContract.ResponsibleSite))
             {
                 int siteIdx = -1;

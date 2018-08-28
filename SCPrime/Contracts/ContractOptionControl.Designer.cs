@@ -38,6 +38,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.PartialPayerCol = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.InvoiceFlagCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.oIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.partNrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,14 +51,12 @@
             this.salePrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.infoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PartialPayerCol = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.optionCategoryOIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.optionOIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.optionDetailOIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.createdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.partialPayerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.InvoiceFlagCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contractOIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contractOptionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sCOptionBaseBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -85,6 +85,7 @@
             this.treeView1.ShowNodeToolTips = true;
             this.treeView1.Size = new System.Drawing.Size(257, 445);
             this.treeView1.TabIndex = 0;
+            this.treeView1.BeforeCheck += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeCheck);
             this.treeView1.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterCheck);
             this.treeView1.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterExpand);
             // 
@@ -180,6 +181,20 @@
             this.dataGridView1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView1_DataBindingComplete);
             this.dataGridView1.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_RowValidated);
             // 
+            // PartialPayerCol
+            // 
+            this.PartialPayerCol.HeaderText = "Partial payer";
+            this.PartialPayerCol.Name = "PartialPayerCol";
+            this.PartialPayerCol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.PartialPayerCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // InvoiceFlagCol
+            // 
+            this.InvoiceFlagCol.HeaderText = "Invoice flag";
+            this.InvoiceFlagCol.Name = "InvoiceFlagCol";
+            this.InvoiceFlagCol.ReadOnly = true;
+            this.InvoiceFlagCol.Visible = false;
+            // 
             // oIDDataGridViewTextBoxColumn
             // 
             this.oIDDataGridViewTextBoxColumn.DataPropertyName = "OID";
@@ -255,13 +270,6 @@
             this.infoDataGridViewTextBoxColumn.HeaderText = "Info";
             this.infoDataGridViewTextBoxColumn.Name = "infoDataGridViewTextBoxColumn";
             // 
-            // PartialPayerCol
-            // 
-            this.PartialPayerCol.HeaderText = "Partial payer";
-            this.PartialPayerCol.Name = "PartialPayerCol";
-            this.PartialPayerCol.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.PartialPayerCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
             // optionCategoryOIDDataGridViewTextBoxColumn
             // 
             this.optionCategoryOIDDataGridViewTextBoxColumn.DataPropertyName = "OptionCategoryOID";
@@ -311,13 +319,6 @@
             this.partialPayerDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.partialPayerDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.partialPayerDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // InvoiceFlagCol
-            // 
-            this.InvoiceFlagCol.HeaderText = "Invoice flag";
-            this.InvoiceFlagCol.Name = "InvoiceFlagCol";
-            this.InvoiceFlagCol.ReadOnly = true;
-            this.InvoiceFlagCol.Visible = false;
             // 
             // contractOIDDataGridViewTextBoxColumn
             // 

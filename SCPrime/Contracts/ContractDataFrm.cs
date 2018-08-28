@@ -579,10 +579,10 @@ namespace SCPrime.Contracts
 
 
             ContractPaymentData.PaymentIsInBlock = cbInvoice.Checked;
-
-            //ContractPaymentData.PaymentNextBlockEnd = DateTime.Parse(txtNextBlock.Text);
-            ContractPaymentData.PaymentCollectionType = cbColType.SelectedValue.ToString();
-            ContractPaymentData.PaymentGroupingLevel = cbGrpLevel.SelectedValue.ToString();
+            if (cbColType.SelectedValue != null)
+                ContractPaymentData.PaymentCollectionType = cbColType.SelectedValue.ToString();
+            if (cbGrpLevel.SelectedValue != null)
+                ContractPaymentData.PaymentGroupingLevel = cbGrpLevel.SelectedValue.ToString();
             //ContractPaymentData.PaymentTerm = Int32.Parse(cbPayTerm.Text);
 
             clsBaseListItem InvoiceSiteId = new clsBaseListItem();
@@ -614,8 +614,15 @@ namespace SCPrime.Contracts
             }
             ContractCapitalData.CapitalMonthPayer = CapitalMonthPayer;
 
-            txtTotalAmount.Text = (ContractFrm.objContract.ContractCapitalData.CapitalStartAmount
-                + ContractFrm.objContract.ContractCapitalData.CapitalMonthAmount * ContractFrm.objContract.ContractDateData.ContractPeriodMonth).ToString();
+            if (ContractFrm.objContract.ContractCapitalData != null)
+            {
+                txtTotalAmount.Text = (ContractFrm.objContract.ContractCapitalData.CapitalStartAmount
+                    + ContractFrm.objContract.ContractCapitalData.CapitalMonthAmount * ContractFrm.objContract.ContractDateData.ContractPeriodMonth).ToString();
+            }
+            else
+            {
+                txtTotalAmount.Text = "";
+            }
 
             //Cost
             clsBaseListItem CostBasis = new clsBaseListItem();
@@ -827,9 +834,9 @@ namespace SCPrime.Contracts
         {
             Console.WriteLine("btnDelete_Click: " + gridRisk.SelectedRows.Count);
             int selectedRow = gridRisk.SelectedRows.Count;
-            if(selectedRow > 0)
+            if (selectedRow > 0)
             {
-                for (int i = 0;i < selectedRow; i++)
+                for (int i = 0; i < selectedRow; i++)
                 {
                     dataTable.Rows.RemoveAt(gridRisk.SelectedCells[i].RowIndex);
                     dataTable.AcceptChanges();
