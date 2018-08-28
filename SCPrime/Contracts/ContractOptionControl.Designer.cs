@@ -32,14 +32,12 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtTotalSale = new System.Windows.Forms.TextBox();
+            this.txtTotalPurchase = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.contractOptionBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.sCOptionBaseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.oIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.partNrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,6 +58,8 @@
             this.partialPayerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.InvoiceFlagCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contractOIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contractOptionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.sCOptionBaseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -90,8 +90,8 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.textBox2);
-            this.panel2.Controls.Add(this.textBox1);
+            this.panel2.Controls.Add(this.txtTotalSale);
+            this.panel2.Controls.Add(this.txtTotalPurchase);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.label1);
@@ -101,19 +101,21 @@
             this.panel2.Size = new System.Drawing.Size(648, 36);
             this.panel2.TabIndex = 2;
             // 
-            // textBox2
+            // txtTotalSale
             // 
-            this.textBox2.Location = new System.Drawing.Point(574, 6);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(66, 20);
-            this.textBox2.TabIndex = 4;
+            this.txtTotalSale.Location = new System.Drawing.Point(574, 6);
+            this.txtTotalSale.Name = "txtTotalSale";
+            this.txtTotalSale.ReadOnly = true;
+            this.txtTotalSale.Size = new System.Drawing.Size(66, 20);
+            this.txtTotalSale.TabIndex = 4;
             // 
-            // textBox1
+            // txtTotalPurchase
             // 
-            this.textBox1.Location = new System.Drawing.Point(414, 6);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(66, 20);
-            this.textBox1.TabIndex = 3;
+            this.txtTotalPurchase.Location = new System.Drawing.Point(414, 6);
+            this.txtTotalPurchase.Name = "txtTotalPurchase";
+            this.txtTotalPurchase.ReadOnly = true;
+            this.txtTotalPurchase.Size = new System.Drawing.Size(66, 20);
+            this.txtTotalPurchase.TabIndex = 3;
             // 
             // label3
             // 
@@ -177,14 +179,6 @@
             this.dataGridView1.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView1_CellValidating);
             this.dataGridView1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView1_DataBindingComplete);
             this.dataGridView1.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_RowValidated);
-            // 
-            // contractOptionBindingSource
-            // 
-            this.contractOptionBindingSource.DataSource = typeof(SCPrime.Model.ContractOption);
-            // 
-            // sCOptionBaseBindingSource
-            // 
-            this.sCOptionBaseBindingSource.DataSource = typeof(SCPrime.Model.SCOptionBase);
             // 
             // oIDDataGridViewTextBoxColumn
             // 
@@ -333,6 +327,14 @@
             this.contractOIDDataGridViewTextBoxColumn.ReadOnly = true;
             this.contractOIDDataGridViewTextBoxColumn.Visible = false;
             // 
+            // contractOptionBindingSource
+            // 
+            this.contractOptionBindingSource.DataSource = typeof(SCPrime.Model.ContractOption);
+            // 
+            // sCOptionBaseBindingSource
+            // 
+            this.sCOptionBaseBindingSource.DataSource = typeof(SCPrime.Model.SCOptionBase);
+            // 
             // ContractOptionControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -359,11 +361,11 @@
         public System.Windows.Forms.TreeView treeView1;
         public System.Windows.Forms.Panel panel2;
         public System.Windows.Forms.DataGridView dataGridView1;
-        public System.Windows.Forms.TextBox textBox1;
+        public System.Windows.Forms.TextBox txtTotalPurchase;
         public System.Windows.Forms.Label label3;
         public System.Windows.Forms.Label label2;
         public System.Windows.Forms.Label label1;
-        public System.Windows.Forms.TextBox textBox2;
+        public System.Windows.Forms.TextBox txtTotalSale;
         private System.Windows.Forms.BindingSource sCOptionBaseBindingSource;
         private System.Windows.Forms.BindingSource contractOptionBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn oIDDataGridViewTextBoxColumn;

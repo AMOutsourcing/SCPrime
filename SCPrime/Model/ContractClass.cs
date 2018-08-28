@@ -775,6 +775,7 @@ namespace SCPrime.Model
         }
     }
 
+    [Serializable]
     public class ContractOption
     {
         public int OID { get; set; }
@@ -798,6 +799,7 @@ namespace SCPrime.Model
         public string LabourName { get; set; }
         public decimal BaseSelPr { get; set; }
         public decimal PurchasePr { get; set; }
+        public int InvoiceFlag { get; set; } = 0;
 
         public bool isDelete { get; set; } = false;
         public bool isUpdate { get; set; } = false;

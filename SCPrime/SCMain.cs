@@ -22,7 +22,19 @@ namespace SCPrime
     {
         static readonly ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public static int ContractOid;
-        public SCMain()
+
+        private static SCMain _instance;
+
+        public static SCMain getInstance()
+        {
+            if (SCMain._instance == null || SCMain._instance.IsDisposed)
+            {
+                SCMain._instance = new SCMain();
+            }
+            return SCMain._instance;
+        }
+
+        SCMain()
         {
             InitializeComponent();
             this.Visible = false;
@@ -241,7 +253,7 @@ namespace SCPrime
             searchContract();
         }
 
-        private void searchContract()
+        public void searchContract()
         {
             List<SCContractType> listContractType = new List<SCContractType>();
             foreach (SCContractType itemChecked in cblContactType.CheckedItems)

@@ -41,6 +41,7 @@ namespace SCPrime.Contracts
             buidTree();
         }
 
+        bool loadTreeDone = false;
         private void buidTree()
         {
             List<SCOptionPrice> listToClone = myCategories.ToList();
@@ -105,9 +106,12 @@ namespace SCPrime.Contracts
                         }
 
                         //Check parent
-                        if (!treeNode.Checked)
+                        if (treeNodeL2.Checked)
                         {
-                            treeNode.Checked = true;
+                            if (!treeNode.Checked)
+                            {
+                                treeNode.Checked = true;
+                            }
                         }
 
                         treeNode.Nodes.Add(treeNodeL2);
@@ -147,14 +151,17 @@ namespace SCPrime.Contracts
                             }
 
                             //Check parent
-                            if (!treeNodeL2.Checked)
+                            if (treeNodeL3.Checked)
                             {
-                                treeNodeL2.Checked = true;
-                            }
+                                if (!treeNodeL2.Checked)
+                                {
+                                    treeNodeL2.Checked = true;
+                                }
 
-                            if (!treeNode.Checked)
-                            {
-                                treeNode.Checked = true;
+                                if (!treeNode.Checked)
+                                {
+                                    treeNode.Checked = true;
+                                }
                             }
 
                             treeNodeL2.Nodes.Add(treeNodeL3);
@@ -175,6 +182,10 @@ namespace SCPrime.Contracts
                     }
                 }
             }
+
+            //Danh dau de tinh tong cho de
+            loadTreeDone = true;
+            calcTotal();
         }
 
         private bool checkTree(TreeNode node, SCOptionPrice scprice)
@@ -293,7 +304,7 @@ namespace SCPrime.Contracts
 
             TreeNode node = e.Node;
             int level = node.Level;
-            Console.WriteLine("----------------------treeView1_AfterCheck: " + e.Node.Name + " - " + e.Node.Level);
+            Console.WriteLine("----------------------treeView1_AfterCheck: " + e.Node.Name + " - " + e.Node.Level + " : " + node.Checked);
             if (node.Checked)
             {
                 addRow(node);
@@ -348,6 +359,13 @@ namespace SCPrime.Contracts
 
                 }
             }
+            
+            if (loadTreeDone)
+            {
+                //Tinh lại tổng mỗi khi click tree (Trừ lúc bắt đầu load)
+                calcTotal();
+            }
+            
         }
 
 
@@ -360,6 +378,7 @@ namespace SCPrime.Contracts
                 ContractOption rtn = null;
                 if (item.GetType() == typeof(SCOptionCategory))
                 {
+                    SCOptionCategory catetory = (SCOptionCategory)item;
                     rtn = new ContractOption();
                     rtn.OptionCategoryOID = item.OID;
                     rtn.Name = item.Name;
@@ -367,8 +386,9 @@ namespace SCPrime.Contracts
                     rtn.PartName = item.ItemName;
                     rtn.LabourCode = item.WrksId;
                     rtn.LabourName = item.WrksName;
-                    rtn.BaseSelPr = item.BaseSelPr;
+                    rtn.BaseSelPr = item.SelPr;
                     rtn.PurchasePr = item.BuyPr;
+                    rtn.InvoiceFlag = catetory.InvoiceFlag;
                 }
                 else if (item.GetType() == typeof(SCOption))
                 {
@@ -383,7 +403,7 @@ namespace SCPrime.Contracts
                     rtn.PartName = option.ItemName;
                     rtn.LabourCode = option.WrksId;
                     rtn.LabourName = option.WrksName;
-                    rtn.BaseSelPr = option.BaseSelPr;
+                    rtn.BaseSelPr = option.SelPr;
                     rtn.PurchasePr = option.BuyPr;
                 }
                 else
@@ -405,7 +425,7 @@ namespace SCPrime.Contracts
                     rtn.PartName = detail.ItemName;
                     rtn.LabourCode = detail.WrksId;
                     rtn.LabourName = detail.WrksName;
-                    rtn.BaseSelPr = detail.BaseSelPr;
+                    rtn.BaseSelPr = detail.SelPr;
                     rtn.PurchasePr = detail.BuyPr;
                 }
 
@@ -420,9 +440,11 @@ namespace SCPrime.Contracts
                         rtn.PartialPayer = finded.PartialPayer;
                         rtn.Quantity = finded.Quantity;
                         rtn.SalePr = finded.SalePr;
+                        rtn.BaseSelPr = finded.BaseSelPr;
                     }
                     catch (System.InvalidOperationException)
                     {
+                        rtn.Quantity = 1;
                         Console.WriteLine("The collection does not contain exactly one element.");
                     }
 
@@ -435,20 +457,30 @@ namespace SCPrime.Contracts
                     try
                     {
                         ContractOption finded = listOptionDetail.Single(s => s.OptionCategoryOID == rtn.OptionCategoryOID && s.OptionOID == rtn.OptionOID && s.OptionDetailOID == rtn.OptionDetailOID);
+                        finded.Info = rtn.Info;
+                        finded.PartialPayer = rtn.PartialPayer;
+                        finded.Quantity = rtn.Quantity;
+                        finded.SalePr = rtn.SalePr;
+                        finded.BaseSelPr = rtn.BaseSelPr;
                     }
                     catch (System.InvalidOperationException)
                     {
                         Console.WriteLine("The collection does not contain exactly one element in grid --> Add");
 
-                        //Add to list
-                        listOptionDetail.Add(rtn);
+                        
 
                         //Add to grid
-                        DataRow drToAdd = ObjectUtils.FillDataToRow(dataTable.NewRow(), rtn);
+                        DataRow drToAdd = ObjectUtils.FillDataToRow(dataTable.NewRow(), ObjectUtils.DeepClone(rtn));
 
                         Console.WriteLine("----Add row: " + drToAdd["PartialPayer"].ToString());
                         dataTable.Rows.Add(drToAdd);
+
+
+                        //Add to list
+                        listOptionDetail.Add(ObjectUtils.DeepClone(rtn));
+                        Console.WriteLine("----listOptionDetail addd: " + rtn.Quantity);
                     }
+                    Console.WriteLine("----listOptionDetail addd after: " + rtn.Quantity);
                 }
             }
         }
@@ -619,7 +651,6 @@ namespace SCPrime.Contracts
 
                 //Gan lai lisst
                 ContractFrm.objContract.listContractOptions = this.listOptionDetail;
-
             }
 
         }
@@ -719,6 +750,34 @@ namespace SCPrime.Contracts
                 cboContacts.ValueMember = "strValue1";//Value column of contact datasource
             }
             Console.WriteLine("======dataGridView1_DataBindingComplete======");
+        }
+
+        public void calcTotal()
+        {
+            if (listOptionDetail == null || listOptionDetail.Count <= 0)
+            {
+                txtTotalPurchase.Text = "0";
+                txtTotalSale.Text = "0";
+            }
+            else
+            {
+                decimal totalPurchase = 0;
+                decimal totalSale = 0;
+                foreach (ContractOption contractOption in listOptionDetail)
+                {
+                    if (contractOption.isDelete)
+                    {
+                        continue;
+                    }
+                    if (contractOption.OptionOID <= 0 && contractOption.OptionDetailOID <= 0 && contractOption.InvoiceFlag > 0)
+                    {
+                        totalPurchase += contractOption.PurchasePr * contractOption.Quantity;
+                        totalSale += contractOption.SalePr * contractOption.Quantity;
+                    }
+                }
+                txtTotalPurchase.Text = totalPurchase.ToString();
+                txtTotalSale.Text = totalSale.ToString();
+            }
         }
     }
 }

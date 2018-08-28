@@ -848,5 +848,11 @@ namespace SCPrime.Contracts
             }
             return base.ProcessDialogKey(keyData);
         }
+
+        private void ContractFrm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            //
+            SCMain.getInstance().searchContract();
+        }
     }
 }

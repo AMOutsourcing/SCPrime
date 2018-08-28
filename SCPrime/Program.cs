@@ -22,7 +22,7 @@ namespace SCPrime
             log4net.Config.XmlConfigurator.Configure();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SCMain());
+            Application.Run(SCMain.getInstance());
             //Application.Run(new tmp());
         }
     }
