@@ -25,7 +25,29 @@ namespace SCPrime.Contracts
 
         private void ContractOption_Load(object sender, EventArgs e)
         {
+            List<clsBaseListItem> listTmp = sCBase.GetConfig("ZSCCAPPAYE");
+            List<ObjTmp> listZSCCAPPAYE = new List<ObjTmp>(listTmp.Count);
+            foreach (clsBaseListItem term in listTmp)
+            {
+                listZSCCAPPAYE.Add(new ObjTmp(term.nValue1.ToString(), term.strText));
+            }
 
+
+            //DataGridViewComboBoxColumn cbox = (DataGridViewComboBoxColumn)dataGridView1.Columns[11];
+
+            //cbox.DataSource = listZSCCAPPAYE;
+            //cbox.ValueMember = "strValue1";
+            //cbox.DisplayMember = "strText";
+
+            partialPayerBindingSource.DataSource = listZSCCAPPAYE;
+
+            //foreach (DataGridViewRow row in dataGridView1.Rows)
+            //{
+            //    DataGridViewComboBoxCell cboContacts = (DataGridViewComboBoxCell)(row.Cells[11]);
+            //    cboContacts.DataSource = listZSCCAPPAYE;
+            //    cboContacts.DisplayMember = "strText"; //Name column of contact datasource
+            //    cboContacts.ValueMember = "strValue1";//Value column of contact datasource
+            //}
         }
 
         public List<SCOptionPrice> myCategories = null;
@@ -240,8 +262,12 @@ namespace SCPrime.Contracts
         List<ContractOption> listOptionDetail = new List<ContractOption>();
         Dictionary<String, String> listOptionDetailTmp = new Dictionary<String, String>();
 
+        SCBase sCBase = null;
+        
         public void loadDataGrid()
         {
+            if (sCBase == null)
+                sCBase = new SCBase();
             buildTable();
             fillToListOptionDetail();
             dataTable = ObjectUtils.ConvertToDataTable(listOptionDetail);
@@ -745,28 +771,6 @@ namespace SCPrime.Contracts
             //Hide OID column
             dataGridView1.Columns[0].Visible = false;
             //dataGridView1.Columns["OID"].Visible = false;
-
-            List<clsBaseListItem> listTmp = new SCBase().GetConfig("ZSCCAPPAYE");
-            List<ObjTmp> listZSCCAPPAYE = new List<ObjTmp>(listTmp.Count);
-            foreach (clsBaseListItem term in listTmp)
-            {
-                listZSCCAPPAYE.Add(new ObjTmp(term.nValue1.ToString(), term.strText));
-            }
-
-
-            DataGridViewComboBoxColumn cbox = (DataGridViewComboBoxColumn)dataGridView1.Columns[11];
-
-            cbox.DataSource = listZSCCAPPAYE;
-            cbox.ValueMember = "strValue1";
-            cbox.DisplayMember = "strText";
-
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                DataGridViewComboBoxCell cboContacts = (DataGridViewComboBoxCell)(row.Cells[11]);
-                cboContacts.DataSource = listZSCCAPPAYE;
-                cboContacts.DisplayMember = "strText"; //Name column of contact datasource
-                cboContacts.ValueMember = "strValue1";//Value column of contact datasource
-            }
         }
 
         public void calcTotal()

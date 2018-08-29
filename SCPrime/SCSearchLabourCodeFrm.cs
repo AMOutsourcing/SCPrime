@@ -148,5 +148,13 @@ namespace SCPrime
         {
             SCSearchLabourCodeFrm._instance = null;
         }
+
+        private void SCSearchLabourCodeFrm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }

@@ -281,6 +281,7 @@
             this.Name = "SCOptionPriceFrm";
             this.Text = "SCOptionPrice";
             this.Load += new System.EventHandler(this.SCOptionPriceFrm_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SCOptionPriceFrm_KeyDown);
             this.pnRight.ResumeLayout(false);
             this.pnTop.ResumeLayout(false);
             this.pnTop.PerformLayout();

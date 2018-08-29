@@ -293,6 +293,7 @@
     <None Include="Properties\DataSources\SCPrime.Model.ContractVehicle1.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.ExtraKmAccountingType.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.MileageReg.datasource" />
+    <None Include="Properties\DataSources\SCPrime.Model.ObjTmp.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.SCBase.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.SCContractType.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.SCOptionPrice.datasource" />

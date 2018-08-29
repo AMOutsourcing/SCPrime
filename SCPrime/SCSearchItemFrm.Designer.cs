@@ -199,6 +199,7 @@
             this.Name = "SCSearchItemFrm";
             this.Text = "SCSearchItemFrm";
             this.Load += new System.EventHandler(this.SCSearchItemFrm_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SCSearchItemFrm_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridItem)).EndInit();

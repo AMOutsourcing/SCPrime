@@ -11,11 +11,14 @@ using SCPrime.Model;
 using CashRegPrime;
 using nsBaseClass;
 using SCPrime.Utils;
+using log4net;
 
 namespace SCPrime.Contracts
 {
     public partial class ContractDataFrm : UserControl
     {
+        static readonly ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+
         //Singleton
         private static ContractDataFrm _instance;
 
@@ -41,17 +44,10 @@ namespace SCPrime.Contracts
         {
             sCBase = new SCBase();
 
-            txtStartDate.Format = DateTimePickerFormat.Custom;
-            txtStartDate.CustomFormat = "yyyy-MM-dd";
-
-            txtEndDate.Format = DateTimePickerFormat.Custom;
-            txtEndDate.CustomFormat = "yyyy-MM-dd";
-
-            txtStartInvoice.Format = DateTimePickerFormat.Custom;
-            txtStartInvoice.CustomFormat = "yyyy-MM-dd";
-
-            txtEndInvoice.Format = DateTimePickerFormat.Custom;
-            txtEndInvoice.CustomFormat = "yyyy-MM-dd";
+            ViewUtils.fomatDatePicker(txtStartDate);
+            ViewUtils.fomatDatePicker(txtEndDate);
+            ViewUtils.fomatDatePicker(txtStartInvoice);
+            ViewUtils.fomatDatePicker(txtEndInvoice);
 
             //Termination 
             List<ObjTmp> listTermination = new List<ObjTmp>();
@@ -483,7 +479,6 @@ namespace SCPrime.Contracts
 
         private void caclEndDate()
         {
-            Console.WriteLine("------caclEndDate----------");
             DateTime ContractStartDate = txtStartDate.Value.AddDays(1).AddMonths(Int32.Parse(txtPeriod.Text)).AddDays(-1);
             txtEndDate.Value = ContractStartDate;
         }
@@ -751,8 +746,8 @@ namespace SCPrime.Contracts
 
         private void fillRisk()
         {
-            List<ZSC_SubcontractorContractRisk> contractRisk = ContractFrm.objContract.loadZSC_SubcontractorContractRisk();
-            dataTable = ObjectUtils.ConvertToDataTable(contractRisk);
+            List<ZSC_SubcontractorContractRisk> lstContractRisk = ContractFrm.objContract.loadZSC_SubcontractorContractRisk();
+            dataTable = ObjectUtils.ConvertToDataTable(lstContractRisk);
 
             //Add Column subcontracter
             List<SubContractorContract> SubContracts = ContractFrm.objContract.SubContracts;
@@ -763,13 +758,24 @@ namespace SCPrime.Contracts
             {
                 dataTable.Columns.Add("sub" + subContract.OID, typeof(Int32));
             }
+
+            ZSC_SubcontractorContractRisk contractRisk = null;
+
             foreach (SubContractorContract subContract in SubContracts)
             {
                 listRiskSub = ZSC_SubcontractorContractRisk.getContractRiskBySub(ContractFrm.objContract.ContractOID, subContract.OID);
                 if (listRiskSub.Count > 0)
                 {
+
                     foreach (DataRow row in dataTable.Rows)
-                        row["sub" + subContract.OID] = listRiskSub.Single(s => s.RiskPartnerCustId == Int32.Parse(row["RiskPartnerCustId"].ToString())).RiskLevel;
+                    {
+                        contractRisk = null;
+                        contractRisk = listRiskSub.SingleOrDefault(s => s.RiskPartnerCustId == Int32.Parse(row["RiskPartnerCustId"].ToString()));
+                        if (contractRisk != null)
+                            row["sub" + subContract.OID] = contractRisk.RiskLevel;
+                        else
+                            row["sub" + subContract.OID] = 0;
+                    }
                 }
                 else
                 {
@@ -832,7 +838,6 @@ namespace SCPrime.Contracts
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("btnDelete_Click: " + gridRisk.SelectedRows.Count);
             int selectedRow = gridRisk.SelectedRows.Count;
             if (selectedRow > 0)
             {
@@ -840,12 +845,8 @@ namespace SCPrime.Contracts
                 {
                     dataTable.Rows.RemoveAt(gridRisk.SelectedCells[i].RowIndex);
                     dataTable.AcceptChanges();
-                    //gridRisk.Rows.RemoveAt(gridRisk.SelectedCells[i].RowIndex);
                 }
-
             }
-
-
         }
     }
 }

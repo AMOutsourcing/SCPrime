@@ -290,5 +290,13 @@ namespace SCPrime
                 ViewUtils.remarkHeader(this.contractTypeList.Rows[e.RowIndex], Constant.isMarkDeleted);
             }
         }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }

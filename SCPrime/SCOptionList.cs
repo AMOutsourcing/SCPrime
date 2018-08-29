@@ -1718,5 +1718,13 @@ namespace SCPrime
             pn.KeySender(Constant.Detail);
             pn.ShowDialog();
         }
+
+        private void SCOptionList_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }

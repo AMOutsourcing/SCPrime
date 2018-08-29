@@ -178,6 +178,7 @@
             this.Text = "dlgSearchLabour";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SCSearchLabourCodeFrm_FormClosed);
             this.Load += new System.EventHandler(this.SCSparePartNoFrm_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SCSearchLabourCodeFrm_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

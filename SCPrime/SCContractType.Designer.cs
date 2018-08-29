@@ -36,7 +36,6 @@
             this.saveBtn = new System.Windows.Forms.Button();
             this.closeBtn = new System.Windows.Forms.Button();
             this.contractTypeList = new System.Windows.Forms.DataGridView();
-            this.sCContractTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.OID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ContractTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isInvoice = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -44,6 +43,7 @@
             this.isCollective = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.isMarkDeleted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.isLeadExport = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.sCContractTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.contractTypeList)).BeginInit();
@@ -150,10 +150,6 @@
             this.contractTypeList.RowLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.contractTypeList_RowLeave);
             this.contractTypeList.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.contractTypeList_RowValidated);
             // 
-            // sCContractTypeBindingSource
-            // 
-            this.sCContractTypeBindingSource.DataSource = typeof(SCPrime.Model.SCContractType);
-            // 
             // OID
             // 
             this.OID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
@@ -163,7 +159,6 @@
             this.OID.Name = "OID";
             this.OID.ReadOnly = true;
             this.OID.Visible = false;
-            this.OID.Width = 51;
             // 
             // ContractTypeName
             // 
@@ -203,13 +198,16 @@
             this.isMarkDeleted.HeaderText = "isMarkDeleted";
             this.isMarkDeleted.Name = "isMarkDeleted";
             this.isMarkDeleted.Visible = false;
-            this.isMarkDeleted.Width = 81;
             // 
             // isLeadExport
             // 
             this.isLeadExport.DataPropertyName = "isLeadExport";
             this.isLeadExport.HeaderText = "isLeadExport";
             this.isLeadExport.Name = "isLeadExport";
+            // 
+            // sCContractTypeBindingSource
+            // 
+            this.sCContractTypeBindingSource.DataSource = typeof(SCPrime.Model.SCContractType);
             // 
             // Form1
             // 
@@ -222,6 +220,7 @@
             this.Text = "SCContractType";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.Controls.SetChildIndex(this.pbOK, 0);
             this.Controls.SetChildIndex(this.pbCancel, 0);
             this.Controls.SetChildIndex(this.pbHelp, 0);

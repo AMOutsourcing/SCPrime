@@ -39,5 +39,12 @@ namespace SCPrime.Utils
             else
                 return controls;
         }
+
+        public static void fomatDatePicker(DateTimePicker picker)
+        {
+            picker.Format = DateTimePickerFormat.Short;
+            //picker.Format = DateTimePickerFormat.Custom;
+            //picker.CustomFormat = "yyyy-MM-dd";
+        }
     }
 }

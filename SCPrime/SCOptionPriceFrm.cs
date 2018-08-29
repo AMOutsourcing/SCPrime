@@ -402,5 +402,15 @@ namespace SCPrime
             this.Visible = true;
             initData();
         }
+
+        private void SCOptionPriceFrm_KeyDown(object sender, KeyEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("-------------- SCOptionPriceFrm_KeyDown ERROR: " + e.KeyCode);
+            if (e.KeyCode == Keys.Escape)
+            {
+                System.Diagnostics.Debug.WriteLine("-------------- SCOptionPriceFrm_KeyDown ERROR: close " + e.KeyCode);
+                this.Close();
+            }
+        }
     }
 }

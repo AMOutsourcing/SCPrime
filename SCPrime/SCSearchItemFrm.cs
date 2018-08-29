@@ -125,5 +125,13 @@ namespace SCPrime
             this.Close();
             SCOptionList.instance.Refresh();
         }
+
+        private void SCSearchItemFrm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }
