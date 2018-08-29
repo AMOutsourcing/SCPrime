@@ -651,7 +651,7 @@ namespace SCPrime.Model
         {
             bool bRet = true;
             string sql = "";
-            if (list.Count <= 0)
+            if (list == null || list.Count <= 0)
             {
                 //Delete
                 sql = "delete from ZSC_SubcontractorContractRisk where ContractOID = ?";
@@ -954,7 +954,7 @@ namespace SCPrime.Model
         public List<CollectiveContract> SelfContracts;
 
         public List<SCOptionCategory> OptionCategories;
-        public List<ZSC_SubcontractorContractRisk> SubcontractorContractRisks;
+        public List<ZSC_SubcontractorContractRisk> SubcontractorContractRisks = new List<ZSC_SubcontractorContractRisk>();
         public Contract()
         {
             //default values
@@ -1353,13 +1353,13 @@ namespace SCPrime.Model
         }
 
         //
-        public List<ContractOption> listContractOptions;
+        public List<ContractOption> listContractOptions = new List<ContractOption>();
 
         public static bool saveContractOption(int ContractOID, List<ContractOption> list, clsSqlFactory hSql)
         {
             bool bRet = true;
             string sql = "";
-            if (list.Count <= 0)
+            if (list == null || list.Count <= 0)
             {
                 //Delete
                 sql = "delete from ZSC_ContractOption where ContractOID = ?";

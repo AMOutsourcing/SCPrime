@@ -75,7 +75,6 @@ namespace SCPrime
                 {
                     ComboBox cmb = (ComboBox)sender;
                     Int32 selectedValue = Int32.Parse(cmb.SelectedValue.ToString());
-                    System.Diagnostics.Debug.WriteLine("cbContactType_SelectedIndexChanged selectedValue: " + selectedValue);
                     loadDataGrid(selectedValue);
                 }
             }
@@ -102,7 +101,6 @@ namespace SCPrime
             {
                 //Load data
                 List<Model.SCOptionPrice> listData = new Model.SCContractType().getOptionPriceList(contactId);
-                System.Diagnostics.Debug.WriteLine("loadDataGrid listData: " + listData.Count);
                 //sCOptionPriceBindingSource.DataSource = listData;
                 DataTable dataTable = ObjectUtils.ConvertToDataTable(listData);
                 gridPrice.DataSource = dataTable;
@@ -291,10 +289,10 @@ namespace SCPrime
             if (scPriceListChange.Count > 0)
             {
                 bool result = false;
-                foreach (SCOptionPrice sc in scPriceListChange)
-                {
-                    System.Diagnostics.Debug.WriteLine("--------------SCOptionPrice: " + sc.OID + " - " + sc.IsAvailable);
-                }
+                //foreach (SCOptionPrice sc in scPriceListChange)
+                //{
+                //    System.Diagnostics.Debug.WriteLine("--------------SCOptionPrice: " + sc.OID + " - " + sc.IsAvailable);
+                //}
                 result = scPriceDao.save(scPriceListChange);
                 if (result)
                 {
@@ -403,12 +401,20 @@ namespace SCPrime
             initData();
         }
 
+        protected override bool ProcessDialogKey(Keys keyData)
+        {
+            if (Form.ModifierKeys == Keys.None && keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessDialogKey(keyData);
+        }
+
         private void SCOptionPriceFrm_KeyDown(object sender, KeyEventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("-------------- SCOptionPriceFrm_KeyDown ERROR: " + e.KeyCode);
             if (e.KeyCode == Keys.Escape)
             {
-                System.Diagnostics.Debug.WriteLine("-------------- SCOptionPriceFrm_KeyDown ERROR: close " + e.KeyCode);
                 this.Close();
             }
         }

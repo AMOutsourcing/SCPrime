@@ -84,6 +84,7 @@
             this.Name = "dlgPrintContract";
             this.Text = "dlgPrintContract";
             this.Load += new System.EventHandler(this.dlgPrintContract_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dlgPrintContract_KeyDown);
             this.Controls.SetChildIndex(this.pbOK, 0);
             this.Controls.SetChildIndex(this.pbCancel, 0);
             this.Controls.SetChildIndex(this.pbHelp, 0);

@@ -49,6 +49,7 @@
             this.ClientSize = new System.Drawing.Size(843, 450);
             this.Name = "CustomerSearchFrm";
             this.Text = "CustomerSearchFrm";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CustomerSearchFrm_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

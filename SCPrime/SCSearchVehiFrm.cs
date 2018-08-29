@@ -63,7 +63,6 @@ namespace SCPrime
             DataTable dt = new DataTable();
             List<ContractVehicle> result = new List<ContractVehicle>();
             result = ContractVehicle.seach(key);
-            System.Diagnostics.Debug.WriteLine("---------------------ContractVehicle seach: " + result.Count);
             dt = ObjectUtils.ConvertToDataTable(result);
             return dt;
         }
@@ -166,6 +165,16 @@ namespace SCPrime
         public void setMileageControl(MileageRegisterFrm userControl2)
         {
             this.userControl2 = userControl2;
+        }
+
+        protected override bool ProcessDialogKey(Keys keyData)
+        {
+            if (Form.ModifierKeys == Keys.None && keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessDialogKey(keyData);
         }
 
         private void SCSearchVehiFrm_KeyDown(object sender, KeyEventArgs e)

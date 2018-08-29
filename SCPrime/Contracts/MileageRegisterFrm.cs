@@ -93,7 +93,6 @@ namespace SCPrime.Contracts
 
         private void GetMessage(ContractVehicle Message)
         {
-            System.Diagnostics.Debug.WriteLine("---------------------GetMessage: " + Message.VIN);
             this.contractVehicle = Message;
 
             this.txtVin.Text = this.contractVehicle.VIN;
@@ -182,6 +181,24 @@ namespace SCPrime.Contracts
             if(!tmp)
             {
                 e.Handled = true;
+            }
+        }
+
+        protected override bool ProcessDialogKey(Keys keyData)
+        {
+            if (Form.ModifierKeys == Keys.None && keyData == Keys.Escape)
+            {
+                this.Close();
+                return true;
+            }
+            return base.ProcessDialogKey(keyData);
+        }
+
+        private void MileageRegisterFrm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
             }
         }
     }
