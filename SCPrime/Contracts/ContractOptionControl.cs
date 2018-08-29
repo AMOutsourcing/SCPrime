@@ -733,6 +733,7 @@ namespace SCPrime.Contracts
                         finded.Info = row.Cells[10].Value.ToString();
                     if (row.Cells[11].Value != null)
                         finded.PartialPayer = row.Cells[11].Value.ToString();
+                    calcTotal();
                 }
                 catch (System.InvalidOperationException ex)
                 {

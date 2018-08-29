@@ -238,7 +238,7 @@ namespace SCPrime.Model
 
             string strSql = "select a.VEHIID as _OID, isnull(a.LICNO,'') as VehicleLicenseNo, isnull(a.SERIALNO,'') as VehicleVIN, isnull(a.MAKE,'') as VehicleMake, isnull(a.MODEL,'') as VehicleModel, isnull(a.SUBMODEL,'') as VehicleSubModel  from VEHI a  where SERIALNO like ? ";
 
-         
+
 
             List<ContractVehicle> Result = new List<ContractVehicle>();
             clsSqlFactory hSql = new clsSqlFactory();
@@ -646,12 +646,58 @@ namespace SCPrime.Model
             return rtn;
         }
 
+        public static List<ZSC_SubcontractorContractRisk> getSubcontractorContractRisk(int ContractOID)
+        {
+            List<ZSC_SubcontractorContractRisk> rtn = null;
+            clsSqlFactory hSql = new clsSqlFactory();
+            try
+            {
+                string strSql = "select s.* from ZSC_SubcontractorContractRisk s where s.ContractOID=? order by s.SubContractOID asc";
+                hSql.NewCommand(strSql);
+                hSql.Com.Parameters.Add("ContractOID", ContractOID);
+                hSql.ExecuteReader();
+                rtn = new List<ZSC_SubcontractorContractRisk>();
+                int colId = 0;
+                ZSC_SubcontractorContractRisk obj = null;
+                while (hSql.Read())
+                {
+                    obj = new ZSC_SubcontractorContractRisk();
+                    colId = hSql.Reader.GetOrdinal("OID");
+                    if (!hSql.Reader.IsDBNull(colId)) obj.OID = hSql.Reader.GetInt32(colId);
+                    colId = hSql.Reader.GetOrdinal("ContractOID");
+                    if (!hSql.Reader.IsDBNull(colId)) obj.ContractOID = hSql.Reader.GetInt32(colId);
+                    colId = hSql.Reader.GetOrdinal("SubContractOID");
+                    if (!hSql.Reader.IsDBNull(colId)) obj.SubContractOID = hSql.Reader.GetInt32(colId);
+                    colId = hSql.Reader.GetOrdinal("RiskPartnerCustId");
+                    if (!hSql.Reader.IsDBNull(colId)) obj.RiskPartnerCustId = hSql.Reader.GetInt32(colId);
+                    colId = hSql.Reader.GetOrdinal("RiskLevel");
+                    if (!hSql.Reader.IsDBNull(colId)) obj.RiskLevel = hSql.Reader.GetDecimal(colId);
+                    colId = hSql.Reader.GetOrdinal("Created");
+                    if (!hSql.Reader.IsDBNull(colId)) obj.Created = hSql.Reader.GetDateTime(colId);
+                    colId = hSql.Reader.GetOrdinal("Modified");
+                    if (!hSql.Reader.IsDBNull(colId)) obj.Modified = hSql.Reader.GetDateTime(colId);
+                    rtn.Add(obj);
+                }
+            }
+            catch (Exception ex)
+            {
+                rtn = null;
+                throw ex;
+            }
+            finally
+            {
+                hSql.Close();
+            }
+            return rtn;
+        }
+
 
         public static bool saveContractRisk(int ContractOID, List<ZSC_SubcontractorContractRisk> list, clsSqlFactory hSql)
         {
+            if (list == null) return true;
             bool bRet = true;
             string sql = "";
-            if (list == null || list.Count <= 0)
+            if (list.Count <= 0)
             {
                 //Delete
                 sql = "delete from ZSC_SubcontractorContractRisk where ContractOID = ?";
@@ -700,22 +746,6 @@ namespace SCPrime.Model
             }
 
 
-            //Duyet de xoa
-            ZSC_SubcontractorContractRisk objDelete = null;
-            foreach (KeyValuePair<string, ZSC_SubcontractorContractRisk> entry in dicRisks)
-            {
-                objDelete = entry.Value;
-                if (!dicNew.ContainsKey(objDelete.getKey()))
-                {
-                    //Xoa
-                    sql = "delete from ZSC_SubcontractorContractRisk where OID = ?";
-                    bRet = hSql.NewCommand(sql);
-                    hSql.Com.Parameters.AddWithValue("OID", objDelete.OID);
-                    return bRet = bRet && hSql.ExecuteNonQuery();
-                }
-            }
-
-
             if (dicRisks.Count <= 0)
             {
                 foreach (ZSC_SubcontractorContractRisk objtmp in list)
@@ -736,6 +766,21 @@ namespace SCPrime.Model
             }
             else
             {
+                //Duyet de xoa
+                ZSC_SubcontractorContractRisk objDelete = null;
+                foreach (KeyValuePair<string, ZSC_SubcontractorContractRisk> entry in dicRisks)
+                {
+                    objDelete = entry.Value;
+                    if (!dicNew.ContainsKey(objDelete.getKey()))
+                    {
+                        //Xoa
+                        sql = "delete from ZSC_SubcontractorContractRisk where OID = ?";
+                        bRet = hSql.NewCommand(sql);
+                        hSql.Com.Parameters.AddWithValue("OID", objDelete.OID);
+                        return bRet = bRet && hSql.ExecuteNonQuery();
+                    }
+                }
+
                 foreach (ZSC_SubcontractorContractRisk objtmp in list)
                 {
                     if (objtmp.RiskLevel > 0)
@@ -954,7 +999,7 @@ namespace SCPrime.Model
         public List<CollectiveContract> SelfContracts;
 
         public List<SCOptionCategory> OptionCategories;
-        public List<ZSC_SubcontractorContractRisk> SubcontractorContractRisks = new List<ZSC_SubcontractorContractRisk>();
+        public List<ZSC_SubcontractorContractRisk> SubcontractorContractRisks;
         public Contract()
         {
             //default values
@@ -1312,7 +1357,7 @@ namespace SCPrime.Model
 
                     hSql.Com.Parameters.AddWithValue("OID", ContractOID);
 
-                
+
                     bRet = bRet && hSql.ExecuteNonQuery();
 
                     //longdq 02082018
@@ -1353,13 +1398,14 @@ namespace SCPrime.Model
         }
 
         //
-        public List<ContractOption> listContractOptions = new List<ContractOption>();
+        public List<ContractOption> listContractOptions;
 
         public static bool saveContractOption(int ContractOID, List<ContractOption> list, clsSqlFactory hSql)
         {
+            if (list == null) return true;
             bool bRet = true;
             string sql = "";
-            if (list == null || list.Count <= 0)
+            if (list.Count <= 0)
             {
                 //Delete
                 sql = "delete from ZSC_ContractOption where ContractOID = ?";

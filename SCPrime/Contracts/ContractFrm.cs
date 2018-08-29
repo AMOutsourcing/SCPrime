@@ -66,7 +66,6 @@ namespace SCPrime.Contracts
             if (SCMain.ContractOid > 0)
             {
                 objContract = SCBase.searchContracts(SCMain.ContractOid);
-
                 objContract.listContractOptions = ContractOption.getContractOption(objContract.ContractOID);
             }
             else
@@ -726,17 +725,44 @@ namespace SCPrime.Contracts
                     oldContract = SCBase.searchContracts(SCMain.ContractOid);
                     //update status old then save
                     oldContract.ContractStatus = ContractStatus.Deactivated;
+
+                    //Load danh sach ContractOption va ZSC_SubcontractorContractRisk
+                    List<ContractOption> oldContractOptions = ContractOption.getContractOption(SCMain.ContractOid);
+                    List<ZSC_SubcontractorContractRisk> oldContractRisk = ZSC_SubcontractorContractRisk.getSubcontractorContractRisk(SCMain.ContractOid);
+
                     oldContract.saveContract();
+
 
                     //  new object
                     objContract.ContractOID = 0;
                     objContract.VersionNo = objContract.VersionNo + 1;
                     this.updateContract();
+
+                    //Tao list [ZSC_ContractOption]
+                    objContract.listContractOptions = oldContractOptions;
+                    if(objContract.listContractOptions != null && objContract.listContractOptions.Count > 0)
+                    {
+                        foreach (ContractOption objOptionDetail in objContract.listContractOptions)
+                        {
+                            objOptionDetail.isInsert = true;
+                        }
+                    }
+
+                    //Tao list [ZSC_SubcontractorContractRisk]
+                    objContract.SubcontractorContractRisks = oldContractRisk;
+
+
                     bool tmp = objContract.saveContract();
                     if (tmp)
                     {
                         this.loadComboboxData();
                         this.loadContractData();
+
+                        //Load Data
+                        this.loadVehice();
+                        this.contractOption1.loadDataGrid();
+                        this.contractOption1.loadTree();
+                        this.contractDataFrm.fillData();
                     }
                 }
             }
