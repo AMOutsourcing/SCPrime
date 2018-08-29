@@ -31,23 +31,7 @@ namespace SCPrime.Contracts
             {
                 listZSCCAPPAYE.Add(new ObjTmp(term.nValue1.ToString(), term.strText));
             }
-
-
-            //DataGridViewComboBoxColumn cbox = (DataGridViewComboBoxColumn)dataGridView1.Columns[11];
-
-            //cbox.DataSource = listZSCCAPPAYE;
-            //cbox.ValueMember = "strValue1";
-            //cbox.DisplayMember = "strText";
-
             partialPayerBindingSource.DataSource = listZSCCAPPAYE;
-
-            //foreach (DataGridViewRow row in dataGridView1.Rows)
-            //{
-            //    DataGridViewComboBoxCell cboContacts = (DataGridViewComboBoxCell)(row.Cells[11]);
-            //    cboContacts.DataSource = listZSCCAPPAYE;
-            //    cboContacts.DisplayMember = "strText"; //Name column of contact datasource
-            //    cboContacts.ValueMember = "strValue1";//Value column of contact datasource
-            //}
         }
 
         public List<SCOptionPrice> myCategories = null;
@@ -283,9 +267,7 @@ namespace SCPrime.Contracts
                 if (ContractFrm.objContract.listContractOptions.Count > 0)
                 {
                     foreach (ContractOption cate in ContractFrm.objContract.listContractOptions)
-                    {
                         addToDic(cate);
-                    }
                 }
             }
 
@@ -360,7 +342,6 @@ namespace SCPrime.Contracts
 
             TreeNode node = e.Node;
             int level = node.Level;
-            _log.Debug("-------treeView1_AfterCheck: " + node.Name);
             if (node.Checked)
             {
                 addRow(node);
@@ -706,7 +687,6 @@ namespace SCPrime.Contracts
 
         private void dataGridView1_RowValidated(object sender, DataGridViewCellEventArgs e)
         {
-            _log.Debug("dataGridView1_RowValidated: " + e.RowIndex);
             //Update data
             if (e.RowIndex >= 0)
             {
@@ -806,7 +786,6 @@ namespace SCPrime.Contracts
         private void treeView1_BeforeCheck(object sender, TreeViewCancelEventArgs e)
         {
             TreeNode node = e.Node;
-            _log.Debug("treeView1_BeforeCheck: " + node.Name);
             if (SystemColors.GrayText == node.ForeColor)
             {
                 e.Cancel = true;

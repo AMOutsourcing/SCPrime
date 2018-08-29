@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using log4net;
 using SCPrime.Model;
 using SCPrime.Utils;
 
@@ -14,7 +15,7 @@ namespace SCPrime
 {
     public partial class SCOptionPriceFrm : Form
     {
-
+        static readonly ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private static SCOptionPriceFrm _instance;
 
         public static SCOptionPriceFrm getInstance()
@@ -80,7 +81,7 @@ namespace SCPrime
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine("cbContactType_SelectedIndexChanged Exception: " + ex.Message);
+                _log.Error("cbContactType_SelectedIndexChanged Exception: ", ex);
                 loadDataGrid(-1);
             }
         }
@@ -88,11 +89,11 @@ namespace SCPrime
         private void loadDataGrid(Int32 contactId)
         {
             //Clear list item thay doi ma chua save
-            if(scPriceListChange != null && scPriceListChange.Count > 0)
+            if (scPriceListChange != null && scPriceListChange.Count > 0)
             {
                 scPriceListChange.Clear();
             }
-            
+
 
             //Clear data
             gridPrice.DataSource = null;
@@ -157,7 +158,7 @@ namespace SCPrime
             //Start Timer
             t.Tag = e;
             t.Start();
-            
+
             if (lockClick)
             {
             }
@@ -385,7 +386,7 @@ namespace SCPrime
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine("-------------- CellValueChangedaddToListChange ERROR: " + ex.Message);
+                _log.Error("gridPrice_CellValueChanged Exception: ", ex);
             }
         }
 
