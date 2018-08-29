@@ -678,5 +678,92 @@ namespace SCPrime
         {
             this.resizeHeight();
         }
+
+        private void cblModel_MouseDown(object sender, MouseEventArgs e)
+        {
+            switch (e.Button)
+            {
+                case MouseButtons.Right:
+                    {
+                        rightClickMenuStripModel.Show(this, new Point(e.X , e.Y + 80));//places the menu at the pointer position
+                    }
+                    break;
+            }
+        }
+
+        private void modelSelectAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < cblModel.Items.Count; i++)
+                cblModel.SetItemChecked(i, true);
+
+            searchContract();
+        }
+
+        private void modelSelectNoneToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < cblModel.Items.Count; i++)
+                cblModel.SetItemChecked(i, false);
+
+            //clear Grid
+            this.gridContract.DataSource = null;
+        }
+
+        private void siteSelectAllToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < cbSites.Items.Count; i++)
+                cbSites.SetItemChecked(i, true);
+
+            searchContract();
+        }
+
+        private void siteSelectNoneToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < cbSites.Items.Count; i++)
+                cbSites.SetItemChecked(i, false);
+
+            //clear Grid
+            this.gridContract.DataSource = null;
+        }
+
+        private void cbSites_MouseDown(object sender, MouseEventArgs e)
+        {
+            switch (e.Button)
+            {
+                case MouseButtons.Right:
+                    {
+                        rightClickMenuStripSites.Show(this, new Point(e.X, e.Y + 270));//places the menu at the pointer position
+                    }
+                    break;
+            }
+        }
+
+        private void cblContactType_MouseDown(object sender, MouseEventArgs e)
+        {
+            switch (e.Button)
+            {
+                case MouseButtons.Right:
+                    {
+                        rightClickMenuStripContractType.Show(this, new Point(e.X, e.Y + 450));//places the menu at the pointer position
+                    }
+                    break;
+            }
+        }
+
+        private void CTselectAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < cblContactType.Items.Count; i++)
+                cblContactType.SetItemChecked(i, true);
+
+            searchContract();
+        }
+
+        private void CTselectNoneToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < cblContactType.Items.Count; i++)
+                cblContactType.SetItemChecked(i, false);
+
+            //clear Grid
+            this.gridContract.DataSource = null;
+        }
     }
 }

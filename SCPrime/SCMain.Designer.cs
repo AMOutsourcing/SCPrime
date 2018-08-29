@@ -90,6 +90,15 @@
             this.invoicesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.rightClickMenuStripModel = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.modelSelectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modelSelectNoneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rightClickMenuStripSites = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.rightClickMenuStripContractType = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.CTselectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CTselectNoneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.siteSelectAllToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.siteSelectNoneToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.colCcontractOID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contractNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.versionNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -118,6 +127,9 @@
             this.rightClickMenuStrip.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.rightClickMenuStripModel.SuspendLayout();
+            this.rightClickMenuStripSites.SuspendLayout();
+            this.rightClickMenuStripContractType.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.contractBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -151,6 +163,7 @@
             this.cblContactType.Size = new System.Drawing.Size(176, 209);
             this.cblContactType.TabIndex = 4;
             this.cblContactType.SelectedIndexChanged += new System.EventHandler(this.cblContactType_SelectedIndexChanged);
+            this.cblContactType.MouseDown += new System.Windows.Forms.MouseEventHandler(this.cblContactType_MouseDown);
             this.cblContactType.MouseEnter += new System.EventHandler(this.cblContactType_MouseEnter);
             this.cblContactType.MouseHover += new System.EventHandler(this.cblContactType_MouseHover);
             this.cblContactType.MouseMove += new System.Windows.Forms.MouseEventHandler(this.cblContactType_MouseMove);
@@ -171,6 +184,7 @@
             this.cbSites.Name = "cbSites";
             this.cbSites.Size = new System.Drawing.Size(176, 139);
             this.cbSites.TabIndex = 2;
+            this.cbSites.MouseDown += new System.Windows.Forms.MouseEventHandler(this.cbSites_MouseDown);
             // 
             // label1
             // 
@@ -188,6 +202,7 @@
             this.cblModel.Name = "cblModel";
             this.cblModel.Size = new System.Drawing.Size(176, 169);
             this.cblModel.TabIndex = 0;
+            this.cblModel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.cblModel_MouseDown);
             // 
             // gridContract
             // 
@@ -657,6 +672,72 @@
             this.panel4.Size = new System.Drawing.Size(176, 209);
             this.panel4.TabIndex = 4;
             // 
+            // rightClickMenuStripModel
+            // 
+            this.rightClickMenuStripModel.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.modelSelectAllToolStripMenuItem,
+            this.modelSelectNoneToolStripMenuItem});
+            this.rightClickMenuStripModel.Name = "rightClickMenuStripModel";
+            this.rightClickMenuStripModel.Size = new System.Drawing.Size(132, 48);
+            // 
+            // modelSelectAllToolStripMenuItem
+            // 
+            this.modelSelectAllToolStripMenuItem.Name = "modelSelectAllToolStripMenuItem";
+            this.modelSelectAllToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.modelSelectAllToolStripMenuItem.Text = "Select All";
+            this.modelSelectAllToolStripMenuItem.Click += new System.EventHandler(this.modelSelectAllToolStripMenuItem_Click);
+            // 
+            // modelSelectNoneToolStripMenuItem
+            // 
+            this.modelSelectNoneToolStripMenuItem.Name = "modelSelectNoneToolStripMenuItem";
+            this.modelSelectNoneToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.modelSelectNoneToolStripMenuItem.Text = "Select None";
+            this.modelSelectNoneToolStripMenuItem.Click += new System.EventHandler(this.modelSelectNoneToolStripMenuItem_Click);
+            // 
+            // rightClickMenuStripSites
+            // 
+            this.rightClickMenuStripSites.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.siteSelectAllToolStripMenuItem1,
+            this.siteSelectNoneToolStripMenuItem1});
+            this.rightClickMenuStripSites.Name = "rightClickMenuStripSites";
+            this.rightClickMenuStripSites.Size = new System.Drawing.Size(132, 48);
+            // 
+            // rightClickMenuStripContractType
+            // 
+            this.rightClickMenuStripContractType.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CTselectAllToolStripMenuItem,
+            this.CTselectNoneToolStripMenuItem});
+            this.rightClickMenuStripContractType.Name = "rightClickMenuStripContractType";
+            this.rightClickMenuStripContractType.Size = new System.Drawing.Size(181, 70);
+            // 
+            // CTselectAllToolStripMenuItem
+            // 
+            this.CTselectAllToolStripMenuItem.Name = "CTselectAllToolStripMenuItem";
+            this.CTselectAllToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.CTselectAllToolStripMenuItem.Text = "Select All";
+            this.CTselectAllToolStripMenuItem.Click += new System.EventHandler(this.CTselectAllToolStripMenuItem_Click);
+            // 
+            // CTselectNoneToolStripMenuItem
+            // 
+            this.CTselectNoneToolStripMenuItem.Name = "CTselectNoneToolStripMenuItem";
+            this.CTselectNoneToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.CTselectNoneToolStripMenuItem.Text = "Select None";
+            this.CTselectNoneToolStripMenuItem.Click += new System.EventHandler(this.CTselectNoneToolStripMenuItem_Click);
+            // 
+            // siteSelectAllToolStripMenuItem1
+            // 
+            this.siteSelectAllToolStripMenuItem1.Name = "siteSelectAllToolStripMenuItem1";
+            this.siteSelectAllToolStripMenuItem1.Size = new System.Drawing.Size(131, 22);
+            this.siteSelectAllToolStripMenuItem1.Text = "Select All";
+            this.siteSelectAllToolStripMenuItem1.Click += new System.EventHandler(this.siteSelectAllToolStripMenuItem1_Click);
+            // 
+            // siteSelectNoneToolStripMenuItem1
+            // 
+            this.siteSelectNoneToolStripMenuItem1.Name = "siteSelectNoneToolStripMenuItem1";
+            this.siteSelectNoneToolStripMenuItem1.Size = new System.Drawing.Size(131, 22);
+            this.siteSelectNoneToolStripMenuItem1.Text = "Select None";
+            this.siteSelectNoneToolStripMenuItem1.Click += new System.EventHandler(this.siteSelectNoneToolStripMenuItem1_Click);
+            // 
             // colCcontractOID
             // 
             this.colCcontractOID.DataPropertyName = "ContractOID";
@@ -829,6 +910,9 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
+            this.rightClickMenuStripModel.ResumeLayout(false);
+            this.rightClickMenuStripSites.ResumeLayout(false);
+            this.rightClickMenuStripContractType.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.contractBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -922,6 +1006,15 @@
         private System.Windows.Forms.ToolStripMenuItem remarkToolStripMenuItem;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.ContextMenuStrip rightClickMenuStripModel;
+        private System.Windows.Forms.ToolStripMenuItem modelSelectAllToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem modelSelectNoneToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip rightClickMenuStripSites;
+        private System.Windows.Forms.ContextMenuStrip rightClickMenuStripContractType;
+        private System.Windows.Forms.ToolStripMenuItem CTselectAllToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem CTselectNoneToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem siteSelectAllToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem siteSelectNoneToolStripMenuItem1;
     }
 }
 
