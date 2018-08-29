@@ -52,6 +52,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton10 = new System.Windows.Forms.ToolStripButton();
             this.menuStrip3 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.nEwContractToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -66,6 +67,7 @@
             this.invoiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.invoiceToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.remarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.exitApplicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.masterDataToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -76,6 +78,7 @@
             this.rightClickMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.NewContractItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.printMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.customerDataItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vehicleDataItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -84,8 +87,9 @@
             this.eLOArchiveItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.mileageRegisterItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.printMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.invoicesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.colCcontractOID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contractNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.versionNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -106,25 +110,22 @@
             this.isInvoiceDetailDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.custPhoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contractBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.toolStripButton10 = new System.Windows.Forms.ToolStripButton();
-            this.remarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridContract)).BeginInit();
             this.panel2.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.menuStrip3.SuspendLayout();
             this.rightClickMenuStrip.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.contractBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.panel3);
+            this.panel1.Controls.Add(this.panel4);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.cblContactType);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.cbSites);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.cblModel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 48);
             this.panel1.Name = "panel1";
@@ -134,7 +135,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 389);
+            this.label3.Location = new System.Drawing.Point(3, 384);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(74, 13);
             this.label3.TabIndex = 5;
@@ -142,11 +143,12 @@
             // 
             // cblContactType
             // 
+            this.cblContactType.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cblContactType.FormattingEnabled = true;
             this.cblContactType.HorizontalScrollbar = true;
-            this.cblContactType.Location = new System.Drawing.Point(3, 408);
+            this.cblContactType.Location = new System.Drawing.Point(0, 0);
             this.cblContactType.Name = "cblContactType";
-            this.cblContactType.Size = new System.Drawing.Size(176, 214);
+            this.cblContactType.Size = new System.Drawing.Size(176, 209);
             this.cblContactType.TabIndex = 4;
             this.cblContactType.SelectedIndexChanged += new System.EventHandler(this.cblContactType_SelectedIndexChanged);
             this.cblContactType.MouseEnter += new System.EventHandler(this.cblContactType_MouseEnter);
@@ -156,7 +158,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 210);
+            this.label2.Location = new System.Drawing.Point(3, 207);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(30, 13);
             this.label2.TabIndex = 3;
@@ -165,7 +167,7 @@
             // cbSites
             // 
             this.cbSites.FormattingEnabled = true;
-            this.cbSites.Location = new System.Drawing.Point(3, 229);
+            this.cbSites.Location = new System.Drawing.Point(3, 226);
             this.cbSites.Name = "cbSites";
             this.cbSites.Size = new System.Drawing.Size(176, 139);
             this.cbSites.TabIndex = 2;
@@ -173,7 +175,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(0, 11);
+            this.label1.Location = new System.Drawing.Point(3, 8);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(80, 13);
             this.label1.TabIndex = 1;
@@ -182,7 +184,7 @@
             // cblModel
             // 
             this.cblModel.FormattingEnabled = true;
-            this.cblModel.Location = new System.Drawing.Point(3, 30);
+            this.cblModel.Location = new System.Drawing.Point(3, 27);
             this.cblModel.Name = "cblModel";
             this.cblModel.Size = new System.Drawing.Size(176, 169);
             this.cblModel.TabIndex = 0;
@@ -360,6 +362,15 @@
             this.toolStripButton9.Text = "toolStripButton9";
             this.toolStripButton9.Click += new System.EventHandler(this.toolStripButton9_Click);
             // 
+            // toolStripButton10
+            // 
+            this.toolStripButton10.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton10.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton10.Image")));
+            this.toolStripButton10.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton10.Name = "toolStripButton10";
+            this.toolStripButton10.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton10.Text = "Remark";
+            // 
             // menuStrip3
             // 
             this.menuStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -397,92 +408,98 @@
             // nEwContractToolStripMenuItem
             // 
             this.nEwContractToolStripMenuItem.Name = "nEwContractToolStripMenuItem";
-            this.nEwContractToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.nEwContractToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.nEwContractToolStripMenuItem.Text = "New contract";
             this.nEwContractToolStripMenuItem.Click += new System.EventHandler(this.nEwContractToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // prinToolStripMenuItem
             // 
             this.prinToolStripMenuItem.Name = "prinToolStripMenuItem";
-            this.prinToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.prinToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.prinToolStripMenuItem.Text = "Print contract";
             this.prinToolStripMenuItem.Click += new System.EventHandler(this.prinToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(147, 6);
             // 
             // customerDataToolStripMenuItem
             // 
             this.customerDataToolStripMenuItem.Name = "customerDataToolStripMenuItem";
-            this.customerDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.customerDataToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.customerDataToolStripMenuItem.Text = "Customer data";
             this.customerDataToolStripMenuItem.Click += new System.EventHandler(this.customerDataToolStripMenuItem_Click);
             // 
             // vehicleDataToolStripMenuItem
             // 
             this.vehicleDataToolStripMenuItem.Name = "vehicleDataToolStripMenuItem";
-            this.vehicleDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.vehicleDataToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.vehicleDataToolStripMenuItem.Text = "Vehicle data";
             this.vehicleDataToolStripMenuItem.Click += new System.EventHandler(this.vehicleDataToolStripMenuItem_Click);
             // 
             // serviceHistoryToolStripMenuItem
             // 
             this.serviceHistoryToolStripMenuItem.Name = "serviceHistoryToolStripMenuItem";
-            this.serviceHistoryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.serviceHistoryToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.serviceHistoryToolStripMenuItem.Text = "Service history";
             this.serviceHistoryToolStripMenuItem.Click += new System.EventHandler(this.serviceHistoryToolStripMenuItem_Click);
             // 
             // eLOArchiveToolStripMenuItem
             // 
             this.eLOArchiveToolStripMenuItem.Name = "eLOArchiveToolStripMenuItem";
-            this.eLOArchiveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.eLOArchiveToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.eLOArchiveToolStripMenuItem.Text = "ELO archive";
             this.eLOArchiveToolStripMenuItem.Click += new System.EventHandler(this.eLOArchiveToolStripMenuItem_Click);
             // 
             // mileageRegisterToolStripMenuItem
             // 
             this.mileageRegisterToolStripMenuItem.Name = "mileageRegisterToolStripMenuItem";
-            this.mileageRegisterToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.mileageRegisterToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.mileageRegisterToolStripMenuItem.Text = "Mileage register";
             this.mileageRegisterToolStripMenuItem.Click += new System.EventHandler(this.mileageRegisterToolStripMenuItem_Click);
             // 
             // invoiceToolStripMenuItem
             // 
             this.invoiceToolStripMenuItem.Name = "invoiceToolStripMenuItem";
-            this.invoiceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.invoiceToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.invoiceToolStripMenuItem.Text = "Invoices";
             this.invoiceToolStripMenuItem.Click += new System.EventHandler(this.invoiceToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(147, 6);
             // 
             // invoiceToolStripMenuItem1
             // 
             this.invoiceToolStripMenuItem1.Name = "invoiceToolStripMenuItem1";
-            this.invoiceToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.invoiceToolStripMenuItem1.Size = new System.Drawing.Size(150, 22);
             this.invoiceToolStripMenuItem1.Text = "Export data";
             this.invoiceToolStripMenuItem1.Click += new System.EventHandler(this.invoiceToolStripMenuItem1_Click);
+            // 
+            // remarkToolStripMenuItem
+            // 
+            this.remarkToolStripMenuItem.Name = "remarkToolStripMenuItem";
+            this.remarkToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.remarkToolStripMenuItem.Text = "Remark";
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(147, 6);
             // 
             // exitApplicationToolStripMenuItem
             // 
             this.exitApplicationToolStripMenuItem.Name = "exitApplicationToolStripMenuItem";
-            this.exitApplicationToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.exitApplicationToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.exitApplicationToolStripMenuItem.Text = "Exit application";
             this.exitApplicationToolStripMenuItem.Click += new System.EventHandler(this.exitApplicationToolStripMenuItem_Click);
             // 
@@ -540,7 +557,7 @@
             this.mileageRegisterItem,
             this.invoicesMenuItem});
             this.rightClickMenuStrip.Name = "rightClickMenuStrip";
-            this.rightClickMenuStrip.Size = new System.Drawing.Size(195, 242);
+            this.rightClickMenuStrip.Size = new System.Drawing.Size(195, 220);
             // 
             // NewContractItem
             // 
@@ -555,6 +572,13 @@
             this.openMenuItem.Size = new System.Drawing.Size(194, 22);
             this.openMenuItem.Text = "Open";
             this.openMenuItem.Click += new System.EventHandler(this.openMenu_Click);
+            // 
+            // printMenuItem
+            // 
+            this.printMenuItem.Name = "printMenuItem";
+            this.printMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.printMenuItem.Text = "Print contract";
+            this.printMenuItem.Click += new System.EventHandler(this.printMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
@@ -606,19 +630,32 @@
             this.mileageRegisterItem.Text = "Mileage register";
             this.mileageRegisterItem.Click += new System.EventHandler(this.mileageRegister_Click);
             // 
-            // printMenuItem
-            // 
-            this.printMenuItem.Name = "printMenuItem";
-            this.printMenuItem.Size = new System.Drawing.Size(194, 22);
-            this.printMenuItem.Text = "Print contract";
-            this.printMenuItem.Click += new System.EventHandler(this.printMenuItem_Click);
-            // 
             // invoicesMenuItem
             // 
             this.invoicesMenuItem.Name = "invoicesMenuItem";
             this.invoicesMenuItem.Size = new System.Drawing.Size(194, 22);
             this.invoicesMenuItem.Text = "Invoices";
             this.invoicesMenuItem.Click += new System.EventHandler(this.invoicesMenuItem_Click);
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.cblModel);
+            this.panel3.Controls.Add(this.label1);
+            this.panel3.Controls.Add(this.label2);
+            this.panel3.Controls.Add(this.cbSites);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(190, 381);
+            this.panel3.TabIndex = 4;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.cblContactType);
+            this.panel4.Location = new System.Drawing.Point(0, 400);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(176, 209);
+            this.panel4.TabIndex = 4;
             // 
             // colCcontractOID
             // 
@@ -767,21 +804,6 @@
             // 
             this.contractBindingSource.DataSource = typeof(SCPrime.Model.Contract);
             // 
-            // toolStripButton10
-            // 
-            this.toolStripButton10.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton10.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton10.Image")));
-            this.toolStripButton10.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton10.Name = "toolStripButton10";
-            this.toolStripButton10.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton10.Text = "Remark";
-            // 
-            // remarkToolStripMenuItem
-            // 
-            this.remarkToolStripMenuItem.Name = "remarkToolStripMenuItem";
-            this.remarkToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.remarkToolStripMenuItem.Text = "Remark";
-            // 
             // SCMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -793,6 +815,7 @@
             this.Name = "SCMain";
             this.Text = "Service Contract";
             this.Load += new System.EventHandler(this.SCMain_Load);
+            this.Resize += new System.EventHandler(this.SCMain_Resize);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridContract)).EndInit();
@@ -803,6 +826,9 @@
             this.menuStrip3.ResumeLayout(false);
             this.menuStrip3.PerformLayout();
             this.rightClickMenuStrip.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.contractBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -894,6 +920,8 @@
         private System.Windows.Forms.ToolStripMenuItem invoicesMenuItem;
         private System.Windows.Forms.ToolStripButton toolStripButton10;
         private System.Windows.Forms.ToolStripMenuItem remarkToolStripMenuItem;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel4;
     }
 }
 

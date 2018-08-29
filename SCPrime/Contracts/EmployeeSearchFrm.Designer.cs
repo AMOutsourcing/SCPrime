@@ -182,7 +182,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
             this.Name = "EmployeeSearchFrm";
-            this.Text = "EmployeeSearchFrm";
+            this.Text = " ";
             this.Load += new System.EventHandler(this.EmployeeSearchFrm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EmployeeSearchFrm_KeyDown);
             this.panel1.ResumeLayout(false);

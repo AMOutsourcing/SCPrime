@@ -73,7 +73,7 @@ namespace SCPrime
                 List<SCOptionCategory> objOptionCats = SCOptionCategory.getContractOptionCategoryPriceList(2);
                 MessageBox.Show(objOptionCats.Count.ToString());
                 */
-
+                resizeHeight();
                 //ThuyetLV
                 initData();
             }
@@ -81,6 +81,11 @@ namespace SCPrime
             {
                 Application.Exit();
             }
+        }
+        private void resizeHeight()
+        {
+            this.panel4.Height = this.panel1.Height - this.panel3.Height -20;
+            this.panel4.Width = this.cblModel.Width;
         }
 
         private void contractTypeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -667,6 +672,11 @@ namespace SCPrime
         private void invoicesMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("eLOArchive_Right_Click");
+        }
+
+        private void SCMain_Resize(object sender, EventArgs e)
+        {
+            this.resizeHeight();
         }
     }
 }
