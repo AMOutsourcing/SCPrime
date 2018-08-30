@@ -855,6 +855,39 @@ namespace SCPrime.Model
             return this.ContractOID + " - " + this.OptionCategoryOID + " - " + this.OptionOID + " - " + this.OptionDetailOID;
         }
 
+        public static DateTime? GetLastPayDate(int ContractOID)
+        {
+            if (ContractOID <= 0)
+                return null;
+            DateTime? rtn = null;
+            clsSqlFactory hSql = new clsSqlFactory();
+            try
+            {
+                clsGlobalVariable objGlobal = new clsGlobalVariable();
+                string LangId = objGlobal.CultureInfo;
+
+                String strSql = "SELECT MAX(Created) FROM ZSC_ContractInvoice WHERE ContractOID=?";
+
+                hSql.NewCommand(strSql);
+                hSql.Com.Parameters.AddWithValue("ContractOID", ContractOID);
+                hSql.ExecuteReader();
+
+                while (hSql.Read())
+                {
+                    if (!hSql.Reader.IsDBNull(0)) rtn = hSql.Reader.GetDateTime(0);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                hSql.Close();
+            }
+            return rtn;
+        }
+
         public static List<ContractOption> getContractOption(int ContractOID)
         {
             clsSqlFactory hSql = new clsSqlFactory();

@@ -71,7 +71,6 @@
             this.cbCostBassis = new System.Windows.Forms.ComboBox();
             this.txtLastKm = new System.Windows.Forms.TextBox();
             this.label29 = new System.Windows.Forms.Label();
-            this.txtLastPay = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
@@ -136,6 +135,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.txtLastPay = new System.Windows.Forms.TextBox();
             this.pnAll.SuspendLayout();
             this.pnBottom.SuspendLayout();
             this.pnLeft.SuspendLayout();
@@ -521,6 +521,7 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.txtLastPay);
             this.groupBox5.Controls.Add(this.txtErr);
             this.groupBox5.Controls.Add(this.txtKmBassis);
             this.groupBox5.Controls.Add(this.txtMonBassis);
@@ -528,7 +529,6 @@
             this.groupBox5.Controls.Add(this.cbCostBassis);
             this.groupBox5.Controls.Add(this.txtLastKm);
             this.groupBox5.Controls.Add(this.label29);
-            this.groupBox5.Controls.Add(this.txtLastPay);
             this.groupBox5.Controls.Add(this.label18);
             this.groupBox5.Controls.Add(this.label24);
             this.groupBox5.Controls.Add(this.label25);
@@ -580,6 +580,11 @@
             // 
             // txtCostBase
             // 
+            this.txtCostBase.Increment = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
             this.txtCostBase.Location = new System.Drawing.Point(115, 43);
             this.txtCostBase.Maximum = new decimal(new int[] {
             1661992959,
@@ -616,14 +621,6 @@
             this.label29.Size = new System.Drawing.Size(64, 13);
             this.label29.TabIndex = 13;
             this.label29.Text = "Last km info";
-            // 
-            // txtLastPay
-            // 
-            this.txtLastPay.Location = new System.Drawing.Point(115, 122);
-            this.txtLastPay.Name = "txtLastPay";
-            this.txtLastPay.ReadOnly = true;
-            this.txtLastPay.Size = new System.Drawing.Size(138, 20);
-            this.txtLastPay.TabIndex = 11;
             // 
             // label18
             // 
@@ -1255,6 +1252,14 @@
             this.contextMenuStrip2.Name = "contextMenuStrip2";
             this.contextMenuStrip2.Size = new System.Drawing.Size(61, 4);
             // 
+            // txtLastPay
+            // 
+            this.txtLastPay.Location = new System.Drawing.Point(115, 122);
+            this.txtLastPay.Name = "txtLastPay";
+            this.txtLastPay.ReadOnly = true;
+            this.txtLastPay.Size = new System.Drawing.Size(138, 20);
+            this.txtLastPay.TabIndex = 22;
+            // 
             // ContractDataFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1350,7 +1355,6 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.TextBox txtLastPay;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label25;
@@ -1416,5 +1420,6 @@
         private System.Windows.Forms.NumericUpDown txtInvoiceAmount;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
         private System.Windows.Forms.NumericUpDown txtRishLevel;
+        private System.Windows.Forms.TextBox txtLastPay;
     }
 }

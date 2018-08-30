@@ -51,7 +51,7 @@ namespace SCPrime.Contracts
         }
 
         bool loadTreeDone = false;
-        
+
         private void buidTree()
         {
             List<SCOptionPrice> listToClone = myCategories.ToList();
@@ -80,7 +80,7 @@ namespace SCPrime.Contracts
                             treeNode.Checked = true;
                             //fillDisalbeTreeNode
                             fillDisalbeTreeNode(treeNode);
-                            
+
                         }
                         treeView1.Nodes.Add(treeNode);
 
@@ -157,7 +157,16 @@ namespace SCPrime.Contracts
                     {
                         TreeNode treeNode = new TreeNode(cat.CategoryName);
                         treeNode.Name = "C" + cat.CategoryOID.ToString();
-                        treeNode.Checked = checkTree(treeNode, cat);
+                        if (cat.Include)
+                        {
+                            //Include -> check true and add grid
+                            treeNode.Checked = true;
+                            //fillDisalbeTreeNode
+                            fillDisalbeTreeNode(treeNode);
+
+                        }
+                        else
+                            treeNode.Checked = checkTree(treeNode, cat);
                         treeView1.Nodes.Add(treeNode);
 
                         if (treeNode.Checked)
@@ -172,7 +181,16 @@ namespace SCPrime.Contracts
                         {
                             TreeNode treeNodeL2 = new TreeNode(op.OptionName);
                             treeNodeL2.Name = "O" + op.OptionOID.ToString();
-                            treeNodeL2.Checked = checkTree(treeNodeL2, op);
+                            if (op.Include)
+                            {
+                                //Include -> check true and add grid
+                                treeNodeL2.Checked = true;
+                                //fillDisalbeTreeNode
+                                fillDisalbeTreeNode(treeNodeL2);
+
+                            }
+                            else
+                                treeNodeL2.Checked = checkTree(treeNodeL2, op);
                             treeNode.Nodes.Add(treeNodeL2);
                             //Check parent
                             if (treeNodeL2.Checked)
@@ -192,7 +210,16 @@ namespace SCPrime.Contracts
                                 // create childnode level3
                                 TreeNode treeNodeL3 = new TreeNode(sod.OptionDetailName);
                                 treeNodeL3.Name = "D" + sod.OptionDetailOID.ToString();
-                                treeNodeL3.Checked = checkTree(treeNodeL3, sod);
+                                if (sod.Include)
+                                {
+                                    //Include -> check true and add grid
+                                    treeNodeL3.Checked = true;
+                                    //fillDisalbeTreeNode
+                                    fillDisalbeTreeNode(treeNodeL3);
+
+                                }
+                                else
+                                    treeNodeL3.Checked = checkTree(treeNodeL3, sod);
                                 treeNodeL2.Nodes.Add(treeNodeL3);
                                 if (treeNodeL3.Checked)
                                 {
@@ -218,7 +245,7 @@ namespace SCPrime.Contracts
             loadTreeDone = true;
             calcTotal();
         }
-        
+
         private void fillDisalbeTreeNode(TreeNode node)
         {
             node.ForeColor = SystemColors.GrayText;
@@ -247,7 +274,7 @@ namespace SCPrime.Contracts
         Dictionary<String, String> listOptionDetailTmp = new Dictionary<String, String>();
 
         SCBase sCBase = null;
-        
+
         public void loadDataGrid()
         {
             if (sCBase == null)
@@ -696,7 +723,7 @@ namespace SCPrime.Contracts
                 try
                 {
                     DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
-                    
+
                     Int32.TryParse(row.Cells[12].Value.ToString(), out OptionCategoryOID);
                     Int32.TryParse(row.Cells[13].Value.ToString(), out OptionOID);
                     Int32.TryParse(row.Cells[14].Value.ToString(), out OptionDetailOID);
@@ -754,12 +781,22 @@ namespace SCPrime.Contracts
             //dataGridView1.Columns["OID"].Visible = false;
         }
 
+        ContractFrm contractFrm;
+        public void setContractFrm(ContractFrm contractFrm)
+        {
+            this.contractFrm = contractFrm;
+        }
         public void calcTotal()
         {
             if (listOptionDetail == null || listOptionDetail.Count <= 0)
             {
                 txtTotalPurchase.Text = "0";
                 txtTotalSale.Text = "0";
+                //Update Cost based on service
+                ContractCost data = ContractFrm.objContract.ContractCostData;
+                data = (data == null) ? new ContractCost() : data;
+                data.CostBasedOnService = 0;
+                ContractFrm.objContract.ContractCostData = data;
             }
             else
             {
@@ -779,9 +816,14 @@ namespace SCPrime.Contracts
                 }
                 txtTotalPurchase.Text = totalPurchase.ToString();
                 txtTotalSale.Text = totalSale.ToString();
+                //Update Cost based on service
+                ContractCost data = ContractFrm.objContract.ContractCostData;
+                data = (data == null) ? new ContractCost() : data;
+                data.CostBasedOnService = totalSale;
+                ContractFrm.objContract.ContractCostData = data;
             }
         }
-        
+
 
         private void treeView1_BeforeCheck(object sender, TreeViewCancelEventArgs e)
         {

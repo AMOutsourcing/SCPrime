@@ -12,6 +12,7 @@ using CashRegPrime;
 using nsBaseClass;
 using SCPrime.Utils;
 using log4net;
+using System.Globalization;
 
 namespace SCPrime.Contracts
 {
@@ -285,7 +286,12 @@ namespace SCPrime.Contracts
                 txtCostBase.Value = ContractFrm.objContract.ContractCostData.CostBasedOnService;
                 txtMonBassis.Value = ContractFrm.objContract.ContractCostData.CostMonthBasis;
                 txtKmBassis.Value = ContractFrm.objContract.ContractCostData.CostKmBasis;
-                txtLastPay.Text = "txtLastPay";
+                DateTime? lastPay = ContractOption.GetLastPayDate(ContractFrm.objContract.ContractOID);
+                CultureInfo cu = new CultureInfo(ContractFrm.myCulture);
+                if (lastPay != null)
+                    txtLastPay.Text = lastPay.ToString().ToString(cu);
+                else
+                    txtLastPay.Text = "";
                 txtErr.Text = ContractFrm.objContract.ContractCostData.CostPerKm.ToString();
 
                 //LastKm info
@@ -439,7 +445,7 @@ namespace SCPrime.Contracts
         private void formatDecimal()
         {
             txtCostBase.DecimalPlaces = 2;
-            txtCostBase.Increment = 0.01m;
+            txtCostBase.Increment = 0;
         }
 
         private void btnNew_Click(object sender, EventArgs e)
@@ -847,6 +853,12 @@ namespace SCPrime.Contracts
                     dataTable.AcceptChanges();
                 }
             }
+        }
+
+        public void updateCostBasedOnService()
+        {
+            ContractCost data = ContractFrm.objContract.ContractCostData;
+            txtCostBase.Value = (data == null) ? 0 : data.CostBasedOnService;
         }
     }
 }

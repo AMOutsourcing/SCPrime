@@ -1,4 +1,5 @@
-﻿using nsBaseClass;
+﻿using log4net;
+using nsBaseClass;
 using SCPrime.Model;
 using SCPrime.Utils;
 using System;
@@ -15,6 +16,7 @@ namespace SCPrime.Contracts
 {
     public partial class ContractFrm : nsBaseClass.clsBaseForm
     {
+        static readonly ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public delegate void SendStatus(string Message);
         public static SendStatus Sender;
 
@@ -83,6 +85,7 @@ namespace SCPrime.Contracts
             this.contractOption1.loadTree();
             this.contractDataFrm.fillData();
             // this.loadCustomerEmployee();
+            //
         }
         private void checkInvoiceToCustomer()
         {
@@ -638,6 +641,11 @@ namespace SCPrime.Contracts
 
         private void tabControl1_Selected(object sender, TabControlEventArgs e)
         {
+            if(e.TabPageIndex == 3)
+            {
+                //Update Cost based on service
+                contractDataFrm.updateCostBasedOnService();
+            }
         }
 
         private void loadVehice()
