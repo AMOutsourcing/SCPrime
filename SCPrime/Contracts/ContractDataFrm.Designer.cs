@@ -64,6 +64,7 @@
             this.label35 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.txtLastPay = new System.Windows.Forms.TextBox();
             this.txtErr = new System.Windows.Forms.NumericUpDown();
             this.txtKmBassis = new System.Windows.Forms.NumericUpDown();
             this.txtMonBassis = new System.Windows.Forms.NumericUpDown();
@@ -135,7 +136,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.txtLastPay = new System.Windows.Forms.TextBox();
             this.pnAll.SuspendLayout();
             this.pnBottom.SuspendLayout();
             this.pnLeft.SuspendLayout();
@@ -541,6 +541,14 @@
             this.groupBox5.TabIndex = 13;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Contract cost";
+            // 
+            // txtLastPay
+            // 
+            this.txtLastPay.Location = new System.Drawing.Point(115, 122);
+            this.txtLastPay.Name = "txtLastPay";
+            this.txtLastPay.ReadOnly = true;
+            this.txtLastPay.Size = new System.Drawing.Size(138, 20);
+            this.txtLastPay.TabIndex = 22;
             // 
             // txtErr
             // 
@@ -1132,6 +1140,11 @@
             // txtStartHr
             // 
             this.txtStartHr.Location = new System.Drawing.Point(99, 69);
+            this.txtStartHr.Maximum = new decimal(new int[] {
+            -1981284353,
+            -1966660860,
+            0,
+            0});
             this.txtStartHr.Name = "txtStartHr";
             this.txtStartHr.Size = new System.Drawing.Size(157, 20);
             this.txtStartHr.TabIndex = 18;
@@ -1139,6 +1152,11 @@
             // txtStartKm
             // 
             this.txtStartKm.Location = new System.Drawing.Point(99, 41);
+            this.txtStartKm.Maximum = new decimal(new int[] {
+            -1981284353,
+            -1966660860,
+            0,
+            0});
             this.txtStartKm.Name = "txtStartKm";
             this.txtStartKm.Size = new System.Drawing.Size(157, 20);
             this.txtStartKm.TabIndex = 17;
@@ -1161,6 +1179,11 @@
             // txtPeriod
             // 
             this.txtPeriod.Location = new System.Drawing.Point(99, 119);
+            this.txtPeriod.Maximum = new decimal(new int[] {
+            -1981284353,
+            -1966660860,
+            0,
+            0});
             this.txtPeriod.Name = "txtPeriod";
             this.txtPeriod.Size = new System.Drawing.Size(154, 20);
             this.txtPeriod.TabIndex = 13;
@@ -1251,14 +1274,6 @@
             // 
             this.contextMenuStrip2.Name = "contextMenuStrip2";
             this.contextMenuStrip2.Size = new System.Drawing.Size(61, 4);
-            // 
-            // txtLastPay
-            // 
-            this.txtLastPay.Location = new System.Drawing.Point(115, 122);
-            this.txtLastPay.Name = "txtLastPay";
-            this.txtLastPay.ReadOnly = true;
-            this.txtLastPay.Size = new System.Drawing.Size(138, 20);
-            this.txtLastPay.TabIndex = 22;
             // 
             // ContractDataFrm
             // 
