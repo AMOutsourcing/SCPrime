@@ -659,18 +659,21 @@ namespace SCPrime.Contracts
                 ContractOption finded = null;
 
                 //List delete
-                foreach (ContractOption contractOption in ContractFrm.objContract.listContractOptions)
+                if (ContractFrm.objContract.listContractOptions != null && ContractFrm.objContract.listContractOptions.Count > 0)
                 {
-                    try
+                    foreach (ContractOption contractOption in ContractFrm.objContract.listContractOptions)
                     {
-                        finded = this.listOptionDetail.Single(s => s.OptionCategoryOID == contractOption.OptionCategoryOID && s.OptionOID == contractOption.OptionOID && s.OptionDetailOID == contractOption.OptionDetailOID);
-                    }
-                    catch (System.InvalidOperationException ex)
-                    {
-                        _log.Error("saveOptionCategories listOptionDetail Single not contain exactly one element: " + contractOption.toString(), ex);
-                        //Xoa
-                        contractOption.isDelete = true;
-                        this.listOptionDetail.Add(contractOption);
+                        try
+                        {
+                            finded = this.listOptionDetail.Single(s => s.OptionCategoryOID == contractOption.OptionCategoryOID && s.OptionOID == contractOption.OptionOID && s.OptionDetailOID == contractOption.OptionDetailOID);
+                        }
+                        catch (System.InvalidOperationException ex)
+                        {
+                            _log.Error("saveOptionCategories listOptionDetail Single not contain exactly one element: " + contractOption.toString(), ex);
+                            //Xoa
+                            contractOption.isDelete = true;
+                            this.listOptionDetail.Add(contractOption);
+                        }
                     }
                 }
 
