@@ -487,18 +487,19 @@ namespace SCPrime.Model
 
         public bool isDeleted { get; set; }
 
-        public static List<CollectiveContract> searchSelfContract(int ContractCustId)
+        public static List<CollectiveContract> searchSelfContract(int ContractCustId,int contracOid)
         {
             List<CollectiveContract> ls = new List<CollectiveContract>();
 
             clsSqlFactory hSql = new clsSqlFactory();
-            string strSql = "select a.OID as DetailContractOID, a.ContractNo,a.VersionNo,a.ContractStatus, c.SERIALNO FROM ZSC_Contract a  INNER JOIN VEHI c ON a.VehiId = c.VEHIID where ContractCustId = ? and a.OID not in (select b.DetailContractOID from ZSC_ContractCollective b)";
+            string strSql = "select a.OID as DetailContractOID, a.ContractNo,a.VersionNo,a.ContractStatus, c.SERIALNO FROM ZSC_Contract a  INNER JOIN VEHI c ON a.VehiId = c.VEHIID where ContractCustId = ? and a.OID <>? and a.OID not in (select b.DetailContractOID from ZSC_ContractCollective b)";
             try
             {
 
                 hSql.NewCommand(strSql);
                 //hSql.NewCommand("select a.BuyPr, a.DateLimit, a.Expl, a.Info, a.KMLimit, a.OID, a.SubContractNo, a.SuplNo, b.Name as SuplName from ZSC_SubcontractorContract a left join SUPL b on a.SUPLNO=b.SUPLNO where ContractOID=? ");
                 hSql.Com.Parameters.AddWithValue("ContractCustId", ContractCustId);
+                hSql.Com.Parameters.AddWithValue("OID", contracOid);
                 hSql.ExecuteReader();
                 while (hSql.Read())
                 {

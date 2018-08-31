@@ -26,7 +26,7 @@ namespace SCPrime.Contracts
         public void loadData()
         {
 
-            ls = CollectiveContract.searchSelfContract(ContractFrm.objContract.ContractCustId.CustId);
+            ls = CollectiveContract.searchSelfContract(ContractFrm.objContract.ContractCustId.CustId, ContractFrm.objContract.ContractOID);
             if (ls != null && ls.Count > 0)
             {
                 DataTable dt = ObjectUtils.ConvertToDataTable(ls);
