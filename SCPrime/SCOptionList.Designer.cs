@@ -32,22 +32,22 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -59,21 +59,6 @@
             this.panel13 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.dgvOptions = new System.Windows.Forms.DataGridView();
-            this.OptionOID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OptionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OptionItemNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OptionItemSuplNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OptionItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OptionWrksId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OptionWrksName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OptionBaseSelPr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OptionBuyPr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OptionSelPr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OptionInfo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OptionQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OPptionisAvailable = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OptionisMarkDeleted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.colSubGroupCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sCOptionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel11 = new System.Windows.Forms.Panel();
@@ -84,20 +69,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
             this.dgvDetails = new System.Windows.Forms.DataGridView();
-            this.DetailOID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DetailName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DetailItemNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DetailItemSuplNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DetailItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DetailWrksId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DetailWrksName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DetailBaseSelPr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DetailBuyPr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DetailSelPr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DetailInfo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DetailQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DetailisAvailable = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DetailisMarkDeleted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.sCOptionDetailBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel9 = new System.Windows.Forms.Panel();
             this.panel12 = new System.Windows.Forms.Panel();
@@ -108,6 +79,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.dataGridViewCategory = new System.Windows.Forms.DataGridView();
+            this.sCOptionCategoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.NewCatBtn = new System.Windows.Forms.Button();
+            this.DelCatBtn = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.sCOptionBaseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.OID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ItemNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -123,13 +101,35 @@
             this.isAvailable = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isMarkDeleted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.colMainGroupCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sCOptionCategoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.NewCatBtn = new System.Windows.Forms.Button();
-            this.DelCatBtn = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.sCOptionBaseBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.OptionOID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OptionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OptionItemNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OptionItemSuplNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OptionItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OptionWrksId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OptionWrksName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OptionBaseSelPr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OptionBuyPr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OptionSelPr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OptionInfo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OptionQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OPptionisAvailable = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OptionisMarkDeleted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.colSubGroupCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DetailOID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DetailName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DetailItemNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DetailItemSuplNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DetailItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DetailWrksId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DetailWrksName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DetailBaseSelPr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DetailBuyPr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DetailSelPr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DetailInfo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DetailQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DetailisAvailable = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DetailisMarkDeleted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -317,129 +317,6 @@
             this.dgvOptions.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.dgvOptions_RowStateChanged);
             this.dgvOptions.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOptions_RowValidated);
             // 
-            // OptionOID
-            // 
-            this.OptionOID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.OptionOID.DataPropertyName = "OID";
-            this.OptionOID.HeaderText = "OID";
-            this.OptionOID.Name = "OptionOID";
-            this.OptionOID.Visible = false;
-            // 
-            // OptionName
-            // 
-            this.OptionName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.OptionName.DataPropertyName = "Name";
-            this.OptionName.HeaderText = "Option";
-            this.OptionName.Name = "OptionName";
-            // 
-            // OptionItemNo
-            // 
-            this.OptionItemNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.OptionItemNo.DataPropertyName = "ItemNo";
-            this.OptionItemNo.HeaderText = "Part Nr";
-            this.OptionItemNo.Name = "OptionItemNo";
-            // 
-            // OptionItemSuplNo
-            // 
-            this.OptionItemSuplNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.OptionItemSuplNo.DataPropertyName = "ItemSuplNo";
-            this.OptionItemSuplNo.HeaderText = "ItemSuplNo";
-            this.OptionItemSuplNo.Name = "OptionItemSuplNo";
-            // 
-            // OptionItemName
-            // 
-            this.OptionItemName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.OptionItemName.DataPropertyName = "ItemName";
-            this.OptionItemName.HeaderText = "Part Name";
-            this.OptionItemName.Name = "OptionItemName";
-            // 
-            // OptionWrksId
-            // 
-            this.OptionWrksId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.OptionWrksId.DataPropertyName = "WrksId";
-            this.OptionWrksId.HeaderText = "Labour code";
-            this.OptionWrksId.Name = "OptionWrksId";
-            // 
-            // OptionWrksName
-            // 
-            this.OptionWrksName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.OptionWrksName.DataPropertyName = "WrksName";
-            this.OptionWrksName.HeaderText = "Labour name";
-            this.OptionWrksName.Name = "OptionWrksName";
-            // 
-            // OptionBaseSelPr
-            // 
-            this.OptionBaseSelPr.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.OptionBaseSelPr.DataPropertyName = "BaseSelPr";
-            dataGridViewCellStyle2.Format = "N2";
-            dataGridViewCellStyle2.NullValue = "0";
-            this.OptionBaseSelPr.DefaultCellStyle = dataGridViewCellStyle2;
-            this.OptionBaseSelPr.HeaderText = "BaseSelPr";
-            this.OptionBaseSelPr.Name = "OptionBaseSelPr";
-            this.OptionBaseSelPr.Visible = false;
-            // 
-            // OptionBuyPr
-            // 
-            this.OptionBuyPr.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.OptionBuyPr.DataPropertyName = "BuyPr";
-            dataGridViewCellStyle3.Format = "N2";
-            dataGridViewCellStyle3.NullValue = "0";
-            this.OptionBuyPr.DefaultCellStyle = dataGridViewCellStyle3;
-            this.OptionBuyPr.HeaderText = "Purchase price";
-            this.OptionBuyPr.Name = "OptionBuyPr";
-            // 
-            // OptionSelPr
-            // 
-            this.OptionSelPr.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.OptionSelPr.DataPropertyName = "SelPr";
-            dataGridViewCellStyle4.Format = "N2";
-            dataGridViewCellStyle4.NullValue = "0";
-            this.OptionSelPr.DefaultCellStyle = dataGridViewCellStyle4;
-            this.OptionSelPr.HeaderText = "Sales price";
-            this.OptionSelPr.Name = "OptionSelPr";
-            // 
-            // OptionInfo
-            // 
-            this.OptionInfo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.OptionInfo.DataPropertyName = "Info";
-            this.OptionInfo.HeaderText = "Info";
-            this.OptionInfo.Name = "OptionInfo";
-            this.OptionInfo.Visible = false;
-            // 
-            // OptionQuantity
-            // 
-            this.OptionQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.OptionQuantity.DataPropertyName = "Quantity";
-            dataGridViewCellStyle5.Format = "N0";
-            dataGridViewCellStyle5.NullValue = "0";
-            this.OptionQuantity.DefaultCellStyle = dataGridViewCellStyle5;
-            this.OptionQuantity.HeaderText = "Quantity";
-            this.OptionQuantity.Name = "OptionQuantity";
-            this.OptionQuantity.Visible = false;
-            // 
-            // OPptionisAvailable
-            // 
-            this.OPptionisAvailable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.OPptionisAvailable.DataPropertyName = "isAvailable";
-            this.OPptionisAvailable.HeaderText = "isAvailable";
-            this.OPptionisAvailable.Name = "OPptionisAvailable";
-            this.OPptionisAvailable.Visible = false;
-            // 
-            // OptionisMarkDeleted
-            // 
-            this.OptionisMarkDeleted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.OptionisMarkDeleted.DataPropertyName = "isMarkDeleted";
-            this.OptionisMarkDeleted.HeaderText = "isMarkDeleted";
-            this.OptionisMarkDeleted.Name = "OptionisMarkDeleted";
-            this.OptionisMarkDeleted.Visible = false;
-            // 
-            // colSubGroupCode
-            // 
-            this.colSubGroupCode.DataPropertyName = "SubGroupCode";
-            this.colSubGroupCode.HeaderText = "SubGroupCode";
-            this.colSubGroupCode.MaxInputLength = 5;
-            this.colSubGroupCode.Name = "colSubGroupCode";
-            // 
             // sCOptionBindingSource
             // 
             this.sCOptionBindingSource.DataSource = typeof(SCPrime.Model.SCOption);
@@ -585,121 +462,6 @@
             this.dgvDetails.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvDetails_CellValidating);
             this.dgvDetails.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetails_RowEnter);
             this.dgvDetails.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.dgvDetails_RowStateChanged);
-            // 
-            // DetailOID
-            // 
-            this.DetailOID.DataPropertyName = "OID";
-            this.DetailOID.HeaderText = "OID";
-            this.DetailOID.Name = "DetailOID";
-            this.DetailOID.Visible = false;
-            // 
-            // DetailName
-            // 
-            this.DetailName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.DetailName.DataPropertyName = "Name";
-            this.DetailName.HeaderText = "Option Detail";
-            this.DetailName.Name = "DetailName";
-            // 
-            // DetailItemNo
-            // 
-            this.DetailItemNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.DetailItemNo.DataPropertyName = "ItemNo";
-            this.DetailItemNo.HeaderText = "Part Nr";
-            this.DetailItemNo.Name = "DetailItemNo";
-            // 
-            // DetailItemSuplNo
-            // 
-            this.DetailItemSuplNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.DetailItemSuplNo.DataPropertyName = "ItemSuplNo";
-            this.DetailItemSuplNo.HeaderText = "ItemSuplNo";
-            this.DetailItemSuplNo.Name = "DetailItemSuplNo";
-            // 
-            // DetailItemName
-            // 
-            this.DetailItemName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.DetailItemName.DataPropertyName = "ItemName";
-            this.DetailItemName.HeaderText = "Part Name";
-            this.DetailItemName.Name = "DetailItemName";
-            // 
-            // DetailWrksId
-            // 
-            this.DetailWrksId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.DetailWrksId.DataPropertyName = "WrksId";
-            this.DetailWrksId.HeaderText = "Labour code";
-            this.DetailWrksId.Name = "DetailWrksId";
-            // 
-            // DetailWrksName
-            // 
-            this.DetailWrksName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.DetailWrksName.DataPropertyName = "WrksName";
-            this.DetailWrksName.HeaderText = "Labour Name";
-            this.DetailWrksName.Name = "DetailWrksName";
-            // 
-            // DetailBaseSelPr
-            // 
-            this.DetailBaseSelPr.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.DetailBaseSelPr.DataPropertyName = "BaseSelPr";
-            dataGridViewCellStyle9.Format = "N2";
-            dataGridViewCellStyle9.NullValue = "0";
-            this.DetailBaseSelPr.DefaultCellStyle = dataGridViewCellStyle9;
-            this.DetailBaseSelPr.HeaderText = "BaseSelPr";
-            this.DetailBaseSelPr.Name = "DetailBaseSelPr";
-            this.DetailBaseSelPr.Visible = false;
-            // 
-            // DetailBuyPr
-            // 
-            this.DetailBuyPr.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.DetailBuyPr.DataPropertyName = "BuyPr";
-            dataGridViewCellStyle10.Format = "N2";
-            dataGridViewCellStyle10.NullValue = "0";
-            this.DetailBuyPr.DefaultCellStyle = dataGridViewCellStyle10;
-            this.DetailBuyPr.HeaderText = "Purchase price";
-            this.DetailBuyPr.Name = "DetailBuyPr";
-            // 
-            // DetailSelPr
-            // 
-            this.DetailSelPr.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.DetailSelPr.DataPropertyName = "SelPr";
-            dataGridViewCellStyle11.Format = "N2";
-            dataGridViewCellStyle11.NullValue = "0";
-            this.DetailSelPr.DefaultCellStyle = dataGridViewCellStyle11;
-            this.DetailSelPr.HeaderText = "Sales price";
-            this.DetailSelPr.Name = "DetailSelPr";
-            // 
-            // DetailInfo
-            // 
-            this.DetailInfo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.DetailInfo.DataPropertyName = "Info";
-            this.DetailInfo.HeaderText = "Info";
-            this.DetailInfo.Name = "DetailInfo";
-            this.DetailInfo.Visible = false;
-            // 
-            // DetailQuantity
-            // 
-            this.DetailQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.DetailQuantity.DataPropertyName = "Quantity";
-            dataGridViewCellStyle12.Format = "N0";
-            dataGridViewCellStyle12.NullValue = "0";
-            this.DetailQuantity.DefaultCellStyle = dataGridViewCellStyle12;
-            this.DetailQuantity.HeaderText = "Quantity";
-            this.DetailQuantity.Name = "DetailQuantity";
-            this.DetailQuantity.Visible = false;
-            // 
-            // DetailisAvailable
-            // 
-            this.DetailisAvailable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.DetailisAvailable.DataPropertyName = "isAvailable";
-            this.DetailisAvailable.HeaderText = "isAvailable";
-            this.DetailisAvailable.Name = "DetailisAvailable";
-            this.DetailisAvailable.Visible = false;
-            // 
-            // DetailisMarkDeleted
-            // 
-            this.DetailisMarkDeleted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.DetailisMarkDeleted.DataPropertyName = "isMarkDeleted";
-            this.DetailisMarkDeleted.HeaderText = "isMarkDeleted";
-            this.DetailisMarkDeleted.Name = "DetailisMarkDeleted";
-            this.DetailisMarkDeleted.Visible = false;
             // 
             // sCOptionDetailBindingSource
             // 
@@ -853,124 +615,6 @@
             this.dataGridViewCategory.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCategory_RowValidated);
             this.dataGridViewCategory.SelectionChanged += new System.EventHandler(this.dataGridViewCategory_SelectionChanged);
             // 
-            // OID
-            // 
-            this.OID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.OID.DataPropertyName = "OID";
-            this.OID.HeaderText = "OID";
-            this.OID.Name = "OID";
-            this.OID.Visible = false;
-            // 
-            // Category
-            // 
-            this.Category.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Category.DataPropertyName = "Name";
-            this.Category.HeaderText = "Category";
-            this.Category.Name = "Category";
-            // 
-            // ItemNo
-            // 
-            this.ItemNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ItemNo.DataPropertyName = "ItemNo";
-            this.ItemNo.HeaderText = "Part Nr";
-            this.ItemNo.Name = "ItemNo";
-            // 
-            // ItemSuplNo
-            // 
-            this.ItemSuplNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ItemSuplNo.DataPropertyName = "ItemSuplNo";
-            this.ItemSuplNo.HeaderText = "ItemSuplNo";
-            this.ItemSuplNo.Name = "ItemSuplNo";
-            // 
-            // ItemName
-            // 
-            this.ItemName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ItemName.DataPropertyName = "ItemName";
-            this.ItemName.HeaderText = "Part name";
-            this.ItemName.Name = "ItemName";
-            // 
-            // WrksId
-            // 
-            this.WrksId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.WrksId.DataPropertyName = "WrksId";
-            this.WrksId.HeaderText = "Labour code";
-            this.WrksId.Name = "WrksId";
-            // 
-            // WrksName
-            // 
-            this.WrksName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.WrksName.DataPropertyName = "WrksName";
-            this.WrksName.HeaderText = "Labour name";
-            this.WrksName.Name = "WrksName";
-            // 
-            // BaseSelPr
-            // 
-            this.BaseSelPr.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.BaseSelPr.DataPropertyName = "BaseSelPr";
-            this.BaseSelPr.HeaderText = "BaseSelPr";
-            this.BaseSelPr.Name = "BaseSelPr";
-            this.BaseSelPr.Visible = false;
-            // 
-            // BuyPr
-            // 
-            this.BuyPr.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.BuyPr.DataPropertyName = "BuyPr";
-            dataGridViewCellStyle16.Format = "N2";
-            dataGridViewCellStyle16.NullValue = "0";
-            this.BuyPr.DefaultCellStyle = dataGridViewCellStyle16;
-            this.BuyPr.HeaderText = "Purchase price";
-            this.BuyPr.Name = "BuyPr";
-            // 
-            // SelPr
-            // 
-            this.SelPr.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.SelPr.DataPropertyName = "SelPr";
-            dataGridViewCellStyle17.Format = "N2";
-            dataGridViewCellStyle17.NullValue = "0";
-            this.SelPr.DefaultCellStyle = dataGridViewCellStyle17;
-            this.SelPr.HeaderText = "Sales price";
-            this.SelPr.Name = "SelPr";
-            // 
-            // Info
-            // 
-            this.Info.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Info.DataPropertyName = "Info";
-            this.Info.HeaderText = "Info";
-            this.Info.Name = "Info";
-            this.Info.Visible = false;
-            // 
-            // Quantity
-            // 
-            this.Quantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Quantity.DataPropertyName = "Quantity";
-            this.Quantity.HeaderText = "Quantity";
-            this.Quantity.Name = "Quantity";
-            this.Quantity.Visible = false;
-            // 
-            // isAvailable
-            // 
-            this.isAvailable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.isAvailable.DataPropertyName = "isAvailable";
-            this.isAvailable.HeaderText = "isAvailable";
-            this.isAvailable.Name = "isAvailable";
-            this.isAvailable.Visible = false;
-            // 
-            // isMarkDeleted
-            // 
-            this.isMarkDeleted.DataPropertyName = "isMarkDeleted";
-            this.isMarkDeleted.HeaderText = "isMarkDeleted";
-            this.isMarkDeleted.Name = "isMarkDeleted";
-            this.isMarkDeleted.Visible = false;
-            // 
-            // colMainGroupCode
-            // 
-            this.colMainGroupCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.colMainGroupCode.DataPropertyName = "MainGroupCode";
-            this.colMainGroupCode.HeaderText = "MainGroupCode";
-            this.colMainGroupCode.MaxInputLength = 5;
-            this.colMainGroupCode.Name = "colMainGroupCode";
-            this.colMainGroupCode.Width = 109;
-            // 
             // sCOptionCategoryBindingSource
             // 
             this.sCOptionCategoryBindingSource.DataSource = typeof(SCPrime.Model.SCOptionCategory);
@@ -1029,6 +673,373 @@
             // sCOptionBaseBindingSource
             // 
             this.sCOptionBaseBindingSource.DataSource = typeof(SCPrime.Model.SCOptionBase);
+            // 
+            // OID
+            // 
+            this.OID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.OID.DataPropertyName = "OID";
+            this.OID.HeaderText = "OID";
+            this.OID.Name = "OID";
+            this.OID.Visible = false;
+            // 
+            // Category
+            // 
+            this.Category.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Category.DataPropertyName = "Name";
+            this.Category.HeaderText = "Category";
+            this.Category.Name = "Category";
+            // 
+            // ItemNo
+            // 
+            this.ItemNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ItemNo.DataPropertyName = "ItemNo";
+            this.ItemNo.HeaderText = "Part Nr";
+            this.ItemNo.Name = "ItemNo";
+            // 
+            // ItemSuplNo
+            // 
+            this.ItemSuplNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ItemSuplNo.DataPropertyName = "ItemSuplNo";
+            this.ItemSuplNo.HeaderText = "ItemSuplNo";
+            this.ItemSuplNo.Name = "ItemSuplNo";
+            // 
+            // ItemName
+            // 
+            this.ItemName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ItemName.DataPropertyName = "ItemName";
+            this.ItemName.HeaderText = "Part name";
+            this.ItemName.Name = "ItemName";
+            this.ItemName.ReadOnly = true;
+            // 
+            // WrksId
+            // 
+            this.WrksId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.WrksId.DataPropertyName = "WrksId";
+            this.WrksId.HeaderText = "Labour code";
+            this.WrksId.Name = "WrksId";
+            // 
+            // WrksName
+            // 
+            this.WrksName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.WrksName.DataPropertyName = "WrksName";
+            this.WrksName.HeaderText = "Labour name";
+            this.WrksName.Name = "WrksName";
+            this.WrksName.ReadOnly = true;
+            // 
+            // BaseSelPr
+            // 
+            this.BaseSelPr.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.BaseSelPr.DataPropertyName = "BaseSelPr";
+            this.BaseSelPr.HeaderText = "BaseSelPr";
+            this.BaseSelPr.Name = "BaseSelPr";
+            this.BaseSelPr.Visible = false;
+            // 
+            // BuyPr
+            // 
+            this.BuyPr.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.BuyPr.DataPropertyName = "BuyPr";
+            dataGridViewCellStyle16.Format = "N2";
+            dataGridViewCellStyle16.NullValue = "0";
+            this.BuyPr.DefaultCellStyle = dataGridViewCellStyle16;
+            this.BuyPr.HeaderText = "Purchase price";
+            this.BuyPr.Name = "BuyPr";
+            this.BuyPr.ReadOnly = true;
+            // 
+            // SelPr
+            // 
+            this.SelPr.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.SelPr.DataPropertyName = "SelPr";
+            dataGridViewCellStyle17.Format = "N2";
+            dataGridViewCellStyle17.NullValue = "0";
+            this.SelPr.DefaultCellStyle = dataGridViewCellStyle17;
+            this.SelPr.HeaderText = "Sales price";
+            this.SelPr.Name = "SelPr";
+            // 
+            // Info
+            // 
+            this.Info.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Info.DataPropertyName = "Info";
+            this.Info.HeaderText = "Info";
+            this.Info.Name = "Info";
+            this.Info.Visible = false;
+            // 
+            // Quantity
+            // 
+            this.Quantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Quantity.DataPropertyName = "Quantity";
+            this.Quantity.HeaderText = "Quantity";
+            this.Quantity.Name = "Quantity";
+            this.Quantity.Visible = false;
+            // 
+            // isAvailable
+            // 
+            this.isAvailable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.isAvailable.DataPropertyName = "isAvailable";
+            this.isAvailable.HeaderText = "isAvailable";
+            this.isAvailable.Name = "isAvailable";
+            this.isAvailable.Visible = false;
+            // 
+            // isMarkDeleted
+            // 
+            this.isMarkDeleted.DataPropertyName = "isMarkDeleted";
+            this.isMarkDeleted.HeaderText = "isMarkDeleted";
+            this.isMarkDeleted.Name = "isMarkDeleted";
+            this.isMarkDeleted.Visible = false;
+            // 
+            // colMainGroupCode
+            // 
+            this.colMainGroupCode.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colMainGroupCode.DataPropertyName = "MainGroupCode";
+            this.colMainGroupCode.HeaderText = "MainGroupCode";
+            this.colMainGroupCode.MaxInputLength = 5;
+            this.colMainGroupCode.Name = "colMainGroupCode";
+            this.colMainGroupCode.Width = 109;
+            // 
+            // OptionOID
+            // 
+            this.OptionOID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.OptionOID.DataPropertyName = "OID";
+            this.OptionOID.HeaderText = "OID";
+            this.OptionOID.Name = "OptionOID";
+            this.OptionOID.Visible = false;
+            this.OptionOID.Width = 51;
+            // 
+            // OptionName
+            // 
+            this.OptionName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.OptionName.DataPropertyName = "Name";
+            this.OptionName.HeaderText = "Option";
+            this.OptionName.Name = "OptionName";
+            // 
+            // OptionItemNo
+            // 
+            this.OptionItemNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.OptionItemNo.DataPropertyName = "ItemNo";
+            this.OptionItemNo.HeaderText = "Part Nr";
+            this.OptionItemNo.Name = "OptionItemNo";
+            // 
+            // OptionItemSuplNo
+            // 
+            this.OptionItemSuplNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.OptionItemSuplNo.DataPropertyName = "ItemSuplNo";
+            this.OptionItemSuplNo.HeaderText = "ItemSuplNo";
+            this.OptionItemSuplNo.Name = "OptionItemSuplNo";
+            // 
+            // OptionItemName
+            // 
+            this.OptionItemName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.OptionItemName.DataPropertyName = "ItemName";
+            this.OptionItemName.HeaderText = "Part Name";
+            this.OptionItemName.Name = "OptionItemName";
+            this.OptionItemName.ReadOnly = true;
+            // 
+            // OptionWrksId
+            // 
+            this.OptionWrksId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.OptionWrksId.DataPropertyName = "WrksId";
+            this.OptionWrksId.HeaderText = "Labour code";
+            this.OptionWrksId.Name = "OptionWrksId";
+            // 
+            // OptionWrksName
+            // 
+            this.OptionWrksName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.OptionWrksName.DataPropertyName = "WrksName";
+            this.OptionWrksName.HeaderText = "Labour name";
+            this.OptionWrksName.Name = "OptionWrksName";
+            this.OptionWrksName.ReadOnly = true;
+            // 
+            // OptionBaseSelPr
+            // 
+            this.OptionBaseSelPr.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.OptionBaseSelPr.DataPropertyName = "BaseSelPr";
+            dataGridViewCellStyle2.Format = "N2";
+            dataGridViewCellStyle2.NullValue = "0";
+            this.OptionBaseSelPr.DefaultCellStyle = dataGridViewCellStyle2;
+            this.OptionBaseSelPr.HeaderText = "BaseSelPr";
+            this.OptionBaseSelPr.Name = "OptionBaseSelPr";
+            this.OptionBaseSelPr.Visible = false;
+            // 
+            // OptionBuyPr
+            // 
+            this.OptionBuyPr.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.OptionBuyPr.DataPropertyName = "BuyPr";
+            dataGridViewCellStyle3.Format = "N2";
+            dataGridViewCellStyle3.NullValue = "0";
+            this.OptionBuyPr.DefaultCellStyle = dataGridViewCellStyle3;
+            this.OptionBuyPr.HeaderText = "Purchase price";
+            this.OptionBuyPr.Name = "OptionBuyPr";
+            this.OptionBuyPr.ReadOnly = true;
+            // 
+            // OptionSelPr
+            // 
+            this.OptionSelPr.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.OptionSelPr.DataPropertyName = "SelPr";
+            dataGridViewCellStyle4.Format = "N2";
+            dataGridViewCellStyle4.NullValue = "0";
+            this.OptionSelPr.DefaultCellStyle = dataGridViewCellStyle4;
+            this.OptionSelPr.HeaderText = "Sales price";
+            this.OptionSelPr.Name = "OptionSelPr";
+            // 
+            // OptionInfo
+            // 
+            this.OptionInfo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.OptionInfo.DataPropertyName = "Info";
+            this.OptionInfo.HeaderText = "Info";
+            this.OptionInfo.Name = "OptionInfo";
+            this.OptionInfo.Visible = false;
+            // 
+            // OptionQuantity
+            // 
+            this.OptionQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.OptionQuantity.DataPropertyName = "Quantity";
+            dataGridViewCellStyle5.Format = "N0";
+            dataGridViewCellStyle5.NullValue = "0";
+            this.OptionQuantity.DefaultCellStyle = dataGridViewCellStyle5;
+            this.OptionQuantity.HeaderText = "Quantity";
+            this.OptionQuantity.Name = "OptionQuantity";
+            this.OptionQuantity.Visible = false;
+            // 
+            // OPptionisAvailable
+            // 
+            this.OPptionisAvailable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.OPptionisAvailable.DataPropertyName = "isAvailable";
+            this.OPptionisAvailable.HeaderText = "isAvailable";
+            this.OPptionisAvailable.Name = "OPptionisAvailable";
+            this.OPptionisAvailable.Visible = false;
+            // 
+            // OptionisMarkDeleted
+            // 
+            this.OptionisMarkDeleted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.OptionisMarkDeleted.DataPropertyName = "isMarkDeleted";
+            this.OptionisMarkDeleted.HeaderText = "isMarkDeleted";
+            this.OptionisMarkDeleted.Name = "OptionisMarkDeleted";
+            this.OptionisMarkDeleted.Visible = false;
+            // 
+            // colSubGroupCode
+            // 
+            this.colSubGroupCode.DataPropertyName = "SubGroupCode";
+            this.colSubGroupCode.HeaderText = "SubGroupCode";
+            this.colSubGroupCode.MaxInputLength = 5;
+            this.colSubGroupCode.Name = "colSubGroupCode";
+            // 
+            // DetailOID
+            // 
+            this.DetailOID.DataPropertyName = "OID";
+            this.DetailOID.HeaderText = "OID";
+            this.DetailOID.Name = "DetailOID";
+            this.DetailOID.Visible = false;
+            // 
+            // DetailName
+            // 
+            this.DetailName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DetailName.DataPropertyName = "Name";
+            this.DetailName.HeaderText = "Option Detail";
+            this.DetailName.Name = "DetailName";
+            // 
+            // DetailItemNo
+            // 
+            this.DetailItemNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DetailItemNo.DataPropertyName = "ItemNo";
+            this.DetailItemNo.HeaderText = "Part Nr";
+            this.DetailItemNo.Name = "DetailItemNo";
+            // 
+            // DetailItemSuplNo
+            // 
+            this.DetailItemSuplNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DetailItemSuplNo.DataPropertyName = "ItemSuplNo";
+            this.DetailItemSuplNo.HeaderText = "ItemSuplNo";
+            this.DetailItemSuplNo.Name = "DetailItemSuplNo";
+            // 
+            // DetailItemName
+            // 
+            this.DetailItemName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DetailItemName.DataPropertyName = "ItemName";
+            this.DetailItemName.HeaderText = "Part Name";
+            this.DetailItemName.Name = "DetailItemName";
+            this.DetailItemName.ReadOnly = true;
+            // 
+            // DetailWrksId
+            // 
+            this.DetailWrksId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DetailWrksId.DataPropertyName = "WrksId";
+            this.DetailWrksId.HeaderText = "Labour code";
+            this.DetailWrksId.Name = "DetailWrksId";
+            // 
+            // DetailWrksName
+            // 
+            this.DetailWrksName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DetailWrksName.DataPropertyName = "WrksName";
+            this.DetailWrksName.HeaderText = "Labour Name";
+            this.DetailWrksName.Name = "DetailWrksName";
+            this.DetailWrksName.ReadOnly = true;
+            // 
+            // DetailBaseSelPr
+            // 
+            this.DetailBaseSelPr.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DetailBaseSelPr.DataPropertyName = "BaseSelPr";
+            dataGridViewCellStyle9.Format = "N2";
+            dataGridViewCellStyle9.NullValue = "0";
+            this.DetailBaseSelPr.DefaultCellStyle = dataGridViewCellStyle9;
+            this.DetailBaseSelPr.HeaderText = "BaseSelPr";
+            this.DetailBaseSelPr.Name = "DetailBaseSelPr";
+            this.DetailBaseSelPr.Visible = false;
+            // 
+            // DetailBuyPr
+            // 
+            this.DetailBuyPr.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DetailBuyPr.DataPropertyName = "BuyPr";
+            dataGridViewCellStyle10.Format = "N2";
+            dataGridViewCellStyle10.NullValue = "0";
+            this.DetailBuyPr.DefaultCellStyle = dataGridViewCellStyle10;
+            this.DetailBuyPr.HeaderText = "Purchase price";
+            this.DetailBuyPr.Name = "DetailBuyPr";
+            this.DetailBuyPr.ReadOnly = true;
+            // 
+            // DetailSelPr
+            // 
+            this.DetailSelPr.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DetailSelPr.DataPropertyName = "SelPr";
+            dataGridViewCellStyle11.Format = "N2";
+            dataGridViewCellStyle11.NullValue = "0";
+            this.DetailSelPr.DefaultCellStyle = dataGridViewCellStyle11;
+            this.DetailSelPr.HeaderText = "Sales price";
+            this.DetailSelPr.Name = "DetailSelPr";
+            // 
+            // DetailInfo
+            // 
+            this.DetailInfo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DetailInfo.DataPropertyName = "Info";
+            this.DetailInfo.HeaderText = "Info";
+            this.DetailInfo.Name = "DetailInfo";
+            this.DetailInfo.Visible = false;
+            // 
+            // DetailQuantity
+            // 
+            this.DetailQuantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DetailQuantity.DataPropertyName = "Quantity";
+            dataGridViewCellStyle12.Format = "N0";
+            dataGridViewCellStyle12.NullValue = "0";
+            this.DetailQuantity.DefaultCellStyle = dataGridViewCellStyle12;
+            this.DetailQuantity.HeaderText = "Quantity";
+            this.DetailQuantity.Name = "DetailQuantity";
+            this.DetailQuantity.Visible = false;
+            // 
+            // DetailisAvailable
+            // 
+            this.DetailisAvailable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DetailisAvailable.DataPropertyName = "isAvailable";
+            this.DetailisAvailable.HeaderText = "isAvailable";
+            this.DetailisAvailable.Name = "DetailisAvailable";
+            this.DetailisAvailable.Visible = false;
+            // 
+            // DetailisMarkDeleted
+            // 
+            this.DetailisMarkDeleted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.DetailisMarkDeleted.DataPropertyName = "isMarkDeleted";
+            this.DetailisMarkDeleted.HeaderText = "isMarkDeleted";
+            this.DetailisMarkDeleted.Name = "DetailisMarkDeleted";
+            this.DetailisMarkDeleted.Visible = false;
+            this.DetailisMarkDeleted.Width = 81;
             // 
             // SCOptionList
             // 
@@ -1109,20 +1120,6 @@
         private System.Windows.Forms.Button btnOpSearchPart;
         private System.Windows.Forms.Button btnDetSearchLabour;
         private System.Windows.Forms.Button btnDetSearchPart;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DetailOID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DetailName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DetailItemNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DetailItemSuplNo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DetailItemName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DetailWrksId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DetailWrksName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DetailBaseSelPr;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DetailBuyPr;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DetailSelPr;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DetailInfo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DetailQuantity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DetailisAvailable;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn DetailisMarkDeleted;
         private System.Windows.Forms.DataGridViewTextBoxColumn OptionOID;
         private System.Windows.Forms.DataGridViewTextBoxColumn OptionName;
         private System.Windows.Forms.DataGridViewTextBoxColumn OptionItemNo;
@@ -1138,6 +1135,20 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn OPptionisAvailable;
         private System.Windows.Forms.DataGridViewCheckBoxColumn OptionisMarkDeleted;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSubGroupCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DetailOID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DetailName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DetailItemNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DetailItemSuplNo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DetailItemName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DetailWrksId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DetailWrksName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DetailBaseSelPr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DetailBuyPr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DetailSelPr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DetailInfo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DetailQuantity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DetailisAvailable;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn DetailisMarkDeleted;
         private System.Windows.Forms.DataGridViewTextBoxColumn OID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Category;
         private System.Windows.Forms.DataGridViewTextBoxColumn ItemNo;

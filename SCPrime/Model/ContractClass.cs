@@ -448,7 +448,7 @@ namespace SCPrime.Model
         {
             List<ObjTmp> objs = new List<ObjTmp>();
             clsSqlFactory hSql = new clsSqlFactory();
-            string sql = "Select suplno, name as suplname from supl order by name";
+            string sql = "Select suplno, name + ' - ' + suplno as suplname from supl order by name";
 
             hSql.NewCommand(sql);
             hSql.ExecuteReader();
