@@ -99,8 +99,6 @@
             this.txtEmployeeID1 = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
             this.dgvSelfContract = new System.Windows.Forms.DataGridView();
-            this.colInternalID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colIsDeletedSelf = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.label26 = new System.Windows.Forms.Label();
             this.btnDelSelfContract = new System.Windows.Forms.Button();
             this.btnNewSelfContract = new System.Windows.Forms.Button();
@@ -125,13 +123,15 @@
             this.colKmLimit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colBuyPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.subContractorContractBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.collectiveContractBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colOidSelf = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colInternalID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colContractNoSelf = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colVersionNoSelf = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colContractStatusSelf = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colVinSelf = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colInfoSelf = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.collectiveContractBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.colIsDeletedSelf = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSubcontract)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -853,18 +853,6 @@
             this.dgvSelfContract.Size = new System.Drawing.Size(436, 253);
             this.dgvSelfContract.TabIndex = 44;
             // 
-            // colInternalID
-            // 
-            this.colInternalID.DataPropertyName = "DetailContractOID";
-            this.colInternalID.HeaderText = "Internal ID";
-            this.colInternalID.Name = "colInternalID";
-            // 
-            // colIsDeletedSelf
-            // 
-            this.colIsDeletedSelf.DataPropertyName = "isDeleted";
-            this.colIsDeletedSelf.HeaderText = "isDeleted";
-            this.colIsDeletedSelf.Name = "colIsDeletedSelf";
-            // 
             // label26
             // 
             this.label26.AutoSize = true;
@@ -1106,6 +1094,10 @@
             // 
             this.subContractorContractBindingSource.DataSource = typeof(SCPrime.Model.SubContractorContract);
             // 
+            // collectiveContractBindingSource
+            // 
+            this.collectiveContractBindingSource.DataSource = typeof(SCPrime.Model.CollectiveContract);
+            // 
             // colOidSelf
             // 
             this.colOidSelf.DataPropertyName = "OID";
@@ -1113,6 +1105,12 @@
             this.colOidSelf.Name = "colOidSelf";
             this.colOidSelf.ReadOnly = true;
             this.colOidSelf.Visible = false;
+            // 
+            // colInternalID
+            // 
+            this.colInternalID.DataPropertyName = "DetailContractOID";
+            this.colInternalID.HeaderText = "Internal ID";
+            this.colInternalID.Name = "colInternalID";
             // 
             // colContractNoSelf
             // 
@@ -1150,9 +1148,12 @@
             this.colInfoSelf.HeaderText = "Info";
             this.colInfoSelf.Name = "colInfoSelf";
             // 
-            // collectiveContractBindingSource
+            // colIsDeletedSelf
             // 
-            this.collectiveContractBindingSource.DataSource = typeof(SCPrime.Model.CollectiveContract);
+            this.colIsDeletedSelf.DataPropertyName = "isDeleted";
+            this.colIsDeletedSelf.HeaderText = "isDeleted";
+            this.colIsDeletedSelf.Name = "colIsDeletedSelf";
+            this.colIsDeletedSelf.Visible = false;
             // 
             // HeaderControl
             // 
@@ -1282,6 +1283,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colBuyPrice;
         private System.Windows.Forms.DataGridViewCheckBoxColumn colIsDeleted;
         private System.Windows.Forms.BindingSource collectiveContractBindingSource;
+        public System.Windows.Forms.Panel panel2;
+        public System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridViewTextBoxColumn colOidSelf;
         private System.Windows.Forms.DataGridViewTextBoxColumn colInternalID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colContractNoSelf;
@@ -1290,7 +1293,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colVinSelf;
         private System.Windows.Forms.DataGridViewTextBoxColumn colInfoSelf;
         private System.Windows.Forms.DataGridViewCheckBoxColumn colIsDeletedSelf;
-        public System.Windows.Forms.Panel panel2;
-        public System.Windows.Forms.Panel panel1;
     }
 }

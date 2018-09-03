@@ -1517,12 +1517,12 @@ namespace SCPrime.Model
                     "a.IsTailLiftIncl, a.LastInvoiceDate, a.Modified, a.NextInvoiceDate, a.OID, a.PaymentCollectionType, a.PaymentGroupingLevel, a.PaymentIsInBlock, " +
                     "a.PaymentNextBlockEnd, a.PaymentNextBlockStart, a.PaymentPeriod, a.PaymentTerm, a.RespSmanId, a.RiskCustId, a.RiskLevel, a.RollingCode, a.SiteId, " +
                     "a.TerminationType, a.ValidWorkshopCode, a.VehiId, a.VersionNo, ";
-                strSql += "c1.LNAME as ContractCustName,c1.POSTCD as ContractCustPostCd,c1.PO as ContractCustCity,c1.WTEL as ContractCustPhone,c1.EMAIL as ContractCustEmail,c1.ADDR2 as ContractCustAddress,";
+                strSql += "c1.LNAME as ContractCustName,c1.POSTCD as ContractCustPostCd,c1.PO as ContractCustCity,c1.WTEL as ContractCustPhone,c1.EMAIL as ContractCustEmail,c1.ADDR2 as ContractCustAddress,c1.CUSTNO as ContractCustNo, ";
                 strSql += "c2.C2 as CapitalStartPayerName, ";
                 strSql += "m1.NAME as CareSmanName, m1.PHONE as CareSmanPhone, m1.EMAIL CareSmanEmail, ";
                 strSql += "m2.NAME as RespSmanName, m2.PHONE as RespSmanPhone, m2.EMAIL RespSmanEmail, ";
-                strSql += "c3.LNAME as InvoiceCustName,c3.POSTCD as InvoiceCustPostCd,c3.PO as InvoiceCustCity,c3.WTEL as InvoiceCustPhone,c3.EMAIL as InvoiceCustEmail,c3.ADDR2 as InvoiceCustAddress,";
-                strSql += "c4.LNAME as RiskCustName,c4.POSTCD as RiskCustPostCd,c4.PO as RiskCustCity,c4.WTEL as RiskCustPhone,c4.EMAIL as RiskCustEmail,c4.ADDR2 as RiskCustAddress,";
+                strSql += "c3.LNAME as InvoiceCustName,c3.POSTCD as InvoiceCustPostCd,c3.PO as InvoiceCustCity,c3.WTEL as InvoiceCustPhone,c3.EMAIL as InvoiceCustEmail,c3.ADDR2 as InvoiceCustAddress,c3.CUSTNO as InvoiceCustNo, ";
+                strSql += "c4.LNAME as RiskCustName,c4.POSTCD as RiskCustPostCd,c4.PO as RiskCustCity,c4.WTEL as RiskCustPhone,c4.EMAIL as RiskCustEmail,c4.ADDR2 as RiskCustAddress,c4.CUSTNO as RiskCustNo, ";
                 strSql += "c5.C2 as RollingCodeName, c6.c2 as ValidWorkshopName, ";
                 strSql += "v.LICNO as VehicleLicenseNo, v.SERIALNO as VehicleVIN, v.MAKE as VehicleMake, v.MODEL as VehicleModel, ";
                 strSql += "a.CapitalMonthPayer, c7.C2 as CapitalMonthPayerName ";
@@ -1614,6 +1614,8 @@ namespace SCPrime.Model
                         if (!hSql.Reader.IsDBNull(colId)) item.ContractCustId.Email = hSql.Reader.GetString(colId);
                         colId = hSql.Reader.GetOrdinal("ContractCustAddress");
                         if (!hSql.Reader.IsDBNull(colId)) item.ContractCustId.Address = hSql.Reader.GetString(colId);
+                        colId = hSql.Reader.GetOrdinal("ContractCustNo");
+                        if (!hSql.Reader.IsDBNull(colId)) item.ContractCustId.CustNr = hSql.Reader.GetInt32(colId);
                     }
                     if (item.ContractDateData != null)
                     {
@@ -1707,6 +1709,8 @@ namespace SCPrime.Model
                         if (!hSql.Reader.IsDBNull(colId)) item.InvoiceCustId.Email = hSql.Reader.GetString(colId);
                         colId = hSql.Reader.GetOrdinal("InvoiceCustAddress");
                         if (!hSql.Reader.IsDBNull(colId)) item.InvoiceCustId.Address = hSql.Reader.GetString(colId);
+                        colId = hSql.Reader.GetOrdinal("InvoiceCustNo");
+                        if (!hSql.Reader.IsDBNull(colId)) item.InvoiceCustId.CustNr = hSql.Reader.GetInt32(colId);
                     }
                     colId = hSql.Reader.GetOrdinal("InvoiceSiteId");
                     if (!hSql.Reader.IsDBNull(colId))
@@ -1766,6 +1770,8 @@ namespace SCPrime.Model
                         if (!hSql.Reader.IsDBNull(colId)) item.RiskCustId.Email = hSql.Reader.GetString(colId);
                         colId = hSql.Reader.GetOrdinal("RiskCustAddress");
                         if (!hSql.Reader.IsDBNull(colId)) item.RiskCustId.Address = hSql.Reader.GetString(colId);
+                        colId = hSql.Reader.GetOrdinal("RiskCustNo");
+                        if (!hSql.Reader.IsDBNull(colId)) item.RiskCustId.CustNr = hSql.Reader.GetInt32(colId);
                     }
                     //
                     colId = hSql.Reader.GetOrdinal("RiskLevel");

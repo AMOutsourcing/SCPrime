@@ -420,11 +420,12 @@ namespace SCPrime.Contracts
                 List<ObjTmp> myccs = new List<ObjTmp>(costCenterList.Count);
                 foreach (clsBaseListItem cc in costCenterList)
                 {
-                    myccs.Add(new ObjTmp(cc.strValue1, cc.strText));
+                    myccs.Add(new ObjTmp(cc.strValue1, cc.strValue1+"-"+cc.strText));
                 }
                 this.headerControl1.cbxCostcenter.DataSource = myccs;
-                this.headerControl1.cbxCostcenter.ValueMember = "strText";
-                this.headerControl1.cbxCostcenter.DisplayMember = "strValue1";
+                this.headerControl1.cbxCostcenter.DisplayMember = "strText";
+                this.headerControl1.cbxCostcenter.ValueMember = "strValue1";
+
 
                 if (objContract.CostCenter != null)
                 {
@@ -450,7 +451,7 @@ namespace SCPrime.Contracts
                 {
                     int wsIdx = -1;
                     wsIdx = myws.FindIndex(x => x.strValue1 == objContract.ValidWorkshopCode.strValue1);
-                    this.headerControl1.cbxValidWorkshop.SelectedItem = wsIdx;// objContract.ValidWorkshopCode.strValue1;
+                    this.headerControl1.cbxValidWorkshop.SelectedIndex = wsIdx;// objContract.ValidWorkshopCode.strValue1;
                 }
             }
         }
@@ -492,7 +493,7 @@ namespace SCPrime.Contracts
             if (ccInvoice != null)
             {
 
-                this.headerControl1.txtInvoiceCusNr.Text = ccInvoice.CustId.ToString();
+                this.headerControl1.txtInvoiceCusNr.Text = ccInvoice.CustNr.ToString();
                 this.headerControl1.txtInvoiceCusName.Text = ccInvoice.Name;
                 this.headerControl1.txtInvoiceCusAdd.Text = ccInvoice.Address;
                 this.headerControl1.txtInvoiceCusEmail.Text = ccInvoice.Email;
@@ -504,7 +505,7 @@ namespace SCPrime.Contracts
             if (cc != null)
             {
 
-                this.headerControl1.txtContractCusNr.Text = cc.CustId.ToString();
+                this.headerControl1.txtContractCusNr.Text = cc.CustNr.ToString();
                 this.headerControl1.txtContractCusName.Text = cc.Name;
                 this.headerControl1.txtContractCusAdd.Text = cc.Address;
                 this.headerControl1.txtContractCusEmail.Text = cc.Email;

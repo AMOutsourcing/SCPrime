@@ -104,9 +104,13 @@ namespace SCPrime.Contracts
 
             ContractCustomer cc = new ContractCustomer();
             int id = -1;
-            bool tmp = int.TryParse(searhCustomer.Custno, out id);
+            bool tmp = int.TryParse(searhCustomer.CustId, out id);
             if (tmp)
                 cc.CustId = id;
+            int custno = -1;
+            bool tmp2 = int.TryParse(searhCustomer.Custno, out custno);
+            if (tmp2)
+                cc.CustNr = custno;
             cc.Name = searhCustomer.CustName;
             cc.Address = searhCustomer.CustAddress;
             cc.Email = searhCustomer.CustEmail;
@@ -133,9 +137,13 @@ namespace SCPrime.Contracts
 
             ContractCustomer cc = new ContractCustomer();
             int id = -1;
-            bool tmp = int.TryParse(searhCustomer.Custno, out id);
+            bool tmp = int.TryParse(searhCustomer.CustId, out id);
             if (tmp)
                 cc.CustId = id;
+            int custno = -1;
+            bool tmp2 = int.TryParse(searhCustomer.Custno, out custno);
+            if (tmp2)
+                cc.CustNr = custno;
             cc.Name = searhCustomer.CustName;
             cc.Address = searhCustomer.CustAddress;
             cc.Email = searhCustomer.CustEmail;

@@ -12,6 +12,7 @@ namespace SCPrime.Model
     public class ContractCustomer
     {
         public int CustId;
+        public int CustNr;
         public string Name;
         public string Phone;
         public string Email;
