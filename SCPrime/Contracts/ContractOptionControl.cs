@@ -675,31 +675,37 @@ namespace SCPrime.Contracts
                             this.listOptionDetail.Add(contractOption);
                         }
                     }
-                }
-
-                foreach (ContractOption contractOption in this.listOptionDetail)
-                {
-                    if (contractOption.isDelete)
+                    foreach (ContractOption contractOption in this.listOptionDetail)
                     {
-                        continue;
-                    }
-                    try
-                    {
-                        finded = ContractFrm.objContract.listContractOptions.Single(s => s.OptionCategoryOID == contractOption.OptionCategoryOID && s.OptionOID == contractOption.OptionOID && s.OptionDetailOID == contractOption.OptionDetailOID);
-                        //Check update
-                        //Console.WriteLine("Info: " + finded.Info + " - " + contractOption.Info + " is: " + finded.Info.Equals(contractOption.Info));
-                        if (!finded.SalePr.Equals(contractOption.SalePr)
-                            || !finded.Quantity.Equals(contractOption.Quantity)
-                            || !finded.Info.Equals(contractOption.Info)
-                            || !finded.PartialPayer.Equals(contractOption.PartialPayer))
+                        if (contractOption.isDelete)
                         {
-                            contractOption.isUpdate = true;
+                            continue;
+                        }
+                        try
+                        {
+                            finded = ContractFrm.objContract.listContractOptions.Single(s => s.OptionCategoryOID == contractOption.OptionCategoryOID && s.OptionOID == contractOption.OptionOID && s.OptionDetailOID == contractOption.OptionDetailOID);
+                            //Check update
+                            //Console.WriteLine("Info: " + finded.Info + " - " + contractOption.Info + " is: " + finded.Info.Equals(contractOption.Info));
+                            if (!finded.SalePr.Equals(contractOption.SalePr)
+                                || !finded.Quantity.Equals(contractOption.Quantity)
+                                || !finded.Info.Equals(contractOption.Info)
+                                || !finded.PartialPayer.Equals(contractOption.PartialPayer))
+                            {
+                                contractOption.isUpdate = true;
+                            }
+                        }
+                        catch (System.InvalidOperationException ex)
+                        {
+                            _log.Error("saveOptionCategories ContractFrm.objContract.listContractOptions Single not contain exactly one element: " + contractOption.toString(), ex);
+                            //Xoa
+                            contractOption.isInsert = true;
                         }
                     }
-                    catch (System.InvalidOperationException ex)
+                }
+                else
+                {
+                    foreach (ContractOption contractOption in this.listOptionDetail)
                     {
-                        _log.Error("saveOptionCategories ContractFrm.objContract.listContractOptions Single not contain exactly one element: " + contractOption.toString(), ex);
-                        //Xoa
                         contractOption.isInsert = true;
                     }
                 }
