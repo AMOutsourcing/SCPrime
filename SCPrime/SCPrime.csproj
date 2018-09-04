@@ -216,6 +216,8 @@
     <Compile Include="Utils\Constant.cs" />
     <Compile Include="Utils\MyUtils.cs" />
     <Compile Include="Utils\ObjectUtils.cs" />
+    <Compile Include="Utils\PropertyComparer.cs" />
+    <Compile Include="Utils\SortableBindingList.cs" />
     <Compile Include="Utils\ViewUtils.cs" />
     <EmbeddedResource Include="Contracts\ChangeStatusFrm.resx">
       <DependentUpon>ChangeStatusFrm.cs</DependentUpon>

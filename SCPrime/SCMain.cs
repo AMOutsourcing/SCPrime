@@ -84,7 +84,7 @@ namespace SCPrime
         }
         private void resizeHeight()
         {
-            this.panel4.Height = this.panel1.Height - this.panel3.Height -20;
+            this.panel4.Height = this.panel1.Height - this.panel3.Height - 20;
             this.panel4.Width = this.cblModel.Width;
         }
 
@@ -258,6 +258,7 @@ namespace SCPrime
             searchContract();
         }
 
+        List<Contract> listContract = new List<Contract>();
         public void searchContract()
         {
             List<SCContractType> listContractType = new List<SCContractType>();
@@ -280,7 +281,7 @@ namespace SCPrime
 
             System.Diagnostics.Debug.WriteLine("toolStripButton9_Click Text: " + toolStripTextBox1.Text);
 
-            List<Contract> listContract = SCBase.searchContracts(listContractType, listSite, listStatus, toolStripTextBox1.Text);
+            listContract = SCBase.searchContracts(listContractType, listSite, listStatus, toolStripTextBox1.Text);
 
             buildGridView(listContract);
 
@@ -295,7 +296,11 @@ namespace SCPrime
             gridContract.Refresh();
             //gridContract.AutoGenerateColumns = false;
             //gridContract.AllowUserToAddRows = false;
-            gridContract.DataSource = listContract;
+
+            var bs = new BindingSource();
+            bs.DataSource = listContract.AsQueryable();
+
+            gridContract.DataSource = bs;
 
             if (init)
             {
@@ -417,6 +422,7 @@ namespace SCPrime
             colPayBlock.Name = "PaymentInBlock";
             colPayBlock.HeaderText = "Payment in block";
             colPayBlock.DataPropertyName = "PaymentInBlock";
+            colPayBlock.SortMode = DataGridViewColumnSortMode.Automatic;
             gridContract.Columns.Insert(i++, colPayBlock);
 
             DataGridViewTextBoxColumn colPayNextStart = new DataGridViewTextBoxColumn();
@@ -588,7 +594,7 @@ namespace SCPrime
             {
                 case MouseButtons.Right:
                     {
-                        rightClickMenuStrip.Show(this, new Point(e.X+200, e.Y+50));//places the menu at the pointer position
+                        rightClickMenuStrip.Show(this, new Point(e.X + 200, e.Y + 50));//places the menu at the pointer position
                     }
                     break;
             }
@@ -685,7 +691,7 @@ namespace SCPrime
             {
                 case MouseButtons.Right:
                     {
-                        rightClickMenuStripModel.Show(this, new Point(e.X , e.Y + 80));//places the menu at the pointer position
+                        rightClickMenuStripModel.Show(this, new Point(e.X, e.Y + 80));//places the menu at the pointer position
                     }
                     break;
             }
@@ -764,6 +770,174 @@ namespace SCPrime
 
             //clear Grid
             this.gridContract.DataSource = null;
+        }
+
+        int lastSort = -1;
+        bool sortAsc = true;
+        private void gridContract_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            int colIdx = e.ColumnIndex;
+            SortOrder sortOrder = gridContract.Columns[colIdx].HeaderCell.SortGlyphDirection;
+            DataGridViewColumn newColumn = gridContract.Columns[colIdx];
+            if (lastSort >= 0 && (lastSort == colIdx && sortAsc))
+                sortAsc = false;
+            else
+                sortAsc = true;
+
+            if (sortAsc)
+            {
+                switch (colIdx)
+                {
+                    case 0:
+                        listContract = listContract.OrderBy(r => r.Status).ToList(); break;
+                    case 1:
+                        listContract = listContract.OrderBy(r => r.ContractOID).ToList(); break;
+                    case 2:
+                        listContract = listContract.OrderBy(r => r.ContractNo).ToList(); break;
+                    case 3:
+                        listContract = listContract.OrderBy(r => r.VersionNo).ToList(); break;
+                    case 4:
+                        listContract = listContract.OrderBy(r => r.ExtContractNo).ToList(); break;
+                    case 5:
+                        listContract = listContract.OrderBy(r => r.Created).ToList(); break;
+                    case 6:
+                        listContract = listContract.OrderBy(r => r.Modified).ToList(); break;
+                    case 7:
+                        listContract = listContract.OrderBy(r => r.LastInvoiceDate).ToList(); break;
+                    case 8:
+                        listContract = listContract.OrderBy(r => r.NextInvoiceDate).ToList(); break;
+                    case 9:
+                        listContract = listContract.OrderBy(r => r.ResponsibleSite).ToList(); break;
+                    case 10:
+                        listContract = listContract.OrderBy(r => r.ContractTypeName).ToList();
+                        break;
+                    case 11:
+                        listContract = listContract.OrderBy(r => r.CustNo).ToList(); break;
+                    case 12:
+                        listContract = listContract.OrderBy(r => r.CustName).ToList(); break;
+                    case 13:
+                        listContract = listContract.OrderBy(r => r.InvCustNo).ToList(); break;
+                    case 14:
+                        listContract = listContract.OrderBy(r => r.InvCustName).ToList(); break;
+                    case 15:
+                        listContract = listContract.OrderBy(r => r.VehiLicNo).ToList(); break;
+                    case 16:
+                        listContract = listContract.OrderBy(r => r.VIN).ToList(); break;
+                    case 17:
+                        listContract = listContract.OrderBy(r => r.ContractStartDate).ToList(); break;
+                    case 18:
+                        listContract = listContract.OrderBy(r => r.ContractEndDate).ToList(); break;
+                    case 19:
+                        listContract = listContract.OrderBy(r => r.ContractPeriodKm).ToList(); break;
+                    case 20:
+                        listContract = listContract.OrderBy(r => r.ContractPeriodHr).ToList(); break;
+                    case 21:
+                        listContract = listContract.OrderBy(r => r.KmOrHr).ToList(); break;
+                    case 22:
+                        listContract = listContract.OrderBy(r => r.getTerminationType).ToList(); break;
+                    case 23:
+                        listContract = listContract.OrderBy(r => r.PaymentPeriod).ToList(); break;
+                    case 24:
+                        listContract = listContract.OrderBy(r => r.PaymentInBlock).ToList(); break;
+                    case 25:
+                        listContract = listContract.OrderBy(r => r.PaymentNextBlockStart).ToList(); break;
+                    case 26:
+                        listContract = listContract.OrderBy(r => r.PaymentNextBlockEnd).ToList(); break;
+                    case 27:
+                        listContract = listContract.OrderBy(r => r.PaymentCollecType).ToList(); break;
+                    case 28:
+                        listContract = listContract.OrderBy(r => r.InvSites).ToList(); break;
+                    case 29:
+                        listContract = listContract.OrderBy(r => r.IsManualInvoice).ToList(); break;
+                    case 30:
+                        listContract = listContract.OrderBy(r => r.LastMileDate).ToList(); break;
+                    case 31:
+                        listContract = listContract.OrderBy(r => r.LastMile).ToList(); break;
+                }
+            }
+            else
+            {
+                switch (colIdx)
+                {
+                    case 0:
+                        listContract = listContract.OrderByDescending(r => r.Status).ToList(); break;
+                    case 1:
+                        listContract = listContract.OrderByDescending(r => r.ContractOID).ToList(); break;
+                    case 2:
+                        listContract = listContract.OrderByDescending(r => r.ContractNo).ToList(); break;
+                    case 3:
+                        listContract = listContract.OrderByDescending(r => r.VersionNo).ToList(); break;
+                    case 4:
+                        listContract = listContract.OrderByDescending(r => r.ExtContractNo).ToList(); break;
+                    case 5:
+                        listContract = listContract.OrderByDescending(r => r.Created).ToList(); break;
+                    case 6:
+                        listContract = listContract.OrderByDescending(r => r.Modified).ToList(); break;
+                    case 7:
+                        listContract = listContract.OrderByDescending(r => r.LastInvoiceDate).ToList(); break;
+                    case 8:
+                        listContract = listContract.OrderByDescending(r => r.NextInvoiceDate).ToList(); break;
+                    case 9:
+                        listContract = listContract.OrderByDescending(r => r.ResponsibleSite).ToList(); break;
+                    case 10:
+                        listContract = listContract.OrderByDescending(r => r.ContractTypeName).ToList();
+                        break;
+                    case 11:
+                        listContract = listContract.OrderByDescending(r => r.CustNo).ToList(); break;
+                    case 12:
+                        listContract = listContract.OrderByDescending(r => r.CustName).ToList(); break;
+                    case 13:
+                        listContract = listContract.OrderByDescending(r => r.InvCustNo).ToList(); break;
+                    case 14:
+                        listContract = listContract.OrderByDescending(r => r.InvCustName).ToList(); break;
+                    case 15:
+                        listContract = listContract.OrderByDescending(r => r.VehiLicNo).ToList(); break;
+                    case 16:
+                        listContract = listContract.OrderByDescending(r => r.VIN).ToList(); break;
+                    case 17:
+                        listContract = listContract.OrderByDescending(r => r.ContractStartDate).ToList(); break;
+                    case 18:
+                        listContract = listContract.OrderByDescending(r => r.ContractEndDate).ToList(); break;
+                    case 19:
+                        listContract = listContract.OrderByDescending(r => r.ContractPeriodKm).ToList(); break;
+                    case 20:
+                        listContract = listContract.OrderByDescending(r => r.ContractPeriodHr).ToList(); break;
+                    case 21:
+                        listContract = listContract.OrderByDescending(r => r.KmOrHr).ToList(); break;
+                    case 22:
+                        listContract = listContract.OrderByDescending(r => r.getTerminationType).ToList(); break;
+                    case 23:
+                        listContract = listContract.OrderByDescending(r => r.PaymentPeriod).ToList(); break;
+                    case 24:
+                        listContract = listContract.OrderByDescending(r => r.PaymentInBlock).ToList(); break;
+                    case 25:
+                        listContract = listContract.OrderByDescending(r => r.PaymentNextBlockStart).ToList(); break;
+                    case 26:
+                        listContract = listContract.OrderByDescending(r => r.PaymentNextBlockEnd).ToList(); break;
+                    case 27:
+                        listContract = listContract.OrderByDescending(r => r.PaymentCollecType).ToList(); break;
+                    case 28:
+                        listContract = listContract.OrderByDescending(r => r.InvSites).ToList(); break;
+                    case 29:
+                        listContract = listContract.OrderByDescending(r => r.IsManualInvoice).ToList(); break;
+                    case 30:
+                        listContract = listContract.OrderByDescending(r => r.LastMileDate).ToList(); break;
+                    case 31:
+                        listContract = listContract.OrderByDescending(r => r.LastMile).ToList(); break;
+                }
+            }
+
+
+            buildGridView(listContract);
+
+            if (sortAsc)
+                gridContract.Columns[colIdx].HeaderCell.SortGlyphDirection = SortOrder.Ascending;
+            else
+                gridContract.Columns[colIdx].HeaderCell.SortGlyphDirection = SortOrder.Descending;
+            if (lastSort >= 0)
+                gridContract.Columns[lastSort].HeaderCell.SortGlyphDirection = SortOrder.None;
+
+            lastSort = colIdx;
         }
     }
 }
