@@ -72,6 +72,10 @@ namespace SCPrime.Contracts
                     #region FillTree with Include
                     foreach (SCOptionPrice cat in listCategory)
                     {
+                        if (cat.NotAvailable)
+                        {
+                            continue;
+                        }
                         TreeNode treeNode = new TreeNode(cat.CategoryName);
                         treeNode.Name = "C" + cat.CategoryOID.ToString();
                         if (cat.Include)
@@ -94,6 +98,10 @@ namespace SCPrime.Contracts
 
                         foreach (SCOptionPrice op in listOptions)
                         {
+                            if (op.NotAvailable)
+                            {
+                                continue;
+                            }
                             TreeNode treeNodeL2 = new TreeNode(op.OptionName);
                             treeNodeL2.Name = "O" + op.OptionOID.ToString();
                             if (op.Include)
@@ -120,6 +128,10 @@ namespace SCPrime.Contracts
 
                             foreach (SCOptionPrice sod in listOptionDetails)
                             {
+                                if (sod.NotAvailable)
+                                {
+                                    continue;
+                                }
                                 // create childnode level3
                                 TreeNode treeNodeL3 = new TreeNode(sod.OptionDetailName);
                                 treeNodeL3.Name = "D" + sod.OptionDetailOID.ToString();
@@ -155,6 +167,10 @@ namespace SCPrime.Contracts
                     #region FillTree with zsc_contractoption
                     foreach (SCOptionPrice cat in listCategory)
                     {
+                        if (cat.NotAvailable)
+                        {
+                            continue;
+                        }
                         TreeNode treeNode = new TreeNode(cat.CategoryName);
                         treeNode.Name = "C" + cat.CategoryOID.ToString();
                         if (cat.Include)
@@ -179,6 +195,10 @@ namespace SCPrime.Contracts
 
                         foreach (SCOptionPrice op in listOptions)
                         {
+                            if (op.NotAvailable)
+                            {
+                                continue;
+                            }
                             TreeNode treeNodeL2 = new TreeNode(op.OptionName);
                             treeNodeL2.Name = "O" + op.OptionOID.ToString();
                             if (op.Include)
@@ -207,6 +227,10 @@ namespace SCPrime.Contracts
 
                             foreach (SCOptionPrice sod in listOptionDetails)
                             {
+                                if (sod.NotAvailable)
+                                {
+                                    continue;
+                                }
                                 // create childnode level3
                                 TreeNode treeNodeL3 = new TreeNode(sod.OptionDetailName);
                                 treeNodeL3.Name = "D" + sod.OptionDetailOID.ToString();
@@ -496,6 +520,7 @@ namespace SCPrime.Contracts
 
                 if (rtn != null)
                 {
+                    rtn.ContractOID = ContractFrm.objContract.ContractOID;
                     //Update info
                     try
                     {
@@ -503,12 +528,17 @@ namespace SCPrime.Contracts
                         rtn.Info = finded.Info;
                         rtn.PartialPayer = finded.PartialPayer;
                         rtn.Quantity = finded.Quantity;
-                        rtn.SalePr = finded.SalePr;
-                        rtn.BaseSelPr = finded.BaseSelPr;
+                        if (finded.SalePr <= 0 && rtn.BaseSelPr > 0)
+                        {
+                            rtn.SalePr = rtn.BaseSelPr;
+                        }
+                        else rtn.SalePr = finded.SalePr;
+                        //rtn.BaseSelPr = finded.BaseSelPr;
                     }
                     catch (System.InvalidOperationException ex)
                     {
                         rtn.Quantity = 1;
+                        rtn.SalePr = rtn.BaseSelPr;
                         _log.Error("ContractFrm.objContract.listContractOptions Single not contain exactly one element: " + rtn.toString(), ex);
                     }
 
@@ -697,7 +727,7 @@ namespace SCPrime.Contracts
                         catch (System.InvalidOperationException ex)
                         {
                             _log.Error("saveOptionCategories ContractFrm.objContract.listContractOptions Single not contain exactly one element: " + contractOption.toString(), ex);
-                            //Xoa
+                            //Them moi
                             contractOption.isInsert = true;
                         }
                     }

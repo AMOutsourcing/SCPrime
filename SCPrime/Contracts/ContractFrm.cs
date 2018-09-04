@@ -69,6 +69,26 @@ namespace SCPrime.Contracts
             {
                 objContract = SCBase.searchContracts(SCMain.ContractOid);
                 objContract.listContractOptions = ContractOption.getContractOption(objContract.ContractOID);
+
+                //Loc du lieu bi sai
+                List<ContractOption> listWrong = new List<ContractOption>();
+                Dictionary<String, String> dicContractOptions = new Dictionary<String, String>();
+                foreach (ContractOption tmp in objContract.listContractOptions)
+                {
+                    if (dicContractOptions.ContainsKey(tmp.toString()))
+                    {
+                        listWrong.Add(tmp);
+                    }
+                    else
+                    {
+                        dicContractOptions.Add(tmp.toString(), "1");
+                    }
+                }
+                ///Thuc hien xoa
+                objContract.deleteContractOptionWrong(objContract.ContractOID, listWrong);
+
+                //Reload lai data
+                objContract.listContractOptions = ContractOption.getContractOption(objContract.ContractOID);
             }
             else
             {
@@ -123,7 +143,7 @@ namespace SCPrime.Contracts
 
         private void cbxValidWorkshop_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+
         }
 
         //private clsBaseListItem findValidWorkshop(string value, List<clsBaseListItem> list)
@@ -155,7 +175,7 @@ namespace SCPrime.Contracts
 
         private void cbxResponsibleSite_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
+
         }
 
         private void updat_satatus(object sender, EventArgs e)
@@ -385,7 +405,7 @@ namespace SCPrime.Contracts
             this.headerControl1.cbxResponsibleSite.ValueMember = "strValue1";
             this.headerControl1.cbxResponsibleSite.DisplayMember = "strText";
 
-            if(objContract == null)
+            if (objContract == null)
             {
                 objContract = new Contract();
             }
@@ -420,7 +440,7 @@ namespace SCPrime.Contracts
                 List<ObjTmp> myccs = new List<ObjTmp>(costCenterList.Count);
                 foreach (clsBaseListItem cc in costCenterList)
                 {
-                    myccs.Add(new ObjTmp(cc.strValue1, cc.strValue1+"-"+cc.strText));
+                    myccs.Add(new ObjTmp(cc.strValue1, cc.strValue1 + "-" + cc.strText));
                 }
                 this.headerControl1.cbxCostcenter.DataSource = myccs;
                 this.headerControl1.cbxCostcenter.DisplayMember = "strText";
@@ -430,7 +450,7 @@ namespace SCPrime.Contracts
                 if (objContract.CostCenter != null)
                 {
                     int costIdx = -1;
-                    costIdx = myccs.FindIndex(x=>x.strValue1== objContract.CostCenter.strValue1);
+                    costIdx = myccs.FindIndex(x => x.strValue1 == objContract.CostCenter.strValue1);
                     this.headerControl1.cbxCostcenter.SelectedIndex = costIdx;//objContract.CostCenter.strValue1;
                 }
             }
@@ -642,7 +662,7 @@ namespace SCPrime.Contracts
 
         private void tabControl1_Selected(object sender, TabControlEventArgs e)
         {
-            if(e.TabPageIndex == 3)
+            if (e.TabPageIndex == 3)
             {
                 //Update Cost based on service
                 contractDataFrm.updateCostBasedOnService();
@@ -749,7 +769,7 @@ namespace SCPrime.Contracts
 
                     //Tao list [ZSC_ContractOption]
                     objContract.listContractOptions = oldContractOptions;
-                    if(objContract.listContractOptions != null && objContract.listContractOptions.Count > 0)
+                    if (objContract.listContractOptions != null && objContract.listContractOptions.Count > 0)
                     {
                         foreach (ContractOption objOptionDetail in objContract.listContractOptions)
                         {
@@ -816,7 +836,7 @@ namespace SCPrime.Contracts
 
         private void ContractFrm_Resize(object sender, EventArgs e)
         {
-            
+
             //this.headerControl1.panel2.Width = this.headerControl1.Width / 2;
             //this.headerControl1.panel1.Width = this.headerControl1.Width / 2;
 
@@ -824,7 +844,7 @@ namespace SCPrime.Contracts
             //var y = this.headerControl1.panel2.Location.Y;
             //this.headerControl1.panel1.Location = new Point(x, y);
 
-            
+
 
 
         }

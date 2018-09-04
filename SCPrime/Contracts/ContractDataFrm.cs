@@ -20,6 +20,8 @@ namespace SCPrime.Contracts
     {
         static readonly ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        public clsGlobalVariable objGlobal = new clsGlobalVariable();
+
         //Singleton
         private static ContractDataFrm _instance;
 
@@ -45,10 +47,10 @@ namespace SCPrime.Contracts
         {
             sCBase = new SCBase();
 
-            ViewUtils.fomatDatePicker(txtStartDate);
-            ViewUtils.fomatDatePicker(txtEndDate);
-            ViewUtils.fomatDatePicker(txtStartInvoice);
-            ViewUtils.fomatDatePicker(txtEndInvoice);
+            ViewUtils.fomatDatePicker(txtStartDate, objGlobal.CultureInfo);
+            ViewUtils.fomatDatePicker(txtEndDate, objGlobal.CultureInfo);
+            ViewUtils.fomatDatePicker(txtStartInvoice, objGlobal.CultureInfo);
+            ViewUtils.fomatDatePicker(txtEndInvoice, objGlobal.CultureInfo);
 
             //Termination 
             List<ObjTmp> listTermination = new List<ObjTmp>();
@@ -210,15 +212,14 @@ namespace SCPrime.Contracts
                 {
                     cbPayPeriod.SelectedIndex = -1;
                 }
-
-                cbPayment.Checked = ContractFrm.objContract.IsManualInvoice;
-
-                cbInvoice.Checked = ContractFrm.objContract.ContractPaymentData.PaymentIsInBlock;
+                
+                cbPayment.Checked = ContractFrm.objContract.ContractPaymentData.PaymentIsInBlock;
+                cbInvoice.Checked = ContractFrm.objContract.IsManualInvoice;
 
 
                 if (ContractFrm.objContract.ContractPaymentData != null && ContractFrm.objContract.ContractPaymentData.PaymentNextBlockStart != null)
                 {
-                    txtNextBlock.Text = ContractFrm.objContract.ContractPaymentData.PaymentNextBlockStart.ToString();
+                    txtNextBlock.Text = ContractFrm.objContract.ContractPaymentData.PaymentNextBlockStart.ToString("d", System.Globalization.CultureInfo.GetCultureInfo(objGlobal.CultureInfo));
                 }
                 else
                 {
@@ -226,7 +227,7 @@ namespace SCPrime.Contracts
                 }
                 if (ContractFrm.objContract.ContractPaymentData != null && ContractFrm.objContract.ContractPaymentData.PaymentNextBlockEnd != null)
                 {
-                    txtNextBlockEnd.Text = ContractFrm.objContract.ContractPaymentData.PaymentNextBlockEnd.ToString();
+                    txtNextBlockEnd.Text = ContractFrm.objContract.ContractPaymentData.PaymentNextBlockEnd.ToString("d", System.Globalization.CultureInfo.GetCultureInfo(objGlobal.CultureInfo));
                 }
                 else
                 {
@@ -576,10 +577,9 @@ namespace SCPrime.Contracts
             }
 
 
-            ContractFrm.objContract.IsManualInvoice = cbPayment.Checked;
+            ContractFrm.objContract.IsManualInvoice = cbInvoice.Checked;
+            ContractPaymentData.PaymentIsInBlock = cbPayment.Checked;
 
-
-            ContractPaymentData.PaymentIsInBlock = cbInvoice.Checked;
             if (cbColType.SelectedValue != null)
                 ContractPaymentData.PaymentCollectionType = cbColType.SelectedValue.ToString();
             if (cbGrpLevel.SelectedValue != null)

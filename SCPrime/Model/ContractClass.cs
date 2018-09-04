@@ -488,7 +488,7 @@ namespace SCPrime.Model
 
         public bool isDeleted { get; set; }
 
-        public static List<CollectiveContract> searchSelfContract(int ContractCustId,int contracOid)
+        public static List<CollectiveContract> searchSelfContract(int ContractCustId, int contracOid)
         {
             List<CollectiveContract> ls = new List<CollectiveContract>();
 
@@ -1434,6 +1434,61 @@ namespace SCPrime.Model
 
         //
         public List<ContractOption> listContractOptions;
+
+        public bool deleteContractOptionWrong(int ContractOID, List<ContractOption> list)
+        {
+            if (list == null || list.Count <= 0)
+                return true;
+            bool bRet = true;
+            clsSqlFactory hSql = new clsSqlFactory();
+            try
+            {
+                String sql = "";
+                foreach (ContractOption objOptionDetail in list)
+                {
+                    //Xoa
+                    if (objOptionDetail.OptionOID <= 0)
+                    {
+                        sql = "delete from ZSC_ContractOption where ContractOID = ? and OptionCategoryOID=? and OptionOID is null and OptionDetailOID is null";
+                        bRet = hSql.NewCommand(sql);
+                        hSql.Com.Parameters.AddWithValue("ContractOID", ContractOID);
+                        hSql.Com.Parameters.AddWithValue("OptionCategoryOID", objOptionDetail.OptionCategoryOID);
+                        bRet = bRet && hSql.ExecuteNonQuery();
+                        continue;
+                    }
+
+                    if (objOptionDetail.OptionDetailOID <= 0)
+                    {
+                        sql = "delete from ZSC_ContractOption where ContractOID = ? and OptionCategoryOID=? and OptionOID=? and OptionDetailOID is null";
+                        bRet = hSql.NewCommand(sql);
+                        hSql.Com.Parameters.AddWithValue("ContractOID", ContractOID);
+                        hSql.Com.Parameters.AddWithValue("OptionCategoryOID", objOptionDetail.OptionCategoryOID);
+                        hSql.Com.Parameters.AddWithValue("OptionOID", objOptionDetail.OptionOID);
+                        bRet = bRet && hSql.ExecuteNonQuery();
+                        continue;
+                    }
+                    sql = "delete from ZSC_ContractOption where ContractOID = ? and OptionCategoryOID=? and OptionOID=? and OptionDetailOID=?";
+                    bRet = hSql.NewCommand(sql);
+                    hSql.Com.Parameters.AddWithValue("ContractOID", ContractOID);
+                    hSql.Com.Parameters.AddWithValue("OptionCategoryOID", objOptionDetail.OptionCategoryOID);
+                    hSql.Com.Parameters.AddWithValue("OptionOID", objOptionDetail.OptionOID);
+                    hSql.Com.Parameters.AddWithValue("OptionDetailOID", objOptionDetail.OptionDetailOID);
+                    bRet = bRet && hSql.ExecuteNonQuery();
+                }
+                hSql.Commit();
+            }
+            catch (Exception ex)
+            {
+                bRet = false;
+                hSql.Rollback();
+                throw ex;
+            }
+            finally
+            {
+                hSql.Close();
+            }
+            return bRet;
+        }
 
         public static bool saveContractOption(int ContractOID, List<ContractOption> list, clsSqlFactory hSql)
         {

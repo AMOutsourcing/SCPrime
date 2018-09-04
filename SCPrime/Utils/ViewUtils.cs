@@ -40,11 +40,19 @@ namespace SCPrime.Utils
                 return controls;
         }
 
-        public static void fomatDatePicker(DateTimePicker picker)
+        public static void fomatDatePicker(DateTimePicker picker, string curname)
         {
-            picker.Format = DateTimePickerFormat.Short;
+            picker.Format = DateTimePickerFormat.Custom;
+            picker.CustomFormat = System.Globalization.CultureInfo.GetCultureInfo(curname).DateTimeFormat.ShortDatePattern;
+            //picker.CustomFormat = Application.CurrentCulture.DateTimeFormat.ShortDatePattern;
+            //picker.Format = DateTimePickerFormat.Short;
             //picker.Format = DateTimePickerFormat.Custom;
             //picker.CustomFormat = "yyyy-MM-dd";
+        }
+
+        public static void fomatDecimal(NumericUpDown ctr)
+        {
+            ctr.DecimalPlaces = 2;
         }
     }
 }

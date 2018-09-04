@@ -372,8 +372,8 @@ namespace SCPrime
             //ContractDAte
             DataGridViewTextBoxColumn colStartDate = new DataGridViewTextBoxColumn();
             colStartDate.Name = "ContractStartDate";
-            colStartDate.HeaderText = "StartDate";
-            colStartDate.DataPropertyName = "Start Date";
+            colStartDate.HeaderText = "Start Date";
+            colStartDate.DataPropertyName = "ContractStartDate";
             gridContract.Columns.Insert(i++, colStartDate);
 
             DataGridViewTextBoxColumn colEndDate = new DataGridViewTextBoxColumn();
@@ -390,7 +390,7 @@ namespace SCPrime
 
             DataGridViewTextBoxColumn colPeriodHr = new DataGridViewTextBoxColumn();
             colPeriodHr.Name = "ContractPeriodHr";
-            colPeriodHr.HeaderText = "Period km";
+            colPeriodHr.HeaderText = "Period Hr";
             colPeriodHr.DataPropertyName = "ContractPeriodHr";
             gridContract.Columns.Insert(i++, colPeriodHr);
 
@@ -413,7 +413,7 @@ namespace SCPrime
             colPayPeriod.DataPropertyName = "PaymentPeriod";
             gridContract.Columns.Insert(i++, colPayPeriod);
 
-            DataGridViewTextBoxColumn colPayBlock = new DataGridViewTextBoxColumn();
+            DataGridViewCheckBoxColumn colPayBlock = new DataGridViewCheckBoxColumn();
             colPayBlock.Name = "PaymentInBlock";
             colPayBlock.HeaderText = "Payment in block";
             colPayBlock.DataPropertyName = "PaymentInBlock";
