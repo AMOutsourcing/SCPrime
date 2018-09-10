@@ -15,6 +15,8 @@ using SCPrime.Model;
 using SCPrime.Utils;
 using SCPrime.Contracts;
 using System.Collections;
+using CsvHelper;
+using System.IO;
 
 namespace SCPrime
 {
@@ -583,6 +585,50 @@ namespace SCPrime
         }
         private void invoiceToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            //Export data
+            bool exportSuccess = false;
+            string myTempFile = Path.Combine(Path.GetTempPath(), Path.GetTempFileName() + ".csv");
+            System.IO.TextWriter writeFile = null;
+            try
+            {
+                writeFile = new StreamWriter(myTempFile);
+                var csv = new CsvWriter(writeFile);
+
+                if (listContract != null && listContract.Count > 0)
+                {
+                    csv.WriteRecords(listContract);
+                }
+
+                _log.Info("----------CsvWriter done: " + myTempFile);
+
+                exportSuccess = true;
+
+            }
+            catch (Exception ex)
+            {
+                _log.Error("ERROR CsvWriter: ", ex);
+            }
+            finally
+            {
+                try
+                {
+                    if (writeFile != null)
+                    {
+                        writeFile.Flush();
+                        writeFile.Dispose();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _log.Error("ERROR Close TextWriter: ", ex);
+                }
+            }
+
+            if (exportSuccess)
+            {
+                //Open file
+                System.Diagnostics.Process.Start(myTempFile);
+            }
 
         }
 

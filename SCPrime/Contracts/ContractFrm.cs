@@ -810,7 +810,7 @@ namespace SCPrime.Contracts
                 {
                     //  new object
                     objContract.ContractOID = 0;
-                    objContract.ContractNo = 0;
+                    objContract.VersionNo = 0;
                     //objContract.VersionNo =  1;
                     // this.updateContract();
                     bool tmp = objContract.saveContract();
