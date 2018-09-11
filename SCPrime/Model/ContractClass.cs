@@ -1042,7 +1042,8 @@ namespace SCPrime.Model
             SiteId.strValue1 = new clsGlobalVariable().CurrentSiteId;
 
         }
-        //longdq05082018
+        //longdq11092018
+       
 
         //Thuyetlv
         public List<ZSC_SubcontractorContractRisk> loadZSC_SubcontractorContractRisk()
@@ -1816,6 +1817,54 @@ namespace SCPrime.Model
             }
             return result;
         }
+
+        //longdq added
+        public static int checkMinMaxVersion(int ContractCustId, int VehiId, int VersionNo)
+        {
+            int result = -1;
+            int minVer = 0;
+            int maxVer = 0;
+
+            clsSqlFactory hSql = new clsSqlFactory();
+            string strSql = "select min(VersionNo), max(VersionNo) as count from dbo.ZSC_Contract a where a.ContractCustId = ? and a.VehiId = ?";
+            try
+            {
+
+                hSql.NewCommand(strSql);
+                hSql.Com.Parameters.AddWithValue("ContractCustId", ContractCustId);
+                hSql.Com.Parameters.AddWithValue("VehiId", VehiId);
+                hSql.ExecuteReader();
+                while (hSql.Read())
+                {
+                    //  SubContractorContract sc = new SubContractorContract();
+                    minVer = hSql.Reader.GetInt32(0);
+                    maxVer = hSql.Reader.GetInt32(1);
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                hSql.Close();
+            }
+            if (minVer < maxVer)
+            {
+                if (VersionNo == minVer)
+                    result = 0;
+                else if (VersionNo == maxVer)
+                    result = 1;
+                else
+                    result = 2;
+            }
+            else if (minVer == maxVer)
+                result = 3;
+            return result;
+        }
+
         public bool loadDetail()
         {
             bool bRet = true;

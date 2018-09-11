@@ -378,8 +378,35 @@ namespace SCPrime.Contracts
             //objContract = new Contract();
             //this.loadComboboxData();
             //this.loadContractData();
+            disableNavigatorButton();
 
         }
+        
+        private void disableNavigatorButton()
+        {
+            int value = Contract.checkMinMaxVersion(objContract.ContractCustId.CustId, objContract.VehiId.VehiId, objContract.VersionNo);
+            switch (value)
+            {
+                case 0:
+                    //disable Pre
+                    btnPrev.Enabled = false;
+                    btnNext.Enabled = true;
+                    break;
+                case 1:
+                    btnPrev.Enabled = true;
+                    btnNext.Enabled = false;
+                    break;
+                case 2:
+                    btnPrev.Enabled = true;
+                    btnNext.Enabled = true;
+                    break;
+                case 3:
+                    btnPrev.Enabled = false;
+                    btnNext.Enabled = false;
+                    break;
+            }
+        }
+
         public SCContractType findContracTypeByOiD(int oid, List<SCContractType> list)
         {
             SCContractType sc = new SCContractType();
@@ -810,7 +837,7 @@ namespace SCPrime.Contracts
                 {
                     //  new object
                     objContract.ContractOID = 0;
-                    objContract.VersionNo = 0;
+                    objContract.VersionNo = 1;
                     //objContract.VersionNo =  1;
                     // this.updateContract();
                     bool tmp = objContract.saveContract();
@@ -868,6 +895,7 @@ namespace SCPrime.Contracts
                     loadContractData();
                 }
             }
+            this.disableNavigatorButton();
         }
 
         private void btnNext_Click(object sender, EventArgs e)
@@ -883,6 +911,7 @@ namespace SCPrime.Contracts
                     loadContractData();
                 }
             }
+            this.disableNavigatorButton();
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
@@ -912,6 +941,11 @@ namespace SCPrime.Contracts
         {
             //
             SCMain.getInstance().searchContract();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
