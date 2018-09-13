@@ -594,6 +594,9 @@ namespace SCPrime
                 writeFile = new StreamWriter(myTempFile);
                 var csv = new CsvWriter(writeFile);
 
+                //NOW CSV is Opened OK, can we make semicolon as separator (;) instead of comma.
+                csv.Configuration.Delimiter = ";";
+
                 if (listContract != null && listContract.Count > 0)
                 {
                     csv.WriteRecords(listContract);

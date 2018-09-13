@@ -2214,7 +2214,7 @@ namespace SCPrime.Model
             {
                 if (ContractDateData != null)
                 {
-                    return ContractDateData.ContractStartDate;
+                    return ContractDateData.ContractEndDate;
                 }
                 return DateTime.Now;
             }
