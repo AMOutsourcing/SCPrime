@@ -89,6 +89,18 @@ namespace SCPrime.Contracts
 
                 //Reload lai data
                 objContract.listContractOptions = ContractOption.getContractOption(objContract.ContractOID);
+
+                //List ZSC_ContractInvoice: test
+                List<Int32> lstInvoiceType = new List<Int32>();
+                lstInvoiceType.Add(0);
+                lstInvoiceType.Add(1);
+                List<SCInvoice> lstContractInvoice = SCInvoiceUtil.getContractInvoice(objContract.ContractOID, lstInvoiceType, true);
+
+                invoicesFrm.fillDataGrid(lstContractInvoice);
+
+                //Load Remark
+                objContract.listSCContractRemark = SCContractRemark.getRemark(objContract.ContractOID);
+
             }
             else
             {
@@ -104,6 +116,10 @@ namespace SCPrime.Contracts
             this.contractOption1.loadDataGrid();
             this.contractOption1.loadTree();
             this.contractDataFrm.fillData();
+
+            objContract.listSCContractRemark = (objContract.listSCContractRemark == null) ? new List<SCContractRemark>() : objContract.listSCContractRemark;
+            //Remark
+            remarkFrm.loadRemark(objContract.listSCContractRemark);
             // this.loadCustomerEmployee();
             //
         }
@@ -381,7 +397,7 @@ namespace SCPrime.Contracts
             disableNavigatorButton();
 
         }
-        
+
         private void disableNavigatorButton()
         {
             int value = Contract.checkMinMaxVersion(objContract.ContractCustId.CustId, objContract.VehiId.VehiId, objContract.VersionNo);

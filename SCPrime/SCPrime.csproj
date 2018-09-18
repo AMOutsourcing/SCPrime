@@ -168,8 +168,11 @@
     <Compile Include="Contracts\VehicleTab.Designer.cs">
       <DependentUpon>VehicleTab.cs</DependentUpon>
     </Compile>
+    <Compile Include="Model\clsAMCom.cs" />
     <Compile Include="Model\ContractClass.cs" />
     <Compile Include="Model\KeyValue.cs" />
+    <Compile Include="Model\SCContractRemark.cs" />
+    <Compile Include="Model\SCInvoice.cs" />
     <Compile Include="SCContractType.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -249,8 +252,14 @@
     <EmbeddedResource Include="Contracts\HeaderControl.resx">
       <DependentUpon>HeaderControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Contracts\InvoicesFrm.resx">
+      <DependentUpon>InvoicesFrm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Contracts\MileageRegisterFrm.resx">
       <DependentUpon>MileageRegisterFrm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contracts\RemarkFrm.resx">
+      <DependentUpon>RemarkFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Contracts\tmp.resx">
       <DependentUpon>tmp.cs</DependentUpon>
@@ -300,7 +309,10 @@
     <None Include="Properties\DataSources\SCPrime.Model.MileageReg.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.ObjTmp.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.SCBase.datasource" />
+    <None Include="Properties\DataSources\SCPrime.Model.SCContractRemark.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.SCContractType.datasource" />
+    <None Include="Properties\DataSources\SCPrime.Model.SCInvoice.datasource" />
+    <None Include="Properties\DataSources\SCPrime.Model.SCInvoiceItem.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.SCOptionPrice.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.SCOption.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.SCOptionBase.datasource" />
@@ -311,6 +323,8 @@
     <None Include="Properties\DataSources\SCPrime.Model.SCViewWorks.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.SubContractorContract.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.VehicleMileage.datasource" />
+    <None Include="Properties\DataSources\SCPrime.Model.ZSC_ContractInvoice.datasource" />
+    <None Include="Properties\DataSources\SCPrime.Model.ZSC_ContractInvoiceDetail.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.ZSC_SubcontractorContractRisk.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
