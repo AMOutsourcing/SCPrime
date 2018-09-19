@@ -65,6 +65,7 @@ namespace SCPrime.Contracts
             this.headerControl1.cbxContractType.KeyUp += new KeyEventHandler(this.cbxContractType_DropDownClosed);
             this.headerControl1.cbxContractType.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.cbxContractType_DropDownClosed);
 
+            List<SCInvoice> lstContractInvoice = new List<SCInvoice>();
             if (SCMain.ContractOid > 0)
             {
                 objContract = SCBase.searchContracts(SCMain.ContractOid);
@@ -94,9 +95,7 @@ namespace SCPrime.Contracts
                 List<Int32> lstInvoiceType = new List<Int32>();
                 lstInvoiceType.Add(0);
                 lstInvoiceType.Add(1);
-                List<SCInvoice> lstContractInvoice = SCInvoiceUtil.getContractInvoice(objContract.ContractOID, lstInvoiceType, true);
-
-                invoicesFrm.fillDataGrid(lstContractInvoice);
+                lstContractInvoice = SCInvoiceUtil.getContractInvoice(objContract.ContractOID, lstInvoiceType, true);
 
                 //Load Remark
                 objContract.listSCContractRemark = SCContractRemark.getRemark(objContract.ContractOID);
@@ -118,6 +117,10 @@ namespace SCPrime.Contracts
             this.contractDataFrm.fillData();
 
             objContract.listSCContractRemark = (objContract.listSCContractRemark == null) ? new List<SCContractRemark>() : objContract.listSCContractRemark;
+
+            //Invoice
+            invoicesFrm.fillDataGrid(lstContractInvoice);
+
             //Remark
             remarkFrm.loadRemark(objContract.listSCContractRemark);
             // this.loadCustomerEmployee();
@@ -774,6 +777,7 @@ namespace SCPrime.Contracts
             this.contractOption1.saveOptionCategories();
             //Update contract data
             objContract = contractDataFrm.saveContractData();
+            this.remarkFrm.saveContractRemark();
             bool tmp = false;
             tmp = objContract.saveContract();
             // MessageBox.Show(tmp.ToString());
@@ -783,6 +787,11 @@ namespace SCPrime.Contracts
 
             //Load lai data
             objContract.listContractOptions = ContractOption.getContractOption(objContract.ContractOID);
+
+            objContract.listSCContractRemark = SCContractRemark.getRemark(objContract.ContractOID);
+            objContract.listSCContractRemark = (objContract.listSCContractRemark == null) ? new List<SCContractRemark>() : objContract.listSCContractRemark;
+            //Remark
+            this.remarkFrm.loadRemark(objContract.listSCContractRemark);
         }
 
         private void btnNew_Click(object sender, EventArgs e)

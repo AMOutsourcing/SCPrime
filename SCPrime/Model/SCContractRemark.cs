@@ -20,6 +20,11 @@ namespace SCPrime.Model
         public String Info { get; set; }
         public bool isMarkDeleted { get; set; } = false;
 
+        public String toString()
+        {
+            return this.OID + " - " + this.UserId + " - " + this.RemarkType + " - " + this.Info;
+        }
+
         public static List<SCContractRemark> getRemark(int ContractOID)
         {
             clsSqlFactory hSql = new clsSqlFactory();
@@ -46,7 +51,7 @@ namespace SCPrime.Model
                     colId = hSql.Reader.GetOrdinal("UserId");
                     if (!hSql.Reader.IsDBNull(colId)) item.UserId = hSql.Reader.GetInt32(colId);
                     colId = hSql.Reader.GetOrdinal("RemarkType");
-                    if (!hSql.Reader.IsDBNull(colId)) item.RemarkType = hSql.Reader.GetInt32(colId);
+                    if (!hSql.Reader.IsDBNull(colId)) item.RemarkType = hSql.Reader.GetInt16(colId);
                     colId = hSql.Reader.GetOrdinal("Info");
                     if (!hSql.Reader.IsDBNull(colId)) item.Info = hSql.Reader.GetString(colId);
                     Result.Add(item);
@@ -94,19 +99,17 @@ namespace SCPrime.Model
                     else
                     {
                         bRet = hSql.NewCommand("INSERT INTO ZSC_ContractRemark(ContractOID,Created,UserId,RemarkType,Info) VALUES(?,getdate(),?,?,?)");
-                        hSql.Com.Parameters.AddWithValue("ContractOID", data.ContractOID);
+                        hSql.Com.Parameters.AddWithValue("ContractOID", ContractOID);
                         hSql.Com.Parameters.AddWithValue("UserId", data.UserId);
                         hSql.Com.Parameters.AddWithValue("RemarkType", data.RemarkType);
                         hSql.Com.Parameters.AddWithValue("Info", data.Info);
                         bRet = bRet && hSql.ExecuteNonQuery();
                     }
                 }
-                hSql.Commit();
             }
             catch (Exception ex)
             {
                 _log.Error("ERROR saveRemark " + ContractOID + ": ", ex);
-                hSql.Rollback();
                 throw ex;
             }
             return bRet;

@@ -549,7 +549,6 @@ namespace SCPrime.Model
             List<SCInvoice> Result = new List<SCInvoice>();
             try
             {
-                clsGlobalVariable objGlobal = new clsGlobalVariable();
                 String strSql = "select a.OID as OID, b.SRECNO , b.BILLD,b.DELD,b.PAIDDATE,b.PAIDSUM,b.CRERECNO,b.CUSTNO,c.LNAME,d.EXPL " +
                     "FROM ZSC_ContractInvoice a, all_sbil b LEFT JOIN cust c on b.custno = c.CUSTNO, unit d " +
                     "WHERE a.ContractOID = ? and a.SSALID = b.SSALID and a.UnitId = b._UNITID and a.UnitId = d.UnitId ";
@@ -560,6 +559,7 @@ namespace SCPrime.Model
                     strSql += " AND a.InvoiceType = ?";
                     hSql.NewCommand(strSql);
                     hSql.Com.Parameters.AddWithValue("ContractOID", ContractOID);
+                    hSql.Com.Parameters.AddWithValue("InvoiceType", lstInvoiceType[0]);
                 }
                 else
                 {
