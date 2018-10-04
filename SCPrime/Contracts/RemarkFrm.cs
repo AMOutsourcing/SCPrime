@@ -35,7 +35,7 @@ namespace SCPrime.Contracts
             return RemarkFrm._instance;
         }
 
-        DataTable dataTable;
+        public DataTable dataTable;
         public void loadRemark(List<SCContractRemark> listData)
         {
             dataTable = ObjectUtils.ConvertToDataTable(listData);
@@ -46,15 +46,16 @@ namespace SCPrime.Contracts
         private int newOid = -1;
         private void button1_Click(object sender, EventArgs e)
         {
+
             SCContractRemark sc = new SCContractRemark();
             sc.OID = newOid;
             sc.ContractOID = ContractFrm.objContract.ContractOID;
-            sc.UserId = 1;
+            //sc.UserId = "";
             sc.RemarkType = 0;
             sc.Info = "";
 
             this.dataTable = null;
-            this.dataTable = (DataTable) gridMark.DataSource;
+            this.dataTable = (DataTable)gridMark.DataSource;
             if (dataTable == null || dataTable.Rows.Count <= 0)
             {
                 this.dataTable = ObjectUtils.ConvertToDataTable(new List<SCContractRemark> { sc });
@@ -71,10 +72,10 @@ namespace SCPrime.Contracts
                 dataTable.Rows.Add(drToAdd);
                 dataTable.AcceptChanges();
             }
-            
+
             buildGrid();
             gridMark.Refresh();
-            
+
             newOid--;
         }
 
@@ -93,18 +94,18 @@ namespace SCPrime.Contracts
 
         private void gridMark_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            if (e.ColumnIndex == 3)
-            {
-                gridMark.Rows[e.RowIndex].ErrorText = "";
-                Int32 newInteger;
-                if (gridMark.Rows[e.RowIndex].IsNewRow) { return; }
-                if (!Int32.TryParse(e.FormattedValue.ToString(),
-                    out newInteger) || newInteger < 0)
-                {
-                    e.Cancel = true;
-                    gridMark.Rows[e.RowIndex].ErrorText = "The value must be a non-negative integer";
-                }
-            }
+            //if (e.ColumnIndex == 4)
+            //{
+            //    gridMark.Rows[e.RowIndex].ErrorText = "";
+            //    Int32 newInteger;
+            //    if (gridMark.Rows[e.RowIndex].IsNewRow) { return; }
+            //    if (!Int32.TryParse(e.FormattedValue.ToString(),
+            //        out newInteger) || newInteger < 0)
+            //    {
+            //        e.Cancel = true;
+            //        gridMark.Rows[e.RowIndex].ErrorText = "The value must be a non-negative integer";
+            //    }
+            //}
         }
 
         public void buildGrid()
@@ -121,8 +122,8 @@ namespace SCPrime.Contracts
 
         private void gridMark_RowValidating(object sender, DataGridViewCellCancelEventArgs e)
         {
-            if (gridMark.Rows[e.RowIndex].Cells[3].Value == null || gridMark.Rows[e.RowIndex].Cells[4].Value == null)
-                e.Cancel = true;
+            //if (gridMark.Rows[e.RowIndex].Cells[4].Value == null)
+            //    e.Cancel = true;
         }
 
         public void saveContractRemark()
@@ -157,15 +158,8 @@ namespace SCPrime.Contracts
         private SCContractRemark convertToRemark(DataGridViewRow row)
         {
             SCContractRemark value = new SCContractRemark();
-            value.OID = (int) row.Cells[0].Value;
-            if (row.Cells[3].Value != null)
-            {
-                int UserId = 0;
-                if (Int32.TryParse(row.Cells[3].Value.ToString(), out UserId))
-                    value.UserId = UserId;
-                else
-                    value.UserId = 0;
-            }
+            value.OID = (int)row.Cells[0].Value;
+
             if (row.Cells[4].Value != null)
             {
                 int RemarkType = 0;
@@ -176,6 +170,36 @@ namespace SCPrime.Contracts
             }
             value.Info = row.Cells[5].Value != null ? row.Cells[5].Value.ToString() : "";
             return value;
-    }
+        }
+
+
+        public void setInfoValue(String txtinfo)
+        {
+            if (this.dataTable == null)
+                this.dataTable = (DataTable)gridMark.DataSource;
+
+            DataRow[] foundRows = dataTable.Select("" + Constant.OID + " = " + OIDSelect);
+
+            if (foundRows.Length > 0)
+            {
+                foundRows[0]["Info"] = txtinfo;
+                dataTable.AcceptChanges();
+            }
+        }
+
+        int OIDSelect;
+        private void gridMark_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //Info
+            _log.Info("-------gridMark_CellDoubleClick------" + e.ColumnIndex);
+            if (e.ColumnIndex == 5)
+            {
+                OIDSelect = (int)gridMark.Rows[e.RowIndex].Cells[0].Value;
+                InfoFrm frm = InfoFrm.getInstance();
+                frm.setFrm(this);
+                frm.setValue(gridMark.Rows[e.RowIndex].Cells[5].Value.ToString());
+                frm.ShowDialog();
+            }
+        }
     }
 }

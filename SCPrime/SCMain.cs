@@ -17,6 +17,7 @@ using SCPrime.Contracts;
 using System.Collections;
 using CsvHelper;
 using System.IO;
+using WorkshopMonitorPrime.Model;
 
 namespace SCPrime
 {
@@ -24,7 +25,8 @@ namespace SCPrime
     {
         static readonly ILog _log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public static int ContractOid;
-
+        private AMComClient objComClient;
+        private String NWDBName;
         private static SCMain _instance;
 
         public static SCMain getInstance()
@@ -41,7 +43,11 @@ namespace SCPrime
             InitializeComponent();
             this.Visible = false;
             // remove context menu
-            this.ContextMenuStrip.Items.Clear();
+            //this.ContextMenuStrip.Items.Clear();
+            gridContract.ContextMenuStrip = rightClickGrid;
+            cblModel.ContextMenuStrip = rightClickMenuStripModel;
+            cblContactType.ContextMenuStrip = rightClickMenuStripContractType;
+            cbSites.ContextMenuStrip = rightClickMenuStripSites;
 
         }
 
@@ -171,6 +177,9 @@ namespace SCPrime
 
             //View searchContract
             searchContract();
+            //others
+            objComClient = new AMComClient();
+            NWDBName = objAppConfig.getStringParam("ASETUKSET", "COMMONDB", "C3", "");
         }
 
         private void setCheckDefault()
@@ -281,9 +290,9 @@ namespace SCPrime
                 listStatus.Add(itemChecked.strValue1);
             }
 
-            System.Diagnostics.Debug.WriteLine("toolStripButton9_Click Text: " + toolStripTextBox1.Text);
+            System.Diagnostics.Debug.WriteLine("toolStripButton9_Click Text: " + dfFilter.Text);
 
-            listContract = SCBase.searchContracts(listContractType, listSite, listStatus, toolStripTextBox1.Text);
+            listContract = SCBase.searchContracts(listContractType, listSite, listStatus, dfFilter.Text,cbNeedInvoicing.Checked);
 
             buildGridView(listContract);
 
@@ -488,10 +497,7 @@ namespace SCPrime
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            SCMain.ContractOid = 0;
-            ContractFrm cf = new ContractFrm();
-            cf.StartPosition = FormStartPosition.CenterParent;
-            cf.ShowDialog();
+            nEwContractToolStripMenuItem_Click(sender, e);
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -546,6 +552,7 @@ namespace SCPrime
             Contract mycontract = SCBase.searchContracts(SCMain.ContractOid);
 
             //TODO display customer data
+            objComClient.openCustomer(mycontract.ResponsibleSite, mycontract.ContractCustId.CustNr, mycontract.ContractCustId.CustId);
         }
 
         private void vehicleDataToolStripMenuItem_Click(object sender, EventArgs e)
@@ -557,6 +564,7 @@ namespace SCPrime
             Contract mycontract = SCBase.searchContracts(SCMain.ContractOid);
 
             //TODO display vehicle data
+            objComClient.openVehicle(mycontract.ResponsibleSite, mycontract.VehiId.LicenseNo);
         }
 
         private void serviceHistoryToolStripMenuItem_Click(object sender, EventArgs e)
@@ -568,20 +576,29 @@ namespace SCPrime
             Contract mycontract = SCBase.searchContracts(SCMain.ContractOid);
 
             //TODO display service history data
+            objComClient.openServiceHistory(mycontract.ResponsibleSite, mycontract.VehiId.LicenseNo);
         }
 
         private void eLOArchiveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("eLOArchiveToolStripMenuItem_Click");
+            foreach (DataGridViewRow r in this.gridContract.SelectedRows)
+            {
+                ContractOid = (int)r.Cells["colCcontractOID"].Value;
+            }
+            Contract mycontract = SCBase.searchContracts(SCMain.ContractOid);
+            mycontract.VehiId.openELO();
+
         }
         private void mileageRegisterToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+            MileageRegisterFrm frm = new MileageRegisterFrm();
+            frm.ShowDialog();
         }
 
         private void invoiceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("invoiceToolStripMenuItem_Click");
         }
         private void invoiceToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -643,7 +660,7 @@ namespace SCPrime
             {
                 case MouseButtons.Right:
                     {
-                        rightClickMenuStrip.Show(this, new Point(e.X + 200, e.Y + 50));//places the menu at the pointer position
+                        rightClickGrid.Show(this, new Point(e.X + 200, e.Y + 50));//places the menu at the pointer position
                     }
                     break;
             }
@@ -662,55 +679,32 @@ namespace SCPrime
 
         private void customerData_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow r in this.gridContract.SelectedRows)
-            {
-                ContractOid = (int)r.Cells["colCcontractOID"].Value;
-            }
-            Contract mycontract = SCBase.searchContracts(SCMain.ContractOid);
-
-            //TODO display customer data
+            customerDataToolStripMenuItem_Click(sender, e);
         }
 
         private void vehicleData_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show("vehicleData_Click");
-            foreach (DataGridViewRow r in this.gridContract.SelectedRows)
-            {
-                ContractOid = (int)r.Cells["colCcontractOID"].Value;
-            }
-            Contract mycontract = SCBase.searchContracts(SCMain.ContractOid);
-
-            //TODO display vehicle data
+            vehicleDataToolStripMenuItem_Click(sender, e);
         }
 
         private void serviceHistory_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow r in this.gridContract.SelectedRows)
-            {
-                ContractOid = (int)r.Cells["colCcontractOID"].Value;
-            }
-            Contract mycontract = SCBase.searchContracts(SCMain.ContractOid);
-
-            //TODO display service history data
+            serviceHistoryToolStripMenuItem_Click(sender, e);
         }
 
         private void eLOArchive_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("eLOArchive_Right_Click");
+            eLOArchiveToolStripMenuItem_Click(sender, e);
         }
 
         private void mileageRegister_Click(object sender, EventArgs e)
         {
-            MileageRegisterFrm frm = new MileageRegisterFrm();
-            frm.ShowDialog();
+            mileageRegisterToolStripMenuItem_Click(sender, e);
         }
 
         private void NewContractItem_Click(object sender, EventArgs e)
         {
-            SCMain.ContractOid = 0;
-            ContractFrm cf = new ContractFrm();
-            cf.StartPosition = FormStartPosition.CenterParent;
-            cf.ShowDialog();
+            nEwContractToolStripMenuItem_Click(sender, e);
         }
 
         private void printMenuItem_Click(object sender, EventArgs e)
@@ -726,7 +720,7 @@ namespace SCPrime
 
         private void invoicesMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("eLOArchive_Right_Click");
+            invoiceToolStripMenuItem_Click(sender, e);
         }
 
         private void SCMain_Resize(object sender, EventArgs e)
@@ -987,6 +981,54 @@ namespace SCPrime
                 gridContract.Columns[lastSort].HeaderCell.SortGlyphDirection = SortOrder.None;
 
             lastSort = colIdx;
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            searchContract();
+        }
+
+        private void toolStripButton7_Click(object sender, EventArgs e)
+        {
+            invoiceToolStripMenuItem1_Click(sender, e);
+        }
+
+        private void remarkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("remarkToolStripMenuItem_Click");
+        }
+
+        private void syncAllContractsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+            clsSqlFactory hSql = new clsSqlFactory();
+            String strSql = "exec ZSC_SP_SyncContractToAM '"+NWDBName+"', null";
+            hSql.NewCommand(strSql);
+            hSql.ExecuteNonQuery();
+            hSql.Commit();
+            hSql.Close();
+        }
+
+        private void syncSelectedContractToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow r in this.gridContract.SelectedRows)
+            {
+                ContractOid = (int)r.Cells["colCcontractOID"].Value;
+            }
+            if (ContractOid > 0)
+            {
+                clsSqlFactory hSql = new clsSqlFactory();
+                String strSql = "exec ZSC_SP_SyncContractToAM '" + NWDBName + "',"+ ContractOid.ToString();
+                hSql.NewCommand(strSql);
+                hSql.ExecuteNonQuery();
+                hSql.Commit();
+                hSql.Close();
+            }
+        }
+
+        private void menuIndexData_Click(object sender, EventArgs e)
+        {
+            SCIndexDataFrm.getInstance().ShowDialog();
         }
     }
 }

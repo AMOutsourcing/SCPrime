@@ -31,6 +31,10 @@
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.gridMark = new System.Windows.Forms.DataGridView();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.oIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contractOIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.createdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -39,23 +43,20 @@
             this.infoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.isMarkDeletedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.sCContractRemarkBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridMark)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sCContractRemarkBindingSource)).BeginInit();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sCContractRemarkBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.gridMark);
             this.panel1.Controls.Add(this.panel2);
-            this.panel1.Location = new System.Drawing.Point(4, 4);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1127, 586);
+            this.panel1.Size = new System.Drawing.Size(1046, 597);
             this.panel1.TabIndex = 0;
             // 
             // gridMark
@@ -75,62 +76,11 @@
             this.gridMark.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridMark.Location = new System.Drawing.Point(0, 66);
             this.gridMark.Name = "gridMark";
-            this.gridMark.Size = new System.Drawing.Size(1127, 520);
+            this.gridMark.Size = new System.Drawing.Size(1046, 531);
             this.gridMark.TabIndex = 1;
+            this.gridMark.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridMark_CellDoubleClick);
             this.gridMark.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.gridMark_CellValidating);
             this.gridMark.RowValidating += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.gridMark_RowValidating);
-            // 
-            // oIDDataGridViewTextBoxColumn
-            // 
-            this.oIDDataGridViewTextBoxColumn.DataPropertyName = "OID";
-            this.oIDDataGridViewTextBoxColumn.HeaderText = "OID";
-            this.oIDDataGridViewTextBoxColumn.Name = "oIDDataGridViewTextBoxColumn";
-            this.oIDDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // contractOIDDataGridViewTextBoxColumn
-            // 
-            this.contractOIDDataGridViewTextBoxColumn.DataPropertyName = "ContractOID";
-            this.contractOIDDataGridViewTextBoxColumn.HeaderText = "ContractOID";
-            this.contractOIDDataGridViewTextBoxColumn.Name = "contractOIDDataGridViewTextBoxColumn";
-            this.contractOIDDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // createdDataGridViewTextBoxColumn
-            // 
-            this.createdDataGridViewTextBoxColumn.DataPropertyName = "Created";
-            this.createdDataGridViewTextBoxColumn.HeaderText = "Created";
-            this.createdDataGridViewTextBoxColumn.Name = "createdDataGridViewTextBoxColumn";
-            this.createdDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // userIdDataGridViewTextBoxColumn
-            // 
-            this.userIdDataGridViewTextBoxColumn.DataPropertyName = "UserId";
-            this.userIdDataGridViewTextBoxColumn.HeaderText = "UserId";
-            this.userIdDataGridViewTextBoxColumn.Name = "userIdDataGridViewTextBoxColumn";
-            // 
-            // remarkTypeDataGridViewTextBoxColumn
-            // 
-            this.remarkTypeDataGridViewTextBoxColumn.DataPropertyName = "RemarkType";
-            this.remarkTypeDataGridViewTextBoxColumn.HeaderText = "RemarkType";
-            this.remarkTypeDataGridViewTextBoxColumn.Name = "remarkTypeDataGridViewTextBoxColumn";
-            this.remarkTypeDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.remarkTypeDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // infoDataGridViewTextBoxColumn
-            // 
-            this.infoDataGridViewTextBoxColumn.DataPropertyName = "Info";
-            this.infoDataGridViewTextBoxColumn.HeaderText = "Info";
-            this.infoDataGridViewTextBoxColumn.Name = "infoDataGridViewTextBoxColumn";
-            // 
-            // isMarkDeletedDataGridViewCheckBoxColumn
-            // 
-            this.isMarkDeletedDataGridViewCheckBoxColumn.DataPropertyName = "isMarkDeleted";
-            this.isMarkDeletedDataGridViewCheckBoxColumn.HeaderText = "isMarkDeleted";
-            this.isMarkDeletedDataGridViewCheckBoxColumn.Name = "isMarkDeletedDataGridViewCheckBoxColumn";
-            this.isMarkDeletedDataGridViewCheckBoxColumn.Visible = false;
-            // 
-            // sCContractRemarkBindingSource
-            // 
-            this.sCContractRemarkBindingSource.DataSource = typeof(SCPrime.Model.SCContractRemark);
             // 
             // panel2
             // 
@@ -140,7 +90,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1127, 66);
+            this.panel2.Size = new System.Drawing.Size(1046, 66);
             this.panel2.TabIndex = 0;
             // 
             // button2
@@ -172,6 +122,60 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Contract remarks";
             // 
+            // oIDDataGridViewTextBoxColumn
+            // 
+            this.oIDDataGridViewTextBoxColumn.DataPropertyName = "OID";
+            this.oIDDataGridViewTextBoxColumn.HeaderText = "OID";
+            this.oIDDataGridViewTextBoxColumn.Name = "oIDDataGridViewTextBoxColumn";
+            this.oIDDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // contractOIDDataGridViewTextBoxColumn
+            // 
+            this.contractOIDDataGridViewTextBoxColumn.DataPropertyName = "ContractOID";
+            this.contractOIDDataGridViewTextBoxColumn.HeaderText = "ContractOID";
+            this.contractOIDDataGridViewTextBoxColumn.Name = "contractOIDDataGridViewTextBoxColumn";
+            this.contractOIDDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // createdDataGridViewTextBoxColumn
+            // 
+            this.createdDataGridViewTextBoxColumn.DataPropertyName = "Created";
+            this.createdDataGridViewTextBoxColumn.HeaderText = "Created";
+            this.createdDataGridViewTextBoxColumn.Name = "createdDataGridViewTextBoxColumn";
+            this.createdDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // userIdDataGridViewTextBoxColumn
+            // 
+            this.userIdDataGridViewTextBoxColumn.DataPropertyName = "UserId";
+            this.userIdDataGridViewTextBoxColumn.HeaderText = "UserId";
+            this.userIdDataGridViewTextBoxColumn.Name = "userIdDataGridViewTextBoxColumn";
+            this.userIdDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // remarkTypeDataGridViewTextBoxColumn
+            // 
+            this.remarkTypeDataGridViewTextBoxColumn.DataPropertyName = "RemarkType";
+            this.remarkTypeDataGridViewTextBoxColumn.HeaderText = "RemarkType";
+            this.remarkTypeDataGridViewTextBoxColumn.Name = "remarkTypeDataGridViewTextBoxColumn";
+            this.remarkTypeDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.remarkTypeDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // infoDataGridViewTextBoxColumn
+            // 
+            this.infoDataGridViewTextBoxColumn.DataPropertyName = "Info";
+            this.infoDataGridViewTextBoxColumn.HeaderText = "Info";
+            this.infoDataGridViewTextBoxColumn.Name = "infoDataGridViewTextBoxColumn";
+            this.infoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // isMarkDeletedDataGridViewCheckBoxColumn
+            // 
+            this.isMarkDeletedDataGridViewCheckBoxColumn.DataPropertyName = "isMarkDeleted";
+            this.isMarkDeletedDataGridViewCheckBoxColumn.HeaderText = "isMarkDeleted";
+            this.isMarkDeletedDataGridViewCheckBoxColumn.Name = "isMarkDeletedDataGridViewCheckBoxColumn";
+            this.isMarkDeletedDataGridViewCheckBoxColumn.Visible = false;
+            // 
+            // sCContractRemarkBindingSource
+            // 
+            this.sCContractRemarkBindingSource.DataSource = typeof(SCPrime.Model.SCContractRemark);
+            // 
             // RemarkFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -181,9 +185,9 @@
             this.Size = new System.Drawing.Size(1046, 597);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridMark)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sCContractRemarkBindingSource)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sCContractRemarkBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

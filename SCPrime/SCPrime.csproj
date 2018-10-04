@@ -120,6 +120,12 @@
     <Compile Include="Contracts\DetailContractSearchFrm.Designer.cs">
       <DependentUpon>DetailContractSearchFrm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Contracts\dlgOptionInstalment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Contracts\dlgOptionInstalment.Designer.cs">
+      <DependentUpon>dlgOptionInstalment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Contracts\dlgPrintContract.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,6 +143,12 @@
     </Compile>
     <Compile Include="Contracts\HeaderControl.Designer.cs">
       <DependentUpon>HeaderControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Contracts\InfoFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Contracts\InfoFrm.Designer.cs">
+      <DependentUpon>InfoFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="Contracts\InvoicesFrm.cs">
       <SubType>UserControl</SubType>
@@ -180,6 +192,12 @@
       <DependentUpon>SCContractType.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\SCBase.cs" />
+    <Compile Include="SCIndexDataFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SCIndexDataFrm.Designer.cs">
+      <DependentUpon>SCIndexDataFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SCMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -243,6 +261,9 @@
     <EmbeddedResource Include="Contracts\DetailContractSearchFrm.resx">
       <DependentUpon>DetailContractSearchFrm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Contracts\dlgOptionInstalment.resx">
+      <DependentUpon>dlgOptionInstalment.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Contracts\dlgPrintContract.resx">
       <DependentUpon>dlgPrintContract.cs</DependentUpon>
     </EmbeddedResource>
@@ -251,6 +272,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Contracts\HeaderControl.resx">
       <DependentUpon>HeaderControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Contracts\InfoFrm.resx">
+      <DependentUpon>InfoFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Contracts\InvoicesFrm.resx">
       <DependentUpon>InvoicesFrm.cs</DependentUpon>
@@ -280,6 +304,9 @@
     </Compile>
     <EmbeddedResource Include="SCContractType.resx">
       <DependentUpon>SCContractType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SCIndexDataFrm.resx">
+      <DependentUpon>SCIndexDataFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SCMain.resx">
       <DependentUpon>SCMain.cs</DependentUpon>
@@ -311,6 +338,7 @@
     <None Include="Properties\DataSources\SCPrime.Model.SCBase.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.SCContractRemark.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.SCContractType.datasource" />
+    <None Include="Properties\DataSources\SCPrime.Model.SCIndexData.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.SCInvoice.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.SCInvoiceItem.datasource" />
     <None Include="Properties\DataSources\SCPrime.Model.SCOptionPrice.datasource" />

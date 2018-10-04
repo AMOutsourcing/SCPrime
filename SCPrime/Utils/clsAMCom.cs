@@ -21,7 +21,6 @@ namespace WorkshopMonitorPrime.Model
 
         public void openSPInvoice(String SiteId, int SRECNO)
         {
-            if (SRECNO == 0) return;
             String AddParam = "-com:11 -param1:$OPENINVOICE$1 -param2:$START$1 -param3:$CLOSE$1 -param4:$APPLICATIONID$4 -param5:$INVOICENUMBER$" + SRECNO.ToString();
             clsSqlFactory hSql = new clsSqlFactory();
             hSql.NewCommand("select a.BTYPE,a.BILLD,b.CUSTID from ALL_SBIL a, CUST b where a.SRECNO=? and a._UNITID=? and a.CUSTNO=b.CUSTNO ");
@@ -74,7 +73,6 @@ namespace WorkshopMonitorPrime.Model
         private void launchCOM(String SiteId,String AddParam)
         {
             clsWinIni objWinIni = new clsWinIni();
-            
             System.Diagnostics.Process proc = new System.Diagnostics.Process();
             proc.StartInfo.FileName = AMComClientFileName;
             String IntUser = Users[Array.IndexOf(SiteIds, SiteId)];

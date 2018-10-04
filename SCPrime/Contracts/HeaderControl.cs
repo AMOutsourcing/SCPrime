@@ -374,7 +374,7 @@ namespace SCPrime.Contracts
                 }
             }
         }
-
+       
         private void txtContractStatus_TextChanged(object sender, EventArgs e)
         {
 
@@ -467,7 +467,7 @@ namespace SCPrime.Contracts
 
         private void cbxResponsibleSite_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void label10_Click(object sender, EventArgs e)

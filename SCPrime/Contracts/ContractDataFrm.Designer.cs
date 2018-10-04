@@ -31,6 +31,13 @@
             this.components = new System.ComponentModel.Container();
             this.pnAll = new System.Windows.Forms.Panel();
             this.pnBottom = new System.Windows.Forms.Panel();
+            this.dfInvoicingDay = new System.Windows.Forms.NumericUpDown();
+            this.label43 = new System.Windows.Forms.Label();
+            this.dfIndexValue = new System.Windows.Forms.NumericUpDown();
+            this.label42 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.dtIndexingDate = new System.Windows.Forms.DateTimePicker();
+            this.cbInvoiceDetail = new System.Windows.Forms.CheckBox();
             this.pnLeft = new System.Windows.Forms.Panel();
             this.pnGrid = new System.Windows.Forms.Panel();
             this.gridRisk = new System.Windows.Forms.DataGridView();
@@ -45,10 +52,6 @@
             this.label38 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
-            this.pnRight = new System.Windows.Forms.Panel();
-            this.cbRoll = new System.Windows.Forms.ComboBox();
-            this.label39 = new System.Windows.Forms.Label();
-            this.cbInvoiceDetail = new System.Windows.Forms.CheckBox();
             this.pnMid = new System.Windows.Forms.Panel();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.txtInvoiceAmount = new System.Windows.Forms.NumericUpDown();
@@ -64,6 +67,7 @@
             this.label35 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.txtCostBase2 = new System.Windows.Forms.NumericUpDown();
             this.txtLastPay = new System.Windows.Forms.TextBox();
             this.txtErr = new System.Windows.Forms.NumericUpDown();
             this.txtKmBassis = new System.Windows.Forms.NumericUpDown();
@@ -90,6 +94,8 @@
             this.label22 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.pnTop = new System.Windows.Forms.Panel();
+            this.cbRoll = new System.Windows.Forms.ComboBox();
+            this.label39 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtNextBlockEnd = new System.Windows.Forms.TextBox();
             this.label40 = new System.Windows.Forms.Label();
@@ -138,12 +144,13 @@
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.pnAll.SuspendLayout();
             this.pnBottom.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dfInvoicingDay)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dfIndexValue)).BeginInit();
             this.pnLeft.SuspendLayout();
             this.pnGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridRisk)).BeginInit();
             this.pnTopGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtRishLevel)).BeginInit();
-            this.pnRight.SuspendLayout();
             this.pnMid.SuspendLayout();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtInvoiceAmount)).BeginInit();
@@ -151,6 +158,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtLowKm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaxDev)).BeginInit();
             this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCostBase2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtErr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtKmBassis)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMonBassis)).BeginInit();
@@ -183,13 +191,88 @@
             // 
             // pnBottom
             // 
+            this.pnBottom.Controls.Add(this.dfInvoicingDay);
+            this.pnBottom.Controls.Add(this.label43);
+            this.pnBottom.Controls.Add(this.dfIndexValue);
+            this.pnBottom.Controls.Add(this.label42);
+            this.pnBottom.Controls.Add(this.label41);
+            this.pnBottom.Controls.Add(this.dtIndexingDate);
+            this.pnBottom.Controls.Add(this.cbInvoiceDetail);
             this.pnBottom.Controls.Add(this.pnLeft);
-            this.pnBottom.Controls.Add(this.pnRight);
             this.pnBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnBottom.Location = new System.Drawing.Point(0, 442);
             this.pnBottom.Name = "pnBottom";
             this.pnBottom.Size = new System.Drawing.Size(914, 260);
             this.pnBottom.TabIndex = 2;
+            // 
+            // dfInvoicingDay
+            // 
+            this.dfInvoicingDay.Location = new System.Drawing.Point(707, 35);
+            this.dfInvoicingDay.Maximum = new decimal(new int[] {
+            1661992959,
+            1808227885,
+            5,
+            0});
+            this.dfInvoicingDay.Name = "dfInvoicingDay";
+            this.dfInvoicingDay.Size = new System.Drawing.Size(155, 20);
+            this.dfInvoicingDay.TabIndex = 23;
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(624, 37);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(70, 13);
+            this.label43.TabIndex = 22;
+            this.label43.Text = "Invoicing day";
+            // 
+            // dfIndexValue
+            // 
+            this.dfIndexValue.Location = new System.Drawing.Point(707, 96);
+            this.dfIndexValue.Maximum = new decimal(new int[] {
+            1661992959,
+            1808227885,
+            5,
+            0});
+            this.dfIndexValue.Name = "dfIndexValue";
+            this.dfIndexValue.Size = new System.Drawing.Size(155, 20);
+            this.dfIndexValue.TabIndex = 21;
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Location = new System.Drawing.Point(624, 98);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(62, 13);
+            this.label42.TabIndex = 20;
+            this.label42.Text = "Index value";
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(626, 76);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(71, 13);
+            this.label41.TabIndex = 16;
+            this.label41.Text = "Indexing date";
+            // 
+            // dtIndexingDate
+            // 
+            this.dtIndexingDate.Location = new System.Drawing.Point(707, 70);
+            this.dtIndexingDate.Name = "dtIndexingDate";
+            this.dtIndexingDate.Size = new System.Drawing.Size(155, 20);
+            this.dtIndexingDate.TabIndex = 19;
+            this.dtIndexingDate.ValueChanged += new System.EventHandler(this.dtIndexingDate_ValueChanged);
+            // 
+            // cbInvoiceDetail
+            // 
+            this.cbInvoiceDetail.AutoSize = true;
+            this.cbInvoiceDetail.Location = new System.Drawing.Point(709, 13);
+            this.cbInvoiceDetail.Name = "cbInvoiceDetail";
+            this.cbInvoiceDetail.Size = new System.Drawing.Size(97, 17);
+            this.cbInvoiceDetail.TabIndex = 18;
+            this.cbInvoiceDetail.Text = "Invoicing detail";
+            this.cbInvoiceDetail.UseVisualStyleBackColor = true;
             // 
             // pnLeft
             // 
@@ -326,45 +409,6 @@
             this.label31.Size = new System.Drawing.Size(78, 13);
             this.label31.TabIndex = 0;
             this.label31.Text = "Risk partner Nr";
-            // 
-            // pnRight
-            // 
-            this.pnRight.Controls.Add(this.cbRoll);
-            this.pnRight.Controls.Add(this.label39);
-            this.pnRight.Controls.Add(this.cbInvoiceDetail);
-            this.pnRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnRight.Location = new System.Drawing.Point(605, 0);
-            this.pnRight.Name = "pnRight";
-            this.pnRight.Size = new System.Drawing.Size(309, 260);
-            this.pnRight.TabIndex = 1;
-            // 
-            // cbRoll
-            // 
-            this.cbRoll.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbRoll.FormattingEnabled = true;
-            this.cbRoll.Location = new System.Drawing.Point(114, 11);
-            this.cbRoll.Name = "cbRoll";
-            this.cbRoll.Size = new System.Drawing.Size(153, 21);
-            this.cbRoll.TabIndex = 17;
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(6, 15);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(66, 13);
-            this.label39.TabIndex = 3;
-            this.label39.Text = "Rolling code";
-            // 
-            // cbInvoiceDetail
-            // 
-            this.cbInvoiceDetail.AutoSize = true;
-            this.cbInvoiceDetail.Location = new System.Drawing.Point(114, 39);
-            this.cbInvoiceDetail.Name = "cbInvoiceDetail";
-            this.cbInvoiceDetail.Size = new System.Drawing.Size(97, 17);
-            this.cbInvoiceDetail.TabIndex = 18;
-            this.cbInvoiceDetail.Text = "Invoicing detail";
-            this.cbInvoiceDetail.UseVisualStyleBackColor = true;
             // 
             // pnMid
             // 
@@ -521,6 +565,7 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.txtCostBase2);
             this.groupBox5.Controls.Add(this.txtLastPay);
             this.groupBox5.Controls.Add(this.txtErr);
             this.groupBox5.Controls.Add(this.txtKmBassis);
@@ -541,6 +586,24 @@
             this.groupBox5.TabIndex = 13;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Contract cost";
+            // 
+            // txtCostBase2
+            // 
+            this.txtCostBase2.Increment = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtCostBase2.Location = new System.Drawing.Point(204, 43);
+            this.txtCostBase2.Maximum = new decimal(new int[] {
+            1661992959,
+            1808227885,
+            5,
+            0});
+            this.txtCostBase2.Name = "txtCostBase2";
+            this.txtCostBase2.ReadOnly = true;
+            this.txtCostBase2.Size = new System.Drawing.Size(84, 20);
+            this.txtCostBase2.TabIndex = 23;
             // 
             // txtLastPay
             // 
@@ -601,7 +664,7 @@
             0});
             this.txtCostBase.Name = "txtCostBase";
             this.txtCostBase.ReadOnly = true;
-            this.txtCostBase.Size = new System.Drawing.Size(138, 20);
+            this.txtCostBase.Size = new System.Drawing.Size(83, 20);
             this.txtCostBase.TabIndex = 18;
             // 
             // cbCostBassis
@@ -665,6 +728,7 @@
             this.label26.Size = new System.Drawing.Size(76, 13);
             this.label26.TabIndex = 3;
             this.label26.Text = "Monthly bassis";
+            this.label26.Click += new System.EventHandler(this.label26_Click);
             // 
             // label27
             // 
@@ -707,9 +771,9 @@
             // 
             this.txtMonAmount.Location = new System.Drawing.Point(130, 82);
             this.txtMonAmount.Maximum = new decimal(new int[] {
-            1661992959,
-            1808227885,
-            5,
+            1215752191,
+            23,
+            0,
             0});
             this.txtMonAmount.Name = "txtMonAmount";
             this.txtMonAmount.Size = new System.Drawing.Size(120, 20);
@@ -719,9 +783,9 @@
             // 
             this.txtStartAmount.Location = new System.Drawing.Point(130, 20);
             this.txtStartAmount.Maximum = new decimal(new int[] {
-            1661992959,
-            1808227885,
-            5,
+            -727379969,
+            232,
+            0,
             0});
             this.txtStartAmount.Name = "txtStartAmount";
             this.txtStartAmount.Size = new System.Drawing.Size(120, 20);
@@ -800,6 +864,8 @@
             // 
             // pnTop
             // 
+            this.pnTop.Controls.Add(this.cbRoll);
+            this.pnTop.Controls.Add(this.label39);
             this.pnTop.Controls.Add(this.groupBox3);
             this.pnTop.Controls.Add(this.groupBox2);
             this.pnTop.Controls.Add(this.groupBox1);
@@ -808,6 +874,24 @@
             this.pnTop.Name = "pnTop";
             this.pnTop.Size = new System.Drawing.Size(914, 234);
             this.pnTop.TabIndex = 0;
+            // 
+            // cbRoll
+            // 
+            this.cbRoll.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbRoll.FormattingEnabled = true;
+            this.cbRoll.Location = new System.Drawing.Point(104, 204);
+            this.cbRoll.Name = "cbRoll";
+            this.cbRoll.Size = new System.Drawing.Size(454, 21);
+            this.cbRoll.TabIndex = 17;
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(14, 207);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(66, 13);
+            this.label39.TabIndex = 3;
+            this.label39.Text = "Rolling code";
             // 
             // groupBox3
             // 
@@ -870,6 +954,7 @@
             this.cbPayment.TabIndex = 17;
             this.cbPayment.Text = "Payment in a block";
             this.cbPayment.UseVisualStyleBackColor = true;
+            this.cbPayment.CheckedChanged += new System.EventHandler(this.cbPayment_CheckedChanged);
             // 
             // cbPayTerm
             // 
@@ -1284,14 +1369,15 @@
             this.Size = new System.Drawing.Size(918, 662);
             this.pnAll.ResumeLayout(false);
             this.pnBottom.ResumeLayout(false);
+            this.pnBottom.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dfInvoicingDay)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dfIndexValue)).EndInit();
             this.pnLeft.ResumeLayout(false);
             this.pnGrid.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridRisk)).EndInit();
             this.pnTopGrid.ResumeLayout(false);
             this.pnTopGrid.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtRishLevel)).EndInit();
-            this.pnRight.ResumeLayout(false);
-            this.pnRight.PerformLayout();
             this.pnMid.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
@@ -1301,6 +1387,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtMaxDev)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCostBase2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtErr)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtKmBassis)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMonBassis)).EndInit();
@@ -1310,6 +1397,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtMonAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtStartAmount)).EndInit();
             this.pnTop.ResumeLayout(false);
+            this.pnTop.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -1399,7 +1487,6 @@
         private System.Windows.Forms.TextBox txtPatnerNr;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnNew;
-        private System.Windows.Forms.Panel pnRight;
         private System.Windows.Forms.Panel pnLeft;
         private System.Windows.Forms.DataGridView gridRisk;
         private System.Windows.Forms.CheckBox cbInvoice;
@@ -1436,5 +1523,12 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
         private System.Windows.Forms.NumericUpDown txtRishLevel;
         private System.Windows.Forms.TextBox txtLastPay;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.DateTimePicker dtIndexingDate;
+        private System.Windows.Forms.NumericUpDown dfIndexValue;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.NumericUpDown txtCostBase2;
+        private System.Windows.Forms.NumericUpDown dfInvoicingDay;
+        private System.Windows.Forms.Label label43;
     }
 }

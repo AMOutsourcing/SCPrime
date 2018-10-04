@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SCMain));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.cbNeedInvoicing = new System.Windows.Forms.CheckBox();
             this.cblModel = new System.Windows.Forms.CheckedListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -40,6 +41,26 @@
             this.cblContactType = new System.Windows.Forms.CheckedListBox();
             this.label3 = new System.Windows.Forms.Label();
             this.gridContract = new System.Windows.Forms.DataGridView();
+            this.contractNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.versionNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.extContractNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.createdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lastInvoiceDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nextInvoiceDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isManualInvoiceDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.invoiceCustIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.respSmanIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.careSmanIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isBodyInclDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.isTailLiftInclDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.isCoolingInclDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.isCraneInclDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.riskLevelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isInvoiceDetailDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.custPhoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCcontractOID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contractBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
@@ -49,14 +70,16 @@
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
+            this.pbExportExcel = new System.Windows.Forms.ToolStripButton();
+            this.pbSettings = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
+            this.dfFilter = new System.Windows.Forms.ToolStripTextBox();
+            this.pbSearch = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton10 = new System.Windows.Forms.ToolStripButton();
             this.menuStrip3 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuSearchContract = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.nEwContractToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.prinToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -70,6 +93,11 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.invoiceToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.remarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.syncSelectedContractToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+            this.syncAllContractsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.exitApplicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.masterDataToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -77,7 +105,7 @@
             this.optionListToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.optionPriceListToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.rightClickMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.rightClickGrid = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.NewContractItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -99,38 +127,19 @@
             this.rightClickMenuStripContractType = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.CTselectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CTselectNoneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.contractBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.colCcontractOID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contractNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.versionNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.extContractNoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.createdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lastInvoiceDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nextInvoiceDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isManualInvoiceDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.invoiceCustIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.respSmanIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.careSmanIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isBodyInclDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.isTailLiftInclDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.isCoolingInclDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.isCraneInclDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.riskLevelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isInvoiceDetailDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.custPhoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.menuIndexData = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridContract)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.contractBindingSource)).BeginInit();
             this.panel2.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.menuStrip3.SuspendLayout();
-            this.rightClickMenuStrip.SuspendLayout();
+            this.rightClickGrid.SuspendLayout();
             this.rightClickMenuStripModel.SuspendLayout();
             this.rightClickMenuStripSites.SuspendLayout();
             this.rightClickMenuStripContractType.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.contractBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -146,6 +155,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.cbNeedInvoicing);
             this.panel3.Controls.Add(this.cblModel);
             this.panel3.Controls.Add(this.label1);
             this.panel3.Controls.Add(this.label2);
@@ -155,6 +165,16 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(190, 381);
             this.panel3.TabIndex = 4;
+            // 
+            // cbNeedInvoicing
+            // 
+            this.cbNeedInvoicing.AutoSize = true;
+            this.cbNeedInvoicing.Location = new System.Drawing.Point(3, 361);
+            this.cbNeedInvoicing.Name = "cbNeedInvoicing";
+            this.cbNeedInvoicing.Size = new System.Drawing.Size(97, 17);
+            this.cbNeedInvoicing.TabIndex = 4;
+            this.cbNeedInvoicing.Text = "To be invoiced";
+            this.cbNeedInvoicing.UseVisualStyleBackColor = true;
             // 
             // cblModel
             // 
@@ -188,7 +208,7 @@
             this.cbSites.FormattingEnabled = true;
             this.cbSites.Location = new System.Drawing.Point(3, 226);
             this.cbSites.Name = "cbSites";
-            this.cbSites.Size = new System.Drawing.Size(176, 139);
+            this.cbSites.Size = new System.Drawing.Size(176, 124);
             this.cbSites.TabIndex = 2;
             this.cbSites.MouseDown += new System.Windows.Forms.MouseEventHandler(this.cbSites_MouseDown);
             // 
@@ -231,7 +251,6 @@
             this.gridContract.AutoGenerateColumns = false;
             this.gridContract.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridContract.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colCcontractOID,
             this.contractNoDataGridViewTextBoxColumn,
             this.versionNoDataGridViewTextBoxColumn,
             this.extContractNoDataGridViewTextBoxColumn,
@@ -249,7 +268,8 @@
             this.isCraneInclDataGridViewCheckBoxColumn,
             this.riskLevelDataGridViewTextBoxColumn,
             this.isInvoiceDetailDataGridViewCheckBoxColumn,
-            this.custPhoneDataGridViewTextBoxColumn});
+            this.custPhoneDataGridViewTextBoxColumn,
+            this.colCcontractOID});
             this.gridContract.DataSource = this.contractBindingSource;
             this.gridContract.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridContract.Location = new System.Drawing.Point(190, 48);
@@ -263,6 +283,154 @@
             this.gridContract.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridContract_CellDoubleClick);
             this.gridContract.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.gridContract_ColumnHeaderMouseDoubleClick);
             this.gridContract.MouseDown += new System.Windows.Forms.MouseEventHandler(this.gridContract_MouseDown);
+            // 
+            // contractNoDataGridViewTextBoxColumn
+            // 
+            this.contractNoDataGridViewTextBoxColumn.DataPropertyName = "ContractNo";
+            this.contractNoDataGridViewTextBoxColumn.HeaderText = "ContractNo";
+            this.contractNoDataGridViewTextBoxColumn.Name = "contractNoDataGridViewTextBoxColumn";
+            this.contractNoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // versionNoDataGridViewTextBoxColumn
+            // 
+            this.versionNoDataGridViewTextBoxColumn.DataPropertyName = "VersionNo";
+            this.versionNoDataGridViewTextBoxColumn.HeaderText = "VersionNo";
+            this.versionNoDataGridViewTextBoxColumn.Name = "versionNoDataGridViewTextBoxColumn";
+            this.versionNoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // extContractNoDataGridViewTextBoxColumn
+            // 
+            this.extContractNoDataGridViewTextBoxColumn.DataPropertyName = "ExtContractNo";
+            this.extContractNoDataGridViewTextBoxColumn.HeaderText = "ExtContractNo";
+            this.extContractNoDataGridViewTextBoxColumn.Name = "extContractNoDataGridViewTextBoxColumn";
+            this.extContractNoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // createdDataGridViewTextBoxColumn
+            // 
+            this.createdDataGridViewTextBoxColumn.DataPropertyName = "Created";
+            this.createdDataGridViewTextBoxColumn.HeaderText = "Created";
+            this.createdDataGridViewTextBoxColumn.Name = "createdDataGridViewTextBoxColumn";
+            this.createdDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // modifiedDataGridViewTextBoxColumn
+            // 
+            this.modifiedDataGridViewTextBoxColumn.DataPropertyName = "Modified";
+            this.modifiedDataGridViewTextBoxColumn.HeaderText = "Modified";
+            this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
+            this.modifiedDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // lastInvoiceDateDataGridViewTextBoxColumn
+            // 
+            this.lastInvoiceDateDataGridViewTextBoxColumn.DataPropertyName = "LastInvoiceDate";
+            this.lastInvoiceDateDataGridViewTextBoxColumn.HeaderText = "LastInvoiceDate";
+            this.lastInvoiceDateDataGridViewTextBoxColumn.Name = "lastInvoiceDateDataGridViewTextBoxColumn";
+            this.lastInvoiceDateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nextInvoiceDateDataGridViewTextBoxColumn
+            // 
+            this.nextInvoiceDateDataGridViewTextBoxColumn.DataPropertyName = "NextInvoiceDate";
+            this.nextInvoiceDateDataGridViewTextBoxColumn.HeaderText = "NextInvoiceDate";
+            this.nextInvoiceDateDataGridViewTextBoxColumn.Name = "nextInvoiceDateDataGridViewTextBoxColumn";
+            this.nextInvoiceDateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // isManualInvoiceDataGridViewCheckBoxColumn
+            // 
+            this.isManualInvoiceDataGridViewCheckBoxColumn.DataPropertyName = "IsManualInvoice";
+            this.isManualInvoiceDataGridViewCheckBoxColumn.HeaderText = "IsManualInvoice";
+            this.isManualInvoiceDataGridViewCheckBoxColumn.Name = "isManualInvoiceDataGridViewCheckBoxColumn";
+            this.isManualInvoiceDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.isManualInvoiceDataGridViewCheckBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // invoiceCustIdDataGridViewTextBoxColumn
+            // 
+            this.invoiceCustIdDataGridViewTextBoxColumn.DataPropertyName = "InvoiceCustId";
+            this.invoiceCustIdDataGridViewTextBoxColumn.HeaderText = "InvoiceCustId";
+            this.invoiceCustIdDataGridViewTextBoxColumn.Name = "invoiceCustIdDataGridViewTextBoxColumn";
+            this.invoiceCustIdDataGridViewTextBoxColumn.ReadOnly = true;
+            this.invoiceCustIdDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // respSmanIdDataGridViewTextBoxColumn
+            // 
+            this.respSmanIdDataGridViewTextBoxColumn.DataPropertyName = "RespSmanId";
+            this.respSmanIdDataGridViewTextBoxColumn.HeaderText = "RespSmanId";
+            this.respSmanIdDataGridViewTextBoxColumn.Name = "respSmanIdDataGridViewTextBoxColumn";
+            this.respSmanIdDataGridViewTextBoxColumn.ReadOnly = true;
+            this.respSmanIdDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // careSmanIdDataGridViewTextBoxColumn
+            // 
+            this.careSmanIdDataGridViewTextBoxColumn.DataPropertyName = "CareSmanId";
+            this.careSmanIdDataGridViewTextBoxColumn.HeaderText = "CareSmanId";
+            this.careSmanIdDataGridViewTextBoxColumn.Name = "careSmanIdDataGridViewTextBoxColumn";
+            this.careSmanIdDataGridViewTextBoxColumn.ReadOnly = true;
+            this.careSmanIdDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // isBodyInclDataGridViewCheckBoxColumn
+            // 
+            this.isBodyInclDataGridViewCheckBoxColumn.DataPropertyName = "IsBodyIncl";
+            this.isBodyInclDataGridViewCheckBoxColumn.HeaderText = "IsBodyIncl";
+            this.isBodyInclDataGridViewCheckBoxColumn.Name = "isBodyInclDataGridViewCheckBoxColumn";
+            this.isBodyInclDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.isBodyInclDataGridViewCheckBoxColumn.Visible = false;
+            // 
+            // isTailLiftInclDataGridViewCheckBoxColumn
+            // 
+            this.isTailLiftInclDataGridViewCheckBoxColumn.DataPropertyName = "IsTailLiftIncl";
+            this.isTailLiftInclDataGridViewCheckBoxColumn.HeaderText = "IsTailLiftIncl";
+            this.isTailLiftInclDataGridViewCheckBoxColumn.Name = "isTailLiftInclDataGridViewCheckBoxColumn";
+            this.isTailLiftInclDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.isTailLiftInclDataGridViewCheckBoxColumn.Visible = false;
+            // 
+            // isCoolingInclDataGridViewCheckBoxColumn
+            // 
+            this.isCoolingInclDataGridViewCheckBoxColumn.DataPropertyName = "IsCoolingIncl";
+            this.isCoolingInclDataGridViewCheckBoxColumn.HeaderText = "IsCoolingIncl";
+            this.isCoolingInclDataGridViewCheckBoxColumn.Name = "isCoolingInclDataGridViewCheckBoxColumn";
+            this.isCoolingInclDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.isCoolingInclDataGridViewCheckBoxColumn.Visible = false;
+            // 
+            // isCraneInclDataGridViewCheckBoxColumn
+            // 
+            this.isCraneInclDataGridViewCheckBoxColumn.DataPropertyName = "IsCraneIncl";
+            this.isCraneInclDataGridViewCheckBoxColumn.HeaderText = "IsCraneIncl";
+            this.isCraneInclDataGridViewCheckBoxColumn.Name = "isCraneInclDataGridViewCheckBoxColumn";
+            this.isCraneInclDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.isCraneInclDataGridViewCheckBoxColumn.Visible = false;
+            // 
+            // riskLevelDataGridViewTextBoxColumn
+            // 
+            this.riskLevelDataGridViewTextBoxColumn.DataPropertyName = "RiskLevel";
+            this.riskLevelDataGridViewTextBoxColumn.HeaderText = "RiskLevel";
+            this.riskLevelDataGridViewTextBoxColumn.Name = "riskLevelDataGridViewTextBoxColumn";
+            this.riskLevelDataGridViewTextBoxColumn.ReadOnly = true;
+            this.riskLevelDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // isInvoiceDetailDataGridViewCheckBoxColumn
+            // 
+            this.isInvoiceDetailDataGridViewCheckBoxColumn.DataPropertyName = "IsInvoiceDetail";
+            this.isInvoiceDetailDataGridViewCheckBoxColumn.HeaderText = "IsInvoiceDetail";
+            this.isInvoiceDetailDataGridViewCheckBoxColumn.Name = "isInvoiceDetailDataGridViewCheckBoxColumn";
+            this.isInvoiceDetailDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.isInvoiceDetailDataGridViewCheckBoxColumn.Visible = false;
+            // 
+            // custPhoneDataGridViewTextBoxColumn
+            // 
+            this.custPhoneDataGridViewTextBoxColumn.DataPropertyName = "CustPhone";
+            this.custPhoneDataGridViewTextBoxColumn.HeaderText = "CustPhone";
+            this.custPhoneDataGridViewTextBoxColumn.Name = "custPhoneDataGridViewTextBoxColumn";
+            this.custPhoneDataGridViewTextBoxColumn.ReadOnly = true;
+            this.custPhoneDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // colCcontractOID
+            // 
+            this.colCcontractOID.DataPropertyName = "ContractOID";
+            this.colCcontractOID.HeaderText = "ContractOID";
+            this.colCcontractOID.Name = "colCcontractOID";
+            this.colCcontractOID.ReadOnly = true;
+            // 
+            // contractBindingSource
+            // 
+            this.contractBindingSource.DataSource = typeof(SCPrime.Model.Contract);
             // 
             // panel2
             // 
@@ -284,11 +452,11 @@
             this.toolStripButton5,
             this.toolStripButton6,
             this.toolStripLabel1,
-            this.toolStripButton7,
-            this.toolStripButton8,
+            this.pbExportExcel,
+            this.pbSettings,
             this.toolStripSeparator1,
-            this.toolStripTextBox1,
-            this.toolStripButton9,
+            this.dfFilter,
+            this.pbSearch,
             this.toolStripButton10});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
@@ -360,43 +528,44 @@
             this.toolStripLabel1.Text = "ELO";
             this.toolStripLabel1.ToolTipText = "Launch ELO";
             // 
-            // toolStripButton7
+            // pbExportExcel
             // 
-            this.toolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton7.Image")));
-            this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton7.Name = "toolStripButton7";
-            this.toolStripButton7.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton7.Text = "Export";
+            this.pbExportExcel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.pbExportExcel.Image = ((System.Drawing.Image)(resources.GetObject("pbExportExcel.Image")));
+            this.pbExportExcel.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.pbExportExcel.Name = "pbExportExcel";
+            this.pbExportExcel.Size = new System.Drawing.Size(23, 22);
+            this.pbExportExcel.Text = "Export";
+            this.pbExportExcel.Click += new System.EventHandler(this.toolStripButton7_Click);
             // 
-            // toolStripButton8
+            // pbSettings
             // 
-            this.toolStripButton8.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton8.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton8.Image")));
-            this.toolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton8.Name = "toolStripButton8";
-            this.toolStripButton8.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton8.Text = "Setting";
+            this.pbSettings.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.pbSettings.Image = ((System.Drawing.Image)(resources.GetObject("pbSettings.Image")));
+            this.pbSettings.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.pbSettings.Name = "pbSettings";
+            this.pbSettings.Size = new System.Drawing.Size(23, 22);
+            this.pbSettings.Text = "Setting";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
-            // toolStripTextBox1
+            // dfFilter
             // 
-            this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.Size = new System.Drawing.Size(100, 25);
+            this.dfFilter.Name = "dfFilter";
+            this.dfFilter.Size = new System.Drawing.Size(300, 25);
             // 
-            // toolStripButton9
+            // pbSearch
             // 
-            this.toolStripButton9.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton9.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton9.Image")));
-            this.toolStripButton9.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton9.Name = "toolStripButton9";
-            this.toolStripButton9.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton9.Text = "toolStripButton9";
-            this.toolStripButton9.Click += new System.EventHandler(this.toolStripButton9_Click);
+            this.pbSearch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.pbSearch.Image = ((System.Drawing.Image)(resources.GetObject("pbSearch.Image")));
+            this.pbSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.pbSearch.Name = "pbSearch";
+            this.pbSearch.Size = new System.Drawing.Size(23, 22);
+            this.pbSearch.Text = "toolStripButton9";
+            this.pbSearch.Click += new System.EventHandler(this.toolStripButton9_Click);
             // 
             // toolStripButton10
             // 
@@ -422,6 +591,8 @@
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuSearchContract,
+            this.toolStripSeparator8,
             this.nEwContractToolStripMenuItem,
             this.openToolStripMenuItem,
             this.prinToolStripMenuItem,
@@ -435,31 +606,45 @@
             this.toolStripSeparator3,
             this.invoiceToolStripMenuItem1,
             this.remarkToolStripMenuItem,
+            this.toolStripSeparator9,
+            this.toolStripMenuItem2,
             this.toolStripSeparator4,
             this.exitApplicationToolStripMenuItem});
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Size = new System.Drawing.Size(105, 20);
             this.toolStripMenuItem1.Text = "Service Contract";
             // 
+            // menuSearchContract
+            // 
+            this.menuSearchContract.Name = "menuSearchContract";
+            this.menuSearchContract.Size = new System.Drawing.Size(158, 22);
+            this.menuSearchContract.Text = "Search";
+            this.menuSearchContract.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(155, 6);
+            // 
             // nEwContractToolStripMenuItem
             // 
             this.nEwContractToolStripMenuItem.Name = "nEwContractToolStripMenuItem";
             this.nEwContractToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.nEwContractToolStripMenuItem.Text = "New contract";
+            this.nEwContractToolStripMenuItem.Text = "New contract...";
             this.nEwContractToolStripMenuItem.Click += new System.EventHandler(this.nEwContractToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Text = "Open...";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // prinToolStripMenuItem
             // 
             this.prinToolStripMenuItem.Name = "prinToolStripMenuItem";
             this.prinToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.prinToolStripMenuItem.Text = "Print contract";
+            this.prinToolStripMenuItem.Text = "Print contract...";
             this.prinToolStripMenuItem.Click += new System.EventHandler(this.prinToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
@@ -526,6 +711,41 @@
             this.remarkToolStripMenuItem.Name = "remarkToolStripMenuItem";
             this.remarkToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.remarkToolStripMenuItem.Text = "Remark";
+            this.remarkToolStripMenuItem.Click += new System.EventHandler(this.remarkToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(155, 6);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.syncSelectedContractToolStripMenuItem,
+            this.toolStripSeparator10,
+            this.syncAllContractsToolStripMenuItem});
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(158, 22);
+            this.toolStripMenuItem2.Text = "Sync to DMS";
+            // 
+            // syncSelectedContractToolStripMenuItem
+            // 
+            this.syncSelectedContractToolStripMenuItem.Name = "syncSelectedContractToolStripMenuItem";
+            this.syncSelectedContractToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.syncSelectedContractToolStripMenuItem.Text = "Sync selected contract";
+            this.syncSelectedContractToolStripMenuItem.Click += new System.EventHandler(this.syncSelectedContractToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(189, 6);
+            // 
+            // syncAllContractsToolStripMenuItem
+            // 
+            this.syncAllContractsToolStripMenuItem.Name = "syncAllContractsToolStripMenuItem";
+            this.syncAllContractsToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.syncAllContractsToolStripMenuItem.Text = "Sync all contracts";
+            this.syncAllContractsToolStripMenuItem.Click += new System.EventHandler(this.syncAllContractsToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
@@ -544,7 +764,8 @@
             this.masterDataToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.contractTypeToolStripMenuItem1,
             this.optionListToolStripMenuItem1,
-            this.optionPriceListToolStripMenuItem1});
+            this.optionPriceListToolStripMenuItem1,
+            this.menuIndexData});
             this.masterDataToolStripMenuItem1.Name = "masterDataToolStripMenuItem1";
             this.masterDataToolStripMenuItem1.Size = new System.Drawing.Size(82, 20);
             this.masterDataToolStripMenuItem1.Text = "Master Data";
@@ -552,21 +773,21 @@
             // contractTypeToolStripMenuItem1
             // 
             this.contractTypeToolStripMenuItem1.Name = "contractTypeToolStripMenuItem1";
-            this.contractTypeToolStripMenuItem1.Size = new System.Drawing.Size(161, 22);
+            this.contractTypeToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.contractTypeToolStripMenuItem1.Text = "Contract Type";
             this.contractTypeToolStripMenuItem1.Click += new System.EventHandler(this.contractTypeToolStripMenuItem1_Click);
             // 
             // optionListToolStripMenuItem1
             // 
             this.optionListToolStripMenuItem1.Name = "optionListToolStripMenuItem1";
-            this.optionListToolStripMenuItem1.Size = new System.Drawing.Size(161, 22);
+            this.optionListToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.optionListToolStripMenuItem1.Text = "Option List";
             this.optionListToolStripMenuItem1.Click += new System.EventHandler(this.optionListToolStripMenuItem1_Click);
             // 
             // optionPriceListToolStripMenuItem1
             // 
             this.optionPriceListToolStripMenuItem1.Name = "optionPriceListToolStripMenuItem1";
-            this.optionPriceListToolStripMenuItem1.Size = new System.Drawing.Size(161, 22);
+            this.optionPriceListToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.optionPriceListToolStripMenuItem1.Text = "Option Price List";
             this.optionPriceListToolStripMenuItem1.Click += new System.EventHandler(this.optionPriceListToolStripMenuItem1_Click);
             // 
@@ -577,9 +798,9 @@
             this.testToolStripMenuItem.Text = "Test";
             this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
             // 
-            // rightClickMenuStrip
+            // rightClickGrid
             // 
-            this.rightClickMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.rightClickGrid.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.NewContractItem,
             this.openMenuItem,
             this.printMenuItem,
@@ -592,8 +813,8 @@
             this.toolStripSeparator7,
             this.mileageRegisterItem,
             this.invoicesMenuItem});
-            this.rightClickMenuStrip.Name = "rightClickMenuStrip";
-            this.rightClickMenuStrip.Size = new System.Drawing.Size(205, 220);
+            this.rightClickGrid.Name = "rightClickMenuStrip";
+            this.rightClickGrid.Size = new System.Drawing.Size(205, 220);
             // 
             // NewContractItem
             // 
@@ -739,153 +960,12 @@
             this.CTselectNoneToolStripMenuItem.Text = "Select None";
             this.CTselectNoneToolStripMenuItem.Click += new System.EventHandler(this.CTselectNoneToolStripMenuItem_Click);
             // 
-            // contractBindingSource
+            // menuIndexData
             // 
-            this.contractBindingSource.DataSource = typeof(SCPrime.Model.Contract);
-            // 
-            // colCcontractOID
-            // 
-            this.colCcontractOID.DataPropertyName = "ContractOID";
-            this.colCcontractOID.HeaderText = "ContractOID";
-            this.colCcontractOID.Name = "colCcontractOID";
-            this.colCcontractOID.ReadOnly = true;
-            // 
-            // contractNoDataGridViewTextBoxColumn
-            // 
-            this.contractNoDataGridViewTextBoxColumn.DataPropertyName = "ContractNo";
-            this.contractNoDataGridViewTextBoxColumn.HeaderText = "ContractNo";
-            this.contractNoDataGridViewTextBoxColumn.Name = "contractNoDataGridViewTextBoxColumn";
-            this.contractNoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // versionNoDataGridViewTextBoxColumn
-            // 
-            this.versionNoDataGridViewTextBoxColumn.DataPropertyName = "VersionNo";
-            this.versionNoDataGridViewTextBoxColumn.HeaderText = "VersionNo";
-            this.versionNoDataGridViewTextBoxColumn.Name = "versionNoDataGridViewTextBoxColumn";
-            this.versionNoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // extContractNoDataGridViewTextBoxColumn
-            // 
-            this.extContractNoDataGridViewTextBoxColumn.DataPropertyName = "ExtContractNo";
-            this.extContractNoDataGridViewTextBoxColumn.HeaderText = "ExtContractNo";
-            this.extContractNoDataGridViewTextBoxColumn.Name = "extContractNoDataGridViewTextBoxColumn";
-            this.extContractNoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // createdDataGridViewTextBoxColumn
-            // 
-            this.createdDataGridViewTextBoxColumn.DataPropertyName = "Created";
-            this.createdDataGridViewTextBoxColumn.HeaderText = "Created";
-            this.createdDataGridViewTextBoxColumn.Name = "createdDataGridViewTextBoxColumn";
-            this.createdDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // modifiedDataGridViewTextBoxColumn
-            // 
-            this.modifiedDataGridViewTextBoxColumn.DataPropertyName = "Modified";
-            this.modifiedDataGridViewTextBoxColumn.HeaderText = "Modified";
-            this.modifiedDataGridViewTextBoxColumn.Name = "modifiedDataGridViewTextBoxColumn";
-            this.modifiedDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // lastInvoiceDateDataGridViewTextBoxColumn
-            // 
-            this.lastInvoiceDateDataGridViewTextBoxColumn.DataPropertyName = "LastInvoiceDate";
-            this.lastInvoiceDateDataGridViewTextBoxColumn.HeaderText = "LastInvoiceDate";
-            this.lastInvoiceDateDataGridViewTextBoxColumn.Name = "lastInvoiceDateDataGridViewTextBoxColumn";
-            this.lastInvoiceDateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nextInvoiceDateDataGridViewTextBoxColumn
-            // 
-            this.nextInvoiceDateDataGridViewTextBoxColumn.DataPropertyName = "NextInvoiceDate";
-            this.nextInvoiceDateDataGridViewTextBoxColumn.HeaderText = "NextInvoiceDate";
-            this.nextInvoiceDateDataGridViewTextBoxColumn.Name = "nextInvoiceDateDataGridViewTextBoxColumn";
-            this.nextInvoiceDateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // isManualInvoiceDataGridViewCheckBoxColumn
-            // 
-            this.isManualInvoiceDataGridViewCheckBoxColumn.DataPropertyName = "IsManualInvoice";
-            this.isManualInvoiceDataGridViewCheckBoxColumn.HeaderText = "IsManualInvoice";
-            this.isManualInvoiceDataGridViewCheckBoxColumn.Name = "isManualInvoiceDataGridViewCheckBoxColumn";
-            this.isManualInvoiceDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.isManualInvoiceDataGridViewCheckBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // invoiceCustIdDataGridViewTextBoxColumn
-            // 
-            this.invoiceCustIdDataGridViewTextBoxColumn.DataPropertyName = "InvoiceCustId";
-            this.invoiceCustIdDataGridViewTextBoxColumn.HeaderText = "InvoiceCustId";
-            this.invoiceCustIdDataGridViewTextBoxColumn.Name = "invoiceCustIdDataGridViewTextBoxColumn";
-            this.invoiceCustIdDataGridViewTextBoxColumn.ReadOnly = true;
-            this.invoiceCustIdDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // respSmanIdDataGridViewTextBoxColumn
-            // 
-            this.respSmanIdDataGridViewTextBoxColumn.DataPropertyName = "RespSmanId";
-            this.respSmanIdDataGridViewTextBoxColumn.HeaderText = "RespSmanId";
-            this.respSmanIdDataGridViewTextBoxColumn.Name = "respSmanIdDataGridViewTextBoxColumn";
-            this.respSmanIdDataGridViewTextBoxColumn.ReadOnly = true;
-            this.respSmanIdDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // careSmanIdDataGridViewTextBoxColumn
-            // 
-            this.careSmanIdDataGridViewTextBoxColumn.DataPropertyName = "CareSmanId";
-            this.careSmanIdDataGridViewTextBoxColumn.HeaderText = "CareSmanId";
-            this.careSmanIdDataGridViewTextBoxColumn.Name = "careSmanIdDataGridViewTextBoxColumn";
-            this.careSmanIdDataGridViewTextBoxColumn.ReadOnly = true;
-            this.careSmanIdDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // isBodyInclDataGridViewCheckBoxColumn
-            // 
-            this.isBodyInclDataGridViewCheckBoxColumn.DataPropertyName = "IsBodyIncl";
-            this.isBodyInclDataGridViewCheckBoxColumn.HeaderText = "IsBodyIncl";
-            this.isBodyInclDataGridViewCheckBoxColumn.Name = "isBodyInclDataGridViewCheckBoxColumn";
-            this.isBodyInclDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.isBodyInclDataGridViewCheckBoxColumn.Visible = false;
-            // 
-            // isTailLiftInclDataGridViewCheckBoxColumn
-            // 
-            this.isTailLiftInclDataGridViewCheckBoxColumn.DataPropertyName = "IsTailLiftIncl";
-            this.isTailLiftInclDataGridViewCheckBoxColumn.HeaderText = "IsTailLiftIncl";
-            this.isTailLiftInclDataGridViewCheckBoxColumn.Name = "isTailLiftInclDataGridViewCheckBoxColumn";
-            this.isTailLiftInclDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.isTailLiftInclDataGridViewCheckBoxColumn.Visible = false;
-            // 
-            // isCoolingInclDataGridViewCheckBoxColumn
-            // 
-            this.isCoolingInclDataGridViewCheckBoxColumn.DataPropertyName = "IsCoolingIncl";
-            this.isCoolingInclDataGridViewCheckBoxColumn.HeaderText = "IsCoolingIncl";
-            this.isCoolingInclDataGridViewCheckBoxColumn.Name = "isCoolingInclDataGridViewCheckBoxColumn";
-            this.isCoolingInclDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.isCoolingInclDataGridViewCheckBoxColumn.Visible = false;
-            // 
-            // isCraneInclDataGridViewCheckBoxColumn
-            // 
-            this.isCraneInclDataGridViewCheckBoxColumn.DataPropertyName = "IsCraneIncl";
-            this.isCraneInclDataGridViewCheckBoxColumn.HeaderText = "IsCraneIncl";
-            this.isCraneInclDataGridViewCheckBoxColumn.Name = "isCraneInclDataGridViewCheckBoxColumn";
-            this.isCraneInclDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.isCraneInclDataGridViewCheckBoxColumn.Visible = false;
-            // 
-            // riskLevelDataGridViewTextBoxColumn
-            // 
-            this.riskLevelDataGridViewTextBoxColumn.DataPropertyName = "RiskLevel";
-            this.riskLevelDataGridViewTextBoxColumn.HeaderText = "RiskLevel";
-            this.riskLevelDataGridViewTextBoxColumn.Name = "riskLevelDataGridViewTextBoxColumn";
-            this.riskLevelDataGridViewTextBoxColumn.ReadOnly = true;
-            this.riskLevelDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // isInvoiceDetailDataGridViewCheckBoxColumn
-            // 
-            this.isInvoiceDetailDataGridViewCheckBoxColumn.DataPropertyName = "IsInvoiceDetail";
-            this.isInvoiceDetailDataGridViewCheckBoxColumn.HeaderText = "IsInvoiceDetail";
-            this.isInvoiceDetailDataGridViewCheckBoxColumn.Name = "isInvoiceDetailDataGridViewCheckBoxColumn";
-            this.isInvoiceDetailDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.isInvoiceDetailDataGridViewCheckBoxColumn.Visible = false;
-            // 
-            // custPhoneDataGridViewTextBoxColumn
-            // 
-            this.custPhoneDataGridViewTextBoxColumn.DataPropertyName = "CustPhone";
-            this.custPhoneDataGridViewTextBoxColumn.HeaderText = "CustPhone";
-            this.custPhoneDataGridViewTextBoxColumn.Name = "custPhoneDataGridViewTextBoxColumn";
-            this.custPhoneDataGridViewTextBoxColumn.ReadOnly = true;
-            this.custPhoneDataGridViewTextBoxColumn.Visible = false;
+            this.menuIndexData.Name = "menuIndexData";
+            this.menuIndexData.Size = new System.Drawing.Size(180, 22);
+            this.menuIndexData.Text = "Index Data";
+            this.menuIndexData.Click += new System.EventHandler(this.menuIndexData_Click);
             // 
             // SCMain
             // 
@@ -905,17 +985,17 @@
             this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridContract)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.contractBindingSource)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.menuStrip3.ResumeLayout(false);
             this.menuStrip3.PerformLayout();
-            this.rightClickMenuStrip.ResumeLayout(false);
+            this.rightClickGrid.ResumeLayout(false);
             this.rightClickMenuStripModel.ResumeLayout(false);
             this.rightClickMenuStripSites.ResumeLayout(false);
             this.rightClickMenuStripContractType.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.contractBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -944,11 +1024,11 @@
         private System.Windows.Forms.ToolStripButton toolStripButton5;
         private System.Windows.Forms.ToolStripButton toolStripButton6;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
-        private System.Windows.Forms.ToolStripButton toolStripButton7;
-        private System.Windows.Forms.ToolStripButton toolStripButton8;
+        private System.Windows.Forms.ToolStripButton pbExportExcel;
+        private System.Windows.Forms.ToolStripButton pbSettings;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
-        private System.Windows.Forms.ToolStripButton toolStripButton9;
+        private System.Windows.Forms.ToolStripTextBox dfFilter;
+        private System.Windows.Forms.ToolStripButton pbSearch;
         private System.Windows.Forms.ToolStripMenuItem nEwContractToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem prinToolStripMenuItem;
@@ -972,7 +1052,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn custEmailDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource contractBindingSource;
         private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
-        private System.Windows.Forms.ContextMenuStrip rightClickMenuStrip;
+        private System.Windows.Forms.ContextMenuStrip rightClickGrid;
         private System.Windows.Forms.ToolStripMenuItem openMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem customerDataItem;
@@ -998,7 +1078,14 @@
         private System.Windows.Forms.ToolStripMenuItem CTselectNoneToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem siteSelectAllToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem siteSelectNoneToolStripMenuItem1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colCcontractOID;
+        private System.Windows.Forms.ToolStripMenuItem menuSearchContract;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem syncSelectedContractToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
+        private System.Windows.Forms.ToolStripMenuItem syncAllContractsToolStripMenuItem;
+        private System.Windows.Forms.CheckBox cbNeedInvoicing;
         private System.Windows.Forms.DataGridViewTextBoxColumn contractNoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn versionNoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn extContractNoDataGridViewTextBoxColumn;
@@ -1017,6 +1104,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn riskLevelDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isInvoiceDetailDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn custPhoneDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCcontractOID;
+        private System.Windows.Forms.ToolStripMenuItem menuIndexData;
     }
 }
 

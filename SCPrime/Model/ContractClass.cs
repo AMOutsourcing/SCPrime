@@ -272,6 +272,21 @@ namespace SCPrime.Model
             return Result;
         }
 
+        public void openELO()
+        {
+            clsAppConfig objAppConfig = new clsAppConfig();
+            clsGlobalVariable objGlobal = new clsGlobalVariable();
+            String ELOScript = objAppConfig.getStringParam("INTERELO", "", "C4", "C3='VEHICLE'");
+            clsWinIni objWinIni = new clsWinIni();
+
+            String strWorkstation = objWinIni.getKey("AM3", "WORKSTATION", "?");
+            System.Diagnostics.Process proc = new System.Diagnostics.Process();
+            proc.StartInfo.FileName = "WSCRIPT.EXE";
+            proc.StartInfo.Arguments = ELOScript + " " + objGlobal.DMSDBName + " " + objGlobal.CurrentSiteId + " " + objGlobal.DMSFirstUserName + " \"" + VIN + "\" \"" + LicenseNo + "\"";
+           
+            proc.Start();
+        }
+
     }
     public class VehicleMileage
     {
@@ -385,14 +400,16 @@ namespace SCPrime.Model
         public DateTime PaymentNextBlockEnd = DateTime.MinValue;
         public string PaymentCollectionType;
         public string PaymentGroupingLevel;
-        public int PaymentTerm;
+        public clsBaseListItem PaymentTerm = new clsBaseListItem();
+        public int InvoiceDate = 5;
         public ContractPayment()
         {
             PaymentPeriod.strValue1 = PaymentPeriodType.Monthly;
             PaymentCollectionType = SCPrime.Model.PaymentCollectionType.ESR;
             PaymentGroupingLevel = SCPrime.Model.PaymentGroupingType.Contract;
-            PaymentTerm = 30;
+            
         }
+     
     }
     public class ContractCapital
     {
@@ -822,6 +839,53 @@ namespace SCPrime.Model
         }
     }
 
+    public class ContractOptionInstalment
+    {
+        public int OID { get; set; }
+        public int ContractOID { get; set; }
+        public int ContractOptionOID { get; set; }
+        public int InstalmentNo { get; set; }
+        public decimal PurchasePr { get; set; }
+        public decimal SalePr { get; set; }
+        public static bool saveInstalment(int _ContractOID, int _ContractOptionOID, List<ContractOptionInstalment> listInstalment)
+        {
+            bool bRet = true;
+            return bRet;
+        }
+        public static List<ContractOptionInstalment> getInstalment(int _ContractOID, int _ContractOptionOID)
+        {
+            List<ContractOptionInstalment> Result = new List<ContractOptionInstalment>();
+            clsSqlFactory hSql = new clsSqlFactory();
+            try {
+                String strSql = " select a.OID, a.InstalmentNo, isnull(a.SelPr,0), isnull(a.PurchasePr,0) from ZSC_ContractOptionInstalment a where a.ContractOID = ? and a.ContractOptionOID = ? order by InstalmentNo ";
+                hSql.NewCommand(strSql);
+                hSql.Com.Parameters.AddWithValue("ContractTypeOID", _ContractOID);
+                hSql.Com.Parameters.AddWithValue("OptionCategoryOID", _ContractOptionOID);
+                hSql.ExecuteReader();
+                while (hSql.Read())
+                {
+                    ContractOptionInstalment item = new ContractOptionInstalment();
+                    item.OID = hSql.Reader.GetInt32(0);
+                    item.ContractOID = _ContractOID;
+                    item.ContractOptionOID = _ContractOptionOID;
+                    item.InstalmentNo = hSql.Reader.GetInt32(1);
+                    item.SalePr = hSql.Reader.GetDecimal(2);
+                    item.PurchasePr = hSql.Reader.GetDecimal(3);
+                    Result.Add(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                hSql.Close();
+            }
+
+            return Result;
+        }
+    }
     [Serializable]
     public class ContractOption
     {
@@ -830,6 +894,7 @@ namespace SCPrime.Model
         public int OptionCategoryOID { get; set; }
         public int OptionOID { get; set; }
         public int OptionDetailOID { get; set; }
+        public decimal PurchasePr { get; set; }
         public decimal SalePr { get; set; }
         public decimal Quantity { get; set; }
         public string Info { get; set; }
@@ -841,17 +906,19 @@ namespace SCPrime.Model
         //Them
         public string Name { get; set; }
         public string PartNr { get; set; }
+        public string PartSuplNo { get; set; }
         public string PartName { get; set; }
         public string LabourCode { get; set; }
         public string LabourName { get; set; }
         public decimal BaseSelPr { get; set; }
-        public decimal PurchasePr { get; set; }
+        public decimal BasePurchasePr { get; set; }
         public int InvoiceFlag { get; set; } = 0;
 
         public bool isDelete { get; set; } = false;
         public bool isUpdate { get; set; } = false;
         public bool isInsert { get; set; } = false;
 
+        public List<ContractOptionInstalment> listInstalments;
         public String toString()
         {
             return this.ContractOID + " - " + this.OptionCategoryOID + " - " + this.OptionOID + " - " + this.OptionDetailOID;
@@ -902,30 +969,30 @@ namespace SCPrime.Model
 
                 String strSqlCate = "SELECT z.OID,isnull(z.ContractOID,0) as ContractOID,isnull(z.OptionCategoryOID,0) as OptionCategoryOID,isnull(z.OptionOID,0) as OptionOID,isnull(z.OptionDetailOID,0) as OptionDetailOID,isnull(x.Name,a.Name) as Name,isnull(a.ItemNo,'') as PartNr, "
                     + " isnull(b.NAME,'') as PartName, isnull(a.WrksId,'') as LabourCode,isnull(a.Name,'') as LabourName, isnull(a.SelPr,0) as BaseSelPr,  "
-                    + " isnull(b.BUYPR,0) as PurchasePr,isnull(z.SelPr,0) as SalePr,isnull(z.Quantity,0) as Quantity,isnull(z.Info,'') as Info,isnull(z.PartialPayer,'') as PartialPayer  "
+                    + " isnull(b.BUYPR/isnull(dbo.fn_AMVATValue(b._UNITID,b.VATCD),1),0) as BasePurchasePr,isnull(z.SelPr,0) as SalePr,isnull(z.Quantity,0) as Quantity,isnull(z.Info,'') as Info,isnull(z.PartialPayer,'') as PartialPayer, isnull(z.PurchasePr,0) as PurchasePr , isnull(b.SUPLNO,'') as PartSuplNo "
                     + " FROM ZSC_ContractOption z "
                     + " inner JOIN ZSC_OptionCategory a on z.OptionCategoryOID = a.OID and z.OptionOID is null and  z.OptionDetailOID is null "
-                    + " left join ITEM b on a.ITEMNO=b.ITEMNO and a.ITEMSUPLNO=b.SUPLNO "
+                    + " left join ALL_ITEM b on a.ITEMNO=b.ITEMNO and a.ITEMSUPLNO=b.SUPLNO "
                     + " left join WRKS c on a.WRKSID=c.WRKSID and c.WPTYPE='T'  "
                     + " left join ZSC_OptionForeignName x on x.ObjectType=1 and x.ObjectOID=a.OID and x.LangId=? "
                     + " WHERE z.ContractOID=?";
 
                 String strSqlOption = "SELECT z.OID,z.ContractOID,z.OptionCategoryOID,z.OptionOID,z.OptionDetailOID,isnull(x.Name,a.Name) as Name,isnull(a.ItemNo,'') as PartNr, "
                     + " isnull(b.NAME,'') as PartName, isnull(a.WrksId,'') as LabourCode,isnull(a.Name,'') as LabourName, isnull(a.SelPr,0) as BaseSelPr,  "
-                    + " isnull(b.BUYPR,0) as PurchasePr,isnull(z.SelPr,0) as SalePr,isnull(z.Quantity,0) as Quantity,isnull(z.Info,'') as Info,isnull(z.PartialPayer,'') as PartialPayer  "
+                    + " isnull(b.BUYPR/isnull(dbo.fn_AMVATValue(b._UNITID,b.VATCD),1),0) as BasePurchasePr,isnull(z.SelPr,0) as SalePr,isnull(z.Quantity,0) as Quantity,isnull(z.Info,'') as Info,isnull(z.PartialPayer,'') as PartialPayer, isnull(z.PurchasePr,0) as PurchasePr , isnull(b.SUPLNO,'') as PartSuplNo   "
                     + " FROM ZSC_ContractOption z "
                     + " inner JOIN ZSC_Option a on z.OptionCategoryOID = a.OptionCategoryOID AND z.OptionOID = a.OID and z.OptionDetailOID is null "
-                    + " left join ITEM b on a.ITEMNO=b.ITEMNO and a.ITEMSUPLNO=b.SUPLNO "
+                    + " left join ALL_ITEM b on a.ITEMNO=b.ITEMNO and a.ITEMSUPLNO=b.SUPLNO "
                     + " left join WRKS c on a.WRKSID=c.WRKSID and c.WPTYPE='T'  "
                     + " left join ZSC_OptionForeignName x on x.ObjectType=2 and x.ObjectOID=a.OID and x.LangId=? "
                     + " WHERE z.ContractOID=?";
 
                 String strSqlOptionDetail = "SELECT z.OID,z.ContractOID,z.OptionCategoryOID,z.OptionOID,z.OptionDetailOID,isnull(x.Name,a.Name) as Name,isnull(a.ItemNo,'') as PartNr, "
                     + " isnull(b.NAME,'') as PartName, isnull(a.WrksId,'') as LabourCode,isnull(a.Name,'') as LabourName, isnull(a.SelPr,0) as BaseSelPr,  "
-                    + " isnull(b.BUYPR,0) as PurchasePr,isnull(z.SelPr,0) as SalePr,isnull(z.Quantity,0) as Quantity,isnull(z.Info,'') as Info,isnull(z.PartialPayer,'') as PartialPayer  "
+                    + " isnull(b.BUYPR/isnull(dbo.fn_AMVATValue(b._UNITID,b.VATCD),1),0) as BasePurchasePr,isnull(z.SelPr,0) as SalePr,isnull(z.Quantity,0) as Quantity,isnull(z.Info,'') as Info,isnull(z.PartialPayer,'') as PartialPayer, isnull(z.PurchasePr,0) as PurchasePr  , isnull(b.SUPLNO,'') as PartSuplNo  "
                     + " FROM ZSC_ContractOption z "
                     + " inner JOIN ZSC_OptionDetail a on z.OptionOID = a.OptionOID AND z.OptionDetailOID = a.OID "
-                    + " left join ITEM b on a.ITEMNO=b.ITEMNO and a.ITEMSUPLNO=b.SUPLNO "
+                    + " left join ALL_ITEM b on a.ITEMNO=b.ITEMNO and a.ITEMSUPLNO=b.SUPLNO "
                     + " left join WRKS c on a.WRKSID=c.WRKSID and c.WPTYPE='T'  "
                     + " left join ZSC_OptionForeignName x on x.ObjectType=3 and x.ObjectOID=a.OID and x.LangId=? "
                     + " WHERE z.ContractOID=?";
@@ -970,6 +1037,9 @@ namespace SCPrime.Model
                     if (!hSql.Reader.IsDBNull(colId)) item.BaseSelPr = hSql.Reader.GetDecimal(colId);
                     colId = hSql.Reader.GetOrdinal("PurchasePr");
                     if (!hSql.Reader.IsDBNull(colId)) item.PurchasePr = hSql.Reader.GetDecimal(colId);
+                    colId = hSql.Reader.GetOrdinal("BasePurchasePr");
+                    if (!hSql.Reader.IsDBNull(colId)) item.BasePurchasePr = hSql.Reader.GetDecimal(colId);
+
                     colId = hSql.Reader.GetOrdinal("SalePr");
                     if (!hSql.Reader.IsDBNull(colId)) item.SalePr = hSql.Reader.GetDecimal(colId);
                     colId = hSql.Reader.GetOrdinal("Quantity");
@@ -978,6 +1048,10 @@ namespace SCPrime.Model
                     if (!hSql.Reader.IsDBNull(colId)) item.Info = hSql.Reader.GetString(colId);
                     colId = hSql.Reader.GetOrdinal("PartialPayer");
                     if (!hSql.Reader.IsDBNull(colId)) item.PartialPayer = hSql.Reader.GetString(colId);
+
+                    colId = hSql.Reader.GetOrdinal("PartSuplNo");
+                    if (!hSql.Reader.IsDBNull(colId)) item.PartSuplNo = hSql.Reader.GetString(colId);
+                    item.listInstalments = ContractOptionInstalment.getInstalment(ContractOID, item.OID);
                     Result.Add(item);
                 }
             }
@@ -1029,25 +1103,62 @@ namespace SCPrime.Model
         public Decimal RiskLevel { get; set; }
         public clsBaseListItem RollingCode = new clsBaseListItem();
         public bool IsInvoiceDetail { get; set; }
-
+        public DateTime IndexingDate { get; set; } 
+        public Decimal IndexValue { get; set; }
         public List<SubContractorContract> SubContracts;
         public List<CollectiveContract> SelfContracts;
 
         public List<SCOptionCategory> OptionCategories;
         public List<ZSC_SubcontractorContractRisk> SubcontractorContractRisks;
-
+        public bool IsStatistic { get; set; }
         public List<SCContractRemark> listSCContractRemark;
 
+        public void calcPaymentBlock(bool _payInBlock)
+        {
+            ContractPaymentData.PaymentIsInBlock = _payInBlock;
+            if (ContractPaymentData.PaymentIsInBlock == false)
+            {
+                ContractPaymentData.PaymentNextBlockStart = DateTime.MinValue;
+                ContractPaymentData.PaymentNextBlockEnd = DateTime.MinValue;
+            }
+            else
+            {
+                DateTime dtNow = NextInvoiceDate;
+                if (dtNow == DateTime.MinValue) dtNow = DateTime.Now;
+                if (dtNow.Day > ContractPaymentData.InvoiceDate)
+                {
+                    ContractPaymentData.PaymentNextBlockStart = new DateTime(dtNow.Year, dtNow.Month, ContractPaymentData.InvoiceDate);
+                    ContractPaymentData.PaymentNextBlockStart = ContractPaymentData.PaymentNextBlockStart.AddMonths(1);
+                }
+                else
+                {
+                    ContractPaymentData.PaymentNextBlockStart = new DateTime(dtNow.Year, dtNow.Month, ContractPaymentData.InvoiceDate);
+                }
+                ContractPaymentData.PaymentNextBlockEnd = new DateTime(PaymentNextBlockStart.Year, 12, ContractPaymentData.InvoiceDate);
+            }
+        }
 
         public Contract()
         {
             //default values
             TerminationType.strValue1 = SCPrime.Model.ContractTerminationType.TimeBase;
             SiteId.strValue1 = new clsGlobalVariable().CurrentSiteId;
+            clsAppConfig objAppConfig = new clsAppConfig();
+            ContractPaymentData.InvoiceDate = objAppConfig.getNumberParam("ZSCSETTING", "INVDATE", "V1", "");
 
         }
         //longdq11092018
-       
+
+        public decimal getPayerOptionPrice()
+        {
+            decimal nRet = 0;
+            foreach (ContractOption opt in listContractOptions)
+            {
+                if (opt.PartialPayer != "")
+                    nRet += opt.SalePr;
+            }
+                return nRet;
+        }
 
         //Thuyetlv
         public List<ZSC_SubcontractorContractRisk> loadZSC_SubcontractorContractRisk()
@@ -1284,7 +1395,7 @@ namespace SCPrime.Model
                         " ContractStartKm=?, ContractStartHour=?, ContractPeriodMonth=?, ContractPeriodKm=?, ContractPeriodHour=?, ContractPeriodKmHour=?, ContractEndKm=?, ContractEndHour=?, TerminationType=?, PaymentPeriod=?, " +
                         " PaymentIsInBlock=?, PaymentNextBlockStart=?, PaymentNextBlockEnd=?, PaymentCollectionType=?, PaymentGroupingLevel=?, PaymentTerm=?, InvoiceSiteId=?, IsManualInvoice=?, CapitalStartAmount=?, CapitalStartPayer=?," +
                         " CapitalMonthAmount=?, CapitalMonthPayer=?, CostBasedOnService=?, CostMonthBasis=?, CostKmBasis=?, CostPerKm=?, ExtraKmInvoicePeriod=?, ExtraKmAccounting=?, ExtraKmMaxDeviation=?, ExtraKmLowAmount=?, ExtraKmHighAmount=?," +
-                        " RiskCustId=?, RiskLevel=?, RollingCode=?, IsInvoiceDetail=? where OID=?  ";
+                        " RiskCustId=?, RiskLevel=?, RollingCode=?, IsInvoiceDetail=?,IsStaticstic=?,IndexingDate=?,IndexValue=?, PaymentInvoiceDay=? where OID=?  ";
                     bRet = hSql.NewCommand(strSql);
                     if (ExtContractNo != null) hSql.Com.Parameters.AddWithValue("ExtContractNo", ExtContractNo); else hSql.Com.Parameters.AddWithValue("ExtContractNo", DBNull.Value);
                     if (CostCenter != null) hSql.Com.Parameters.AddWithValue("CostCenter", CostCenter.strValue1); else hSql.Com.Parameters.AddWithValue("CostCenter", DBNull.Value);
@@ -1332,7 +1443,7 @@ namespace SCPrime.Model
                         else hSql.Com.Parameters.AddWithValue("PaymentNextBlockEnd", DBNull.Value);
                         hSql.Com.Parameters.AddWithValue("PaymentCollectionType", ContractPaymentData.PaymentCollectionType);
                         hSql.Com.Parameters.AddWithValue("PaymentGroupingLevel", ContractPaymentData.PaymentGroupingLevel);
-                        hSql.Com.Parameters.AddWithValue("PaymentTerm", ContractPaymentData.PaymentTerm);
+                        hSql.Com.Parameters.AddWithValue("PaymentTerm", ContractPaymentData.PaymentTerm.strValue1);
                     }
                     else
                     {
@@ -1395,6 +1506,13 @@ namespace SCPrime.Model
                     if (RollingCode != null) hSql.Com.Parameters.AddWithValue("RollingCode", RollingCode.strValue1); else hSql.Com.Parameters.AddWithValue("RollingCode", DBNull.Value);
                     hSql.Com.Parameters.AddWithValue("IsInvoiceDetail", IsInvoiceDetail);
 
+                    hSql.Com.Parameters.AddWithValue("IsStaticstic", IsStatistic);
+                    if(IndexingDate != DateTime.MinValue)
+                        hSql.Com.Parameters.AddWithValue("IndexingDate", IndexingDate);
+                    else
+                        hSql.Com.Parameters.AddWithValue("IndexingDate", DBNull.Value);
+                    hSql.Com.Parameters.AddWithValue("IndexValue", IndexValue);
+                    hSql.Com.Parameters.AddWithValue("PaymentInvoiceDay", ContractPaymentData.InvoiceDate);
                     hSql.Com.Parameters.AddWithValue("OID", ContractOID);
 
 
@@ -1420,7 +1538,6 @@ namespace SCPrime.Model
 
                     //ThuyetLV: Save ContractRisk
                     bRet = bRet && ZSC_SubcontractorContractRisk.saveContractRisk(this.ContractOID, this.SubcontractorContractRisks, hSql);
-
                     //Save contract remask
                     bRet = bRet && SCContractRemark.saveRemark(this.ContractOID, this.listSCContractRemark, hSql);
                 }
@@ -1506,6 +1623,11 @@ namespace SCPrime.Model
             if (list.Count <= 0)
             {
                 //Delete
+                sql = "delete from ZSC_ContractOptionInstalment where ContractOID = ?";
+                bRet = hSql.NewCommand(sql);
+                hSql.Com.Parameters.AddWithValue("ContractOID", ContractOID);
+                bRet = bRet && hSql.ExecuteNonQuery();
+
                 sql = "delete from ZSC_ContractOption where ContractOID = ?";
                 bRet = hSql.NewCommand(sql);
                 hSql.Com.Parameters.AddWithValue("ContractOID", ContractOID);
@@ -1516,6 +1638,12 @@ namespace SCPrime.Model
             {
                 if (objOptionDetail.isDelete)
                 {
+                    sql = "delete from ZSC_ContractOptionInstalment where ContractOID = ? and ContractOptionOID =? ";
+                    bRet = hSql.NewCommand(sql);
+                    hSql.Com.Parameters.AddWithValue("ContractOID", ContractOID);
+                    hSql.Com.Parameters.AddWithValue("ContractOptionOID", objOptionDetail.OID);
+                    bRet = bRet && hSql.ExecuteNonQuery();
+
                     //Xoa
                     if (objOptionDetail.OptionOID <= 0)
                     {
@@ -1548,7 +1676,7 @@ namespace SCPrime.Model
                 else if (objOptionDetail.isUpdate)
                 {
                     //Update
-                    String sqls = "UPDATE ZSC_ContractOption SET SelPr=?,Quantity=?,Info=?,Modified=getdate(),PartialPayer=? WHERE ContractOID=? and OptionCategoryOID=? ";
+                    String sqls = "UPDATE ZSC_ContractOption SET SelPr=?,Quantity=?,Info=?,Modified=getdate(),PartialPayer=?, PurchasePr=? WHERE ContractOID=? and OptionCategoryOID=? ";
 
                     if (objOptionDetail.OptionOID <= 0)
                     {
@@ -1599,7 +1727,14 @@ namespace SCPrime.Model
                     {
                         hSql.Com.Parameters.AddWithValue("PartialPayer", DBNull.Value);
                     }
-
+                    if (objOptionDetail.PurchasePr > 0)
+                    {
+                        hSql.Com.Parameters.AddWithValue("PurchasePr", objOptionDetail.PurchasePr);
+                    }
+                    else
+                    {
+                        hSql.Com.Parameters.AddWithValue("PurchasePr", DBNull.Value);
+                    }
                     hSql.Com.Parameters.AddWithValue("ContractOID", ContractOID);
                     hSql.Com.Parameters.AddWithValue("OptionCategoryOID", objOptionDetail.OptionCategoryOID);
 
@@ -1614,11 +1749,12 @@ namespace SCPrime.Model
                     }
 
                     bRet = bRet && hSql.ExecuteNonQuery();
+                    bRet = bRet && ContractOptionInstalment.saveInstalment(ContractOID, objOptionDetail.OID, objOptionDetail.listInstalments);
                 }
                 else if (objOptionDetail.isInsert)
                 {
                     //insert
-                    bRet = hSql.NewCommand("insert into ZSC_ContractOption(ContractOID,OptionCategoryOID,OptionOID,OptionDetailOID, SelPr,Quantity,Info,Created,Modified,PartialPayer) values(?,?,?,?,?,?,?,getdate(),getdate(),?) ");
+                    bRet = hSql.NewCommand("insert into ZSC_ContractOption(ContractOID,OptionCategoryOID,OptionOID,OptionDetailOID, SelPr,Quantity,Info,Created,Modified,PartialPayer,PurchasePr) values(?,?,?,?,?,?,?,getdate(),getdate(),?,?) ");
 
                     hSql.Com.Parameters.AddWithValue("ContractOID", ContractOID);
                     if (objOptionDetail.OptionCategoryOID > 0)
@@ -1679,9 +1815,23 @@ namespace SCPrime.Model
                     {
                         hSql.Com.Parameters.AddWithValue("PartialPayer", DBNull.Value);
                     }
+                    if (objOptionDetail.PurchasePr > 0)
+                    {
+                        hSql.Com.Parameters.AddWithValue("PurchasePr", objOptionDetail.PurchasePr);
+                    }
+                    else
+                    {
+                        hSql.Com.Parameters.AddWithValue("PurchasePr", DBNull.Value);
+                    }
                     bRet = bRet && hSql.ExecuteNonQuery();
+                    bRet = hSql.NewCommand("select max(OID) from  ZSC_ContractOption where ContractOID=? ");
+                    hSql.Com.Parameters.AddWithValue("ContractOID", ContractOID);
+                    bRet = bRet && hSql.ExecuteReader() && hSql.Read();
+                    objOptionDetail.OID = hSql.Reader.GetInt32(0);
+                    bRet = bRet && ContractOptionInstalment.saveInstalment(ContractOID, objOptionDetail.OID, objOptionDetail.listInstalments);
                 }
             }
+
             return bRet;
         }
 
@@ -1876,6 +2026,8 @@ namespace SCPrime.Model
                     bRet = VehiId.loadMileages(hSql);
                 }
                 OptionCategories = SCOptionCategory.getContractOptionCategory(this.ContractOID);
+                listContractOptions = ContractOption.getContractOption(this.ContractOID);
+                listSCContractRemark =  SCContractRemark.getRemark(this.ContractOID);
             }
             catch (Exception ex)
             {
@@ -1997,7 +2149,7 @@ namespace SCPrime.Model
             {
                 if (InvoiceCustId != null)
                 {
-                    return InvoiceCustId.CustId;
+                    return InvoiceCustId.CustNr;
                 }
                 return -1;
             }
@@ -2031,7 +2183,7 @@ namespace SCPrime.Model
             {
                 if (ContractCustId != null)
                 {
-                    return ContractCustId.CustId;
+                    return ContractCustId.CustNr;
                 }
                 return -1;
             }
@@ -2351,16 +2503,16 @@ namespace SCPrime.Model
                 ContractPaymentData = null;
             }
         }
-        public static List<clsBaseListItem> getCostCenter()
+        public static List<clsBaseListItem> getCostCenter(String strSiteId)
         {
             List<clsBaseListItem> Result = new List<clsBaseListItem>();
             clsSqlFactory hSql = new clsSqlFactory();
             try
             {
 
-                String strSql = " select C1 as Code, C2 as Name from ALL_CORW where CODAID='OSASTOT' and _UNITID=? ";
+                String strSql = " select C5 as Code, C2 as Name from CORW where CODAID='ZSCCOSTCC' and C3=? ";
                 hSql.NewCommand(strSql);
-                hSql.Com.Parameters.AddWithValue("_UNITID", new clsGlobalVariable().CurrentSiteId);
+                hSql.Com.Parameters.AddWithValue("UNITID", strSiteId);
                 hSql.ExecuteReader();
                 while (hSql.Read())
                 {
@@ -2368,6 +2520,7 @@ namespace SCPrime.Model
                     //item.nValue1 = hSql.Reader.GetInt32(0);
                     item.strValue1 = hSql.Reader.GetString(0);
                     item.strText = hSql.Reader.GetString(1);
+                    
 
                     Result.Add(item);
                 }

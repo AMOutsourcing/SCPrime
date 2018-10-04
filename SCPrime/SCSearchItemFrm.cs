@@ -29,7 +29,7 @@ namespace SCPrime
         {
             InitializeComponent();
             // remove context menu
-            this.ContextMenuStrip.Items.Clear();
+            // this.ContextMenuStrip.Items.Clear();
             this.Visible = false;
             KeySender = new SendKey(GetKey);
         }
@@ -46,7 +46,7 @@ namespace SCPrime
         private void SCSearchItemFrm_Load(object sender, EventArgs e)
         {
             this.txtSearch.Text = "";
-          //  this.gridItem.DataSource = this.LoadSCViewItems("");
+            //  this.gridItem.DataSource = this.LoadSCViewItems("");
             this.Visible = true;
         }
 
@@ -91,9 +91,8 @@ namespace SCPrime
                 }
                 else
                 {
-                        this.gridItem.DataSource = null;
-                        return;
-                    
+                    this.gridItem.DataSource = null;
+                    return;
                 }
             }
         }
@@ -120,7 +119,7 @@ namespace SCPrime
 
         private void gridItem_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            string tmp = this.objectMode +";"+ getItemRetrun();
+            string tmp = this.objectMode + ";" + getItemRetrun();
             SCOptionList.instance.Sender2(tmp);
             this.Close();
             SCOptionList.instance.Refresh();

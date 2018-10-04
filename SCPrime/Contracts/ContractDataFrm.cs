@@ -75,9 +75,10 @@ namespace SCPrime.Contracts
 
             //Payment collection type
             List<ObjTmp> listPaymentCol = new List<ObjTmp>();
-            listPaymentCol.Add(new ObjTmp("E", "ESR"));
-            listPaymentCol.Add(new ObjTmp("D", "Debit"));
-            listPaymentCol.Add(new ObjTmp("R", "e-Rechnung"));
+            listPaymentCol.Add(new ObjTmp(PaymentCollectionType.ESR, "ESR"));
+            listPaymentCol.Add(new ObjTmp(PaymentCollectionType.Debit, "Debit"));
+            listPaymentCol.Add(new ObjTmp(PaymentCollectionType.Transfer, "e-Rechnung"));
+            listPaymentCol.Add(new ObjTmp(PaymentCollectionType.Plain, "Plain"));
 
             cbColType.DataSource = listPaymentCol;
             cbColType.ValueMember = "strValue1";
@@ -99,10 +100,10 @@ namespace SCPrime.Contracts
             List<ObjTmp> listPaymentTerm = new List<ObjTmp>(listPaymentTermDb.Count);
             foreach (clsBaseListItem term in listPaymentTermDb)
             {
-                listPaymentTerm.Add(new ObjTmp(term.nValue1, term.strText));
+                listPaymentTerm.Add(new ObjTmp(term.strValue1, term.strText));
             }
             cbPayTerm.DataSource = listPaymentTerm;
-            cbPayTerm.ValueMember = "nValue1";
+            cbPayTerm.ValueMember = "strValue1";
             cbPayTerm.DisplayMember = "strText";
 
             //Invoicing site 
@@ -122,8 +123,8 @@ namespace SCPrime.Contracts
             List<ObjTmp> listMonAmount = new List<ObjTmp>(listPaymentTermDb.Count);
             foreach (clsBaseListItem term in listPaymentTermDb)
             {
-                listZSCCAPPAYE.Add(new ObjTmp(term.nValue1.ToString(), term.strText));
-                listMonAmount.Add(new ObjTmp(term.nValue1.ToString(), term.strText));
+                listZSCCAPPAYE.Add(new ObjTmp(term.strValue1.ToString(), term.strText));
+                listMonAmount.Add(new ObjTmp(term.strValue1.ToString(), term.strText));
             }
             txtStartAmountPayer.DataSource = listZSCCAPPAYE;
             txtStartAmountPayer.ValueMember = "strValue1";
@@ -167,7 +168,7 @@ namespace SCPrime.Contracts
             List<ObjTmp> listRolling = new List<ObjTmp>(listPaymentTermDb.Count);
             foreach (clsBaseListItem term in listPaymentTermDb)
             {
-                listRolling.Add(new ObjTmp(term.nValue1.ToString(), term.strText));
+                listRolling.Add(new ObjTmp(term.strValue1.ToString(), term.strText));
             }
             cbRoll.DataSource = listRolling;
             cbRoll.ValueMember = "strValue1";
@@ -236,7 +237,7 @@ namespace SCPrime.Contracts
 
                 cbColType.SelectedValue = ContractFrm.objContract.ContractPaymentData.PaymentCollectionType;
                 cbGrpLevel.SelectedValue = ContractFrm.objContract.ContractPaymentData.PaymentGroupingLevel;
-                cbPayTerm.SelectedValue = ContractFrm.objContract.ContractPaymentData.PaymentTerm;
+                cbPayTerm.SelectedValue = ContractFrm.objContract.ContractPaymentData.PaymentTerm.strValue1;
                 if (ContractFrm.objContract.InvoiceSiteId != null)
                 {
                     cbInvoiceSite.SelectedValue = ContractFrm.objContract.InvoiceSiteId.strValue1;
@@ -285,6 +286,7 @@ namespace SCPrime.Contracts
                 }
 
                 txtCostBase.Value = ContractFrm.objContract.ContractCostData.CostBasedOnService;
+                txtCostBase2.Value = ContractFrm.objContract.ContractCostData.CostBasedOnService+ ContractFrm.objContract.getPayerOptionPrice();
                 txtMonBassis.Value = ContractFrm.objContract.ContractCostData.CostMonthBasis;
                 txtKmBassis.Value = ContractFrm.objContract.ContractCostData.CostKmBasis;
                 DateTime? lastPay = ContractOption.GetLastPayDate(ContractFrm.objContract.ContractOID);
@@ -353,7 +355,7 @@ namespace SCPrime.Contracts
                 if (RiskCustId != null && RiskCustId.CustId > 0)
                 {
                     txtRiskCusId.Text = RiskCustId.CustId.ToString();
-                    txtPatnerNr.Text = RiskCustId.CustId.ToString();
+                    txtPatnerNr.Text = RiskCustId.CustNr.ToString();
                     txtParnerName.Text = RiskCustId.Name;
                 }
                 else
@@ -365,6 +367,12 @@ namespace SCPrime.Contracts
 
                 txtRishLevel.Text = ContractFrm.objContract.RiskLevel.ToString();
 
+                if (ContractFrm.objContract.IndexingDate != DateTime.MinValue)
+                {
+                    dtIndexingDate.Value = ContractFrm.objContract.IndexingDate;
+                }
+                dfIndexValue.Value = ContractFrm.objContract.IndexValue;
+                dfInvoicingDay.Value = ContractFrm.objContract.ContractPaymentData.InvoiceDate;
                 //Load data grid
 
                 fillRisk();
@@ -410,6 +418,7 @@ namespace SCPrime.Contracts
                 //Cost
                 cbCostBassis.Text = "";
                 txtCostBase.Value = 0;
+                txtCostBase2.Value = 0;
                 txtMonBassis.Value = 0;
                 txtKmBassis.Value = 0;
                 txtLastPay.Text = "";
@@ -446,6 +455,8 @@ namespace SCPrime.Contracts
         private void formatDecimal()
         {
             txtCostBase.DecimalPlaces = 2;
+            txtCostBase2.DecimalPlaces = 2;
+            dfIndexValue.DecimalPlaces = 2;
             txtCostBase.Increment = 0;
         }
 
@@ -458,7 +469,7 @@ namespace SCPrime.Contracts
             {
                 DataRow drToAdd = dataTable.NewRow();
 
-                drToAdd["RiskPartnerCustId"] = Int32.Parse(searhCustomer.Custno);
+                drToAdd["RiskPartnerCustId"] = Int32.Parse(searhCustomer.CustId);
                 drToAdd["Name"] = searhCustomer.CustName;
 
                 List<SubContractorContract> SubContracts = ContractFrm.objContract.SubContracts;
@@ -477,10 +488,23 @@ namespace SCPrime.Contracts
             searhCustomer.ShowDialog();
             if (searhCustomer.Custno != "")
             {
-                txtRiskCusId.Text = searhCustomer.Custno;
+                txtRiskCusId.Text = searhCustomer.CustId;
                 txtPatnerNr.Text = searhCustomer.Custno;
                 txtParnerName.Text = searhCustomer.CustName;
                 txtRishLevel.Value = ContractFrm.objContract.RiskLevel;
+
+                ContractCustomer RiskCustId = new ContractCustomer();
+                RiskCustId.Name = searhCustomer.CustName;
+                int id;
+                bool tmp = int.TryParse(searhCustomer.CustId, out id);
+                if (tmp)
+                    RiskCustId.CustId = id;
+                tmp = int.TryParse(searhCustomer.Custno, out id);
+                if (tmp)
+                    RiskCustId.CustNr = id;
+
+                ContractFrm.objContract.RiskCustId = RiskCustId;
+                
             }
         }
 
@@ -550,7 +574,7 @@ namespace SCPrime.Contracts
             contractDate.ContractPeriodMonth = Int32.Parse(txtPeriod.Text);
             contractDate.ContractPeriodKm = Int32.Parse(txtKm.Value.ToString());
             contractDate.ContractPeriodHour = Int32.Parse(txtHr.Value.ToString());
-
+            
 
             if (rdKmBase.Checked)
             {
@@ -566,6 +590,14 @@ namespace SCPrime.Contracts
             contractDate.ContractEndKm = Int32.Parse(txtEndKm.Value.ToString());
             contractDate.ContractEndHour = Int32.Parse(txtEndHr.Value.ToString());
             contractDate.InvoiceEndDate = txtEndInvoice.Value;
+
+            if (cbTemType.SelectedValue != null)
+            {
+                clsBaseListItem TerminationType = new clsBaseListItem();
+                TerminationType.strValue1 = cbTemType.SelectedValue.ToString();
+                TerminationType.strText = cbTemType.SelectedText;
+                ContractFrm.objContract.TerminationType = TerminationType;
+            }
 
             //Payment
             if (cbPayPeriod.SelectedValue != null)
@@ -584,7 +616,13 @@ namespace SCPrime.Contracts
                 ContractPaymentData.PaymentCollectionType = cbColType.SelectedValue.ToString();
             if (cbGrpLevel.SelectedValue != null)
                 ContractPaymentData.PaymentGroupingLevel = cbGrpLevel.SelectedValue.ToString();
-            //ContractPaymentData.PaymentTerm = Int32.Parse(cbPayTerm.Text);
+            clsBaseListItem PaymentTerm = new clsBaseListItem();
+            if (cbPayTerm.SelectedValue != null)
+            {
+                PaymentTerm.strValue1 = cbPayTerm.SelectedValue.ToString();
+                PaymentTerm.strText = cbPayTerm.SelectedText;
+            }
+            ContractPaymentData.PaymentTerm = PaymentTerm;
 
             clsBaseListItem InvoiceSiteId = new clsBaseListItem();
             if (cbInvoiceSite.SelectedValue != null)
@@ -675,6 +713,7 @@ namespace SCPrime.Contracts
             ContractFrm.objContract.IsInvoiceDetail = cbInvoiceDetail.Checked;
 
             //RiskCustId
+            
             ContractCustomer RiskCustId = new ContractCustomer();
             if (txtRiskCusId.Text != null && txtRiskCusId.Text.Trim().Length > 0)
             {
@@ -683,7 +722,7 @@ namespace SCPrime.Contracts
             ContractFrm.objContract.RiskCustId = RiskCustId;
             ContractFrm.objContract.RiskLevel = txtRishLevel.Value;
 
-
+    
 
             //Save Risk
             List<ZSC_SubcontractorContractRisk> listRisk = new List<ZSC_SubcontractorContractRisk>();
@@ -715,6 +754,9 @@ namespace SCPrime.Contracts
             ContractFrm.objContract.ContractCostData = ContractCostData;
             ContractFrm.objContract.ContractExtraKmData = ContractExtraKmData;
 
+            ContractFrm.objContract.IndexingDate = dtIndexingDate.Value;
+            ContractFrm.objContract.IndexValue = dfIndexValue.Value;
+            ContractFrm.objContract.ContractPaymentData.InvoiceDate = (Int32) dfInvoicingDay.Value;
             return ContractFrm.objContract;
         }
 
@@ -798,6 +840,7 @@ namespace SCPrime.Contracts
             col.HeaderText = "Risk partner Nr.";
             col.DataPropertyName = "RiskPartnerCustId";
             col.ReadOnly = true;
+            col.Visible = false;
             gridRisk.Columns.Add(col);
 
             DataGridViewTextBoxColumn col2 = new DataGridViewTextBoxColumn();
@@ -859,6 +902,46 @@ namespace SCPrime.Contracts
         {
             ContractCost data = ContractFrm.objContract.ContractCostData;
             txtCostBase.Value = (data == null) ? 0 : data.CostBasedOnService;
+        }
+
+        private void label26_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbPayment_CheckedChanged(object sender, EventArgs e)
+        {
+            ContractFrm.objContract.calcPaymentBlock(cbPayment.Checked);
+            if (ContractFrm.objContract.ContractPaymentData != null && ContractFrm.objContract.ContractPaymentData.PaymentNextBlockStart != null)
+            {
+                txtNextBlock.Text = ContractFrm.objContract.ContractPaymentData.PaymentNextBlockStart.ToString("d", System.Globalization.CultureInfo.GetCultureInfo(objGlobal.CultureInfo));
+            }
+            else
+            {
+                txtNextBlock.Text = "";
+            }
+            if (ContractFrm.objContract.ContractPaymentData != null && ContractFrm.objContract.ContractPaymentData.PaymentNextBlockEnd != null)
+            {
+                txtNextBlockEnd.Text = ContractFrm.objContract.ContractPaymentData.PaymentNextBlockEnd.ToString("d", System.Globalization.CultureInfo.GetCultureInfo(objGlobal.CultureInfo));
+            }
+            else
+            {
+                txtNextBlockEnd.Text = "";
+            }
+        }
+
+        private void dtIndexingDate_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime dt = dtIndexingDate.Value;
+            SCIndexData indexData = SCIndexData.getIndexData(dt);
+            if(indexData != null)
+            {
+                dfIndexValue.Value = indexData.IndexValue;
+            }
+            else
+            {
+                dfIndexValue.Value = 0;
+            }
         }
     }
 }

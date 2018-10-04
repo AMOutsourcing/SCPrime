@@ -32,7 +32,7 @@ namespace SCPrime
         {
             InitializeComponent();
             // remove context menu
-            this.ContextMenuStrip.Items.Clear();
+         //   this.ContextMenuStrip.Items.Clear();
             this.Visible = false;
             KeySender = new SendKey(GetKey);
             //MessageBox.Show(this.objectMode.ToString());

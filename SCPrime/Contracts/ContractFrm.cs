@@ -49,7 +49,7 @@ namespace SCPrime.Contracts
         {
             InitializeComponent();
             // remove context menu
-            this.ContextMenuStrip.Items.Clear();
+         //   this.ContextMenuStrip.Items.Clear();
             // load data
             Sender = new SendStatus(GetStatus);
             updateEmployee = new SearchEmployee(UpdateEmployee);
@@ -65,66 +65,9 @@ namespace SCPrime.Contracts
             this.headerControl1.cbxContractType.KeyUp += new KeyEventHandler(this.cbxContractType_DropDownClosed);
             this.headerControl1.cbxContractType.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.cbxContractType_DropDownClosed);
 
-            List<SCInvoice> lstContractInvoice = new List<SCInvoice>();
-            if (SCMain.ContractOid > 0)
-            {
-                objContract = SCBase.searchContracts(SCMain.ContractOid);
-                objContract.listContractOptions = ContractOption.getContractOption(objContract.ContractOID);
 
-                //Loc du lieu bi sai
-                List<ContractOption> listWrong = new List<ContractOption>();
-                Dictionary<String, String> dicContractOptions = new Dictionary<String, String>();
-                foreach (ContractOption tmp in objContract.listContractOptions)
-                {
-                    if (dicContractOptions.ContainsKey(tmp.toString()))
-                    {
-                        listWrong.Add(tmp);
-                    }
-                    else
-                    {
-                        dicContractOptions.Add(tmp.toString(), "1");
-                    }
-                }
-                ///Thuc hien xoa
-                objContract.deleteContractOptionWrong(objContract.ContractOID, listWrong);
-
-                //Reload lai data
-                objContract.listContractOptions = ContractOption.getContractOption(objContract.ContractOID);
-
-                //List ZSC_ContractInvoice: test
-                List<Int32> lstInvoiceType = new List<Int32>();
-                lstInvoiceType.Add(0);
-                lstInvoiceType.Add(1);
-                lstContractInvoice = SCInvoiceUtil.getContractInvoice(objContract.ContractOID, lstInvoiceType, true);
-
-                //Load Remark
-                objContract.listSCContractRemark = SCContractRemark.getRemark(objContract.ContractOID);
-
-            }
-            else
-            {
-                objContract = new Contract();
-            }
-            this.loadComboboxData();
-            this.loadContractData();
-
-            myCulture = objGlobal.CultureInfo;
-
-            //
-            this.loadVehice();
-            this.contractOption1.loadDataGrid();
-            this.contractOption1.loadTree();
-            this.contractDataFrm.fillData();
-
-            objContract.listSCContractRemark = (objContract.listSCContractRemark == null) ? new List<SCContractRemark>() : objContract.listSCContractRemark;
-
-            //Invoice
-            invoicesFrm.fillDataGrid(lstContractInvoice);
-
-            //Remark
-            remarkFrm.loadRemark(objContract.listSCContractRemark);
-            // this.loadCustomerEmployee();
-            //
+            //Load data
+            reloadAll();
         }
         private void checkInvoiceToCustomer()
         {
@@ -194,7 +137,7 @@ namespace SCPrime.Contracts
 
         private void cbxResponsibleSite_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            loadCostCenterCmbData();
         }
 
         private void updat_satatus(object sender, EventArgs e)
@@ -400,7 +343,7 @@ namespace SCPrime.Contracts
             disableNavigatorButton();
 
         }
-
+        
         private void disableNavigatorButton()
         {
             int value = Contract.checkMinMaxVersion(objContract.ContractCustId.CustId, objContract.VehiId.VehiId, objContract.VersionNo);
@@ -433,6 +376,32 @@ namespace SCPrime.Contracts
             sc = list.SingleOrDefault(x => x.OID == oid);
 
             return sc;
+        }
+        public void loadCostCenterCmbData()
+        {
+            //load cbxCostcenter TODO
+            ObjTmp s = (ObjTmp)this.headerControl1.cbxResponsibleSite.SelectedItem;
+            costCenterList = Contract.getCostCenter(s.strValue1);
+
+            if (costCenterList != null && costCenterList.Count > 0)
+            {
+                List<ObjTmp> myccs = new List<ObjTmp>(costCenterList.Count);
+                foreach (clsBaseListItem cc in costCenterList)
+                {
+                    myccs.Add(new ObjTmp(cc.strValue1, cc.strValue1 + "-" + cc.strText));
+                }
+                this.headerControl1.cbxCostcenter.DataSource = myccs;
+                this.headerControl1.cbxCostcenter.DisplayMember = "strText";
+                this.headerControl1.cbxCostcenter.ValueMember = "strValue1";
+
+
+                if (objContract.CostCenter != null)
+                {
+                    int costIdx = -1;
+                    costIdx = myccs.FindIndex(x => x.strValue1 == objContract.CostCenter.strValue1);
+                    this.headerControl1.cbxCostcenter.SelectedIndex = costIdx;//objContract.CostCenter.strValue1;
+                }
+            }
         }
         public void loadComboboxData()
         {
@@ -477,29 +446,8 @@ namespace SCPrime.Contracts
                     this.headerControl1.cbxContractType.SelectedItem = this.findContracTypeByOiD(objContract.ContractTypeOID.OID, contractType);
                 }
             }
+            loadCostCenterCmbData();
 
-            //load cbxCostcenter TODO
-            costCenterList = Contract.getCostCenter();
-
-            if (costCenterList != null && costCenterList.Count > 0)
-            {
-                List<ObjTmp> myccs = new List<ObjTmp>(costCenterList.Count);
-                foreach (clsBaseListItem cc in costCenterList)
-                {
-                    myccs.Add(new ObjTmp(cc.strValue1, cc.strValue1 + "-" + cc.strText));
-                }
-                this.headerControl1.cbxCostcenter.DataSource = myccs;
-                this.headerControl1.cbxCostcenter.DisplayMember = "strText";
-                this.headerControl1.cbxCostcenter.ValueMember = "strValue1";
-
-
-                if (objContract.CostCenter != null)
-                {
-                    int costIdx = -1;
-                    costIdx = myccs.FindIndex(x => x.strValue1 == objContract.CostCenter.strValue1);
-                    this.headerControl1.cbxCostcenter.SelectedIndex = costIdx;//objContract.CostCenter.strValue1;
-                }
-            }
             //load cbxValidWorkshop 
             ws = Contract.getValidWorkshop();
             if (ws != null && ws.Count > 0)
@@ -543,11 +491,12 @@ namespace SCPrime.Contracts
             //this.headerControl1.cbxContractType.SelectedValue = objContract.ContractTypeOID;
 
             this.headerControl1.chkContractVariant.Checked = Contract.checkContractVariant(objContract.ContractCustId.CustId);
-
-
+            this.headerControl1.chkInvoiceToCus.Checked = objContract.ContractTypeOID.isInvoice;
+            this.headerControl1.cbStatistic.Checked = objContract.IsStatistic;
             this.loadDetail();
             this.addSupplierCbx();
             this.loadCustomerEmployee();
+            this.Text = "Contract: " + objContract.ContractNo.ToString() + " / " + objContract.VersionNo.ToString();
 
 
         }
@@ -724,6 +673,7 @@ namespace SCPrime.Contracts
         public void updateContract()
         {
             objContract.ExtContractNo = this.headerControl1.txtExtContractNr.Text;
+            objContract.IsStatistic = this.headerControl1.cbStatistic.Checked;
             if (this.headerControl1.cbxCostcenter.SelectedIndex >= 0)
             {
                 if (this.headerControl1.cbxCostcenter.SelectedItem != null)
@@ -787,7 +737,6 @@ namespace SCPrime.Contracts
 
             //Load lai data
             objContract.listContractOptions = ContractOption.getContractOption(objContract.ContractOID);
-
             objContract.listSCContractRemark = SCContractRemark.getRemark(objContract.ContractOID);
             objContract.listSCContractRemark = (objContract.listSCContractRemark == null) ? new List<SCContractRemark>() : objContract.listSCContractRemark;
             //Remark
@@ -916,8 +865,10 @@ namespace SCPrime.Contracts
                 objContract = SCBase.searchContracts(prevOid);
                 if (objContract != null)
                 {
-                    loadComboboxData();
-                    loadContractData();
+                   
+                    reloadAll();
+                    //loadComboboxData();
+                    //loadContractData();
                 }
             }
             this.disableNavigatorButton();
@@ -932,8 +883,10 @@ namespace SCPrime.Contracts
                 objContract = SCBase.searchContracts(nextOid);
                 if (objContract != null)
                 {
-                    loadComboboxData();
-                    loadContractData();
+                    
+                    reloadAll();
+                    //loadComboboxData();
+                    //loadContractData();
                 }
             }
             this.disableNavigatorButton();
@@ -971,6 +924,65 @@ namespace SCPrime.Contracts
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        public void reloadAll()
+        {
+            List<SCInvoice> lstContractInvoice = new List<SCInvoice>();
+
+            if (SCMain.ContractOid > 0)
+            {
+                objContract = SCBase.searchContracts(SCMain.ContractOid);
+                objContract.listContractOptions = ContractOption.getContractOption(objContract.ContractOID);
+
+                //Loc du lieu bi sai
+                List<ContractOption> listWrong = new List<ContractOption>();
+                Dictionary<String, String> dicContractOptions = new Dictionary<String, String>();
+                foreach (ContractOption tmp in objContract.listContractOptions)
+                {
+                    if (dicContractOptions.ContainsKey(tmp.toString()))
+                    {
+                        listWrong.Add(tmp);
+                    }
+                    else
+                    {
+                        dicContractOptions.Add(tmp.toString(), "1");
+                    }
+                }
+                ///Thuc hien xoa
+                objContract.deleteContractOptionWrong(objContract.ContractOID, listWrong);
+
+                //Reload lai data
+                objContract.listContractOptions = ContractOption.getContractOption(objContract.ContractOID);
+
+                //
+                List<Int32> lstInvoiceType = new List<Int32>();
+                lstInvoiceType.Add(0);
+                lstInvoiceType.Add(1);
+                lstContractInvoice = SCInvoiceUtil.getContractInvoice(ContractFrm.objContract.ContractOID, lstInvoiceType, true);
+            }
+            else
+            {
+                objContract = new Contract();
+            }
+            this.loadComboboxData();
+            this.loadContractData();
+
+            myCulture = objGlobal.CultureInfo;
+
+            //
+            this.loadVehice();
+            this.contractOption1.loadDataGrid();
+            this.contractOption1.loadTree();
+            this.contractDataFrm.fillData();
+            objContract.listSCContractRemark = (objContract.listSCContractRemark == null) ? new List<SCContractRemark>() : objContract.listSCContractRemark;
+
+            //Invoice
+            invoicesFrm.setCheckDefault();
+            invoicesFrm.fillDataGrid(lstContractInvoice);
+
+            //Remark
+            remarkFrm.loadRemark(objContract.listSCContractRemark);
         }
     }
 }

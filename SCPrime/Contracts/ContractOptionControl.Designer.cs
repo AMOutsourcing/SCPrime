@@ -29,33 +29,41 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pbSplitOption = new System.Windows.Forms.Button();
             this.txtTotalSale = new System.Windows.Forms.TextBox();
             this.txtTotalPurchase = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.txtTotalSale2 = new System.Windows.Forms.TextBox();
             this.partialPayerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.contractOptionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.sCOptionBaseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.oIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.partNrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.baseSelPrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BasePurchasePr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PurchasePr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SalePr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.partNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.labourCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.labourNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.baseSelPrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.purchasePrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.salePrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.infoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Info = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PartialPayerCol = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.optionCategoryOIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.optionOIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.optionDetailOIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OptionCategoryOID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OptionOID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OptionDetailOID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.createdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.partialPayerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -93,6 +101,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.txtTotalSale2);
+            this.panel2.Controls.Add(this.pbSplitOption);
             this.panel2.Controls.Add(this.txtTotalSale);
             this.panel2.Controls.Add(this.txtTotalPurchase);
             this.panel2.Controls.Add(this.label3);
@@ -104,26 +114,36 @@
             this.panel2.Size = new System.Drawing.Size(648, 36);
             this.panel2.TabIndex = 2;
             // 
+            // pbSplitOption
+            // 
+            this.pbSplitOption.Location = new System.Drawing.Point(143, 8);
+            this.pbSplitOption.Name = "pbSplitOption";
+            this.pbSplitOption.Size = new System.Drawing.Size(81, 23);
+            this.pbSplitOption.TabIndex = 5;
+            this.pbSplitOption.Text = "Instalments";
+            this.pbSplitOption.UseVisualStyleBackColor = true;
+            this.pbSplitOption.Click += new System.EventHandler(this.pbSplitOption_Click);
+            // 
             // txtTotalSale
             // 
-            this.txtTotalSale.Location = new System.Drawing.Point(574, 6);
+            this.txtTotalSale.Location = new System.Drawing.Point(521, 10);
             this.txtTotalSale.Name = "txtTotalSale";
             this.txtTotalSale.ReadOnly = true;
-            this.txtTotalSale.Size = new System.Drawing.Size(66, 20);
+            this.txtTotalSale.Size = new System.Drawing.Size(57, 20);
             this.txtTotalSale.TabIndex = 4;
             // 
             // txtTotalPurchase
             // 
-            this.txtTotalPurchase.Location = new System.Drawing.Point(414, 6);
+            this.txtTotalPurchase.Location = new System.Drawing.Point(355, 8);
             this.txtTotalPurchase.Name = "txtTotalPurchase";
             this.txtTotalPurchase.ReadOnly = true;
-            this.txtTotalPurchase.Size = new System.Drawing.Size(66, 20);
+            this.txtTotalPurchase.Size = new System.Drawing.Size(56, 20);
             this.txtTotalPurchase.TabIndex = 3;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(486, 10);
+            this.label3.Location = new System.Drawing.Point(433, 14);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(82, 13);
             this.label3.TabIndex = 2;
@@ -132,7 +152,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(311, 10);
+            this.label2.Location = new System.Drawing.Point(252, 12);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(101, 13);
             this.label2.TabIndex = 1;
@@ -141,11 +161,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 10);
+            this.label1.Location = new System.Drawing.Point(6, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 13);
+            this.label1.Size = new System.Drawing.Size(107, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Selected";
+            this.label1.Text = "Monthly option prices";
             // 
             // dataGridView1
             // 
@@ -156,18 +176,19 @@
             this.oIDDataGridViewTextBoxColumn,
             this.nameDataGridViewTextBoxColumn,
             this.partNrDataGridViewTextBoxColumn,
+            this.baseSelPrDataGridViewTextBoxColumn,
+            this.BasePurchasePr,
+            this.PurchasePr,
+            this.SalePr,
+            this.Quantity,
             this.partNameDataGridViewTextBoxColumn,
             this.labourCodeDataGridViewTextBoxColumn,
             this.labourNameDataGridViewTextBoxColumn,
-            this.baseSelPrDataGridViewTextBoxColumn,
-            this.purchasePrDataGridViewTextBoxColumn,
-            this.salePrDataGridViewTextBoxColumn,
-            this.quantityDataGridViewTextBoxColumn,
-            this.infoDataGridViewTextBoxColumn,
+            this.Info,
             this.PartialPayerCol,
-            this.optionCategoryOIDDataGridViewTextBoxColumn,
-            this.optionOIDDataGridViewTextBoxColumn,
-            this.optionDetailOIDDataGridViewTextBoxColumn,
+            this.OptionCategoryOID,
+            this.OptionOID,
+            this.OptionDetailOID,
             this.createdDataGridViewTextBoxColumn,
             this.modifiedDataGridViewTextBoxColumn,
             this.partialPayerDataGridViewTextBoxColumn,
@@ -182,6 +203,14 @@
             this.dataGridView1.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView1_CellValidating);
             this.dataGridView1.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dataGridView1_DataBindingComplete);
             this.dataGridView1.RowValidated += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_RowValidated);
+            // 
+            // txtTotalSale2
+            // 
+            this.txtTotalSale2.Location = new System.Drawing.Point(584, 10);
+            this.txtTotalSale2.Name = "txtTotalSale2";
+            this.txtTotalSale2.ReadOnly = true;
+            this.txtTotalSale2.Size = new System.Drawing.Size(57, 20);
+            this.txtTotalSale2.TabIndex = 6;
             // 
             // partialPayerBindingSource
             // 
@@ -217,6 +246,49 @@
             this.partNrDataGridViewTextBoxColumn.Name = "partNrDataGridViewTextBoxColumn";
             this.partNrDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // baseSelPrDataGridViewTextBoxColumn
+            // 
+            this.baseSelPrDataGridViewTextBoxColumn.DataPropertyName = "BaseSelPr";
+            dataGridViewCellStyle1.Format = "N2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.baseSelPrDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            this.baseSelPrDataGridViewTextBoxColumn.HeaderText = "BaseSelPr";
+            this.baseSelPrDataGridViewTextBoxColumn.Name = "baseSelPrDataGridViewTextBoxColumn";
+            this.baseSelPrDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // BasePurchasePr
+            // 
+            this.BasePurchasePr.DataPropertyName = "BasePurchasePr";
+            dataGridViewCellStyle2.Format = "N2";
+            this.BasePurchasePr.DefaultCellStyle = dataGridViewCellStyle2;
+            this.BasePurchasePr.HeaderText = "BasePurchasePr";
+            this.BasePurchasePr.Name = "BasePurchasePr";
+            this.BasePurchasePr.ReadOnly = true;
+            // 
+            // PurchasePr
+            // 
+            this.PurchasePr.DataPropertyName = "PurchasePr";
+            dataGridViewCellStyle3.Format = "N2";
+            this.PurchasePr.DefaultCellStyle = dataGridViewCellStyle3;
+            this.PurchasePr.HeaderText = "PurchasePr";
+            this.PurchasePr.Name = "PurchasePr";
+            // 
+            // SalePr
+            // 
+            this.SalePr.DataPropertyName = "SalePr";
+            dataGridViewCellStyle4.Format = "N2";
+            this.SalePr.DefaultCellStyle = dataGridViewCellStyle4;
+            this.SalePr.HeaderText = "SalePr";
+            this.SalePr.Name = "SalePr";
+            // 
+            // Quantity
+            // 
+            this.Quantity.DataPropertyName = "Quantity";
+            dataGridViewCellStyle5.Format = "N2";
+            this.Quantity.DefaultCellStyle = dataGridViewCellStyle5;
+            this.Quantity.HeaderText = "Total qty.";
+            this.Quantity.Name = "Quantity";
+            // 
             // partNameDataGridViewTextBoxColumn
             // 
             this.partNameDataGridViewTextBoxColumn.DataPropertyName = "PartName";
@@ -238,37 +310,11 @@
             this.labourNameDataGridViewTextBoxColumn.Name = "labourNameDataGridViewTextBoxColumn";
             this.labourNameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // baseSelPrDataGridViewTextBoxColumn
+            // Info
             // 
-            this.baseSelPrDataGridViewTextBoxColumn.DataPropertyName = "BaseSelPr";
-            this.baseSelPrDataGridViewTextBoxColumn.HeaderText = "BaseSelPr";
-            this.baseSelPrDataGridViewTextBoxColumn.Name = "baseSelPrDataGridViewTextBoxColumn";
-            this.baseSelPrDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // purchasePrDataGridViewTextBoxColumn
-            // 
-            this.purchasePrDataGridViewTextBoxColumn.DataPropertyName = "PurchasePr";
-            this.purchasePrDataGridViewTextBoxColumn.HeaderText = "PurchasePr";
-            this.purchasePrDataGridViewTextBoxColumn.Name = "purchasePrDataGridViewTextBoxColumn";
-            this.purchasePrDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // salePrDataGridViewTextBoxColumn
-            // 
-            this.salePrDataGridViewTextBoxColumn.DataPropertyName = "SalePr";
-            this.salePrDataGridViewTextBoxColumn.HeaderText = "SalePr";
-            this.salePrDataGridViewTextBoxColumn.Name = "salePrDataGridViewTextBoxColumn";
-            // 
-            // quantityDataGridViewTextBoxColumn
-            // 
-            this.quantityDataGridViewTextBoxColumn.DataPropertyName = "Quantity";
-            this.quantityDataGridViewTextBoxColumn.HeaderText = "Quantity";
-            this.quantityDataGridViewTextBoxColumn.Name = "quantityDataGridViewTextBoxColumn";
-            // 
-            // infoDataGridViewTextBoxColumn
-            // 
-            this.infoDataGridViewTextBoxColumn.DataPropertyName = "Info";
-            this.infoDataGridViewTextBoxColumn.HeaderText = "Info";
-            this.infoDataGridViewTextBoxColumn.Name = "infoDataGridViewTextBoxColumn";
+            this.Info.DataPropertyName = "Info";
+            this.Info.HeaderText = "Info";
+            this.Info.Name = "Info";
             // 
             // PartialPayerCol
             // 
@@ -281,29 +327,29 @@
             this.PartialPayerCol.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.PartialPayerCol.ValueMember = "strValue1";
             // 
-            // optionCategoryOIDDataGridViewTextBoxColumn
+            // OptionCategoryOID
             // 
-            this.optionCategoryOIDDataGridViewTextBoxColumn.DataPropertyName = "OptionCategoryOID";
-            this.optionCategoryOIDDataGridViewTextBoxColumn.HeaderText = "OptionCategoryOID";
-            this.optionCategoryOIDDataGridViewTextBoxColumn.Name = "optionCategoryOIDDataGridViewTextBoxColumn";
-            this.optionCategoryOIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.optionCategoryOIDDataGridViewTextBoxColumn.Visible = false;
+            this.OptionCategoryOID.DataPropertyName = "OptionCategoryOID";
+            this.OptionCategoryOID.HeaderText = "OptionCategoryOID";
+            this.OptionCategoryOID.Name = "OptionCategoryOID";
+            this.OptionCategoryOID.ReadOnly = true;
+            this.OptionCategoryOID.Visible = false;
             // 
-            // optionOIDDataGridViewTextBoxColumn
+            // OptionOID
             // 
-            this.optionOIDDataGridViewTextBoxColumn.DataPropertyName = "OptionOID";
-            this.optionOIDDataGridViewTextBoxColumn.HeaderText = "OptionOID";
-            this.optionOIDDataGridViewTextBoxColumn.Name = "optionOIDDataGridViewTextBoxColumn";
-            this.optionOIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.optionOIDDataGridViewTextBoxColumn.Visible = false;
+            this.OptionOID.DataPropertyName = "OptionOID";
+            this.OptionOID.HeaderText = "OptionOID";
+            this.OptionOID.Name = "OptionOID";
+            this.OptionOID.ReadOnly = true;
+            this.OptionOID.Visible = false;
             // 
-            // optionDetailOIDDataGridViewTextBoxColumn
+            // OptionDetailOID
             // 
-            this.optionDetailOIDDataGridViewTextBoxColumn.DataPropertyName = "OptionDetailOID";
-            this.optionDetailOIDDataGridViewTextBoxColumn.HeaderText = "OptionDetailOID";
-            this.optionDetailOIDDataGridViewTextBoxColumn.Name = "optionDetailOIDDataGridViewTextBoxColumn";
-            this.optionDetailOIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.optionDetailOIDDataGridViewTextBoxColumn.Visible = false;
+            this.OptionDetailOID.DataPropertyName = "OptionDetailOID";
+            this.OptionDetailOID.HeaderText = "OptionDetailOID";
+            this.OptionDetailOID.Name = "OptionDetailOID";
+            this.OptionDetailOID.ReadOnly = true;
+            this.OptionDetailOID.Visible = false;
             // 
             // createdDataGridViewTextBoxColumn
             // 
@@ -381,21 +427,24 @@
         private System.Windows.Forms.BindingSource sCOptionBaseBindingSource;
         private System.Windows.Forms.BindingSource contractOptionBindingSource;
         private System.Windows.Forms.BindingSource partialPayerBindingSource;
+        private System.Windows.Forms.Button pbSplitOption;
+        public System.Windows.Forms.TextBox txtTotalSale2;
         private System.Windows.Forms.DataGridViewTextBoxColumn oIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn partNrDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn baseSelPrDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BasePurchasePr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PurchasePr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SalePr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn partNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn labourCodeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn labourNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn baseSelPrDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn purchasePrDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn salePrDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn quantityDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn infoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Info;
         private System.Windows.Forms.DataGridViewComboBoxColumn PartialPayerCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn optionCategoryOIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn optionOIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn optionDetailOIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OptionCategoryOID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OptionOID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OptionDetailOID;
         private System.Windows.Forms.DataGridViewTextBoxColumn createdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn partialPayerDataGridViewTextBoxColumn;

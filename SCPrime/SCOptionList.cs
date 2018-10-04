@@ -49,7 +49,7 @@ namespace SCPrime
         {
             InitializeComponent();
             // remove context menu
-            this.ContextMenuStrip.Items.Clear();
+        //    this.ContextMenuStrip.Items.Clear();
 
             this.Visible = false;
             this.saveCategories = new List<SCOptionCategory>();
@@ -1735,6 +1735,11 @@ namespace SCPrime
             {
                 this.Close();
             }
+        }
+
+        private void pbSync_Click(object sender, EventArgs e)
+        {
+            button1_Click(sender, e);
         }
     }
 }

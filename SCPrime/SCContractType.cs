@@ -28,7 +28,7 @@ namespace SCPrime
         {
             InitializeComponent();
             // remove context menu
-            this.ContextMenuStrip.Items.Clear();
+           // this.ContextMenuStrip.Items.Clear();
             this.Visible = false;
             this.sCContractTypes = new List<SCContractType>();
             this.datasource = new List<SCContractType>(); ;

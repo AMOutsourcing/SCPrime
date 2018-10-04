@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace SCPrime.Contracts
 {
-    public partial class ChangeStatusFrm : Form
+    public partial class ChangeStatusFrm : nsBaseClass.clsBaseForm
     {
 
         public delegate void GetContractStatus(string Message);

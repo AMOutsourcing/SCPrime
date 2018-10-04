@@ -29,7 +29,7 @@ namespace SCPrime.Contracts
             List<ObjTmp> listZSCCAPPAYE = new List<ObjTmp>(listTmp.Count);
             foreach (clsBaseListItem term in listTmp)
             {
-                listZSCCAPPAYE.Add(new ObjTmp(term.nValue1.ToString(), term.strText));
+                listZSCCAPPAYE.Add(new ObjTmp(term.strValue1.ToString(), term.strText));
             }
             partialPayerBindingSource.DataSource = listZSCCAPPAYE;
         }
@@ -476,6 +476,7 @@ namespace SCPrime.Contracts
                     rtn.LabourName = item.WrksName;
                     rtn.BaseSelPr = item.SelPr;
                     rtn.PurchasePr = item.BuyPr;
+                    rtn.BasePurchasePr = item.BuyPr;
                     rtn.InvoiceFlag = catetory.InvoiceFlag;
                 }
                 else if (item.GetType() == typeof(SCOption))
@@ -493,6 +494,7 @@ namespace SCPrime.Contracts
                     rtn.LabourName = option.WrksName;
                     rtn.BaseSelPr = option.SelPr;
                     rtn.PurchasePr = option.BuyPr;
+                    rtn.BasePurchasePr = option.BuyPr;
                 }
                 else
                 {
@@ -515,6 +517,7 @@ namespace SCPrime.Contracts
                     rtn.LabourName = detail.WrksName;
                     rtn.BaseSelPr = detail.SelPr;
                     rtn.PurchasePr = detail.BuyPr;
+                    rtn.BasePurchasePr = detail.BuyPr;
                 }
 
 
@@ -533,12 +536,14 @@ namespace SCPrime.Contracts
                             rtn.SalePr = rtn.BaseSelPr;
                         }
                         else rtn.SalePr = finded.SalePr;
+                        rtn.PurchasePr = finded.PurchasePr;
                         //rtn.BaseSelPr = finded.BaseSelPr;
                     }
                     catch (System.InvalidOperationException ex)
                     {
                         rtn.Quantity = 1;
                         rtn.SalePr = rtn.BaseSelPr;
+                        rtn.PurchasePr = rtn.BasePurchasePr;
                         _log.Error("ContractFrm.objContract.listContractOptions Single not contain exactly one element: " + rtn.toString(), ex);
                     }
 
@@ -556,6 +561,7 @@ namespace SCPrime.Contracts
                         finded.Quantity = rtn.Quantity;
                         finded.SalePr = rtn.SalePr;
                         finded.BaseSelPr = rtn.BaseSelPr;
+                        finded.PurchasePr = rtn.PurchasePr;
                     }
                     catch (System.InvalidOperationException ex)
                     {
@@ -719,7 +725,8 @@ namespace SCPrime.Contracts
                             if (!finded.SalePr.Equals(contractOption.SalePr)
                                 || !finded.Quantity.Equals(contractOption.Quantity)
                                 || !finded.Info.Equals(contractOption.Info)
-                                || !finded.PartialPayer.Equals(contractOption.PartialPayer))
+                                || !finded.PartialPayer.Equals(contractOption.PartialPayer)
+                                || !finded.PurchasePr.Equals(contractOption.PurchasePr))
                             {
                                 contractOption.isUpdate = true;
                             }
@@ -763,22 +770,25 @@ namespace SCPrime.Contracts
                 {
                     DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
 
-                    Int32.TryParse(row.Cells[12].Value.ToString(), out OptionCategoryOID);
-                    Int32.TryParse(row.Cells[13].Value.ToString(), out OptionOID);
-                    Int32.TryParse(row.Cells[14].Value.ToString(), out OptionDetailOID);
+                    Int32.TryParse(row.Cells["OptionCategoryOID"].Value.ToString(), out OptionCategoryOID);
+                    Int32.TryParse(row.Cells["OptionOID"].Value.ToString(), out OptionOID);
+                    Int32.TryParse(row.Cells["OptionDetailOID"].Value.ToString(), out OptionDetailOID);
                     //Console.WriteLine("OptionCategoryOID: " + OptionCategoryOID + " - OptionOID: " + OptionOID + " -OptionDetailOID: " + OptionDetailOID);
                     ContractOption finded = this.listOptionDetail.Single(s => s.OptionCategoryOID == OptionCategoryOID && s.OptionOID == OptionOID && s.OptionDetailOID == OptionDetailOID);
 
                     decimal sellPr = 0;
+                    decimal purchasePr = 0;
                     decimal Quantity = 0;
-                    decimal.TryParse(row.Cells[8].Value.ToString(), out sellPr);
-                    decimal.TryParse(row.Cells[9].Value.ToString(), out Quantity);
+                    decimal.TryParse(row.Cells["SalePr"].Value.ToString(), out sellPr);
+                    decimal.TryParse(row.Cells["Quantity"].Value.ToString(), out Quantity);
+                    decimal.TryParse(row.Cells["PurchasePr"].Value.ToString(), out purchasePr);
                     finded.SalePr = sellPr;
                     finded.Quantity = Quantity;
-                    if (row.Cells[10].Value != null)
-                        finded.Info = row.Cells[10].Value.ToString();
-                    if (row.Cells[11].Value != null)
-                        finded.PartialPayer = row.Cells[11].Value.ToString();
+                    finded.PurchasePr = purchasePr;
+                    if (row.Cells["Info"].Value != null)
+                        finded.Info = row.Cells["Info"].Value.ToString();
+                    if (row.Cells["PartialPayerCol"].Value != null)
+                        finded.PartialPayer = row.Cells["PartialPayerCol"].Value.ToString();
                     calcTotal();
                 }
                 catch (System.InvalidOperationException ex)
@@ -831,6 +841,7 @@ namespace SCPrime.Contracts
             {
                 txtTotalPurchase.Text = "0";
                 txtTotalSale.Text = "0";
+                txtTotalSale2.Text = "0";
                 //Update Cost based on service
                 ContractCost data = ContractFrm.objContract.ContractCostData;
                 data = (data == null) ? new ContractCost() : data;
@@ -841,20 +852,28 @@ namespace SCPrime.Contracts
             {
                 decimal totalPurchase = 0;
                 decimal totalSale = 0;
+                decimal totalSale2 = 0;
                 foreach (ContractOption contractOption in listOptionDetail)
                 {
                     if (contractOption.isDelete)
                     {
                         continue;
                     }
-                    if (contractOption.OptionOID <= 0 && contractOption.OptionDetailOID <= 0 && contractOption.InvoiceFlag > 0)
+                    //if (contractOption.OptionOID <= 0 && contractOption.OptionDetailOID <= 0 && contractOption.InvoiceFlag == 0)
+                    if ((contractOption.InvoiceFlag == 0) )
                     {
-                        totalPurchase += contractOption.PurchasePr * contractOption.Quantity;
-                        totalSale += contractOption.SalePr * contractOption.Quantity;
+                        if (contractOption.PartialPayer == "")
+                        {
+                            totalSale += contractOption.SalePr;
+                        }
+                        totalPurchase += contractOption.PurchasePr;
+                        totalSale2 += contractOption.SalePr;
+
                     }
                 }
-                txtTotalPurchase.Text = totalPurchase.ToString();
-                txtTotalSale.Text = totalSale.ToString();
+                txtTotalPurchase.Text = totalPurchase.ToString("f2");
+                txtTotalSale.Text = totalSale.ToString("f2");
+                txtTotalSale2.Text = totalSale2.ToString("f2");
                 //Update Cost based on service
                 ContractCost data = ContractFrm.objContract.ContractCostData;
                 data = (data == null) ? new ContractCost() : data;
@@ -871,6 +890,13 @@ namespace SCPrime.Contracts
             {
                 e.Cancel = true;
             }
+        }
+
+        private void pbSplitOption_Click(object sender, EventArgs e)
+        {
+            dlgOptionInstalment dlg = new dlgOptionInstalment();
+           // dlg.listInstalment = 
+            dlg.ShowDialog();
         }
     }
 }

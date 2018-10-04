@@ -15,7 +15,7 @@ namespace SCPrime.Model
         public int OID { get; set; }
         public int ContractOID { get; set; }
         public DateTime Created { get; set; }
-        public int UserId { get; set; }
+        public String UserId { get; set; }
         public int RemarkType { get; set; }
         public String Info { get; set; }
         public bool isMarkDeleted { get; set; } = false;
@@ -29,6 +29,7 @@ namespace SCPrime.Model
         {
             clsSqlFactory hSql = new clsSqlFactory();
             List<SCContractRemark> Result = new List<SCContractRemark>();
+            
             try
             {
                 clsGlobalVariable objGlobal = new clsGlobalVariable();
@@ -49,7 +50,7 @@ namespace SCPrime.Model
                     colId = hSql.Reader.GetOrdinal("Created");
                     if (!hSql.Reader.IsDBNull(colId)) item.Created = hSql.Reader.GetDateTime(colId);
                     colId = hSql.Reader.GetOrdinal("UserId");
-                    if (!hSql.Reader.IsDBNull(colId)) item.UserId = hSql.Reader.GetInt32(colId);
+                    if (!hSql.Reader.IsDBNull(colId)) item.UserId = hSql.Reader.GetString(colId);
                     colId = hSql.Reader.GetOrdinal("RemarkType");
                     if (!hSql.Reader.IsDBNull(colId)) item.RemarkType = hSql.Reader.GetInt16(colId);
                     colId = hSql.Reader.GetOrdinal("Info");
@@ -76,6 +77,7 @@ namespace SCPrime.Model
             bool bRet = true;
             try
             {
+                clsGlobalVariable objGlobal = new clsGlobalVariable();
                 foreach (SCContractRemark data in lstData)
                 {
                     if (data.OID > 0)
@@ -88,8 +90,8 @@ namespace SCPrime.Model
                         }
                         else
                         {
-                            bRet = hSql.NewCommand("update ZSC_ContractRemark set UserId=?,RemarkType=?,Info=? where OID=?");
-                            hSql.Com.Parameters.AddWithValue("UserId", data.UserId);
+                            bRet = hSql.NewCommand("update ZSC_ContractRemark set UserId=?,RemarkType=?,Info=?, Modified=getdate() where OID=?");
+                            hSql.Com.Parameters.AddWithValue("UserId", objGlobal.DMSFirstUserName);
                             hSql.Com.Parameters.AddWithValue("RemarkType", data.RemarkType);
                             hSql.Com.Parameters.AddWithValue("Info", data.Info);
                             hSql.Com.Parameters.AddWithValue("OID", data.OID);
@@ -98,9 +100,9 @@ namespace SCPrime.Model
                     }
                     else
                     {
-                        bRet = hSql.NewCommand("INSERT INTO ZSC_ContractRemark(ContractOID,Created,UserId,RemarkType,Info) VALUES(?,getdate(),?,?,?)");
+                        bRet = hSql.NewCommand("INSERT INTO ZSC_ContractRemark(ContractOID,Created,UserId,RemarkType,Info,Modified) VALUES(?,getdate(),?,?,?,getdate())");
                         hSql.Com.Parameters.AddWithValue("ContractOID", ContractOID);
-                        hSql.Com.Parameters.AddWithValue("UserId", data.UserId);
+                        hSql.Com.Parameters.AddWithValue("UserId", objGlobal.DMSFirstUserName);
                         hSql.Com.Parameters.AddWithValue("RemarkType", data.RemarkType);
                         hSql.Com.Parameters.AddWithValue("Info", data.Info);
                         bRet = bRet && hSql.ExecuteNonQuery();
