@@ -2300,6 +2300,7 @@ namespace SCPrime.Model
                 int colId;
                 while (hSql.Read())
                 {
+                    Result = new SCIndexData();
                     colId = hSql.Reader.GetOrdinal("OID");
                     if (!hSql.Reader.IsDBNull(colId)) Result.OID = hSql.Reader.GetInt32(colId);
                     colId = hSql.Reader.GetOrdinal("IndexYear");

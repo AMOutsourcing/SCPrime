@@ -90,24 +90,40 @@ namespace SCPrime
             int selectedRow = gridData.SelectedRows.Count;
             if (selectedRow > 0)
             {
-                int rowIdx;
-                for (int i = 0; i < selectedRow; i++)
+                foreach (DataGridViewRow r in gridData.SelectedRows)
                 {
-                    rowIdx = gridData.SelectedCells[i].RowIndex;
+                    SCIndexData obj = new SCIndexData();
+                    obj.OID = Int32.Parse(r.Cells[0].Value.ToString());
+                    obj.isDelete = true;
 
                     //Add list delete
-                    SCIndexData obj = new SCIndexData();
-                    obj.OID = Int32.Parse(gridData.Rows[rowIdx].Cells[0].Value.ToString());
-                    obj.isDelete = true;
-                    listDataChange.Add(obj);
+                    SCIndexData finder = listDataChange.Find(x => x.OID == obj.OID);
+                    if(finder == null)
+                        listDataChange.Add(obj);
+                    else
+                        finder.isDelete = true;
+                    
                     if (obj.OID > 0)
                     {
                         listData.RemoveAll(x => x.OID == obj.OID);
                     }
 
-                    //Delete from datatable
-                    dataTable.Rows.RemoveAt(rowIdx);
-                    dataTable.AcceptChanges();
+                    r.Cells["isDelete"].Value = true;
+                    //Mark as delete with SCIndexData in db
+                    ViewUtils.remarkHeader(r, "isDelete");
+
+                    //if (obj.OID > 0)
+                    //{
+                    //    r.Cells["isDelete"].Value = true;
+                    //    //Mark as delete with SCIndexData in db
+                    //    ViewUtils.remarkHeader(r, "isDelete");
+                    //}
+                    //else
+                    //{
+                    //    //Delete from datatable with SCIndexData add new
+                    //    dataTable.Rows.RemoveAt(r.Index);
+                    //    dataTable.AcceptChanges();
+                    //}   
                 }
             }
         }
@@ -231,9 +247,9 @@ namespace SCPrime
                 {
                     SCIndexData finder = listData.Find(x => x.OID == sCIndexData.OID);
                     //Kiem tra thay doi so voi db
-                    if (finder != null && finder.IndexYear != sCIndexData.IndexYear
+                    if (finder != null && (finder.IndexYear != sCIndexData.IndexYear
                         || finder.IndexMonth != sCIndexData.IndexMonth
-                        || finder.IndexValue != sCIndexData.IndexValue)
+                        || finder.IndexValue != sCIndexData.IndexValue))
                     {
                         sCIndexData.isUpdate = true;
 
