@@ -211,7 +211,7 @@ namespace SCPrime
         private void nEwContractToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SCMain.ContractOid = 0;
-            ContractFrm cf = new ContractFrm();
+            ContractFrm cf = ContractFrm.instance;
             cf.StartPosition = FormStartPosition.CenterParent;
             cf.ShowDialog();
         }
@@ -488,7 +488,7 @@ namespace SCPrime
                 if (r != null && !string.IsNullOrEmpty(r.Cells["colCcontractOID"].Value.ToString()))
                 {
                     ContractOid = (int)r.Cells["colCcontractOID"].Value;
-                    ContractFrm cf = new ContractFrm();
+                    ContractFrm cf = ContractFrm.instance;
                     cf.StartPosition = FormStartPosition.CenterParent;
                     cf.ShowDialog();
                 }
@@ -506,7 +506,7 @@ namespace SCPrime
             {
                 ContractOid = (int)r.Cells["colCcontractOID"].Value;
             }
-            ContractFrm cf = new ContractFrm();
+            ContractFrm cf = ContractFrm.instance;
             cf.StartPosition = FormStartPosition.CenterParent;
             cf.ShowDialog();
         }
@@ -517,7 +517,7 @@ namespace SCPrime
             {
                 ContractOid = (int)r.Cells["colCcontractOID"].Value;
             }
-            ContractFrm cf = new ContractFrm();
+            ContractFrm cf = ContractFrm.instance;
             cf.StartPosition = FormStartPosition.CenterParent;
             cf.ShowDialog();
         }
@@ -672,7 +672,7 @@ namespace SCPrime
             {
                 ContractOid = (int)r.Cells["colCcontractOID"].Value;
             }
-            ContractFrm cf = new ContractFrm();
+            ContractFrm cf = ContractFrm.instance;
             cf.StartPosition = FormStartPosition.CenterParent;
             cf.ShowDialog();
         }

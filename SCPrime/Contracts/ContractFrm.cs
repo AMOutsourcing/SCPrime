@@ -23,7 +23,7 @@ namespace SCPrime.Contracts
         public delegate void SearchEmployee(SCViewEmployee epl, int flag);
         public static SearchEmployee updateEmployee;
 
-        //public static ContractFrm _instance;
+        public static ContractFrm _instance;
         public static Contract objContract;
         public List<SCContractType> contractType;
         public List<clsBaseListItem> costCenterList = new List<clsBaseListItem>();
@@ -32,17 +32,17 @@ namespace SCPrime.Contracts
         public static string myCulture;
         public List<ObjTmp> ls = new List<ObjTmp>();
 
-        //public static ContractFrm instance
-        //{
-        //    get
-        //    {
-        //        if (_instance == null || _instance.IsDisposed)
-        //        {
-        //            ContractFrm._instance = new ContractFrm();
-        //        }
-        //        return _instance;
-        //    }
-        //}
+        public static ContractFrm instance
+        {
+            get
+            {
+                if (_instance == null || _instance.IsDisposed)
+                {
+                    ContractFrm._instance = new ContractFrm();
+                }
+                return _instance;
+            }
+        }
 
 
         public ContractFrm()
@@ -960,6 +960,8 @@ namespace SCPrime.Contracts
                 lstInvoiceType.Add(0);
                 lstInvoiceType.Add(1);
                 lstContractInvoice = SCInvoiceUtil.getContractInvoice(ContractFrm.objContract.ContractOID, lstInvoiceType, true);
+
+                objContract.listSCContractRemark = SCContractRemark.getRemark(objContract.ContractOID);
             }
             else
             {

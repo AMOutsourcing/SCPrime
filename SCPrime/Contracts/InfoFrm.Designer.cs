@@ -40,7 +40,7 @@
             // 
             this.txtInfo.Location = new System.Drawing.Point(100, 12);
             this.txtInfo.Name = "txtInfo";
-            this.txtInfo.Size = new System.Drawing.Size(389, 102);
+            this.txtInfo.Size = new System.Drawing.Size(363, 102);
             this.txtInfo.TabIndex = 0;
             this.txtInfo.Text = "";
             // 

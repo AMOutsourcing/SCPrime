@@ -191,7 +191,7 @@ namespace SCPrime.Contracts
         private void gridMark_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             //Info
-            _log.Info("-------gridMark_CellDoubleClick------" + e.ColumnIndex);
+            //_log.Info("-------gridMark_CellDoubleClick------" + e.ColumnIndex);
             if (e.ColumnIndex == 5)
             {
                 OIDSelect = (int)gridMark.Rows[e.RowIndex].Cells[0].Value;
@@ -200,6 +200,11 @@ namespace SCPrime.Contracts
                 frm.setValue(gridMark.Rows[e.RowIndex].Cells[5].Value.ToString());
                 frm.ShowDialog();
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            ContractFrm.instance.reloadAll();
         }
     }
 }
