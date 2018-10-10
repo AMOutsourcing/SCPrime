@@ -36,13 +36,14 @@
             this.btnNew = new System.Windows.Forms.Button();
             this.pnLeft = new System.Windows.Forms.Panel();
             this.gridData = new System.Windows.Forms.DataGridView();
+            this.sCIndexDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.oIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.indexYearDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.indexMonthDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.indexValueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.createdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sCIndexDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.isDelete = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.pnFull.SuspendLayout();
             this.pnRight.SuspendLayout();
             this.pnLeft.SuspendLayout();
@@ -121,7 +122,8 @@
             this.indexMonthDataGridViewTextBoxColumn,
             this.indexValueDataGridViewTextBoxColumn,
             this.modifiedDataGridViewTextBoxColumn,
-            this.createdDataGridViewTextBoxColumn});
+            this.createdDataGridViewTextBoxColumn,
+            this.isDelete});
             this.gridData.DataSource = this.sCIndexDataBindingSource;
             this.gridData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridData.Location = new System.Drawing.Point(0, 0);
@@ -132,6 +134,10 @@
             this.gridData.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.gridData_CellValidating);
             this.gridData.RowValidating += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.gridData_RowValidating);
             this.gridData.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridData_KeyDown);
+            // 
+            // sCIndexDataBindingSource
+            // 
+            this.sCIndexDataBindingSource.DataSource = typeof(SCPrime.Model.SCIndexData);
             // 
             // oIDDataGridViewTextBoxColumn
             // 
@@ -172,9 +178,13 @@
             this.createdDataGridViewTextBoxColumn.Name = "createdDataGridViewTextBoxColumn";
             this.createdDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // sCIndexDataBindingSource
+            // isDelete
             // 
-            this.sCIndexDataBindingSource.DataSource = typeof(SCPrime.Model.SCIndexData);
+            this.isDelete.DataPropertyName = "isDelete";
+            this.isDelete.HeaderText = "isDelete";
+            this.isDelete.Name = "isDelete";
+            this.isDelete.ReadOnly = true;
+            this.isDelete.Visible = false;
             // 
             // SCIndexDataFrm
             // 
@@ -210,5 +220,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn indexValueDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn modifiedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn createdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn isDelete;
     }
 }
